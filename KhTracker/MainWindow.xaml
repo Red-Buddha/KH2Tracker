@@ -1,0 +1,472 @@
+﻿<Window x:Class="KhTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KhTracker"
+        mc:Ignorable="d"
+        Title="KH2Tracker" Height="920" Width="570" ResizeMode="NoResize" Left="0" Top="0" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary1.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="White">
+            <MenuItem Header="_Options">
+                <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
+                <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid Background="#303030">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Height="700">
+
+                    <StackPanel Height="700" Width="280" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name ="SoraHeart" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="SH" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="SoraHeartHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="SoraHeartGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="SimulatedTwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="STT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-3,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="SimulatedHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="SimulatedGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="HollowBastion" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="HB" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="HollowBastionHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="HollowBastionGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="OlympusColiseum" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="OC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="OlympusColiseumHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="OlympusColiseumGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="LandofDragons" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="Lod" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="0,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="LandofDragonsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="LandofDragonsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="PrideLands" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="PL" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="PrideLandsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="PrideLandsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="HalloweenTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="HT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-7,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="HalloweenTownHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="HalloweenTownGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Width="270">
+                            <StackPanel>
+                                <Button Name="SpaceParanoids" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="SP" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-9,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="SpaceParanoidsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="SpaceParanoidsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="GoA" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="GoA" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="GoAGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        
+                    <StackPanel Height="615" Width="280" VerticalAlignment="Top">
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name ="DriveForms" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="DF" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="DriveFormsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="DriveFormsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="TwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="TT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="TwilightTownHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="TwilightTownGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="BeastCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="BC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="BeastCastleHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="BeastCastleGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="Agrabah" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="A" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-19,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="AgrabahHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="AgrabahGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="HundredAcreWood" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="100" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-4,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="HundredAcreWoodHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="HundredAcreWoodGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="DisneyCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20" />
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="DC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-6,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="DisneyCastleHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="DisneyCastleGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="PortRoyal" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="PR" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
+                                    <TextBlock Name="PortRoyalHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <UniformGrid Name="PortRoyalGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Button Name="TWTNW" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
+                                <StackPanel Margin="0,-35,0,0">
+                                    <TextBlock Text="TWTNW" FontSize="11" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-2,0,0" IsHitTestVisible="False"/>
+                                        <TextBlock Name="TWTNWHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="40,-2,0,0" Height="20" IsHitTestVisible="False"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <UniformGrid Name="TWTNWGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel>
+                            <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="35" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Image Source="D:\Users\Trevor\Pictures\KH2Tracker\Bar.png" Margin="0,-5,15,0" Width="30" HorizontalAlignment="Right"/>
+                            <TextBlock Name="CheckTotal" Text="50" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="35" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <Grid Name="test" Height="160" Width="550" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Item" Grid.Row="0" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\One.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">1</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item2" Grid.Row="0" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Two.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">2</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item3" Grid.Row="0" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Three.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">3</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item4" Grid.Row="0" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Four.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">4</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item5" Grid.Row="0" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Five.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">5</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item6" Grid.Row="0" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Six.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">6</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item7" Grid.Row="0" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Seven.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">7</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item8" Grid.Row="0" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Eight.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">8</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item9" Grid.Row="0" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Nine.png" Margin="-23,10,0,0"/>
+                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">9</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item10" Grid.Row="0" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Ten.png" Margin="-35,10,0,0"/>
+                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">10</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item11" Grid.Row="0" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Eleven.png" Margin="-35,10,0,0"/>
+                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">11</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item12" Grid.Row="0" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Twelve.png" Margin="-35,10,0,0"/>
+                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">12</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item13" Grid.Row="0" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images\Reporttest3.png"/>
+                            <Image Source="Images\Thirteen.png" Margin="-35,10,0,0"/>
+                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">13</TextBlock>-->
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Item14" Grid.Row="1" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Fire_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item15" Grid.Row="1" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Fire_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item16" Grid.Row="1" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Fire_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item17" Grid.Row="1" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Blizzard_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item18" Grid.Row="1" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Blizzard_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item19" Grid.Row="1" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Blizzard_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item20" Grid.Row="1" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Thunder_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item21" Grid.Row="1" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Thunder_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item22" Grid.Row="1" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Thunder_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item23" Grid.Row="1" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Cure_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item24" Grid.Row="1" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Cure_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item25" Grid.Row="1" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Cure_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item26" Grid.Row="2" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Reflect_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item27" Grid.Row="2" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Reflect_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item28" Grid.Row="2" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Reflect_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item29" Grid.Row="2" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Magnet_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item30" Grid.Row="2" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Magnet_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item31" Grid.Row="2" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Magnet_Orb.png"/>
+                    </Button>
+                    <Button x:Name="Item32" Grid.Row="3" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Lamp_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Item33" Grid.Row="3" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Ukulele_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Item34" Grid.Row="3" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Baseball_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Item35" Grid.Row="3" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Feather_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Item36" Grid.Row="3" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Item37" Grid.Row="3" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Item38" Grid.Row="3" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Item39" Grid.Row="3" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Item40" Grid.Row="3" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Item41" Grid.Row="2" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Valor_Form.png"/>
+                    </Button>
+                    <Button x:Name="Item42" Grid.Row="2" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Wisdom_Form.png"/>
+                    </Button>
+                    <Button x:Name="Item43" Grid.Row="2" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Limit_Form.png"/>
+                    </Button>
+                    <Button x:Name="Item44" Grid.Row="2" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Master_Form.png"/>
+                    </Button>
+                    <Button x:Name="Item45" Grid.Row="2" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Final_Form.png"/>
+                    </Button>
+                    <Button x:Name="Item46" Grid.Row="2" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\One.png"/>
+                    </Button>
+                    <Button x:Name="Item47" Grid.Row="2" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Two.png"/>
+                    </Button>
+                    <Button x:Name="Item48" Grid.Row="3" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Proof_Of_Nonexistence.png"/>
+                    </Button>
+                    <Button x:Name="Item49" Grid.Row="3" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Proof_Of_Connection.png"/>
+                    </Button>
+                    <Button x:Name="Item50" Grid.Row="3" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Proof_Of_Peace.png"/>
+                    </Button>
+                    <Button x:Name="PromiseCharm" Grid.Row="3" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden">
+                        <Image Source="Images\Promise_Charm.png"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+    </DockPanel>
+</Window>

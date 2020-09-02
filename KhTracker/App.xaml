@@ -1,0 +1,12 @@
+﻿<Application x:Class="KhTracker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:KhTracker"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="Dictionary1.xaml" x:Key="Test" />
+            <FontFamily x:Key="HVD_Comic_Serif_Pro">pack://application:,,,/Fonts/#HVD Comic Serif Pro</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
