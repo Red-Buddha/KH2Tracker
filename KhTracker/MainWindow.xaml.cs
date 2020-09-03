@@ -249,6 +249,22 @@ namespace KhTracker
                 PromiseCharm.IsEnabled = false;
                 PromiseCharm.Visibility = Visibility.Hidden;
                 CheckTotal.Text = "50";
+
+                if (PromiseCharm.Parent != test)
+                {
+                    HandleWorldGrid(PromiseCharm.Parent as UniformGrid, PromiseCharm, false);
+
+                    test.Children.Add(PromiseCharm);
+
+                    int collected = int.Parse(Collected.Text) - 1;
+                    Collected.Text = collected.ToString();
+                    if (collected < 10)
+                        Collected.Margin = new Thickness(0, 0, 20, 0);
+
+                    PromiseCharm.Click -= Item_Return;
+
+                    PromiseCharm.Click += Item_Click;
+                }
             }
         }
 
