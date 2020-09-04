@@ -21,6 +21,10 @@
             <MenuItem Header="_Options">
                 <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
+                <MenuItem Name="ReportsOption" Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
+                <MenuItem Name="AbilitiesOption" Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
+                <MenuItem Name="TornPagesOption" Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/>
+                <MenuItem Name="FinalFormOption" Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
             </MenuItem>
         </Menu>
 
@@ -236,7 +240,7 @@
                 </StackPanel>
 
 
-                <Grid Name="test" Height="160" Width="550" >
+                <Grid Name="ItemPool" Height="160" Width="550" >
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -259,206 +263,206 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="Item" Grid.Row="0" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report1" Grid.Row="0" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\One.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">1</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item2" Grid.Row="0" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report2" Grid.Row="0" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Two.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">2</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item3" Grid.Row="0" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report3" Grid.Row="0" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Three.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">3</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item4" Grid.Row="0" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report4" Grid.Row="0" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Four.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">4</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item5" Grid.Row="0" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report5" Grid.Row="0" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Five.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">5</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item6" Grid.Row="0" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report6" Grid.Row="0" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Six.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">6</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item7" Grid.Row="0" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report7" Grid.Row="0" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Seven.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">7</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item8" Grid.Row="0" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report8" Grid.Row="0" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Eight.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">8</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item9" Grid.Row="0" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report9" Grid.Row="0" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Nine.png" Margin="-23,10,0,0"/>
                             <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">9</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item10" Grid.Row="0" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report10" Grid.Row="0" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Ten.png" Margin="-35,10,0,0"/>
                             <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">10</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item11" Grid.Row="0" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report11" Grid.Row="0" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Eleven.png" Margin="-35,10,0,0"/>
                             <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">11</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item12" Grid.Row="0" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report12" Grid.Row="0" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Twelve.png" Margin="-35,10,0,0"/>
                             <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">12</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item13" Grid.Row="0" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Report13" Grid.Row="0" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images\Reporttest3.png"/>
                             <Image Source="Images\Thirteen.png" Margin="-35,10,0,0"/>
                             <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">13</TextBlock>-->
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Item14" Grid.Row="1" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Fire1" Grid.Row="1" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Fire_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item15" Grid.Row="1" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Fire2" Grid.Row="1" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Fire_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item16" Grid.Row="1" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Fire3" Grid.Row="1" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Fire_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item17" Grid.Row="1" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Blizzard1" Grid.Row="1" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Blizzard_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item18" Grid.Row="1" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Blizzard2" Grid.Row="1" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Blizzard_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item19" Grid.Row="1" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Blizzard3" Grid.Row="1" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Blizzard_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item20" Grid.Row="1" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Thunder1" Grid.Row="1" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Thunder_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item21" Grid.Row="1" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Thunder2" Grid.Row="1" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Thunder_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item22" Grid.Row="1" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Thunder3" Grid.Row="1" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Thunder_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item23" Grid.Row="1" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Cure1" Grid.Row="1" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Cure_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item24" Grid.Row="1" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Cure2" Grid.Row="1" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Cure_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item25" Grid.Row="1" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Cure3" Grid.Row="1" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Cure_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item26" Grid.Row="2" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Reflect1" Grid.Row="2" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Reflect_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item27" Grid.Row="2" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Reflect2" Grid.Row="2" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Reflect_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item28" Grid.Row="2" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Reflect3" Grid.Row="2" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Reflect_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item29" Grid.Row="2" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Magnet1" Grid.Row="2" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Magnet_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item30" Grid.Row="2" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Magnet2" Grid.Row="2" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Magnet_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item31" Grid.Row="2" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Magnet3" Grid.Row="2" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Magnet_Orb.png"/>
                     </Button>
-                    <Button x:Name="Item32" Grid.Row="3" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Lamp_Charm.png"/>
-                    </Button>
-                    <Button x:Name="Item33" Grid.Row="3" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Ukulele_Charm.png"/>
-                    </Button>
-                    <Button x:Name="Item34" Grid.Row="3" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Baseball_Charm.png"/>
-                    </Button>
-                    <Button x:Name="Item35" Grid.Row="3" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Feather_Charm.png"/>
-                    </Button>
-                    <Button x:Name="Item36" Grid.Row="3" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
-                    </Button>
-                    <Button x:Name="Item37" Grid.Row="3" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
-                    </Button>
-                    <Button x:Name="Item38" Grid.Row="3" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
-                    </Button>
-                    <Button x:Name="Item39" Grid.Row="3" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
-                    </Button>
-                    <Button x:Name="Item40" Grid.Row="3" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
-                    </Button>
-                    <Button x:Name="Item41" Grid.Row="2" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Valor" Grid.Row="2" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Valor_Form.png"/>
                     </Button>
-                    <Button x:Name="Item42" Grid.Row="2" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Wisdom" Grid.Row="2" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Wisdom_Form.png"/>
                     </Button>
-                    <Button x:Name="Item43" Grid.Row="2" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Limit" Grid.Row="2" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Limit_Form.png"/>
                     </Button>
-                    <Button x:Name="Item44" Grid.Row="2" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Master" Grid.Row="2" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Master_Form.png"/>
                     </Button>
-                    <Button x:Name="Item45" Grid.Row="2" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Final" Grid.Row="2" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Final_Form.png"/>
                     </Button>
-                    <Button x:Name="Item46" Grid.Row="2" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="OnceMore" Grid.Row="2" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\One.png"/>
                     </Button>
-                    <Button x:Name="Item47" Grid.Row="2" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="SecondChance" Grid.Row="2" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Two.png"/>
                     </Button>
-                    <Button x:Name="Item48" Grid.Row="3" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="TornPage1" Grid.Row="3" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="TornPage2" Grid.Row="3" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="TornPage3" Grid.Row="3" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="TornPage4" Grid.Row="3" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="TornPage5" Grid.Row="3" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Torn_Page.png"/>
+                    </Button>
+                    <Button x:Name="Lamp" Grid.Row="3" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Lamp_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Ukulele" Grid.Row="3" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Ukulele_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Baseball" Grid.Row="3" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Baseball_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Feather" Grid.Row="3" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images\Feather_Charm.png"/>
+                    </Button>
+                    <Button x:Name="Nonexistence" Grid.Row="3" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Proof_Of_Nonexistence.png"/>
                     </Button>
-                    <Button x:Name="Item49" Grid.Row="3" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Connection" Grid.Row="3" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Proof_Of_Connection.png"/>
                     </Button>
-                    <Button x:Name="Item50" Grid.Row="3" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="Peace" Grid.Row="3" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\Proof_Of_Peace.png"/>
                     </Button>
                     <Button x:Name="PromiseCharm" Grid.Row="3" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden">
