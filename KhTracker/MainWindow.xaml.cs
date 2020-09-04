@@ -43,6 +43,7 @@ namespace KhTracker
             Worlds.Add(PortRoyal);
             Worlds.Add(SpaceParanoids);
             Worlds.Add(TWTNW);
+            Worlds.Add(Atlantica);
             Worlds.Add(GoA);
 
             Hints.Add(SoraHeartHint);
@@ -61,6 +62,7 @@ namespace KhTracker
             Hints.Add(PortRoyalHint);
             Hints.Add(SpaceParanoidsHint);
             Hints.Add(TWTNWHint);
+            Hints.Add(AtlanticaHint);
 
             Grids.Add(SoraHeartGrid);
             Grids.Add(DriveFormsGrid);
@@ -78,6 +80,7 @@ namespace KhTracker
             Grids.Add(PortRoyalGrid);
             Grids.Add(SpaceParanoidsGrid);
             Grids.Add(TWTNWGrid);
+            Grids.Add(AtlanticaGrid);
             Grids.Add(GoAGrid);
 
             Reports.Add(Report1);
@@ -297,6 +300,20 @@ namespace KhTracker
             HandleItemToggle(FinalFormOption, Final);
         }
 
+        private void SimulatedToggle(object sender, RoutedEventArgs e)
+        {
+            HandleWorldToggle(SimulatedOption, SimulatedTwilightTown, SimulatedGrid);
+        }
+
+        private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
+        {
+            HandleWorldToggle(HundredAcreWoodOption, HundredAcreWood, HundredAcreWoodGrid);
+        }
+
+        private void AtlanticaToggle(object sender, RoutedEventArgs e)
+        {
+            HandleWorldToggle(AtlanticaOption, Atlantica, AtlanticaGrid);
+        }
 
         private void HandleReportValue(TextBlock Hint, bool isTWTNW, int delta)
         {
@@ -377,6 +394,42 @@ namespace KhTracker
 
                     button.Click += Item_Click;
                 }
+            }
+        }
+
+        private void HandleWorldToggle(MenuItem menuItem, Button button, UniformGrid grid)
+        {
+            if (menuItem.IsChecked)
+            {
+                ((button.Parent as StackPanel).Parent as StackPanel).Height = Double.NaN;
+                ((button.Parent as StackPanel).Parent as StackPanel).IsEnabled = true;
+            }
+            else
+            {
+                if (selected == button)
+                {
+                    selected.BorderBrush = Brushes.White;
+                    selected = null;
+                }
+
+                for (int i = grid.Children.Count - 1; i >= 0; --i)
+                {
+                    Button item = grid.Children[i] as Button;
+                    HandleWorldGrid(grid, item, false);
+
+                    ItemPool.Children.Add(item);
+
+                    int collected = int.Parse(Collected.Text) - 1;
+                    Collected.Text = collected.ToString();
+                    if (collected < 10)
+                        Collected.Margin = new Thickness(0, 0, 20, 0);
+
+                    item.Click -= Item_Return;
+                    item.Click += Item_Click;
+                }
+
+                ((button.Parent as StackPanel).Parent as StackPanel).Height = 0;
+                ((button.Parent as StackPanel).Parent as StackPanel).IsEnabled = false;
             }
         }
     }
