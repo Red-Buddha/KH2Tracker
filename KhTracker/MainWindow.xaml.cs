@@ -87,8 +87,7 @@ namespace KhTracker
 
         private void HandleReportValue(TextBlock Hint, bool isTWTNW, int delta)
         {
-            int num;
-            if (int.TryParse(Hint.Text, out num) == false)
+            if (int.TryParse(Hint.Text, out int num) == false)
             {
                 num = -1;
             }
@@ -125,8 +124,7 @@ namespace KhTracker
                 grid.Children.Add(button);
             else
                 grid.Children.Remove(button);
-
-            // checking for max rows between the two worlds that share a row
+            
             int gridremainder = 0;
             if (grid.Children.Count % 5 != 0)
                 gridremainder = 1;
@@ -215,15 +213,8 @@ namespace KhTracker
         private void Item_Return(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-
-            for(int i = 0; i < Grids.Count; ++ i)
-            {
-                if(Grids[i] == button.Parent)
-                {
-                    HandleWorldGrid(Grids[i], button, false);
-                    break;
-                }
-            }
+            
+            HandleWorldGrid(button.Parent as UniformGrid, button, false);
 
             test.Children.Add(button);
 
