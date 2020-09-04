@@ -20,11 +20,16 @@
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="_Options">
                 <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
+                <Separator/>
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
                 <MenuItem Name="ReportsOption" Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption" Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
                 <MenuItem Name="TornPagesOption" Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/>
                 <MenuItem Name="FinalFormOption" Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
+                <Separator/>
+                <MenuItem Name="SimulatedOption" Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
+                <MenuItem Name="HundredAcreWoodOption" Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
+                <MenuItem Name="AtlanticaOption" Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>
             </MenuItem>
         </Menu>
 
@@ -215,15 +220,26 @@
                             <UniformGrid Name="PortRoyalGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="TWTNW" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="TWTNW" FontSize="11" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-2,0,0" IsHitTestVisible="False"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="TWTNW" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
+                                    <StackPanel Margin="0,-35,0,0">
+                                        <TextBlock Text="TWTNW" FontSize="11" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-2,0,0" IsHitTestVisible="False"/>
                                         <TextBlock Name="TWTNWHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="40,-2,0,0" Height="20" IsHitTestVisible="False"/>
                                     </StackPanel>
                                 </StackPanel>
                                 <UniformGrid Name="TWTNWGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" IsEnabled="False" Height="0">
+                                <StackPanel>
+                                    <Button Name="Atlantica" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
+                                    <StackPanel Margin="0,-35,0,0">
+                                        <TextBlock Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-8,0,0" IsHitTestVisible="False"/>
+                                        <TextBlock Name="AtlanticaHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <UniformGrid Name="AtlanticaGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                             </StackPanel>
                         </StackPanel>
 
