@@ -102,6 +102,27 @@ namespace KhTracker
             TornPages.Add(TornPage3);
             TornPages.Add(TornPage4);
             TornPages.Add(TornPage5);
+
+            
+            PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
+            PromiseCharmToggle(null, null);
+            ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
+            ReportsToggle(null, null);
+            AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
+            AbilitiesToggle(null, null);
+            TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
+            TornPagesToggle(null, null);
+            FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
+            FinalFormToggle(null, null);
+            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
+            SimulatedToggle(null, null);
+            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
+            HundredAcreWoodToggle(null, null);
+            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
+            AtlanticaToggle(null, null);
+
+            Top = Properties.Settings.Default.WindowY;
+            Left = Properties.Settings.Default.WindowX;
         }
 
         List<Button> Worlds = new List<Button>();
@@ -111,6 +132,9 @@ namespace KhTracker
         List<Button> TornPages = new List<Button>();
         
 
+        /// 
+        /// Input Handling
+        /// 
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             Button button = sender as Button;
@@ -189,9 +213,7 @@ namespace KhTracker
                 }
             }
         }
-
-
-
+        
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -234,9 +256,21 @@ namespace KhTracker
             button.Click -= Item_Return;
             button.Click += Item_Click;
         }
+        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
 
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WindowY = Top;
+            Properties.Settings.Default.WindowX = Left;
+        }
 
-
+        /// 
+        /// Options
+        /// 
         private void OnReset(object sender, RoutedEventArgs e)
         {
             Collected.Text = "0";
@@ -270,11 +304,13 @@ namespace KhTracker
 
         private void PromiseCharmToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.PromiseCharm = PromiseCharmOption.IsChecked;
             HandleItemToggle(PromiseCharmOption, PromiseCharm);
         }
 
         private void ReportsToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.AnsemReports = ReportsOption.IsChecked;
             for (int i = 0; i < Reports.Count; ++i)
             {
                 HandleItemToggle(ReportsOption, Reports[i]);
@@ -283,12 +319,14 @@ namespace KhTracker
 
         private void AbilitiesToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.Abilities = AbilitiesOption.IsChecked;
             HandleItemToggle(AbilitiesOption, OnceMore);
             HandleItemToggle(AbilitiesOption, SecondChance);
         }
 
         private void TornPagesToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.TornPages = TornPagesOption.IsChecked;
             for (int i = 0; i < TornPages.Count; ++i)
             {
                 HandleItemToggle(TornPagesOption, TornPages[i]);
@@ -297,24 +335,33 @@ namespace KhTracker
 
         private void FinalFormToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.FinalForm = FinalFormOption.IsChecked;
             HandleItemToggle(FinalFormOption, Final);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.Simulated = SimulatedOption.IsChecked;
             HandleWorldToggle(SimulatedOption, SimulatedTwilightTown, SimulatedGrid);
         }
 
         private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.HundredAcre = HundredAcreWoodOption.IsChecked;
             HandleWorldToggle(HundredAcreWoodOption, HundredAcreWood, HundredAcreWoodGrid);
         }
 
         private void AtlanticaToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.Atlantica = AtlanticaOption.IsChecked;
             HandleWorldToggle(AtlanticaOption, Atlantica, AtlanticaGrid);
         }
 
+
+
+        /// 
+        /// Handle UI Changes
+        /// 
         private void HandleReportValue(TextBlock Hint, bool isTWTNW, int delta)
         {
             if (int.TryParse(Hint.Text, out int num) == false)

@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KhTracker"
         mc:Ignorable="d"
-        Title="KH2Tracker" Height="920" Width="570" ResizeMode="NoResize" Left="0" Top="0" KeyDown="Window_KeyDown">
+        ResizeMode="NoResize"
+        KeyDown="Window_KeyDown"
+        Closing="Window_Closing"
+        LocationChanged="Window_LocationChanged"
+        Title="KH2Tracker" Height="920" Width="570">
     <Window.Resources>
         <ResourceDictionary>
 
