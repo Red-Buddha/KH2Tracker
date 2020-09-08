@@ -105,15 +105,27 @@ namespace KhTracker
 
             
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
-            PromiseCharmToggle(null, null);
+            HandleItemToggle(PromiseCharmOption, PromiseCharm, true);
+
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
-            ReportsToggle(null, null);
+            for (int i = 0; i < Reports.Count; ++i)
+            {
+                HandleItemToggle(ReportsOption, Reports[i], true);
+            }
+
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
-            AbilitiesToggle(null, null);
+            HandleItemToggle(AbilitiesOption, OnceMore, true);
+            HandleItemToggle(AbilitiesOption, SecondChance, true);
+
             TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            TornPagesToggle(null, null);
+            for (int i = 0; i < TornPages.Count; ++i)
+            {
+                HandleItemToggle(TornPagesOption, TornPages[i], true);
+            }
+
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            FinalFormToggle(null, null);
+            HandleItemToggle(FinalFormOption, Final, true);
+
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
             SimulatedToggle(null, null);
             HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
@@ -305,7 +317,7 @@ namespace KhTracker
         private void PromiseCharmToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.PromiseCharm = PromiseCharmOption.IsChecked;
-            HandleItemToggle(PromiseCharmOption, PromiseCharm);
+            HandleItemToggle(PromiseCharmOption, PromiseCharm, false);
         }
 
         private void ReportsToggle(object sender, RoutedEventArgs e)
@@ -313,15 +325,15 @@ namespace KhTracker
             Properties.Settings.Default.AnsemReports = ReportsOption.IsChecked;
             for (int i = 0; i < Reports.Count; ++i)
             {
-                HandleItemToggle(ReportsOption, Reports[i]);
+                HandleItemToggle(ReportsOption, Reports[i], false);
             }
         }
 
         private void AbilitiesToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Abilities = AbilitiesOption.IsChecked;
-            HandleItemToggle(AbilitiesOption, OnceMore);
-            HandleItemToggle(AbilitiesOption, SecondChance);
+            HandleItemToggle(AbilitiesOption, OnceMore, false);
+            HandleItemToggle(AbilitiesOption, SecondChance, false);
         }
 
         private void TornPagesToggle(object sender, RoutedEventArgs e)
@@ -329,14 +341,14 @@ namespace KhTracker
             Properties.Settings.Default.TornPages = TornPagesOption.IsChecked;
             for (int i = 0; i < TornPages.Count; ++i)
             {
-                HandleItemToggle(TornPagesOption, TornPages[i]);
+                HandleItemToggle(TornPagesOption, TornPages[i], false);
             }
         }
 
         private void FinalFormToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.FinalForm = FinalFormOption.IsChecked;
-            HandleItemToggle(FinalFormOption, Final);
+            HandleItemToggle(FinalFormOption, Final, false);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
@@ -412,13 +424,14 @@ namespace KhTracker
             grid.Height = grid.Rows * 40;
         }
 
-        private void HandleItemToggle(MenuItem menuItem, Button button)
+        private void HandleItemToggle(MenuItem menuItem, Button button, bool init)
         {
             if (menuItem.IsChecked)
             {
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
-                CheckTotal.Text = (int.Parse(CheckTotal.Text) + 1).ToString();
+                if(!init)
+                    CheckTotal.Text = (int.Parse(CheckTotal.Text) + 1).ToString();
             }
             else
             {
