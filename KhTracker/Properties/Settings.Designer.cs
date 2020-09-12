@@ -142,5 +142,17 @@ namespace KhTracker.Properties {
                 this["WindowY"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Cure {
+            get {
+                return ((bool)(this["Cure"]));
+            }
+            set {
+                this["Cure"] = value;
+            }
+        }
     }
 }

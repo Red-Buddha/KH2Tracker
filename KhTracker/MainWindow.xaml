@@ -29,6 +29,7 @@
                 <MenuItem Name="ReportsOption" Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption" Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
                 <MenuItem Name="TornPagesOption" Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/>
+                <MenuItem Name="CureOption" Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/>
                 <MenuItem Name="FinalFormOption" Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
                 <Separator/>
                 <MenuItem Name="SimulatedOption" Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>

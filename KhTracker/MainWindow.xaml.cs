@@ -103,7 +103,17 @@ namespace KhTracker
             TornPages.Add(TornPage4);
             TornPages.Add(TornPage5);
 
-            
+            InitOptions();
+        }
+
+        List<Button> Worlds = new List<Button>();
+        List<TextBlock> Hints = new List<TextBlock>();
+        List<UniformGrid> Grids = new List<UniformGrid>();
+        List<Button> Reports = new List<Button>();
+        List<Button> TornPages = new List<Button>();
+        
+        private void InitOptions()
+        {
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
             HandleItemToggle(PromiseCharmOption, PromiseCharm, true);
 
@@ -123,6 +133,11 @@ namespace KhTracker
                 HandleItemToggle(TornPagesOption, TornPages[i], true);
             }
 
+            CureOption.IsChecked = Properties.Settings.Default.Cure;
+            HandleItemToggle(CureOption, Cure1, true);
+            HandleItemToggle(CureOption, Cure2, true);
+            HandleItemToggle(CureOption, Cure3, true);
+
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
             HandleItemToggle(FinalFormOption, Final, true);
 
@@ -137,12 +152,6 @@ namespace KhTracker
             Left = Properties.Settings.Default.WindowX;
         }
 
-        List<Button> Worlds = new List<Button>();
-        List<TextBlock> Hints = new List<TextBlock>();
-        List<UniformGrid> Grids = new List<UniformGrid>();
-        List<Button> Reports = new List<Button>();
-        List<Button> TornPages = new List<Button>();
-        
 
         /// 
         /// Input Handling
@@ -343,6 +352,14 @@ namespace KhTracker
             {
                 HandleItemToggle(TornPagesOption, TornPages[i], false);
             }
+        }
+
+        private void CureToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Cure = CureOption.IsChecked;
+            HandleItemToggle(CureOption, Cure1, false);
+            HandleItemToggle(CureOption, Cure2, false);
+            HandleItemToggle(CureOption, Cure3, false);
         }
 
         private void FinalFormToggle(object sender, RoutedEventArgs e)
