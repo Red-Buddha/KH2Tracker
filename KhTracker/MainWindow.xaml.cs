@@ -141,6 +141,9 @@ namespace KhTracker
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
             HandleItemToggle(FinalFormOption, Final, true);
 
+            OrbsOption.IsChecked = Properties.Settings.Default.Orbs;
+            OrbsToggle(null, null);
+
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
             SimulatedToggle(null, null);
             HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
@@ -386,6 +389,114 @@ namespace KhTracker
             HandleWorldToggle(AtlanticaOption, Atlantica, AtlanticaGrid);
         }
 
+        private void OrbsToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Orbs = OrbsOption.IsChecked;
+            if (OrbsOption.IsChecked)
+            {
+                Report1.SetResourceReference(ContentProperty, "AnsemReportOld1");
+                Report2.SetResourceReference(ContentProperty, "AnsemReportOld2");
+                Report3.SetResourceReference(ContentProperty, "AnsemReportOld3");
+                Report4.SetResourceReference(ContentProperty, "AnsemReportOld4");
+                Report5.SetResourceReference(ContentProperty, "AnsemReportOld5");
+                Report6.SetResourceReference(ContentProperty, "AnsemReportOld6");
+                Report7.SetResourceReference(ContentProperty, "AnsemReportOld7");
+                Report8.SetResourceReference(ContentProperty, "AnsemReportOld8");
+                Report9.SetResourceReference(ContentProperty, "AnsemReportOld9");
+                Report10.SetResourceReference(ContentProperty, "AnsemReportOld10");
+                Report11.SetResourceReference(ContentProperty, "AnsemReportOld11");
+                Report12.SetResourceReference(ContentProperty, "AnsemReportOld12");
+                Report13.SetResourceReference(ContentProperty, "AnsemReportOld13");
+                Fire1.SetResourceReference(ContentProperty, "FireOld");
+                Fire2.SetResourceReference(ContentProperty, "FireOld");
+                Fire3.SetResourceReference(ContentProperty, "FireOld");
+                Blizzard1.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard2.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard3.SetResourceReference(ContentProperty, "BlizzardOld");
+                Thunder1.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder2.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder3.SetResourceReference(ContentProperty, "ThunderOld");
+                Cure1.SetResourceReference(ContentProperty, "CureOld");
+                Cure2.SetResourceReference(ContentProperty, "CureOld");
+                Cure3.SetResourceReference(ContentProperty, "CureOld");
+                Reflect1.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect2.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect3.SetResourceReference(ContentProperty, "ReflectOld");
+                Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
+                Valor.SetResourceReference(ContentProperty, "ValorOld");
+                Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
+                Limit.SetResourceReference(ContentProperty, "LimitOld");
+                Master.SetResourceReference(ContentProperty, "MasterOld");
+                Final.SetResourceReference(ContentProperty, "FinalOld");
+                TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage4.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage5.SetResourceReference(ContentProperty, "TornPageOld");
+                Lamp.SetResourceReference(ContentProperty, "GenieOld");
+                Ukulele.SetResourceReference(ContentProperty, "StitchOld");
+                Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
+                Feather.SetResourceReference(ContentProperty, "PeterPanOld");
+                Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+            }
+            else
+            {
+                Report1.SetResourceReference(ContentProperty, "AnsemReport1");
+                Report2.SetResourceReference(ContentProperty, "AnsemReport2");
+                Report3.SetResourceReference(ContentProperty, "AnsemReport3");
+                Report4.SetResourceReference(ContentProperty, "AnsemReport4");
+                Report5.SetResourceReference(ContentProperty, "AnsemReport5");
+                Report6.SetResourceReference(ContentProperty, "AnsemReport6");
+                Report7.SetResourceReference(ContentProperty, "AnsemReport7");
+                Report8.SetResourceReference(ContentProperty, "AnsemReport8");
+                Report9.SetResourceReference(ContentProperty, "AnsemReport9");
+                Report10.SetResourceReference(ContentProperty, "AnsemReport10");
+                Report11.SetResourceReference(ContentProperty, "AnsemReport11");
+                Report12.SetResourceReference(ContentProperty, "AnsemReport12");
+                Report13.SetResourceReference(ContentProperty, "AnsemReport13");
+                Fire1.SetResourceReference(ContentProperty, "Fire");
+                Fire2.SetResourceReference(ContentProperty, "Fire");
+                Fire3.SetResourceReference(ContentProperty, "Fire");
+                Blizzard1.SetResourceReference(ContentProperty, "Blizzard");
+                Blizzard2.SetResourceReference(ContentProperty, "Blizzard");
+                Blizzard3.SetResourceReference(ContentProperty, "Blizzard");
+                Thunder1.SetResourceReference(ContentProperty, "Thunder");
+                Thunder2.SetResourceReference(ContentProperty, "Thunder");
+                Thunder3.SetResourceReference(ContentProperty, "Thunder");
+                Cure1.SetResourceReference(ContentProperty, "Cure");
+                Cure2.SetResourceReference(ContentProperty, "Cure");
+                Cure3.SetResourceReference(ContentProperty, "Cure");
+                Reflect1.SetResourceReference(ContentProperty, "Reflect");
+                Reflect2.SetResourceReference(ContentProperty, "Reflect");
+                Reflect3.SetResourceReference(ContentProperty, "Reflect");
+                Magnet1.SetResourceReference(ContentProperty, "Magnet");
+                Magnet2.SetResourceReference(ContentProperty, "Magnet");
+                Magnet3.SetResourceReference(ContentProperty, "Magnet");
+                Valor.SetResourceReference(ContentProperty, "Valor");
+                Wisdom.SetResourceReference(ContentProperty, "Wisdom");
+                Limit.SetResourceReference(ContentProperty, "Limit");
+                Master.SetResourceReference(ContentProperty, "Master");
+                Final.SetResourceReference(ContentProperty, "Final");
+                TornPage1.SetResourceReference(ContentProperty, "TornPage");
+                TornPage2.SetResourceReference(ContentProperty, "TornPage");
+                TornPage3.SetResourceReference(ContentProperty, "TornPage");
+                TornPage4.SetResourceReference(ContentProperty, "TornPage");
+                TornPage5.SetResourceReference(ContentProperty, "TornPage");
+                Lamp.SetResourceReference(ContentProperty, "Genie");
+                Ukulele.SetResourceReference(ContentProperty, "Stitch");
+                Baseball.SetResourceReference(ContentProperty, "ChickenLittle");
+                Feather.SetResourceReference(ContentProperty, "PeterPan");
+                Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistence");
+                Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
+                Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
+                PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
+            }
+        }
 
 
         /// 

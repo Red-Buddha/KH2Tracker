@@ -154,5 +154,17 @@ namespace KhTracker.Properties {
                 this["Cure"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Orbs {
+            get {
+                return ((bool)(this["Orbs"]));
+            }
+            set {
+                this["Orbs"] = value;
+            }
+        }
     }
 }

@@ -1,23 +1,78 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:KhTracker">
+    
     <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="8">
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
         </Border>
-        <ControlTemplate.Triggers>
-            <Trigger Property="Button.IsDefaulted" Value="True">
-                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-            </Trigger>
-            <Trigger Property="ToggleButton.IsChecked" Value="True">
-                <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
-                <Setter Property="Foreground" Value="#FF838383"/>
-            </Trigger>
-        </ControlTemplate.Triggers>
     </ControlTemplate>
+
+    <Image x:Key="AnsemReportOld1" Source="Images\Old\ansem_report1.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld2" Source="Images\Old\ansem_report2.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld3" Source="Images\Old\ansem_report3.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld4" Source="Images\Old\ansem_report4.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld5" Source="Images\Old\ansem_report5.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld6" Source="Images\Old\ansem_report6.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld7" Source="Images\Old\ansem_report7.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld8" Source="Images\Old\ansem_report8.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld9" Source="Images\Old\ansem_report9.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld10" Source="Images\Old\ansem_report10.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld11" Source="Images\Old\ansem_report11.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld12" Source="Images\Old\ansem_report12.png" x:Shared="false"/>
+    <Image x:Key="AnsemReportOld13" Source="Images\Old\ansem_report13.png" x:Shared="false"/>
+    <Image x:Key="FireOld" Source="Images\Old\fire.png" x:Shared="false"/>
+    <Image x:Key="BlizzardOld" Source="Images\Old\blizzard.png" x:Shared="false"/>
+    <Image x:Key="ThunderOld" Source="Images\Old\thunder.png" x:Shared="false"/>
+    <Image x:Key="CureOld" Source="Images\Old\cure.png" x:Shared="false"/>
+    <Image x:Key="ReflectOld" Source="Images\Old\reflect.png" x:Shared="false"/>
+    <Image x:Key="MagnetOld" Source="Images\Old\magnet.png" x:Shared="false"/>
+    <Image x:Key="ValorOld" Source="Images\Old\valor.png"/>
+    <Image x:Key="WisdomOld" Source="Images\Old\wisdom.png"/>
+    <Image x:Key="LimitOld" Source="Images\Old\limit.png"/>
+    <Image x:Key="MasterOld" Source="Images\Old\master.png"/>
+    <Image x:Key="FinalOld" Source="Images\Old\final.png"/>
+    <Image x:Key="TornPageOld" Source="Images\Old\torn_page.png" x:Shared="false"/>
+    <Image x:Key="GenieOld" Source="Images\Old\genie.png"/>
+    <Image x:Key="StitchOld" Source="Images\Old\stitch.png"/>
+    <Image x:Key="ChickenLittleOld" Source="Images\Old\chicken_little.png"/>
+    <Image x:Key="PeterPanOld" Source="Images\Old\peter_pan.png"/>
+    <Image x:Key="ProofOfNonexistenceOld" Source="Images\Old\proof_of_nonexistence.png"/>
+    <Image x:Key="ProofOfConnectionOld" Source="Images\Old\proof_of_connection.png"/>
+    <Image x:Key="ProofOfPeaceOld" Source="Images\Old\proof_of_peace.png"/>
+    <Image x:Key="PromiseCharmOld" Source="Images\Old\promise_charm.png"/>
+
+    <Image x:Key="AnsemReport1" Source="Images\Simple\ansem_report1.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport2" Source="Images\Simple\ansem_report2.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport3" Source="Images\Simple\ansem_report3.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport4" Source="Images\Simple\ansem_report4.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport5" Source="Images\Simple\ansem_report5.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport6" Source="Images\Simple\ansem_report6.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport7" Source="Images\Simple\ansem_report7.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport8" Source="Images\Simple\ansem_report8.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport9" Source="Images\Simple\ansem_report9.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport10" Source="Images\Simple\ansem_report10.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport11" Source="Images\Simple\ansem_report11.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport12" Source="Images\Simple\ansem_report12.png" x:Shared="false"/>
+    <Image x:Key="AnsemReport13" Source="Images\Simple\ansem_report13.png" x:Shared="false"/>
+    <Image x:Key="Fire" Source="Images\Simple\fire.png" x:Shared="false"/>
+    <Image x:Key="Blizzard" Source="Images\Simple\blizzard.png" x:Shared="false"/>
+    <Image x:Key="Thunder" Source="Images\Simple\thunder.png" x:Shared="false"/>
+    <Image x:Key="Cure" Source="Images\Simple\cure.png" x:Shared="false"/>
+    <Image x:Key="Reflect" Source="Images\Simple\reflect.png" x:Shared="false"/>
+    <Image x:Key="Magnet" Source="Images\Simple\magnet.png" x:Shared="false"/>
+    <Image x:Key="Valor" Source="Images\Simple\valor.png"/>
+    <Image x:Key="Wisdom" Source="Images\Simple\wisdom.png"/>
+    <Image x:Key="Limit" Source="Images\Simple\limit.png"/>
+    <Image x:Key="Master" Source="Images\Simple\master.png"/>
+    <Image x:Key="Final" Source="Images\Simple\final.png"/>
+    <Image x:Key="TornPage" Source="Images\Old\torn_page.png" x:Shared="false"/>
+    <Image x:Key="Genie" Source="Images\Simple\genie.png"/>
+    <Image x:Key="Stitch" Source="Images\Simple\stitch.png"/>
+    <Image x:Key="ChickenLittle" Source="Images\Simple\chicken_little.png"/>
+    <Image x:Key="PeterPan" Source="Images\Simple\peter_pan.png"/>
+    <Image x:Key="ProofOfNonexistence" Source="Images\Simple\proof_of_nonexistence.png"/>
+    <Image x:Key="ProofOfConnection" Source="Images\Simple\proof_of_connection.png"/>
+    <Image x:Key="ProofOfPeace" Source="Images\Simple\proof_of_tranquility.png"/>
+    <Image x:Key="PromiseCharm" Source="Images\Simple\promise_charm.png"/>
 </ResourceDictionary>

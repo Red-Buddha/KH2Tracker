@@ -35,6 +35,8 @@
                 <MenuItem Name="SimulatedOption" Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
                 <MenuItem Name="HundredAcreWoodOption" Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
                 <MenuItem Name="AtlanticaOption" Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>
+                <Separator/>
+                <MenuItem Name="OrbsOption" Header="Orb Icons" IsCheckable="True" IsChecked="True" Click="OrbsToggle"/>
             </MenuItem>
         </Menu>
 
@@ -284,165 +286,113 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="Report1" Grid.Row="0" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\One.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">1</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report1" Click="Item_Click" Grid.Row="0" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport1"/>
                     </Button>
-                    <Button x:Name="Report2" Grid.Row="0" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Two.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">2</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report2" Click="Item_Click" Grid.Row="0" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport2"/>
                     </Button>
-                    <Button x:Name="Report3" Grid.Row="0" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Three.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">3</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report3" Click="Item_Click" Grid.Row="0" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport3"/>
                     </Button>
-                    <Button x:Name="Report4" Grid.Row="0" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Four.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">4</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report4" Click="Item_Click" Grid.Row="0" Grid.Column="3" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport4"/>
                     </Button>
-                    <Button x:Name="Report5" Grid.Row="0" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Five.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">5</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report5" Click="Item_Click" Grid.Row="0" Grid.Column="4" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport5"/>
                     </Button>
-                    <Button x:Name="Report6" Grid.Row="0" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Six.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">6</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report6" Click="Item_Click" Grid.Row="0" Grid.Column="5" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport6"/>
                     </Button>
-                    <Button x:Name="Report7" Grid.Row="0" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Seven.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">7</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report7" Click="Item_Click" Grid.Row="0" Grid.Column="6" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport7"/>
                     </Button>
-                    <Button x:Name="Report8" Grid.Row="0" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Eight.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">8</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report8" Click="Item_Click" Grid.Row="0" Grid.Column="7" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport8"/>
                     </Button>
-                    <Button x:Name="Report9" Grid.Row="0" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Nine.png" Margin="-23,10,0,0"/>
-                            <!--<TextBlock Margin="-23,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">9</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report9" Click="Item_Click" Grid.Row="0" Grid.Column="8" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport9"/>
                     </Button>
-                    <Button x:Name="Report10" Grid.Row="0" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Ten.png" Margin="-35,10,0,0"/>
-                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">10</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report10" Click="Item_Click" Grid.Row="0" Grid.Column="9" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport10"/>
                     </Button>
-                    <Button x:Name="Report11" Grid.Row="0" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Eleven.png" Margin="-35,10,0,0"/>
-                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">11</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report11" Click="Item_Click" Grid.Row="0" Grid.Column="10" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport11"/>
                     </Button>
-                    <Button x:Name="Report12" Grid.Row="0" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Twelve.png" Margin="-35,10,0,0"/>
-                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">12</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report12" Click="Item_Click" Grid.Row="0" Grid.Column="11" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport12"/>
                     </Button>
-                    <Button x:Name="Report13" Grid.Row="0" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Images\Reporttest3.png"/>
-                            <Image Source="Images\Thirteen.png" Margin="-35,10,0,0"/>
-                            <!--<TextBlock Margin="-35,10,0,0" FontSize="24" FontFamily="Segoe UI Black" Foreground="Black">13</TextBlock>-->
-                        </StackPanel>
+                    <Button x:Name="Report13" Click="Item_Click" Grid.Row="0" Grid.Column="12" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="AnsemReport13"/>
                     </Button>
                     <Button x:Name="Fire1" Grid.Row="1" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Fire_Orb.png"/>
+                        <DynamicResource ResourceKey="Fire"/>
                     </Button>
                     <Button x:Name="Fire2" Grid.Row="1" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Fire_Orb.png"/>
+                        <DynamicResource ResourceKey="Fire"/>
                     </Button>
                     <Button x:Name="Fire3" Grid.Row="1" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Fire_Orb.png"/>
+                        <DynamicResource ResourceKey="Fire"/>
                     </Button>
                     <Button x:Name="Blizzard1" Grid.Row="1" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Blizzard_Orb.png"/>
+                        <DynamicResource ResourceKey="Blizzard"/>
                     </Button>
                     <Button x:Name="Blizzard2" Grid.Row="1" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Blizzard_Orb.png"/>
+                        <DynamicResource ResourceKey="Blizzard"/>
                     </Button>
                     <Button x:Name="Blizzard3" Grid.Row="1" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Blizzard_Orb.png"/>
+                        <DynamicResource ResourceKey="Blizzard"/>
                     </Button>
                     <Button x:Name="Thunder1" Grid.Row="1" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Thunder_Orb.png"/>
+                        <DynamicResource ResourceKey="Thunder"/>
                     </Button>
                     <Button x:Name="Thunder2" Grid.Row="1" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Thunder_Orb.png"/>
+                        <DynamicResource ResourceKey="Thunder"/>
                     </Button>
                     <Button x:Name="Thunder3" Grid.Row="1" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Thunder_Orb.png"/>
+                        <DynamicResource ResourceKey="Thunder"/>
                     </Button>
                     <Button x:Name="Cure1" Grid.Row="1" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Cure_Orb.png"/>
+                        <DynamicResource ResourceKey="Cure"/>
                     </Button>
                     <Button x:Name="Cure2" Grid.Row="1" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Cure_Orb.png"/>
+                        <DynamicResource ResourceKey="Cure"/>
                     </Button>
                     <Button x:Name="Cure3" Grid.Row="1" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Cure_Orb.png"/>
+                        <DynamicResource ResourceKey="Cure"/>
                     </Button>
                     <Button x:Name="Reflect1" Grid.Row="2" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Reflect_Orb.png"/>
+                        <DynamicResource ResourceKey="Reflect"/>
                     </Button>
                     <Button x:Name="Reflect2" Grid.Row="2" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Reflect_Orb.png"/>
+                        <DynamicResource ResourceKey="Reflect"/>
                     </Button>
                     <Button x:Name="Reflect3" Grid.Row="2" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Reflect_Orb.png"/>
+                        <DynamicResource ResourceKey="Reflect"/>
                     </Button>
                     <Button x:Name="Magnet1" Grid.Row="2" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Magnet_Orb.png"/>
+                        <DynamicResource ResourceKey="Magnet"/>
                     </Button>
                     <Button x:Name="Magnet2" Grid.Row="2" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Magnet_Orb.png"/>
+                        <DynamicResource ResourceKey="Magnet"/>
                     </Button>
                     <Button x:Name="Magnet3" Grid.Row="2" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Magnet_Orb.png"/>
+                        <DynamicResource ResourceKey="Magnet"/>
                     </Button>
                     <Button x:Name="Valor" Grid.Row="2" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Valor_Form.png"/>
+                        <DynamicResource ResourceKey="Valor"/>
                     </Button>
                     <Button x:Name="Wisdom" Grid.Row="2" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Wisdom_Form.png"/>
+                        <DynamicResource ResourceKey="Wisdom"/>
                     </Button>
                     <Button x:Name="Limit" Grid.Row="2" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Limit_Form.png"/>
+                        <DynamicResource ResourceKey="Limit"/>
                     </Button>
                     <Button x:Name="Master" Grid.Row="2" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Master_Form.png"/>
+                        <DynamicResource ResourceKey="Master"/>
                     </Button>
                     <Button x:Name="Final" Grid.Row="2" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Final_Form.png"/>
+                        <DynamicResource ResourceKey="Final"/>
                     </Button>
                     <Button x:Name="OnceMore" Grid.Row="2" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <Image Source="Images\One.png"/>
@@ -451,43 +401,43 @@
                         <Image Source="Images\Two.png"/>
                     </Button>
                     <Button x:Name="TornPage1" Grid.Row="3" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
+                        <DynamicResource ResourceKey="TornPage"/>
                     </Button>
                     <Button x:Name="TornPage2" Grid.Row="3" Grid.Column="1" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
+                        <DynamicResource ResourceKey="TornPage"/>
                     </Button>
                     <Button x:Name="TornPage3" Grid.Row="3" Grid.Column="2" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
+                        <DynamicResource ResourceKey="TornPage"/>
                     </Button>
                     <Button x:Name="TornPage4" Grid.Row="3" Grid.Column="3" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
+                        <DynamicResource ResourceKey="TornPage"/>
                     </Button>
                     <Button x:Name="TornPage5" Grid.Row="3" Grid.Column="4" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Torn_Page.png"/>
+                        <DynamicResource ResourceKey="TornPage"/>
                     </Button>
                     <Button x:Name="Lamp" Grid.Row="3" Grid.Column="5" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Lamp_Charm.png"/>
+                        <DynamicResource ResourceKey="Genie"/>
                     </Button>
                     <Button x:Name="Ukulele" Grid.Row="3" Grid.Column="6" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Ukulele_Charm.png"/>
+                        <DynamicResource ResourceKey="Stitch"/>
                     </Button>
                     <Button x:Name="Baseball" Grid.Row="3" Grid.Column="7" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Baseball_Charm.png"/>
+                        <DynamicResource ResourceKey="ChickenLittle"/>
                     </Button>
                     <Button x:Name="Feather" Grid.Row="3" Grid.Column="8" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Feather_Charm.png"/>
+                        <DynamicResource ResourceKey="PeterPan"/>
                     </Button>
                     <Button x:Name="Nonexistence" Grid.Row="3" Grid.Column="9" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Proof_Of_Nonexistence.png"/>
+                        <DynamicResource ResourceKey="ProofOfNonexistence"/>
                     </Button>
                     <Button x:Name="Connection" Grid.Row="3" Grid.Column="10" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Proof_Of_Connection.png"/>
+                        <DynamicResource ResourceKey="ProofOfConnection"/>
                     </Button>
                     <Button x:Name="Peace" Grid.Row="3" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Proof_Of_Peace.png"/>
+                        <DynamicResource ResourceKey="ProofOfPeace"/>
                     </Button>
-                    <Button x:Name="PromiseCharm" Grid.Row="3" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden">
-                        <Image Source="Images\Promise_Charm.png"/>
+                    <Button x:Name="PromiseCharm" Grid.Row="3" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
+                        <DynamicResource ResourceKey="PromiseCharm"/>
                     </Button>
                 </Grid>
             </StackPanel>
