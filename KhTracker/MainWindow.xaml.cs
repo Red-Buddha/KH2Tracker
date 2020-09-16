@@ -83,6 +83,25 @@ namespace KhTracker
             Grids.Add(AtlanticaGrid);
             Grids.Add(GoAGrid);
 
+            SelectedBars.Add(SoraHeartBar);
+            SelectedBars.Add(DriveFormsBar);
+            SelectedBars.Add(SimulatedBar);
+            SelectedBars.Add(TwilightTownBar);
+            SelectedBars.Add(HollowBastionBar);
+            SelectedBars.Add(BeastCastleBar);
+            SelectedBars.Add(OlympusBar);
+            SelectedBars.Add(AgrabahBar);
+            SelectedBars.Add(LandofDragonsBar);
+            SelectedBars.Add(HundredAcreWoodBar);
+            SelectedBars.Add(PrideLandsBar);
+            SelectedBars.Add(DisneyCastleBar);
+            SelectedBars.Add(HalloweenTownBar);
+            SelectedBars.Add(PortRoyalBar);
+            SelectedBars.Add(SpaceParanoidsBar);
+            SelectedBars.Add(TWTNWBar);
+            SelectedBars.Add(AtlanticaBar);
+            SelectedBars.Add(GoABar);
+
             Reports.Add(Report1);
             Reports.Add(Report2);
             Reports.Add(Report3);
@@ -103,14 +122,38 @@ namespace KhTracker
             TornPages.Add(TornPage4);
             TornPages.Add(TornPage5);
 
+            Numbers.Add(new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\One.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Two.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Three.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Four.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Five.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Six.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Seven.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Eight.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Nine.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Ten.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Eleven.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Twelve.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Thirteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Fourteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Fifteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Sixteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Seventeen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Eighteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Nineteen.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Twenty.png", UriKind.Relative)));
+
             InitOptions();
         }
 
         List<Button> Worlds = new List<Button>();
-        List<TextBlock> Hints = new List<TextBlock>();
+        List<Image> Hints = new List<Image>();
         List<UniformGrid> Grids = new List<UniformGrid>();
         List<Button> Reports = new List<Button>();
         List<Button> TornPages = new List<Button>();
+        List<Image> SelectedBars = new List<Image>();
+        List<BitmapImage> Numbers = new List<BitmapImage>();
         
         private void InitOptions()
         {
@@ -141,8 +184,8 @@ namespace KhTracker
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
             HandleItemToggle(FinalFormOption, Final, true);
 
-            OrbsOption.IsChecked = Properties.Settings.Default.Orbs;
-            OrbsToggle(null, null);
+            SimpleOption.IsChecked = Properties.Settings.Default.Simple;
+            SimpleToggle(null, null);
 
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
             SimulatedToggle(null, null);
@@ -166,10 +209,24 @@ namespace KhTracker
             if (e.ChangedButton == MouseButton.Left)
             {
                 if (selected != null)
-                    selected.BorderBrush = Brushes.White;
+                {
+                    for(int i = 0; i < SelectedBars.Count; ++i)
+                    {
+                        if (Worlds[i] == selected)
+                        {
+                            SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                        }
+                    }
+                }
 
                 selected = button;
-                selected.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF0E624"));
+                for (int i = 0; i < SelectedBars.Count; ++i)
+                {
+                    if (Worlds[i] == selected)
+                    {
+                        SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
+                    }
+                }
             }
             else if(e.ChangedButton == MouseButton.Middle)
             {
@@ -177,12 +234,9 @@ namespace KhTracker
                 {
                     if(button == Worlds[i])
                     {
-                        Hints[i].Text = "?";
-
-                        if(Worlds[i] == TWTNW)
-                            Hints[i].Margin = new Thickness(40, -2, 0, 0);
-                        else
-                            Hints[i].Margin = new Thickness(30, -7, 0, 0);
+                        Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                        
+                        Hints[i].Margin = new Thickness(25, -20, 0, 0);
 
                         break;
                     }
@@ -301,7 +355,15 @@ namespace KhTracker
             Collected.Margin = new Thickness(0, 0, 20, 0);
 
             if (selected != null)
-                selected.BorderBrush = Brushes.White;
+            {
+                for (int i = 0; i < SelectedBars.Count; ++i)
+                {
+                    if (Worlds[i] == selected)
+                    {
+                        SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                    }
+                }
+            }
             selected = null;
 
             for (int i = 0; i < Grids.Count; ++i)
@@ -322,7 +384,7 @@ namespace KhTracker
 
             for (int i = 0; i < Hints.Count; ++i)
             {
-                Hints[i].Text = "?";
+                Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
             }
         }
 
@@ -389,62 +451,10 @@ namespace KhTracker
             HandleWorldToggle(AtlanticaOption, Atlantica, AtlanticaGrid);
         }
 
-        private void OrbsToggle(object sender, RoutedEventArgs e)
+        private void SimpleToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Orbs = OrbsOption.IsChecked;
-            if (OrbsOption.IsChecked)
-            {
-                Report1.SetResourceReference(ContentProperty, "AnsemReportOld1");
-                Report2.SetResourceReference(ContentProperty, "AnsemReportOld2");
-                Report3.SetResourceReference(ContentProperty, "AnsemReportOld3");
-                Report4.SetResourceReference(ContentProperty, "AnsemReportOld4");
-                Report5.SetResourceReference(ContentProperty, "AnsemReportOld5");
-                Report6.SetResourceReference(ContentProperty, "AnsemReportOld6");
-                Report7.SetResourceReference(ContentProperty, "AnsemReportOld7");
-                Report8.SetResourceReference(ContentProperty, "AnsemReportOld8");
-                Report9.SetResourceReference(ContentProperty, "AnsemReportOld9");
-                Report10.SetResourceReference(ContentProperty, "AnsemReportOld10");
-                Report11.SetResourceReference(ContentProperty, "AnsemReportOld11");
-                Report12.SetResourceReference(ContentProperty, "AnsemReportOld12");
-                Report13.SetResourceReference(ContentProperty, "AnsemReportOld13");
-                Fire1.SetResourceReference(ContentProperty, "FireOld");
-                Fire2.SetResourceReference(ContentProperty, "FireOld");
-                Fire3.SetResourceReference(ContentProperty, "FireOld");
-                Blizzard1.SetResourceReference(ContentProperty, "BlizzardOld");
-                Blizzard2.SetResourceReference(ContentProperty, "BlizzardOld");
-                Blizzard3.SetResourceReference(ContentProperty, "BlizzardOld");
-                Thunder1.SetResourceReference(ContentProperty, "ThunderOld");
-                Thunder2.SetResourceReference(ContentProperty, "ThunderOld");
-                Thunder3.SetResourceReference(ContentProperty, "ThunderOld");
-                Cure1.SetResourceReference(ContentProperty, "CureOld");
-                Cure2.SetResourceReference(ContentProperty, "CureOld");
-                Cure3.SetResourceReference(ContentProperty, "CureOld");
-                Reflect1.SetResourceReference(ContentProperty, "ReflectOld");
-                Reflect2.SetResourceReference(ContentProperty, "ReflectOld");
-                Reflect3.SetResourceReference(ContentProperty, "ReflectOld");
-                Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
-                Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
-                Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
-                Valor.SetResourceReference(ContentProperty, "ValorOld");
-                Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
-                Limit.SetResourceReference(ContentProperty, "LimitOld");
-                Master.SetResourceReference(ContentProperty, "MasterOld");
-                Final.SetResourceReference(ContentProperty, "FinalOld");
-                TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
-                TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
-                TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
-                TornPage4.SetResourceReference(ContentProperty, "TornPageOld");
-                TornPage5.SetResourceReference(ContentProperty, "TornPageOld");
-                Lamp.SetResourceReference(ContentProperty, "GenieOld");
-                Ukulele.SetResourceReference(ContentProperty, "StitchOld");
-                Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
-                Feather.SetResourceReference(ContentProperty, "PeterPanOld");
-                Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
-                Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
-                Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
-                PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
-            }
-            else
+            Properties.Settings.Default.Simple = SimpleOption.IsChecked;
+            if (SimpleOption.IsChecked)
             {
                 Report1.SetResourceReference(ContentProperty, "AnsemReport1");
                 Report2.SetResourceReference(ContentProperty, "AnsemReport2");
@@ -496,17 +506,122 @@ namespace KhTracker
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
             }
+            else
+            {
+                Report1.SetResourceReference(ContentProperty, "AnsemReportOld1");
+                Report2.SetResourceReference(ContentProperty, "AnsemReportOld2");
+                Report3.SetResourceReference(ContentProperty, "AnsemReportOld3");
+                Report4.SetResourceReference(ContentProperty, "AnsemReportOld4");
+                Report5.SetResourceReference(ContentProperty, "AnsemReportOld5");
+                Report6.SetResourceReference(ContentProperty, "AnsemReportOld6");
+                Report7.SetResourceReference(ContentProperty, "AnsemReportOld7");
+                Report8.SetResourceReference(ContentProperty, "AnsemReportOld8");
+                Report9.SetResourceReference(ContentProperty, "AnsemReportOld9");
+                Report10.SetResourceReference(ContentProperty, "AnsemReportOld10");
+                Report11.SetResourceReference(ContentProperty, "AnsemReportOld11");
+                Report12.SetResourceReference(ContentProperty, "AnsemReportOld12");
+                Report13.SetResourceReference(ContentProperty, "AnsemReportOld13");
+                Fire1.SetResourceReference(ContentProperty, "FireOld");
+                Fire2.SetResourceReference(ContentProperty, "FireOld");
+                Fire3.SetResourceReference(ContentProperty, "FireOld");
+                Blizzard1.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard2.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard3.SetResourceReference(ContentProperty, "BlizzardOld");
+                Thunder1.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder2.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder3.SetResourceReference(ContentProperty, "ThunderOld");
+                Cure1.SetResourceReference(ContentProperty, "CureOld");
+                Cure2.SetResourceReference(ContentProperty, "CureOld");
+                Cure3.SetResourceReference(ContentProperty, "CureOld");
+                Reflect1.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect2.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect3.SetResourceReference(ContentProperty, "ReflectOld");
+                Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
+                Valor.SetResourceReference(ContentProperty, "ValorOld");
+                Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
+                Limit.SetResourceReference(ContentProperty, "LimitOld");
+                Master.SetResourceReference(ContentProperty, "MasterOld");
+                Final.SetResourceReference(ContentProperty, "FinalOld");
+                TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage4.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage5.SetResourceReference(ContentProperty, "TornPageOld");
+                Lamp.SetResourceReference(ContentProperty, "GenieOld");
+                Ukulele.SetResourceReference(ContentProperty, "StitchOld");
+                Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
+                Feather.SetResourceReference(ContentProperty, "PeterPanOld");
+                Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+            }
+        }
+
+        private void WorldIconsToggle(object sender, RoutedEventArgs e)
+        {
+            if(WorldIconsOption.IsChecked)
+            {
+                SoraHeart.SetResourceReference(ContentProperty, "SoraHeartImage");
+                SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedImage");
+                HollowBastion.SetResourceReference(ContentProperty, "HollowBastionImage");
+                OlympusColiseum.SetResourceReference(ContentProperty, "OlympusImage");
+                LandofDragons.SetResourceReference(ContentProperty, "LandofDragonsImage");
+                PrideLands.SetResourceReference(ContentProperty, "PrideLandsImage");
+                HalloweenTown.SetResourceReference(ContentProperty, "HalloweenTownImage");
+                SpaceParanoids.SetResourceReference(ContentProperty, "SpaceParanoidsImage");
+                GoA.SetResourceReference(ContentProperty, "GardenofAssemblageImage");
+                
+                DriveForms.SetResourceReference(ContentProperty, "DriveFormsImage");
+                TwilightTown.SetResourceReference(ContentProperty, "TwilightTownImage");
+                BeastCastle.SetResourceReference(ContentProperty, "BeastCastleImage");
+                Agrabah.SetResourceReference(ContentProperty, "AgrabahImage");
+                HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreImage");
+                DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleImage");
+                PortRoyal.SetResourceReference(ContentProperty, "PortRoyalImage");
+                TWTNW.SetResourceReference(ContentProperty, "TWTNWImage");
+                Atlantica.SetResourceReference(ContentProperty, "AtlanticaImage");
+            }
+            else
+            {
+                SoraHeart.SetResourceReference(ContentProperty, "SoraHeartText");
+                SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedText");
+                HollowBastion.SetResourceReference(ContentProperty, "HollowBastionText");
+                OlympusColiseum.SetResourceReference(ContentProperty, "OlympusText");
+                LandofDragons.SetResourceReference(ContentProperty, "LandofDragonsText");
+                PrideLands.SetResourceReference(ContentProperty, "PrideLandsText");
+                HalloweenTown.SetResourceReference(ContentProperty, "HalloweenTownText");
+                SpaceParanoids.SetResourceReference(ContentProperty, "SpaceParanoidsText");
+                GoA.SetResourceReference(ContentProperty, "GardenofAssemblageText");
+                
+                DriveForms.SetResourceReference(ContentProperty, "DriveFormsText");
+                TwilightTown.SetResourceReference(ContentProperty, "TwilightTownText");
+                BeastCastle.SetResourceReference(ContentProperty, "BeastCastleText");
+                Agrabah.SetResourceReference(ContentProperty, "AgrabahText");
+                HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreText");
+                DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleText");
+                PortRoyal.SetResourceReference(ContentProperty, "PortRoyalText");
+                TWTNW.SetResourceReference(ContentProperty, "TWTNWText");
+                Atlantica.SetResourceReference(ContentProperty, "AtlanticaText");
+            }
         }
 
 
         /// 
         /// Handle UI Changes
         /// 
-        private void HandleReportValue(TextBlock Hint, bool isTWTNW, int delta)
+        private void HandleReportValue(Image Hint, bool isTWTNW, int delta)
         {
-            if (int.TryParse(Hint.Text, out int num) == false)
+            int num = 0;
+
+            for(int i = 0; i < Numbers.Count; ++i)
             {
-                num = -1;
+                if(Hint.Source == Numbers[i])
+                {
+                    num = i;
+                }
             }
 
             if (delta > 0)
@@ -514,25 +629,22 @@ namespace KhTracker
             else
                 --num;
 
+            if (num > 20)
+                num = 20;
+
             if (num >= 10)
             {
-                if (!isTWTNW)
-                    Hint.Margin = new Thickness(20, -7, 0, 0);
-                else
-                    Hint.Margin = new Thickness(30, -2, 0, 0);
+                    Hint.Margin = new Thickness(15, Hint.Margin.Top, 0, 0);
             }
             else
             {
-                if (!isTWTNW)
-                    Hint.Margin = new Thickness(30, -7, 0, 0);
-                else
-                    Hint.Margin = new Thickness(40, -2, 0, 0);
+                    Hint.Margin = new Thickness(25, Hint.Margin.Top, 0, 0);
             }
 
             if (num < 0)
-                Hint.Text = "?";
+                Hint.Source = Numbers[0];
             else
-                Hint.Text = num.ToString();
+                Hint.Source = Numbers[num];
         }
 
         private void HandleWorldGrid(UniformGrid grid, Button button, bool add)
@@ -598,6 +710,14 @@ namespace KhTracker
                 {
                     selected.BorderBrush = Brushes.White;
                     selected = null;
+
+                    for (int i = 0; i < SelectedBars.Count; ++i)
+                    {
+                        if (Worlds[i] == selected)
+                        {
+                            SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                        }
+                    }
                 }
 
                 for (int i = grid.Children.Count - 1; i >= 0; --i)

@@ -36,7 +36,8 @@
                 <MenuItem Name="HundredAcreWoodOption" Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
                 <MenuItem Name="AtlanticaOption" Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>
                 <Separator/>
-                <MenuItem Name="OrbsOption" Header="Orb Icons" IsCheckable="True" IsChecked="True" Click="OrbsToggle"/>
+                <MenuItem Name="SimpleOption" Header="Simple Icons" IsCheckable="True" IsChecked="True" Click="SimpleToggle"/>
+                <MenuItem Name="WorldIconsOption" Header="World Icons" IsCheckable="True" IsChecked="True" Click="WorldIconsToggle"/>
             </MenuItem>
         </Menu>
 
@@ -48,205 +49,205 @@
                     <StackPanel Height="700" Width="280" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name ="SoraHeart" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="SH" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="SoraHeartHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name ="SoraHeart" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="SoraHeartImage"/>
+                                </Button>
+                                <Image Name="SoraHeartHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="SoraHeartGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="SoraHeartBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="SoraHeartGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="SimulatedTwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="STT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-3,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="SimulatedHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="SimulatedTwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="SimulatedImage"/>
+                                </Button>
+                                <Image Name="SimulatedHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="SimulatedGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="SimulatedBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="SimulatedGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="HollowBastion" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="HB" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="HollowBastionHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="HollowBastion" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="HollowBastionImage"/>
+                                </Button>
+                                <Image Name="HollowBastionHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="HollowBastionGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="HollowBastionBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="HollowBastionGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="OlympusColiseum" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="OC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="OlympusColiseumHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="OlympusColiseum" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="OlympusImage"/>
+                                </Button>
+                                <Image Name="OlympusColiseumHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="OlympusColiseumGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="OlympusBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="OlympusColiseumGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="LandofDragons" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="Lod" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="0,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="LandofDragonsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="LandofDragons" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="LandofDragonsImage"/>
+                                </Button>
+                                <Image Name="LandofDragonsHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="LandofDragonsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="LandofDragonsBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="LandofDragonsGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="PrideLands" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="PL" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="PrideLandsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="PrideLands" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="PrideLandsImage"/>
+                                </Button>
+                                <Image Name="PrideLandsHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="PrideLandsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="PrideLandsBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="PrideLandsGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="HalloweenTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="HT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-7,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="HalloweenTownHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="HalloweenTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="HalloweenTownImage"/>
+                                </Button>
+                                <Image Name="HalloweenTownHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="HalloweenTownGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="HalloweenTownBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="HalloweenTownGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name="SpaceParanoids" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="SP" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-9,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="SpaceParanoidsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="SpaceParanoids" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="SpaceParanoidsImage"/>
+                                </Button>
+                                <Image Name="SpaceParanoidsHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <UniformGrid Name="SpaceParanoidsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="SpaceParanoidsBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="SpaceParanoidsGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <Button Name="GoA" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="GoA" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" IsHitTestVisible="False"/>
-                                </StackPanel>
+                                <Button Name="GoA" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="45" Background="#303030" PreviewMouseDown="OnMouseDown" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <DynamicResource ResourceKey="GardenofAssemblageImage"/>
+                                </Button>
                             </StackPanel>
-                            <UniformGrid Name="GoAGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="GoABar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="GoAGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                     </StackPanel>
 
                     <StackPanel>
-                        
-                    <StackPanel Height="615" Width="280" VerticalAlignment="Top">
 
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name ="DriveForms" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="DF" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="DriveFormsHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="DriveFormsGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="TwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="TT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="TwilightTownHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="TwilightTownGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="BeastCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="BC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="BeastCastleHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="BeastCastleGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="Agrabah" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="A" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-19,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="AgrabahHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="AgrabahGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="HundredAcreWood" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="100" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-4,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="HundredAcreWoodHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="HundredAcreWoodGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="DisneyCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20" />
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="DC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-6,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="DisneyCastleHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="DisneyCastleGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Button Name="PortRoyal" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}" FontSize="20"/>
-                                <StackPanel Margin="0,-35,0,0">
-                                    <TextBlock Text="PR" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-8,0,0" IsHitTestVisible="False"/>
-                                    <TextBlock Name="PortRoyalHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <UniformGrid Name="PortRoyalGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
-                        </StackPanel>
+                        <StackPanel Height="615" Width="280" VerticalAlignment="Top">
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
-                                    <Button Name="TWTNW" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="50" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
-                                    <StackPanel Margin="0,-35,0,0">
-                                        <TextBlock Text="TWTNW" FontSize="11" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-2,0,0" IsHitTestVisible="False"/>
-                                        <TextBlock Name="TWTNWHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="40,-2,0,0" Height="20" IsHitTestVisible="False"/>
-                                    </StackPanel>
+                                    <Button Name ="DriveForms" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="DriveFormsImage"/>
+                                    </Button>
+                                    <Image Name="DriveFormsHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                                 </StackPanel>
-                                <UniformGrid Name="TWTNWGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                                <Image Name="DriveFormsBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="DriveFormsGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="TwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="TwilightTownImage"/>
+                                    </Button>
+                                    <Image Name="TwilightTownHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="TwilightTownBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="TwilightTownGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="BeastCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="BeastCastleImage"/>
+                                    </Button>
+                                    <Image Name="BeastCastleHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="BeastCastleBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="BeastCastleGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="Agrabah" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="AgrabahImage"/>
+                                    </Button>
+                                    <Image Name="AgrabahHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="AgrabahBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="AgrabahGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="HundredAcreWood" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="HundredAcreImage"/>
+                                    </Button>
+                                    <Image Name="HundredAcreWoodHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="HundredAcreWoodBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="HundredAcreWoodGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="DisneyCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="DisneyCastleImage"/>
+                                    </Button>
+                                    <Image Name="DisneyCastleHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="DisneyCastleBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="DisneyCastleGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="PortRoyal" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="PortRoyalImage"/>
+                                    </Button>
+                                    <Image Name="PortRoyalHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="PortRoyalBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="PortRoyalGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button Name="TWTNW" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="TWTNWImage"/>
+                                    </Button>
+                                    <Image Name="TWTNWHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                </StackPanel>
+                                <Image Name="TWTNWBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="TWTNWGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" IsEnabled="False" Height="0">
                                 <StackPanel>
-                                    <Button Name="Atlantica" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="2" BorderBrush="White" Template="{DynamicResource DefaultButton}"/>
-                                    <StackPanel Margin="0,-35,0,0">
-                                        <TextBlock Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-8,0,0" IsHitTestVisible="False"/>
-                                        <TextBlock Name="AtlanticaHint" Text="?" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="20" FontStyle="Normal" Foreground="#FFFF00" Margin="30,-7,0,0" Height="20" IsHitTestVisible="False"/>
-                                    </StackPanel>
+                                    <Button Name="Atlantica" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                        <DynamicResource ResourceKey="AtlanticaImage"/>
+                                    </Button>
+                                    <Image Name="AtlanticaHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                                 </StackPanel>
-                                <UniformGrid Name="AtlanticaGrid" Margin="0,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                                <Image Name="AtlanticaBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="AtlanticaGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                             </StackPanel>
                         </StackPanel>
 

@@ -158,12 +158,12 @@ namespace KhTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Orbs {
+        public bool Simple {
             get {
-                return ((bool)(this["Orbs"]));
+                return ((bool)(this["Simple"]));
             }
             set {
-                this["Orbs"] = value;
+                this["Simple"] = value;
             }
         }
     }

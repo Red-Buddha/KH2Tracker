@@ -75,4 +75,47 @@
     <Image x:Key="ProofOfConnection" Source="Images\Simple\proof_of_connection.png"/>
     <Image x:Key="ProofOfPeace" Source="Images\Simple\proof_of_tranquility.png"/>
     <Image x:Key="PromiseCharm" Source="Images\Simple\promise_charm.png"/>
+
+    <TextBlock x:Key="SoraHeartText" Text="SH" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="SimulatedText" Text="STT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-3,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="HollowBastionText" Text="HB" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="OlympusText" Text="OC" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="LandofDragonsText" Text="Lod" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="0,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="PrideLandsText" Text="PL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="HalloweenTownText" Text="HT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-7,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="SpaceParanoidsText" Text="SP" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-9,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="GardenofAssemblageText" Text="GoA" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+    
+    <TextBlock x:Key="DriveFormsText" Text="DF" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="TwilightTownText" Text="TT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="BeastCastleText" Text="BC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="AgrabahText" Text="A" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-19,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="HundredAcreText" Text="100" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-4,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="DisneyCastleText" Text="DC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-6,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="PortRoyalText" Text="PR" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="TWTNWText" Text="TWTNW" FontSize="10" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-15,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="AtlanticaText" Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-18,0,0" IsHitTestVisible="False"/>
+
+
+
+    <Image x:Key="SoraHeartImage" Source="Images\Simple\sora's_level.png" Height="40"/>
+    <Image x:Key="SimulatedImage" Source="Images\Simple\simulated_twilight_town.png" Height="40"/>
+    <Image x:Key="HollowBastionImage" Source="Images\Simple\hollow_bastion.png" Height="40"/>
+    <Image x:Key="OlympusImage" Source="Images\Simple\olympus_coliseum.png" Height="40"/>
+    <Image x:Key="LandofDragonsImage" Source="Images\Simple\land_of_dragons.png" Height="40"/>
+    <Image x:Key="PrideLandsImage" Source="Images\Simple\pride_land.png" Height="40"/>
+    <Image x:Key="HalloweenTownImage" Source="Images\Simple\halloween_town.png" Height="40"/>
+    <Image x:Key="SpaceParanoidsImage" Source="Images\Simple\space_paranoids.png" Height="40"/>
+    <Image x:Key="GardenofAssemblageImage" Source="Images\Simple\replica_data.png" Height="40"/>
+
+    <Image x:Key="DriveFormsImage" Source="Images\Simple\drive_forms.png" Height="40"/>
+    <Image x:Key="TwilightTownImage" Source="Images\Simple\twilight_town.png" Height="40"/>
+    <Image x:Key="BeastCastleImage" Source="Images\Simple\beast's_castle.png" Height="40"/>
+    <Image x:Key="AgrabahImage" Source="Images\Simple\agrabah.png" Height="40"/>
+    <Image x:Key="HundredAcreImage" Source="Images\Simple\100_acre_wood.png" Height="40"/>
+    <Image x:Key="DisneyCastleImage" Source="Images\Simple\disney_castle.png" Height="40"/>
+    <Image x:Key="PortRoyalImage" Source="Images\Simple\port_royal.png" Height="40"/>
+    <Image x:Key="TWTNWImage" Source="Images\Simple\the_world_that_never_was.png" Height="40"/>
+    <Image x:Key="AtlanticaImage" Source="Images\Simple\atlantica.png" Height="40"/>
+
 </ResourceDictionary>

@@ -244,5 +244,29 @@
     <Resource Include="Images\Old\ansem_report8.png" />
     <Resource Include="Images\Old\ansem_report9.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\VerticalBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\VerticalBarWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\QuestionMark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Eighteen.png" />
+    <Resource Include="Images\Fifteen.png" />
+    <Resource Include="Images\Fourteen.png" />
+    <Resource Include="Images\Nineteen.png" />
+    <Resource Include="Images\Seventeen.png" />
+    <Resource Include="Images\Sixteen.png" />
+    <Resource Include="Images\Twenty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\Drive_Orb_KHII.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\drive_forms.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
