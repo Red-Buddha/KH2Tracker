@@ -123,6 +123,7 @@ namespace KhTracker
             TornPages.Add(TornPage5);
 
             Numbers.Add(new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative)));
+            Numbers.Add(new BitmapImage(new Uri("Images\\Zero.png", UriKind.Relative)));
             Numbers.Add(new BitmapImage(new Uri("Images\\One.png", UriKind.Relative)));
             Numbers.Add(new BitmapImage(new Uri("Images\\Two.png", UriKind.Relative)));
             Numbers.Add(new BitmapImage(new Uri("Images\\Three.png", UriKind.Relative)));
@@ -629,8 +630,9 @@ namespace KhTracker
             else
                 --num;
 
-            if (num > 20)
-                num = 20;
+            // cap hint value to 20
+            if (num > 21)
+                num = 21;
 
             if (num >= 10)
             {

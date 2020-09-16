@@ -268,5 +268,8 @@
   <ItemGroup>
     <Resource Include="Images\Simple\drive_forms.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zero.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
