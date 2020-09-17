@@ -5,7 +5,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="Dictionary1.xaml" x:Key="Test" />
             <FontFamily x:Key="HVD_Comic_Serif_Pro">pack://application:,,,/Fonts/#HVD Comic Serif Pro</FontFamily>
         </ResourceDictionary>
     </Application.Resources>

@@ -130,46 +130,146 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Bar.png" />
-    <Resource Include="Images\Baseball_Charm.png" />
-    <Resource Include="Images\Blizzard_Orb.png" />
-    <Resource Include="Images\Cure_Orb.png" />
     <Resource Include="Images\Eight.png" />
     <Resource Include="Images\Eleven.png" />
-    <Resource Include="Images\Feather_Charm.png" />
-    <Resource Include="Images\Final_Form.png" />
-    <Resource Include="Images\Fire_Orb.png" />
     <Resource Include="Images\Five.png" />
     <Resource Include="Images\Four.png" />
-    <Resource Include="Images\Lamp_Charm.png" />
-    <Resource Include="Images\Limit_Form.png" />
-    <Resource Include="Images\Magnet_Orb.png" />
-    <Resource Include="Images\Master_Form.png" />
     <Resource Include="Images\Nine.png" />
-    <Resource Include="Images\Once_More.png" />
     <Resource Include="Images\One.png" />
-    <Resource Include="Images\Promise_Charm.png" />
-    <Resource Include="Images\Proof_of_Connection.png" />
-    <Resource Include="Images\Proof_of_Nonexistence.png" />
-    <Resource Include="Images\Proof_of_Peace.png" />
-    <Resource Include="Images\Reflect_Orb.png" />
-    <Resource Include="Images\Reporttest3.png" />
-    <Resource Include="Images\Second_Chance.png" />
     <Resource Include="Images\Seven.png" />
     <Resource Include="Images\Six.png" />
-    <Resource Include="Images\Spell_Orb.png" />
     <Resource Include="Images\Ten.png" />
     <Resource Include="Images\Thirteen.png" />
     <Resource Include="Images\Three.png" />
-    <Resource Include="Images\Thunder_Orb.png" />
-    <Resource Include="Images\Torn_Page.png" />
     <Resource Include="Images\Twelve.png" />
     <Resource Include="Images\Two.png" />
-    <Resource Include="Images\Ukulele_Charm.png" />
-    <Resource Include="Images\Valor_Form.png" />
-    <Resource Include="Images\Wisdom_Form.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="hnet.com-image.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Old\ansem_report.png" />
+    <Resource Include="Images\Old\blizzard.png" />
+    <Resource Include="Images\Old\chicken_little.png" />
+    <Resource Include="Images\Old\cure.png" />
+    <Resource Include="Images\Old\final.png" />
+    <Resource Include="Images\Old\fire.png" />
+    <Resource Include="Images\Old\genie.png" />
+    <Resource Include="Images\Old\hnet.com-image.ico" />
+    <Resource Include="Images\Old\limit.png" />
+    <Resource Include="Images\Old\magnet.png" />
+    <Resource Include="Images\Old\master.png" />
+    <Resource Include="Images\Old\peter_pan.png" />
+    <Resource Include="Images\Old\promise_charm.png" />
+    <Resource Include="Images\Old\proof_of_connection.png" />
+    <Resource Include="Images\Old\proof_of_nonexistence.png" />
+    <Resource Include="Images\Old\proof_of_peace.png" />
+    <Resource Include="Images\Old\reflect.png" />
+    <Resource Include="Images\Old\Spell_Orb.png" />
+    <Resource Include="Images\Old\stitch.png" />
+    <Resource Include="Images\Old\thunder.png" />
+    <Resource Include="Images\Old\torn_page.png" />
+    <Resource Include="Images\Old\valor.png" />
+    <Resource Include="Images\Old\wisdom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\100_acre_wood.png" />
+    <Resource Include="Images\Simple\agrabah.png" />
+    <Resource Include="Images\Simple\ansem_report.png" />
+    <Resource Include="Images\Simple\atlantica.png" />
+    <Resource Include="Images\Simple\beast%27s_castle.png" />
+    <Resource Include="Images\Simple\blizzard.png" />
+    <Resource Include="Images\Simple\cavern_of_remembrance.png" />
+    <Resource Include="Images\Simple\chicken_little.png" />
+    <Resource Include="Images\Simple\cure.png" />
+    <Resource Include="Images\Simple\disney_castle.png" />
+    <Resource Include="Images\Simple\final.png" />
+    <Resource Include="Images\Simple\fire.png" />
+    <Resource Include="Images\Simple\genie.png" />
+    <Resource Include="Images\Simple\halloween_town.png" />
+    <Resource Include="Images\Simple\hollow_bastion.png" />
+    <Resource Include="Images\Simple\land_of_dragons.png" />
+    <Resource Include="Images\Simple\limit.png" />
+    <Resource Include="Images\Simple\magnet.png" />
+    <Resource Include="Images\Simple\master.png" />
+    <Resource Include="Images\Simple\olympus_coliseum.png" />
+    <Resource Include="Images\Simple\peter_pan.png" />
+    <Resource Include="Images\Simple\port_royal.png" />
+    <Resource Include="Images\Simple\pride_land.png" />
+    <Resource Include="Images\Simple\promise_charm.png" />
+    <Resource Include="Images\Simple\proof_of_connection.png" />
+    <Resource Include="Images\Simple\proof_of_nonexistence.png" />
+    <Resource Include="Images\Simple\proof_of_tranquility.png" />
+    <Resource Include="Images\Simple\reflect.png" />
+    <Resource Include="Images\Simple\replica_data.png" />
+    <Resource Include="Images\Simple\simulated_twilight_town.png" />
+    <Resource Include="Images\Simple\sora%27s_level.png" />
+    <Resource Include="Images\Simple\space_paranoids.png" />
+    <Resource Include="Images\Simple\stitch.png" />
+    <Resource Include="Images\Simple\the_world_that_never_was.png" />
+    <Resource Include="Images\Simple\thunder.png" />
+    <Resource Include="Images\Simple\timeless_river.png" />
+    <Resource Include="Images\Simple\twilight_town.png" />
+    <Resource Include="Images\Simple\underdrome_cups.png" />
+    <Resource Include="Images\Simple\valor.png" />
+    <Resource Include="Images\Simple\wisdom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\ansem_report1.png" />
+    <Resource Include="Images\Simple\ansem_report10.png" />
+    <Resource Include="Images\Simple\ansem_report11.png" />
+    <Resource Include="Images\Simple\ansem_report12.png" />
+    <Resource Include="Images\Simple\ansem_report13.png" />
+    <Resource Include="Images\Simple\ansem_report2.png" />
+    <Resource Include="Images\Simple\ansem_report3.png" />
+    <Resource Include="Images\Simple\ansem_report4.png" />
+    <Resource Include="Images\Simple\ansem_report5.png" />
+    <Resource Include="Images\Simple\ansem_report6.png" />
+    <Resource Include="Images\Simple\ansem_report7.png" />
+    <Resource Include="Images\Simple\ansem_report8.png" />
+    <Resource Include="Images\Simple\ansem_report9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Old\ansem_report1.png" />
+    <Resource Include="Images\Old\ansem_report10.png" />
+    <Resource Include="Images\Old\ansem_report11.png" />
+    <Resource Include="Images\Old\ansem_report12.png" />
+    <Resource Include="Images\Old\ansem_report13.png" />
+    <Resource Include="Images\Old\ansem_report2.png" />
+    <Resource Include="Images\Old\ansem_report3.png" />
+    <Resource Include="Images\Old\ansem_report4.png" />
+    <Resource Include="Images\Old\ansem_report5.png" />
+    <Resource Include="Images\Old\ansem_report6.png" />
+    <Resource Include="Images\Old\ansem_report7.png" />
+    <Resource Include="Images\Old\ansem_report8.png" />
+    <Resource Include="Images\Old\ansem_report9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\VerticalBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\VerticalBarWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\QuestionMark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Eighteen.png" />
+    <Resource Include="Images\Fifteen.png" />
+    <Resource Include="Images\Fourteen.png" />
+    <Resource Include="Images\Nineteen.png" />
+    <Resource Include="Images\Seventeen.png" />
+    <Resource Include="Images\Sixteen.png" />
+    <Resource Include="Images\Twenty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\Drive_Orb_KHII.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\drive_forms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zero.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
