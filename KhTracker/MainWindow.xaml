@@ -396,10 +396,10 @@
                         <DynamicResource ResourceKey="Final"/>
                     </Button>
                     <Button x:Name="OnceMore" Grid.Row="2" Grid.Column="11" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\One.png"/>
+                        <DynamicResource ResourceKey="OnceMore"/>
                     </Button>
                     <Button x:Name="SecondChance" Grid.Row="2" Grid.Column="12" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
-                        <Image Source="Images\Two.png"/>
+                        <DynamicResource ResourceKey="SecondChance"/>
                     </Button>
                     <Button x:Name="TornPage1" Grid.Row="3" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="TornPage"/>

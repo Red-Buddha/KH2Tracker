@@ -493,6 +493,8 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "Limit");
                 Master.SetResourceReference(ContentProperty, "Master");
                 Final.SetResourceReference(ContentProperty, "Final");
+                OnceMore.SetResourceReference(ContentProperty, "OnceMore");
+                SecondChance.SetResourceReference(ContentProperty, "SecondChance");
                 TornPage1.SetResourceReference(ContentProperty, "TornPage");
                 TornPage2.SetResourceReference(ContentProperty, "TornPage");
                 TornPage3.SetResourceReference(ContentProperty, "TornPage");
@@ -545,6 +547,8 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "LimitOld");
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
+                OnceMore.SetResourceReference(ContentProperty, "OnceMoreOld");
+                SecondChance.SetResourceReference(ContentProperty, "SecondChanceOld");
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage3.SetResourceReference(ContentProperty, "TornPageOld");

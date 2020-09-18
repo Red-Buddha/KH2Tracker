@@ -32,6 +32,8 @@
     <Image x:Key="LimitOld" Source="Images\Old\limit.png"/>
     <Image x:Key="MasterOld" Source="Images\Old\master.png"/>
     <Image x:Key="FinalOld" Source="Images\Old\final.png"/>
+    <Image x:Key="OnceMoreOld" Source="Images\One.png"/>
+    <Image x:Key="SecondChanceOld" Source="Images\Two.png"/>
     <Image x:Key="TornPageOld" Source="Images\Old\torn_page.png" x:Shared="false"/>
     <Image x:Key="GenieOld" Source="Images\Old\genie.png"/>
     <Image x:Key="StitchOld" Source="Images\Old\stitch.png"/>
@@ -66,6 +68,8 @@
     <Image x:Key="Limit" Source="Images\Simple\limit.png"/>
     <Image x:Key="Master" Source="Images\Simple\master.png"/>
     <Image x:Key="Final" Source="Images\Simple\final.png"/>
+    <Image x:Key="OnceMore" Source="Images\Simple\once_more.png"/>
+    <Image x:Key="SecondChance" Source="Images\Simple\second_chance.png"/>
     <Image x:Key="TornPage" Source="Images\Old\torn_page.png" x:Shared="false"/>
     <Image x:Key="Genie" Source="Images\Simple\genie.png"/>
     <Image x:Key="Stitch" Source="Images\Simple\stitch.png"/>
@@ -108,7 +112,7 @@
     <Image x:Key="SpaceParanoidsImage" Source="Images\Simple\space_paranoids.png" Height="40"/>
     <Image x:Key="GardenofAssemblageImage" Source="Images\Simple\replica_data.png" Height="40"/>
 
-    <Image x:Key="DriveFormsImage" Source="Images\Simple\drive_forms.png" Height="40"/>
+    <Image x:Key="DriveFormsImage" Source="Images\Simple\drive_form.png" Height="40"/>
     <Image x:Key="TwilightTownImage" Source="Images\Simple\twilight_town.png" Height="40"/>
     <Image x:Key="BeastCastleImage" Source="Images\Simple\beast's_castle.png" Height="40"/>
     <Image x:Key="AgrabahImage" Source="Images\Simple\agrabah.png" Height="40"/>
