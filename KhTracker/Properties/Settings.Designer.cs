@@ -166,5 +166,17 @@ namespace KhTracker.Properties {
                 this["Simple"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SoraHeart {
+            get {
+                return ((bool)(this["SoraHeart"]));
+            }
+            set {
+                this["SoraHeart"] = value;
+            }
+        }
     }
 }

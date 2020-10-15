@@ -32,6 +32,7 @@
                 <MenuItem Name="CureOption" Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/>
                 <MenuItem Name="FinalFormOption" Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
                 <Separator/>
+                <MenuItem Name="SoraHeartOption" Header="Sora's Heart" IsCheckable="True" IsChecked="True" Click="SoraHeartToggle"/>
                 <MenuItem Name="SimulatedOption" Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
                 <MenuItem Name="HundredAcreWoodOption" Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
                 <MenuItem Name="AtlanticaOption" Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>

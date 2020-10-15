@@ -188,6 +188,8 @@ namespace KhTracker
             SimpleOption.IsChecked = Properties.Settings.Default.Simple;
             SimpleToggle(null, null);
 
+            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
+            SoraHeartToggle(null, null);
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
             SimulatedToggle(null, null);
             HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
@@ -432,6 +434,12 @@ namespace KhTracker
         {
             Properties.Settings.Default.FinalForm = FinalFormOption.IsChecked;
             HandleItemToggle(FinalFormOption, Final, false);
+        }
+
+        private void SoraHeartToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.SoraHeart = SoraHeartOption.IsChecked;
+            HandleWorldToggle(SoraHeartOption, SoraHeart, SoraHeartGrid);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
@@ -714,7 +722,12 @@ namespace KhTracker
             {
                 if (selected == button)
                 {
-                    selected.BorderBrush = Brushes.White;
+                    for (int j = 0; j < Worlds.Count; ++j)
+                    {
+                        if (Worlds[j] == selected)
+                            SelectedBars[j].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                    }
+                    
                     selected = null;
 
                     for (int i = 0; i < SelectedBars.Count; ++i)
