@@ -80,6 +80,14 @@
     <Image x:Key="ProofOfPeace" Source="Images\Simple\proof_of_tranquility.png"/>
     <Image x:Key="PromiseCharm" Source="Images\Simple\promise_charm.png"/>
 
+    <Image x:Key="Fail0" x:Shared="false"/>
+    <Image x:Key="Fail1" Source="Images\FailBar.png" Margin="-25,-15,0,0" Height="15" x:Shared="false"/>
+    <StackPanel x:Key="Fail2" VerticalAlignment="Center" x:Shared="false">
+        <Image Source="Images\FailBar.png" Margin="-25,-15,0,0" Height="15"/>
+        <Image Source="Images\FailBar.png" Margin="-15,-15,0,0" Height="15"/>
+    </StackPanel>
+    <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
+
     <TextBlock x:Key="SoraHeartText" Text="SH" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="SimulatedText" Text="STT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-3,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="HollowBastionText" Text="HB" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>

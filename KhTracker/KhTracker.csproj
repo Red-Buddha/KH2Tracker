@@ -84,6 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Codes.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -275,6 +276,12 @@
     <Resource Include="Images\Simple\drive_form.png" />
     <Resource Include="Images\Simple\once_more.png" />
     <Resource Include="Images\Simple\second_chance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FailBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FailX.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
