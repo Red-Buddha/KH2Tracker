@@ -9,7 +9,7 @@
         KeyDown="Window_KeyDown"
         Closing="Window_Closing"
         LocationChanged="Window_LocationChanged"
-        Title="KH2Tracker" Height="920" Width="570">
+        Title="KH2Tracker" Height="880" Width="570">
     <Window.Resources>
         <ResourceDictionary>
 
@@ -23,6 +23,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="_Options">
+                <MenuItem Name="LoadHint" Header="Load Hints" Click="LoadHints"/>
                 <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
                 <Separator/>
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
@@ -45,18 +46,18 @@
 
         <Grid Background="#303030">
             <StackPanel>
-                <StackPanel Orientation="Horizontal" Height="700">
+                <StackPanel Orientation="Horizontal" Height="630">
 
-                    <StackPanel Height="700" Width="280" HorizontalAlignment="Left">
+                    <StackPanel Height="630" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" Width="270">
                             <StackPanel>
-                                <Button Name ="SoraHeart" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                <Button Name ="SorasHeart" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
                                     <DynamicResource ResourceKey="SoraHeartImage"/>
                                 </Button>
-                                <Image Name="SoraHeartHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                <Image Name="SorasHeartHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <Image Name="SoraHeartBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
-                            <UniformGrid Name="SoraHeartGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                            <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <UniformGrid Name="SorasHeartGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Width="270">
@@ -150,7 +151,7 @@
 
                     <StackPanel>
 
-                        <StackPanel Height="615" Width="280" VerticalAlignment="Top">
+                        <StackPanel Height="590" Width="280" VerticalAlignment="Top" HorizontalAlignment="Left">
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
@@ -176,13 +177,13 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
-                                    <Button Name="BeastCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
+                                    <Button Name="BeastsCastle" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
                                         <DynamicResource ResourceKey="BeastCastleImage"/>
                                     </Button>
-                                    <Image Name="BeastCastleHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                    <Image Name="BeastsCastleHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                                 </StackPanel>
-                                <Image Name="BeastCastleBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
-                                <UniformGrid Name="BeastCastleGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
+                                <Image Name="BeastsCastleBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                                <UniformGrid Name="BeastsCastleGrid" Margin="5,5,0,5" Rows="1" Columns="5" Height="40" Width="200"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
@@ -252,17 +253,14 @@
                             </StackPanel>
                         </StackPanel>
 
-
-                        <StackPanel>
-                            <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="35" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0"/>
-                        </StackPanel>
-
-                        <StackPanel>
-                            <Image Source="Images\Bar.png" Margin="0,-5,15,0" Width="30" HorizontalAlignment="Right"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="35" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                            <Image Source="Images\Bar.png" Margin="0,-5,5,0" Height="30" HorizontalAlignment="Right"/>
                             <TextBlock Name="CheckTotal" Text="51" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="35" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="16"></Label>
 
 
                 <Grid Name="ItemPool" Height="160" Width="550" >
@@ -286,47 +284,85 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Button x:Name="Report1" Click="Item_Click" Grid.Row="0" Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport1"/>
                     </Button>
+                    <ContentControl Name="Report1Attempts" Grid.Row="0" Grid.Column="0">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report2" Click="Item_Click" Grid.Row="0" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport2"/>
                     </Button>
+                    <ContentControl Name="Report2Attempts" Grid.Row="0" Grid.Column="1">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report3" Click="Item_Click" Grid.Row="0" Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport3"/>
                     </Button>
+                    <ContentControl Name="Report3Attempts" Grid.Row="0" Grid.Column="2">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report4" Click="Item_Click" Grid.Row="0" Grid.Column="3" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport4"/>
                     </Button>
+                    <ContentControl Name="Report4Attempts" Grid.Row="0" Grid.Column="3">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report5" Click="Item_Click" Grid.Row="0" Grid.Column="4" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport5"/>
                     </Button>
+                    <ContentControl Name="Report5Attempts" Grid.Row="0" Grid.Column="4">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report6" Click="Item_Click" Grid.Row="0" Grid.Column="5" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport6"/>
                     </Button>
+                    <ContentControl Name="Report6Attempts" Grid.Row="0" Grid.Column="5">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report7" Click="Item_Click" Grid.Row="0" Grid.Column="6" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport7"/>
                     </Button>
+                    <ContentControl Name="Report7Attempts" Grid.Row="0" Grid.Column="6">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report8" Click="Item_Click" Grid.Row="0" Grid.Column="7" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport8"/>
                     </Button>
+                    <ContentControl Name="Report8Attempts" Grid.Row="0" Grid.Column="7">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report9" Click="Item_Click" Grid.Row="0" Grid.Column="8" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport9"/>
                     </Button>
+                    <ContentControl Name="Report9Attempts" Grid.Row="0" Grid.Column="8">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report10" Click="Item_Click" Grid.Row="0" Grid.Column="9" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport10"/>
                     </Button>
+                    <ContentControl Name="Report10Attempts" Grid.Row="0" Grid.Column="9">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report11" Click="Item_Click" Grid.Row="0" Grid.Column="10" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport11"/>
                     </Button>
+                    <ContentControl Name="Report11Attempts" Grid.Row="0" Grid.Column="10">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report12" Click="Item_Click" Grid.Row="0" Grid.Column="11" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport12"/>
                     </Button>
+                    <ContentControl Name="Report12Attempts" Grid.Row="0" Grid.Column="11">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Report13" Click="Item_Click" Grid.Row="0" Grid.Column="12" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="AnsemReport13"/>
                     </Button>
+                    <ContentControl Name="Report13Attempts" Grid.Row="0" Grid.Column="12">
+                        <DynamicResource ResourceKey="Fail0"/>
+                    </ContentControl>
                     <Button x:Name="Fire1" Grid.Row="1" Grid.Column="0" Click="Item_Click" Background="Transparent" BorderBrush="Transparent">
                         <DynamicResource ResourceKey="Fire"/>
                     </Button>

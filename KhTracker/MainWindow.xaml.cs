@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+
 
 namespace KhTracker
 {
@@ -21,18 +16,31 @@ namespace KhTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool hintsLoaded = false;
         Button selected = null;
+        Codes codes = new Codes();
+        List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
+        List<string> reportLocations = new List<string>();
+        List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+        List<Button> Worlds = new List<Button>();
+        List<Image> Hints = new List<Image>();
+        List<UniformGrid> Grids = new List<UniformGrid>();
+        List<Button> Reports = new List<Button>();
+        List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
+        List<Button> TornPages = new List<Button>();
+        List<Image> SelectedBars = new List<Image>();
+        List<BitmapImage> Numbers = new List<BitmapImage>();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Worlds.Add(SoraHeart);
+            Worlds.Add(SorasHeart);
             Worlds.Add(DriveForms);
             Worlds.Add(SimulatedTwilightTown);
             Worlds.Add(TwilightTown);
             Worlds.Add(HollowBastion);
-            Worlds.Add(BeastCastle);
+            Worlds.Add(BeastsCastle);
             Worlds.Add(OlympusColiseum);
             Worlds.Add(Agrabah);
             Worlds.Add(LandofDragons);
@@ -46,12 +54,12 @@ namespace KhTracker
             Worlds.Add(Atlantica);
             Worlds.Add(GoA);
 
-            Hints.Add(SoraHeartHint);
+            Hints.Add(SorasHeartHint);
             Hints.Add(DriveFormsHint);
             Hints.Add(SimulatedHint);
             Hints.Add(TwilightTownHint);
             Hints.Add(HollowBastionHint);
-            Hints.Add(BeastCastleHint);
+            Hints.Add(BeastsCastleHint);
             Hints.Add(OlympusColiseumHint);
             Hints.Add(AgrabahHint);
             Hints.Add(LandofDragonsHint);
@@ -64,12 +72,12 @@ namespace KhTracker
             Hints.Add(TWTNWHint);
             Hints.Add(AtlanticaHint);
 
-            Grids.Add(SoraHeartGrid);
+            Grids.Add(SorasHeartGrid);
             Grids.Add(DriveFormsGrid);
             Grids.Add(SimulatedGrid);
             Grids.Add(TwilightTownGrid);
             Grids.Add(HollowBastionGrid);
-            Grids.Add(BeastCastleGrid);
+            Grids.Add(BeastsCastleGrid);
             Grids.Add(OlympusColiseumGrid);
             Grids.Add(AgrabahGrid);
             Grids.Add(LandofDragonsGrid);
@@ -83,12 +91,12 @@ namespace KhTracker
             Grids.Add(AtlanticaGrid);
             Grids.Add(GoAGrid);
 
-            SelectedBars.Add(SoraHeartBar);
+            SelectedBars.Add(SorasHeartBar);
             SelectedBars.Add(DriveFormsBar);
             SelectedBars.Add(SimulatedBar);
             SelectedBars.Add(TwilightTownBar);
             SelectedBars.Add(HollowBastionBar);
-            SelectedBars.Add(BeastCastleBar);
+            SelectedBars.Add(BeastsCastleBar);
             SelectedBars.Add(OlympusBar);
             SelectedBars.Add(AgrabahBar);
             SelectedBars.Add(LandofDragonsBar);
@@ -115,6 +123,20 @@ namespace KhTracker
             Reports.Add(Report11);
             Reports.Add(Report12);
             Reports.Add(Report13);
+
+            ReportAttemptVisual.Add(Report1Attempts);
+            ReportAttemptVisual.Add(Report2Attempts);
+            ReportAttemptVisual.Add(Report3Attempts);
+            ReportAttemptVisual.Add(Report4Attempts);
+            ReportAttemptVisual.Add(Report5Attempts);
+            ReportAttemptVisual.Add(Report6Attempts);
+            ReportAttemptVisual.Add(Report7Attempts);
+            ReportAttemptVisual.Add(Report8Attempts);
+            ReportAttemptVisual.Add(Report9Attempts);
+            ReportAttemptVisual.Add(Report10Attempts);
+            ReportAttemptVisual.Add(Report11Attempts);
+            ReportAttemptVisual.Add(Report12Attempts);
+            ReportAttemptVisual.Add(Report13Attempts);
 
             TornPages.Add(TornPage1);
             TornPages.Add(TornPage2);
@@ -147,14 +169,6 @@ namespace KhTracker
 
             InitOptions();
         }
-
-        List<Button> Worlds = new List<Button>();
-        List<Image> Hints = new List<Image>();
-        List<UniformGrid> Grids = new List<UniformGrid>();
-        List<Button> Reports = new List<Button>();
-        List<Button> TornPages = new List<Button>();
-        List<Image> SelectedBars = new List<Image>();
-        List<BitmapImage> Numbers = new List<BitmapImage>();
         
         private void InitOptions()
         {
@@ -255,10 +269,7 @@ namespace KhTracker
             {
                 if (button == Worlds[i])
                 {
-                    if (Worlds[i] == TWTNW)
-                        HandleReportValue(Hints[i], true, e.Delta);
-                    else
-                        HandleReportValue(Hints[i], false, e.Delta);
+                    HandleReportValue(Hints[i], e.Delta);
 
                     break;
                 }
@@ -273,10 +284,7 @@ namespace KhTracker
                 {
                     if (Worlds[i] == selected)
                     {
-                        if (selected == TWTNW)
-                            HandleReportValue(Hints[i], true, -1);
-                        else
-                            HandleReportValue(Hints[i], false, -1);
+                        HandleReportValue(Hints[i], -1);
                     }
                 }
             }
@@ -286,10 +294,7 @@ namespace KhTracker
                 {
                     if (Worlds[i] == selected)
                     {
-                        if (selected == TWTNW)
-                            HandleReportValue(Hints[i], true, 1);
-                        else
-                            HandleReportValue(Hints[i], false, 1);
+                        HandleReportValue(Hints[i], 1);
                     }
                 }
             }
@@ -298,11 +303,51 @@ namespace KhTracker
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            if(selected != null)
+            if (selected != null)
             {
+                bool isreport = false;
+
+                // item is a report
+                if (hintsLoaded && (int)button.GetValue(Grid.RowProperty) == 0)
+                {
+                    int index = (int)button.GetValue(Grid.ColumnProperty);
+
+                    if (reportAttempts[index] == 0)
+                        return;
+
+                    if (reportLocations[index].Replace(" ", "") == selected.Name)
+                    {
+                        HintText.Content = reportInformation[index].Item1 + " has " + reportInformation[index].Item2 + " important checks.";
+                        ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail0");
+                        reportAttempts[index] = 3;
+                        isreport = true;
+
+                        for (int i = 0; i < Hints.Count; ++i)
+                        {
+                            if (Worlds[i].Name == reportInformation[index].Item1.Replace(" ", ""))
+                                SetReportValue(Hints[i], reportInformation[index].Item2 + 1);
+                        }
+                    }
+                    else
+                    {
+                        reportAttempts[index]--;
+                        if (reportAttempts[index] == 0)
+                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail3");
+                        else if (reportAttempts[index] == 1)
+                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail2");
+                        else if (reportAttempts[index] == 2)
+                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail1");
+
+                        return;
+                    }
+                }
+
+                if (isreport == false)
+                    HintText.Content = "";
+
                 ItemPool.Children.Remove(button);
 
-                for(int i = 0; i < Worlds.Count; ++i)
+                for (int i = 0; i < Worlds.Count; ++i)
                 {
                     if(selected == Worlds[i])
                     {
@@ -313,29 +358,41 @@ namespace KhTracker
 
                 int collected = int.Parse(Collected.Text) + 1;
                 Collected.Text = collected.ToString();
-                if (collected >= 10)
-                    Collected.Margin = new Thickness(0, 0, 10, 0);
 
                 button.Click -= Item_Click;
                 button.Click += Item_Return;
+
+                if(isreport)
+                {
+                    button.MouseEnter += Report_Hover;
+                }
             }
         }
 
         private void Item_Return(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            
-            HandleWorldGrid(button.Parent as UniformGrid, button, false);
 
-            ItemPool.Children.Add(button);
+            HandleItemReturn(button);
+        }
 
-            int collected = int.Parse(Collected.Text) - 1;
-            Collected.Text = collected.ToString();
-            if (collected < 10)
-                Collected.Margin = new Thickness(0, 0, 20, 0);
+        private void HandleItemReturn(Button button)
+        {
+            if (button.Parent != ItemPool)
+            {
+                HandleWorldGrid(button.Parent as UniformGrid, button, false);
 
-            button.Click -= Item_Return;
-            button.Click += Item_Click;
+                ItemPool.Children.Add(button);
+
+                int collected = int.Parse(Collected.Text) - 1;
+                Collected.Text = collected.ToString();
+
+                button.Click -= Item_Return;
+
+                button.Click += Item_Click;
+
+                button.MouseEnter -= Report_Hover;
+            }
         }
         
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -349,13 +406,55 @@ namespace KhTracker
             Properties.Settings.Default.WindowX = Left;
         }
 
+        private void Report_Hover(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int index = (int)button.GetValue(Grid.ColumnProperty);
+            
+            HintText.Content = reportInformation[index].Item1 + " has " + reportInformation[index].Item2 + " important checks.";
+        }
+
         /// 
         /// Options
-        /// 
+        ///
+        
+        private void LoadHints(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".txt";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                for (int i = 0; i < Reports.Count; ++i)
+                {
+                    HandleItemReturn(Reports[i]);
+                }
+
+                Stream stream = openFileDialog.OpenFile();
+                StreamReader streamReader = new StreamReader(stream);
+
+                string line1 = streamReader.ReadLine();
+                string[] reportvalues = line1.Split('.');
+
+                string line2 = streamReader.ReadLine();
+                line2 = line2.TrimEnd('.');
+                string[] reportorder = line2.Split('.');
+
+                for(int i = 0; i < reportorder.Length; ++i)
+                {
+                    reportLocations.Add(codes.FindCode(reportorder[i]));
+                    string[] temp = reportvalues[i].Split(',');
+                    reportInformation.Add(new Tuple<string, int>(codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                }
+
+                hintsLoaded = true;
+                HintText.Content = "Hints Loaded";
+            }
+        }
+
         private void OnReset(object sender, RoutedEventArgs e)
         {
             Collected.Text = "0";
-            Collected.Margin = new Thickness(0, 0, 20, 0);
+            HintText.Content = "";
 
             if (selected != null)
             {
@@ -385,9 +484,17 @@ namespace KhTracker
                 Grids[i].Height = 40;
             }
 
+            hintsLoaded = false;
             for (int i = 0; i < Hints.Count; ++i)
             {
                 Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+            }
+            reportAttempts = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+            reportInformation.Clear();
+            reportLocations.Clear();
+            for(int i = 0; i < ReportAttemptVisual.Count; ++i)
+            {
+                ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
             }
         }
 
@@ -439,7 +546,7 @@ namespace KhTracker
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.SoraHeart = SoraHeartOption.IsChecked;
-            HandleWorldToggle(SoraHeartOption, SoraHeart, SoraHeartGrid);
+            HandleWorldToggle(SoraHeartOption, SorasHeart, SorasHeartGrid);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
@@ -577,7 +684,7 @@ namespace KhTracker
         {
             if(WorldIconsOption.IsChecked)
             {
-                SoraHeart.SetResourceReference(ContentProperty, "SoraHeartImage");
+                SorasHeart.SetResourceReference(ContentProperty, "SoraHeartImage");
                 SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedImage");
                 HollowBastion.SetResourceReference(ContentProperty, "HollowBastionImage");
                 OlympusColiseum.SetResourceReference(ContentProperty, "OlympusImage");
@@ -589,7 +696,7 @@ namespace KhTracker
                 
                 DriveForms.SetResourceReference(ContentProperty, "DriveFormsImage");
                 TwilightTown.SetResourceReference(ContentProperty, "TwilightTownImage");
-                BeastCastle.SetResourceReference(ContentProperty, "BeastCastleImage");
+                BeastsCastle.SetResourceReference(ContentProperty, "BeastCastleImage");
                 Agrabah.SetResourceReference(ContentProperty, "AgrabahImage");
                 HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreImage");
                 DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleImage");
@@ -599,7 +706,7 @@ namespace KhTracker
             }
             else
             {
-                SoraHeart.SetResourceReference(ContentProperty, "SoraHeartText");
+                SorasHeart.SetResourceReference(ContentProperty, "SoraHeartText");
                 SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedText");
                 HollowBastion.SetResourceReference(ContentProperty, "HollowBastionText");
                 OlympusColiseum.SetResourceReference(ContentProperty, "OlympusText");
@@ -611,7 +718,7 @@ namespace KhTracker
                 
                 DriveForms.SetResourceReference(ContentProperty, "DriveFormsText");
                 TwilightTown.SetResourceReference(ContentProperty, "TwilightTownText");
-                BeastCastle.SetResourceReference(ContentProperty, "BeastCastleText");
+                BeastsCastle.SetResourceReference(ContentProperty, "BeastCastleText");
                 Agrabah.SetResourceReference(ContentProperty, "AgrabahText");
                 HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreText");
                 DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleText");
@@ -625,7 +732,7 @@ namespace KhTracker
         /// 
         /// Handle UI Changes
         /// 
-        private void HandleReportValue(Image Hint, bool isTWTNW, int delta)
+        private void HandleReportValue(Image Hint, int delta)
         {
             int num = 0;
 
@@ -646,7 +753,7 @@ namespace KhTracker
             if (num > 21)
                 num = 21;
 
-            if (num >= 10)
+            if (num >= 11)
             {
                     Hint.Margin = new Thickness(15, Hint.Margin.Top, 0, 0);
             }
@@ -659,6 +766,26 @@ namespace KhTracker
                 Hint.Source = Numbers[0];
             else
                 Hint.Source = Numbers[num];
+        }
+
+        private void SetReportValue(Image Hint, int value)
+        {
+            if (value > 21)
+                value = 21;
+
+            if (value >= 11)
+            {
+                Hint.Margin = new Thickness(15, Hint.Margin.Top, 0, 0);
+            }
+            else
+            {
+                Hint.Margin = new Thickness(25, Hint.Margin.Top, 0, 0);
+            }
+
+            if (value < 0)
+                Hint.Source = Numbers[0];
+            else
+                Hint.Source = Numbers[value];
         }
 
         private void HandleWorldGrid(UniformGrid grid, Button button, bool add)
@@ -693,21 +820,7 @@ namespace KhTracker
                 button.Visibility = Visibility.Hidden;
                 CheckTotal.Text = (int.Parse(CheckTotal.Text) - 1).ToString();
 
-                if (button.Parent != ItemPool)
-                {
-                    HandleWorldGrid(button.Parent as UniformGrid, button, false);
-
-                    ItemPool.Children.Add(button);
-
-                    int collected = int.Parse(Collected.Text) - 1;
-                    Collected.Text = collected.ToString();
-                    if (collected < 10)
-                        Collected.Margin = new Thickness(0, 0, 20, 0);
-
-                    button.Click -= Item_Return;
-
-                    button.Click += Item_Click;
-                }
+                HandleItemReturn(button);
             }
         }
 
@@ -742,17 +855,7 @@ namespace KhTracker
                 for (int i = grid.Children.Count - 1; i >= 0; --i)
                 {
                     Button item = grid.Children[i] as Button;
-                    HandleWorldGrid(grid, item, false);
-
-                    ItemPool.Children.Add(item);
-
-                    int collected = int.Parse(Collected.Text) - 1;
-                    Collected.Text = collected.ToString();
-                    if (collected < 10)
-                        Collected.Margin = new Thickness(0, 0, 20, 0);
-
-                    item.Click -= Item_Return;
-                    item.Click += Item_Click;
+                    HandleItemReturn(item);
                 }
 
                 ((button.Parent as StackPanel).Parent as StackPanel).Height = 0;
