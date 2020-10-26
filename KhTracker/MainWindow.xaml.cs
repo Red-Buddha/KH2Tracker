@@ -424,6 +424,10 @@ namespace KhTracker
             openFileDialog.DefaultExt = ".txt";
             if(openFileDialog.ShowDialog() == true)
             {
+                reportLocations.Clear();
+                reportInformation.Clear();
+                reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+
                 for (int i = 0; i < Reports.Count; ++i)
                 {
                     HandleItemReturn(Reports[i]);
