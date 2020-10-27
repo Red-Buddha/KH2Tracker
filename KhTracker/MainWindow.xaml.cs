@@ -422,7 +422,8 @@ namespace KhTracker
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".txt";
-            if(openFileDialog.ShowDialog() == true)
+            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
             {
                 reportLocations.Clear();
                 reportInformation.Clear();
@@ -436,12 +437,28 @@ namespace KhTracker
                 Stream stream = openFileDialog.OpenFile();
                 StreamReader streamReader = new StreamReader(stream);
 
+                if (streamReader.EndOfStream)
+                {
+                    HintText.Content = "Error loading hints";
+                    streamReader.Close();
+                    return;
+                }
+
                 string line1 = streamReader.ReadLine();
                 string[] reportvalues = line1.Split('.');
+
+                if (streamReader.EndOfStream)
+                {
+                    HintText.Content = "Error loading hints";
+                    streamReader.Close();
+                    return;
+                }
 
                 string line2 = streamReader.ReadLine();
                 line2 = line2.TrimEnd('.');
                 string[] reportorder = line2.Split('.');
+
+                streamReader.Close();
 
                 for(int i = 0; i < reportorder.Length; ++i)
                 {
