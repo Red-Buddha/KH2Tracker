@@ -5,9 +5,12 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.IO;
 using Microsoft.Win32;
-
+using System.Drawing;
+using System.Windows.Documents;
+using System.Runtime.InteropServices;
 
 namespace KhTracker
 {
@@ -16,169 +19,163 @@ namespace KhTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool hintsLoaded = false;
-        Button selected = null;
-        Codes codes = new Codes();
-        List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
-        List<string> reportLocations = new List<string>();
-        List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-        List<Button> Worlds = new List<Button>();
-        List<Image> Hints = new List<Image>();
-        List<UniformGrid> Grids = new List<UniformGrid>();
-        List<Button> Reports = new List<Button>();
-        List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
-        List<Button> TornPages = new List<Button>();
-        List<Image> SelectedBars = new List<Image>();
-        List<BitmapImage> Numbers = new List<BitmapImage>();
+        public static Data data;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Worlds.Add(SorasHeart);
-            Worlds.Add(DriveForms);
-            Worlds.Add(SimulatedTwilightTown);
-            Worlds.Add(TwilightTown);
-            Worlds.Add(HollowBastion);
-            Worlds.Add(BeastsCastle);
-            Worlds.Add(OlympusColiseum);
-            Worlds.Add(Agrabah);
-            Worlds.Add(LandofDragons);
-            Worlds.Add(HundredAcreWood);
-            Worlds.Add(PrideLands);
-            Worlds.Add(DisneyCastle);
-            Worlds.Add(HalloweenTown);
-            Worlds.Add(PortRoyal);
-            Worlds.Add(SpaceParanoids);
-            Worlds.Add(TWTNW);
-            Worlds.Add(Atlantica);
-            Worlds.Add(GoA);
-
-            Hints.Add(SorasHeartHint);
-            Hints.Add(DriveFormsHint);
-            Hints.Add(SimulatedHint);
-            Hints.Add(TwilightTownHint);
-            Hints.Add(HollowBastionHint);
-            Hints.Add(BeastsCastleHint);
-            Hints.Add(OlympusColiseumHint);
-            Hints.Add(AgrabahHint);
-            Hints.Add(LandofDragonsHint);
-            Hints.Add(HundredAcreWoodHint);
-            Hints.Add(PrideLandsHint);
-            Hints.Add(DisneyCastleHint);
-            Hints.Add(HalloweenTownHint);
-            Hints.Add(PortRoyalHint);
-            Hints.Add(SpaceParanoidsHint);
-            Hints.Add(TWTNWHint);
-            Hints.Add(AtlanticaHint);
-
-            Grids.Add(SorasHeartGrid);
-            Grids.Add(DriveFormsGrid);
-            Grids.Add(SimulatedGrid);
-            Grids.Add(TwilightTownGrid);
-            Grids.Add(HollowBastionGrid);
-            Grids.Add(BeastsCastleGrid);
-            Grids.Add(OlympusColiseumGrid);
-            Grids.Add(AgrabahGrid);
-            Grids.Add(LandofDragonsGrid);
-            Grids.Add(HundredAcreWoodGrid);
-            Grids.Add(PrideLandsGrid);
-            Grids.Add(DisneyCastleGrid);
-            Grids.Add(HalloweenTownGrid);
-            Grids.Add(PortRoyalGrid);
-            Grids.Add(SpaceParanoidsGrid);
-            Grids.Add(TWTNWGrid);
-            Grids.Add(AtlanticaGrid);
-            Grids.Add(GoAGrid);
-
-            SelectedBars.Add(SorasHeartBar);
-            SelectedBars.Add(DriveFormsBar);
-            SelectedBars.Add(SimulatedBar);
-            SelectedBars.Add(TwilightTownBar);
-            SelectedBars.Add(HollowBastionBar);
-            SelectedBars.Add(BeastsCastleBar);
-            SelectedBars.Add(OlympusBar);
-            SelectedBars.Add(AgrabahBar);
-            SelectedBars.Add(LandofDragonsBar);
-            SelectedBars.Add(HundredAcreWoodBar);
-            SelectedBars.Add(PrideLandsBar);
-            SelectedBars.Add(DisneyCastleBar);
-            SelectedBars.Add(HalloweenTownBar);
-            SelectedBars.Add(PortRoyalBar);
-            SelectedBars.Add(SpaceParanoidsBar);
-            SelectedBars.Add(TWTNWBar);
-            SelectedBars.Add(AtlanticaBar);
-            SelectedBars.Add(GoABar);
-
-            Reports.Add(Report1);
-            Reports.Add(Report2);
-            Reports.Add(Report3);
-            Reports.Add(Report4);
-            Reports.Add(Report5);
-            Reports.Add(Report6);
-            Reports.Add(Report7);
-            Reports.Add(Report8);
-            Reports.Add(Report9);
-            Reports.Add(Report10);
-            Reports.Add(Report11);
-            Reports.Add(Report12);
-            Reports.Add(Report13);
-
-            ReportAttemptVisual.Add(Report1Attempts);
-            ReportAttemptVisual.Add(Report2Attempts);
-            ReportAttemptVisual.Add(Report3Attempts);
-            ReportAttemptVisual.Add(Report4Attempts);
-            ReportAttemptVisual.Add(Report5Attempts);
-            ReportAttemptVisual.Add(Report6Attempts);
-            ReportAttemptVisual.Add(Report7Attempts);
-            ReportAttemptVisual.Add(Report8Attempts);
-            ReportAttemptVisual.Add(Report9Attempts);
-            ReportAttemptVisual.Add(Report10Attempts);
-            ReportAttemptVisual.Add(Report11Attempts);
-            ReportAttemptVisual.Add(Report12Attempts);
-            ReportAttemptVisual.Add(Report13Attempts);
-
-            TornPages.Add(TornPage1);
-            TornPages.Add(TornPage2);
-            TornPages.Add(TornPage3);
-            TornPages.Add(TornPage4);
-            TornPages.Add(TornPage5);
-
-            Numbers.Add(new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Zero.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\One.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Two.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Three.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Four.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Five.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Six.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Seven.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Eight.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Nine.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Ten.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Eleven.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Twelve.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Thirteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Fourteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Fifteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Sixteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Seventeen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Eighteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Nineteen.png", UriKind.Relative)));
-            Numbers.Add(new BitmapImage(new Uri("Images\\Twenty.png", UriKind.Relative)));
+            InitData();
 
             InitOptions();
         }
         
+        private void InitData()
+        {
+            data = new Data();
+
+            data.Worlds.Add(SorasHeart);
+            data.Worlds.Add(DriveForms);
+            data.Worlds.Add(SimulatedTwilightTown);
+            data.Worlds.Add(TwilightTown);
+            data.Worlds.Add(HollowBastion);
+            data.Worlds.Add(BeastsCastle);
+            data.Worlds.Add(OlympusColiseum);
+            data.Worlds.Add(Agrabah);
+            data.Worlds.Add(LandofDragons);
+            data.Worlds.Add(HundredAcreWood);
+            data.Worlds.Add(PrideLands);
+            data.Worlds.Add(DisneyCastle);
+            data.Worlds.Add(HalloweenTown);
+            data.Worlds.Add(PortRoyal);
+            data.Worlds.Add(SpaceParanoids);
+            data.Worlds.Add(TWTNW);
+            data.Worlds.Add(Atlantica);
+            data.Worlds.Add(GoA);
+
+            data.Hints.Add(SorasHeartHint);
+            data.Hints.Add(DriveFormsHint);
+            data.Hints.Add(SimulatedHint);
+            data.Hints.Add(TwilightTownHint);
+            data.Hints.Add(HollowBastionHint);
+            data.Hints.Add(BeastsCastleHint);
+            data.Hints.Add(OlympusColiseumHint);
+            data.Hints.Add(AgrabahHint);
+            data.Hints.Add(LandofDragonsHint);
+            data.Hints.Add(HundredAcreWoodHint);
+            data.Hints.Add(PrideLandsHint);
+            data.Hints.Add(DisneyCastleHint);
+            data.Hints.Add(HalloweenTownHint);
+            data.Hints.Add(PortRoyalHint);
+            data.Hints.Add(SpaceParanoidsHint);
+            data.Hints.Add(TWTNWHint);
+            data.Hints.Add(AtlanticaHint);
+
+            data.Grids.Add(SorasHeartGrid);
+            data.Grids.Add(DriveFormsGrid);
+            data.Grids.Add(SimulatedTwilightTownGrid);
+            data.Grids.Add(TwilightTownGrid);
+            data.Grids.Add(HollowBastionGrid);
+            data.Grids.Add(BeastsCastleGrid);
+            data.Grids.Add(OlympusColiseumGrid);
+            data.Grids.Add(AgrabahGrid);
+            data.Grids.Add(LandofDragonsGrid);
+            data.Grids.Add(HundredAcreWoodGrid);
+            data.Grids.Add(PrideLandsGrid);
+            data.Grids.Add(DisneyCastleGrid);
+            data.Grids.Add(HalloweenTownGrid);
+            data.Grids.Add(PortRoyalGrid);
+            data.Grids.Add(SpaceParanoidsGrid);
+            data.Grids.Add(TWTNWGrid);
+            data.Grids.Add(AtlanticaGrid);
+            data.Grids.Add(GoAGrid);
+
+            data.SelectedBars.Add(SorasHeartBar);
+            data.SelectedBars.Add(DriveFormsBar);
+            data.SelectedBars.Add(SimulatedBar);
+            data.SelectedBars.Add(TwilightTownBar);
+            data.SelectedBars.Add(HollowBastionBar);
+            data.SelectedBars.Add(BeastsCastleBar);
+            data.SelectedBars.Add(OlympusBar);
+            data.SelectedBars.Add(AgrabahBar);
+            data.SelectedBars.Add(LandofDragonsBar);
+            data.SelectedBars.Add(HundredAcreWoodBar);
+            data.SelectedBars.Add(PrideLandsBar);
+            data.SelectedBars.Add(DisneyCastleBar);
+            data.SelectedBars.Add(HalloweenTownBar);
+            data.SelectedBars.Add(PortRoyalBar);
+            data.SelectedBars.Add(SpaceParanoidsBar);
+            data.SelectedBars.Add(TWTNWBar);
+            data.SelectedBars.Add(AtlanticaBar);
+            data.SelectedBars.Add(GoABar);
+
+            data.Reports.Add(Report1);
+            data.Reports.Add(Report2);
+            data.Reports.Add(Report3);
+            data.Reports.Add(Report4);
+            data.Reports.Add(Report5);
+            data.Reports.Add(Report6);
+            data.Reports.Add(Report7);
+            data.Reports.Add(Report8);
+            data.Reports.Add(Report9);
+            data.Reports.Add(Report10);
+            data.Reports.Add(Report11);
+            data.Reports.Add(Report12);
+            data.Reports.Add(Report13);
+
+            data.ReportAttemptVisual.Add(Report1Attempts);
+            data.ReportAttemptVisual.Add(Report2Attempts);
+            data.ReportAttemptVisual.Add(Report3Attempts);
+            data.ReportAttemptVisual.Add(Report4Attempts);
+            data.ReportAttemptVisual.Add(Report5Attempts);
+            data.ReportAttemptVisual.Add(Report6Attempts);
+            data.ReportAttemptVisual.Add(Report7Attempts);
+            data.ReportAttemptVisual.Add(Report8Attempts);
+            data.ReportAttemptVisual.Add(Report9Attempts);
+            data.ReportAttemptVisual.Add(Report10Attempts);
+            data.ReportAttemptVisual.Add(Report11Attempts);
+            data.ReportAttemptVisual.Add(Report12Attempts);
+            data.ReportAttemptVisual.Add(Report13Attempts);
+
+            data.TornPages.Add(TornPage1);
+            data.TornPages.Add(TornPage2);
+            data.TornPages.Add(TornPage3);
+            data.TornPages.Add(TornPage4);
+            data.TornPages.Add(TornPage5);
+
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Zero.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\One.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Two.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Three.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Four.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Five.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Six.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Seven.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eight.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Nine.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Ten.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eleven.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Twelve.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Thirteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Fourteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Fifteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Sixteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Seventeen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eighteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Nineteen.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Twenty.png", UriKind.Relative)));
+        }
+
         private void InitOptions()
         {
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
             HandleItemToggle(PromiseCharmOption, PromiseCharm, true);
 
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
-            for (int i = 0; i < Reports.Count; ++i)
+            for (int i = 0; i < data.Reports.Count; ++i)
             {
-                HandleItemToggle(ReportsOption, Reports[i], true);
+                HandleItemToggle(ReportsOption, data.Reports[i], true);
             }
 
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
@@ -186,9 +183,9 @@ namespace KhTracker
             HandleItemToggle(AbilitiesOption, SecondChance, true);
 
             TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            for (int i = 0; i < TornPages.Count; ++i)
+            for (int i = 0; i < data.TornPages.Count; ++i)
             {
-                HandleItemToggle(TornPagesOption, TornPages[i], true);
+                HandleItemToggle(TornPagesOption, data.TornPages[i], true);
             }
 
             CureOption.IsChecked = Properties.Settings.Default.Cure;
@@ -225,35 +222,35 @@ namespace KhTracker
             
             if (e.ChangedButton == MouseButton.Left)
             {
-                if (selected != null)
+                if (data.selected != null)
                 {
-                    for(int i = 0; i < SelectedBars.Count; ++i)
+                    for(int i = 0; i < data.SelectedBars.Count; ++i)
                     {
-                        if (Worlds[i] == selected)
+                        if (data.Worlds[i] == data.selected)
                         {
-                            SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                            data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                         }
                     }
                 }
 
-                selected = button;
-                for (int i = 0; i < SelectedBars.Count; ++i)
+                data.selected = button;
+                for (int i = 0; i < data.SelectedBars.Count; ++i)
                 {
-                    if (Worlds[i] == selected)
+                    if (data.Worlds[i] == data.selected)
                     {
-                        SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
+                        data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
                     }
                 }
             }
             else if(e.ChangedButton == MouseButton.Middle)
             {
-                for(int i = 0; i < Hints.Count; ++i)
+                for(int i = 0; i < data.Hints.Count; ++i)
                 {
-                    if(button == Worlds[i])
+                    if(button == data.Worlds[i])
                     {
-                        Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
-                        
-                        Hints[i].Margin = new Thickness(25, -20, 0, 0);
+                        data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+
+                        data.Hints[i].Margin = new Thickness(25, -20, 0, 0);
 
                         break;
                     }
@@ -265,11 +262,11 @@ namespace KhTracker
         {
             Button button = sender as Button;
 
-            for (int i = 0; i < Hints.Count; ++i)
+            for (int i = 0; i < data.Hints.Count; ++i)
             {
-                if (button == Worlds[i])
+                if (button == data.Worlds[i])
                 {
-                    HandleReportValue(Hints[i], e.Delta);
+                    HandleReportValue(data.Hints[i], e.Delta);
 
                     break;
                 }
@@ -278,123 +275,30 @@ namespace KhTracker
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.PageDown && selected != null)
+            if (e.Key == Key.PageDown && data.selected != null)
             {
-                for (int i = 0; i < Hints.Count; ++i)
+                for (int i = 0; i < data.Hints.Count; ++i)
                 {
-                    if (Worlds[i] == selected)
+                    if (data.Worlds[i] == data.selected)
                     {
-                        HandleReportValue(Hints[i], -1);
+                        HandleReportValue(data.Hints[i], -1);
                     }
                 }
             }
-            if (e.Key == Key.PageUp && selected != null)
+            if (e.Key == Key.PageUp && data.selected != null)
             {
-                for (int i = 0; i < Hints.Count; ++i)
+                for (int i = 0; i < data.Hints.Count; ++i)
                 {
-                    if (Worlds[i] == selected)
+                    if (data.Worlds[i] == data.selected)
                     {
-                        HandleReportValue(Hints[i], 1);
+                        HandleReportValue(data.Hints[i], 1);
                     }
                 }
-            }
-        }
-        
-        private void Item_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            if (selected != null)
-            {
-                bool isreport = false;
-
-                // item is a report
-                if (hintsLoaded && (int)button.GetValue(Grid.RowProperty) == 0)
-                {
-                    int index = (int)button.GetValue(Grid.ColumnProperty);
-
-                    if (reportAttempts[index] == 0)
-                        return;
-
-                    if (reportLocations[index].Replace(" ", "") == selected.Name)
-                    {
-                        HintText.Content = reportInformation[index].Item1 + " has " + reportInformation[index].Item2 + " important checks.";
-                        ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail0");
-                        reportAttempts[index] = 3;
-                        isreport = true;
-
-                        for (int i = 0; i < Hints.Count; ++i)
-                        {
-                            if (Worlds[i].Name == reportInformation[index].Item1.Replace(" ", ""))
-                                SetReportValue(Hints[i], reportInformation[index].Item2 + 1);
-                        }
-                    }
-                    else
-                    {
-                        reportAttempts[index]--;
-                        if (reportAttempts[index] == 0)
-                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail3");
-                        else if (reportAttempts[index] == 1)
-                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail2");
-                        else if (reportAttempts[index] == 2)
-                            ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail1");
-
-                        return;
-                    }
-                }
-
-                if (isreport == false)
-                    HintText.Content = "";
-
-                ItemPool.Children.Remove(button);
-
-                for (int i = 0; i < Worlds.Count; ++i)
-                {
-                    if(selected == Worlds[i])
-                    {
-                        HandleWorldGrid(Grids[i], button, true);
-                        break;
-                    }
-                }
-
-                int collected = int.Parse(Collected.Text) + 1;
-                Collected.Text = collected.ToString();
-
-                button.Click -= Item_Click;
-                button.Click += Item_Return;
-
-                if(isreport)
-                {
-                    button.MouseEnter += Report_Hover;
-                }
-            }
-        }
-
-        private void Item_Return(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-
-            HandleItemReturn(button);
-        }
-
-        private void HandleItemReturn(Button button)
-        {
-            if (button.Parent != ItemPool)
-            {
-                HandleWorldGrid(button.Parent as UniformGrid, button, false);
-
-                ItemPool.Children.Add(button);
-
-                int collected = int.Parse(Collected.Text) - 1;
-                Collected.Text = collected.ToString();
-
-                button.Click -= Item_Return;
-
-                button.Click += Item_Click;
-
-                button.MouseEnter -= Report_Hover;
             }
         }
         
+        
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Properties.Settings.Default.Save();
@@ -404,14 +308,6 @@ namespace KhTracker
         {
             Properties.Settings.Default.WindowY = Top;
             Properties.Settings.Default.WindowX = Left;
-        }
-
-        private void Report_Hover(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            int index = (int)button.GetValue(Grid.ColumnProperty);
-            
-            HintText.Content = reportInformation[index].Item1 + " has " + reportInformation[index].Item2 + " important checks.";
         }
 
         /// 
@@ -425,13 +321,13 @@ namespace KhTracker
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
-                reportLocations.Clear();
-                reportInformation.Clear();
-                reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+                data.reportLocations.Clear();
+                data.reportInformation.Clear();
+                data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
-                for (int i = 0; i < Reports.Count; ++i)
+                for (int i = 0; i < data.Reports.Count; ++i)
                 {
-                    HandleItemReturn(Reports[i]);
+                    data.Reports[i].HandleItemReturn();
                 }
 
                 Stream stream = openFileDialog.OpenFile();
@@ -462,12 +358,12 @@ namespace KhTracker
 
                 for(int i = 0; i < reportorder.Length; ++i)
                 {
-                    reportLocations.Add(codes.FindCode(reportorder[i]));
+                    data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
                     string[] temp = reportvalues[i].Split(',');
-                    reportInformation.Add(new Tuple<string, int>(codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                    data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                 }
 
-                hintsLoaded = true;
+                data.hintsLoaded = true;
                 HintText.Content = "Hints Loaded";
             }
         }
@@ -477,45 +373,45 @@ namespace KhTracker
             Collected.Text = "0";
             HintText.Content = "";
 
-            if (selected != null)
+            if (data.selected != null)
             {
-                for (int i = 0; i < SelectedBars.Count; ++i)
+                for (int i = 0; i < data.SelectedBars.Count; ++i)
                 {
-                    if (Worlds[i] == selected)
+                    if (data.Worlds[i] == data.selected)
                     {
-                        SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                        data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                     }
                 }
             }
-            selected = null;
+            data.selected = null;
 
-            for (int i = 0; i < Grids.Count; ++i)
+            for (int i = 0; i < data.Grids.Count; ++i)
             {
-                for (int j = Grids[i].Children.Count - 1; j >= 0; --j)
+                for (int j = data.Grids[i].Children.Count - 1; j >= 0; --j)
                 {
-                    Button item = Grids[i].Children[j] as Button;
-                    Grids[i].Children.Remove(Grids[i].Children[j]);
+                    Item item = data.Grids[i].Children[j] as Item;
+                    data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
                     ItemPool.Children.Add(item);
 
-                    item.Click -= Item_Return;
-                    item.Click += Item_Click;
+                    item.MouseDoubleClick -= item.Item_Return;
+                    item.MouseDoubleClick += item.Item_Click;
                 }
 
-                Grids[i].Rows = 1;
-                Grids[i].Height = 40;
+                data.Grids[i].Rows = 1;
+                data.Grids[i].Height = 40;
             }
 
-            hintsLoaded = false;
-            for (int i = 0; i < Hints.Count; ++i)
+            data.hintsLoaded = false;
+            for (int i = 0; i < data.Hints.Count; ++i)
             {
-                Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
             }
-            reportAttempts = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-            reportInformation.Clear();
-            reportLocations.Clear();
-            for(int i = 0; i < ReportAttemptVisual.Count; ++i)
+            data.reportAttempts = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+            data.reportInformation.Clear();
+            data.reportLocations.Clear();
+            for(int i = 0; i < data.ReportAttemptVisual.Count; ++i)
             {
-                ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
+                data.ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
             }
         }
 
@@ -528,9 +424,9 @@ namespace KhTracker
         private void ReportsToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.AnsemReports = ReportsOption.IsChecked;
-            for (int i = 0; i < Reports.Count; ++i)
+            for (int i = 0; i < data.Reports.Count; ++i)
             {
-                HandleItemToggle(ReportsOption, Reports[i], false);
+                HandleItemToggle(ReportsOption, data.Reports[i], false);
             }
         }
 
@@ -544,9 +440,9 @@ namespace KhTracker
         private void TornPagesToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.TornPages = TornPagesOption.IsChecked;
-            for (int i = 0; i < TornPages.Count; ++i)
+            for (int i = 0; i < data.TornPages.Count; ++i)
             {
-                HandleItemToggle(TornPagesOption, TornPages[i], false);
+                HandleItemToggle(TornPagesOption, data.TornPages[i], false);
             }
         }
 
@@ -573,7 +469,7 @@ namespace KhTracker
         private void SimulatedToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Simulated = SimulatedOption.IsChecked;
-            HandleWorldToggle(SimulatedOption, SimulatedTwilightTown, SimulatedGrid);
+            HandleWorldToggle(SimulatedOption, SimulatedTwilightTown, SimulatedTwilightTownGrid);
         }
 
         private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
@@ -757,9 +653,9 @@ namespace KhTracker
         {
             int num = 0;
 
-            for(int i = 0; i < Numbers.Count; ++i)
+            for(int i = 0; i < data.Numbers.Count; ++i)
             {
-                if(Hint.Source == Numbers[i])
+                if(Hint.Source == data.Numbers[i])
                 {
                     num = i;
                 }
@@ -784,12 +680,12 @@ namespace KhTracker
             }
 
             if (num < 0)
-                Hint.Source = Numbers[0];
+                Hint.Source = data.Numbers[0];
             else
-                Hint.Source = Numbers[num];
+                Hint.Source = data.Numbers[num];
         }
 
-        private void SetReportValue(Image Hint, int value)
+        public void SetReportValue(Image Hint, int value)
         {
             if (value > 21)
                 value = 21;
@@ -804,29 +700,14 @@ namespace KhTracker
             }
 
             if (value < 0)
-                Hint.Source = Numbers[0];
+                Hint.Source = data.Numbers[0];
             else
-                Hint.Source = Numbers[value];
+                Hint.Source = data.Numbers[value];
         }
 
-        private void HandleWorldGrid(UniformGrid grid, Button button, bool add)
-        {
-            if (add)
-                grid.Children.Add(button);
-            else
-                grid.Children.Remove(button);
+        
 
-            int gridremainder = 0;
-            if (grid.Children.Count % 5 != 0)
-                gridremainder = 1;
-
-            int gridnum = Math.Max((grid.Children.Count / 5) + gridremainder, 1);
-
-            grid.Rows = gridnum;
-            grid.Height = grid.Rows * 40;
-        }
-
-        private void HandleItemToggle(MenuItem menuItem, Button button, bool init)
+        private void HandleItemToggle(MenuItem menuItem, Item button, bool init)
         {
             if (menuItem.IsChecked)
             {
@@ -841,7 +722,7 @@ namespace KhTracker
                 button.Visibility = Visibility.Hidden;
                 CheckTotal.Text = (int.Parse(CheckTotal.Text) - 1).ToString();
 
-                HandleItemReturn(button);
+                button.HandleItemReturn();
             }
         }
 
@@ -854,34 +735,49 @@ namespace KhTracker
             }
             else
             {
-                if (selected == button)
+                if (data.selected == button)
                 {
-                    for (int j = 0; j < Worlds.Count; ++j)
+                    for (int j = 0; j < data.Worlds.Count; ++j)
                     {
-                        if (Worlds[j] == selected)
-                            SelectedBars[j].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                        if (data.Worlds[j] == data.selected)
+                            data.SelectedBars[j].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                     }
-                    
-                    selected = null;
 
-                    for (int i = 0; i < SelectedBars.Count; ++i)
+                    data.selected = null;
+
+                    for (int i = 0; i < data.SelectedBars.Count; ++i)
                     {
-                        if (Worlds[i] == selected)
+                        if (data.Worlds[i] == data.selected)
                         {
-                            SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                            data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                         }
                     }
                 }
 
                 for (int i = grid.Children.Count - 1; i >= 0; --i)
                 {
-                    Button item = grid.Children[i] as Button;
-                    HandleItemReturn(item);
+                    Item item = grid.Children[i] as Item;
+                    item.HandleItemReturn();
                 }
 
                 ((button.Parent as StackPanel).Parent as StackPanel).Height = 0;
                 ((button.Parent as StackPanel).Parent as StackPanel).IsEnabled = false;
             }
+        }
+
+        public void IncrementCollected()
+        {
+            Collected.Text = (int.Parse(Collected.Text) + 1).ToString();
+        }
+
+        public void DecrementCollected()
+        {
+            Collected.Text = (int.Parse(Collected.Text) - 1).ToString();
+        }
+
+        public void SetHintText(string text)
+        {
+            HintText.Content = text;
         }
     }
 }

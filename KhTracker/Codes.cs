@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KhTracker
 {
-    class Codes
+    public class Codes
     {
         public string FindCode(string code)
         {
