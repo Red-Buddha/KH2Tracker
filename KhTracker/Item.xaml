@@ -12,5 +12,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentControl.Resources>
-    
+
 </ContentControl>
