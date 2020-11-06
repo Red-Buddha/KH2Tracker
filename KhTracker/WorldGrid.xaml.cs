@@ -98,7 +98,7 @@ namespace KhTracker
 
             // move item to world
             window.ItemPool.Children.Remove(button);
-            grid.Children.Add(button);
+            HandleWorldGrid(button, true);
 
             // update collection count
             window.IncrementCollected();
