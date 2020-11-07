@@ -22,10 +22,12 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
-            <MenuItem Header="_Options">
+            <MenuItem Header="Options">
                 <MenuItem Name="LoadHint" Header="Load Hints" Click="LoadHints"/>
+                <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
                 <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
-                <Separator/>
+            </MenuItem>
+            <MenuItem Header="Toggles">
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
                 <MenuItem Name="ReportsOption" Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption" Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
@@ -40,7 +42,6 @@
                 <Separator/>
                 <MenuItem Name="SimpleOption" Header="Simple Icons" IsCheckable="True" IsChecked="True" Click="SimpleToggle"/>
                 <MenuItem Name="WorldIconsOption" Header="World Icons" IsCheckable="True" IsChecked="True" Click="WorldIconsToggle"/>
-                <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
             </MenuItem>
         </Menu>
 
