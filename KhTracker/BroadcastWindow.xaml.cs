@@ -26,6 +26,7 @@ namespace KhTracker
         Dictionary<string, int> important = new Dictionary<string, int>();
         List<BitmapImage> Numbers = null;
         Data data;
+        public Dictionary<string, bool> toggles = new Dictionary<string, bool>();
 
 
         public BroadcastWindow(Data dataIn)
@@ -49,6 +50,7 @@ namespace KhTracker
             worlds.Add("PortRoyal",0);
             worlds.Add("SpaceParanoids",0);
             worlds.Add("TWTNW",0);
+            worlds.Add("GoA", 0);
             worlds.Add("Report", 0);
             worlds.Add("TornPage", 0);
             worlds.Add("Fire", 0);
