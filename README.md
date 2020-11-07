@@ -9,6 +9,14 @@ A Kingdom Hearts 2 item tracker for use with the Garden of Assemblage Randomizer
   * Resets the tracker to its default state 
 * Promise Charm
   * Toggles on/off the promise charm as an important check
+* Ansem Reports
+  * Toggles on/off the Ansem reports as important checks
+* Once More / Second Chance
+  * Toggles on/off once more and second chance as important checks
+* Torn Pages
+  * Toggles on/off the torn pages as important checks
+* Final Form
+  * Toggles on/off final form as an important check
   
 ## How To Use
 

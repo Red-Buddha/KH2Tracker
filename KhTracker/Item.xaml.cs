@@ -22,6 +22,11 @@ namespace KhTracker
     /// </summary>
     public partial class Item : ContentControl
     {
+        public delegate void TotalHandler(string world, int checks);
+        public delegate void FoundHandler(string item, string world, bool add);
+
+        public event TotalHandler UpdateTotal;
+        public event FoundHandler UpdateFound;
         public Item()
         {
             InitializeComponent();
@@ -111,6 +116,9 @@ namespace KhTracker
                         data.reportAttempts[index] = 3;
                         isreport = true;
 
+
+                        UpdateTotal(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
+
                         for (int i = 0; i < data.Hints.Count; ++i)
                         {
                             if (data.Worlds[i].Name == data.reportInformation[index].Item1.Replace(" ", ""))
@@ -156,6 +164,8 @@ namespace KhTracker
                 {
                     MouseEnter += Report_Hover;
                 }
+                WorldGrid parent = this.Parent as WorldGrid;
+                UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length-4,4), true);
             }
         }
 
@@ -168,6 +178,16 @@ namespace KhTracker
             window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks.");
         }
 
+        public void DragDropEventFire(string item, string world, bool add)
+        {
+            UpdateFound(item, world, add);
+        }
+
+        public void DragDropEventFire(string world, int value)
+        {
+            UpdateTotal(world, value);
+        }
+
         public void Item_Return(object sender, RoutedEventArgs e)
         {
             HandleItemReturn();
@@ -178,6 +198,8 @@ namespace KhTracker
             Data data = MainWindow.data;
             if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
             {
+                WorldGrid parent = this.Parent as WorldGrid;
+
                 ((WorldGrid)Parent).HandleWorldGrid(this, false);
 
                 ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Add(this);
@@ -190,6 +212,8 @@ namespace KhTracker
                 MouseMove += Item_MouseMove;
 
                 MouseEnter -= Report_Hover;
+
+                UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
             }
         }
 
