@@ -69,6 +69,7 @@ namespace KhTracker
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
+                    button.DragDropEventFire(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
 
                     // auto update world immportant check number
                     for (int i = 0; i < data.Hints.Count; ++i)
@@ -107,6 +108,8 @@ namespace KhTracker
             button.MouseDoubleClick -= button.Item_Click;
             button.MouseDown += button.Item_Return;
             button.MouseMove -= button.Item_MouseMove;
+
+            button.DragDropEventFire(button.Name, grid.Name.Remove(grid.Name.Length-4,4), true);
 
             if (isreport)
             {

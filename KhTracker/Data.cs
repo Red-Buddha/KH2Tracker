@@ -26,5 +26,6 @@ namespace KhTracker
         public List<Item> TornPages = new List<Item>();
         public List<Image> SelectedBars = new List<Image>();
         public List<BitmapImage> Numbers = new List<BitmapImage>();
+        public List<Item> Items = new List<Item>();
     }
 }

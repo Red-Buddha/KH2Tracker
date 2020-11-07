@@ -40,6 +40,7 @@
                 <Separator/>
                 <MenuItem Name="SimpleOption" Header="Simple Icons" IsCheckable="True" IsChecked="True" Click="SimpleToggle"/>
                 <MenuItem Name="WorldIconsOption" Header="World Icons" IsCheckable="True" IsChecked="True" Click="WorldIconsToggle"/>
+                <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
             </MenuItem>
         </Menu>
 
