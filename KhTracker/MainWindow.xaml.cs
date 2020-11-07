@@ -20,6 +20,7 @@ namespace KhTracker
     public partial class MainWindow : Window
     {
         public static Data data;
+        private BroadcastWindow broadcast;
 
         public MainWindow()
         {
@@ -55,7 +56,7 @@ namespace KhTracker
 
             data.Hints.Add(SorasHeartHint);
             data.Hints.Add(DriveFormsHint);
-            data.Hints.Add(SimulatedHint);
+            data.Hints.Add(SimulatedTwilightTownHint);
             data.Hints.Add(TwilightTownHint);
             data.Hints.Add(HollowBastionHint);
             data.Hints.Add(BeastsCastleHint);
@@ -92,7 +93,7 @@ namespace KhTracker
 
             data.SelectedBars.Add(SorasHeartBar);
             data.SelectedBars.Add(DriveFormsBar);
-            data.SelectedBars.Add(SimulatedBar);
+            data.SelectedBars.Add(SimulatedTwilightTownBar);
             data.SelectedBars.Add(TwilightTownBar);
             data.SelectedBars.Add(HollowBastionBar);
             data.SelectedBars.Add(BeastsCastleBar);
@@ -165,6 +166,17 @@ namespace KhTracker
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Eighteen.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Nineteen.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Twenty.png", UriKind.Relative)));
+
+            foreach (ContentControl item in ItemPool.Children)
+            {
+                if (item is Item)
+                {
+                    data.Items.Add(item as Item);
+                }
+            }
+
+            broadcast = new BroadcastWindow(data);
+
         }
 
         private void InitOptions()
@@ -302,6 +314,8 @@ namespace KhTracker
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Properties.Settings.Default.Save();
+            broadcast.canClose = true;
+            broadcast.Close();
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
@@ -413,6 +427,16 @@ namespace KhTracker
             {
                 data.ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
             }
+            double broadcastLeft = broadcast.Left;
+            double broadcastTop = broadcast.Top;
+            bool broadcastVisible = broadcast.IsVisible;
+            broadcast.canClose = true;
+            broadcast.Close();
+            broadcast = new BroadcastWindow(data);
+            broadcast.Left = broadcastLeft;
+            broadcast.Top = broadcastTop;
+            if (broadcastVisible)
+                broadcast.Show();
         }
 
         private void PromiseCharmToggle(object sender, RoutedEventArgs e)
@@ -683,6 +707,8 @@ namespace KhTracker
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[num];
+
+            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num-1);
         }
 
         public void SetReportValue(Image Hint, int value)
@@ -703,6 +729,7 @@ namespace KhTracker
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
+
         }
 
         
@@ -778,6 +805,11 @@ namespace KhTracker
         public void SetHintText(string text)
         {
             HintText.Content = text;
+        }
+
+        private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
+        {
+            broadcast.Show();
         }
     }
 }

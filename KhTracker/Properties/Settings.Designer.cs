@@ -178,5 +178,29 @@ namespace KhTracker.Properties {
                 this["SoraHeart"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double BroadcastWindowX {
+            get {
+                return ((double)(this["BroadcastWindowX"]));
+            }
+            set {
+                this["BroadcastWindowX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double BroadcastWindowY {
+            get {
+                return ((double)(this["BroadcastWindowY"]));
+            }
+            set {
+                this["BroadcastWindowY"] = value;
+            }
+        }
     }
 }

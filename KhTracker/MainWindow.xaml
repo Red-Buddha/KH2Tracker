@@ -22,10 +22,12 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
-            <MenuItem Header="_Options">
+            <MenuItem Header="Options">
                 <MenuItem Name="LoadHint" Header="Load Hints" Click="LoadHints"/>
+                <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
                 <MenuItem Name="Reset" Header="Reset" Click="OnReset"/>
-                <Separator/>
+            </MenuItem>
+            <MenuItem Header="Toggles">
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
                 <MenuItem Name="ReportsOption" Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption" Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
@@ -65,9 +67,9 @@
                                 <Button Name="SimulatedTwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
                                     <DynamicResource ResourceKey="SimulatedImage"/>
                                 </Button>
-                                <Image Name="SimulatedHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                <Image Name="SimulatedTwilightTownHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <Image Name="SimulatedBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <Image Name="SimulatedTwilightTownBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
                             <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Height="40" Width="200"/>
                         </StackPanel>
 
