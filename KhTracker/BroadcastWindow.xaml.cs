@@ -109,6 +109,14 @@ namespace KhTracker
                 item.UpdateFound += new Item.FoundHandler(UpdateFound);
             }
 
+            Top = Properties.Settings.Default.BroadcastWindowY;
+            Left = Properties.Settings.Default.BroadcastWindowX;
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.BroadcastWindowY = Top;
+            Properties.Settings.Default.BroadcastWindowX = Left;
         }
 
         public void UpdateFound(string item, string world, bool add)

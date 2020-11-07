@@ -8,6 +8,7 @@
         ResizeMode="NoResize"
         Title="Broadcast Window"
         Height="680" Width="500"
+        LocationChanged="Window_LocationChanged"
         Closing="BroadcastWindow_Closing">
     <Grid Background="#303030">
         <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="460" Height="275">
