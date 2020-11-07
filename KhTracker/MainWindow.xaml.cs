@@ -56,7 +56,7 @@ namespace KhTracker
 
             data.Hints.Add(SorasHeartHint);
             data.Hints.Add(DriveFormsHint);
-            data.Hints.Add(SimulatedHint);
+            data.Hints.Add(SimulatedTwilightTownHint);
             data.Hints.Add(TwilightTownHint);
             data.Hints.Add(HollowBastionHint);
             data.Hints.Add(BeastsCastleHint);
@@ -93,7 +93,7 @@ namespace KhTracker
 
             data.SelectedBars.Add(SorasHeartBar);
             data.SelectedBars.Add(DriveFormsBar);
-            data.SelectedBars.Add(SimulatedBar);
+            data.SelectedBars.Add(SimulatedTwilightTownBar);
             data.SelectedBars.Add(TwilightTownBar);
             data.SelectedBars.Add(HollowBastionBar);
             data.SelectedBars.Add(BeastsCastleBar);

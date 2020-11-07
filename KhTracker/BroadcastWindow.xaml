@@ -129,9 +129,9 @@
                 <StackPanel Margin="5">
                     <Image Source="Images/Simple/simulated_twilight_town.png" Height="60"></Image>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="SimulatedFound"/>
+                        <Image Source="/Images/Zero.png" Height="25" Name="SimulatedTwilightTownFound"/>
                         <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="SimulatedTotal"/>
+                        <Image Source="/Images/QuestionMark.png" Height="25" Name="SimulatedTwilightTownTotal"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="5">

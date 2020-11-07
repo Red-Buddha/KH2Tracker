@@ -66,9 +66,9 @@
                                 <Button Name="SimulatedTwilightTown" HorizontalAlignment="Center" Margin="5,5,5,0" Height="40" Width="40" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}">
                                     <DynamicResource ResourceKey="SimulatedImage"/>
                                 </Button>
-                                <Image Name="SimulatedHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
+                                <Image Name="SimulatedTwilightTownHint" Source="Images\QuestionMark.png" Height="20" Margin="25,-20,0,0" IsHitTestVisible="False"/>
                             </StackPanel>
-                            <Image Name="SimulatedBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
+                            <Image Name="SimulatedTwilightTownBar" Source="Images\VerticalBarWhite.png" VerticalAlignment="Top"/>
                             <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Height="40" Width="200"/>
                         </StackPanel>
 

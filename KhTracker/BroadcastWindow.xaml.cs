@@ -36,7 +36,7 @@ namespace KhTracker
             Numbers = dataIn.Numbers;
             worlds.Add("SorasHeart",0);
             worlds.Add("DriveForms", 0);
-            worlds.Add("Simulated",0);
+            worlds.Add("SimulatedTwilightTown",0);
             worlds.Add("TwilightTown",0);
             worlds.Add("HollowBastion",0);
             worlds.Add("BeastsCastle",0);
@@ -62,7 +62,7 @@ namespace KhTracker
 
             totals.Add("SorasHeart", -1);
             totals.Add("DriveForms", -1);
-            totals.Add("Simulated", -1);
+            totals.Add("SimulatedTwilightTown", -1);
             totals.Add("TwilightTown", -1);
             totals.Add("HollowBastion", -1);
             totals.Add("BeastsCastle", -1);
