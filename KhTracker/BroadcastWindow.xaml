@@ -262,5 +262,7 @@
         </StackPanel>
 
         <Image Name="GoAFound" Visibility="Hidden"></Image>
+        <Image Name="AtlanticaFound" Visibility="Hidden"></Image>
+        <Image Name="AtlanticaTotal" Visibility="Hidden"></Image>
     </Grid>
 </Window>

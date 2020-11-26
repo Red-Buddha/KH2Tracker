@@ -59,6 +59,7 @@ namespace KhTracker
             worlds.Add("Cure", 0);
             worlds.Add("Reflect", 0);
             worlds.Add("Magnet", 0);
+            worlds.Add("Atlantica", 0);
 
             totals.Add("SorasHeart", -1);
             totals.Add("DriveForms", -1);
@@ -76,6 +77,7 @@ namespace KhTracker
             totals.Add("PortRoyal", -1);
             totals.Add("SpaceParanoids", -1);
             totals.Add("TWTNW", -1);
+            totals.Add("Atlantica", -1);
 
             important.Add("Fire", 0);
             important.Add("Blizzard", 0);
