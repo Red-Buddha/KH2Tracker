@@ -222,6 +222,9 @@ namespace KhTracker
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
+
+            Width = Properties.Settings.Default.Width;
+            Height = Properties.Settings.Default.Height;
         }
 
 
@@ -324,10 +327,16 @@ namespace KhTracker
             Properties.Settings.Default.WindowX = Left;
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Properties.Settings.Default.Width = Width;
+            Properties.Settings.Default.Height = Height;
+        }
+
         /// 
         /// Options
         ///
-        
+
         private void LoadHints(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -410,9 +419,6 @@ namespace KhTracker
                     item.MouseDoubleClick -= item.Item_Return;
                     item.MouseDoubleClick += item.Item_Click;
                 }
-
-                data.Grids[i].Rows = 1;
-                data.Grids[i].Height = 40;
             }
 
             data.hintsLoaded = false;
@@ -693,16 +699,7 @@ namespace KhTracker
             // cap hint value to 20
             if (num > 21)
                 num = 21;
-
-            if (num >= 11)
-            {
-                    Hint.Margin = new Thickness(15, Hint.Margin.Top, 0, 0);
-            }
-            else
-            {
-                    Hint.Margin = new Thickness(25, Hint.Margin.Top, 0, 0);
-            }
-
+            
             if (num < 0)
                 Hint.Source = data.Numbers[0];
             else
@@ -715,24 +712,13 @@ namespace KhTracker
         {
             if (value > 21)
                 value = 21;
-
-            if (value >= 11)
-            {
-                Hint.Margin = new Thickness(15, Hint.Margin.Top, 0, 0);
-            }
-            else
-            {
-                Hint.Margin = new Thickness(25, Hint.Margin.Top, 0, 0);
-            }
-
+            
             if (value < 0)
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
 
-        }
-
-        
+        }        
 
         private void HandleItemToggle(MenuItem menuItem, Item button, bool init)
         {
@@ -757,8 +743,8 @@ namespace KhTracker
         {
             if (menuItem.IsChecked)
             {
-                ((button.Parent as StackPanel).Parent as StackPanel).Height = Double.NaN;
-                ((button.Parent as StackPanel).Parent as StackPanel).IsEnabled = true;
+                ((button.Parent as Grid).Parent as Grid).Height = Double.NaN;
+                ((button.Parent as Grid).Parent as Grid).IsEnabled = true;
             }
             else
             {
@@ -787,8 +773,8 @@ namespace KhTracker
                     item.HandleItemReturn();
                 }
 
-                ((button.Parent as StackPanel).Parent as StackPanel).Height = 0;
-                ((button.Parent as StackPanel).Parent as StackPanel).IsEnabled = false;
+                ((button.Parent as Grid).Parent as Grid).Height = 0;
+                ((button.Parent as Grid).Parent as Grid).IsEnabled = false;
             }
         }
 
@@ -810,6 +796,12 @@ namespace KhTracker
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
         {
             broadcast.Show();
+        }
+
+        private void ResetSize(object sender, RoutedEventArgs e)
+        {
+            Width = 570;
+            Height = 880;
         }
     }
 }
