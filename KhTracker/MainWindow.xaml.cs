@@ -802,6 +802,9 @@ namespace KhTracker
         {
             Width = 570;
             Height = 880;
+
+            broadcast.Width = 500;
+            broadcast.Height = 680;
         }
     }
 }
