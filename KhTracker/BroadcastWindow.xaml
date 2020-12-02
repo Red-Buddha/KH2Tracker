@@ -5,264 +5,678 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KhTracker"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Title="Broadcast Window"
         Height="680" Width="500"
         LocationChanged="Window_LocationChanged"
-        Closing="BroadcastWindow_Closing">
+        SizeChanged="Window_SizeChanged"
+        Closing="BroadcastWindow_Closing"
+        MinHeight="340" MinWidth="250">
     <Grid Background="#303030">
-        <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="460" Height="275">
-            <UniformGrid Rows="4" Columns="4" Height="275">
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/sora's_level.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="SorasHeartFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="SorasHeartTotal"/>
-                    </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height=".25*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
+            <!-- Worlds -->
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
 
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/drive_form.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="DriveFormsFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="DriveFormsTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/hollow_bastion.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="HollowBastionFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="HollowBastionTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/twilight_town.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="TwilightTownFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="TwilightTownTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/land_of_dragons.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="LandofDragonsFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="LandofDragonsTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/beast's_castle.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="BeastsCastleFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="BeastsCastleTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/olympus_coliseum.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="OlympusColiseumFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="OlympusColiseumTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/space_paranoids.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="SpaceParanoidsFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="SpaceParanoidsTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/halloween_town.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="HalloweenTownFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="HalloweenTownTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/port_royal.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="PortRoyalFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="PortRoyalTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/agrabah.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="AgrabahFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="AgrabahTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/pride_land.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="PrideLandsFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="PrideLandsTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/disney_castle.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="DisneyCastleFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="DisneyCastleTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/100_acre_wood.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="HundredAcreWoodFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="HundredAcreWoodTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/simulated_twilight_town.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="SimulatedTwilightTownFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="SimulatedTwilightTownTotal"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/the_world_that_never_was.png" Height="60"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Source="/Images/Zero.png" Height="25" Name="TWTNWFound"/>
-                        <Image Source="/Images/Bar.png" Height="25"/>
-                        <Image Source="/Images/QuestionMark.png" Height="25" Name="TWTNWTotal"/>
-                    </StackPanel>
-                </StackPanel>
-            </UniformGrid>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="55" Margin="10,375,0,0" VerticalAlignment="Top" Width="452">
-            <UniformGrid Name="ProofRow" Rows="1" Columns="6">
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/proof_of_tranquility.png" Opacity="0.25" Name="Peace" Height="50"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/proof_of_nonexistence.png" Opacity="0.25" Name="Nonexistence" Height="50"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/proof_of_connection.png" Opacity="0.25" Name="Connection" Height="50"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/promise_charm.png" Opacity="0.25" Name="PromiseCharm" Height="50"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/second_chance.png" Opacity="0.25" Name="SecondChance" Height="50"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/once_more.png" Opacity="0.25" Name="OnceMore" Height="50"/>
-                </StackPanel>
-            </UniformGrid>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="55" Margin="10,435,0,0" VerticalAlignment="Top" Width="452">
-            <UniformGrid Name="MagicRow" Rows="1" Columns="6">
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/fire.png" Opacity="0.25" Name="Fire" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="FireFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/blizzard.png" Opacity="0.25" Name="Blizzard" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="BlizzardFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/thunder.png" Opacity="0.25" Name="Thunder" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="ThunderFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/cure.png" Opacity="0.25" Name="Cure" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="CureFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/reflect.png" Opacity="0.25" Name="Reflect" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="ReflectFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/magnet.png" Opacity="0.25" Name="Magnet" Height="50"></Image>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 -25 0 0">
-                        <Image Name="MagnetFound" Height="20"></Image>
-                    </StackPanel>
-                </StackPanel>
+                <!-- Sora's Heart -->
+                <Grid Margin="5" Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-            </UniformGrid>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="55" Margin="10,495,0,0" VerticalAlignment="Top" Width="452">
-            <UniformGrid Rows="1" Columns="5">
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/valor.png" Opacity="0.25" Name="Valor" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/wisdom.png" Opacity="0.25" Name="Wisdom" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/limit.png" Opacity="0.25" Name="Limit" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/master.png" Opacity="0.25" Name="Master" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/final.png" Opacity="0.25" Name="Final" Height="50"></Image>
-                </StackPanel>
-            </UniformGrid>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="55" Margin="10,555,0,0" VerticalAlignment="Top" Width="452">
-            <UniformGrid Rows="1" Columns="4">
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/chicken_little.png" Opacity="0.25" Name="Baseball" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/genie.png" Opacity="0.25" Name="Lamp" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/stitch.png" Opacity="0.25" Name="Ukulele" Height="50"></Image>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <Image Source="Images/Simple/peter_pan.png" Opacity="0.25" Name="Feather" Height="50"></Image>
-                </StackPanel>
-            </UniformGrid>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="70" Margin="10,305,0,0" VerticalAlignment="Top" Width="455">
-            <UniformGrid Rows="1" Columns="2">
-                <StackPanel Name="Reports" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="Images/Simple/ansem_report.png" Height="50" Name="Report"/>
-                    <Image Source="Images/zero.png" Height="20" Name="ReportFound"/>
-                    <Image Source="Images/bar.png" Height="20"/>
-                    <Image Source="Images/thirteen.png" Height="20"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="Images/old/torn_page.png" Height="50" Name="TornPage"/>
-                    <Image Source="Images/zero.png" Height="20" Name="TornPageFound"/>
-                    <Image Source="Images/bar.png" Height="20"/>
-                    <Image Source="Images/five.png" Height="20"/>
-                </StackPanel>
-            </UniformGrid>
+                    <Image Source="Images/Simple/sora's_level.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-        </StackPanel>
+                        <Image Source="/Images/Zero.png" Name="SorasHeartFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="SorasHeartTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
 
-        <Image Name="GoAFound" Visibility="Hidden"></Image>
-        <Image Name="AtlanticaFound" Visibility="Hidden"></Image>
-        <Image Name="AtlanticaTotal" Visibility="Hidden"></Image>
+                <!-- Drive Forms -->
+                <Grid Margin="5" Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/drive_form.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="DriveFormsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="DriveFormsTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Hollow Bastion -->
+                <Grid Margin="5" Grid.Row="0" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/hollow_bastion.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid  Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="HollowBastionFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="HollowBastionTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Twilight Town -->
+                <Grid Margin="5" Grid.Row="0" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/twilight_town.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="TwilightTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="TwilightTownTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Land of Dragons -->
+                <Grid Margin="5" Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/land_of_dragons.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="LandofDragonsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="LandofDragonsTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Beasts Castle -->
+                <Grid Margin="5" Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/beast's_castle.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="BeastsCastleFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="BeastsCastleTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Olympus Coliseum -->
+                <Grid Margin="5" Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/olympus_coliseum.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="OlympusColiseumFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="OlympusColiseumTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Space Paranoids -->
+                <Grid Margin="5" Grid.Row="1" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/space_paranoids.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="SpaceParanoidsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="SpaceParanoidsTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Halloween Town -->
+                <Grid Margin="5" Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/halloween_town.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="HalloweenTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="HalloweenTownTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Port Royal -->
+                <Grid Margin="5" Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/port_royal.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="PortRoyalFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="PortRoyalTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Agrabah -->
+                <Grid Margin="5" Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/agrabah.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="AgrabahFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="AgrabahTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Pride Lands -->
+                <Grid Margin="5" Grid.Row="2" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/pride_land.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="PrideLandsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="PrideLandsTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Disney Castle -->
+                <Grid Margin="5" Grid.Row="3" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/disney_castle.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="DisneyCastleFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="DisneyCastleTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- 100 Acre Wood -->
+                <Grid Margin="5" Grid.Row="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/100_acre_wood.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="HundredAcreWoodFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="HundredAcreWoodTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Simulated Twilight Town -->
+                <Grid Margin="5" Grid.Row="3" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/simulated_twilight_town.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="SimulatedTwilightTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="SimulatedTwilightTownTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <!-- TWTNW -->
+                <Grid Margin="5" Grid.Row="3" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/the_world_that_never_was.png" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Zero.png" Name="TWTNWFound" Grid.Column="0"/>
+                        <Image Source="/Images/Bar.png" Grid.Column="1"/>
+                        <Image Source="/Images/QuestionMark.png" Name="TWTNWTotal" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <!-- Reports and Torn Pages -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Reports -->
+                <Grid Name="Reports" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width=".8*"/>
+                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width=".8*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/ansem_report.png" Name="Report" Grid.RowSpan="3" Grid.Column="1"/>
+                    <Image Source="Images/zero.png" Name="ReportFound" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="Images/bar.png" Grid.Row="1" Grid.Column="3"/>
+                    <Image Source="Images/thirteen.png" Grid.Row="1" Grid.Column="4"/>
+                </Grid>
+
+                <!-- Torn Pages -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width=".8*"/>
+                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/old/torn_page.png" Name="TornPage" Grid.RowSpan="3" Grid.Column="1"/>
+                    <Image Source="Images/zero.png" Name="TornPageFound" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="Images/bar.png" Grid.Row="1" Grid.Column="3"/>
+                    <Image Source="Images/five.png" Grid.Row="1" Grid.Column="4"/>
+                </Grid>
+            </Grid>
+
+            <!-- Important Checks -->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Proofs, Promise Charm, Once More, Second Chance -->
+                <Grid Name="ProofRow" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="4.4*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Images/Simple/proof_of_tranquility.png" Opacity="0.25" Name="Peace" Grid.Row="1" Grid.Column="0"/>
+                    <Image Source="Images/Simple/proof_of_nonexistence.png" Opacity="0.25" Name="Nonexistence" Grid.Row="1" Grid.Column="1"/>
+                    <Image Source="Images/Simple/proof_of_connection.png" Opacity="0.25" Name="Connection" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="Images/Simple/promise_charm.png" Opacity="0.25" Name="PromiseCharm" Grid.Row="1" Grid.Column="3"/>
+                    <Image Source="Images/Simple/second_chance.png" Opacity="0.25" Name="SecondChance" Grid.Row="1" Grid.Column="4"/>
+                    <Image Source="Images/Simple/once_more.png" Opacity="0.25" Name="OnceMore" Grid.Row="1" Grid.Column="5"/>
+                </Grid>
+
+                <!-- Magic -->
+                <Grid Name="MagicRow" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Fire -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Source="Images/Simple/fire.png" Opacity="0.25" Name="Fire" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="FireFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                    
+                    <!-- Blizzard -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Images/Simple/blizzard.png" Opacity="0.25" Name="Blizzard" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="BlizzardFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                    
+                    <!-- Thunder -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Images/Simple/thunder.png" Opacity="0.25" Name="Thunder" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="ThunderFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                    
+                    <!-- Cure -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Source="Images/Simple/cure.png" Opacity="0.25" Name="Cure" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="CureFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                    
+                    <!-- Reflect -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Source="Images/Simple/reflect.png" Opacity="0.25" Name="Reflect" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="ReflectFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                    
+                    <!-- Magnet -->
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Images/Simple/magnet.png" Opacity="0.25" Name="Magnet" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+                        <Image Name="MagnetFound" Grid.Row="1" Grid.Column="1"></Image>
+                    </Grid>
+                </Grid>
+
+                <!-- Drive Forms -->
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="4.4*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Image Source="Images/Simple/valor.png" Opacity="0.25" Name="Valor" Grid.Row="1" Grid.Column="0"></Image>
+                    <Image Source="Images/Simple/wisdom.png" Opacity="0.25" Name="Wisdom" Grid.Row="1" Grid.Column="1"></Image>
+                    <Image Source="Images/Simple/limit.png" Opacity="0.25" Name="Limit" Grid.Row="1" Grid.Column="2"></Image>
+                    <Image Source="Images/Simple/master.png" Opacity="0.25" Name="Master" Grid.Row="1" Grid.Column="3"></Image>
+                    <Image Source="Images/Simple/final.png" Opacity="0.25" Name="Final" Grid.Row="1" Grid.Column="4"></Image>
+                </Grid>
+
+                <!-- Summons -->
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="4.4*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Image Source="Images/Simple/chicken_little.png" Opacity="0.25" Name="Baseball" Grid.Row="1" Grid.Column="0"></Image>
+                    <Image Source="Images/Simple/genie.png" Opacity="0.25" Name="Lamp" Grid.Row="1" Grid.Column="1"></Image>
+                    <Image Source="Images/Simple/stitch.png" Opacity="0.25" Name="Ukulele" Grid.Row="1" Grid.Column="2"></Image>
+                    <Image Source="Images/Simple/peter_pan.png" Opacity="0.25" Name="Feather" Grid.Row="1" Grid.Column="3"></Image>
+                </Grid>
+            </Grid>
+
+            <Image Name="GoAFound" Visibility="Hidden"></Image>
+            <Image Name="AtlanticaFound" Visibility="Hidden"></Image>
+            <Image Name="AtlanticaTotal" Visibility="Hidden"></Image>
+        </Grid>
     </Grid>
+
 </Window>

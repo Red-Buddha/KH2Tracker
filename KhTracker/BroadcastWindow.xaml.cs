@@ -113,12 +113,21 @@ namespace KhTracker
 
             Top = Properties.Settings.Default.BroadcastWindowY;
             Left = Properties.Settings.Default.BroadcastWindowX;
+
+            Width = Properties.Settings.Default.BroadcastWindowWidth;
+            Height = Properties.Settings.Default.BroadcastWindowHeight;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.BroadcastWindowY = Top;
             Properties.Settings.Default.BroadcastWindowX = Left;
+        }
+
+        private void Window_SizeChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.BroadcastWindowWidth = Width;
+            Properties.Settings.Default.BroadcastWindowHeight = Height;
         }
 
         public void UpdateFound(string item, string world, bool add)
@@ -163,11 +172,26 @@ namespace KhTracker
                             worldFound.Source = null;
                         }
                     }
+
+                    // Format fixing for double digit numbers
+                    else if (world.Key != "GoA" && world.Key != "Atlantica" && world.Key != "Report")
+                    {
+                        if (world.Value >= 10)
+                        {
+                            (worldFound.Parent as Grid).ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
+                            ((worldFound.Parent as Grid).Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
+                        }
+                        else
+                        {
+                            (worldFound.Parent as Grid).ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                            ((worldFound.Parent as Grid).Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                        }
+                    }
                 }
             }
-            foreach(KeyValuePair<string,int> total in totals)
+            foreach (KeyValuePair<string, int> total in totals)
             {
-                    Image worldTotal = this.FindName(total.Key + "Total") as Image;
+                Image worldTotal = this.FindName(total.Key + "Total") as Image;
                 if (total.Value == -1)
                 {
                     worldTotal.Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
@@ -175,6 +199,21 @@ namespace KhTracker
                 else
                 {
                     worldTotal.Source = Numbers[total.Value];
+                }
+
+                // Format fixing for double digit numbers
+                if (total.Key != "GoA" && total.Key != "Atlantica")
+                {
+                    if (total.Value >= 11)
+                    {
+                        (worldTotal.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
+                        double width = ((worldTotal.Parent as Grid).Parent as Grid).ColumnDefinitions[1].Width.Value;
+                        ((worldTotal.Parent as Grid).Parent as Grid).ColumnDefinitions[1].Width = new GridLength(width + 1, GridUnitType.Star);
+                    }
+                    else
+                    {
+                        (worldTotal.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(1, GridUnitType.Star);
+                    }
                 }
             }
 

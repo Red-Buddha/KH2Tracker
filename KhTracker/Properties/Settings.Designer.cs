@@ -226,5 +226,29 @@ namespace KhTracker.Properties {
                 this["Height"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double BroadcastWindowWidth {
+            get {
+                return ((double)(this["BroadcastWindowWidth"]));
+            }
+            set {
+                this["BroadcastWindowWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double BroadcastWindowHeight {
+            get {
+                return ((double)(this["BroadcastWindowHeight"]));
+            }
+            set {
+                this["BroadcastWindowHeight"] = value;
+            }
+        }
     }
 }
