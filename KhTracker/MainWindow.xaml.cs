@@ -416,15 +416,37 @@ namespace KhTracker
                     data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
                     ItemPool.Children.Add(item);
 
-                    item.MouseDoubleClick -= item.Item_Return;
+                    item.MouseDown -= item.Item_Return;
                     item.MouseDoubleClick += item.Item_Click;
+                    item.MouseMove += item.Item_MouseMove;
+
+                    //item.MouseDown -= item.Item_Return;
+                    //item.MouseDown += item.Item_MouseDown;
+                    //item.MouseUp += item.Item_MouseUp;
                 }
+            }
+
+            // Reset 1st column row heights
+            RowDefinitionCollection rows1 = ((data.Grids[0].Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows1)
+            {
+                row.Height = new GridLength(1, GridUnitType.Star);
+            }
+
+            // Reset 2nd column row heights
+            RowDefinitionCollection rows2 = ((data.Grids[1].Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows2)
+            {
+                row.Height = new GridLength(1, GridUnitType.Star);
             }
 
             data.hintsLoaded = false;
             for (int i = 0; i < data.Hints.Count; ++i)
             {
                 data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+
+                (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
             }
             data.reportAttempts = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
             data.reportInformation.Clear();
@@ -433,6 +455,7 @@ namespace KhTracker
             {
                 data.ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
             }
+
             double broadcastLeft = broadcast.Left;
             double broadcastTop = broadcast.Top;
             bool broadcastVisible = broadcast.IsVisible;

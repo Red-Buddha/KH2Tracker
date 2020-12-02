@@ -72,6 +72,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    <!-- Sora's Heart -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -98,6 +99,7 @@
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Simulated Twilight Town -->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -124,6 +126,7 @@
                         <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Hollow Bastion -->
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -150,6 +153,7 @@
                         <local:WorldGrid x:Name="HollowBastionGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Olympus Coliseum -->
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -176,6 +180,7 @@
                         <local:WorldGrid x:Name="OlympusColiseumGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Land of Dragons -->
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -202,6 +207,7 @@
                         <local:WorldGrid x:Name="LandofDragonsGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Pride Lands -->
                     <Grid Grid.Row="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -228,6 +234,7 @@
                         <local:WorldGrid x:Name="PrideLandsGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Halloween Town -->
                     <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -254,6 +261,7 @@
                         <local:WorldGrid x:Name="HalloweenTownGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Space Paranoids -->
                     <Grid Grid.Row="7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -280,6 +288,7 @@
                         <local:WorldGrid x:Name="SpaceParanoidsGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- GoA -->
                     <Grid Grid.Row="8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -319,6 +328,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    <!-- Drive Forms -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -345,6 +355,7 @@
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Twilight Town -->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -371,6 +382,7 @@
                         <local:WorldGrid x:Name="TwilightTownGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Beasts Castle -->
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -397,6 +409,7 @@
                         <local:WorldGrid x:Name="BeastsCastleGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Agrabah -->
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -423,6 +436,7 @@
                         <local:WorldGrid x:Name="AgrabahGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- 100 Acre Wood -->
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -449,6 +463,7 @@
                         <local:WorldGrid x:Name="HundredAcreWoodGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Disney Castle -->
                     <Grid Grid.Row="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -475,6 +490,7 @@
                         <local:WorldGrid x:Name="DisneyCastleGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Port Royal -->
                     <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -501,6 +517,7 @@
                         <local:WorldGrid x:Name="PortRoyalGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- TWTNW-->
                     <Grid Grid.Row="7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -527,6 +544,7 @@
                         <local:WorldGrid x:Name="TWTNWGrid" Grid.Column="1"/>
                     </Grid>
 
+                    <!-- Atlantica -->
                     <Grid Grid.Row="8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -552,24 +570,26 @@
                         </Grid>
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="1"/>
                     </Grid>
-
                 </Grid>
             </Grid>
+
+            <!-- Hints and Collection Count -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
-                <Image Source="Images\Bar.png" Margin="0,-5,5,0" Height="30" HorizontalAlignment="Right"/>
-                <TextBlock Name="CheckTotal" Text="51" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
-            </WrapPanel>
-            <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="16" Grid.Column="0"/>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                    <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                    <Image Source="Images\Bar.png" Margin="0,-5,5,0" Height="30" HorizontalAlignment="Right"/>
+                    <TextBlock Name="CheckTotal" Text="51" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
+                </WrapPanel>
+                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="16" Grid.Column="0"/>
             </Grid>
 
 
+            <!-- Items -->
             <Grid Name="ItemPool" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -593,6 +613,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
+                <!-- Row 1 -->
                 <local:Item x:Name="Report1" Grid.Row="0" Grid.Column="0" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport1"/>
                 </local:Item>
@@ -671,6 +692,8 @@
                 <ContentControl Name="Report13Attempts" Grid.Row="0" Grid.Column="12" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
+
+                <!-- Row 2 -->
                 <local:Item x:Name="Fire1" Grid.Row="1" Grid.Column="0">
                     <DynamicResource ResourceKey="Fire"/>
                 </local:Item>
@@ -707,6 +730,8 @@
                 <local:Item x:Name="Cure3" Grid.Row="1" Grid.Column="11">
                     <DynamicResource ResourceKey="Cure"/>
                 </local:Item>
+
+                <!-- Row 3 -->
                 <local:Item x:Name="Reflect1" Grid.Row="2" Grid.Column="0">
                     <DynamicResource ResourceKey="Reflect"/>
                 </local:Item>
@@ -746,6 +771,8 @@
                 <local:Item x:Name="SecondChance" Grid.Row="2" Grid.Column="12">
                     <DynamicResource ResourceKey="SecondChance"/>
                 </local:Item>
+
+                <!-- Row 4 -->
                 <local:Item x:Name="TornPage1" Grid.Row="3" Grid.Column="0">
                     <DynamicResource ResourceKey="TornPage"/>
                 </local:Item>
