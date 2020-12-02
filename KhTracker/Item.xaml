@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KhTracker"
              mc:Ignorable="d" Content="{DynamicResource AnsemReport1}" Background="Transparent" MouseDoubleClick="Item_Click" MouseMove="Item_MouseMove" PreviewGiveFeedback="Item_PreviewGiveFeedback">
+    <!--MouseDown="Item_MouseDown" MouseUp="Item_MouseUp"-->
+    
     <ContentControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
