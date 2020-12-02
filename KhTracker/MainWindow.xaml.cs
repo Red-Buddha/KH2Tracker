@@ -705,6 +705,19 @@ namespace KhTracker
             else
                 Hint.Source = data.Numbers[num];
 
+            // Format fixing for double digit numbers
+            if (num > 10)
+            {
+                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.15, GridUnitType.Star);
+            }
+            else
+            {
+                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
+
+            }
+
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num-1);
         }
 
@@ -717,6 +730,19 @@ namespace KhTracker
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
+
+            // Format fixing for double digit numbers
+            if (value > 10)
+            {
+                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.15, GridUnitType.Star);
+            }
+            else
+            {
+                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
+
+            }
 
         }        
 
