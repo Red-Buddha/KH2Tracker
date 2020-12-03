@@ -13,6 +13,7 @@ namespace KhTracker
     {
         public bool hintsLoaded = false;
         public Button selected = null;
+        public bool dragDrop = true;
 
         public Codes codes = new Codes();
         public List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();

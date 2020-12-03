@@ -22,7 +22,7 @@ namespace KhTracker
     /// </summary>
     public partial class Item : ContentControl
     {
-        //bool selected = false;
+        bool selected = false;
 
         public delegate void TotalHandler(string world, int checks);
         public delegate void FoundHandler(string item, string world, bool add);
@@ -157,12 +157,18 @@ namespace KhTracker
 
                 ((MainWindow)Application.Current.MainWindow).IncrementCollected();
 
-                MouseDoubleClick -= Item_Click;
-                MouseDown += Item_Return;
-                //MouseDown -= Item_MouseDown;
-                //MouseUp -= Item_MouseUp;
+                if (data.dragDrop)
+                {
+                    MouseDoubleClick -= Item_Click;
+                    MouseMove -= Item_MouseMove;
+                }
+                else
+                {
+                    MouseDown -= Item_MouseDown;
+                    MouseUp -= Item_MouseUp;
+                }
 
-                MouseMove -= Item_MouseMove;
+                MouseDown += Item_Return;
 
                 if (isreport)
                 {
@@ -212,11 +218,16 @@ namespace KhTracker
 
                 MouseDown -= Item_Return;
 
-                MouseDoubleClick += Item_Click;
-                MouseMove += Item_MouseMove;
-
-                //MouseDown += Item_MouseDown;
-                //MouseUp += Item_MouseUp;
+                if (data.dragDrop)
+                {
+                    MouseDoubleClick += Item_Click;
+                    MouseMove += Item_MouseMove;
+                }
+                else
+                {
+                    MouseDown += Item_MouseDown;
+                    MouseUp += Item_MouseUp;
+                }
 
                 MouseEnter -= Report_Hover;
 
@@ -234,15 +245,15 @@ namespace KhTracker
             e.Handled = true;
         }
 
-        //public void Item_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    selected = true;
-        //}
+        public void Item_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            selected = true;
+        }
 
-        //public void Item_MouseUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (selected)
-        //        Item_Click(sender, e);
-        //}
+        public void Item_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (selected)
+                Item_Click(sender, e);
+        }
     }
 }

@@ -219,6 +219,9 @@ namespace KhTracker
             HundredAcreWoodToggle(null, null);
             AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
             AtlanticaToggle(null, null);
+            
+            DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
+            DragDropToggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
@@ -416,13 +419,18 @@ namespace KhTracker
                     data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
                     ItemPool.Children.Add(item);
 
-                    item.MouseDown -= item.Item_Return;
-                    item.MouseDoubleClick += item.Item_Click;
-                    item.MouseMove += item.Item_MouseMove;
-
-                    //item.MouseDown -= item.Item_Return;
-                    //item.MouseDown += item.Item_MouseDown;
-                    //item.MouseUp += item.Item_MouseUp;
+                    if (data.dragDrop)
+                    {
+                        item.MouseDown -= item.Item_Return;
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove += item.Item_MouseMove;
+                    }
+                    else
+                    {
+                        item.MouseDown -= item.Item_Return;
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
                 }
             }
 
@@ -695,6 +703,34 @@ namespace KhTracker
                 PortRoyal.SetResourceReference(ContentProperty, "PortRoyalText");
                 TWTNW.SetResourceReference(ContentProperty, "TWTNWText");
                 Atlantica.SetResourceReference(ContentProperty, "AtlanticaText");
+            }
+        }
+
+        private void DragDropToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
+            data.dragDrop = DragAndDropOption.IsChecked;
+            foreach(Item item in data.Items)
+            {
+                if (item.Parent == ItemPool)
+                {
+                    if (data.dragDrop == false)
+                    {
+                        item.MouseDoubleClick -= item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
+
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
+                    else
+                    {
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove += item.Item_MouseMove;
+
+                        item.MouseDown -= item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
+                    }
+                }
             }
         }
 
