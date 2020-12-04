@@ -262,5 +262,17 @@ namespace KhTracker.Properties {
                 this["DragDrop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WorldIcons {
+            get {
+                return ((bool)(this["WorldIcons"]));
+            }
+            set {
+                this["WorldIcons"] = value;
+            }
+        }
     }
 }
