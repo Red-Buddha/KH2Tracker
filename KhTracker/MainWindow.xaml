@@ -23,6 +23,8 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="Options">
+                <MenuItem Header="Save" Click="SaveProgress"/>
+                <MenuItem Header="Load" Click="LoadProgress"/>
                 <MenuItem Header="Load Hints" Click="LoadHints"/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
                 <MenuItem Header="Reset Window" Click="ResetSize"/>

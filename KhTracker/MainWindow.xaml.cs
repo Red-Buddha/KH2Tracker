@@ -343,6 +343,40 @@ namespace KhTracker
         /// Options
         ///
 
+        private void SaveProgress(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog.FileName = "kh2fm-tracker-save";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                // save settings
+                
+                // save hint state (hint info, hints, track attempts)
+            
+                // save items in worlds
+
+            }
+        }
+
+        private void LoadProgress(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".txt";
+            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // reset tracker
+
+                // set settings
+
+                // set hint state
+
+                // add items to worlds
+            }
+        }
+
         private void LoadHints(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -422,18 +456,7 @@ namespace KhTracker
         {
             settings = settings.Substring(24);
 
-            bool[] toggles = new bool[9];
-            toggles[0] = ReportsOption.IsChecked;
-            toggles[1] = AbilitiesOption.IsChecked;
-            toggles[2] = TornPagesOption.IsChecked;
-            toggles[3] = CureOption.IsChecked;
-            toggles[4] = FinalFormOption.IsChecked;
-            toggles[5] = SoraHeartOption.IsChecked;
-            toggles[6] = SimulatedOption.IsChecked;
-            toggles[7] = HundredAcreWoodOption.IsChecked;
-            toggles[8] = AtlanticaOption.IsChecked;
-
-            bool[] newtoggles = new bool[9];
+            bool[] newsettings = new bool[10];
 
             string[] settinglist = settings.Split('-');
             foreach(string setting in settinglist)
@@ -441,54 +464,59 @@ namespace KhTracker
                 string trimmed = setting.Trim();
                 switch(trimmed)
                 {
+                    case "Promise Charm":
+                        newsettings[0] = true;
+                        break;
                     case "Secret Ansem Reports":
-                        newtoggles[0] = true;
+                        newsettings[1] = true;
                         break;
                     case "Second Chance & Once More":
-                        newtoggles[1] = true;
+                        newsettings[2] = true;
                         break;
                     case "Torn Pages":
-                        newtoggles[2] = true;
+                        newsettings[3] = true;
                         break;
                     case "Cure":
-                        newtoggles[3] = true;
+                        newsettings[4] = true;
                         break;
                     case "Final Form":
-                        newtoggles[4] = true;
+                        newsettings[5] = true;
                         break;
                     case "Sora's Heart":
-                        newtoggles[5] = true;
+                        newsettings[6] = true;
                         break;
                     case "Simulated Twilight Town":
-                        newtoggles[6] = true;
+                        newsettings[7] = true;
                         break;
                     case "100 Acre Wood":
-                        newtoggles[7] = true;
+                        newsettings[8] = true;
                         break;
                     case "Atlantica":
-                        newtoggles[8] = true;
+                        newsettings[9] = true;
                         break;
                 }
             }
 
-            if (toggles[0] != newtoggles[0])
-                ReportsToggle(newtoggles[0]);
-            if (toggles[1] != newtoggles[1])
-                AbilitiesToggle(newtoggles[1]);
-            if (toggles[2] != newtoggles[2])
-                TornPagesToggle(newtoggles[2]);
-            if (toggles[3] != newtoggles[3])
-                CureToggle(newtoggles[3]);
-            if (toggles[4] != newtoggles[4])
-                FinalFormToggle(newtoggles[4]);
-            if (toggles[5] != newtoggles[5])
-                SoraHeartToggle(newtoggles[5]);
-            if (toggles[6] != newtoggles[6])
-                SimulatedToggle(newtoggles[6]);
-            if (toggles[7] != newtoggles[7])
-                HundredAcreWoodToggle(newtoggles[7]);
-            if (toggles[8] != newtoggles[8])
-                AtlanticaToggle(newtoggles[8]);
+            if (PromiseCharmOption.IsChecked != newsettings[0])
+                PromiseCharmToggle(newsettings[0]);
+            if (ReportsOption.IsChecked != newsettings[1])
+                ReportsToggle(newsettings[1]);
+            if (AbilitiesOption.IsChecked != newsettings[2])
+                AbilitiesToggle(newsettings[2]);
+            if (TornPagesOption.IsChecked != newsettings[3])
+                TornPagesToggle(newsettings[3]);
+            if (CureOption.IsChecked != newsettings[4])
+                CureToggle(newsettings[4]);
+            if (FinalFormOption.IsChecked != newsettings[5])
+                FinalFormToggle(newsettings[5]);
+            if (SoraHeartOption.IsChecked != newsettings[6])
+                SoraHeartToggle(newsettings[6]);
+            if (SimulatedOption.IsChecked != newsettings[7])
+                SimulatedToggle(newsettings[7]);
+            if (HundredAcreWoodOption.IsChecked != newsettings[8])
+                HundredAcreWoodToggle(newsettings[8]);
+            if (AtlanticaOption.IsChecked != newsettings[9])
+                AtlanticaToggle(newsettings[9]);
 
         }
 
