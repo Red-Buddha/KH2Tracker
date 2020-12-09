@@ -8,6 +8,7 @@
         </Border>
     </ControlTemplate>
 
+    <Image x:Key="AnsemReportOld" Source="Images\Old\ansem_report.png" x:Shared="false"/>
     <Image x:Key="AnsemReportOld1" Source="Images\Old\ansem_report1.png" x:Shared="false"/>
     <Image x:Key="AnsemReportOld2" Source="Images\Old\ansem_report2.png" x:Shared="false"/>
     <Image x:Key="AnsemReportOld3" Source="Images\Old\ansem_report3.png" x:Shared="false"/>
@@ -44,6 +45,7 @@
     <Image x:Key="ProofOfPeaceOld" Source="Images\Old\proof_of_peace.png"/>
     <Image x:Key="PromiseCharmOld" Source="Images\Old\promise_charm.png"/>
 
+    <Image x:Key="AnsemReport" Source="Images\Simple\ansem_report.png" x:Shared="false"/>
     <Image x:Key="AnsemReport1" Source="Images\Simple\ansem_report1.png" x:Shared="false"/>
     <Image x:Key="AnsemReport2" Source="Images\Simple\ansem_report2.png" x:Shared="false"/>
     <Image x:Key="AnsemReport3" Source="Images\Simple\ansem_report3.png" x:Shared="false"/>
@@ -92,7 +94,7 @@
     <TextBlock x:Key="SimulatedText" Text="STT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-3,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="HollowBastionText" Text="HB" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="OlympusText" Text="OC" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-    <TextBlock x:Key="LandofDragonsText" Text="Lod" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="0,-18,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="LandofDragonsText" Text="LoD" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="0,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="PrideLandsText" Text="PL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="HalloweenTownText" Text="HT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-7,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="SpaceParanoidsText" Text="SP" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-9,-18,0,0" IsHitTestVisible="False"/>
@@ -105,7 +107,7 @@
     <TextBlock x:Key="HundredAcreText" Text="100" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-4,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="DisneyCastleText" Text="DC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-6,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="PortRoyalText" Text="PR" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-    <TextBlock x:Key="TWTNWText" Text="TWTNW" FontSize="10" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-15,0,0" IsHitTestVisible="False"/>
+    <TextBlock x:Key="TWTNWText" Text="TWTNW" FontSize="13" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-15,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="AtlanticaText" Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-18,0,0" IsHitTestVisible="False"/>
 
 

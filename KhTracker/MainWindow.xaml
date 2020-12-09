@@ -12,13 +12,6 @@
         SizeChanged="Window_SizeChanged"
         Title="KH2Tracker" Height="880" Width="570" Background="#303030"
         MinHeight="575" MinWidth="400">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionary1.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
@@ -26,7 +19,9 @@
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <MenuItem Header="Load Hints" Click="LoadHints"/>
+                <Separator/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
+                <Separator/>
                 <MenuItem Header="Reset Window" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" Click="OnReset"/>
             </MenuItem>
@@ -584,12 +579,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                    <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
-                    <Image Source="Images\Bar.png" Margin="0,-5,5,0" Height="30" HorizontalAlignment="Right"/>
-                    <TextBlock Name="CheckTotal" Text="51" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="30" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
-                </WrapPanel>
-                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="16" Grid.Column="0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                    <TextBlock Name="Collected" Text="0" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="28" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                    <Image Source="Images\Bar.png" Margin="0,-5,5,0" Height="28" HorizontalAlignment="Right"/>
+                    <TextBlock Name="CheckTotal" Text="51" FontFamily="{StaticResource HVD_Comic_Serif_Pro}" FontSize="28" FontStyle="Normal" Foreground="#FFFF00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,-2,10,0"/>
+                </StackPanel>
+                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="15" Grid.Column="0"/>
             </Grid>
 
 

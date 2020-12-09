@@ -997,6 +997,29 @@ namespace KhTracker
                 Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
+
+                broadcast.Report.SetResourceReference(ContentProperty, "AnsemReport");
+                broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
+                broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistence");
+                broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
+                broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
+                broadcast.SecondChance.SetResourceReference(ContentProperty, "SecondChance");
+                broadcast.OnceMore.SetResourceReference(ContentProperty, "OnceMore");
+                broadcast.Fire.SetResourceReference(ContentProperty, "Fire");
+                broadcast.Blizzard.SetResourceReference(ContentProperty, "Blizzard");
+                broadcast.Thunder.SetResourceReference(ContentProperty, "Thunder");
+                broadcast.Cure.SetResourceReference(ContentProperty, "Cure");
+                broadcast.Reflect.SetResourceReference(ContentProperty, "Reflect");
+                broadcast.Magnet.SetResourceReference(ContentProperty, "Magnet");
+                broadcast.Valor.SetResourceReference(ContentProperty, "Valor");
+                broadcast.Wisdom.SetResourceReference(ContentProperty, "Wisdom");
+                broadcast.Limit.SetResourceReference(ContentProperty, "Limit");
+                broadcast.Master.SetResourceReference(ContentProperty, "Master");
+                broadcast.Final.SetResourceReference(ContentProperty, "Final");
+                broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittle");
+                broadcast.Lamp.SetResourceReference(ContentProperty, "Genie");
+                broadcast.Ukulele.SetResourceReference(ContentProperty, "Stitch");
+                broadcast.Feather.SetResourceReference(ContentProperty, "PeterPan");
             }
             else
             {
@@ -1051,6 +1074,29 @@ namespace KhTracker
                 Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+
+                broadcast.Report.SetResourceReference(ContentProperty, "AnsemReportOld");
+                broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+                broadcast.SecondChance.SetResourceReference(ContentProperty, "SecondChanceOld");
+                broadcast.OnceMore.SetResourceReference(ContentProperty, "OnceMoreOld");
+                broadcast.Fire.SetResourceReference(ContentProperty, "FireOld");
+                broadcast.Blizzard.SetResourceReference(ContentProperty, "BlizzardOld");
+                broadcast.Thunder.SetResourceReference(ContentProperty, "ThunderOld");
+                broadcast.Cure.SetResourceReference(ContentProperty, "CureOld");
+                broadcast.Reflect.SetResourceReference(ContentProperty, "ReflectOld");
+                broadcast.Magnet.SetResourceReference(ContentProperty, "MagnetOld");
+                broadcast.Valor.SetResourceReference(ContentProperty, "ValorOld");
+                broadcast.Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
+                broadcast.Limit.SetResourceReference(ContentProperty, "LimitOld");
+                broadcast.Master.SetResourceReference(ContentProperty, "MasterOld");
+                broadcast.Final.SetResourceReference(ContentProperty, "FinalOld");
+                broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
+                broadcast.Lamp.SetResourceReference(ContentProperty, "GenieOld");
+                broadcast.Ukulele.SetResourceReference(ContentProperty, "StitchOld");
+                broadcast.Feather.SetResourceReference(ContentProperty, "PeterPanOld");
             }
         }
 
@@ -1227,7 +1273,8 @@ namespace KhTracker
             {
                 ((button.Parent as Grid).Parent as Grid).Height = Double.NaN;
                 ((button.Parent as Grid).Parent as Grid).IsEnabled = true;
-                button.IsEnabled = false;
+                button.IsEnabled = true;
+                button.Visibility = Visibility.Visible;
             }
             else if (toggle == false && button.IsEnabled == true)
             {
@@ -1258,6 +1305,8 @@ namespace KhTracker
 
                 ((button.Parent as Grid).Parent as Grid).Height = 0;
                 ((button.Parent as Grid).Parent as Grid).IsEnabled = false;
+                button.IsEnabled = false;
+                button.Visibility = Visibility.Collapsed;
             }
         }
 

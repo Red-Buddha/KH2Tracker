@@ -219,7 +219,7 @@ namespace KhTracker
 
             foreach(KeyValuePair<string,int> impCheck in important)
             {
-                Image imp = this.FindName(impCheck.Key) as Image;
+                ContentControl imp = this.FindName(impCheck.Key) as ContentControl;
                 if (impCheck.Value > 0)
                 {
                     imp.Opacity = 1;
