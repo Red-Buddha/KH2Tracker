@@ -361,9 +361,10 @@ namespace KhTracker
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.DefaultExt = ".sav";
-            saveFileDialog.Filter = "save files (*.sav)|*.sav";
+            saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
             saveFileDialog.FileName = "kh2fm-tracker-save";
+            saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             if (saveFileDialog.ShowDialog() == true)
             {
                 // save settings
@@ -516,35 +517,35 @@ namespace KhTracker
                 }
 
                 FileStream file = File.Create(saveFileDialog.FileName);
-                BinaryWriter writer = new BinaryWriter(file);
-
-                writer.Write(settings);
-                writer.Write(data.hintsLoaded.ToString());
+                StreamWriter writer = new StreamWriter(file);
+                
+                writer.WriteLine(settings);
+                writer.WriteLine(data.hintsLoaded.ToString());
                 if (data.hintsLoaded)
                 {
-                    writer.Write(attempts);
-                    writer.Write(reportInfo);
-                    writer.Write(locations);
+                    writer.WriteLine(attempts);
+                    writer.WriteLine(data.hintFileText[0]);
+                    writer.WriteLine(data.hintFileText[1]);
                 }
-                writer.Write(hintValues);
-                writer.Write(soraHeart);
-                writer.Write(driveForms);
-                writer.Write(simulated);
-                writer.Write(twilightTown);
-                writer.Write(hollowBastion);
-                writer.Write(beastCastle);
-                writer.Write(olympusColiseum);
-                writer.Write(agrabah);
-                writer.Write(landOfDragons);
-                writer.Write(hundredAcreWood);
-                writer.Write(prideLands);
-                writer.Write(disneyCastle);
-                writer.Write(halloweenTown);
-                writer.Write(portRoyal);
-                writer.Write(spaceparanoids);
-                writer.Write(TWTNW);
-                writer.Write(atlantica);
-                writer.Write(GoA);
+                writer.WriteLine(hintValues);
+                writer.WriteLine(soraHeart);
+                writer.WriteLine(driveForms);
+                writer.WriteLine(simulated);
+                writer.WriteLine(twilightTown);
+                writer.WriteLine(hollowBastion);
+                writer.WriteLine(beastCastle);
+                writer.WriteLine(olympusColiseum);
+                writer.WriteLine(agrabah);
+                writer.WriteLine(landOfDragons);
+                writer.WriteLine(hundredAcreWood);
+                writer.WriteLine(prideLands);
+                writer.WriteLine(disneyCastle);
+                writer.WriteLine(halloweenTown);
+                writer.WriteLine(portRoyal);
+                writer.WriteLine(spaceparanoids);
+                writer.WriteLine(TWTNW);
+                writer.WriteLine(atlantica);
+                writer.WriteLine(GoA);
 
                 writer.Close();
             }
@@ -553,24 +554,26 @@ namespace KhTracker
         private void LoadProgress(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".sav";
-            openFileDialog.Filter = "save files (*.sav)|*.sav";
+            openFileDialog.DefaultExt = ".txt";
+            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog.FileName = "kh2fm-tracker-save";
+            openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
-                FileStream file = File.OpenRead(openFileDialog.FileName);
-                BinaryReader reader = new BinaryReader(file);
+                Stream file = openFileDialog.OpenFile();
+                StreamReader reader = new StreamReader(file);
                 // reset tracker
                 OnReset(null, null);
 
                 // set settings
-                string settings = reader.ReadString();
+                string settings = reader.ReadLine();
                 LoadSettings(settings.Substring(10));
 
                 // set hint state
-                data.hintsLoaded = bool.Parse(reader.ReadString());
+                data.hintsLoaded = bool.Parse(reader.ReadLine());
                 if (data.hintsLoaded)
                 {
-                    string attempts = reader.ReadString();
+                    string attempts = reader.ReadLine();
                     attempts = attempts.Substring(13);
                     string[] attemptsArray = attempts.Split('-');
                     for (int i = 0; i < attemptsArray.Length; ++i)
@@ -578,36 +581,32 @@ namespace KhTracker
                         data.reportAttempts[i] = int.Parse(attemptsArray[i]);
                     }
 
-                    string reportInfo = reader.ReadString();
-                    reportInfo = reportInfo.Substring(9);
-                    string[] reportInfoArray = reportInfo.Split('-');
-                    for (int j = 0; j < reportInfoArray.Length; ++j)
-                    {
-                        string info = reportInfoArray[j].Trim();
-                        // worlds have spaces in their names causing issues when separating the tuple
-                        string world = info.Substring(0, info.LastIndexOf(' '));
-                        int num = int.Parse(info.Substring(info.LastIndexOf(' ')));
-                        data.reportInformation.Add(new Tuple<string, int>(world, num));
-                    }
+                    string line1 = reader.ReadLine();
+                    data.hintFileText[0] = line1;
+                    string[] reportvalues = line1.Split('.');
 
-                    string locations = reader.ReadString();
-                    locations = locations.Substring(14);
-                    string[] locationsArray = locations.Split('-');
-                    for (int k = 0; k < locationsArray.Length; ++k)
+                    string line2 = reader.ReadLine();
+                    data.hintFileText[1] = line2;
+                    line2 = line2.TrimEnd('.');
+                    string[] reportorder = line2.Split('.');
+
+                    for (int i = 0; i < reportorder.Length; ++i)
                     {
-                        data.reportLocations.Add(locationsArray[k].Trim());
+                        data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                        string[] temp = reportvalues[i].Split(',');
+                        data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                     }
                 }
                 // set hint values
-                string[] hintValues = reader.ReadString().Substring(12).Split(' ');
+                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
                 for (int i = 0; i < hintValues.Length; ++i)
                 {
                     SetReportValue(data.Hints[i], int.Parse(hintValues[i]));
                 }
                 // add items to worlds
-                while (reader.BaseStream.Position != reader.BaseStream.Length)
+                while (reader.EndOfStream == false)
                 {
-                    string world = reader.ReadString();
+                    string world = reader.ReadLine();
                     string worldName = world.Substring(0, world.IndexOf(':'));
                     string items = world.Substring(world.IndexOf(':') + 1).Trim();
                     if (items != string.Empty)
@@ -616,11 +615,9 @@ namespace KhTracker
                         {
                             WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
                             Item importantCheck = FindName(item) as Item;
-                            grid.Add_Item(importantCheck, this);
 
-                            // add report hover functionality
-                            if ((int)(importantCheck.GetValue(Grid.RowProperty)) == 0 && data.hintsLoaded)
-                                importantCheck.MouseEnter += importantCheck.Report_Hover;
+                            if (grid.Handle_Report(importantCheck, this, data))
+                                grid.Add_Item(importantCheck, this);
                         }
                     }
                 }
@@ -647,6 +644,7 @@ namespace KhTracker
                 }
 
                 string line1 = streamReader.ReadLine();
+                data.hintFileText[0] = line1;
                 string[] reportvalues = line1.Split('.');
 
                 if (streamReader.EndOfStream)
@@ -657,6 +655,7 @@ namespace KhTracker
                 }
 
                 string line2 = streamReader.ReadLine();
+                data.hintFileText[1] = line2;
                 line2 = line2.TrimEnd('.');
                 string[] reportorder = line2.Split('.');
 

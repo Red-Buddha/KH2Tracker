@@ -15,6 +15,7 @@ namespace KhTracker
         public Button selected = null;
         public bool dragDrop = true;
 
+        public string[] hintFileText = new string[2];
         public Codes codes = new Codes();
         public List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
         public List<string> reportLocations = new List<string>();
