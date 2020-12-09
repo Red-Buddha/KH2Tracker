@@ -250,5 +250,29 @@ namespace KhTracker.Properties {
                 this["BroadcastWindowHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DragDrop {
+            get {
+                return ((bool)(this["DragDrop"]));
+            }
+            set {
+                this["DragDrop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WorldIcons {
+            get {
+                return ((bool)(this["WorldIcons"]));
+            }
+            set {
+                this["WorldIcons"] = value;
+            }
+        }
     }
 }

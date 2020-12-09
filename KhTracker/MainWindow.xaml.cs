@@ -182,43 +182,49 @@ namespace KhTracker
         private void InitOptions()
         {
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
-            HandleItemToggle(PromiseCharmOption, PromiseCharm, true);
+            HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
 
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
             for (int i = 0; i < data.Reports.Count; ++i)
             {
-                HandleItemToggle(ReportsOption, data.Reports[i], true);
+                HandleItemToggle(ReportsOption.IsChecked, data.Reports[i], true);
             }
 
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
-            HandleItemToggle(AbilitiesOption, OnceMore, true);
-            HandleItemToggle(AbilitiesOption, SecondChance, true);
+            HandleItemToggle(AbilitiesOption.IsChecked, OnceMore, true);
+            HandleItemToggle(AbilitiesOption.IsChecked, SecondChance, true);
 
             TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
             for (int i = 0; i < data.TornPages.Count; ++i)
             {
-                HandleItemToggle(TornPagesOption, data.TornPages[i], true);
+                HandleItemToggle(TornPagesOption.IsChecked, data.TornPages[i], true);
             }
 
             CureOption.IsChecked = Properties.Settings.Default.Cure;
-            HandleItemToggle(CureOption, Cure1, true);
-            HandleItemToggle(CureOption, Cure2, true);
-            HandleItemToggle(CureOption, Cure3, true);
+            HandleItemToggle(CureOption.IsChecked, Cure1, true);
+            HandleItemToggle(CureOption.IsChecked, Cure2, true);
+            HandleItemToggle(CureOption.IsChecked, Cure3, true);
 
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            HandleItemToggle(FinalFormOption, Final, true);
+            HandleItemToggle(FinalFormOption.IsChecked, Final, true);
 
             SimpleOption.IsChecked = Properties.Settings.Default.Simple;
             SimpleToggle(null, null);
 
+            WorldIconsOption.IsChecked = Properties.Settings.Default.WorldIcons;
+            WorldIconsToggle(null, null);
+
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
-            SoraHeartToggle(null, null);
+            SoraHeartToggle(SoraHeartOption.IsChecked);
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
-            SimulatedToggle(null, null);
+            SimulatedToggle(SimulatedOption.IsChecked);
             HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
-            HundredAcreWoodToggle(null, null);
+            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
             AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
-            AtlanticaToggle(null, null);
+            AtlanticaToggle(AtlanticaOption.IsChecked);
+            
+            DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
+            DragDropToggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
@@ -331,11 +337,292 @@ namespace KhTracker
         {
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
+
+            if (Width  < 490)
+            {
+                HintText.FontSize = 13;
+                CollectedBar.Height = 25;
+                CheckTotal.FontSize = 25;
+                Collected.FontSize = 25;
+            }
+            else
+            {
+                HintText.FontSize = 16;
+                CollectedBar.Height = 30;
+                CheckTotal.FontSize = 30;
+                Collected.FontSize = 30;
+            }
         }
 
         /// 
         /// Options
         ///
+
+        private void SaveProgress(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog.FileName = "kh2fm-tracker-save";
+            saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                // save settings
+                string settings = "Settings: ";
+                if (PromiseCharmOption.IsChecked)
+                    settings += "Promise Charm - ";
+                if (ReportsOption.IsChecked)
+                    settings += "Secret Ansem Reports - ";
+                if (AbilitiesOption.IsChecked)
+                    settings += "Once More & Second Chance - ";
+                if (TornPagesOption.IsChecked)
+                    settings += "Torn Pages - ";
+                if (CureOption.IsChecked)
+                    settings += "Cure - ";
+                if (FinalFormOption.IsChecked)
+                    settings += "Final Form - ";
+                if (SoraHeartOption.IsChecked)
+                    settings += "Sora's Heart - ";
+                if (SimulatedOption.IsChecked)
+                    settings += "Simulated Twilight Town - ";
+                if (HundredAcreWoodOption.IsChecked)
+                    settings += "100 Acre Wood - ";
+                if (AtlanticaOption.IsChecked)
+                    settings += "Atlantica - ";
+
+                // save hint state (hint info, hints, track attempts)
+                string attempts = "Attempts: ";
+                string reportInfo = "Info: ";
+                string locations = "Locations: ";
+                if (data.hintsLoaded)
+                {
+                    foreach (int num in data.reportAttempts)
+                    {
+                        attempts += " - " + num.ToString() ;
+                    }
+
+                    foreach (Tuple<string, int> info in data.reportInformation)
+                    {
+                        reportInfo += " - " + info.Item1 + " " + info.Item2.ToString();
+                    }
+
+                    foreach (string location in data.reportLocations)
+                    {
+                        locations += " - " + location;
+                    }
+                }
+                // store hint values
+                string hintValues = "HintValues:";
+                foreach (Image hint in data.Hints)
+                {
+                    int num = 0;
+                    for (int i = 0; i < data.Numbers.Count; ++i)
+                    {
+                        if (hint.Source == data.Numbers[i])
+                            num = i;
+                    }
+                    hintValues += " " + num.ToString();
+                }
+
+                // save items in worlds
+                string soraHeart = "SorasHeart:";
+                foreach (Item item in data.Grids[0].Children)
+                {
+                    soraHeart += " " + item.Name;
+                }
+                string driveForms = "DriveForms:";
+                foreach (Item item in data.Grids[1].Children)
+                {
+                    driveForms += " " + item.Name;
+                }
+                string simulated = "SimulatedTwilightTown:";
+                foreach (Item item in data.Grids[2].Children)
+                {
+                    simulated += " " + item.Name;
+                }
+                string twilightTown = "TwilightTown:";
+                foreach (Item item in data.Grids[3].Children)
+                {
+                    twilightTown += " " + item.Name;
+                }
+                string hollowBastion = "HollowBastion:";
+                foreach (Item item in data.Grids[4].Children)
+                {
+                    hollowBastion += " " + item.Name;
+                }
+                string beastCastle = "BeastsCastle:";
+                foreach (Item item in data.Grids[5].Children)
+                {
+                    beastCastle += " " + item.Name;
+                }
+                string olympusColiseum = "OlympusColiseum:";
+                foreach (Item item in data.Grids[6].Children)
+                {
+                    olympusColiseum += " " + item.Name;
+                }
+                string agrabah = "Agrabah:";
+                foreach (Item item in data.Grids[7].Children)
+                {
+                    agrabah += " " + item.Name;
+                }
+                string landOfDragons = "LandofDragons:";
+                foreach (Item item in data.Grids[8].Children)
+                {
+                    landOfDragons += " " + item.Name;
+                }
+                string hundredAcreWood = "HundredAcreWood:";
+                foreach (Item item in data.Grids[9].Children)
+                {
+                    hundredAcreWood += " " + item.Name;
+                }
+                string prideLands = "PrideLands:";
+                foreach (Item item in data.Grids[10].Children)
+                {
+                    prideLands += " " + item.Name;
+                }
+                string disneyCastle = "DisneyCastle:";
+                foreach (Item item in data.Grids[11].Children)
+                {
+                    disneyCastle += " " + item.Name;
+                }
+                string halloweenTown = "HalloweenTown:";
+                foreach (Item item in data.Grids[12].Children)
+                {
+                    halloweenTown += " " + item.Name;
+                }
+                string portRoyal = "PortRoyal:";
+                foreach (Item item in data.Grids[13].Children)
+                {
+                    portRoyal += " " + item.Name;
+                }
+                string spaceparanoids = "SpaceParanoids:";
+                foreach (Item item in data.Grids[14].Children)
+                {
+                    spaceparanoids += " " + item.Name;
+                }
+                string TWTNW = "TWTNW:";
+                foreach (Item item in data.Grids[15].Children)
+                {
+                    TWTNW += " " + item.Name;
+                }
+                string atlantica = "Atlantica:";
+                foreach (Item item in data.Grids[16].Children)
+                {
+                    atlantica += " " + item.Name;
+                }
+                string GoA = "GoA:";
+                foreach (Item item in data.Grids[17].Children)
+                {
+                    GoA += " " + item.Name;
+                }
+
+                FileStream file = File.Create(saveFileDialog.FileName);
+                StreamWriter writer = new StreamWriter(file);
+                
+                writer.WriteLine(settings);
+                writer.WriteLine(data.hintsLoaded.ToString());
+                if (data.hintsLoaded)
+                {
+                    writer.WriteLine(attempts);
+                    writer.WriteLine(data.hintFileText[0]);
+                    writer.WriteLine(data.hintFileText[1]);
+                }
+                writer.WriteLine(hintValues);
+                writer.WriteLine(soraHeart);
+                writer.WriteLine(driveForms);
+                writer.WriteLine(simulated);
+                writer.WriteLine(twilightTown);
+                writer.WriteLine(hollowBastion);
+                writer.WriteLine(beastCastle);
+                writer.WriteLine(olympusColiseum);
+                writer.WriteLine(agrabah);
+                writer.WriteLine(landOfDragons);
+                writer.WriteLine(hundredAcreWood);
+                writer.WriteLine(prideLands);
+                writer.WriteLine(disneyCastle);
+                writer.WriteLine(halloweenTown);
+                writer.WriteLine(portRoyal);
+                writer.WriteLine(spaceparanoids);
+                writer.WriteLine(TWTNW);
+                writer.WriteLine(atlantica);
+                writer.WriteLine(GoA);
+
+                writer.Close();
+            }
+        }
+
+        private void LoadProgress(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".txt";
+            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog.FileName = "kh2fm-tracker-save";
+            openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Stream file = openFileDialog.OpenFile();
+                StreamReader reader = new StreamReader(file);
+                // reset tracker
+                OnReset(null, null);
+
+                // set settings
+                string settings = reader.ReadLine();
+                LoadSettings(settings.Substring(10));
+
+                // set hint state
+                data.hintsLoaded = bool.Parse(reader.ReadLine());
+                if (data.hintsLoaded)
+                {
+                    string attempts = reader.ReadLine();
+                    attempts = attempts.Substring(13);
+                    string[] attemptsArray = attempts.Split('-');
+                    for (int i = 0; i < attemptsArray.Length; ++i)
+                    {
+                        data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                    }
+
+                    string line1 = reader.ReadLine();
+                    data.hintFileText[0] = line1;
+                    string[] reportvalues = line1.Split('.');
+
+                    string line2 = reader.ReadLine();
+                    data.hintFileText[1] = line2;
+                    line2 = line2.TrimEnd('.');
+                    string[] reportorder = line2.Split('.');
+
+                    for (int i = 0; i < reportorder.Length; ++i)
+                    {
+                        data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                        string[] temp = reportvalues[i].Split(',');
+                        data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                    }
+                }
+                // set hint values
+                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
+                for (int i = 0; i < hintValues.Length; ++i)
+                {
+                    SetReportValue(data.Hints[i], int.Parse(hintValues[i]));
+                }
+                // add items to worlds
+                while (reader.EndOfStream == false)
+                {
+                    string world = reader.ReadLine();
+                    string worldName = world.Substring(0, world.IndexOf(':'));
+                    string items = world.Substring(world.IndexOf(':') + 1).Trim();
+                    if (items != string.Empty)
+                    {
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
+
+                            if (grid.Handle_Report(importantCheck, this, data))
+                                grid.Add_Item(importantCheck, this);
+                        }
+                    }
+                }
+            }
+        }
 
         private void LoadHints(object sender, RoutedEventArgs e)
         {
@@ -344,14 +631,7 @@ namespace KhTracker
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
-                data.reportLocations.Clear();
-                data.reportInformation.Clear();
-                data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-
-                for (int i = 0; i < data.Reports.Count; ++i)
-                {
-                    data.Reports[i].HandleItemReturn();
-                }
+                ResetHints();
 
                 Stream stream = openFileDialog.OpenFile();
                 StreamReader streamReader = new StreamReader(stream);
@@ -364,6 +644,7 @@ namespace KhTracker
                 }
 
                 string line1 = streamReader.ReadLine();
+                data.hintFileText[0] = line1;
                 string[] reportvalues = line1.Split('.');
 
                 if (streamReader.EndOfStream)
@@ -374,8 +655,11 @@ namespace KhTracker
                 }
 
                 string line2 = streamReader.ReadLine();
+                data.hintFileText[1] = line2;
                 line2 = line2.TrimEnd('.');
                 string[] reportorder = line2.Split('.');
+
+                LoadSettings(streamReader.ReadLine().Substring(24));
 
                 streamReader.Close();
 
@@ -389,6 +673,88 @@ namespace KhTracker
                 data.hintsLoaded = true;
                 HintText.Content = "Hints Loaded";
             }
+        }
+
+        private void ResetHints()
+        {
+            data.hintsLoaded = false;
+            data.reportLocations.Clear();
+            data.reportInformation.Clear();
+            data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+
+            foreach (ContentControl report in data.ReportAttemptVisual)
+            {
+                report.SetResourceReference(ContentProperty, "Fail0");
+            }
+
+            for (int i = 0; i < data.Hints.Count; ++i)
+            {
+                data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+
+                (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
+            }
+
+            for (int i = 0; i < data.Reports.Count; ++i)
+            {
+                data.Reports[i].HandleItemReturn();
+            }
+        }
+
+        private void LoadSettings(string settings)
+        {
+            bool[] newsettings = new bool[10];
+
+            string[] settinglist = settings.Split('-');
+            foreach(string setting in settinglist)
+            {
+                string trimmed = setting.Trim();
+                switch(trimmed)
+                {
+                    case "Promise Charm":
+                        newsettings[0] = true;
+                        break;
+                    case "Secret Ansem Reports":
+                        newsettings[1] = true;
+                        break;
+                    case "Second Chance & Once More":
+                        newsettings[2] = true;
+                        break;
+                    case "Torn Pages":
+                        newsettings[3] = true;
+                        break;
+                    case "Cure":
+                        newsettings[4] = true;
+                        break;
+                    case "Final Form":
+                        newsettings[5] = true;
+                        break;
+                    case "Sora's Heart":
+                        newsettings[6] = true;
+                        break;
+                    case "Simulated Twilight Town":
+                        newsettings[7] = true;
+                        break;
+                    case "100 Acre Wood":
+                        newsettings[8] = true;
+                        break;
+                    case "Atlantica":
+                        newsettings[9] = true;
+                        break;
+                }
+            }
+            
+                PromiseCharmToggle(newsettings[0]);
+                ReportsToggle(newsettings[1]);
+                AbilitiesToggle(newsettings[2]);
+                TornPagesToggle(newsettings[3]);
+                CureToggle(newsettings[4]);
+                FinalFormToggle(newsettings[5]);
+                SoraHeartToggle(newsettings[6]);
+                SimulatedToggle(newsettings[7]);
+                HundredAcreWoodToggle(newsettings[8]);
+                AtlanticaToggle(newsettings[9]);
+
         }
 
         private void OnReset(object sender, RoutedEventArgs e)
@@ -416,13 +782,18 @@ namespace KhTracker
                     data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
                     ItemPool.Children.Add(item);
 
-                    item.MouseDown -= item.Item_Return;
-                    item.MouseDoubleClick += item.Item_Click;
-                    item.MouseMove += item.Item_MouseMove;
-
-                    //item.MouseDown -= item.Item_Return;
-                    //item.MouseDown += item.Item_MouseDown;
-                    //item.MouseUp += item.Item_MouseUp;
+                    if (data.dragDrop)
+                    {
+                        item.MouseDown -= item.Item_Return;
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove += item.Item_MouseMove;
+                    }
+                    else
+                    {
+                        item.MouseDown -= item.Item_Return;
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
                 }
             }
 
@@ -440,21 +811,7 @@ namespace KhTracker
                 row.Height = new GridLength(1, GridUnitType.Star);
             }
 
-            data.hintsLoaded = false;
-            for (int i = 0; i < data.Hints.Count; ++i)
-            {
-                data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
-
-                (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
-            }
-            data.reportAttempts = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-            data.reportInformation.Clear();
-            data.reportLocations.Clear();
-            for(int i = 0; i < data.ReportAttemptVisual.Count; ++i)
-            {
-                data.ReportAttemptVisual[i].SetResourceReference(ContentProperty, "Fail0");
-            }
+            ResetHints();
 
             double broadcastLeft = broadcast.Left;
             double broadcastTop = broadcast.Top;
@@ -470,71 +827,131 @@ namespace KhTracker
 
         private void PromiseCharmToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.PromiseCharm = PromiseCharmOption.IsChecked;
-            HandleItemToggle(PromiseCharmOption, PromiseCharm, false);
+            PromiseCharmToggle(PromiseCharmOption.IsChecked);
+        }
+
+        private void PromiseCharmToggle(bool toggle)
+        {
+            Properties.Settings.Default.PromiseCharm = toggle;
+            PromiseCharmOption.IsChecked = toggle;
+            HandleItemToggle(toggle, PromiseCharm, false);
         }
 
         private void ReportsToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.AnsemReports = ReportsOption.IsChecked;
+            ReportsToggle(ReportsOption.IsChecked);
+        }
+
+        private void ReportsToggle(bool toggle)
+        {
+            Properties.Settings.Default.AnsemReports = toggle;
+            ReportsOption.IsChecked = toggle;
             for (int i = 0; i < data.Reports.Count; ++i)
             {
-                HandleItemToggle(ReportsOption, data.Reports[i], false);
+                HandleItemToggle(toggle, data.Reports[i], false);
             }
         }
 
         private void AbilitiesToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Abilities = AbilitiesOption.IsChecked;
-            HandleItemToggle(AbilitiesOption, OnceMore, false);
-            HandleItemToggle(AbilitiesOption, SecondChance, false);
+            AbilitiesToggle(AbilitiesOption.IsChecked);
+        }
+
+        private void AbilitiesToggle(bool toggle)
+        {
+            Properties.Settings.Default.Abilities = toggle;
+            AbilitiesOption.IsChecked = toggle;
+            HandleItemToggle(toggle, OnceMore, false);
+            HandleItemToggle(toggle, SecondChance, false);
         }
 
         private void TornPagesToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.TornPages = TornPagesOption.IsChecked;
+            TornPagesToggle(TornPagesOption.IsChecked);
+        }
+
+        private void TornPagesToggle(bool toggle)
+        {
+            Properties.Settings.Default.TornPages = toggle;
+            TornPagesOption.IsChecked = toggle;
             for (int i = 0; i < data.TornPages.Count; ++i)
             {
-                HandleItemToggle(TornPagesOption, data.TornPages[i], false);
+                HandleItemToggle(toggle, data.TornPages[i], false);
             }
         }
 
         private void CureToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Cure = CureOption.IsChecked;
-            HandleItemToggle(CureOption, Cure1, false);
-            HandleItemToggle(CureOption, Cure2, false);
-            HandleItemToggle(CureOption, Cure3, false);
+            CureToggle(CureOption.IsChecked);
+        }
+
+        private void CureToggle(bool toggle)
+        {
+            Properties.Settings.Default.Cure = toggle;
+            CureOption.IsChecked = toggle;
+            HandleItemToggle(toggle, Cure1, false);
+            HandleItemToggle(toggle, Cure2, false);
+            HandleItemToggle(toggle, Cure3, false);
         }
 
         private void FinalFormToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FinalForm = FinalFormOption.IsChecked;
-            HandleItemToggle(FinalFormOption, Final, false);
+            FinalFormToggle(FinalFormOption.IsChecked);
+        }
+
+        private void FinalFormToggle(bool toggle)
+        {
+            Properties.Settings.Default.FinalForm = toggle;
+            FinalFormOption.IsChecked = toggle;
+            HandleItemToggle(toggle, Final, false);
         }
 
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.SoraHeart = SoraHeartOption.IsChecked;
-            HandleWorldToggle(SoraHeartOption, SorasHeart, SorasHeartGrid);
+            SoraHeartToggle(SoraHeartOption.IsChecked);
+        }
+
+        private void SoraHeartToggle(bool toggle)
+        {
+            Properties.Settings.Default.SoraHeart = toggle;
+            SoraHeartOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, SorasHeart, SorasHeartGrid);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Simulated = SimulatedOption.IsChecked;
-            HandleWorldToggle(SimulatedOption, SimulatedTwilightTown, SimulatedTwilightTownGrid);
+            SimulatedToggle(SimulatedOption.IsChecked);
+        }
+
+        private void SimulatedToggle(bool toggle)
+        {
+            Properties.Settings.Default.Simulated = toggle;
+            SimulatedOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, SimulatedTwilightTown, SimulatedTwilightTownGrid);
         }
 
         private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.HundredAcre = HundredAcreWoodOption.IsChecked;
-            HandleWorldToggle(HundredAcreWoodOption, HundredAcreWood, HundredAcreWoodGrid);
+            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
+        }
+
+        private void HundredAcreWoodToggle(bool toggle)
+        {
+            Properties.Settings.Default.HundredAcre = toggle;
+            HundredAcreWoodOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, HundredAcreWood, HundredAcreWoodGrid);
         }
 
         private void AtlanticaToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Atlantica = AtlanticaOption.IsChecked;
-            HandleWorldToggle(AtlanticaOption, Atlantica, AtlanticaGrid);
+            AtlanticaToggle(AtlanticaOption.IsChecked);
+        }
+
+        private void AtlanticaToggle(bool toggle)
+        {
+            Properties.Settings.Default.Atlantica = toggle;
+            AtlanticaOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, Atlantica, AtlanticaGrid);
         }
 
         private void SimpleToggle(object sender, RoutedEventArgs e)
@@ -578,8 +995,6 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "Limit");
                 Master.SetResourceReference(ContentProperty, "Master");
                 Final.SetResourceReference(ContentProperty, "Final");
-                OnceMore.SetResourceReference(ContentProperty, "OnceMore");
-                SecondChance.SetResourceReference(ContentProperty, "SecondChance");
                 TornPage1.SetResourceReference(ContentProperty, "TornPage");
                 TornPage2.SetResourceReference(ContentProperty, "TornPage");
                 TornPage3.SetResourceReference(ContentProperty, "TornPage");
@@ -593,6 +1008,27 @@ namespace KhTracker
                 Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
+                
+                broadcast.Report.SetResourceReference(ContentProperty, "AnsemReport");
+                broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
+                broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistence");
+                broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
+                broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
+                broadcast.Fire.SetResourceReference(ContentProperty, "Fire");
+                broadcast.Blizzard.SetResourceReference(ContentProperty, "Blizzard");
+                broadcast.Thunder.SetResourceReference(ContentProperty, "Thunder");
+                broadcast.Cure.SetResourceReference(ContentProperty, "Cure");
+                broadcast.Reflect.SetResourceReference(ContentProperty, "Reflect");
+                broadcast.Magnet.SetResourceReference(ContentProperty, "Magnet");
+                broadcast.Valor.SetResourceReference(ContentProperty, "Valor");
+                broadcast.Wisdom.SetResourceReference(ContentProperty, "Wisdom");
+                broadcast.Limit.SetResourceReference(ContentProperty, "Limit");
+                broadcast.Master.SetResourceReference(ContentProperty, "Master");
+                broadcast.Final.SetResourceReference(ContentProperty, "Final");
+                broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittle");
+                broadcast.Lamp.SetResourceReference(ContentProperty, "Genie");
+                broadcast.Ukulele.SetResourceReference(ContentProperty, "Stitch");
+                broadcast.Feather.SetResourceReference(ContentProperty, "PeterPan");
             }
             else
             {
@@ -632,8 +1068,6 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "LimitOld");
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
-                OnceMore.SetResourceReference(ContentProperty, "OnceMoreOld");
-                SecondChance.SetResourceReference(ContentProperty, "SecondChanceOld");
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
@@ -647,11 +1081,33 @@ namespace KhTracker
                 Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+
+                broadcast.Report.SetResourceReference(ContentProperty, "AnsemReportOld");
+                broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+                broadcast.Fire.SetResourceReference(ContentProperty, "FireOld");
+                broadcast.Blizzard.SetResourceReference(ContentProperty, "BlizzardOld");
+                broadcast.Thunder.SetResourceReference(ContentProperty, "ThunderOld");
+                broadcast.Cure.SetResourceReference(ContentProperty, "CureOld");
+                broadcast.Reflect.SetResourceReference(ContentProperty, "ReflectOld");
+                broadcast.Magnet.SetResourceReference(ContentProperty, "MagnetOld");
+                broadcast.Valor.SetResourceReference(ContentProperty, "ValorOld");
+                broadcast.Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
+                broadcast.Limit.SetResourceReference(ContentProperty, "LimitOld");
+                broadcast.Master.SetResourceReference(ContentProperty, "MasterOld");
+                broadcast.Final.SetResourceReference(ContentProperty, "FinalOld");
+                broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
+                broadcast.Lamp.SetResourceReference(ContentProperty, "GenieOld");
+                broadcast.Ukulele.SetResourceReference(ContentProperty, "StitchOld");
+                broadcast.Feather.SetResourceReference(ContentProperty, "PeterPanOld");
             }
         }
 
         private void WorldIconsToggle(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.WorldIcons = WorldIconsOption.IsChecked;
             if(WorldIconsOption.IsChecked)
             {
                 SorasHeart.SetResourceReference(ContentProperty, "SoraHeartImage");
@@ -695,6 +1151,34 @@ namespace KhTracker
                 PortRoyal.SetResourceReference(ContentProperty, "PortRoyalText");
                 TWTNW.SetResourceReference(ContentProperty, "TWTNWText");
                 Atlantica.SetResourceReference(ContentProperty, "AtlanticaText");
+            }
+        }
+
+        private void DragDropToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
+            data.dragDrop = DragAndDropOption.IsChecked;
+            foreach(Item item in data.Items)
+            {
+                if (item.Parent == ItemPool)
+                {
+                    if (data.dragDrop == false)
+                    {
+                        item.MouseDoubleClick -= item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
+
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
+                    else
+                    {
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove += item.Item_MouseMove;
+
+                        item.MouseDown -= item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
+                    }
+                }
             }
         }
 
@@ -753,7 +1237,7 @@ namespace KhTracker
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
-
+            
             // Format fixing for double digit numbers
             if (value > 10)
             {
@@ -766,19 +1250,19 @@ namespace KhTracker
                 (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
 
             }
+            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
+        }
 
-        }        
-
-        private void HandleItemToggle(MenuItem menuItem, Item button, bool init)
+        private void HandleItemToggle(bool toggle, Item button, bool init)
         {
-            if (menuItem.IsChecked)
+            if (toggle && button.IsEnabled == false)
             {
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
-                if(!init)
+                if (!init)
                     CheckTotal.Text = (int.Parse(CheckTotal.Text) + 1).ToString();
             }
-            else
+            else if (toggle == false && button.IsEnabled == true)
             {
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Hidden;
@@ -788,14 +1272,16 @@ namespace KhTracker
             }
         }
 
-        private void HandleWorldToggle(MenuItem menuItem, Button button, UniformGrid grid)
+        private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
-            if (menuItem.IsChecked)
+            if (toggle && button.IsEnabled == false)
             {
                 ((button.Parent as Grid).Parent as Grid).Height = Double.NaN;
                 ((button.Parent as Grid).Parent as Grid).IsEnabled = true;
+                button.IsEnabled = true;
+                button.Visibility = Visibility.Visible;
             }
-            else
+            else if (toggle == false && button.IsEnabled == true)
             {
                 if (data.selected == button)
                 {
@@ -824,6 +1310,8 @@ namespace KhTracker
 
                 ((button.Parent as Grid).Parent as Grid).Height = 0;
                 ((button.Parent as Grid).Parent as Grid).IsEnabled = false;
+                button.IsEnabled = false;
+                button.Visibility = Visibility.Collapsed;
             }
         }
 
