@@ -352,11 +352,186 @@ namespace KhTracker
             if (saveFileDialog.ShowDialog() == true)
             {
                 // save settings
-                
-                // save hint state (hint info, hints, track attempts)
-            
-                // save items in worlds
+                string settings = "Settings: ";
+                if (PromiseCharmOption.IsChecked)
+                    settings += "Promise Charm - ";
+                if (ReportsOption.IsChecked)
+                    settings += "Secret Ansem Reports - ";
+                if (AbilitiesOption.IsChecked)
+                    settings += "Once More & Second Chance - ";
+                if (TornPagesOption.IsChecked)
+                    settings += "Torn Pages - ";
+                if (CureOption.IsChecked)
+                    settings += "Cure - ";
+                if (FinalFormOption.IsChecked)
+                    settings += "Final Form - ";
+                if (SoraHeartOption.IsChecked)
+                    settings += "Sora's Heart - ";
+                if (SimulatedOption.IsChecked)
+                    settings += "Simulated Twilight Town - ";
+                if (HundredAcreWoodOption.IsChecked)
+                    settings += "100 Acre Wood - ";
+                if (AtlanticaOption.IsChecked)
+                    settings += "Atlantica - ";
 
+                // save hint state (hint info, hints, track attempts)
+                string attempts = "Attempts: ";
+                string reportInfo = "Info: ";
+                string locations = "Locations: ";
+                if (data.hintsLoaded)
+                {
+                    foreach (int num in data.reportAttempts)
+                    {
+                        attempts += " - " + num.ToString() ;
+                    }
+
+                    foreach (Tuple<string, int> info in data.reportInformation)
+                    {
+                        reportInfo += " - " + info.Item1 + " " + info.Item2.ToString();
+                    }
+
+                    foreach (string location in data.reportLocations)
+                    {
+                        locations += " - " + location;
+                    }
+                }
+                // store hint values
+                string hintValues = "HintValues:";
+                foreach (Image hint in data.Hints)
+                {
+                    int num = 0;
+                    for (int i = 0; i < data.Numbers.Count; ++i)
+                    {
+                        if (hint.Source == data.Numbers[i])
+                            num = i;
+                    }
+                    hintValues += " " + num.ToString();
+                }
+
+                // save items in worlds
+                string soraHeart = "SorasHeart:";
+                foreach (Item item in data.Grids[0].Children)
+                {
+                    soraHeart += " " + item.Name;
+                }
+                string driveForms = "DriveForms:";
+                foreach (Item item in data.Grids[1].Children)
+                {
+                    driveForms += " " + item.Name;
+                }
+                string simulated = "SimulatedTwilightTown:";
+                foreach (Item item in data.Grids[2].Children)
+                {
+                    simulated += " " + item.Name;
+                }
+                string twilightTown = "TwilightTown:";
+                foreach (Item item in data.Grids[3].Children)
+                {
+                    twilightTown += " " + item.Name;
+                }
+                string hollowBastion = "HollowBastion:";
+                foreach (Item item in data.Grids[4].Children)
+                {
+                    hollowBastion += " " + item.Name;
+                }
+                string beastCastle = "BeastsCastle:";
+                foreach (Item item in data.Grids[5].Children)
+                {
+                    beastCastle += " " + item.Name;
+                }
+                string olympusColiseum = "OlympusColiseum:";
+                foreach (Item item in data.Grids[6].Children)
+                {
+                    olympusColiseum += " " + item.Name;
+                }
+                string agrabah = "Agrabah:";
+                foreach (Item item in data.Grids[7].Children)
+                {
+                    agrabah += " " + item.Name;
+                }
+                string landOfDragons = "LandofDragons:";
+                foreach (Item item in data.Grids[8].Children)
+                {
+                    landOfDragons += " " + item.Name;
+                }
+                string hundredAcreWood = "HundredAcreWood:";
+                foreach (Item item in data.Grids[9].Children)
+                {
+                    hundredAcreWood += " " + item.Name;
+                }
+                string prideLands = "PrideLands:";
+                foreach (Item item in data.Grids[10].Children)
+                {
+                    prideLands += " " + item.Name;
+                }
+                string disneyCastle = "DisneyCastle:";
+                foreach (Item item in data.Grids[11].Children)
+                {
+                    disneyCastle += " " + item.Name;
+                }
+                string halloweenTown = "HalloweenTown:";
+                foreach (Item item in data.Grids[12].Children)
+                {
+                    halloweenTown += " " + item.Name;
+                }
+                string portRoyal = "PortRoyal:";
+                foreach (Item item in data.Grids[13].Children)
+                {
+                    portRoyal += " " + item.Name;
+                }
+                string spaceparanoids = "SpaceParanoids:";
+                foreach (Item item in data.Grids[14].Children)
+                {
+                    spaceparanoids += " " + item.Name;
+                }
+                string TWTNW = "TWTNW:";
+                foreach (Item item in data.Grids[15].Children)
+                {
+                    TWTNW += " " + item.Name;
+                }
+                string atlantica = "Atlantica:";
+                foreach (Item item in data.Grids[16].Children)
+                {
+                    atlantica += " " + item.Name;
+                }
+                string GoA = "GoA:";
+                foreach (Item item in data.Grids[17].Children)
+                {
+                    GoA += " " + item.Name;
+                }
+
+                FileStream file = File.Create(saveFileDialog.FileName);
+                StreamWriter writer = new StreamWriter(file);
+
+                writer.WriteLine(settings);
+                writer.WriteLine(data.hintsLoaded.ToString());
+                if (data.hintsLoaded)
+                {
+                    writer.WriteLine(attempts);
+                    writer.WriteLine(reportInfo);
+                    writer.WriteLine(locations);
+                }
+                writer.WriteLine(hintValues);
+                writer.WriteLine(soraHeart);
+                writer.WriteLine(driveForms);
+                writer.WriteLine(simulated);
+                writer.WriteLine(twilightTown);
+                writer.WriteLine(hollowBastion);
+                writer.WriteLine(beastCastle);
+                writer.WriteLine(olympusColiseum);
+                writer.WriteLine(agrabah);
+                writer.WriteLine(landOfDragons);
+                writer.WriteLine(hundredAcreWood);
+                writer.WriteLine(prideLands);
+                writer.WriteLine(disneyCastle);
+                writer.WriteLine(halloweenTown);
+                writer.WriteLine(portRoyal);
+                writer.WriteLine(spaceparanoids);
+                writer.WriteLine(TWTNW);
+                writer.WriteLine(atlantica);
+                writer.WriteLine(GoA);
+
+                writer.Close();
             }
         }
 
@@ -367,13 +542,74 @@ namespace KhTracker
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
+                FileStream file = File.OpenRead(openFileDialog.FileName);
+                StreamReader reader = new StreamReader(file);
+
                 // reset tracker
+                OnReset(null, null);
 
                 // set settings
+                string settings = reader.ReadLine();
+                LoadSettings(settings.Substring(10));
 
                 // set hint state
+                data.hintsLoaded = bool.Parse(reader.ReadLine());
+                if (data.hintsLoaded)
+                {
+                    string attempts = reader.ReadLine();
+                    attempts = attempts.Substring(13);
+                    string[] attemptsArray = attempts.Split('-');
+                    for (int i = 0; i < attemptsArray.Length; ++i)
+                    {
+                        data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                    }
 
+                    string reportInfo = reader.ReadLine();
+                    reportInfo = reportInfo.Substring(9);
+                    string[] reportInfoArray = reportInfo.Split('-');
+                    for (int j = 0; j < reportInfoArray.Length; ++j)
+                    {
+                        string info = reportInfoArray[j].Trim();
+                        // worlds have spaces in their names causing issues when separating the tuple
+                        string world = info.Substring(0, info.LastIndexOf(' '));
+                        int num = int.Parse(info.Substring(info.LastIndexOf(' ')));
+                        data.reportInformation.Add(new Tuple<string, int>(world, num));
+                    }
+
+                    string locations = reader.ReadLine();
+                    locations = locations.Substring(14);
+                    string[] locationsArray = locations.Split('-');
+                    for (int k = 0; k < locationsArray.Length; ++k)
+                    {
+                        data.reportLocations.Add(locationsArray[k].Trim());
+                    }
+                }
+                // set hint values
+                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
+                for (int i = 0; i < hintValues.Length; ++i)
+                {
+                    SetReportValue(data.Hints[i], int.Parse(hintValues[i]));
+                }
                 // add items to worlds
+                while (reader.EndOfStream == false)
+                {
+                    string world = reader.ReadLine();
+                    string worldName = world.Substring(0, world.IndexOf(':'));
+                    string items = world.Substring(world.IndexOf(':') + 1).Trim();
+                    if (items != string.Empty)
+                    {
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
+                            grid.Add_Item(importantCheck, this);
+
+                            // add report hover functionality
+                            if ((int)(importantCheck.GetValue(Grid.RowProperty)) == 0 && data.hintsLoaded)
+                                importantCheck.MouseEnter += importantCheck.Report_Hover;
+                        }
+                    }
+                }
             }
         }
 
@@ -410,7 +646,7 @@ namespace KhTracker
                 line2 = line2.TrimEnd('.');
                 string[] reportorder = line2.Split('.');
 
-                LoadSettings(streamReader.ReadLine());
+                LoadSettings(streamReader.ReadLine().Substring(24));
 
                 streamReader.Close();
 
@@ -454,8 +690,6 @@ namespace KhTracker
 
         private void LoadSettings(string settings)
         {
-            settings = settings.Substring(24);
-
             bool[] newsettings = new bool[10];
 
             string[] settinglist = settings.Split('-');
@@ -496,26 +730,16 @@ namespace KhTracker
                         break;
                 }
             }
-
-            if (PromiseCharmOption.IsChecked != newsettings[0])
+            
                 PromiseCharmToggle(newsettings[0]);
-            if (ReportsOption.IsChecked != newsettings[1])
                 ReportsToggle(newsettings[1]);
-            if (AbilitiesOption.IsChecked != newsettings[2])
                 AbilitiesToggle(newsettings[2]);
-            if (TornPagesOption.IsChecked != newsettings[3])
                 TornPagesToggle(newsettings[3]);
-            if (CureOption.IsChecked != newsettings[4])
                 CureToggle(newsettings[4]);
-            if (FinalFormOption.IsChecked != newsettings[5])
                 FinalFormToggle(newsettings[5]);
-            if (SoraHeartOption.IsChecked != newsettings[6])
                 SoraHeartToggle(newsettings[6]);
-            if (SimulatedOption.IsChecked != newsettings[7])
                 SimulatedToggle(newsettings[7]);
-            if (HundredAcreWoodOption.IsChecked != newsettings[8])
                 HundredAcreWoodToggle(newsettings[8]);
-            if (AtlanticaOption.IsChecked != newsettings[9])
                 AtlanticaToggle(newsettings[9]);
 
         }
@@ -962,7 +1186,7 @@ namespace KhTracker
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
-
+            
             // Format fixing for double digit numbers
             if (value > 10)
             {
@@ -975,19 +1199,19 @@ namespace KhTracker
                 (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
 
             }
-
-        }        
+            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
+        }
 
         private void HandleItemToggle(bool toggle, Item button, bool init)
         {
-            if (toggle)
+            if (toggle && button.IsEnabled == false)
             {
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
-                if(!init)
+                if (!init)
                     CheckTotal.Text = (int.Parse(CheckTotal.Text) + 1).ToString();
             }
-            else
+            else if (toggle == false && button.IsEnabled == true)
             {
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Hidden;
@@ -999,12 +1223,13 @@ namespace KhTracker
 
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
-            if (toggle)
+            if (toggle && button.IsEnabled == false)
             {
                 ((button.Parent as Grid).Parent as Grid).Height = Double.NaN;
                 ((button.Parent as Grid).Parent as Grid).IsEnabled = true;
+                button.IsEnabled = false;
             }
-            else
+            else if (toggle == false && button.IsEnabled == true)
             {
                 if (data.selected == button)
                 {

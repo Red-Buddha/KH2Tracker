@@ -25,7 +25,7 @@ namespace KhTracker
             InitializeComponent();
         }
 
-        public void HandleWorldGrid(Item button, bool add)
+        public void Handle_WorldGrid(Item button, bool add)
         {
             if (add)
                 Children.Add(button);
@@ -49,30 +49,51 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
-            UniformGrid grid = sender as UniformGrid;
+            Item item = e.Data.GetData(typeof(Item)) as Item;
 
-            Item button = e.Data.GetData(typeof(Item)) as Item;
+            if (Handle_Report(item, window, data))
+                Add_Item(item, window);
+        }
 
+        public void Add_Item(Item item, MainWindow window)
+        {
+            // move item to world
+            window.ItemPool.Children.Remove(item);
+            Handle_WorldGrid(item, true);
+
+            // update collection count
+            window.IncrementCollected();
+
+            // update mouse actions
+            item.MouseDoubleClick -= item.Item_Click;
+            item.MouseDown += item.Item_Return;
+            item.MouseMove -= item.Item_MouseMove;
+
+            item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
+        }
+
+        public bool Handle_Report(Item item, MainWindow window, Data data)
+        {
             bool isreport = false;
 
             // item is a report
-            if (data.hintsLoaded && (int)button.GetValue(Grid.RowProperty) == 0)
+            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
             {
-                int index = (int)button.GetValue(Grid.ColumnProperty);
+                int index = (int)item.GetValue(Grid.ColumnProperty);
 
                 // out of report attempts
                 if (data.reportAttempts[index] == 0)
-                    return;
+                    return false;
 
                 // check for correct report location
-                if (data.reportLocations[index].Replace(" ", "") == grid.Name.Substring(0, grid.Name.Length - 4))
+                if (data.reportLocations[index].Replace(" ", "") == Name.Substring(0, Name.Length - 4))
                 {
                     // hint text and resetting fail icons
                     window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks.");
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
-                    button.DragDropEventFire(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
+                    item.DragDropEventFire(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
 
                     // auto update world immportant check number
                     for (int i = 0; i < data.Hints.Count; ++i)
@@ -92,32 +113,21 @@ namespace KhTracker
                     else if (data.reportAttempts[index] == 2)
                         data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
 
-                    return;
+                    return false;
                 }
             }
 
-            // remove hint text when tracking a non-report
             if (isreport == false)
-                window.SetHintText("");
-
-            // move item to world
-            window.ItemPool.Children.Remove(button);
-            HandleWorldGrid(button, true);
-
-            // update collection count
-            window.IncrementCollected();
-
-            // update mouse actions
-            button.MouseDoubleClick -= button.Item_Click;
-            button.MouseDown += button.Item_Return;
-            button.MouseMove -= button.Item_MouseMove;
-
-            button.DragDropEventFire(button.Name, grid.Name.Remove(grid.Name.Length-4,4), true);
-
-            if (isreport)
             {
-                button.MouseEnter += button.Report_Hover;
+                // remove hint text when tracking a non-report
+                window.SetHintText("");
             }
+            else
+            {
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
         }
     }
 }

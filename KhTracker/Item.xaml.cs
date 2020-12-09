@@ -101,81 +101,15 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                bool isreport = false;
-
-                // item is a report
-                if (data.hintsLoaded && (int)GetValue(Grid.RowProperty) == 0)
-                {
-                    int index = (int)GetValue(Grid.ColumnProperty);
-
-                    if (data.reportAttempts[index] == 0)
-                        return;
-
-                    if (data.reportLocations[index].Replace(" ", "") == data.selected.Name)
-                    {
-                        window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks.");
-                        data.ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail0");
-                        data.reportAttempts[index] = 3;
-                        isreport = true;
-
-
-                        UpdateTotal(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
-
-                        for (int i = 0; i < data.Hints.Count; ++i)
-                        {
-                            if (data.Worlds[i].Name == data.reportInformation[index].Item1.Replace(" ", ""))
-                                ((MainWindow)Application.Current.MainWindow).SetReportValue(data.Hints[i], data.reportInformation[index].Item2 + 1);
-                        }
-                    }
-                    else
-                    {
-                        data.reportAttempts[index]--;
-                        if (data.reportAttempts[index] == 0)
-                            data.ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail3");
-                        else if (data.reportAttempts[index] == 1)
-                            data.ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail2");
-                        else if (data.reportAttempts[index] == 2)
-                            data.ReportAttemptVisual[index].SetResourceReference(ContentProperty, "Fail1");
-
-                        return;
-                    }
-                }
-
-                if (isreport == false)
-                    window.SetHintText("");
-
-                ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Remove(this);
-
                 for (int i = 0; i < data.Worlds.Count; ++i)
                 {
                     if (data.selected == data.Worlds[i])
                     {
-                        data.Grids[i].HandleWorldGrid(this, true);
+                        if (data.Grids[i].Handle_Report(this, window, data))
+                            data.Grids[i].Add_Item(this, window);
                         break;
                     }
                 }
-
-                ((MainWindow)Application.Current.MainWindow).IncrementCollected();
-
-                if (data.dragDrop)
-                {
-                    MouseDoubleClick -= Item_Click;
-                    MouseMove -= Item_MouseMove;
-                }
-                else
-                {
-                    MouseDown -= Item_MouseDown;
-                    MouseUp -= Item_MouseUp;
-                }
-
-                MouseDown += Item_Return;
-
-                if (isreport)
-                {
-                    MouseEnter += Report_Hover;
-                }
-                WorldGrid parent = this.Parent as WorldGrid;
-                UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length-4,4), true);
             }
         }
 
@@ -210,7 +144,7 @@ namespace KhTracker
             {
                 WorldGrid parent = this.Parent as WorldGrid;
 
-                ((WorldGrid)Parent).HandleWorldGrid(this, false);
+                ((WorldGrid)Parent).Handle_WorldGrid(this, false);
 
                 ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Add(this);
 
