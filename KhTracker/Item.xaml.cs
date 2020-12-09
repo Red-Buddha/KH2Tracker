@@ -42,7 +42,7 @@ namespace KhTracker
             public Point CenterOffset;
             public ItemAdorner(Item adornedElement) : base(adornedElement)
             {
-                renderRect = new Rect(adornedElement.RenderSize);
+                renderRect = new Rect(adornedElement.DesiredSize);
                 this.IsHitTestVisible = false;
                 imageSource = ((adornedElement).Content as Image).Source;
                 CenterOffset = new Point(-renderRect.Width / 2, -renderRect.Height / 2);
@@ -119,7 +119,7 @@ namespace KhTracker
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             int index = (int)GetValue(Grid.ColumnProperty);
 
-            window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks.");
+            window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks");
         }
 
         public void DragDropEventFire(string item, string world, bool add)

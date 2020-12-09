@@ -337,6 +337,21 @@ namespace KhTracker
         {
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
+
+            if (Width  < 490)
+            {
+                HintText.FontSize = 13;
+                CollectedBar.Height = 25;
+                CheckTotal.FontSize = 25;
+                Collected.FontSize = 25;
+            }
+            else
+            {
+                HintText.FontSize = 16;
+                CollectedBar.Height = 30;
+                CheckTotal.FontSize = 30;
+                Collected.FontSize = 30;
+            }
         }
 
         /// 
@@ -346,8 +361,8 @@ namespace KhTracker
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.DefaultExt = ".txt";
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog.DefaultExt = ".sav";
+            saveFileDialog.Filter = "save files (*.sav)|*.sav";
             saveFileDialog.FileName = "kh2fm-tracker-save";
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -501,35 +516,35 @@ namespace KhTracker
                 }
 
                 FileStream file = File.Create(saveFileDialog.FileName);
-                StreamWriter writer = new StreamWriter(file);
+                BinaryWriter writer = new BinaryWriter(file);
 
-                writer.WriteLine(settings);
-                writer.WriteLine(data.hintsLoaded.ToString());
+                writer.Write(settings);
+                writer.Write(data.hintsLoaded.ToString());
                 if (data.hintsLoaded)
                 {
-                    writer.WriteLine(attempts);
-                    writer.WriteLine(reportInfo);
-                    writer.WriteLine(locations);
+                    writer.Write(attempts);
+                    writer.Write(reportInfo);
+                    writer.Write(locations);
                 }
-                writer.WriteLine(hintValues);
-                writer.WriteLine(soraHeart);
-                writer.WriteLine(driveForms);
-                writer.WriteLine(simulated);
-                writer.WriteLine(twilightTown);
-                writer.WriteLine(hollowBastion);
-                writer.WriteLine(beastCastle);
-                writer.WriteLine(olympusColiseum);
-                writer.WriteLine(agrabah);
-                writer.WriteLine(landOfDragons);
-                writer.WriteLine(hundredAcreWood);
-                writer.WriteLine(prideLands);
-                writer.WriteLine(disneyCastle);
-                writer.WriteLine(halloweenTown);
-                writer.WriteLine(portRoyal);
-                writer.WriteLine(spaceparanoids);
-                writer.WriteLine(TWTNW);
-                writer.WriteLine(atlantica);
-                writer.WriteLine(GoA);
+                writer.Write(hintValues);
+                writer.Write(soraHeart);
+                writer.Write(driveForms);
+                writer.Write(simulated);
+                writer.Write(twilightTown);
+                writer.Write(hollowBastion);
+                writer.Write(beastCastle);
+                writer.Write(olympusColiseum);
+                writer.Write(agrabah);
+                writer.Write(landOfDragons);
+                writer.Write(hundredAcreWood);
+                writer.Write(prideLands);
+                writer.Write(disneyCastle);
+                writer.Write(halloweenTown);
+                writer.Write(portRoyal);
+                writer.Write(spaceparanoids);
+                writer.Write(TWTNW);
+                writer.Write(atlantica);
+                writer.Write(GoA);
 
                 writer.Close();
             }
@@ -538,25 +553,24 @@ namespace KhTracker
         private void LoadProgress(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".txt";
-            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog.DefaultExt = ".sav";
+            openFileDialog.Filter = "save files (*.sav)|*.sav";
             if (openFileDialog.ShowDialog() == true)
             {
                 FileStream file = File.OpenRead(openFileDialog.FileName);
-                StreamReader reader = new StreamReader(file);
-
+                BinaryReader reader = new BinaryReader(file);
                 // reset tracker
                 OnReset(null, null);
 
                 // set settings
-                string settings = reader.ReadLine();
+                string settings = reader.ReadString();
                 LoadSettings(settings.Substring(10));
 
                 // set hint state
-                data.hintsLoaded = bool.Parse(reader.ReadLine());
+                data.hintsLoaded = bool.Parse(reader.ReadString());
                 if (data.hintsLoaded)
                 {
-                    string attempts = reader.ReadLine();
+                    string attempts = reader.ReadString();
                     attempts = attempts.Substring(13);
                     string[] attemptsArray = attempts.Split('-');
                     for (int i = 0; i < attemptsArray.Length; ++i)
@@ -564,7 +578,7 @@ namespace KhTracker
                         data.reportAttempts[i] = int.Parse(attemptsArray[i]);
                     }
 
-                    string reportInfo = reader.ReadLine();
+                    string reportInfo = reader.ReadString();
                     reportInfo = reportInfo.Substring(9);
                     string[] reportInfoArray = reportInfo.Split('-');
                     for (int j = 0; j < reportInfoArray.Length; ++j)
@@ -576,7 +590,7 @@ namespace KhTracker
                         data.reportInformation.Add(new Tuple<string, int>(world, num));
                     }
 
-                    string locations = reader.ReadLine();
+                    string locations = reader.ReadString();
                     locations = locations.Substring(14);
                     string[] locationsArray = locations.Split('-');
                     for (int k = 0; k < locationsArray.Length; ++k)
@@ -585,15 +599,15 @@ namespace KhTracker
                     }
                 }
                 // set hint values
-                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
+                string[] hintValues = reader.ReadString().Substring(12).Split(' ');
                 for (int i = 0; i < hintValues.Length; ++i)
                 {
                     SetReportValue(data.Hints[i], int.Parse(hintValues[i]));
                 }
                 // add items to worlds
-                while (reader.EndOfStream == false)
+                while (reader.BaseStream.Position != reader.BaseStream.Length)
                 {
-                    string world = reader.ReadLine();
+                    string world = reader.ReadString();
                     string worldName = world.Substring(0, world.IndexOf(':'));
                     string items = world.Substring(world.IndexOf(':') + 1).Trim();
                     if (items != string.Empty)
@@ -982,8 +996,6 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "Limit");
                 Master.SetResourceReference(ContentProperty, "Master");
                 Final.SetResourceReference(ContentProperty, "Final");
-                OnceMore.SetResourceReference(ContentProperty, "OnceMore");
-                SecondChance.SetResourceReference(ContentProperty, "SecondChance");
                 TornPage1.SetResourceReference(ContentProperty, "TornPage");
                 TornPage2.SetResourceReference(ContentProperty, "TornPage");
                 TornPage3.SetResourceReference(ContentProperty, "TornPage");
@@ -997,14 +1009,12 @@ namespace KhTracker
                 Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
                 Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
                 PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
-
+                
                 broadcast.Report.SetResourceReference(ContentProperty, "AnsemReport");
                 broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeace");
                 broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistence");
                 broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnection");
                 broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharm");
-                broadcast.SecondChance.SetResourceReference(ContentProperty, "SecondChance");
-                broadcast.OnceMore.SetResourceReference(ContentProperty, "OnceMore");
                 broadcast.Fire.SetResourceReference(ContentProperty, "Fire");
                 broadcast.Blizzard.SetResourceReference(ContentProperty, "Blizzard");
                 broadcast.Thunder.SetResourceReference(ContentProperty, "Thunder");
@@ -1059,8 +1069,6 @@ namespace KhTracker
                 Limit.SetResourceReference(ContentProperty, "LimitOld");
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
-                OnceMore.SetResourceReference(ContentProperty, "OnceMoreOld");
-                SecondChance.SetResourceReference(ContentProperty, "SecondChanceOld");
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
@@ -1080,8 +1088,6 @@ namespace KhTracker
                 broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
                 broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
                 broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
-                broadcast.SecondChance.SetResourceReference(ContentProperty, "SecondChanceOld");
-                broadcast.OnceMore.SetResourceReference(ContentProperty, "OnceMoreOld");
                 broadcast.Fire.SetResourceReference(ContentProperty, "FireOld");
                 broadcast.Blizzard.SetResourceReference(ContentProperty, "BlizzardOld");
                 broadcast.Thunder.SetResourceReference(ContentProperty, "ThunderOld");

@@ -483,7 +483,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="Images/old/torn_page.png" Name="TornPage" Grid.RowSpan="3" Grid.Column="1"/>
+                    <ContentControl Content="{DynamicResource TornPage}" Name="TornPage" Grid.RowSpan="3" Grid.Column="1"/>
                     <Image Source="Images/zero.png" Name="TornPageFound" Grid.Row="1" Grid.Column="2"/>
                     <Image Source="Images/bar.png" Grid.Row="1" Grid.Column="3"/>
                     <Image Source="Images/five.png" Grid.Row="1" Grid.Column="4"/>
