@@ -65,9 +65,17 @@ namespace KhTracker
             window.IncrementCollected();
 
             // update mouse actions
-            item.MouseDoubleClick -= item.Item_Click;
+            if (MainWindow.data.dragDrop)
+            {
+                item.MouseDoubleClick -= item.Item_Click;
+                item.MouseMove -= item.Item_MouseMove;
+            }
+            else
+            {
+                item.MouseDown -= item.Item_MouseDown;
+                item.MouseUp -= item.Item_MouseUp;
+            }
             item.MouseDown += item.Item_Return;
-            item.MouseMove -= item.Item_MouseMove;
 
             item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
         }
