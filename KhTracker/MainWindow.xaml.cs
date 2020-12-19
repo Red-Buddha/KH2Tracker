@@ -271,8 +271,8 @@ namespace KhTracker
                     {
                         data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
 
-                        data.Hints[i].Margin = new Thickness(25, -20, 0, 0);
-
+                        (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                        (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
                         break;
                     }
                 }
