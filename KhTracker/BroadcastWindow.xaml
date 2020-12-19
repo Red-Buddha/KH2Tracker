@@ -455,7 +455,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width=".8*"/>
+                        <ColumnDefinition Width=".5*"/>
                         <ColumnDefinition Width=".3*"/>
                         <ColumnDefinition Width=".8*"/>
                         <ColumnDefinition/>
