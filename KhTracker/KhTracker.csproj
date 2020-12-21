@@ -75,10 +75,12 @@
     <Compile Include="BroadcastWindow.xaml.cs">
       <DependentUpon>BroadcastWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Options.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Toggles.cs" />
     <Compile Include="WorldGrid.xaml.cs">
       <DependentUpon>WorldGrid.xaml</DependentUpon>
     </Compile>
