@@ -75,6 +75,7 @@ namespace KhTracker
                 item.MouseDown -= item.Item_MouseDown;
                 item.MouseUp -= item.Item_MouseUp;
             }
+            item.MouseDown -= item.Item_Return;
             item.MouseDown += item.Item_Return;
 
             item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);

@@ -43,6 +43,7 @@
                 <Separator/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
             </MenuItem>
+            <MenuItem Header="v1.8.3" IsHitTestVisible="false"/>
         </Menu>
 
         <Grid>

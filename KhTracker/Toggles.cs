@@ -412,12 +412,16 @@ namespace KhTracker
                         item.MouseDoubleClick -= item.Item_Click;
                         item.MouseMove -= item.Item_MouseMove;
 
+                        item.MouseDown -= item.Item_MouseDown;
                         item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
                         item.MouseUp += item.Item_MouseUp;
                     }
                     else
                     {
+                        item.MouseDoubleClick -= item.Item_Click;
                         item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
                         item.MouseMove += item.Item_MouseMove;
 
                         item.MouseDown -= item.Item_MouseDown;

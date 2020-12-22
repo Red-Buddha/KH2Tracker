@@ -438,16 +438,20 @@ namespace KhTracker
                     data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
                     ItemPool.Children.Add(item);
 
+                    item.MouseDown -= item.Item_Return;
+
                     if (data.dragDrop)
                     {
-                        item.MouseDown -= item.Item_Return;
+                        item.MouseDoubleClick -= item.Item_Click;
                         item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
                         item.MouseMove += item.Item_MouseMove;
                     }
                     else
                     {
-                        item.MouseDown -= item.Item_Return;
+                        item.MouseDown -= item.Item_MouseDown;
                         item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
                         item.MouseUp += item.Item_MouseUp;
                     }
                 }

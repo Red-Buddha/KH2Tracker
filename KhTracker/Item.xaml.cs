@@ -154,12 +154,16 @@ namespace KhTracker
 
                 if (data.dragDrop)
                 {
+                    MouseDoubleClick -= Item_Click;
                     MouseDoubleClick += Item_Click;
+                    MouseMove -= Item_MouseMove;
                     MouseMove += Item_MouseMove;
                 }
                 else
                 {
+                    MouseDown -= Item_MouseDown;
                     MouseDown += Item_MouseDown;
+                    MouseUp -= Item_MouseUp;
                     MouseUp += Item_MouseUp;
                 }
 
