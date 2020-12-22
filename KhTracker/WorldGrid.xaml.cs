@@ -132,6 +132,7 @@ namespace KhTracker
             }
             else
             {
+                item.MouseEnter -= item.Report_Hover;
                 item.MouseEnter += item.Report_Hover;
             }
 
