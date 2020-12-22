@@ -439,7 +439,7 @@ namespace KhTracker
                     ItemPool.Children.Add(item);
 
                     item.MouseDown -= item.Item_Return;
-
+                    item.MouseEnter -= item.Report_Hover;
                     if (data.dragDrop)
                     {
                         item.MouseDoubleClick -= item.Item_Click;
