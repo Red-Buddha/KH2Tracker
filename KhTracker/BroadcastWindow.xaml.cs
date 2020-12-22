@@ -187,6 +187,17 @@ namespace KhTracker
                             ((worldFound.Parent as Grid).Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
                         }
                     }
+                    else if (world.Key == "Report")
+                    {
+                        if (world.Value >= 10)
+                        {
+                            (worldFound.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.8, GridUnitType.Star);
+                        }
+                        else
+                        {
+                            (worldFound.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.5, GridUnitType.Star);
+                        }
+                    }
                 }
             }
             foreach (KeyValuePair<string, int> total in totals)
