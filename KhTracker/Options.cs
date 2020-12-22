@@ -280,6 +280,16 @@ namespace KhTracker
             }
         }
 
+        private void DropHints(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                LoadHints(files[0]);
+            }
+        }
+
         private void LoadHints(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -287,48 +297,52 @@ namespace KhTracker
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
-                ResetHints();
-
-                Stream stream = openFileDialog.OpenFile();
-                StreamReader streamReader = new StreamReader(stream);
-
-                if (streamReader.EndOfStream)
-                {
-                    HintText.Content = "Error loading hints";
-                    streamReader.Close();
-                    return;
-                }
-
-                string line1 = streamReader.ReadLine();
-                data.hintFileText[0] = line1;
-                string[] reportvalues = line1.Split('.');
-
-                if (streamReader.EndOfStream)
-                {
-                    HintText.Content = "Error loading hints";
-                    streamReader.Close();
-                    return;
-                }
-
-                string line2 = streamReader.ReadLine();
-                data.hintFileText[1] = line2;
-                line2 = line2.TrimEnd('.');
-                string[] reportorder = line2.Split('.');
-
-                LoadSettings(streamReader.ReadLine().Substring(24));
-
-                streamReader.Close();
-
-                for (int i = 0; i < reportorder.Length; ++i)
-                {
-                    data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
-                    string[] temp = reportvalues[i].Split(',');
-                    data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
-                }
-
-                data.hintsLoaded = true;
-                HintText.Content = "Hints Loaded";
+                LoadHints(openFileDialog.FileName);
             }
+        }
+
+        public void LoadHints(string filename)
+        {
+            ResetHints();
+            
+            StreamReader streamReader = new StreamReader(filename);
+
+            if (streamReader.EndOfStream)
+            {
+                HintText.Content = "Error loading hints";
+                streamReader.Close();
+                return;
+            }
+
+            string line1 = streamReader.ReadLine();
+            data.hintFileText[0] = line1;
+            string[] reportvalues = line1.Split('.');
+
+            if (streamReader.EndOfStream)
+            {
+                HintText.Content = "Error loading hints";
+                streamReader.Close();
+                return;
+            }
+
+            string line2 = streamReader.ReadLine();
+            data.hintFileText[1] = line2;
+            line2 = line2.TrimEnd('.');
+            string[] reportorder = line2.Split('.');
+
+            LoadSettings(streamReader.ReadLine().Substring(24));
+
+            streamReader.Close();
+
+            for (int i = 0; i < reportorder.Length; ++i)
+            {
+                data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                string[] temp = reportvalues[i].Split(',');
+                data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+            }
+
+            data.hintsLoaded = true;
+            HintText.Content = "Hints Loaded";
         }
 
         private void ResetHints()
