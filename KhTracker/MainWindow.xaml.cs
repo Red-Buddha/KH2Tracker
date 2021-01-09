@@ -124,19 +124,19 @@ namespace KhTracker
             data.Reports.Add(Report12);
             data.Reports.Add(Report13);
 
-            data.ReportAttemptVisual.Add(Report1Attempts);
-            data.ReportAttemptVisual.Add(Report2Attempts);
-            data.ReportAttemptVisual.Add(Report3Attempts);
-            data.ReportAttemptVisual.Add(Report4Attempts);
-            data.ReportAttemptVisual.Add(Report5Attempts);
-            data.ReportAttemptVisual.Add(Report6Attempts);
-            data.ReportAttemptVisual.Add(Report7Attempts);
-            data.ReportAttemptVisual.Add(Report8Attempts);
-            data.ReportAttemptVisual.Add(Report9Attempts);
-            data.ReportAttemptVisual.Add(Report10Attempts);
-            data.ReportAttemptVisual.Add(Report11Attempts);
-            data.ReportAttemptVisual.Add(Report12Attempts);
-            data.ReportAttemptVisual.Add(Report13Attempts);
+            data.ReportAttemptVisual.Add(Attempts1);
+            data.ReportAttemptVisual.Add(Attempts2);
+            data.ReportAttemptVisual.Add(Attempts3);
+            data.ReportAttemptVisual.Add(Attempts4);
+            data.ReportAttemptVisual.Add(Attempts5);
+            data.ReportAttemptVisual.Add(Attempts6);
+            data.ReportAttemptVisual.Add(Attempts7);
+            data.ReportAttemptVisual.Add(Attempts8);
+            data.ReportAttemptVisual.Add(Attempts9);
+            data.ReportAttemptVisual.Add(Attempts10);
+            data.ReportAttemptVisual.Add(Attempts11);
+            data.ReportAttemptVisual.Add(Attempts12);
+            data.ReportAttemptVisual.Add(Attempts13);
 
             data.TornPages.Add(TornPage1);
             data.TornPages.Add(TornPage2);

@@ -99,7 +99,6 @@ namespace KhTracker
         "11D18DE0",
         "11D18DE2" };
 
-
         string[] SimulatedTwilightTown = new string[] {
         "11CE016E",
         "11CE017A",

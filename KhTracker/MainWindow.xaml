@@ -20,6 +20,7 @@
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <MenuItem Header="Load Hints" Click="LoadHints"/>
+                <MenuItem Header="Run Auto Tracker" Click="InitAutoTracker"/>
                 <Separator/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
                 <Separator/>
@@ -44,7 +45,7 @@
                 <Separator/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
             </MenuItem>
-            <MenuItem Header="v1.8.4" IsHitTestVisible="false"/>
+            <MenuItem Header="v2.0" IsHitTestVisible="false"/>
         </Menu>
 
         <Grid>
@@ -618,79 +619,79 @@
                 <local:Item x:Name="Report1" Grid.Row="0" Grid.Column="0" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport1"/>
                 </local:Item>
-                <ContentControl Name="Report1Attempts" Grid.Row="0" Grid.Column="0" Panel.ZIndex="1">
+                <ContentControl Name="Attempts1" Grid.Row="0" Grid.Column="0" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report2" Grid.Row="0" Grid.Column="1" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport2"/>
                 </local:Item>
-                <ContentControl Name="Report2Attempts" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1">
+                <ContentControl Name="Attempts2" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report3" Grid.Row="0" Grid.Column="2" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport3"/>
                 </local:Item>
-                <ContentControl Name="Report3Attempts" Grid.Row="0" Grid.Column="2" Panel.ZIndex="1">
+                <ContentControl Name="Attempts3" Grid.Row="0" Grid.Column="2" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report4" Grid.Row="0" Grid.Column="3" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport4"/>
                 </local:Item>
-                <ContentControl Name="Report4Attempts" Grid.Row="0" Grid.Column="3" Panel.ZIndex="1">
+                <ContentControl Name="Attempts4" Grid.Row="0" Grid.Column="3" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report5" Grid.Row="0" Grid.Column="4" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport5"/>
                 </local:Item>
-                <ContentControl Name="Report5Attempts" Grid.Row="0" Grid.Column="4" Panel.ZIndex="1">
+                <ContentControl Name="Attempts5" Grid.Row="0" Grid.Column="4" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report6" Grid.Row="0" Grid.Column="5" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport6"/>
                 </local:Item>
-                <ContentControl Name="Report6Attempts" Grid.Row="0" Grid.Column="5" Panel.ZIndex="1">
+                <ContentControl Name="Attempts6" Grid.Row="0" Grid.Column="5" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report7" Grid.Row="0" Grid.Column="6" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport7"/>
                 </local:Item>
-                <ContentControl Name="Report7Attempts" Grid.Row="0" Grid.Column="6" Panel.ZIndex="1">
+                <ContentControl Name="Attempts7" Grid.Row="0" Grid.Column="6" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report8" Grid.Row="0" Grid.Column="7" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport8"/>
                 </local:Item>
-                <ContentControl Name="Report8Attempts" Grid.Row="0" Grid.Column="7" Panel.ZIndex="1">
+                <ContentControl Name="Attempts8" Grid.Row="0" Grid.Column="7" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report9" Grid.Row="0" Grid.Column="8" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport9"/>
                 </local:Item>
-                <ContentControl Name="Report9Attempts" Grid.Row="0" Grid.Column="8" Panel.ZIndex="1">
+                <ContentControl Name="Attempts9" Grid.Row="0" Grid.Column="8" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report10" Grid.Row="0" Grid.Column="9" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport10"/>
                 </local:Item>
-                <ContentControl Name="Report10Attempts" Grid.Row="0" Grid.Column="9" Panel.ZIndex="1">
+                <ContentControl Name="Attempts10" Grid.Row="0" Grid.Column="9" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report11" Grid.Row="0" Grid.Column="10" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport11"/>
                 </local:Item>
-                <ContentControl Name="Report11Attempts" Grid.Row="0" Grid.Column="10" Panel.ZIndex="1">
+                <ContentControl Name="Attempts11" Grid.Row="0" Grid.Column="10" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report12" Grid.Row="0" Grid.Column="11" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport12"/>
                 </local:Item>
-                <ContentControl Name="Report12Attempts" Grid.Row="0" Grid.Column="11" Panel.ZIndex="1">
+                <ContentControl Name="Attempts12" Grid.Row="0" Grid.Column="11" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
                 <local:Item x:Name="Report13" Grid.Row="0" Grid.Column="12" Panel.ZIndex="0">
                     <DynamicResource ResourceKey="AnsemReport13"/>
                 </local:Item>
-                <ContentControl Name="Report13Attempts" Grid.Row="0" Grid.Column="12" Panel.ZIndex="1">
+                <ContentControl Name="Attempts13" Grid.Row="0" Grid.Column="12" Panel.ZIndex="1">
                     <DynamicResource ResourceKey="Fail0"/>
                 </ContentControl>
 

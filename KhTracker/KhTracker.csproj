@@ -72,9 +72,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoTracking\Ability.cs" />
+    <Compile Include="AutoTracking\AutoTracker.cs" />
+    <Compile Include="AutoTracking\ItemCodes.cs" />
+    <Compile Include="AutoTracking\Magic.cs" />
+    <Compile Include="AutoTracking\Proof.cs" />
+    <Compile Include="AutoTracking\Report.cs" />
+    <Compile Include="AutoTracking\Rewards.cs" />
+    <Compile Include="AutoTracking\Stats.cs" />
+    <Compile Include="AutoTracking\Summon.cs" />
+    <Compile Include="AutoTracking\TornPage.cs" />
+    <Compile Include="AutoTracking\World.cs" />
     <Compile Include="BroadcastWindow.xaml.cs">
       <DependentUpon>BroadcastWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AutoTracking\Convertor.cs" />
+    <Compile Include="AutoTracking\DriveForm.cs" />
+    <Compile Include="AutoTracking\ImportantCheck.cs" />
+    <Compile Include="AutoTracking\MemoryReader.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Item.xaml.cs">

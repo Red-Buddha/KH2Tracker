@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections;
+using System.Threading.Tasks;
+
+namespace KhTracker
+{
+    class DriveForm : ImportantCheck
+    {
+        public int previousLevel;
+        private int level = 0;
+        public int Level
+        {
+            get { return level; }
+            set
+            {
+                level = value;
+                OnPropertyChanged("Level");
+            }
+        }
+        private int byteNum;
+        private int levelAddr;
+
+        public DriveForm(MemoryReader mem, int address, int offset, int byteNumber, int levelAddress, string name) : base(mem, address, offset, name)
+        {
+            byteNum = byteNumber;
+            levelAddr = levelAddress;
+            Bytes = 2;
+        }
+
+        public override byte[] UpdateMemory()
+        {
+            byte[] data = base.UpdateMemory();
+            Obtained = new BitArray(data)[byteNum];
+            byte[] levelData = memory.ReadMemory(levelAddr + ADDRESS_OFFSET, 1);
+            previousLevel = Level;
+            if (Obtained == true)
+            {
+                Level = levelData[0];
+            }
+            if (levelData[0] > 1)
+            {
+                Level = levelData[0];
+            }
+            return null;
+        }
+    }
+}

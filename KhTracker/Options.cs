@@ -487,6 +487,11 @@ namespace KhTracker
 
             ResetHints();
 
+            // Reset / Turn off auto tracking
+            collectedChecks.Clear();
+            newChecks.Clear();
+            aTimer.Stop();
+
             double broadcastLeft = broadcast.Left;
             double broadcastTop = broadcast.Top;
             bool broadcastVisible = broadcast.IsVisible;
