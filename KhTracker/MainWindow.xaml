@@ -586,16 +586,16 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Foreground="White">Level</Label>
-                        <Label Name="Level" Foreground="White" Grid.Column="1">1</Label>
-                        <Label Foreground="White" Grid.Row="1">Weapon</Label>
-                        <Label Name="Weapon" Foreground="White" Grid.Row="1" Grid.Column="1">Sword</Label>
-                        <Label Foreground="White" Grid.Row="0" Grid.Column="2">Strength</Label>
-                        <Label Foreground="White" Grid.Row="1" Grid.Column="2">Magic</Label>
-                        <Label Foreground="White" Grid.Row="2" Grid.Column="2">Defense</Label>
-                        <Label Name="Strength" Foreground="White" Grid.Row="0" Grid.Column="3">2</Label>
-                        <Label Name="Magic" Foreground="White" Grid.Row="1" Grid.Column="3">6</Label>
-                        <Label Name="Defense" Foreground="White" Grid.Row="2" Grid.Column="3">2</Label>
+                        <Label Foreground="White" Padding="5,5,5,0">Level</Label>
+                        <Label Name="Level" Foreground="White" Grid.Column="1" Padding="5,5,5,0">1</Label>
+                        <Label Foreground="White" Grid.Row="1" Padding="5,5,5,0">Weapon</Label>
+                        <Label Name="Weapon" Foreground="White" Grid.Row="1" Grid.Column="1" Padding="5,5,5,0">Sword</Label>
+                        <Label Foreground="White" Grid.Row="0" Grid.Column="2" Padding="5,5,5,0">Strength</Label>
+                        <Label Foreground="White" Grid.Row="1" Grid.Column="2" Padding="5,5,5,0">Magic</Label>
+                        <Label Foreground="White" Grid.Row="2" Grid.Column="2" Padding="5,5,5,0">Defense</Label>
+                        <Label Name="Strength" Foreground="White" Grid.Row="0" Grid.Column="3" Padding="5,5,5,0">2</Label>
+                        <Label Name="Magic" Foreground="White" Grid.Row="1" Grid.Column="3" Padding="5,5,5,0">6</Label>
+                        <Label Name="Defense" Foreground="White" Grid.Row="2" Grid.Column="3" Padding="5,5,5,0">2</Label>
                     </Grid>
                 </Grid>
             </Grid>

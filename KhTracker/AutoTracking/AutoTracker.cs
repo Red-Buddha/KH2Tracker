@@ -144,7 +144,7 @@ namespace KhTracker
             importantChecks.Add(pages = new TornPage(memory, 0x0032F0C8, ADDRESS_OFFSET, "TornPage"));
 
             world = new World(memory, ADDRESS_OFFSET, 0x0032BAE0);
-            stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02F, 0x01C6C8D8, 0x01C6C8DA, 0x01C6C8DC);
+            stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8);
             rewards = new Rewards(memory, ADDRESS_OFFSET);
             collectedChecks = new List<ImportantCheck>();
             newChecks = new List<ImportantCheck>();
@@ -223,10 +223,11 @@ namespace KhTracker
             //genie.BindImage(GenieImage, "Obtained");
             //peterPan.BindImage(PeterPanImage, "Obtained");
 
-            BindLabel(Level, "Level");
-            BindLabel(Strength, "Strength");
-            BindLabel(Magic, "Magic");
-            BindLabel(Defense, "Defense");
+            BindLabel(Level, "Level", stats);
+            BindLabel(Weapon, "Weapon", stats);
+            BindLabel(Strength, "Strength", stats);
+            BindLabel(Magic, "Magic", stats);
+            BindLabel(Defense, "Defense", stats);
         }
         private void SetTimer()
         {
@@ -286,11 +287,8 @@ namespace KhTracker
 
             if (newChecks.Count > 0)
             {
-                // need to determine weapon selection
-                // crashes when dragging an item into a world as its tracked automatically
-
                 // Get rewards between previous level and current level
-                List<string> levelRewards = rewards.levelChecks
+                List<string> levelRewards = rewards.GetLevelRewards(stats.Weapon)
                     .Where(reward => reward.Item1 > stats.previousLevel && reward.Item1 <= stats.Level)
                     .Select(reward => reward.Item2).ToList();
                 // Get drive rewards between previous level and current level
@@ -399,11 +397,11 @@ namespace KhTracker
             return BitConverter.ToString(bytes).Replace("-", "");
         }
 
-        private void BindLabel(ContentControl cc, string property)
+        private void BindLabel(ContentControl cc, string property, object source)
         {
             Binding binding = new Binding(property);
-            binding.Source = this;
-            cc.SetBinding(ContentControl.ContentProperty, binding);
+            binding.Source = source;
+            cc.SetBinding(ContentProperty, binding);
         }
     }
 }

@@ -20,6 +20,16 @@ namespace KhTracker
                 OnPropertyChanged("Level");
             }
         }
+        private string weapon;
+        public string Weapon
+        {
+            get { return weapon; }
+            set
+            {
+                weapon = value;
+                OnPropertyChanged("Weapon");
+            }
+        }
         private int strength;
         public int Strength
         {
@@ -52,22 +62,18 @@ namespace KhTracker
         }
 
         private int levelAddress;
-        private int strengthAddress;
-        private int magicAddress;
-        private int defenseAddress;
+        private int statsAddress;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public Stats(MemoryReader mem, int offset, int lvlAddress, int strAddress, int magAddress, int defAddress)
+        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             levelAddress = lvlAddress;
-            strengthAddress = strAddress;
-            magicAddress = magAddress;
-            defenseAddress = defAddress;
+            statsAddress = statsAddr;
         }
 
         // this is not working
@@ -84,15 +90,26 @@ namespace KhTracker
 
         public void UpdateMemory()
         {
-            byte[] levelData = memory.ReadMemory(levelAddress + ADDRESS_OFFSET, 1);
+            byte[] levelData = memory.ReadMemory(levelAddress + ADDRESS_OFFSET, 2);
+
+            if (levelData[0] == 0 && Weapon != "Sword")
+                Weapon = "Sword";
+            else if (levelData[0] == 1 && Weapon != "Shield")
+                Weapon = "Shield";
+            else if (levelData[0] == 2 && Weapon != "Staff")
+                Weapon = "Staff";
+
             previousLevel = level;
-            Level = levelData[0];
-            byte[] strengthData = memory.ReadMemory(strengthAddress + ADDRESS_OFFSET, 1);
-            Strength = strengthData[0];
-            byte[] magicData = memory.ReadMemory(magicAddress + ADDRESS_OFFSET, 1);
-            Magic = magicData[0];
-            byte[] defenseData = memory.ReadMemory(defenseAddress + ADDRESS_OFFSET, 1);
-            Defense = defenseData[0];
+            if (Level != levelData[1])
+                Level = levelData[1];
+
+            byte[] statsData = memory.ReadMemory(statsAddress + ADDRESS_OFFSET, 5);
+            if (Strength != statsData[0])
+                Strength = statsData[0];
+            if (Magic != statsData[2])
+                Magic = statsData[2];
+            if (Defense != statsData[4])
+                Defense = statsData[4];
         }
     }
 }
