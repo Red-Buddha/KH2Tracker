@@ -110,12 +110,12 @@ namespace KhTracker
             importantChecks.Add(limit = new DriveForm(memory, 0x0032F1FA, ADDRESS_OFFSET, 3, 0x0032EE26, "Limit"));
             importantChecks.Add(final = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 4, 0x0032EE26, "Final"));
 
-            importantChecks.Add(fire = new Magic(memory, 0x0032F0C4, ADDRESS_OFFSET, "Fire"));
-            importantChecks.Add(blizzard = new Magic(memory, 0x0032F0C5, ADDRESS_OFFSET, "Blizzard"));
-            importantChecks.Add(thunder = new Magic(memory, 0x0032F0C6, ADDRESS_OFFSET, "Thunder"));
-            importantChecks.Add(cure = new Magic(memory, 0x0032F0C7, ADDRESS_OFFSET, "Cure"));
-            importantChecks.Add(magnet = new Magic(memory, 0x0032F0FF, ADDRESS_OFFSET, "Magnet"));
-            importantChecks.Add(reflect = new Magic(memory, 0x0032F100, ADDRESS_OFFSET, "Reflect"));
+            importantChecks.Add(fire = new Magic(memory, 0x0032F0C4, 0x0032D822, ADDRESS_OFFSET, "Fire"));
+            importantChecks.Add(blizzard = new Magic(memory, 0x0032F0C5, 0x0032D823, ADDRESS_OFFSET, "Blizzard"));
+            importantChecks.Add(thunder = new Magic(memory, 0x0032F0C6, 0x0032D824, ADDRESS_OFFSET, "Thunder"));
+            importantChecks.Add(cure = new Magic(memory, 0x0032F0C7, 0x0032D825, ADDRESS_OFFSET, "Cure"));
+            importantChecks.Add(magnet = new Magic(memory, 0x0032F0FF, 0x0032D826, ADDRESS_OFFSET, "Magnet"));
+            importantChecks.Add(reflect = new Magic(memory, 0x0032F100, 0x0032D827, ADDRESS_OFFSET, "Reflect"));
 
             importantChecks.Add(rep1 = new Report(memory, 0x0032F1F4, ADDRESS_OFFSET, 6, "Report1"));
             importantChecks.Add(rep2 = new Report(memory, 0x0032F1F4, ADDRESS_OFFSET, 7, "Report2"));
@@ -222,6 +222,11 @@ namespace KhTracker
             //chickenLittle.BindImage(ChickenLittleImage, "Obtained");
             //genie.BindImage(GenieImage, "Obtained");
             //peterPan.BindImage(PeterPanImage, "Obtained");
+
+            BindLabel(Level, "Level");
+            BindLabel(Strength, "Strength");
+            BindLabel(Magic, "Magic");
+            BindLabel(Defense, "Defense");
         }
         private void SetTimer()
         {
@@ -239,12 +244,31 @@ namespace KhTracker
             {
                 findAddressOffset();
             }
+            stats.UpdateMemory();
+            world.UpdateMemory();
+            if(world.world == "SimulatedTwilightTown")
+            {
+                fire.UseSTTAddress(true);
+                blizzard.UseSTTAddress(true);
+                thunder.UseSTTAddress(true);
+                cure.UseSTTAddress(true);
+                reflect.UseSTTAddress(true);
+                magnet.UseSTTAddress(true);
+            }
+            else
+            {
+                fire.UseSTTAddress(false);
+                blizzard.UseSTTAddress(false);
+                thunder.UseSTTAddress(false);
+                cure.UseSTTAddress(false);
+                reflect.UseSTTAddress(false);
+                magnet.UseSTTAddress(false);
+            }
+
             importantChecks.ForEach(delegate (ImportantCheck importantCheck)
             {
                 importantCheck.UpdateMemory();
             });
-            stats.UpdateMemory();
-            world.UpdateMemory();
 
             foreach (ImportantCheck check in importantChecks)
             {
@@ -263,12 +287,11 @@ namespace KhTracker
             if (newChecks.Count > 0)
             {
                 // need to determine weapon selection
-                // need to determine STT vs TT
                 // crashes when dragging an item into a world as its tracked automatically
 
                 // Get rewards between previous level and current level
                 List<string> levelRewards = rewards.levelChecks
-                    .Where(reward => reward.Item1 > stats.previousLevel && reward.Item1 <= stats.level)
+                    .Where(reward => reward.Item1 > stats.previousLevel && reward.Item1 <= stats.Level)
                     .Select(reward => reward.Item2).ToList();
                 // Get drive rewards between previous level and current level
                 List<string> driveRewards = rewards.valorChecks
@@ -333,32 +356,32 @@ namespace KhTracker
             while (fire.Level > fireLevel)
             {
                 ++fireLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Fire" + fireLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Fire" + fireLevel.ToString()));
             }
             while (blizzard.Level > blizzardLevel)
             {
                 ++blizzardLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Blizzard" + blizzardLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Blizzard" + blizzardLevel.ToString()));
             }
             while (thunder.Level > thunderLevel)
             {
                 ++thunderLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Thunder" + thunderLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Thunder" + thunderLevel.ToString()));
             }
             while (cure.Level > cureLevel)
             {
                 ++cureLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Cure" + cureLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Cure" + cureLevel.ToString()));
             }
             while (reflect.Level > reflectLevel)
             {
                 ++reflectLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Reflect" + reflectLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Reflect" + reflectLevel.ToString()));
             }
             while (magnet.Level > magnetLevel)
             {
                 ++magnetLevel;
-                newChecks.Add(new Magic(null, 0, 0, "Magnet" + magnetLevel.ToString()));
+                newChecks.Add(new Magic(null, 0, 0, 0, "Magnet" + magnetLevel.ToString()));
             }
             while (pages.Quantity > tornPageCount)
             {
@@ -374,6 +397,13 @@ namespace KhTracker
                 return "Service not started. Waiting for PCSX2";
             }
             return BitConverter.ToString(bytes).Replace("-", "");
+        }
+
+        private void BindLabel(ContentControl cc, string property)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = this;
+            cc.SetBinding(ContentControl.ContentProperty, binding);
         }
     }
 }

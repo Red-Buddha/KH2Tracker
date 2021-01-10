@@ -10,6 +10,9 @@ namespace KhTracker
 {
     class Magic : ImportantCheck
     {
+        private int sttAddress;
+        private bool useSTTAddress;
+
         private int level;
         public int Level
         {
@@ -20,14 +23,18 @@ namespace KhTracker
                 OnPropertyChanged("Level");
             }
         }
-        public Magic(MemoryReader mem, int address, int offset, string name) : base(mem, address, offset, name)
+        public Magic(MemoryReader mem, int address, int sttAddr, int offset, string name) : base(mem, address, offset, name)
         {
-
+            sttAddress = sttAddr;
         }
 
         public override byte[] UpdateMemory()
         {
-            byte[] data = base.UpdateMemory();
+            byte[] data;
+            if (useSTTAddress)
+                data = memory.ReadMemory(sttAddress + ADDRESS_OFFSET, Bytes);
+            else
+                data = base.UpdateMemory();
             if (Obtained == false && data[0] > 0)
             {
                 Obtained = true;
@@ -38,5 +45,9 @@ namespace KhTracker
             return null;
         }
 
+        public void UseSTTAddress(bool toggle)
+        {
+            useSTTAddress = toggle;
+        }
     }
 }

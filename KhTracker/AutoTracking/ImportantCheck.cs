@@ -41,10 +41,9 @@ namespace KhTracker
 
         public void OnPropertyChanged(string info)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
+            if (PropertyChanged != null)
             {
-                handler(this, new PropertyChangedEventArgs(info));
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
 
@@ -70,22 +69,6 @@ namespace KhTracker
             binding.Source = this;
             binding.Converter = new ObtainedConverter();
             cc.SetBinding(Image.OpacityProperty, binding);
-        }
-
-        private void DetermineLocation()
-        {
-            //if (level.increased && levelreward[level] == item)
-            //{
-            //    add item to levels
-            //}
-            //if (driveform.increased && drivereward[drivelevel] == item)
-            //{
-            //    add item to drive
-            //}
-            //else
-            //{
-            //    add item to world
-            //}
         }
     }
 }
