@@ -77,7 +77,18 @@ namespace KhTracker
             // Handle Goa
             if (world == "HollowBastion" && roomNumber == 26)
             {
-                world = "GoA";
+                if (roomNumber == 26)
+                    world = "GoA";
+                else if (roomNumber == 32)
+                    world = "HalloweenTown"; // Vexen
+                else if (roomNumber == 33 && eventID1 == 123)
+                    world = "Agrabah"; // Lexaeus
+                else if (roomNumber == 33 && eventID1 == 129)
+                    world = "SpaceParanoids"; // Larxene
+                else if (roomNumber == 34)
+                    world = "OlympusColiseum"; // Zexion
+                else if (roomNumber == 38)
+                    world = "DisneyCastle"; // Marluxia
             }
             // Handle STT
             if (world == "TwilightTown")
@@ -88,6 +99,34 @@ namespace KhTracker
                     world = "SimulatedTwilightTown";
                 }
             }
+
+            if (world == "TWTNW")
+            {
+                if (roomNumber == 10 && eventID1 == 108)
+                    world = "LandofDragons"; // Xigbar
+                else if (roomNumber == 15 && eventID1 == 110)
+                    world = "PrideLands"; // Saix
+                else if (roomNumber == 14 && eventID1 == 112)
+                    world = "PortRoyal"; // Luxord
+                else if (roomNumber == 21 && eventID1 == 114)
+                    world = "SimulatedTwilightTown"; // roxas
+            }
+            // xemnas ok
+            // terra ok
+            // axel ok
+            // xaldin ok
+            // demyx ok
+
+            // vexen 4 32 121
+            // lexaeus 4 33 123
+            // larxene 4 33 129
+            // zexion 4 34 125
+            // marluxia 4 38 127
+
+            // xigbar 18 10 108
+            // saix 18 15 110
+            // luxord 18 14 112
+            // roxas 18 21 114
         }
     }
 }

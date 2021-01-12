@@ -33,6 +33,12 @@ namespace KhTracker
                 // add the difference incase of getting multiple at the same time
                 Quantity += data[0] - current;
             }
+            else if (current > data[0])
+            {
+                // reduce quantity so when you regrab a torn page after dying the quantity goes back to where it should be
+                if ((App.Current.MainWindow as MainWindow).GetWorld() != "HundredAcreWood")
+                    Quantity -= current - data[0];
+            }
             current = data[0];
             return null;
         }

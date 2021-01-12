@@ -40,7 +40,8 @@ namespace KhTracker
                 Obtained = true;
             }
 
-            Level = data[0];
+            if (Level < data[0])
+                Level = data[0];
 
             return null;
         }

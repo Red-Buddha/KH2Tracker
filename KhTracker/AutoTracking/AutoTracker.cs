@@ -181,48 +181,6 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            //highJump.BindLabel(HighJumpLabel, "Level");
-            //quickRun.BindLabel(QuickRunLabel, "Level");
-            //aerialDodge.BindLabel(AerialDodgeLabel, "Level");
-            //dodgeRoll.BindLabel(DodgeRollLabel, "Level");
-            //glide.BindLabel(GlideLabel, "Level");
-
-            //valor.BindLabel(ValorLabel, "Level");
-            //valor.BindImage(Valor.Content as Image, "Obtained");
-            //wisdom.BindLabel(WisdomLabel, "Level");
-            //wisdom.BindImage(WisdomImage, "Obtained");
-            ////master.BindLabel(MasterLabel, "Level");
-            //master.BindImage(MasterImage, "Obtained");
-            ////limit.BindLabel(LimitLabel, "Level");
-            //limit.BindImage(LimitImage, "Obtained");
-            ////final.BindLabel(FinalLabel, "Level");
-            //final.BindImage(FinalImage, "Obtained");
-
-            ////fire.BindLabel(FireLabel, "Level");
-            //fire.BindImage(FireImage, "Obtained");
-            ////blizzard.BindLabel(BlizzardLabel, "Level");
-            //blizzard.BindImage(BlizzardImage, "Obtained");
-            ////thunder.BindLabel(ThunderLabel, "Level");
-            //thunder.BindImage(ThunderImage, "Obtained");
-            ////cure.BindLabel(CureLabel, "Level");
-            //cure.BindImage(CureImage, "Obtained");
-            ////magnet.BindLabel(MagnetLabel, "Level");
-            //magnet.BindImage(MagnetImage, "Obtained");
-            ////reflect.BindLabel(ReflectLabel, "Level");
-            //reflect.BindImage(ReflectImage, "Obtained");
-
-            ////pages.BindLabel(TornPagesLabel, "Quantity", false);
-
-            //nonexist.BindImage(Nonexistence.Content as Image, "Obtained");
-            //peace.BindImage(ProofPeaceImage, "Obtained");
-            //connection.BindImage(ProofConnectionImage, "Obtained");
-            //promiseCharm.BindImage(PromiseCharmImage, "Obtained");
-
-            //stitch.BindImage(StitchImage, "Obtained");
-            //chickenLittle.BindImage(ChickenLittleImage, "Obtained");
-            //genie.BindImage(GenieImage, "Obtained");
-            //peterPan.BindImage(PeterPanImage, "Obtained");
-
             BindLabel(Level, "Level", stats);
             BindLabel(Weapon, "Weapon", stats);
             BindLabel(Strength, "Strength", stats);
@@ -247,7 +205,87 @@ namespace KhTracker
             }
             stats.UpdateMemory();
             world.UpdateMemory();
-            if(world.world == "SimulatedTwilightTown")
+            UpdateMagicAddresses();
+
+            importantChecks.ForEach(delegate (ImportantCheck importantCheck)
+            {
+                importantCheck.UpdateMemory();
+            });
+
+            UpdateCollectedItems();
+            DetermineItemLocations();
+        }
+
+        private void TrackItem(string itemName, WorldGrid world)
+        {
+            foreach (ContentControl item in ItemPool.Children)
+            {
+                if (item.Name.Contains(itemName))
+                {
+                    if (world.Handle_Report(item as Item, this, data))
+                        world.Add_Item(item as Item, this);
+
+                    break;
+                }
+            }
+        }
+
+        private void TrackQuantities()
+        {
+            while (fire.Level > fireLevel)
+            {
+                ++fireLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Fire" + fireLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (blizzard.Level > blizzardLevel)
+            {
+                ++blizzardLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Blizzard" + blizzardLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (thunder.Level > thunderLevel)
+            {
+                ++thunderLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Thunder" + thunderLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (cure.Level > cureLevel)
+            {
+                ++cureLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Cure" + cureLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (reflect.Level > reflectLevel)
+            {
+                ++reflectLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Reflect" + reflectLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (magnet.Level > magnetLevel)
+            {
+                ++magnetLevel;
+                Magic magic = new Magic(null, 0, 0, 0, "Magnet" + magnetLevel.ToString());
+                newChecks.Add(magic);
+                collectedChecks.Add(magic);
+            }
+            while (pages.Quantity > tornPageCount)
+            {
+                ++tornPageCount;
+                TornPage page = new TornPage(null, 0, 0, "TornPage" + tornPageCount.ToString());
+                newChecks.Add(page);
+                collectedChecks.Add(page);
+            }
+        }
+
+        private void UpdateMagicAddresses()
+        {
+            if (world.world == "SimulatedTwilightTown")
             {
                 fire.UseSTTAddress(true);
                 blizzard.UseSTTAddress(true);
@@ -265,12 +303,10 @@ namespace KhTracker
                 reflect.UseSTTAddress(false);
                 magnet.UseSTTAddress(false);
             }
+        }
 
-            importantChecks.ForEach(delegate (ImportantCheck importantCheck)
-            {
-                importantCheck.UpdateMemory();
-            });
-
+        private void UpdateCollectedItems()
+        {
             foreach (ImportantCheck check in importantChecks)
             {
                 // handle these separately due to the way they are stored in memory
@@ -284,7 +320,10 @@ namespace KhTracker
                 }
             }
             TrackQuantities();
+        }
 
+        private void DetermineItemLocations()
+        {
             if (newChecks.Count > 0)
             {
                 // Get rewards between previous level and current level
@@ -335,59 +374,6 @@ namespace KhTracker
             }
         }
 
-        private void TrackItem(string itemName, WorldGrid world)
-        {
-            foreach (ContentControl item in ItemPool.Children)
-            {
-                if (item.Name.Contains(itemName))
-                {
-                    if (world.Handle_Report(item as Item, this, data))
-                        world.Add_Item(item as Item, this);
-
-                    break;
-                }
-            }
-        }
-
-        private void TrackQuantities()
-        {
-            while (fire.Level > fireLevel)
-            {
-                ++fireLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Fire" + fireLevel.ToString()));
-            }
-            while (blizzard.Level > blizzardLevel)
-            {
-                ++blizzardLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Blizzard" + blizzardLevel.ToString()));
-            }
-            while (thunder.Level > thunderLevel)
-            {
-                ++thunderLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Thunder" + thunderLevel.ToString()));
-            }
-            while (cure.Level > cureLevel)
-            {
-                ++cureLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Cure" + cureLevel.ToString()));
-            }
-            while (reflect.Level > reflectLevel)
-            {
-                ++reflectLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Reflect" + reflectLevel.ToString()));
-            }
-            while (magnet.Level > magnetLevel)
-            {
-                ++magnetLevel;
-                newChecks.Add(new Magic(null, 0, 0, 0, "Magnet" + magnetLevel.ToString()));
-            }
-            while (pages.Quantity > tornPageCount)
-            {
-                ++tornPageCount;
-                newChecks.Add(new TornPage(null, 0, 0, "TornPage" + tornPageCount.ToString()));
-            }
-        }
-
         private string BytesToHex(byte[] bytes)
         {
             if (Enumerable.SequenceEqual(bytes, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }))
@@ -402,6 +388,11 @@ namespace KhTracker
             Binding binding = new Binding(property);
             binding.Source = source;
             cc.SetBinding(ContentProperty, binding);
+        }
+
+        public string GetWorld()
+        {
+            return world.world;
         }
     }
 }
