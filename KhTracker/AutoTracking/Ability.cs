@@ -28,6 +28,7 @@ namespace KhTracker
         {
             Bytes = 2;
             levelOffset = 0;
+            this.Address = ADDRESS_START;
         }
 
         public Ability(MemoryReader mem, int address, int offset, int levOffset, string name) : base(mem, address, offset, name)
@@ -40,6 +41,39 @@ namespace KhTracker
         {
             byte[] data = base.UpdateMemory();
             int convertedData = BitConverter.ToUInt16(data, 0);
+
+            if(levelOffset == 0)
+            {
+                switch (data[0])
+                {
+                    case 0x00:
+                            return null;
+
+                    case 0xA0:
+                        if (this.Name == "Once More" && data[1] == 0x01)
+                        {
+                            this.Obtained = true;
+                            Console.WriteLine("Once More");
+                        }
+                        this.Address += 0x02;
+                        return null;
+
+                    case 0x9F:
+                        if (this.Name == "Second Chance" && data[1] == 0x01)
+                        {
+                            this.Obtained = true;
+                            Console.WriteLine("Second Chance");
+                        }
+                        this.Address += 0x02;
+                        return null;
+
+                    default:
+                        this.Address += 0x02;
+                        Console.WriteLine("Skill, but not SC OM");
+                        return null;
+                }
+            }
+
             int equipped = 0;
             if (levelOffset > 0 && convertedData > 0)
             {
