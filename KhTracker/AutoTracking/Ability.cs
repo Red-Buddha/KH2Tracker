@@ -50,7 +50,7 @@ namespace KhTracker
                             return null;
 
                     case 0xA0:
-                        if (this.Name == "Once More" && data[1] == 0x01)
+                        if (this.Name == "OnceMore" && data[1] == 0x01)
                         {
                             this.Obtained = true;
                             Console.WriteLine("Once More");
@@ -59,7 +59,7 @@ namespace KhTracker
                         return null;
 
                     case 0x9F:
-                        if (this.Name == "Second Chance" && data[1] == 0x01)
+                        if (this.Name == "SecondChance" && data[1] == 0x01)
                         {
                             this.Obtained = true;
                             Console.WriteLine("Second Chance");

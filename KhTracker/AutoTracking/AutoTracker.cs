@@ -118,8 +118,8 @@ namespace KhTracker
             importantChecks.Add(aerialDodge = new Ability(memory, 0x0032E104, ADDRESS_OFFSET, 101, "AerialDodge"));
             importantChecks.Add(glide = new Ability(memory, 0x0032E106, ADDRESS_OFFSET, 105, "Glide"));
 
-            importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "Second Chance"));
-            importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "Once More"));
+            importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "SecondChance"));
+            importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "OnceMore"));
 
             importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "Wisdom"));
@@ -163,7 +163,8 @@ namespace KhTracker
             world = new World(memory, ADDRESS_OFFSET, 0x0032BAE0);
             stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8);
             rewards = new Rewards(memory, ADDRESS_OFFSET);
-            
+
+            SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
         }
