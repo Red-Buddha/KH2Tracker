@@ -52,7 +52,7 @@ namespace KhTracker
             }
             catch (IndexOutOfRangeException e)
             {
-                return new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF };
+                return new byte[9] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
             }
         }
     }

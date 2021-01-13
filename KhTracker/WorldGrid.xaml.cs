@@ -28,7 +28,16 @@ namespace KhTracker
         public void Handle_WorldGrid(Item button, bool add)
         {
             if (add)
-                Children.Add(button);
+            {
+                try
+                {
+                    Children.Add(button);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
             else
                 Children.Remove(button);
 

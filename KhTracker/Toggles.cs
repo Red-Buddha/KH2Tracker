@@ -196,6 +196,10 @@ namespace KhTracker
         {
             Properties.Settings.Default.Atlantica = toggle;
             AtlanticaOption.IsChecked = toggle;
+            if (toggle)
+                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(1, GridUnitType.Star);
+            else
+                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(0, GridUnitType.Star);
             HandleWorldToggle(toggle, Atlantica, AtlanticaGrid);
         }
 

@@ -177,6 +177,8 @@ namespace KhTracker
 
             broadcast = new BroadcastWindow(data);
 
+            collectedChecks = new List<ImportantCheck>();
+            newChecks = new List<ImportantCheck>();
         }
 
         private void InitOptions()

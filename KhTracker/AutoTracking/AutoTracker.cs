@@ -146,8 +146,6 @@ namespace KhTracker
             world = new World(memory, ADDRESS_OFFSET, 0x0032BAE0);
             stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8);
             rewards = new Rewards(memory, ADDRESS_OFFSET);
-            collectedChecks = new List<ImportantCheck>();
-            newChecks = new List<ImportantCheck>();
 
             SetBindings();
             SetTimer();
@@ -203,6 +201,7 @@ namespace KhTracker
             {
                 findAddressOffset();
             }
+
             stats.UpdateMemory();
             world.UpdateMemory();
             UpdateMagicAddresses();

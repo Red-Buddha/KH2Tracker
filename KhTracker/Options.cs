@@ -485,12 +485,26 @@ namespace KhTracker
                 row.Height = new GridLength(1, GridUnitType.Star);
             }
 
+            if (AtlanticaOption.IsChecked == false)
+            {
+                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(0, GridUnitType.Star);
+            }
+
+
             ResetHints();
 
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();
-            aTimer.Stop();
+            if (aTimer != null)
+                aTimer.Stop();
+
+            fireLevel = 0;
+            blizzardLevel = 0;
+            thunderLevel = 0;
+            reflectLevel = 0;
+            magnetLevel = 0;
+            tornPageCount = 0;
 
             double broadcastLeft = broadcast.Left;
             double broadcastTop = broadcast.Top;
