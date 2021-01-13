@@ -90,9 +90,20 @@ namespace KhTracker
 
         public void InitAutoTracker(object sender, RoutedEventArgs e)
         {
+            int tries = 0;
             do
             {
                 memory = new MemoryReader();
+                if (tries < 20)
+                {
+                    tries++;
+                }
+                else
+                {
+                    memory = null;
+                    MessageBox.Show("Please launch PCSX2 before loading the Auto Tracker.");
+                    return;
+                }
             } while (!memory.Hooked);
             this.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./resources/#KH2 ALL MENU");
             findAddressOffset();
@@ -200,6 +211,15 @@ namespace KhTracker
             if (ADDRESS_OFFSET == 0)
             {
                 findAddressOffset();
+            }
+
+            // Checks to see if the connection has exited.
+            byte[] tester = memory.ReadMemory(0x0010001C + ADDRESS_OFFSET, 2);
+            if (Enumerable.SequenceEqual(tester, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }))
+            {
+                aTimer.Stop();
+                MessageBox.Show("PCSX2 has exited. Stopping auto tracker.");
+                return;
             }
 
             stats.UpdateMemory();

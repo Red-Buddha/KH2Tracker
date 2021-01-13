@@ -40,8 +40,9 @@ namespace KhTracker
             {
                 if (process.HasExited)
                 {
-                    process = Process.GetProcessesByName("pcsx2")[0];
-                    processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
+                    /*process = Process.GetProcessesByName("pcsx2")[0];
+                    processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);*/
+                        return new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF };
                 }
                 int bytesRead = 0;
                 byte[] buffer = new byte[bytesToRead];
