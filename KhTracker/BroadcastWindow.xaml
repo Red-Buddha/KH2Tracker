@@ -11,8 +11,8 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         Closing="BroadcastWindow_Closing"
-        MinHeight="340" MinWidth="250">
-    <Grid Background="#303030">
+        MinHeight="340" MinWidth="250" Background="#303030">
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>

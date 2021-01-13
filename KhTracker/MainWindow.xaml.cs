@@ -179,6 +179,7 @@ namespace KhTracker
 
             collectedChecks = new List<ImportantCheck>();
             newChecks = new List<ImportantCheck>();
+            SetBindings();
         }
 
         private void InitOptions()

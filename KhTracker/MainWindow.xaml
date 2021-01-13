@@ -92,7 +92,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name ="SorasHeart" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="SoraHeartImage"/>
                             </Button>
                             <Image Name="SorasHeartHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -119,7 +119,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="SimulatedTwilightTown" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="SimulatedImage"/>
                             </Button>
                             <Image Name="SimulatedTwilightTownHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -146,7 +146,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="HollowBastion" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="HollowBastionImage"/>
                             </Button>
                             <Image Name="HollowBastionHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -173,7 +173,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="OlympusColiseum" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="OlympusImage"/>
                             </Button>
                             <Image Name="OlympusColiseumHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -200,7 +200,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="LandofDragons" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="LandofDragonsImage"/>
                             </Button>
                             <Image Name="LandofDragonsHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -227,7 +227,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="PrideLands" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="PrideLandsImage"/>
                             </Button>
                             <Image Name="PrideLandsHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -254,7 +254,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="HalloweenTown" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="HalloweenTownImage"/>
                             </Button>
                             <Image Name="HalloweenTownHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -281,7 +281,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="SpaceParanoids" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="SpaceParanoidsImage"/>
                             </Button>
                             <Image Name="SpaceParanoidsHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -308,7 +308,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="GoA" Background="#303030" PreviewMouseDown="OnMouseDown" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="GoA" Background="Transparent" PreviewMouseDown="OnMouseDown" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="GardenofAssemblageImage"/>
                             </Button>
                             <Image Name="GoABar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
@@ -349,7 +349,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name ="DriveForms" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="DriveFormsImage"/>
                             </Button>
                             <Image Name="DriveFormsHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -376,7 +376,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="TwilightTown" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="TwilightTownImage"/>
                             </Button>
                             <Image Name="TwilightTownHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -403,7 +403,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="BeastsCastle" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="BeastCastleImage"/>
                             </Button>
                             <Image Name="BeastsCastleHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -430,7 +430,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="Agrabah" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="AgrabahImage"/>
                             </Button>
                             <Image Name="AgrabahHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -457,7 +457,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="HundredAcreWood" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="HundredAcreImage"/>
                             </Button>
                             <Image Name="HundredAcreWoodHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -484,7 +484,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="DisneyCastle" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="DisneyCastleImage"/>
                             </Button>
                             <Image Name="DisneyCastleHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -511,7 +511,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="PortRoyal" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="PortRoyalImage"/>
                             </Button>
                             <Image Name="PortRoyalHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -538,7 +538,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="TWTNW" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="TWTNWImage"/>
                             </Button>
                             <Image Name="TWTNWHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
@@ -565,7 +565,7 @@
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="Atlantica" Background="#303030" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Button Name="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="AtlanticaImage"/>
                             </Button>
                             <Image Name="AtlanticaHint" Source="Images\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
