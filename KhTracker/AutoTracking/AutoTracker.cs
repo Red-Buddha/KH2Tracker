@@ -35,6 +35,9 @@ namespace KhTracker
         private Ability aerialDodge;
         private Ability glide;
 
+        private Ability secondChance;
+        private Ability onceMore;
+
         private DriveForm valor;
         private DriveForm wisdom;
         private DriveForm master;
@@ -114,6 +117,9 @@ namespace KhTracker
             importantChecks.Add(dodgeRoll = new Ability(memory, 0x0032E102, ADDRESS_OFFSET, 563, "DodgeRoll"));
             importantChecks.Add(aerialDodge = new Ability(memory, 0x0032E104, ADDRESS_OFFSET, 101, "AerialDodge"));
             importantChecks.Add(glide = new Ability(memory, 0x0032E106, ADDRESS_OFFSET, 105, "Glide"));
+
+            importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "Second Chance"));
+            importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "Once More"));
 
             importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "Wisdom"));
