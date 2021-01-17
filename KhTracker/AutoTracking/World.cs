@@ -59,7 +59,7 @@ namespace KhTracker
             if (worldCodes.ContainsKey(worldNum))
             {
                 // simplify determining if in stt
-                if (world == "SimulatedTwilightTown" && worldCodes[worldNum] != "HollowBastion")
+                if (world == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
                     return;
 
                 world = worldCodes[worldNum];
