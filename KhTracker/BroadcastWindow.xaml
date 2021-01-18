@@ -634,7 +634,8 @@
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="4.4*"/>
+                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="2.2*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -643,13 +644,25 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <ContentControl Content="{DynamicResource Valor}" Opacity="0.25" Name="Valor" Grid.Row="1" Grid.Column="0"></ContentControl>
-                    <ContentControl Content="{DynamicResource Wisdom}" Opacity="0.25" Name="Wisdom" Grid.Row="1" Grid.Column="1"></ContentControl>
-                    <ContentControl Content="{DynamicResource Limit}" Opacity="0.25" Name="Limit" Grid.Row="1" Grid.Column="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Master}" Opacity="0.25" Name="Master" Grid.Row="1" Grid.Column="3"></ContentControl>
-                    <ContentControl Content="{DynamicResource Final}" Opacity="0.25" Name="Final" Grid.Row="1" Grid.Column="4"></ContentControl>
+                    <ContentControl Content="{DynamicResource Valor}" Opacity="0.25" Name="Valor" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"></ContentControl>
+                    <ContentControl Content="{DynamicResource Wisdom}" Opacity="0.25" Name="Wisdom" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2"></ContentControl>
+                    <ContentControl Content="{DynamicResource Limit}" Opacity="0.25" Name="Limit" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"></ContentControl>
+                    <ContentControl Content="{DynamicResource Master}" Opacity="0.25" Name="Master" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"></ContentControl>
+                    <ContentControl Content="{DynamicResource Final}" Opacity="0.25" Name="Final" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="ValorLevel" Grid.Row="2" Grid.Column="1"/>
+                    <Image Name="WisdomLevel" Grid.Row="2" Grid.Column="3"/>
+                    <Image Name="LimitLevel" Grid.Row="2" Grid.Column="5"/>
+                    <Image Name="MasterLevel" Grid.Row="2" Grid.Column="7"/>
+                    <Image Name="FinalLevel" Grid.Row="2" Grid.Column="9"/>
+
                 </Grid>
 
                 <!-- Summons -->

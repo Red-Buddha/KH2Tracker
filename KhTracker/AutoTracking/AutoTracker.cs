@@ -202,6 +202,12 @@ namespace KhTracker
             BindLabel(Strength, "Strength", stats);
             BindLabel(Magic, "Magic", stats);
             BindLabel(Defense, "Defense", stats);
+
+            BindLevel(broadcast.ValorLevel, "Level", valor);
+            BindLevel(broadcast.WisdomLevel, "Level", wisdom);
+            BindLevel(broadcast.LimitLevel, "Level", limit);
+            BindLevel(broadcast.MasterLevel, "Level", master);
+            BindLevel(broadcast.FinalLevel, "Level", final);
         }
         private void SetTimer()
         {
@@ -418,6 +424,14 @@ namespace KhTracker
             Binding binding = new Binding(property);
             binding.Source = source;
             cc.SetBinding(ContentProperty, binding);
+        }
+
+        private void BindLevel(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new LevelConverter();
+            img.SetBinding(Image.SourceProperty, binding);
         }
 
         public string GetWorld()
