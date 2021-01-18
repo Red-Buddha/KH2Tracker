@@ -46,9 +46,9 @@ namespace KhTracker
             levelCodes.Add(416, "OnceMore");
             levelCodes.Add(524, "PromiseCharm");
             levelCodes.Add(563, "Limit");
-            levelCodes.Add(593, "ProofofConnection");
-            levelCodes.Add(594, "ProofofNonexistence");
-            levelCodes.Add(595, "ProofofPeace");
+            levelCodes.Add(593, "Connection");
+            levelCodes.Add(594, "Nonexistence");
+            levelCodes.Add(595, "Peace");
         }
     }
 }

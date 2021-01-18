@@ -364,23 +364,23 @@ namespace KhTracker
             {
                 // Get rewards between previous level and current level
                 List<string> levelRewards = rewards.GetLevelRewards(stats.Weapon)
-                    .Where(reward => reward.Item1 > stats.previousPreviousLevel && reward.Item1 <= stats.Level)
+                    .Where(reward => reward.Item1 > stats.previousPreviousPreviousLevel && reward.Item1 <= stats.Level)
                     .Select(reward => reward.Item2).ToList();
                 // Get drive rewards between previous level and current level
                 List<string> driveRewards = rewards.valorChecks
-                    .Where(reward => reward.Item1 > valor.previousPreviousLevel && reward.Item1 <= valor.Level)
+                    .Where(reward => reward.Item1 > valor.previousPreviousPreviousLevel && reward.Item1 <= valor.Level)
                     .Select(reward => reward.Item2).ToList();
                 driveRewards.AddRange(rewards.wisdomChecks
-                    .Where(reward => reward.Item1 > wisdom.previousPreviousLevel && reward.Item1 <= wisdom.Level)
+                    .Where(reward => reward.Item1 > wisdom.previousPreviousPreviousLevel && reward.Item1 <= wisdom.Level)
                     .Select(reward => reward.Item2));
                 driveRewards.AddRange(rewards.limitChecks
-                    .Where(reward => reward.Item1 > limit.previousPreviousLevel && reward.Item1 <= limit.Level)
+                    .Where(reward => reward.Item1 > limit.previousPreviousPreviousLevel && reward.Item1 <= limit.Level)
                     .Select(reward => reward.Item2));
                 driveRewards.AddRange(rewards.masterChecks
-                    .Where(reward => reward.Item1 > master.previousPreviousLevel && reward.Item1 <= master.Level)
+                    .Where(reward => reward.Item1 > master.previousPreviousPreviousLevel && reward.Item1 <= master.Level)
                     .Select(reward => reward.Item2));
                 driveRewards.AddRange(rewards.finalChecks
-                    .Where(reward => reward.Item1 > final.previousPreviousLevel && reward.Item1 <= final.Level)
+                    .Where(reward => reward.Item1 > final.previousPreviousPreviousLevel && reward.Item1 <= final.Level)
                     .Select(reward => reward.Item2));
 
                 foreach (ImportantCheck check in previousChecks)
