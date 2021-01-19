@@ -170,19 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Bar.png" />
-    <Resource Include="Images\Eight.png" />
-    <Resource Include="Images\Eleven.png" />
-    <Resource Include="Images\Five.png" />
-    <Resource Include="Images\Four.png" />
-    <Resource Include="Images\Nine.png" />
-    <Resource Include="Images\One.png" />
-    <Resource Include="Images\Seven.png" />
-    <Resource Include="Images\Six.png" />
-    <Resource Include="Images\Ten.png" />
-    <Resource Include="Images\Thirteen.png" />
-    <Resource Include="Images\Three.png" />
-    <Resource Include="Images\Twelve.png" />
-    <Resource Include="Images\Two.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="hnet.com-image.ico" />
@@ -291,25 +278,10 @@
     <Resource Include="Images\VerticalBarWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\QuestionMark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Eighteen.png" />
-    <Resource Include="Images\Fifteen.png" />
-    <Resource Include="Images\Fourteen.png" />
-    <Resource Include="Images\Nineteen.png" />
-    <Resource Include="Images\Seventeen.png" />
-    <Resource Include="Images\Sixteen.png" />
-    <Resource Include="Images\Twenty.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Simple\Drive_Orb_KHII.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Simple\drive_forms.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Zero.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Simple\drive_form.png" />
@@ -321,6 +293,104 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\FailX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GrowthAbilities\aerial.png" />
+    <Resource Include="Images\GrowthAbilities\aerial2.png" />
+    <Resource Include="Images\GrowthAbilities\aerial3.png" />
+    <Resource Include="Images\GrowthAbilities\aerial4.png" />
+    <Resource Include="Images\GrowthAbilities\dodge.png" />
+    <Resource Include="Images\GrowthAbilities\dodge2.png" />
+    <Resource Include="Images\GrowthAbilities\dodge3.png" />
+    <Resource Include="Images\GrowthAbilities\dodge4.png" />
+    <Resource Include="Images\GrowthAbilities\glide.png" />
+    <Resource Include="Images\GrowthAbilities\glide2.png" />
+    <Resource Include="Images\GrowthAbilities\glide3.png" />
+    <Resource Include="Images\GrowthAbilities\glide4.png" />
+    <Resource Include="Images\GrowthAbilities\jump.png" />
+    <Resource Include="Images\GrowthAbilities\jump2.png" />
+    <Resource Include="Images\GrowthAbilities\jump3.png" />
+    <Resource Include="Images\GrowthAbilities\jump4.png" />
+    <Resource Include="Images\GrowthAbilities\quick.png" />
+    <Resource Include="Images\GrowthAbilities\quick2.png" />
+    <Resource Include="Images\GrowthAbilities\quick3.png" />
+    <Resource Include="Images\GrowthAbilities\quick4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Alt\chicken_little.png" />
+    <Resource Include="Images\Alt\final.png" />
+    <Resource Include="Images\Alt\genie.png" />
+    <Resource Include="Images\Alt\limit.png" />
+    <Resource Include="Images\Alt\master.png" />
+    <Resource Include="Images\Alt\peter_pan.png" />
+    <Resource Include="Images\Alt\stitch.png" />
+    <Resource Include="Images\Alt\valor.png" />
+    <Resource Include="Images\Alt\wisdom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Alt\Blizzard_Orb.png" />
+    <Resource Include="Images\Alt\Cure_Orb.png" />
+    <Resource Include="Images\Alt\Fire_Orb.png" />
+    <Resource Include="Images\Alt\Magnet_Orb.png" />
+    <Resource Include="Images\Alt\Reflect_Orb.png" />
+    <Resource Include="Images\Alt\Thunder_Orb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\Eight.png" />
+    <Resource Include="Images\Numbers\Eighteen.png" />
+    <Resource Include="Images\Numbers\Eleven.png" />
+    <Resource Include="Images\Numbers\Fifteen.png" />
+    <Resource Include="Images\Numbers\Fifty.png" />
+    <Resource Include="Images\Numbers\Fiftyone.png" />
+    <Resource Include="Images\Numbers\Five.png" />
+    <Resource Include="Images\Numbers\Four.png" />
+    <Resource Include="Images\Numbers\Fourteen.png" />
+    <Resource Include="Images\Numbers\Nine.png" />
+    <Resource Include="Images\Numbers\Nineteen.png" />
+    <Resource Include="Images\Numbers\One.png" />
+    <Resource Include="Images\Numbers\QuestionMark.png" />
+    <Resource Include="Images\Numbers\Seven.png" />
+    <Resource Include="Images\Numbers\Seventeen.png" />
+    <Resource Include="Images\Numbers\Six.png" />
+    <Resource Include="Images\Numbers\Sixteen.png" />
+    <Resource Include="Images\Numbers\Ten.png" />
+    <Resource Include="Images\Numbers\Thirteen.png" />
+    <Resource Include="Images\Numbers\Thirty.png" />
+    <Resource Include="Images\Numbers\Thirtyeight.png" />
+    <Resource Include="Images\Numbers\Thirtyfive.png" />
+    <Resource Include="Images\Numbers\Thirtyfour.png" />
+    <Resource Include="Images\Numbers\Thirtynine.png" />
+    <Resource Include="Images\Numbers\Thirtyone.png" />
+    <Resource Include="Images\Numbers\Thirtyseven.png" />
+    <Resource Include="Images\Numbers\Thirtysix.png" />
+    <Resource Include="Images\Numbers\Thirtythree.png" />
+    <Resource Include="Images\Numbers\Thirtytwo.png" />
+    <Resource Include="Images\Numbers\Three.png" />
+    <Resource Include="Images\Numbers\Twelve.png" />
+    <Resource Include="Images\Numbers\Twenty.png" />
+    <Resource Include="Images\Numbers\Twentyeight.png" />
+    <Resource Include="Images\Numbers\Twentyfive.png" />
+    <Resource Include="Images\Numbers\Twentyfour.png" />
+    <Resource Include="Images\Numbers\Twentynine.png" />
+    <Resource Include="Images\Numbers\Twentyone.png" />
+    <Resource Include="Images\Numbers\Twentyseven.png" />
+    <Resource Include="Images\Numbers\Twentysix.png" />
+    <Resource Include="Images\Numbers\Twentythree.png" />
+    <Resource Include="Images\Numbers\Twentytwo.png" />
+    <Resource Include="Images\Numbers\Two.png" />
+    <Resource Include="Images\Numbers\Zero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\Forty.png" />
+    <Resource Include="Images\Numbers\Fortyeight.png" />
+    <Resource Include="Images\Numbers\Fortyfive.png" />
+    <Resource Include="Images\Numbers\Fortyfour.png" />
+    <Resource Include="Images\Numbers\Fortynine.png" />
+    <Resource Include="Images\Numbers\Fortyone.png" />
+    <Resource Include="Images\Numbers\Fortyseven.png" />
+    <Resource Include="Images\Numbers\Fortysix.png" />
+    <Resource Include="Images\Numbers\Fortythree.png" />
+    <Resource Include="Images\Numbers\Fortytwo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

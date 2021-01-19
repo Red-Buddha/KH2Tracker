@@ -429,7 +429,8 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            Collected.Text = "0";
+            collected = 0;
+            Collected.Source = data.Numbers[0];
             HintText.Content = "";
 
             if (data.selected != null)

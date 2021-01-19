@@ -274,5 +274,29 @@ namespace KhTracker.Properties {
                 this["WorldIcons"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Orb {
+            get {
+                return ((bool)(this["Orb"]));
+            }
+            set {
+                this["Orb"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Alt {
+            get {
+                return ((bool)(this["Alt"]));
+            }
+            set {
+                this["Alt"] = value;
+            }
+        }
     }
 }

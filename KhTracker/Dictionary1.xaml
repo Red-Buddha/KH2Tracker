@@ -132,4 +132,22 @@
     <Image x:Key="TWTNWImage" Source="Images\Simple\the_world_that_never_was.png"/>
     <Image x:Key="AtlanticaImage" Source="Images\Simple\atlantica.png"/>
 
+    <Image x:Key="ValorAlt" Source="Images\Alt\valor.png"/>
+    <Image x:Key="WisdomAlt" Source="Images\Alt\wisdom.png"/>
+    <Image x:Key="LimitAlt" Source="Images\Alt\limit.png"/>
+    <Image x:Key="MasterAlt" Source="Images\Alt\master.png"/>
+    <Image x:Key="FinalAlt" Source="Images\Alt\final.png"/>
+
+    <Image x:Key="FireAlt" Source="Images\Alt\fire_orb.png" x:Shared="false"/>
+    <Image x:Key="BlizzardAlt" Source="Images\Alt\blizzard_orb.png" x:Shared="false"/>
+    <Image x:Key="ThunderAlt" Source="Images\Alt\thunder_orb.png" x:Shared="false"/>
+    <Image x:Key="CureAlt" Source="Images\Alt\cure_orb.png" x:Shared="false"/>
+    <Image x:Key="ReflectAlt" Source="Images\Alt\reflect_orb.png" x:Shared="false"/>
+    <Image x:Key="MagnetAlt" Source="Images\Alt\magnet_orb.png" x:Shared="false"/>
+    <Image x:Key="GenieAlt" Source="Images\Alt\genie.png"/>
+    <Image x:Key="ChickenLittleAlt" Source="Images\Alt\chicken_little.png"/>
+    <Image x:Key="PeterPanAlt" Source="Images\Alt\peter_pan.png"/>
+    <Image x:Key="StitchAlt" Source="Images\Alt\stitch.png"/>
+
+
 </ResourceDictionary>

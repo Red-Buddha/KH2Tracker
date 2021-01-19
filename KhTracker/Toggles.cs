@@ -15,13 +15,15 @@ namespace KhTracker
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
                 if (!init)
-                    CheckTotal.Text = (int.Parse(CheckTotal.Text) + 1).ToString();
+                {
+                    IncrementTotal();
+                }
             }
             else if (toggle == false && button.IsEnabled == true)
             {
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Hidden;
-                CheckTotal.Text = (int.Parse(CheckTotal.Text) - 1).ToString();
+                DecrementTotal();
 
                 button.HandleItemReturn();
             }
