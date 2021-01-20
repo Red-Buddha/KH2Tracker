@@ -336,61 +336,74 @@
     <Resource Include="Images\Alt\Thunder_Orb.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Numbers\Eight.png" />
-    <Resource Include="Images\Numbers\Eighteen.png" />
-    <Resource Include="Images\Numbers\Eleven.png" />
-    <Resource Include="Images\Numbers\Fifteen.png" />
-    <Resource Include="Images\Numbers\Fifty.png" />
-    <Resource Include="Images\Numbers\Fiftyone.png" />
-    <Resource Include="Images\Numbers\Five.png" />
-    <Resource Include="Images\Numbers\Four.png" />
-    <Resource Include="Images\Numbers\Fourteen.png" />
-    <Resource Include="Images\Numbers\Nine.png" />
-    <Resource Include="Images\Numbers\Nineteen.png" />
-    <Resource Include="Images\Numbers\One.png" />
     <Resource Include="Images\Numbers\QuestionMark.png" />
-    <Resource Include="Images\Numbers\Seven.png" />
-    <Resource Include="Images\Numbers\Seventeen.png" />
-    <Resource Include="Images\Numbers\Six.png" />
-    <Resource Include="Images\Numbers\Sixteen.png" />
-    <Resource Include="Images\Numbers\Ten.png" />
-    <Resource Include="Images\Numbers\Thirteen.png" />
-    <Resource Include="Images\Numbers\Thirty.png" />
-    <Resource Include="Images\Numbers\Thirtyeight.png" />
-    <Resource Include="Images\Numbers\Thirtyfive.png" />
-    <Resource Include="Images\Numbers\Thirtyfour.png" />
-    <Resource Include="Images\Numbers\Thirtynine.png" />
-    <Resource Include="Images\Numbers\Thirtyone.png" />
-    <Resource Include="Images\Numbers\Thirtyseven.png" />
-    <Resource Include="Images\Numbers\Thirtysix.png" />
-    <Resource Include="Images\Numbers\Thirtythree.png" />
-    <Resource Include="Images\Numbers\Thirtytwo.png" />
-    <Resource Include="Images\Numbers\Three.png" />
-    <Resource Include="Images\Numbers\Twelve.png" />
-    <Resource Include="Images\Numbers\Twenty.png" />
-    <Resource Include="Images\Numbers\Twentyeight.png" />
-    <Resource Include="Images\Numbers\Twentyfive.png" />
-    <Resource Include="Images\Numbers\Twentyfour.png" />
-    <Resource Include="Images\Numbers\Twentynine.png" />
-    <Resource Include="Images\Numbers\Twentyone.png" />
-    <Resource Include="Images\Numbers\Twentyseven.png" />
-    <Resource Include="Images\Numbers\Twentysix.png" />
-    <Resource Include="Images\Numbers\Twentythree.png" />
-    <Resource Include="Images\Numbers\Twentytwo.png" />
-    <Resource Include="Images\Numbers\Two.png" />
-    <Resource Include="Images\Numbers\Zero.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Numbers\Forty.png" />
-    <Resource Include="Images\Numbers\Fortyeight.png" />
-    <Resource Include="Images\Numbers\Fortyfive.png" />
-    <Resource Include="Images\Numbers\Fortyfour.png" />
-    <Resource Include="Images\Numbers\Fortynine.png" />
-    <Resource Include="Images\Numbers\Fortyone.png" />
-    <Resource Include="Images\Numbers\Fortyseven.png" />
-    <Resource Include="Images\Numbers\Fortysix.png" />
-    <Resource Include="Images\Numbers\Fortythree.png" />
-    <Resource Include="Images\Numbers\Fortytwo.png" />
+    <Resource Include="Images\Simple\defence.png" />
+    <Resource Include="Images\Simple\level.png" />
+    <Resource Include="Images\Simple\magic.png" />
+    <Resource Include="Images\Simple\shield.png" />
+    <Resource Include="Images\Simple\staff.png" />
+    <Resource Include="Images\Simple\strength.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\10.png" />
+    <Resource Include="Images\Numbers\11.png" />
+    <Resource Include="Images\Numbers\12.png" />
+    <Resource Include="Images\Numbers\13.png" />
+    <Resource Include="Images\Numbers\14.png" />
+    <Resource Include="Images\Numbers\15.png" />
+    <Resource Include="Images\Numbers\16.png" />
+    <Resource Include="Images\Numbers\17.png" />
+    <Resource Include="Images\Numbers\18.png" />
+    <Resource Include="Images\Numbers\19.png" />
+    <Resource Include="Images\Numbers\20.png" />
+    <Resource Include="Images\Numbers\21.png" />
+    <Resource Include="Images\Numbers\22.png" />
+    <Resource Include="Images\Numbers\23.png" />
+    <Resource Include="Images\Numbers\24.png" />
+    <Resource Include="Images\Numbers\25.png" />
+    <Resource Include="Images\Numbers\26.png" />
+    <Resource Include="Images\Numbers\27.png" />
+    <Resource Include="Images\Numbers\28.png" />
+    <Resource Include="Images\Numbers\29.png" />
+    <Resource Include="Images\Numbers\30.png" />
+    <Resource Include="Images\Numbers\31.png" />
+    <Resource Include="Images\Numbers\32.png" />
+    <Resource Include="Images\Numbers\33.png" />
+    <Resource Include="Images\Numbers\34.png" />
+    <Resource Include="Images\Numbers\35.png" />
+    <Resource Include="Images\Numbers\36.png" />
+    <Resource Include="Images\Numbers\37.png" />
+    <Resource Include="Images\Numbers\38.png" />
+    <Resource Include="Images\Numbers\39.png" />
+    <Resource Include="Images\Numbers\40.png" />
+    <Resource Include="Images\Numbers\41.png" />
+    <Resource Include="Images\Numbers\42.png" />
+    <Resource Include="Images\Numbers\43.png" />
+    <Resource Include="Images\Numbers\44.png" />
+    <Resource Include="Images\Numbers\45.png" />
+    <Resource Include="Images\Numbers\46.png" />
+    <Resource Include="Images\Numbers\47.png" />
+    <Resource Include="Images\Numbers\48.png" />
+    <Resource Include="Images\Numbers\49.png" />
+    <Resource Include="Images\Numbers\50.png" />
+    <Resource Include="Images\Numbers\51.png" />
+    <Resource Include="Images\Numbers\7.png" />
+    <Resource Include="Images\Numbers\8.png" />
+    <Resource Include="Images\Numbers\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\0.png" />
+    <Resource Include="Images\Numbers\1.png" />
+    <Resource Include="Images\Numbers\2.png" />
+    <Resource Include="Images\Numbers\3.png" />
+    <Resource Include="Images\Numbers\4.png" />
+    <Resource Include="Images\Numbers\5.png" />
+    <Resource Include="Images\Numbers\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Simple\sword.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

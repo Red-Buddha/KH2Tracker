@@ -112,7 +112,7 @@
 
 
 
-    <Image x:Key="SoraHeartImage" Source="Images\Simple\sora's_level.png"/>
+    <Image x:Key="SoraHeartImage" Source="Images\Simple\level.png"/>
     <Image x:Key="SimulatedImage" Source="Images\Simple\simulated_twilight_town.png"/>
     <Image x:Key="HollowBastionImage" Source="Images\Simple\hollow_bastion.png"/>
     <Image x:Key="OlympusImage" Source="Images\Simple\olympus_coliseum.png"/>

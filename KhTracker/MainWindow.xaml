@@ -54,7 +54,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
-                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".75*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
@@ -330,7 +330,6 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition Height="1*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
@@ -576,30 +575,6 @@
                         </Grid>
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="1"/>
                     </Grid>
-                    <Grid Grid.Row="9">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Foreground="White" Padding="5,0,5,0">Level</Label>
-                        <Label Name="Level" Foreground="White" Grid.Column="1" Padding="5,0,5,0">1</Label>
-                        <Label Foreground="White" Grid.Row="1" Padding="5,0,5,0">Weapon</Label>
-                        <Label Name="Weapon" Foreground="White" Grid.Row="1" Grid.Column="1" Padding="5,0,5,0">Sword</Label>
-                        <Label Foreground="White" Grid.Row="0" Grid.Column="2" Padding="5,0,5,0">Strength</Label>
-                        <Label Foreground="White" Grid.Row="1" Grid.Column="2" Padding="5,0,5,0">Magic</Label>
-                        <Label Foreground="White" Grid.Row="2" Grid.Column="2" Padding="5,0,5,0">Defense</Label>
-                        <Label Name="Strength" Foreground="White" Grid.Row="0" Grid.Column="3" Padding="5,0,5,0">2</Label>
-                        <Label Name="Magic" Foreground="White" Grid.Row="1" Grid.Column="3" Padding="5,0,5,0">6</Label>
-                        <Label Name="Defense" Foreground="White" Grid.Row="2" Grid.Column="3" Padding="5,0,5,0">2</Label>
-                    </Grid>
                 </Grid>
             </Grid>
 
@@ -608,19 +583,48 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="5*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition/>
                     <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width=".5*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Name="Collected" Source="Images/Numbers/zero.png" Grid.Row="1" Grid.Column="1"/>
-                <Image Name="CollectedBar"  Source="Images\Bar.png" Grid.Row="1" Grid.Column="2"/>
-                <Image Name="CheckTotal" Source="Images/Numbers/Fifty.png" Grid.Row="1" Grid.Column="3"/>
-                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Grid.Column="0"/>
+
+                <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Grid.ColumnSpan="19" Grid.Column="0" Padding="0"/>
+
+                <Image Source="Images/Simple/level.png" Grid.Row="3" Grid.Column="1"/>
+                <Image Name="Level" Source="Images/Numbers/1.png" Grid.Row="3" Grid.Column="2"/>
+                <Image Source="Images/Simple/strength.png" Grid.Row="3" Grid.Column="4"/>
+                <Image Name="Strength" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="5"/>
+                <Image Source="Images/Simple/magic.png" Grid.Row="3" Grid.Column="7"/>
+                <Image Name="Magic" Source="Images/Numbers/6.png" Grid.Row="3" Grid.Column="8"/>
+                <Image Source="Images/Simple/defence.png" Grid.Row="3" Grid.Column="10"/>
+                <Image Name="Defense" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="11"/>
+                <Image Name="Weapon" Source="Images/Simple/sword.png" Grid.Row="3" Grid.Column="13"/>
+
+                <Image Name="Collected" Source="Images/Numbers/0.png" Grid.Row="3" Grid.Column="15"/>
+                <Image Name="CollectedBar"  Source="Images/Bar.png" Grid.Row="3" Grid.Column="16"/>
+                <Image Name="CheckTotal" Source="Images/Numbers/51.png" Grid.Row="3" Grid.Column="17"/>
             </Grid>
 
 

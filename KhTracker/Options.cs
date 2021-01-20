@@ -359,7 +359,7 @@ namespace KhTracker
 
             for (int i = 0; i < data.Hints.Count; ++i)
             {
-                data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                data.Hints[i].Source = new BitmapImage(new Uri("Images/Numbers/QuestionMark.png", UriKind.Relative));
 
                 (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
                 (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
@@ -430,7 +430,7 @@ namespace KhTracker
         private void OnReset(object sender, RoutedEventArgs e)
         {
             collected = 0;
-            Collected.Source = data.Numbers[0];
+            Collected.Source = data.Numbers[1];
             HintText.Content = "";
 
             if (data.selected != null)
@@ -485,12 +485,6 @@ namespace KhTracker
             {
                 row.Height = new GridLength(1, GridUnitType.Star);
             }
-
-            if (AtlanticaOption.IsChecked == false)
-            {
-                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(0, GridUnitType.Star);
-            }
-
 
             ResetHints();
 

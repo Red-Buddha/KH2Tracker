@@ -198,16 +198,23 @@ namespace KhTracker
         {
             Properties.Settings.Default.Atlantica = toggle;
             AtlanticaOption.IsChecked = toggle;
-            if (toggle)
-                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(1, GridUnitType.Star);
-            else
-                (((Atlantica.Parent as Grid).Parent as Grid).Parent as Grid).RowDefinitions[8].Height = new GridLength(0, GridUnitType.Star);
             HandleWorldToggle(toggle, Atlantica, AtlanticaGrid);
         }
 
         private void SimpleToggle(object sender, RoutedEventArgs e)
         {
+            if (SimpleOption.IsChecked == false)
+            {
+                SimpleOption.IsChecked = true;
+                return;
+            }
+
+            OrbOption.IsChecked = false;
+            AltOption.IsChecked = false;
             Properties.Settings.Default.Simple = SimpleOption.IsChecked;
+            Properties.Settings.Default.Orb = OrbOption.IsChecked;
+            Properties.Settings.Default.Alt = AltOption.IsChecked;
+
             if (SimpleOption.IsChecked)
             {
                 Report1.SetResourceReference(ContentProperty, "AnsemReport1");
@@ -280,8 +287,30 @@ namespace KhTracker
                 broadcast.Lamp.SetResourceReference(ContentProperty, "Genie");
                 broadcast.Ukulele.SetResourceReference(ContentProperty, "Stitch");
                 broadcast.Feather.SetResourceReference(ContentProperty, "PeterPan");
+
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[2].Height = new GridLength(1, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[1].Height = new GridLength(2.2, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[2].Height = new GridLength(2.2, GridUnitType.Star);
+                ((Grid)broadcast.Lamp.Parent).RowDefinitions[1].Height = new GridLength(4.4, GridUnitType.Star);
             }
-            else
+        }
+
+        private void OrbToggle(object sender, RoutedEventArgs e)
+        {
+            if (OrbOption.IsChecked == false)
+            {
+                OrbOption.IsChecked = true;
+                return;
+            }
+
+            SimpleOption.IsChecked = false;
+            AltOption.IsChecked = false;
+            Properties.Settings.Default.Simple = SimpleOption.IsChecked;
+            Properties.Settings.Default.Orb = OrbOption.IsChecked;
+            Properties.Settings.Default.Alt = AltOption.IsChecked;
+
+            if (OrbOption.IsChecked)
             {
                 Report1.SetResourceReference(ContentProperty, "AnsemReportOld1");
                 Report2.SetResourceReference(ContentProperty, "AnsemReportOld2");
@@ -353,6 +382,107 @@ namespace KhTracker
                 broadcast.Lamp.SetResourceReference(ContentProperty, "GenieOld");
                 broadcast.Ukulele.SetResourceReference(ContentProperty, "StitchOld");
                 broadcast.Feather.SetResourceReference(ContentProperty, "PeterPanOld");
+
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[2].Height = new GridLength(1, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[1].Height = new GridLength(2.2, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[2].Height = new GridLength(2.2, GridUnitType.Star);
+                ((Grid)broadcast.Lamp.Parent).RowDefinitions[1].Height = new GridLength(4.4, GridUnitType.Star);
+            }
+        }
+
+        private void AltToggle(object sender, RoutedEventArgs e)
+        {
+            if (AltOption.IsChecked == false)
+            {
+                AltOption.IsChecked = true;
+                return;
+            }
+
+            SimpleOption.IsChecked = false;
+            OrbOption.IsChecked = false;
+            Properties.Settings.Default.Simple = SimpleOption.IsChecked;
+            Properties.Settings.Default.Orb = OrbOption.IsChecked;
+            Properties.Settings.Default.Alt = AltOption.IsChecked;
+
+            if (AltOption.IsChecked)
+            {
+                Report1.SetResourceReference(ContentProperty, "AnsemReportOld1");
+                Report2.SetResourceReference(ContentProperty, "AnsemReportOld2");
+                Report3.SetResourceReference(ContentProperty, "AnsemReportOld3");
+                Report4.SetResourceReference(ContentProperty, "AnsemReportOld4");
+                Report5.SetResourceReference(ContentProperty, "AnsemReportOld5");
+                Report6.SetResourceReference(ContentProperty, "AnsemReportOld6");
+                Report7.SetResourceReference(ContentProperty, "AnsemReportOld7");
+                Report8.SetResourceReference(ContentProperty, "AnsemReportOld8");
+                Report9.SetResourceReference(ContentProperty, "AnsemReportOld9");
+                Report10.SetResourceReference(ContentProperty, "AnsemReportOld10");
+                Report11.SetResourceReference(ContentProperty, "AnsemReportOld11");
+                Report12.SetResourceReference(ContentProperty, "AnsemReportOld12");
+                Report13.SetResourceReference(ContentProperty, "AnsemReportOld13");
+                Fire1.SetResourceReference(ContentProperty, "FireOld");
+                Fire2.SetResourceReference(ContentProperty, "FireOld");
+                Fire3.SetResourceReference(ContentProperty, "FireOld");
+                Blizzard1.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard2.SetResourceReference(ContentProperty, "BlizzardOld");
+                Blizzard3.SetResourceReference(ContentProperty, "BlizzardOld");
+                Thunder1.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder2.SetResourceReference(ContentProperty, "ThunderOld");
+                Thunder3.SetResourceReference(ContentProperty, "ThunderOld");
+                Cure1.SetResourceReference(ContentProperty, "CureOld");
+                Cure2.SetResourceReference(ContentProperty, "CureOld");
+                Cure3.SetResourceReference(ContentProperty, "CureOld");
+                Reflect1.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect2.SetResourceReference(ContentProperty, "ReflectOld");
+                Reflect3.SetResourceReference(ContentProperty, "ReflectOld");
+                Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
+                Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
+                Valor.SetResourceReference(ContentProperty, "ValorOld");
+                Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
+                Limit.SetResourceReference(ContentProperty, "LimitOld");
+                Master.SetResourceReference(ContentProperty, "MasterOld");
+                Final.SetResourceReference(ContentProperty, "FinalOld");
+                TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage4.SetResourceReference(ContentProperty, "TornPageOld");
+                TornPage5.SetResourceReference(ContentProperty, "TornPageOld");
+                Lamp.SetResourceReference(ContentProperty, "GenieOld");
+                Ukulele.SetResourceReference(ContentProperty, "StitchOld");
+                Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
+                Feather.SetResourceReference(ContentProperty, "PeterPanOld");
+                Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+
+                broadcast.Report.SetResourceReference(ContentProperty, "AnsemReportOld");
+                broadcast.Peace.SetResourceReference(ContentProperty, "ProofOfPeaceOld");
+                broadcast.Nonexistence.SetResourceReference(ContentProperty, "ProofOfNonexistenceOld");
+                broadcast.Connection.SetResourceReference(ContentProperty, "ProofOfConnectionOld");
+                broadcast.PromiseCharm.SetResourceReference(ContentProperty, "PromiseCharmOld");
+                broadcast.Fire.SetResourceReference(ContentProperty, "FireAlt");
+                broadcast.Blizzard.SetResourceReference(ContentProperty, "BlizzardAlt");
+                broadcast.Thunder.SetResourceReference(ContentProperty, "ThunderAlt");
+                broadcast.Cure.SetResourceReference(ContentProperty, "CureAlt");
+                broadcast.Reflect.SetResourceReference(ContentProperty, "ReflectAlt");
+                broadcast.Magnet.SetResourceReference(ContentProperty, "MagnetAlt");
+                broadcast.Valor.SetResourceReference(ContentProperty, "ValorAlt");
+                broadcast.Wisdom.SetResourceReference(ContentProperty, "WisdomAlt");
+                broadcast.Limit.SetResourceReference(ContentProperty, "LimitAlt");
+                broadcast.Master.SetResourceReference(ContentProperty, "MasterAlt");
+                broadcast.Final.SetResourceReference(ContentProperty, "FinalAlt");
+                broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittleAlt");
+                broadcast.Lamp.SetResourceReference(ContentProperty, "GenieAlt");
+                broadcast.Ukulele.SetResourceReference(ContentProperty, "StitchAlt");
+                broadcast.Feather.SetResourceReference(ContentProperty, "PeterPanAlt");
+
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[0].Height = new GridLength(0, GridUnitType.Star);
+                ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[2].Height = new GridLength(0, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[1].Height = new GridLength(5, GridUnitType.Star);
+                ((Grid)broadcast.Valor.Parent).RowDefinitions[2].Height = new GridLength(5, GridUnitType.Star);
+                ((Grid)broadcast.Lamp.Parent).RowDefinitions[1].Height = new GridLength(8, GridUnitType.Star);
             }
         }
 

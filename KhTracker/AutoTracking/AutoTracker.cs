@@ -197,17 +197,23 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            BindLabel(Level, "Level", stats);
-            BindLabel(Weapon, "Weapon", stats);
-            BindLabel(Strength, "Strength", stats);
-            BindLabel(Magic, "Magic", stats);
-            BindLabel(Defense, "Defense", stats);
+            BindStats(Level, "Level", stats);
+            BindWeapon(Weapon, "Weapon", stats);
+            BindStats(Strength, "Strength", stats);
+            BindStats(Magic, "Magic", stats);
+            BindStats(Defense, "Defense", stats);
 
             BindLevel(broadcast.ValorLevel, "Level", valor);
             BindLevel(broadcast.WisdomLevel, "Level", wisdom);
             BindLevel(broadcast.LimitLevel, "Level", limit);
             BindLevel(broadcast.MasterLevel, "Level", master);
             BindLevel(broadcast.FinalLevel, "Level", final);
+
+            BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new HighJumpConverter());
+            BindAbilityLevel(broadcast.QuickRunLevel, "Level", highJump, new QuickRunConverter());
+            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", highJump, new DodgeRollConverter());
+            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", highJump, new AerialDodgeConverter());
+            BindAbilityLevel(broadcast.GlideLevel, "Level", highJump, new GlideConverter());
         }
         private void SetTimer()
         {
@@ -385,15 +391,23 @@ namespace KhTracker
 
                 foreach (ImportantCheck check in previousChecks)
                 {
+                    string count = "";
+                    // remove magic and torn page count for comparison with item codes and readd to track specific ui copies
+                    if (check.GetType() == typeof(Magic) || check.GetType() == typeof(TornPage))
+                    {
+                        count = check.Name.Substring(check.Name.Length - 1);
+                        check.Name = check.Name.Substring(0, check.Name.Length - 1);
+                    }
+
                     if (levelRewards.Exists(x => x == check.Name))
                     {
                         // add check to levels
-                        TrackItem(check.Name, SorasHeartGrid);
+                        TrackItem(check.Name + count, SorasHeartGrid);
                     }
                     else if (driveRewards.Exists(x => x == check.Name))
                     {
                         // add check to drives
-                        TrackItem(check.Name, DriveFormsGrid);
+                        TrackItem(check.Name + count, DriveFormsGrid);
                     }
                     else
                     {
@@ -402,7 +416,7 @@ namespace KhTracker
                         {
                             if (world.world == grid.Name.Substring(0, grid.Name.Length - 4))
                             {
-                                TrackItem(check.Name, grid);
+                                TrackItem(check.Name + count, grid);
                             }
                         }
                     }
@@ -418,12 +432,13 @@ namespace KhTracker
             }
             return BitConverter.ToString(bytes).Replace("-", "");
         }
-
-        private void BindLabel(ContentControl cc, string property, object source)
+        
+        private void BindStats(Image img, string property, object source)
         {
             Binding binding = new Binding(property);
             binding.Source = source;
-            cc.SetBinding(ContentProperty, binding);
+            binding.Converter = new NumberConverter();
+            img.SetBinding(Image.SourceProperty, binding);
         }
 
         private void BindLevel(Image img, string property, object source)
@@ -431,6 +446,22 @@ namespace KhTracker
             Binding binding = new Binding(property);
             binding.Source = source;
             binding.Converter = new LevelConverter();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindWeapon(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new WeaponConverter();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindAbilityLevel(Image img, string property, object source, IValueConverter convertor)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = convertor;
             img.SetBinding(Image.SourceProperty, binding);
         }
 
