@@ -9,6 +9,8 @@ namespace KhTracker
 {
     class DriveForm : ImportantCheck
     {
+        public bool previousPreviousObtained;
+        public bool previousObtained;
         public int previousPreviousPreviousLevel;
         private int previousPreviousLevel;
         private int previousLevel;
@@ -35,6 +37,8 @@ namespace KhTracker
         public override byte[] UpdateMemory()
         {
             byte[] data = base.UpdateMemory();
+            previousPreviousObtained = previousObtained;
+            previousObtained = Obtained;
             Obtained = new BitArray(data)[byteNum];
             byte[] levelData = memory.ReadMemory(levelAddr + ADDRESS_OFFSET, 1);
             previousPreviousPreviousLevel = previousPreviousLevel;

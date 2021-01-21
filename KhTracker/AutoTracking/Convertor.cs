@@ -434,6 +434,9 @@ namespace KhTracker
         {
             if ((int)value >= 1)
             {
+                if ((int)value > 70)
+                    value = 70;
+
                 return "Images/Numbers/" + (value).ToString() + ".png";
             }
             else

@@ -199,6 +199,25 @@ namespace KhTracker
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\49.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\50.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\51.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\52.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\53.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\54.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\55.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\56.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\57.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\58.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\59.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\60.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\61.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\62.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\63.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\64.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\65.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\66.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\67.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\68.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\69.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\70.png", UriKind.Relative)));
 
             foreach (ContentControl item in ItemPool.Children)
             {

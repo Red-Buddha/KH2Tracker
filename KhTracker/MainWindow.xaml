@@ -612,15 +612,15 @@
 
                 <Label Name="HintText" Height="31" Foreground="White" HorizontalAlignment="Center" FontSize="13" Grid.Row="1" Grid.ColumnSpan="19" Grid.Column="0" Padding="0"/>
 
-                <Image Source="Images/Simple/level.png" Grid.Row="3" Grid.Column="1"/>
-                <Image Name="Level" Source="Images/Numbers/1.png" Grid.Row="3" Grid.Column="2"/>
-                <Image Source="Images/Simple/strength.png" Grid.Row="3" Grid.Column="4"/>
-                <Image Name="Strength" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="5"/>
-                <Image Source="Images/Simple/magic.png" Grid.Row="3" Grid.Column="7"/>
-                <Image Name="Magic" Source="Images/Numbers/6.png" Grid.Row="3" Grid.Column="8"/>
-                <Image Source="Images/Simple/defence.png" Grid.Row="3" Grid.Column="10"/>
-                <Image Name="Defense" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="11"/>
-                <Image Name="Weapon" Source="Images/Simple/sword.png" Grid.Row="3" Grid.Column="13"/>
+                <Image Name="LevelIcon" Source="Images/Simple/level.png" Grid.Row="3" Grid.Column="1" Visibility="Hidden"/>
+                <Image Name="Level" Source="Images/Numbers/1.png" Grid.Row="3" Grid.Column="2" Visibility="Hidden"/>
+                <Image Name="StrengthIcon" Source="Images/Simple/strength.png" Grid.Row="3" Grid.Column="4" Visibility="Hidden"/>
+                <Image Name="Strength" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="5" Visibility="Hidden"/>
+                <Image Name="MagicIcon" Source="Images/Simple/magic.png" Grid.Row="3" Grid.Column="7" Visibility="Hidden"/>
+                <Image Name="Magic" Source="Images/Numbers/6.png" Grid.Row="3" Grid.Column="8" Visibility="Hidden"/>
+                <Image Name="DefenseIcon" Source="Images/Simple/defence.png" Grid.Row="3" Grid.Column="10" Visibility="Hidden"/>
+                <Image Name="Defense" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="11" Visibility="Hidden"/>
+                <Image Name="Weapon" Source="Images/Simple/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden"/>
 
                 <Image Name="Collected" Source="Images/Numbers/0.png" Grid.Row="3" Grid.Column="15"/>
                 <Image Name="CollectedBar"  Source="Images/Bar.png" Grid.Row="3" Grid.Column="16"/>

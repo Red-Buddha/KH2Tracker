@@ -55,7 +55,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="SorasHeartFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="SorasHeartFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="SorasHeartTotal" Grid.Column="2"/>
                     </Grid>
@@ -80,7 +80,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="DriveFormsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="DriveFormsFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="DriveFormsTotal" Grid.Column="2"/>
                     </Grid>
@@ -105,7 +105,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="HollowBastionFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="HollowBastionFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="HollowBastionTotal" Grid.Column="2"/>
                     </Grid>
@@ -130,7 +130,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="TwilightTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="TwilightTownFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="TwilightTownTotal" Grid.Column="2"/>
                     </Grid>
@@ -155,7 +155,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="LandofDragonsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="LandofDragonsFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="LandofDragonsTotal" Grid.Column="2"/>
                     </Grid>
@@ -180,7 +180,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="BeastsCastleFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="BeastsCastleFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="BeastsCastleTotal" Grid.Column="2"/>
                     </Grid>
@@ -205,7 +205,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="OlympusColiseumFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="OlympusColiseumFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="OlympusColiseumTotal" Grid.Column="2"/>
                     </Grid>
@@ -230,7 +230,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="SpaceParanoidsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="SpaceParanoidsFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="SpaceParanoidsTotal" Grid.Column="2"/>
                     </Grid>
@@ -255,7 +255,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="HalloweenTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="HalloweenTownFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="HalloweenTownTotal" Grid.Column="2"/>
                     </Grid>
@@ -280,7 +280,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="PortRoyalFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="PortRoyalFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="PortRoyalTotal" Grid.Column="2"/>
                     </Grid>
@@ -305,7 +305,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="AgrabahFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="AgrabahFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="AgrabahTotal" Grid.Column="2"/>
                     </Grid>
@@ -330,7 +330,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="PrideLandsFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="PrideLandsFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="PrideLandsTotal" Grid.Column="2"/>
                     </Grid>
@@ -355,7 +355,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="DisneyCastleFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="DisneyCastleFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="DisneyCastleTotal" Grid.Column="2"/>
                     </Grid>
@@ -380,7 +380,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="HundredAcreWoodFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="HundredAcreWoodFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="HundredAcreWoodTotal" Grid.Column="2"/>
                     </Grid>
@@ -405,7 +405,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="SimulatedTwilightTownFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="SimulatedTwilightTownFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="SimulatedTwilightTownTotal" Grid.Column="2"/>
                     </Grid>
@@ -431,7 +431,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Numbers/Zero.png" Name="TWTNWFound" Grid.Column="0"/>
+                        <Image Source="/Images/Numbers/0.png" Name="TWTNWFound" Grid.Column="0"/>
                         <Image Source="/Images/Bar.png" Grid.Column="1"/>
                         <Image Source="/Images/Numbers/QuestionMark.png" Name="TWTNWTotal" Grid.Column="2"/>
                     </Grid>
@@ -463,9 +463,9 @@
                     </Grid.ColumnDefinitions>
 
                     <ContentControl Content="{DynamicResource AnsemReport}" Name="Report" Grid.RowSpan="3" Grid.Column="1"/>
-                    <Image Source="Images/Numbers/zero.png" Name="ReportFound" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="Images/Numbers/0.png" Name="ReportFound" Grid.Row="1" Grid.Column="2"/>
                     <Image Source="Images/bar.png" Grid.Row="1" Grid.Column="3"/>
-                    <Image Source="Images/Numbers/thirteen.png" Grid.Row="1" Grid.Column="4"/>
+                    <Image Source="Images/Numbers/13.png" Grid.Row="1" Grid.Column="4"/>
                 </Grid>
 
                 <!-- Torn Pages -->
@@ -485,9 +485,9 @@
                     </Grid.ColumnDefinitions>
 
                     <ContentControl Content="{DynamicResource TornPage}" Name="TornPage" Grid.RowSpan="3" Grid.Column="1"/>
-                    <Image Source="Images/Numbers/zero.png" Name="TornPageFound" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="Images/Numbers/0.png" Name="TornPageFound" Grid.Row="1" Grid.Column="2"/>
                     <Image Source="Images/bar.png" Grid.Row="1" Grid.Column="3"/>
-                    <Image Source="Images/Numbers/five.png" Grid.Row="1" Grid.Column="4"/>
+                    <Image Source="Images/Numbers/5.png" Grid.Row="1" Grid.Column="4"/>
                 </Grid>
 
                 <!-- Collected Count -->
@@ -505,9 +505,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="Images/Numbers/zero.png" Name="Collected" Grid.Row="1" Grid.Column="1"/>
+                    <Image Source="Images/Numbers/0.png" Name="Collected" Grid.Row="1" Grid.Column="1"/>
                     <Image Name="CollectedBar" Source="Images/bar.png" Grid.Row="1" Grid.Column="2"/>
-                    <Image Name="CheckTotal" Source="Images/Numbers/Fifty.png" Grid.Row="1" Grid.Column="3"/>
+                    <Image Name="CheckTotal" Source="Images/Numbers/50.png" Grid.Row="1" Grid.Column="3"/>
                 </Grid>
             </Grid>
 

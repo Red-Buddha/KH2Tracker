@@ -30,7 +30,9 @@ namespace KhTracker
             worldAddress = address;
 
             worldCodes = new Dictionary<int, string>();
+            worldCodes.Add(01, "EndofSea");
             worldCodes.Add(02, "TwilightTown");
+            worldCodes.Add(03, "DestinyIsland");
             worldCodes.Add(04, "HollowBastion");
             worldCodes.Add(05, "BeastsCastle");
             worldCodes.Add(06, "OlympusColiseum");

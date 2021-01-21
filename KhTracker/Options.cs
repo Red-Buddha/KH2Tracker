@@ -488,6 +488,16 @@ namespace KhTracker
 
             ResetHints();
 
+            LevelIcon.Visibility = Visibility.Hidden;
+            Level.Visibility = Visibility.Hidden;
+            StrengthIcon.Visibility = Visibility.Hidden;
+            Strength.Visibility = Visibility.Hidden;
+            MagicIcon.Visibility = Visibility.Hidden;
+            Magic.Visibility = Visibility.Hidden;
+            DefenseIcon.Visibility = Visibility.Hidden;
+            Defense.Visibility = Visibility.Hidden;
+            Weapon.Visibility = Visibility.Hidden;
+
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();

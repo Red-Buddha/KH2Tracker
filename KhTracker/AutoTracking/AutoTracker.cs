@@ -165,6 +165,16 @@ namespace KhTracker
             stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8);
             rewards = new Rewards(memory, ADDRESS_OFFSET);
 
+            LevelIcon.Visibility = Visibility.Visible;
+            Level.Visibility = Visibility.Visible;
+            StrengthIcon.Visibility = Visibility.Visible;
+            Strength.Visibility = Visibility.Visible;
+            MagicIcon.Visibility = Visibility.Visible;
+            Magic.Visibility = Visibility.Visible;
+            DefenseIcon.Visibility = Visibility.Visible;
+            Defense.Visibility = Visibility.Visible;
+            Weapon.Visibility = Visibility.Visible;
+
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -210,10 +220,10 @@ namespace KhTracker
             BindLevel(broadcast.FinalLevel, "Level", final);
 
             BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new HighJumpConverter());
-            BindAbilityLevel(broadcast.QuickRunLevel, "Level", highJump, new QuickRunConverter());
-            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", highJump, new DodgeRollConverter());
-            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", highJump, new AerialDodgeConverter());
-            BindAbilityLevel(broadcast.GlideLevel, "Level", highJump, new GlideConverter());
+            BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new QuickRunConverter());
+            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new DodgeRollConverter());
+            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new AerialDodgeConverter());
+            BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GlideConverter());
         }
         private void SetTimer()
         {
@@ -352,7 +362,16 @@ namespace KhTracker
                 if (check.GetType() == typeof(Magic) || check.GetType() == typeof(TornPage))
                     continue;
 
-                if (check.Obtained && collectedChecks.Contains(check) == false)
+                // Dumb fix for valor getting set by random things
+                if (check.GetType() == typeof(DriveForm))
+                {
+                    if (check.Obtained && ((DriveForm)check).previousObtained && ((DriveForm)check).previousPreviousObtained)
+                    {
+                        collectedChecks.Add(check);
+                        newChecks.Add(check);
+                    }
+                }
+                else if (check.Obtained && collectedChecks.Contains(check) == false)
                 {
                     collectedChecks.Add(check);
                     newChecks.Add(check);
