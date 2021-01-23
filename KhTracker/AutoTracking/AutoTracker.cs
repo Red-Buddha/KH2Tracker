@@ -122,7 +122,7 @@ namespace KhTracker
             importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "SecondChance"));
             importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "OnceMore"));
 
-            importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
+            //importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, 0x0032F1FA, ADDRESS_OFFSET, 3, 0x0032EE96, "Limit"));
             importantChecks.Add(master = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 6, 0x0032EECE, "Master"));
@@ -162,7 +162,7 @@ namespace KhTracker
             importantChecks.Add(pages = new TornPage(memory, 0x0032F0C8, ADDRESS_OFFSET, "TornPage"));
 
             world = new World(memory, ADDRESS_OFFSET, 0x0032BAE0);
-            stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8);
+            stats = new Stats(memory, ADDRESS_OFFSET, 0x0032E02E, 0x01C6C8D8, 0x0032F054);
             rewards = new Rewards(memory, ADDRESS_OFFSET);
 
             LevelIcon.Visibility = Visibility.Visible;
@@ -362,19 +362,18 @@ namespace KhTracker
                 if (check.GetType() == typeof(Magic) || check.GetType() == typeof(TornPage))
                     continue;
 
-                // Dumb fix for valor getting set by random things
-                if (check.GetType() == typeof(DriveForm))
+                if (check.Obtained && collectedChecks.Contains(check) == false)
                 {
-                    if (check.Obtained && ((DriveForm)check).previousObtained && ((DriveForm)check).previousPreviousObtained)
+                    // skip auto tracking final if it was forced
+                    if (check.Name == "Final" && stats.form == 5)
+                    {
+                        collectedChecks.Add(check);
+                    }
+                    else
                     {
                         collectedChecks.Add(check);
                         newChecks.Add(check);
                     }
-                }
-                else if (check.Obtained && collectedChecks.Contains(check) == false)
-                {
-                    collectedChecks.Add(check);
-                    newChecks.Add(check);
                 }
             }
             TrackQuantities();

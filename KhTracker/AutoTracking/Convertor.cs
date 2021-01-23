@@ -432,7 +432,7 @@ namespace KhTracker
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((int)value >= 1)
+            if ((int)value >= 0)
             {
                 if ((int)value > 70)
                     value = 70;

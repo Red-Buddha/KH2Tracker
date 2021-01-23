@@ -63,19 +63,23 @@ namespace KhTracker
             }
         }
 
+        public int form;
+
         private int levelAddress;
         private int statsAddress;
+        private int formAddress;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr)
+        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             levelAddress = lvlAddress;
             statsAddress = statsAddr;
+            formAddress = formAddr;
         }
 
         // this is not working
@@ -114,6 +118,9 @@ namespace KhTracker
                 Magic = statsData[2];
             if (Defense != statsData[4])
                 Defense = statsData[4];
+
+            byte[] modelData = memory.ReadMemory(formAddress + ADDRESS_OFFSET, 1);
+            form = modelData[0];
         }
     }
 }
