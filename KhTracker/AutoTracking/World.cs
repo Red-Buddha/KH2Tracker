@@ -77,7 +77,7 @@ namespace KhTracker
                 world = "GoA";
             }
             // Handle Goa
-            if (world == "HollowBastion" && roomNumber == 26)
+            if (world == "HollowBastion")
             {
                 if (roomNumber == 26)
                     world = "GoA";
