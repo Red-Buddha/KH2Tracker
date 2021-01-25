@@ -88,6 +88,8 @@ In addition to automatically tracking the important checks, the auto tracker tra
 
 Valor form is not being automatically tracked due to the flag for it being obtained being set anytime you open the summon command menu. Final form will only be tracked automatically if it is found before being forced (both normally or through light and dark).
 
+If you are playing from a saved tracker file be sure to load it before turning on the auto tracker or everything will be placed into the world you are currently in. Also if you are playing a seed across multiple sessions do not start a new session from a save point in STT or the checks there will be tracked incorrectly for now.
+
 ## Thanks
 
 * Tommadness
