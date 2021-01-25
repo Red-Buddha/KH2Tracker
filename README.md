@@ -90,6 +90,8 @@ Valor form is not being automatically tracked due to the flag for it being obtai
 
 If you are playing from a saved tracker file be sure to load it before turning on the auto tracker or everything will be placed into the world you are currently in. Also if you are playing a seed across multiple sessions do not start a new session from a save point in STT or the checks there will be tracked incorrectly for now.
 
+When playing multiple seeds in a row be sure to fully close and reopen pcsx2 or wait to start the auto tracker again after starting a new game to make sure the memory has been reset
+
 ## Thanks
 
 * Tommadness
