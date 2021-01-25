@@ -9,9 +9,7 @@ namespace KhTracker
 {
     class Stats : INotifyPropertyChanged
     {
-        public int previousPreviousPreviousLevel;
-        private int previousPreviousLevel;
-        private int previousLevel;
+        public int[] previousLevels = new int[3];
         private int level;
         public int Level
         {
@@ -105,9 +103,10 @@ namespace KhTracker
             else if (levelData[0] == 2 && Weapon != "Staff")
                 Weapon = "Staff";
 
-            previousPreviousPreviousLevel = previousPreviousLevel;
-            previousPreviousLevel = previousLevel;
-            previousLevel = level;
+            previousLevels[0] = previousLevels[1];
+            previousLevels[1] = previousLevels[2];
+            previousLevels[2] = Level;
+            
             if (Level != levelData[1])
                 Level = levelData[1];
 

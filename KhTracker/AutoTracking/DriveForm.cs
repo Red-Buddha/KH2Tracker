@@ -9,9 +9,7 @@ namespace KhTracker
 {
     class DriveForm : ImportantCheck
     {
-        public int previousPreviousPreviousLevel;
-        private int previousPreviousLevel;
-        private int previousLevel;
+        public int[] previousLevels = new int[3];
         private int level = 0;
         public int Level
         {
@@ -37,9 +35,9 @@ namespace KhTracker
             byte[] data = base.UpdateMemory();
             Obtained = new BitArray(data)[byteNum];
             byte[] levelData = memory.ReadMemory(levelAddr + ADDRESS_OFFSET, 1);
-            previousPreviousPreviousLevel = previousPreviousLevel;
-            previousPreviousLevel = previousLevel;
-            previousLevel = Level;
+            previousLevels[0] = previousLevels[1];
+            previousLevels[1] = previousLevels[2];
+            previousLevels[2] = Level;
 
             Level = levelData[0];
             if (levelData[0] > 1)
