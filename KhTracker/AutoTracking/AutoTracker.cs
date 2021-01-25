@@ -122,6 +122,7 @@ namespace KhTracker
             importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "SecondChance"));
             importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "OnceMore"));
 
+            valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor");
             //importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, 0x0032F1FA, ADDRESS_OFFSET, 3, 0x0032EE96, "Limit"));
