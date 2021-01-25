@@ -21,6 +21,8 @@ namespace KhTracker
     {
         public static Data data;
         private BroadcastWindow broadcast;
+        public int collected;
+        private int total = 51;
 
         public MainWindow()
         {
@@ -30,7 +32,7 @@ namespace KhTracker
 
             InitOptions();
         }
-        
+
         private void InitData()
         {
             data = new Data();
@@ -124,19 +126,19 @@ namespace KhTracker
             data.Reports.Add(Report12);
             data.Reports.Add(Report13);
 
-            data.ReportAttemptVisual.Add(Report1Attempts);
-            data.ReportAttemptVisual.Add(Report2Attempts);
-            data.ReportAttemptVisual.Add(Report3Attempts);
-            data.ReportAttemptVisual.Add(Report4Attempts);
-            data.ReportAttemptVisual.Add(Report5Attempts);
-            data.ReportAttemptVisual.Add(Report6Attempts);
-            data.ReportAttemptVisual.Add(Report7Attempts);
-            data.ReportAttemptVisual.Add(Report8Attempts);
-            data.ReportAttemptVisual.Add(Report9Attempts);
-            data.ReportAttemptVisual.Add(Report10Attempts);
-            data.ReportAttemptVisual.Add(Report11Attempts);
-            data.ReportAttemptVisual.Add(Report12Attempts);
-            data.ReportAttemptVisual.Add(Report13Attempts);
+            data.ReportAttemptVisual.Add(Attempts1);
+            data.ReportAttemptVisual.Add(Attempts2);
+            data.ReportAttemptVisual.Add(Attempts3);
+            data.ReportAttemptVisual.Add(Attempts4);
+            data.ReportAttemptVisual.Add(Attempts5);
+            data.ReportAttemptVisual.Add(Attempts6);
+            data.ReportAttemptVisual.Add(Attempts7);
+            data.ReportAttemptVisual.Add(Attempts8);
+            data.ReportAttemptVisual.Add(Attempts9);
+            data.ReportAttemptVisual.Add(Attempts10);
+            data.ReportAttemptVisual.Add(Attempts11);
+            data.ReportAttemptVisual.Add(Attempts12);
+            data.ReportAttemptVisual.Add(Attempts13);
 
             data.TornPages.Add(TornPage1);
             data.TornPages.Add(TornPage2);
@@ -144,28 +146,78 @@ namespace KhTracker
             data.TornPages.Add(TornPage4);
             data.TornPages.Add(TornPage5);
 
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Zero.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\One.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Two.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Three.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Four.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Five.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Six.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Seven.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eight.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Nine.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Ten.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eleven.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Twelve.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Thirteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Fourteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Fifteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Sixteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Seventeen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Eighteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Nineteen.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Twenty.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\QuestionMark.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\0.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\1.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\2.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\3.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\4.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\5.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\6.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\7.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\8.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\9.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\10.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\11.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\12.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\13.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\14.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\15.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\16.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\17.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\18.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\19.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\20.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\21.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\22.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\23.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\24.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\25.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\26.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\27.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\28.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\29.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\30.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\31.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\32.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\33.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\34.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\35.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\36.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\37.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\38.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\39.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\40.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\41.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\42.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\43.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\44.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\45.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\46.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\47.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\48.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\49.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\50.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\51.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\52.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\53.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\54.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\55.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\56.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\57.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\58.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\59.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\60.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\61.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\62.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\63.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\64.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\65.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\66.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\67.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\68.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\69.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\70.png", UriKind.Relative)));
 
             foreach (ContentControl item in ItemPool.Children)
             {
@@ -176,6 +228,9 @@ namespace KhTracker
             }
 
             broadcast = new BroadcastWindow(data);
+
+            collectedChecks = new List<ImportantCheck>();
+            newChecks = new List<ImportantCheck>();
 
         }
 
@@ -222,7 +277,7 @@ namespace KhTracker
             HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
             AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
             AtlanticaToggle(AtlanticaOption.IsChecked);
-            
+
             DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
             DragDropToggle(null, null);
 
@@ -240,12 +295,12 @@ namespace KhTracker
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             Button button = sender as Button;
-            
+
             if (e.ChangedButton == MouseButton.Left)
             {
                 if (data.selected != null)
                 {
-                    for(int i = 0; i < data.SelectedBars.Count; ++i)
+                    for (int i = 0; i < data.SelectedBars.Count; ++i)
                     {
                         if (data.Worlds[i] == data.selected)
                         {
@@ -263,11 +318,11 @@ namespace KhTracker
                     }
                 }
             }
-            else if(e.ChangedButton == MouseButton.Middle)
+            else if (e.ChangedButton == MouseButton.Middle)
             {
-                for(int i = 0; i < data.Hints.Count; ++i)
+                for (int i = 0; i < data.Hints.Count; ++i)
                 {
-                    if(button == data.Worlds[i])
+                    if (button == data.Worlds[i])
                     {
                         data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
 
@@ -336,22 +391,18 @@ namespace KhTracker
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
 
-            if (Width  < 490)
+            if (Width < 490)
             {
                 HintText.FontSize = 13;
                 CollectedBar.Height = 25;
-                CheckTotal.FontSize = 25;
-                Collected.FontSize = 25;
             }
             else
             {
                 HintText.FontSize = 16;
                 CollectedBar.Height = 30;
-                CheckTotal.FontSize = 30;
-                Collected.FontSize = 30;
             }
         }
-        
+
         /// 
         /// Handle UI Changes
         /// 
@@ -359,9 +410,9 @@ namespace KhTracker
         {
             int num = 0;
 
-            for(int i = 0; i < data.Numbers.Count; ++i)
+            for (int i = 0; i < data.Numbers.Count; ++i)
             {
-                if(Hint.Source == data.Numbers[i])
+                if (Hint.Source == data.Numbers[i])
                 {
                     num = i;
                 }
@@ -373,9 +424,9 @@ namespace KhTracker
                 --num;
 
             // cap hint value to 20
-            if (num > 21)
-                num = 21;
-            
+            if (num > 52)
+                num = 52;
+
             if (num < 0)
                 Hint.Source = data.Numbers[0];
             else
@@ -394,19 +445,19 @@ namespace KhTracker
 
             }
 
-            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num-1);
+            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
 
         public void SetReportValue(Image Hint, int value)
         {
-            if (value > 21)
-                value = 21;
-            
+            if (value > 52)
+                value = 52;
+
             if (value < 0)
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[value];
-            
+
             // Format fixing for double digit numbers
             if (value > 10)
             {
@@ -421,15 +472,46 @@ namespace KhTracker
             }
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
-        
+
         public void IncrementCollected()
         {
-            Collected.Text = (int.Parse(Collected.Text) + 1).ToString();
+            ++collected;
+            if (collected > 51)
+                collected = 51;
+
+            Collected.Source = data.Numbers[collected + 1];
+            broadcast.Collected.Source = data.Numbers[collected + 1];
+
         }
 
         public void DecrementCollected()
         {
-            Collected.Text = (int.Parse(Collected.Text) - 1).ToString();
+            --collected;
+            if (collected < 0)
+                collected = 0;
+
+            Collected.Source = data.Numbers[collected + 1];
+            broadcast.Collected.Source = data.Numbers[collected + 1];
+        }
+
+        public void IncrementTotal()
+        {
+            ++total;
+            if (total > 51)
+                total = 51;
+
+            CheckTotal.Source = data.Numbers[total + 1];
+            broadcast.CheckTotal.Source = data.Numbers[total + 1];
+        }
+
+        public void DecrementTotal()
+        {
+            --total;
+            if (total < 0)
+                total = 0;
+
+            CheckTotal.Source = data.Numbers[total + 1];
+            broadcast.CheckTotal.Source = data.Numbers[total + 1];
         }
 
         public void SetHintText(string text)

@@ -280,6 +280,16 @@ namespace KhTracker
             }
         }
 
+        private void DropHints(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                LoadHints(files[0]);
+            }
+        }
+
         private void LoadHints(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -287,48 +297,52 @@ namespace KhTracker
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == true)
             {
-                ResetHints();
-
-                Stream stream = openFileDialog.OpenFile();
-                StreamReader streamReader = new StreamReader(stream);
-
-                if (streamReader.EndOfStream)
-                {
-                    HintText.Content = "Error loading hints";
-                    streamReader.Close();
-                    return;
-                }
-
-                string line1 = streamReader.ReadLine();
-                data.hintFileText[0] = line1;
-                string[] reportvalues = line1.Split('.');
-
-                if (streamReader.EndOfStream)
-                {
-                    HintText.Content = "Error loading hints";
-                    streamReader.Close();
-                    return;
-                }
-
-                string line2 = streamReader.ReadLine();
-                data.hintFileText[1] = line2;
-                line2 = line2.TrimEnd('.');
-                string[] reportorder = line2.Split('.');
-
-                LoadSettings(streamReader.ReadLine().Substring(24));
-
-                streamReader.Close();
-
-                for (int i = 0; i < reportorder.Length; ++i)
-                {
-                    data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
-                    string[] temp = reportvalues[i].Split(',');
-                    data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
-                }
-
-                data.hintsLoaded = true;
-                HintText.Content = "Hints Loaded";
+                LoadHints(openFileDialog.FileName);
             }
+        }
+
+        public void LoadHints(string filename)
+        {
+            ResetHints();
+            
+            StreamReader streamReader = new StreamReader(filename);
+
+            if (streamReader.EndOfStream)
+            {
+                HintText.Content = "Error loading hints";
+                streamReader.Close();
+                return;
+            }
+
+            string line1 = streamReader.ReadLine();
+            data.hintFileText[0] = line1;
+            string[] reportvalues = line1.Split('.');
+
+            if (streamReader.EndOfStream)
+            {
+                HintText.Content = "Error loading hints";
+                streamReader.Close();
+                return;
+            }
+
+            string line2 = streamReader.ReadLine();
+            data.hintFileText[1] = line2;
+            line2 = line2.TrimEnd('.');
+            string[] reportorder = line2.Split('.');
+
+            LoadSettings(streamReader.ReadLine().Substring(24));
+
+            streamReader.Close();
+
+            for (int i = 0; i < reportorder.Length; ++i)
+            {
+                data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                string[] temp = reportvalues[i].Split(',');
+                data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+            }
+
+            data.hintsLoaded = true;
+            HintText.Content = "Hints Loaded";
         }
 
         private void ResetHints()
@@ -345,7 +359,7 @@ namespace KhTracker
 
             for (int i = 0; i < data.Hints.Count; ++i)
             {
-                data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                data.Hints[i].Source = new BitmapImage(new Uri("Images/Numbers/QuestionMark.png", UriKind.Relative));
 
                 (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
                 (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
@@ -415,7 +429,8 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            Collected.Text = "0";
+            collected = 0;
+            Collected.Source = data.Numbers[1];
             HintText.Content = "";
 
             if (data.selected != null)
@@ -472,6 +487,29 @@ namespace KhTracker
             }
 
             ResetHints();
+
+            LevelIcon.Visibility = Visibility.Hidden;
+            Level.Visibility = Visibility.Hidden;
+            StrengthIcon.Visibility = Visibility.Hidden;
+            Strength.Visibility = Visibility.Hidden;
+            MagicIcon.Visibility = Visibility.Hidden;
+            Magic.Visibility = Visibility.Hidden;
+            DefenseIcon.Visibility = Visibility.Hidden;
+            Defense.Visibility = Visibility.Hidden;
+            Weapon.Visibility = Visibility.Hidden;
+
+            // Reset / Turn off auto tracking
+            collectedChecks.Clear();
+            newChecks.Clear();
+            if (aTimer != null)
+                aTimer.Stop();
+
+            fireLevel = 0;
+            blizzardLevel = 0;
+            thunderLevel = 0;
+            reflectLevel = 0;
+            magnetLevel = 0;
+            tornPageCount = 0;
 
             double broadcastLeft = broadcast.Left;
             double broadcastTop = broadcast.Top;

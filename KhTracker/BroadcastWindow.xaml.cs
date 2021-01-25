@@ -28,7 +28,6 @@ namespace KhTracker
         Data data;
         public Dictionary<string, bool> toggles = new Dictionary<string, bool>();
 
-
         public BroadcastWindow(Data dataIn)
         {
             InitializeComponent();
@@ -160,7 +159,7 @@ namespace KhTracker
         {
             foreach(KeyValuePair<string,int> world in worlds)
             {
-                if (world.Value < 21)
+                if (world.Value < 52)
                 {
                     BitmapImage number = Numbers[world.Value + 1];
                     Image worldFound = this.FindName(world.Key + "Found") as Image;
@@ -200,12 +199,13 @@ namespace KhTracker
                     }
                 }
             }
+
             foreach (KeyValuePair<string, int> total in totals)
             {
                 Image worldTotal = this.FindName(total.Key + "Total") as Image;
                 if (total.Value == -1)
                 {
-                    worldTotal.Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                    worldTotal.Source = new BitmapImage(new Uri("Images\\Numbers\\QuestionMark.png", UriKind.Relative));
                 }
                 else
                 {
@@ -242,6 +242,15 @@ namespace KhTracker
                 }
             }
             
+
+            if ((App.Current.MainWindow as MainWindow).collected > 9)
+            {
+                (Collected.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(.8, GridUnitType.Star);
+            }
+            else
+            {
+                (Collected.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(.5, GridUnitType.Star);
+            }
         }
 
         public void UpdateTotal(string world, int checks)

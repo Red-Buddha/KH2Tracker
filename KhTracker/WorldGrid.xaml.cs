@@ -28,7 +28,16 @@ namespace KhTracker
         public void Handle_WorldGrid(Item button, bool add)
         {
             if (add)
-                Children.Add(button);
+            {
+                try
+                {
+                    Children.Add(button);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
             else
                 Children.Remove(button);
 
@@ -49,10 +58,20 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
-            Item item = e.Data.GetData(typeof(Item)) as Item;
+            if (e.Data.GetDataPresent(typeof(Item)))
+            {
 
-            if (Handle_Report(item, window, data))
-                Add_Item(item, window);
+                Item item = e.Data.GetData(typeof(Item)) as Item;
+
+                if (Handle_Report(item, window, data))
+                    Add_Item(item, window);
+            }
+            else if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                window.LoadHints(files[0]);
+            }
         }
 
         public void Add_Item(Item item, MainWindow window)
