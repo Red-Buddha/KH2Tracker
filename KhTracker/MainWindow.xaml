@@ -14,6 +14,12 @@
         Title="KH2Tracker" Height="880" Width="570" Background="#303030"
         MinHeight="575" MinWidth="400">
 
+    <Window.Resources>
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        </Style>
+    </Window.Resources>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="Options">

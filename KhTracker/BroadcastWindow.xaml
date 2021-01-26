@@ -12,6 +12,13 @@
         SizeChanged="Window_SizeChanged"
         Closing="BroadcastWindow_Closing"
         MinHeight="340" MinWidth="250" Background="#303030">
+
+    <Window.Resources>
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
