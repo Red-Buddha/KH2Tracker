@@ -269,7 +269,7 @@ namespace KhTracker
         {
             foreach (ContentControl item in ItemPool.Children)
             {
-                if (item.Name.Contains(itemName))
+                if (item.Name == itemName)
                 {
                     if (world.Handle_Report(item as Item, this, data))
                         world.Add_Item(item as Item, this);
