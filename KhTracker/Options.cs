@@ -476,14 +476,18 @@ namespace KhTracker
             RowDefinitionCollection rows1 = ((data.Grids[0].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows1)
             {
-                row.Height = new GridLength(1, GridUnitType.Star);
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
             }
 
             // Reset 2nd column row heights
             RowDefinitionCollection rows2 = ((data.Grids[1].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows2)
             {
-                row.Height = new GridLength(1, GridUnitType.Star);
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
             }
 
             ResetHints();
