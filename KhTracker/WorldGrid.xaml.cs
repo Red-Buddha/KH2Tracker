@@ -51,7 +51,9 @@ namespace KhTracker
 
             // default 1, add .5 for every row
             double length = 1 + ((Children.Count - 1) / 5) / 2.0;
-            ((Parent as Grid).Parent as Grid).RowDefinitions[(int)Parent.GetValue(Grid.RowProperty)].Height = new GridLength(length, GridUnitType.Star);
+            var outerGrid = ((Parent as Grid).Parent as Grid);
+            int row = (int)Parent.GetValue(Grid.RowProperty);
+            outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
         }
 
         private void Item_Drop(Object sender, DragEventArgs e)

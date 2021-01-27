@@ -54,7 +54,7 @@
                 <Separator/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
             </MenuItem>
-            <MenuItem Header="v2.0" IsHitTestVisible="false"/>
+            <MenuItem Header="v2.1" IsHitTestVisible="false"/>
         </Menu>
 
         <Grid>
