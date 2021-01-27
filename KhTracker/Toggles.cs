@@ -33,8 +33,9 @@ namespace KhTracker
         {
             if (toggle && button.IsEnabled == false)
             {
-                ((button.Parent as Grid).Parent as Grid).Height = Double.NaN;
-                ((button.Parent as Grid).Parent as Grid).IsEnabled = true;
+                var outerGrid = (((button.Parent as Grid).Parent as Grid).Parent as Grid);
+                int row = (int)((button.Parent as Grid).Parent as Grid).GetValue(Grid.RowProperty);
+                outerGrid.RowDefinitions[row].Height = new GridLength(1, GridUnitType.Star);
                 button.IsEnabled = true;
                 button.Visibility = Visibility.Visible;
             }
@@ -65,8 +66,9 @@ namespace KhTracker
                     item.HandleItemReturn();
                 }
 
-                ((button.Parent as Grid).Parent as Grid).Height = 0;
-                ((button.Parent as Grid).Parent as Grid).IsEnabled = false;
+                var outerGrid = (((button.Parent as Grid).Parent as Grid).Parent as Grid);
+                int row = (int)((button.Parent as Grid).Parent as Grid).GetValue(Grid.RowProperty);
+                outerGrid.RowDefinitions[row].Height = new GridLength(0, GridUnitType.Star);
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Collapsed;
             }
@@ -81,6 +83,10 @@ namespace KhTracker
         {
             Properties.Settings.Default.PromiseCharm = toggle;
             PromiseCharmOption.IsChecked = toggle;
+            if (toggle)
+                broadcast.PromiseCharm.Visibility = Visibility.Visible;
+            else
+                broadcast.PromiseCharm.Visibility = Visibility.Hidden;
             HandleItemToggle(toggle, PromiseCharm, false);
         }
 
