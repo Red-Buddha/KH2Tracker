@@ -231,6 +231,7 @@ namespace KhTracker
 
             collectedChecks = new List<ImportantCheck>();
             newChecks = new List<ImportantCheck>();
+            previousChecks = new List<ImportantCheck>();
 
         }
 

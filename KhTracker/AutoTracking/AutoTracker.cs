@@ -235,7 +235,8 @@ namespace KhTracker
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
-            previousChecks = newChecks;
+            previousChecks.Clear();
+            previousChecks.AddRange(newChecks);
             newChecks.Clear();
 
             if (ADDRESS_OFFSET == 0)
@@ -384,7 +385,7 @@ namespace KhTracker
         // This way level checks don't get misplaced 
         private void DetermineItemLocations()
         {
-            if (newChecks.Count > 0)
+            if (previousChecks.Count > 0)
             {
                 // Get rewards between previous level and current level
                 List<string> levelRewards = rewards.GetLevelRewards(stats.Weapon)
