@@ -511,6 +511,7 @@ namespace KhTracker
             fireLevel = 0;
             blizzardLevel = 0;
             thunderLevel = 0;
+            cureLevel = 0;
             reflectLevel = 0;
             magnetLevel = 0;
             tornPageCount = 0;
