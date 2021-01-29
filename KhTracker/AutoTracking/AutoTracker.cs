@@ -385,58 +385,60 @@ namespace KhTracker
         // This way level checks don't get misplaced 
         private void DetermineItemLocations()
         {
-            if (previousChecks.Count > 0)
+            if (previousChecks.Count == 0)
+                return;
+
+            // Get rewards between previous level and current level
+            List<string> levelRewards = rewards.GetLevelRewards(stats.Weapon)
+                .Where(reward => reward.Item1 > stats.previousLevels[0] && reward.Item1 <= stats.Level)
+                .Select(reward => reward.Item2).ToList();
+            // Get drive rewards between previous level and current level
+            List<string> driveRewards = rewards.valorChecks
+                .Where(reward => reward.Item1 > valor.previousLevels[0] && reward.Item1 <= valor.Level)
+                .Select(reward => reward.Item2).ToList();
+            driveRewards.AddRange(rewards.wisdomChecks
+                .Where(reward => reward.Item1 > wisdom.previousLevels[0] && reward.Item1 <= wisdom.Level)
+                .Select(reward => reward.Item2));
+            driveRewards.AddRange(rewards.limitChecks
+                .Where(reward => reward.Item1 > limit.previousLevels[0] && reward.Item1 <= limit.Level)
+                .Select(reward => reward.Item2));
+            driveRewards.AddRange(rewards.masterChecks
+                .Where(reward => reward.Item1 > master.previousLevels[0] && reward.Item1 <= master.Level)
+                .Select(reward => reward.Item2));
+            driveRewards.AddRange(rewards.finalChecks
+                .Where(reward => reward.Item1 > final.previousLevels[0] && reward.Item1 <= final.Level)
+                .Select(reward => reward.Item2));
+
+            foreach (ImportantCheck check in previousChecks)
             {
-                // Get rewards between previous level and current level
-                List<string> levelRewards = rewards.GetLevelRewards(stats.Weapon)
-                    .Where(reward => reward.Item1 > stats.previousLevels[0] && reward.Item1 <= stats.Level)
-                    .Select(reward => reward.Item2).ToList();
-                // Get drive rewards between previous level and current level
-                List<string> driveRewards = rewards.valorChecks
-                    .Where(reward => reward.Item1 > valor.previousLevels[0] && reward.Item1 <= valor.Level)
-                    .Select(reward => reward.Item2).ToList();
-                driveRewards.AddRange(rewards.wisdomChecks
-                    .Where(reward => reward.Item1 > wisdom.previousLevels[0] && reward.Item1 <= wisdom.Level)
-                    .Select(reward => reward.Item2));
-                driveRewards.AddRange(rewards.limitChecks
-                    .Where(reward => reward.Item1 > limit.previousLevels[0] && reward.Item1 <= limit.Level)
-                    .Select(reward => reward.Item2));
-                driveRewards.AddRange(rewards.masterChecks
-                    .Where(reward => reward.Item1 > master.previousLevels[0] && reward.Item1 <= master.Level)
-                    .Select(reward => reward.Item2));
-                driveRewards.AddRange(rewards.finalChecks
-                    .Where(reward => reward.Item1 > final.previousLevels[0] && reward.Item1 <= final.Level)
-                    .Select(reward => reward.Item2));
-
-                foreach (ImportantCheck check in previousChecks)
+                string count = "";
+                // remove magic and torn page count for comparison with item codes and readd to track specific ui copies
+                if (check.GetType() == typeof(Magic) || check.GetType() == typeof(TornPage))
                 {
-                    string count = "";
-                    // remove magic and torn page count for comparison with item codes and readd to track specific ui copies
-                    if (check.GetType() == typeof(Magic) || check.GetType() == typeof(TornPage))
-                    {
-                        count = check.Name.Substring(check.Name.Length - 1);
-                        check.Name = check.Name.Substring(0, check.Name.Length - 1);
-                    }
+                    count = check.Name.Substring(check.Name.Length - 1);
+                    check.Name = check.Name.Substring(0, check.Name.Length - 1);
+                }
 
-                    if (levelRewards.Exists(x => x == check.Name))
+                if (levelRewards.Exists(x => x == check.Name))
+                {
+                    // add check to levels
+                    TrackItem(check.Name + count, SorasHeartGrid);
+                    levelRewards.Remove(check.Name);
+                }
+                else if (driveRewards.Exists(x => x == check.Name))
+                {
+                    // add check to drives
+                    TrackItem(check.Name + count, DriveFormsGrid);
+                    driveRewards.Remove(check.Name);
+                }
+                else
+                {
+                    // add check to current world
+                    foreach (WorldGrid grid in data.Grids)
                     {
-                        // add check to levels
-                        TrackItem(check.Name + count, SorasHeartGrid);
-                    }
-                    else if (driveRewards.Exists(x => x == check.Name))
-                    {
-                        // add check to drives
-                        TrackItem(check.Name + count, DriveFormsGrid);
-                    }
-                    else
-                    {
-                        // add check to current world
-                        foreach (WorldGrid grid in data.Grids)
+                        if (world.world == grid.Name.Substring(0, grid.Name.Length - 4))
                         {
-                            if (world.world == grid.Name.Substring(0, grid.Name.Length - 4))
-                            {
-                                TrackItem(check.Name + count, grid);
-                            }
+                            TrackItem(check.Name + count, grid);
                         }
                     }
                 }

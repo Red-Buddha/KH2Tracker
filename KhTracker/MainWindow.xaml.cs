@@ -265,7 +265,16 @@ namespace KhTracker
             HandleItemToggle(FinalFormOption.IsChecked, Final, true);
 
             SimpleOption.IsChecked = Properties.Settings.Default.Simple;
-            SimpleToggle(null, null);
+            if (SimpleOption.IsChecked)
+                SimpleToggle(null, null);
+
+            OrbOption.IsChecked = Properties.Settings.Default.Orb;
+            if (OrbOption.IsChecked)
+                OrbToggle(null, null);
+
+            AltOption.IsChecked = Properties.Settings.Default.Alt;
+            if (AltOption.IsChecked)
+                AltToggle(null, null);
 
             WorldIconsOption.IsChecked = Properties.Settings.Default.WorldIcons;
             WorldIconsToggle(null, null);
