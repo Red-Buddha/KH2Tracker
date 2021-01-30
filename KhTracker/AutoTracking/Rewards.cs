@@ -56,15 +56,25 @@ namespace KhTracker
             ReadReward(0x01D0B830, 2, swordChecks, 25);
             ReadReward(0x01D0B860, 2, swordChecks, 28);
             ReadReward(0x01D0B880, 2, swordChecks, 30);
+            ReadReward(0x01D0B890, 2, swordChecks, 31); // 99
             ReadReward(0x01D0B8A0, 2, swordChecks, 32);
+            ReadReward(0x01D0B8B0, 2, swordChecks, 33); // 99
             ReadReward(0x01D0B8C0, 2, swordChecks, 34);
             ReadReward(0x01D0B8E0, 2, swordChecks, 36);
             ReadReward(0x01D0B910, 2, swordChecks, 39);
             ReadReward(0x01D0B930, 2, swordChecks, 41);
             ReadReward(0x01D0B960, 2, swordChecks, 44);
             ReadReward(0x01D0B980, 2, swordChecks, 46);
+            ReadReward(0x01D0B990, 2, swordChecks, 47); // 99
             ReadReward(0x01D0B9A0, 2, swordChecks, 48);
+            ReadReward(0x01D0B9B0, 2, swordChecks, 49); // 99
             ReadReward(0x01D0B9C0, 2, swordChecks, 50);
+            ReadReward(0x01D0B9F0, 2, swordChecks, 53); // 99
+            ReadReward(0x01D0BA50, 2, swordChecks, 59); // 99
+            ReadReward(0x01D0BAB0, 2, swordChecks, 65); // 99
+            ReadReward(0x01D0BB30, 2, swordChecks, 73); // 99
+            ReadReward(0x01D0BBF0, 2, swordChecks, 85); // 99
+            ReadReward(0x01D0BCD0, 2, swordChecks, 99); // 99
 
             // if staff
             ReadReward(0x01D0B6C2, 2, staffChecks, 2);
@@ -81,15 +91,25 @@ namespace KhTracker
             ReadReward(0x01D0B832, 2, staffChecks, 25);
             ReadReward(0x01D0B862, 2, staffChecks, 28);
             ReadReward(0x01D0B882, 2, staffChecks, 30);
+            ReadReward(0x01D0B892, 2, staffChecks, 31); // 99
             ReadReward(0x01D0B8A2, 2, staffChecks, 32);
+            ReadReward(0x01D0B8B2, 2, staffChecks, 33); // 99
             ReadReward(0x01D0B8C2, 2, staffChecks, 34);
             ReadReward(0x01D0B8E2, 2, staffChecks, 36);
             ReadReward(0x01D0B912, 2, staffChecks, 39);
             ReadReward(0x01D0B932, 2, staffChecks, 41);
             ReadReward(0x01D0B962, 2, staffChecks, 44);
             ReadReward(0x01D0B982, 2, staffChecks, 46);
+            ReadReward(0x01D0B992, 2, staffChecks, 47); // 99
             ReadReward(0x01D0B9A2, 2, staffChecks, 48);
+            ReadReward(0x01D0B9B2, 2, staffChecks, 49); // 99
             ReadReward(0x01D0B9C2, 2, staffChecks, 50);
+            ReadReward(0x01D0B9F2, 2, staffChecks, 53); // 99
+            ReadReward(0x01D0BA52, 2, staffChecks, 59); // 99
+            ReadReward(0x01D0BAB2, 2, staffChecks, 65); // 99
+            ReadReward(0x01D0BB32, 2, staffChecks, 73); // 99
+            ReadReward(0x01D0BBF2, 2, staffChecks, 85); // 99
+            ReadReward(0x01D0BCD2, 2, staffChecks, 99); // 99
 
             // if shield
             ReadReward(0x01D0B6C4, 2, shieldChecks, 2);
@@ -106,15 +126,25 @@ namespace KhTracker
             ReadReward(0x01D0B834, 2, shieldChecks, 25);
             ReadReward(0x01D0B864, 2, shieldChecks, 28);
             ReadReward(0x01D0B884, 2, shieldChecks, 30);
+            ReadReward(0x01D0B894, 2, shieldChecks, 31); // 99
             ReadReward(0x01D0B8A4, 2, shieldChecks, 32);
+            ReadReward(0x01D0B8B4, 2, shieldChecks, 33); // 99
             ReadReward(0x01D0B8C4, 2, shieldChecks, 34);
             ReadReward(0x01D0B8E4, 2, shieldChecks, 36);
             ReadReward(0x01D0B914, 2, shieldChecks, 39);
             ReadReward(0x01D0B934, 2, shieldChecks, 41);
             ReadReward(0x01D0B964, 2, shieldChecks, 44);
             ReadReward(0x01D0B984, 2, shieldChecks, 46);
+            ReadReward(0x01D0B994, 2, shieldChecks, 47); // 99
             ReadReward(0x01D0B9A4, 2, shieldChecks, 48);
+            ReadReward(0x01D0B9B4, 2, shieldChecks, 49); // 99
             ReadReward(0x01D0B9C4, 2, shieldChecks, 50);
+            ReadReward(0x01D0B9F4, 2, shieldChecks, 53); // 99
+            ReadReward(0x01D0BA54, 2, shieldChecks, 59); // 99
+            ReadReward(0x01D0BAB4, 2, shieldChecks, 65); // 99
+            ReadReward(0x01D0BB34, 2, shieldChecks, 73); // 99
+            ReadReward(0x01D0BBF4, 2, shieldChecks, 85); // 99
+            ReadReward(0x01D0BCD4, 2, shieldChecks, 99); // 99
 
             // valor
             ReadReward(0x01D1A22E, 2, valorChecks, 2);
