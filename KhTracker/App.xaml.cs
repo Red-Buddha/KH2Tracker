@@ -17,7 +17,7 @@ namespace KhTracker
 
         App()
         {
-            logger = new Log("test.txt");
+            logger = new Log("log.txt");
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
