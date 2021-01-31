@@ -336,7 +336,11 @@ namespace KhTracker
 
             for (int i = 0; i < reportorder.Length; ++i)
             {
-                data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                string location = data.codes.FindCode(reportorder[i]);
+                if (location == "")
+                    location = data.codes.GetDefault(i);
+
+                data.reportLocations.Add(location);
                 string[] temp = reportvalues[i].Split(',');
                 data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
             }

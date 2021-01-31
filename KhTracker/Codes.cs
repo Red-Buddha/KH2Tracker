@@ -10,11 +10,11 @@ namespace KhTracker
     {
         public string FindCode(string code)
         {
-            if(Free.Contains(code))
+            if (Free.Contains(code))
             {
                 return "GoA";
             }
-            if(SimulatedTwilightTown.Contains(code))
+            if (SimulatedTwilightTown.Contains(code))
             {
                 return "Simulated Twilight Town";
             }
@@ -86,6 +86,28 @@ namespace KhTracker
             return "";
         }
 
+
+        public string GetDefault(int index)
+        {
+            return Default[index];
+        }
+
+        string[] Default = new string[]
+        {
+            "Hollow Bastion",
+            "Twilight Town",
+            "TWTNW",
+            "Beasts Castle",
+            "Olympus Coliseum",
+            "Port Royal",
+            "Hollow Bastion",
+            "TWTNW",
+            "TWTNW",
+            "Twilight Town",
+            "TWTNW",
+            "TWTNW",
+            "TWTNW"
+        };
 
         string[] Free = new string[] {
         "11CE05E2",
