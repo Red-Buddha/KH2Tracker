@@ -105,15 +105,17 @@ namespace KhTracker
                     worldName = "OlympusColiseum"; // Zexion
                 else if (roomNumber == 38)
                     worldName = "DisneyCastle"; // Marluxia
+                else
+                    worldName = "HollowBastion";
             }
             // Handle STT
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
                 if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7))
-                {
                     worldName = "SimulatedTwilightTown";
-                }
+                else
+                    worldName = "TwilightTown";
             }
             // Handle Data fights
             else if (tempWorld == "TWTNW")
@@ -126,6 +128,8 @@ namespace KhTracker
                     worldName = "PortRoyal"; // Luxord
                 else if (roomNumber == 21 && eventID1 == 114)
                     worldName = "SimulatedTwilightTown"; // roxas
+                else
+                    worldName = "TWTNW";
             }
             else
             {
