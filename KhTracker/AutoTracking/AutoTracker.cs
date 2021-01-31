@@ -270,11 +270,13 @@ namespace KhTracker
         {
             foreach (ContentControl item in ItemPool.Children)
             {
-                if (item.Name == itemName)
+                if (item.Name == itemName && item.IsVisible)
                 {
                     if (world.Handle_Report(item as Item, this, data))
+                    {
                         world.Add_Item(item as Item, this);
-
+                        App.logger.Record(item.Name + " tracked");
+                    }
                     break;
                 }
             }
@@ -288,6 +290,7 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Fire" + fireLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Fire level " + fireLevel.ToString());
             }
             while (blizzard.Level > blizzardLevel)
             {
@@ -295,6 +298,8 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Blizzard" + blizzardLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Blizzard level " + blizzardLevel.ToString());
+
             }
             while (thunder.Level > thunderLevel)
             {
@@ -302,6 +307,7 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Thunder" + thunderLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Thunder level " + thunderLevel.ToString());
             }
             while (cure.Level > cureLevel)
             {
@@ -309,6 +315,7 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Cure" + cureLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Cure level " + cureLevel.ToString());
             }
             while (reflect.Level > reflectLevel)
             {
@@ -316,6 +323,7 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Reflect" + reflectLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Reflect level " + reflectLevel.ToString());
             }
             while (magnet.Level > magnetLevel)
             {
@@ -323,6 +331,8 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Magnet" + magnetLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
+                App.logger.Record("Magnet level " + magnetLevel.ToString());
+
             }
             while (pages.Quantity > tornPageCount)
             {
@@ -330,12 +340,14 @@ namespace KhTracker
                 TornPage page = new TornPage(null, 0, 0, "TornPage" + tornPageCount.ToString());
                 newChecks.Add(page);
                 collectedChecks.Add(page);
+                App.logger.Record("Torn Page Count" + tornPageCount.ToString());
+
             }
         }
 
         private void UpdateMagicAddresses()
         {
-            if (world.world == "SimulatedTwilightTown")
+            if (world.worldName == "SimulatedTwilightTown")
             {
                 fire.UseSTTAddress(true);
                 blizzard.UseSTTAddress(true);
@@ -436,7 +448,7 @@ namespace KhTracker
                     // add check to current world
                     foreach (WorldGrid grid in data.Grids)
                     {
-                        if (world.world == grid.Name.Substring(0, grid.Name.Length - 4))
+                        if (world.worldName == grid.Name.Substring(0, grid.Name.Length - 4))
                         {
                             TrackItem(check.Name + count, grid);
                         }
@@ -488,7 +500,7 @@ namespace KhTracker
 
         public string GetWorld()
         {
-            return world.world;
+            return world.worldName;
         }
     }
 }

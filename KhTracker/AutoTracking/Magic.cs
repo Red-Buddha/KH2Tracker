@@ -38,10 +38,14 @@ namespace KhTracker
             if (Obtained == false && data[0] > 0)
             {
                 Obtained = true;
+                App.logger.Record(Name + " obtained");
             }
 
             if (Level < data[0])
+            {
                 Level = data[0];
+                App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+            }
 
             return null;
         }

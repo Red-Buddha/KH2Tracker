@@ -20,7 +20,12 @@ namespace KhTracker
         public override byte[] UpdateMemory()
         {
             byte[] data = base.UpdateMemory();
-            Obtained = new BitArray(data)[byteNum];
+            bool flag = new BitArray(data)[byteNum];
+            if (Obtained == false && flag == true)
+            {
+                Obtained = true;
+                App.logger.Record(Name + " obtained");
+            }
             return null;
         }
     }

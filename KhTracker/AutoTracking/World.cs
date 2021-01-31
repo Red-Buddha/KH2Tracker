@@ -10,7 +10,19 @@ namespace KhTracker
     {
         private Dictionary<int, string> worldCodes;
 
-        public string world;
+        private string world;
+        public string worldName
+        {
+            get { return world; }
+            set
+            {
+                if (world != value)
+                {
+                    world = value;
+                    App.logger.RecordWorld(value);
+                }
+            }
+        }
         private int worldNum;
         private int worldAddress;
 
@@ -58,77 +70,70 @@ namespace KhTracker
             eventID1 = worldData[4];
             eventID2 = worldData[6];
             eventID3 = worldData[8];
+
+            string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
             {
                 // simplify determining if in stt
-                if (world == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
+                if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
                     return;
 
-                world = worldCodes[worldNum];
-            }
+                tempWorld = worldCodes[worldNum];
+            } 
             else
             {
-                world = "";
+                tempWorld = "";
             }
             
             // Handle crit bonus start
-            if (world == "TwilightTown" && roomNumber == 32 && eventID1 == 1 && eventID2 == 1 && eventID3 == 1)
+            if (tempWorld == "TwilightTown" && roomNumber == 32 && eventID1 == 1 && eventID2 == 1 && eventID3 == 1)
             {
-                world = "GoA";
+                worldName = "GoA";
             }
-            // Handle Goa
-            if (world == "HollowBastion")
+            // Handle AS fights
+            else if (tempWorld == "HollowBastion")
             {
                 if (roomNumber == 26)
-                    world = "GoA";
+                    worldName = "GoA";
                 else if (roomNumber == 32)
-                    world = "HalloweenTown"; // Vexen
+                    worldName = "HalloweenTown"; // Vexen
                 else if (roomNumber == 33 && eventID1 == 123)
-                    world = "Agrabah"; // Lexaeus
+                    worldName = "Agrabah"; // Lexaeus
                 else if (roomNumber == 33 && eventID1 == 129)
-                    world = "SpaceParanoids"; // Larxene
+                    worldName = "SpaceParanoids"; // Larxene
                 else if (roomNumber == 34)
-                    world = "OlympusColiseum"; // Zexion
+                    worldName = "OlympusColiseum"; // Zexion
                 else if (roomNumber == 38)
-                    world = "DisneyCastle"; // Marluxia
+                    worldName = "DisneyCastle"; // Marluxia
             }
             // Handle STT
-            if (world == "TwilightTown")
+            else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
                 if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7))
                 {
-                    world = "SimulatedTwilightTown";
+                    worldName = "SimulatedTwilightTown";
                 }
             }
-
-            if (world == "TWTNW")
+            // Handle Data fights
+            else if (tempWorld == "TWTNW")
             {
                 if (roomNumber == 10 && eventID1 == 108)
-                    world = "LandofDragons"; // Xigbar
+                    worldName = "LandofDragons"; // Xigbar
                 else if (roomNumber == 15 && eventID1 == 110)
-                    world = "PrideLands"; // Saix
+                    worldName = "PrideLands"; // Saix
                 else if (roomNumber == 14 && eventID1 == 112)
-                    world = "PortRoyal"; // Luxord
+                    worldName = "PortRoyal"; // Luxord
                 else if (roomNumber == 21 && eventID1 == 114)
-                    world = "SimulatedTwilightTown"; // roxas
+                    worldName = "SimulatedTwilightTown"; // roxas
             }
-            // xemnas ok
-            // terra ok
-            // axel ok
-            // xaldin ok
-            // demyx ok
-
-            // vexen 4 32 121
-            // lexaeus 4 33 123
-            // larxene 4 33 129
-            // zexion 4 34 125
-            // marluxia 4 38 127
-
-            // xigbar 18 10 108
-            // saix 18 15 110
-            // luxord 18 14 112
-            // roxas 18 21 114
+            else
+            {
+                if (worldName != tempWorld)
+                {
+                    worldName = tempWorld;
+                }
+            }
         }
     }
 }

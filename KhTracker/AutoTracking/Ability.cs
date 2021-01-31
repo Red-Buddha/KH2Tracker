@@ -53,7 +53,7 @@ namespace KhTracker
                         if (this.Name == "OnceMore" && data[1] == 0x01)
                         {
                             this.Obtained = true;
-                            Console.WriteLine("Once More");
+                            App.logger.Record("Once More obtained");
                         }
                         this.Address += 0x02;
                         return null;
@@ -62,7 +62,7 @@ namespace KhTracker
                         if (this.Name == "SecondChance" && data[1] == 0x01)
                         {
                             this.Obtained = true;
-                            Console.WriteLine("Second Chance");
+                            App.logger.Record("Second Chance obtained");
                         }
                         this.Address += 0x02;
                         return null;
@@ -82,7 +82,12 @@ namespace KhTracker
                     equipped = 32768;
                 }
 
-                Level = convertedData - levelOffset - equipped;
+                int curLevel = convertedData - levelOffset - equipped;
+                if (curLevel > Level)
+                {
+                    Level = curLevel;
+                    App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+                }
             }
             else
             {
@@ -92,6 +97,7 @@ namespace KhTracker
             if (Obtained == false && Level >= 1)
             {
                 Obtained = true;
+                App.logger.Record(Name + " obtained");
             }
             return null;
         }

@@ -31,6 +31,10 @@ namespace KhTracker
             InitData();
 
             InitOptions();
+
+            collectedChecks = new List<ImportantCheck>();
+            newChecks = new List<ImportantCheck>();
+            previousChecks = new List<ImportantCheck>();
         }
 
         private void InitData()
@@ -228,11 +232,6 @@ namespace KhTracker
             }
 
             broadcast = new BroadcastWindow(data);
-
-            collectedChecks = new List<ImportantCheck>();
-            newChecks = new List<ImportantCheck>();
-            previousChecks = new List<ImportantCheck>();
-
         }
 
         private void InitOptions()

@@ -33,17 +33,24 @@ namespace KhTracker
         public override byte[] UpdateMemory()
         {
             byte[] data = base.UpdateMemory();
-            Obtained = new BitArray(data)[byteNum];
+            bool flag = new BitArray(data)[byteNum];
+            if (Obtained == false && flag == true)
+            {
+                Obtained = true;
+                App.logger.Record(Name + " obtained");
+            }
+
             byte[] levelData = memory.ReadMemory(levelAddr + ADDRESS_OFFSET, 1);
             previousLevels[0] = previousLevels[1];
             previousLevels[1] = previousLevels[2];
             previousLevels[2] = Level;
 
-            Level = levelData[0];
-            if (levelData[0] > 1)
+            if (Level < levelData[0])
             {
                 Level = levelData[0];
+                App.logger.Record(Name + " level " + Level.ToString() + " obtained");
             }
+            
             return null;
         }
     }
