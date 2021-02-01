@@ -290,6 +290,9 @@ namespace KhTracker
             DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
             DragDropToggle(null, null);
 
+            TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
+            TopMostToggle(null, null);
+
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 

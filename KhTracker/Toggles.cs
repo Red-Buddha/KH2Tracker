@@ -575,5 +575,12 @@ namespace KhTracker
                 }
             }
         }
+
+        private void TopMostToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
+            Topmost = TopMostOption.IsChecked;
+            broadcast.Topmost = TopMostOption.IsChecked;
+        }
     }
 }
