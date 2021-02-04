@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:KhTracker">
 
     <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
-        <ContentPresenter Content="{TemplateBinding Content}" FocusVisualStyle="{x:Null}"/>
+        <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>
 
     <Image x:Key="AnsemReportOld" Source="Images\Old\ansem_report.png" x:Shared="false"/>
