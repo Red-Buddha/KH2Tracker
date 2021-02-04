@@ -31,6 +31,10 @@ namespace KhTracker
             InitData();
 
             InitOptions();
+
+            collectedChecks = new List<ImportantCheck>();
+            newChecks = new List<ImportantCheck>();
+            previousChecks = new List<ImportantCheck>();
         }
 
         private void InitData()
@@ -228,10 +232,6 @@ namespace KhTracker
             }
 
             broadcast = new BroadcastWindow(data);
-
-            collectedChecks = new List<ImportantCheck>();
-            newChecks = new List<ImportantCheck>();
-
         }
 
         private void InitOptions()
@@ -264,7 +264,16 @@ namespace KhTracker
             HandleItemToggle(FinalFormOption.IsChecked, Final, true);
 
             SimpleOption.IsChecked = Properties.Settings.Default.Simple;
-            SimpleToggle(null, null);
+            if (SimpleOption.IsChecked)
+                SimpleToggle(null, null);
+
+            OrbOption.IsChecked = Properties.Settings.Default.Orb;
+            if (OrbOption.IsChecked)
+                OrbToggle(null, null);
+
+            AltOption.IsChecked = Properties.Settings.Default.Alt;
+            if (AltOption.IsChecked)
+                AltToggle(null, null);
 
             WorldIconsOption.IsChecked = Properties.Settings.Default.WorldIcons;
             WorldIconsToggle(null, null);
@@ -280,6 +289,9 @@ namespace KhTracker
 
             DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
             DragDropToggle(null, null);
+
+            TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
+            TopMostToggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;

@@ -13,5 +13,16 @@ namespace KhTracker
     /// </summary>
     public partial class App : Application
     {
+        public static Log logger;
+
+        App()
+        {
+            logger = new Log("log.txt");
+        }
+
+        private void App_Exit(object sender, ExitEventArgs e)
+        {
+            logger.Close();
+        }
     }
 }

@@ -209,6 +209,7 @@ namespace KhTracker
 
         private void SimpleToggle(object sender, RoutedEventArgs e)
         {
+            // Mimicing radio buttons so you cant toggle a button off
             if (SimpleOption.IsChecked == false)
             {
                 SimpleOption.IsChecked = true;
@@ -304,6 +305,7 @@ namespace KhTracker
 
         private void OrbToggle(object sender, RoutedEventArgs e)
         {
+            // Mimicing radio buttons so you cant toggle a button off
             if (OrbOption.IsChecked == false)
             {
                 OrbOption.IsChecked = true;
@@ -399,6 +401,7 @@ namespace KhTracker
 
         private void AltToggle(object sender, RoutedEventArgs e)
         {
+            // Mimicing radio buttons so you cant toggle a button off
             if (AltOption.IsChecked == false)
             {
                 AltOption.IsChecked = true;
@@ -571,6 +574,13 @@ namespace KhTracker
                     }
                 }
             }
+        }
+
+        private void TopMostToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
+            Topmost = TopMostOption.IsChecked;
+            broadcast.Topmost = TopMostOption.IsChecked;
         }
     }
 }

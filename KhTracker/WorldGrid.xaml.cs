@@ -147,12 +147,7 @@ namespace KhTracker
                 }
             }
 
-            if (isreport == false)
-            {
-                // remove hint text when tracking a non-report
-                window.SetHintText("");
-            }
-            else
+            if (isreport)
             {
                 item.MouseEnter -= item.Report_Hover;
                 item.MouseEnter += item.Report_Hover;

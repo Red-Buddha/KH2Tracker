@@ -90,6 +90,7 @@
     <Compile Include="AutoTracking\DriveForm.cs" />
     <Compile Include="AutoTracking\ImportantCheck.cs" />
     <Compile Include="AutoTracking\MemoryReader.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Item.xaml.cs">

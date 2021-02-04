@@ -9,7 +9,6 @@ namespace KhTracker
 {
     class Report : ImportantCheck
     {
-        public string Content;
         private int byteNum;
 
         public Report(MemoryReader mem, int address, int offset, int byteNumber, string name) : base(mem, address, offset, name)
@@ -20,7 +19,12 @@ namespace KhTracker
         public override byte[] UpdateMemory()
         {
             byte[] data = base.UpdateMemory();
-            Obtained = new BitArray(data)[byteNum];
+            bool flag = new BitArray(data)[byteNum];
+            if (Obtained == false && flag == true)
+            {
+                Obtained = true;
+                App.logger.Record(Name + " obtained");
+            }
             return null;
         }
     }

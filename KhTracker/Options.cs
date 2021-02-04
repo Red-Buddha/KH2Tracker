@@ -336,7 +336,11 @@ namespace KhTracker
 
             for (int i = 0; i < reportorder.Length; ++i)
             {
-                data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                string location = data.codes.FindCode(reportorder[i]);
+                if (location == "")
+                    location = data.codes.GetDefault(i);
+
+                data.reportLocations.Add(location);
                 string[] temp = reportvalues[i].Split(',');
                 data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
             }
@@ -476,14 +480,18 @@ namespace KhTracker
             RowDefinitionCollection rows1 = ((data.Grids[0].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows1)
             {
-                row.Height = new GridLength(1, GridUnitType.Star);
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
             }
 
             // Reset 2nd column row heights
             RowDefinitionCollection rows2 = ((data.Grids[1].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows2)
             {
-                row.Height = new GridLength(1, GridUnitType.Star);
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
             }
 
             ResetHints();
@@ -507,6 +515,7 @@ namespace KhTracker
             fireLevel = 0;
             blizzardLevel = 0;
             thunderLevel = 0;
+            cureLevel = 0;
             reflectLevel = 0;
             magnetLevel = 0;
             tornPageCount = 0;

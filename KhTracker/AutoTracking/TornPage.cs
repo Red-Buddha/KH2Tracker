@@ -32,6 +32,7 @@ namespace KhTracker
             {
                 // add the difference incase of getting multiple at the same time
                 Quantity += data[0] - current;
+                App.logger.Record(Quantity.ToString() + " torn pages obtained");
             }
             else if (current > data[0])
             {
