@@ -290,7 +290,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Fire" + fireLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Fire level " + fireLevel.ToString());
             }
             while (blizzard.Level > blizzardLevel)
             {
@@ -298,8 +297,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Blizzard" + blizzardLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Blizzard level " + blizzardLevel.ToString());
-
             }
             while (thunder.Level > thunderLevel)
             {
@@ -307,7 +304,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Thunder" + thunderLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Thunder level " + thunderLevel.ToString());
             }
             while (cure.Level > cureLevel)
             {
@@ -315,7 +311,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Cure" + cureLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Cure level " + cureLevel.ToString());
             }
             while (reflect.Level > reflectLevel)
             {
@@ -323,7 +318,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Reflect" + reflectLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Reflect level " + reflectLevel.ToString());
             }
             while (magnet.Level > magnetLevel)
             {
@@ -331,8 +325,6 @@ namespace KhTracker
                 Magic magic = new Magic(null, 0, 0, 0, "Magnet" + magnetLevel.ToString());
                 newChecks.Add(magic);
                 collectedChecks.Add(magic);
-                App.logger.Record("Magnet level " + magnetLevel.ToString());
-
             }
             while (pages.Quantity > tornPageCount)
             {
@@ -340,8 +332,6 @@ namespace KhTracker
                 TornPage page = new TornPage(null, 0, 0, "TornPage" + tornPageCount.ToString());
                 newChecks.Add(page);
                 collectedChecks.Add(page);
-                App.logger.Record("Torn Page Count" + tornPageCount.ToString());
-
             }
         }
 
@@ -437,6 +427,10 @@ namespace KhTracker
                 App.logger.Record("Limit Levels " + limit.previousLevels[0].ToString() + " to " + limit.Level.ToString());
                 App.logger.Record("Master Levels " + master.previousLevels[0].ToString() + " to " + master.Level.ToString());
                 App.logger.Record("Final Levels " + final.previousLevels[0].ToString() + " to " + final.Level.ToString());
+                foreach (string str in levelRewards)
+                    App.logger.Record("Level reward " + str);
+                foreach (string str in driveRewards)
+                    App.logger.Record("Drive reward " + str);
 
                 if (levelRewards.Exists(x => x == check.Name))
                 {
