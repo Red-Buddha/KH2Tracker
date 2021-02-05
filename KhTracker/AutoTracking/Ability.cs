@@ -47,6 +47,12 @@ namespace KhTracker
                 switch (data[0])
                 {
                     case 0x00:
+                        this.Address -= 0x02;
+                        byte[] backData = base.UpdateMemory();
+                        if (backData[0] != 0x00)
+                        {
+                            this.Address += 0x02;
+                        }
                             return null;
 
                     case 0xA0:
