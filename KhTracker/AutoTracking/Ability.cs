@@ -46,35 +46,41 @@ namespace KhTracker
             {
                 switch (data[0])
                 {
+                    // backup ability list index after losing abilities and cap at the start of the list
                     case 0x00:
-                        this.Address -= 0x02;
-                        byte[] backData = base.UpdateMemory();
-                        if (backData[0] != 0x00)
+                        while (data[0] == 0x00)
                         {
-                            this.Address += 0x02;
+                            if (Address < ADDRESS_START)
+                            {
+                                Address = ADDRESS_START;
+                                return null;
+                            }
+                            Address -= 0x02;
+                            data = base.UpdateMemory();
                         }
-                            return null;
+                        Address += 0x02;
+                        return null;
 
                     case 0xA0:
-                        if (this.Name == "OnceMore" && data[1] == 0x01)
+                        if (Name == "OnceMore" && data[1] == 0x01)
                         {
-                            this.Obtained = true;
+                            Obtained = true;
                             App.logger.Record("Once More obtained");
                         }
-                        this.Address += 0x02;
+                        Address += 0x02;
                         return null;
 
                     case 0x9F:
                         if (this.Name == "SecondChance" && data[1] == 0x01)
                         {
-                            this.Obtained = true;
+                            Obtained = true;
                             App.logger.Record("Second Chance obtained");
                         }
-                        this.Address += 0x02;
+                        Address += 0x02;
                         return null;
 
                     default:
-                        this.Address += 0x02;
+                        Address += 0x02;
                         Console.WriteLine("Skill, but not SC OM");
                         return null;
                 }
