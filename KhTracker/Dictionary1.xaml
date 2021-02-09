@@ -6,6 +6,7 @@
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>
 
+    <!--Old Item Icons-->
     <Image x:Key="AnsemReportOld" Source="Images\Old\ansem_report.png" x:Shared="false"/>
     <Image x:Key="AnsemReportOld1" Source="Images\Old\ansem_report1.png" x:Shared="false"/>
     <Image x:Key="AnsemReportOld2" Source="Images\Old\ansem_report2.png" x:Shared="false"/>
@@ -43,6 +44,7 @@
     <Image x:Key="ProofOfPeaceOld" Source="Images\Old\proof_of_peace.png"/>
     <Image x:Key="PromiseCharmOld" Source="Images\Old\promise_charm.png"/>
 
+    <!--Simple Item Icons-->
     <Image x:Key="AnsemReport" Source="Images\Simple\ansem_report.png" x:Shared="false"/>
     <Image x:Key="AnsemReport1" Source="Images\Simple\ansem_report1.png" x:Shared="false"/>
     <Image x:Key="AnsemReport2" Source="Images\Simple\ansem_report2.png" x:Shared="false"/>
@@ -80,6 +82,7 @@
     <Image x:Key="ProofOfPeace" Source="Images\Simple\proof_of_tranquility.png"/>
     <Image x:Key="PromiseCharm" Source="Images\Simple\promise_charm.png"/>
 
+    <!--Report Fail Icons-->
     <Image x:Key="Fail0" x:Shared="false"/>
     <Image x:Key="Fail1" Source="Images\FailBar.png" Margin="-25,-15,0,0" Height="15" x:Shared="false"/>
     <StackPanel x:Key="Fail2" VerticalAlignment="Center" x:Shared="false">
@@ -88,6 +91,8 @@
     </StackPanel>
     <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
 
+    
+    <!--World Text Abbreviations-->
     <TextBlock x:Key="SoraHeartText" Text="SH" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="SimulatedText" Text="STT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-3,-18,0,0" IsHitTestVisible="False"/>
     <TextBlock x:Key="HollowBastionText" Text="HB" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
@@ -109,7 +114,7 @@
     <TextBlock x:Key="AtlanticaText" Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-18,0,0" IsHitTestVisible="False"/>
 
 
-
+    <!--Simple World Icons-->
     <Image x:Key="SoraHeartImage" Source="Images\Simple\level.png"/>
     <Image x:Key="SimulatedImage" Source="Images\Simple\simulated_twilight_town.png"/>
     <Image x:Key="HollowBastionImage" Source="Images\Simple\hollow_bastion.png"/>
@@ -130,6 +135,8 @@
     <Image x:Key="TWTNWImage" Source="Images\Simple\the_world_that_never_was.png"/>
     <Image x:Key="AtlanticaImage" Source="Images\Simple\atlantica.png"/>
 
+    
+    <!--Broadcast Alt Icons-->
     <Image x:Key="ValorAlt" Source="Images\Alt\valor.png"/>
     <Image x:Key="WisdomAlt" Source="Images\Alt\wisdom.png"/>
     <Image x:Key="LimitAlt" Source="Images\Alt\limit.png"/>
@@ -148,4 +155,111 @@
     <Image x:Key="StitchAlt" Source="Images\Alt\stitch.png"/>
 
 
+    <!--World Progression-->
+    <!--Hollow Bastion-->
+    <Image x:Key="Bailey" Source="Images\Progression\merlin.png" x:Shared="False"/>
+    <Image x:Key="AnsemStudy" Source="Images\Progression\ansem_the_wise.png"/>
+    <Image x:Key="Corridor" Source="Images\Progression\crimson_jazz.png"/>
+    <Image x:Key="Dancers" Source="Images\Progression\dancer.png"/>
+    <Image x:Key="HBDemyx" Source="Images\Progression\demyx.png"/>
+    <Image x:Key="FinalFantasy" Source="Images\Progression\cloud.png"/>
+    <Image x:Key="1000Heartless" Source="Images\Progression\1k.png"/>
+    <Image x:Key="Sephiroth" Source="Images\Progression\sephiroth.png"/>
+    <Image x:Key="DataDemyx" Source="Images\Progression\mickey_head.png"/>
+    <!--Twilight Town-->
+    <Image x:Key="MysteriousTower" Source="Images\Progression\yen_sid.png"/>
+    <Image x:Key="Sandlot" Source="Images\Progression\berserker.png"/>
+    <Image x:Key="Mansion" Source="Images\Progression\mickey.png"/>
+    <Image x:Key="BetwixtandBetween" Source="Images\Progression\axel.png"/>
+    <Image x:Key="DataAxel" Source="Images\Progression\mickey_head.png"/>
+    <!--Land of Dragons-->
+    <Image x:Key="LoDChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Cave" Source="Images\Progression\assault_rider.png"/>
+    <Image x:Key="Summit" Source="Images\Progression\rapid_thruster.png"/>
+    <Image x:Key="ShanYu" Source="Images\Progression\shan_yu.png"/>
+    <Image x:Key="ThroneRoom" Source="Images\Progression\emperor.png"/>
+    <Image x:Key="StormRider" Source="Images\Progression\storm_rider.png"/>
+    <Image x:Key="DataXigbar" Source="Images\Progression\mickey_head.png"/>
+    <!--Beasts Castle-->
+    <Image x:Key="Wardrobe" Source="Images\Progression\wardrobe.png"/>
+    <Image x:Key="Thresholder" Source="Images\Progression\thresholder.png"/>
+    <Image x:Key="Beast" Source="Images\Progression\beast.png"/>
+    <Image x:Key="DarkThorn" Source="Images\Progression\dark_thorn.png"/>
+    <Image x:Key="Dragoons" Source="Images\Progression\dragoon.png"/>
+    <Image x:Key="Xaldin" Source="Images\Progression\xaldin.png"/>
+    <Image x:Key="DataXaldin" Source="Images\Progression\mickey_head.png"/>
+    <!--Olympus Coliseum-->
+    <Image x:Key="OCChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Cerberus" Source="Images\Progression\cerberus.png"/>
+    <Image x:Key="OCDemyx" Source="Images\Progression\demyx.png"/>
+    <Image x:Key="OCPete" Source="Images\Progression\pete.png"/>
+    <Image x:Key="Hydra" Source="Images\Progression\hydra.png"/>
+    <Image x:Key="AuronStatue" Source="Images\Progression\dusk.png"/>
+    <Image x:Key="Hades" Source="Images\Progression\hades.png"/>
+    <Image x:Key="Zexion" Source="Images\Progression\mickey_head.png"/>
+    <!--Space Paranoids-->
+    <Image x:Key="SPChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Screens" Source="Images\Progression\screens.png"/>
+    <Image x:Key="HostileProgram" Source="Images\Progression\hostile_program.png"/>
+    <Image x:Key="SolarSailer" Source="Images\Progression\devastator.png"/>
+    <Image x:Key="MCP" Source="Images\Progression\master_control_program.png"/>
+    <Image x:Key="Larxene" Source="Images\Progression\mickey_head.png"/>
+    <!--Halloween Town-->
+    <Image x:Key="HTChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="CandyCaneLane" Source="Images\Progression\toy_soldier.png"/>
+    <Image x:Key="PrisonKeeper" Source="Images\Progression\prison_keeper.png"/>
+    <Image x:Key="OogieBoogie" Source="Images\Progression\oogie_boogie.png"/>
+    <Image x:Key="Presents" Source="Images\Progression\presents.png"/>
+    <Image x:Key="Experiment" Source="Images\Progression\experiment.png"/>
+    <Image x:Key="Vexen" Source="Images\Progression\mickey_head.png"/>
+    <!--Port Royal-->
+    <Image x:Key="PRChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Town" Source="Images\Progression\cannon_gun.png"/>
+    <Image x:Key="Barbossa" Source="Images\Progression\barbossa.png"/>
+    <Image x:Key="Gambler" Source="Images\Progression\gambler.png"/>
+    <Image x:Key="GrimReaper" Source="Images\Progression\grim_reaper.png"/>
+    <Image x:Key="DataLuxord" Source="Images\Progression\mickey_head.png"/>
+    <!--Agrabah-->
+    <Image x:Key="AGChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Abu" Source="Images\Progression\abu.png"/>
+    <Image x:Key="Chasm" Source="Images\Progression\chasm_of_challenges.png"/>
+    <Image x:Key="TreasureRoom" Source="Images\Progression\treasure_room.png"/>
+    <Image x:Key="Lords" Source="Images\Progression\blizzard_lord.png"/>
+    <Image x:Key="Carpet" Source="Images\Progression\carpet.png"/>
+    <Image x:Key="GenieJafar" Source="Images\Progression\genie_jafar.png"/>
+    <Image x:Key="Lexaeus" Source="Images\Progression\mickey_head.png"/>
+    <!--Pride Lands-->
+    <Image x:Key="PLChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Simba" Source="Images\Progression\simba.png"/>
+    <Image x:Key="Hyenas" Source="Images\Progression\hyenas.png"/>
+    <Image x:Key="Scar" Source="Images\Progression\scar.png"/>
+    <Image x:Key="Groundshaker" Source="Images\Progression\groundshaker.png"/>
+    <!--Disney Castle-->
+    <Image x:Key="DCChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Minnie" Source="Images\Progression\minnie.png"/>
+    <Image x:Key="OldPete" Source="Images\Progression\old_pete.png"/>
+    <Image x:Key="Windows" Source="Images\Progression\hot_rod.png"/>
+    <Image x:Key="BoatPete" Source="Images\Progression\boat_pete.png"/>
+    <Image x:Key="DCPete" Source="Images\Progression\pete_pete.png"/>
+    <Image x:Key="Marluxia" Source="Images\Progression\marluxia.png"/>
+    <Image x:Key="LingeringWill" Source="Images\Progression\mickey_head.png"/>
+    <!--100 Acre Wood-->
+    <Image x:Key="Pooh" Source="Images\Progression\pooh.png"/>
+    <Image x:Key="Piglet" Source="Images\Progression\piglet.png"/>
+    <Image x:Key="Rabbit" Source="Images\Progression\rabbit.png"/>
+    <Image x:Key="Kanga" Source="Images\Progression\kanga.png"/>
+    <Image x:Key="SpookyCave" Source="Images\Progression\bees.png"/>
+    <Image x:Key="StarryHill" Source="Images\Progression\mickey_head.png"/>
+    <!--Simulated Twilight Town-->
+    <Image x:Key="ComputerRoom" Source="Images\Progression\computer_room.png"/>
+    <Image x:Key="Axel" Source="Images\Progression\axel.png"/>
+    <Image x:Key="DataRoxas" Source="Images\Progression\mickey_head.png"/>
+    <!--TWTNW-->
+    <Image x:Key="TWTNWChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Roxas" Source="Images\Progression\roxas.png"/>
+    <Image x:Key="Xigbar" Source="Images\Progression\xigbar.png"/>
+    <Image x:Key="Luxord" Source="Images\Progression\luxord.png"/>
+    <Image x:Key="Saix" Source="Images\Progression\saix.png"/>
+    <Image x:Key="Xemnas1" Source="Images\Progression\xemnas.png"/>
+    <Image x:Key="DataXemnas" Source="Images\Progression\mickey_head.png"/>
 </ResourceDictionary>

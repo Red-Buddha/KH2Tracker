@@ -402,17 +402,7 @@ namespace KhTracker
         {
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
-
-            if (Width < 490)
-            {
-                HintText.FontSize = 13;
-                CollectedBar.Height = 25;
-            }
-            else
-            {
-                HintText.FontSize = 16;
-                CollectedBar.Height = 30;
-            }
+            
         }
 
         /// 
@@ -448,12 +438,12 @@ namespace KhTracker
             if (num > 10)
             {
                 (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.15, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.22, GridUnitType.Star);
             }
             else
             {
                 (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
+                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.166, GridUnitType.Star);
 
             }
 

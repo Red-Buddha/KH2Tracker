@@ -93,20 +93,22 @@
 
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="0"/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition Height="0"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
+                            <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="SoraHeartImage"/>
                             </Button>
-                            <Image Name="SorasHeartHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
-                            <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
+                            <Image Name="SorasHeartHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="2" Grid.Column="1"/>
+                            <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
                     </Grid>
@@ -124,9 +126,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -151,9 +153,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -178,9 +180,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -205,9 +207,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -232,9 +234,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -259,9 +261,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -286,9 +288,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -313,9 +315,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="GoA" Background="Transparent" PreviewMouseDown="OnMouseDown" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -353,9 +355,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -380,9 +382,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -407,9 +409,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -434,9 +436,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -461,9 +463,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -488,9 +490,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -515,9 +517,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -542,9 +544,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
@@ -569,9 +571,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".166*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
