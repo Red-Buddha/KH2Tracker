@@ -43,21 +43,8 @@ namespace KhTracker
             {
                 if (data.selected == button)
                 {
-                    for (int j = 0; j < data.Worlds.Count; ++j)
-                    {
-                        if (data.Worlds[j] == data.selected)
-                            data.SelectedBars[j].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
-                    }
-
+                    data.SelectedBars[button.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                     data.selected = null;
-
-                    for (int i = 0; i < data.SelectedBars.Count; ++i)
-                    {
-                        if (data.Worlds[i] == data.selected)
-                        {
-                            data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
-                        }
-                    }
                 }
 
                 for (int i = grid.Children.Count - 1; i >= 0; --i)

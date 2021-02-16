@@ -16,35 +16,35 @@ namespace KhTracker
             }
             if (SimulatedTwilightTown.Contains(code))
             {
-                return "Simulated Twilight Town";
+                return "SimulatedTwilightTown";
             }
             if (TwilightTown.Contains(code))
             {
-                return "Twilight Town";
+                return "TwilightTown";
             }
             if (HollowBastion.Contains(code))
             {
-                return "Hollow Bastion";
+                return "HollowBastion";
             }
             if (LandOfDragons.Contains(code))
             {
-                return "Land of Dragons";
+                return "LandofDragons";
             }
             if (BeastsCastle.Contains(code))
             {
-                return "Beasts Castle";
+                return "BeastsCastle";
             }
             if (OlympusColiseum.Contains(code))
             {
-                return "Olympus Coliseum";
+                return "OlympusColiseum";
             }
             if (DisneyCastle.Contains(code))
             {
-                return "Disney Castle";
+                return "DisneyCastle";
             }
             if (PortRoyal.Contains(code))
             {
-                return "Port Royal";
+                return "PortRoyal";
             }
             if (Agrabah.Contains(code))
             {
@@ -52,11 +52,11 @@ namespace KhTracker
             }
             if (HalloweenTown.Contains(code))
             {
-                return "Halloween Town";
+                return "HalloweenTown";
             }
             if (PrideLands.Contains(code))
             {
-                return "Pride Lands";
+                return "PrideLands";
             }
             if (Atlantica.Contains(code))
             {
@@ -64,11 +64,11 @@ namespace KhTracker
             }
             if (AcreWood.Contains(code))
             {
-                return "Hundred Acre Wood";
+                return "HundredAcreWood";
             }
             if (SpaceParanoids.Contains(code))
             {
-                return "Space Paranoids";
+                return "SpaceParanoids";
             }
             if (TheWorldThatNeverWas.Contains(code))
             {
@@ -76,11 +76,11 @@ namespace KhTracker
             }
             if (Forms.Contains(code))
             {
-                return "Drive Forms";
+                return "DriveForms";
             }
             if (Levels.Contains(code))
             {
-                return "Soras Heart";
+                return "SorasHeart";
             }
 
             return "";

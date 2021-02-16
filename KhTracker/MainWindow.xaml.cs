@@ -41,80 +41,80 @@ namespace KhTracker
         {
             data = new Data();
 
-            data.Worlds.Add(SorasHeart);
-            data.Worlds.Add(DriveForms);
-            data.Worlds.Add(SimulatedTwilightTown);
-            data.Worlds.Add(TwilightTown);
-            data.Worlds.Add(HollowBastion);
-            data.Worlds.Add(BeastsCastle);
-            data.Worlds.Add(OlympusColiseum);
-            data.Worlds.Add(Agrabah);
-            data.Worlds.Add(LandofDragons);
-            data.Worlds.Add(HundredAcreWood);
-            data.Worlds.Add(PrideLands);
-            data.Worlds.Add(DisneyCastle);
-            data.Worlds.Add(HalloweenTown);
-            data.Worlds.Add(PortRoyal);
-            data.Worlds.Add(SpaceParanoids);
-            data.Worlds.Add(TWTNW);
-            data.Worlds.Add(Atlantica);
-            data.Worlds.Add(GoA);
+            data.Worlds.Add("SorasHeart", SorasHeart);
+            data.Worlds.Add("DriveForms", DriveForms);
+            data.Worlds.Add("SimulatedTwilightTown", SimulatedTwilightTown);
+            data.Worlds.Add("TwilightTown", TwilightTown);
+            data.Worlds.Add("HollowBastion", HollowBastion);
+            data.Worlds.Add("BeastsCastle", BeastsCastle);
+            data.Worlds.Add("OlympusColiseum", OlympusColiseum);
+            data.Worlds.Add("Agrabah", Agrabah);
+            data.Worlds.Add("LandofDragons", LandofDragons);
+            data.Worlds.Add("HundredAcreWood", HundredAcreWood);
+            data.Worlds.Add("PrideLands", PrideLands);
+            data.Worlds.Add("DisneyCastle", DisneyCastle);
+            data.Worlds.Add("HalloweenTown", HalloweenTown);
+            data.Worlds.Add("PortRoyal", PortRoyal);
+            data.Worlds.Add("SpaceParanoids", SpaceParanoids);
+            data.Worlds.Add("TWTNW", TWTNW);
+            data.Worlds.Add("Atlantica", Atlantica);
+            data.Worlds.Add("GoA", GoA);
 
-            data.Hints.Add(SorasHeartHint);
-            data.Hints.Add(DriveFormsHint);
-            data.Hints.Add(SimulatedTwilightTownHint);
-            data.Hints.Add(TwilightTownHint);
-            data.Hints.Add(HollowBastionHint);
-            data.Hints.Add(BeastsCastleHint);
-            data.Hints.Add(OlympusColiseumHint);
-            data.Hints.Add(AgrabahHint);
-            data.Hints.Add(LandofDragonsHint);
-            data.Hints.Add(HundredAcreWoodHint);
-            data.Hints.Add(PrideLandsHint);
-            data.Hints.Add(DisneyCastleHint);
-            data.Hints.Add(HalloweenTownHint);
-            data.Hints.Add(PortRoyalHint);
-            data.Hints.Add(SpaceParanoidsHint);
-            data.Hints.Add(TWTNWHint);
-            data.Hints.Add(AtlanticaHint);
+            data.Hints.Add("SorasHeart", SorasHeartHint);
+            data.Hints.Add("DriveForms", DriveFormsHint);
+            data.Hints.Add("SimulatedTwilightTown", SimulatedTwilightTownHint);
+            data.Hints.Add("TwilightTown", TwilightTownHint);
+            data.Hints.Add("HollowBastion", HollowBastionHint);
+            data.Hints.Add("BeastsCastle", BeastsCastleHint);
+            data.Hints.Add("OlympusColiseum", OlympusColiseumHint);
+            data.Hints.Add("Agrabah", AgrabahHint);
+            data.Hints.Add("LandofDragons", LandofDragonsHint);
+            data.Hints.Add("HundredAcreWood", HundredAcreWoodHint);
+            data.Hints.Add("PrideLands", PrideLandsHint);
+            data.Hints.Add("DisneyCastle", DisneyCastleHint);
+            data.Hints.Add("HalloweenTown", HalloweenTownHint);
+            data.Hints.Add("PortRoyal", PortRoyalHint);
+            data.Hints.Add("SpaceParanoids", SpaceParanoidsHint);
+            data.Hints.Add("TWTNW", TWTNWHint);
+            data.Hints.Add("Atlantica", AtlanticaHint);
 
-            data.Grids.Add(SorasHeartGrid);
-            data.Grids.Add(DriveFormsGrid);
-            data.Grids.Add(SimulatedTwilightTownGrid);
-            data.Grids.Add(TwilightTownGrid);
-            data.Grids.Add(HollowBastionGrid);
-            data.Grids.Add(BeastsCastleGrid);
-            data.Grids.Add(OlympusColiseumGrid);
-            data.Grids.Add(AgrabahGrid);
-            data.Grids.Add(LandofDragonsGrid);
-            data.Grids.Add(HundredAcreWoodGrid);
-            data.Grids.Add(PrideLandsGrid);
-            data.Grids.Add(DisneyCastleGrid);
-            data.Grids.Add(HalloweenTownGrid);
-            data.Grids.Add(PortRoyalGrid);
-            data.Grids.Add(SpaceParanoidsGrid);
-            data.Grids.Add(TWTNWGrid);
-            data.Grids.Add(AtlanticaGrid);
-            data.Grids.Add(GoAGrid);
+            data.Grids.Add("SorasHeart", SorasHeartGrid);
+            data.Grids.Add("DriveForms", DriveFormsGrid);
+            data.Grids.Add("SimulatedTwilightTown", SimulatedTwilightTownGrid);
+            data.Grids.Add("TwilightTown", TwilightTownGrid);
+            data.Grids.Add("HollowBastion", HollowBastionGrid);
+            data.Grids.Add("BeastsCastle", BeastsCastleGrid);
+            data.Grids.Add("OlympusColiseum", OlympusColiseumGrid);
+            data.Grids.Add("Agrabah", AgrabahGrid);
+            data.Grids.Add("LandofDragons", LandofDragonsGrid);
+            data.Grids.Add("HundredAcreWood", HundredAcreWoodGrid);
+            data.Grids.Add("PrideLands", PrideLandsGrid);
+            data.Grids.Add("DisneyCastle", DisneyCastleGrid);
+            data.Grids.Add("HalloweenTown", HalloweenTownGrid);
+            data.Grids.Add("PortRoyal", PortRoyalGrid);
+            data.Grids.Add("SpaceParanoids", SpaceParanoidsGrid);
+            data.Grids.Add("TWTNW", TWTNWGrid);
+            data.Grids.Add("Atlantica", AtlanticaGrid);
+            data.Grids.Add("GoA", GoAGrid);
 
-            data.SelectedBars.Add(SorasHeartBar);
-            data.SelectedBars.Add(DriveFormsBar);
-            data.SelectedBars.Add(SimulatedTwilightTownBar);
-            data.SelectedBars.Add(TwilightTownBar);
-            data.SelectedBars.Add(HollowBastionBar);
-            data.SelectedBars.Add(BeastsCastleBar);
-            data.SelectedBars.Add(OlympusBar);
-            data.SelectedBars.Add(AgrabahBar);
-            data.SelectedBars.Add(LandofDragonsBar);
-            data.SelectedBars.Add(HundredAcreWoodBar);
-            data.SelectedBars.Add(PrideLandsBar);
-            data.SelectedBars.Add(DisneyCastleBar);
-            data.SelectedBars.Add(HalloweenTownBar);
-            data.SelectedBars.Add(PortRoyalBar);
-            data.SelectedBars.Add(SpaceParanoidsBar);
-            data.SelectedBars.Add(TWTNWBar);
-            data.SelectedBars.Add(AtlanticaBar);
-            data.SelectedBars.Add(GoABar);
+            data.SelectedBars.Add("SorasHeart", SorasHeartBar);
+            data.SelectedBars.Add("DriveForms", DriveFormsBar);
+            data.SelectedBars.Add("SimulatedTwilightTown", SimulatedTwilightTownBar);
+            data.SelectedBars.Add("TwilightTown", TwilightTownBar);
+            data.SelectedBars.Add("HollowBastion", HollowBastionBar);
+            data.SelectedBars.Add("BeastsCastle", BeastsCastleBar);
+            data.SelectedBars.Add("OlympusColiseum", OlympusBar);
+            data.SelectedBars.Add("Agrabah", AgrabahBar);
+            data.SelectedBars.Add("LandofDragons", LandofDragonsBar);
+            data.SelectedBars.Add("HundredAcreWood", HundredAcreWoodBar);
+            data.SelectedBars.Add("PrideLands", PrideLandsBar);
+            data.SelectedBars.Add("DisneyCastle", DisneyCastleBar);
+            data.SelectedBars.Add("HalloweenTown", HalloweenTownBar);
+            data.SelectedBars.Add("PortRoyal", PortRoyalBar);
+            data.SelectedBars.Add("SpaceParanoids", SpaceParanoidsBar);
+            data.SelectedBars.Add("TWTNW", TWTNWBar);
+            data.SelectedBars.Add("Atlantica", AtlanticaBar);
+            data.SelectedBars.Add("GoA", GoABar);
 
             data.Reports.Add(Report1);
             data.Reports.Add(Report2);
@@ -150,78 +150,212 @@ namespace KhTracker
             data.TornPages.Add(TornPage4);
             data.TornPages.Add(TornPage5);
 
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\QuestionMark.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\0.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\1.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\2.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\3.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\4.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\5.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\6.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\7.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\8.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\9.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\10.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\11.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\12.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\13.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\14.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\15.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\16.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\17.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\18.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\19.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\20.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\21.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\22.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\23.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\24.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\25.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\26.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\27.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\28.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\29.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\30.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\31.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\32.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\33.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\34.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\35.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\36.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\37.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\38.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\39.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\40.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\41.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\42.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\43.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\44.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\45.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\46.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\47.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\48.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\49.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\50.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\51.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\52.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\53.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\54.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\55.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\56.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\57.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\58.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\59.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\60.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\61.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\62.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\63.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\64.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\65.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\66.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\67.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\68.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\69.png", UriKind.Relative)));
-            data.Numbers.Add(new BitmapImage(new Uri("Images\\Numbers\\70.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_QuestionMark.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_0.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_1.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_2.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_3.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_4.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_5.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_6.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_7.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_8.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/_9.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/10.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/11.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/12.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/13.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/14.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/15.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/16.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/17.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/18.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/19.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/20.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/21.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/22.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/23.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/24.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/25.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/26.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/27.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/28.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/29.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/30.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/31.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/32.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/33.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/34.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/35.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/36.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/37.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/38.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/39.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/40.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/41.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/42.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/43.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/44.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/45.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/46.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/47.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/48.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/49.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/50.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/51.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/52.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/53.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/54.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/55.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/56.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/57.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/58.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/59.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/60.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/61.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/62.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/63.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/64.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/65.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/66.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/67.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/68.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/69.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/70.png", UriKind.Relative)));
+
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/QuestionMark.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/0.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/1.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/2.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/3.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/4.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/5.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/6.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/7.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/8.png", UriKind.Relative)));
+            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/9.png", UriKind.Relative)));
+
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_QuestionMark.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_0.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_1.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_2.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_3.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_4.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_5.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_6.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_7.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_8.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/_9.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/10.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/11.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/12.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/13.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/14.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/15.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/16.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/17.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/18.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/19.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/20.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/21.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/22.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/23.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/24.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/25.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/26.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/27.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/28.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/29.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/30.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/31.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/32.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/33.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/34.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/35.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/36.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/37.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/38.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/39.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/40.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/41.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/42.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/43.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/44.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/45.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/46.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/47.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/48.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/49.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/50.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/51.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/52.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/53.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/54.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/55.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/56.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/57.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/58.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/59.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/60.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/61.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/62.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/63.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/64.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/65.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/66.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/67.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/68.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/69.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/70.png", UriKind.Relative)));
+
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/QuestionMark.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/0.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/1.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/2.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/3.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/4.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/5.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/6.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/7.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/8.png", UriKind.Relative)));
+            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/9.png", UriKind.Relative)));
+
+            data.HintedWorlds.Add("SorasHeart", false);
+            data.HintedWorlds.Add("DriveForms", false);
+            data.HintedWorlds.Add("SimulatedTwilightTown", false);
+            data.HintedWorlds.Add("TwilightTown", false);
+            data.HintedWorlds.Add("HollowBastion", false);
+            data.HintedWorlds.Add("BeastsCastle", false);
+            data.HintedWorlds.Add("OlympusColiseum", false);
+            data.HintedWorlds.Add("Agrabah", false);
+            data.HintedWorlds.Add("LandofDragons", false);
+            data.HintedWorlds.Add("HundredAcreWood", false);
+            data.HintedWorlds.Add("PrideLands", false);
+            data.HintedWorlds.Add("DisneyCastle", false);
+            data.HintedWorlds.Add("HalloweenTown", false);
+            data.HintedWorlds.Add("PortRoyal", false);
+            data.HintedWorlds.Add("SpaceParanoids", false);
+            data.HintedWorlds.Add("TWTNW", false);
+            data.HintedWorlds.Add("Atlantica", false);
+            data.HintedWorlds.Add("GoA", true);
+
+            data.HintedHintWorlds.Add("SorasHeart", false);
+            data.HintedHintWorlds.Add("DriveForms", false);
+            data.HintedHintWorlds.Add("SimulatedTwilightTown", false);
+            data.HintedHintWorlds.Add("TwilightTown", false);
+            data.HintedHintWorlds.Add("HollowBastion", false);
+            data.HintedHintWorlds.Add("BeastsCastle", false);
+            data.HintedHintWorlds.Add("OlympusColiseum", false);
+            data.HintedHintWorlds.Add("Agrabah", false);
+            data.HintedHintWorlds.Add("LandofDragons", false);
+            data.HintedHintWorlds.Add("HundredAcreWood", false);
+            data.HintedHintWorlds.Add("PrideLands", false);
+            data.HintedHintWorlds.Add("DisneyCastle", false);
+            data.HintedHintWorlds.Add("HalloweenTown", false);
+            data.HintedHintWorlds.Add("PortRoyal", false);
+            data.HintedHintWorlds.Add("SpaceParanoids", false);
+            data.HintedHintWorlds.Add("TWTNW", false);
+            data.HintedHintWorlds.Add("Atlantica", false);
 
             foreach (ContentControl item in ItemPool.Children)
             {
@@ -312,36 +446,17 @@ namespace KhTracker
             {
                 if (data.selected != null)
                 {
-                    for (int i = 0; i < data.SelectedBars.Count; ++i)
-                    {
-                        if (data.Worlds[i] == data.selected)
-                        {
-                            data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
-                        }
-                    }
+                    data.SelectedBars[data.selected.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                 }
 
                 data.selected = button;
-                for (int i = 0; i < data.SelectedBars.Count; ++i)
-                {
-                    if (data.Worlds[i] == data.selected)
-                    {
-                        data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
-                    }
-                }
+                data.SelectedBars[button.Name].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
             }
             else if (e.ChangedButton == MouseButton.Middle)
             {
-                for (int i = 0; i < data.Hints.Count; ++i)
+                if (data.Hints.ContainsKey(button.Name))
                 {
-                    if (button == data.Worlds[i])
-                    {
-                        data.Hints[i].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
-
-                        (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                        (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
-                        break;
-                    }
+                    data.Hints[button.Name].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
                 }
             }
         }
@@ -350,14 +465,9 @@ namespace KhTracker
         {
             Button button = sender as Button;
 
-            for (int i = 0; i < data.Hints.Count; ++i)
+            if (data.Hints.ContainsKey(button.Name))
             {
-                if (button == data.Worlds[i])
-                {
-                    HandleReportValue(data.Hints[i], e.Delta);
-
-                    break;
-                }
+                HandleReportValue(data.Hints[button.Name], e.Delta);
             }
         }
 
@@ -365,22 +475,16 @@ namespace KhTracker
         {
             if (e.Key == Key.PageDown && data.selected != null)
             {
-                for (int i = 0; i < data.Hints.Count; ++i)
+                if (data.Hints.ContainsKey(data.selected.Name))
                 {
-                    if (data.Worlds[i] == data.selected)
-                    {
-                        HandleReportValue(data.Hints[i], -1);
-                    }
+                    HandleReportValue(data.Hints[data.selected.Name], -1);
                 }
             }
             if (e.Key == Key.PageUp && data.selected != null)
             {
-                for (int i = 0; i < data.Hints.Count; ++i)
+                if (data.Hints.ContainsKey(data.selected.Name))
                 {
-                    if (data.Worlds[i] == data.selected)
-                    {
-                        HandleReportValue(data.Hints[i], 1);
-                    }
+                    HandleReportValue(data.Hints[data.selected.Name], 1);
                 }
             }
         }
@@ -410,6 +514,9 @@ namespace KhTracker
         /// 
         private void HandleReportValue(Image Hint, int delta)
         {
+            if (data.hintsLoaded)
+                return;
+
             int num = 0;
 
             for (int i = 0; i < data.Numbers.Count; ++i)
@@ -434,44 +541,25 @@ namespace KhTracker
             else
                 Hint.Source = data.Numbers[num];
 
-            // Format fixing for double digit numbers
-            if (num > 10)
-            {
-                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.22, GridUnitType.Star);
-            }
-            else
-            {
-                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.166, GridUnitType.Star);
-
-            }
-
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
 
         public void SetReportValue(Image Hint, int value)
         {
+            var numList = data.Numbers;
+
+            string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
+            if (data.HintedHintWorlds[location])
+                numList = data.BlueNumbers;
+
             if (value > 52)
                 value = 52;
 
             if (value < 0)
-                Hint.Source = data.Numbers[0];
+                Hint.Source = numList[0];
             else
-                Hint.Source = data.Numbers[value];
-
-            // Format fixing for double digit numbers
-            if (value > 10)
-            {
-                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(2, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.15, GridUnitType.Star);
-            }
-            else
-            {
-                (Hint.Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                (Hint.Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
-
-            }
+                Hint.Source = numList[value];
+            
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
 

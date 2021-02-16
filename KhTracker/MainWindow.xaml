@@ -100,14 +100,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="SoraHeartImage"/>
                             </Button>
-                            <Image Name="SorasHeartHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="2" Grid.Column="1"/>
+                            <Image Name="SorasHeartHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="2" Grid.Column="1"/>
                             <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
@@ -127,14 +127,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="SimulatedImage"/>
                             </Button>
-                            <Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="SimulatedTwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Grid.Column="1"/>
@@ -154,14 +154,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="HollowBastionImage"/>
                             </Button>
-                            <Image Name="HollowBastionHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="HollowBastionHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="HollowBastionBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="HollowBastionGrid" Grid.Column="1"/>
@@ -181,14 +181,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="OlympusImage"/>
                             </Button>
-                            <Image Name="OlympusColiseumHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="OlympusColiseumHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="OlympusBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="OlympusColiseumGrid" Grid.Column="1"/>
@@ -208,14 +208,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="LandofDragonsImage"/>
                             </Button>
-                            <Image Name="LandofDragonsHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="LandofDragonsHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="LandofDragonsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="LandofDragonsGrid" Grid.Column="1"/>
@@ -235,14 +235,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="PrideLandsImage"/>
                             </Button>
-                            <Image Name="PrideLandsHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="PrideLandsHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="PrideLandsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="PrideLandsGrid" Grid.Column="1"/>
@@ -262,14 +262,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="HalloweenTownImage"/>
                             </Button>
-                            <Image Name="HalloweenTownHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="HalloweenTownHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="HalloweenTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="HalloweenTownGrid" Grid.Column="1"/>
@@ -289,14 +289,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="SpaceParanoidsImage"/>
                             </Button>
-                            <Image Name="SpaceParanoidsHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="SpaceParanoidsHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="SpaceParanoidsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="SpaceParanoidsGrid" Grid.Column="1"/>
@@ -356,14 +356,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="DriveFormsImage"/>
                             </Button>
-                            <Image Name="DriveFormsHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="DriveFormsHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="DriveFormsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="1"/>
@@ -383,14 +383,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="TwilightTownImage"/>
                             </Button>
-                            <Image Name="TwilightTownHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="TwilightTownHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="TwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="TwilightTownGrid" Grid.Column="1"/>
@@ -410,14 +410,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="BeastCastleImage"/>
                             </Button>
-                            <Image Name="BeastsCastleHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="BeastsCastleHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="BeastsCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="BeastsCastleGrid" Grid.Column="1"/>
@@ -437,14 +437,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="AgrabahImage"/>
                             </Button>
-                            <Image Name="AgrabahHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="AgrabahHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="AgrabahBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="AgrabahGrid" Grid.Column="1"/>
@@ -464,14 +464,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="HundredAcreImage"/>
                             </Button>
-                            <Image Name="HundredAcreWoodHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="HundredAcreWoodHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="HundredAcreWoodBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="HundredAcreWoodGrid" Grid.Column="1"/>
@@ -491,14 +491,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="DisneyCastleImage"/>
                             </Button>
-                            <Image Name="DisneyCastleHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="DisneyCastleHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="DisneyCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="DisneyCastleGrid" Grid.Column="1"/>
@@ -518,14 +518,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" FontSize="20" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="PortRoyalImage"/>
                             </Button>
-                            <Image Name="PortRoyalHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="PortRoyalHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="PortRoyalBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="PortRoyalGrid" Grid.Column="1"/>
@@ -545,14 +545,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="TWTNWImage"/>
                             </Button>
-                            <Image Name="TWTNWHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="TWTNWHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="TWTNWBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="TWTNWGrid" Grid.Column="1"/>
@@ -572,14 +572,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".166*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width=".33*"/>
                             </Grid.ColumnDefinitions>
 
                             <Button Name="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderThickness="0" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="AtlanticaImage"/>
                             </Button>
-                            <Image Name="AtlanticaHint" Source="Images\Numbers\QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
+                            <Image Name="AtlanticaHint" Source="Images\Numbers\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"/>
                             <Image Name="AtlanticaBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="2"/>
                         </Grid>
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="1"/>
@@ -631,7 +631,7 @@
                 <Image Name="Defense" Source="Images/Numbers/2.png" Grid.Row="3" Grid.Column="11" Visibility="Hidden"/>
                 <Image Name="Weapon" Source="Images/Simple/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden"/>
 
-                <Image Name="Collected" Source="Images/Numbers/0.png" Grid.Row="3" Grid.Column="15"/>
+                <Image Name="Collected" Source="Images/Numbers/_0.png" Grid.Row="3" Grid.Column="15"/>
                 <Image Name="CollectedBar"  Source="Images/Bar.png" Grid.Row="3" Grid.Column="16"/>
                 <Image Name="CheckTotal" Source="Images/Numbers/51.png" Grid.Row="3" Grid.Column="17"/>
             </Grid>

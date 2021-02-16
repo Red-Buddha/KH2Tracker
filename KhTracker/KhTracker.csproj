@@ -581,5 +581,33 @@
   <ItemGroup>
     <Resource Include="Images\BarBlue.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\_0.png" />
+    <Resource Include="Images\Numbers\_1.png" />
+    <Resource Include="Images\Numbers\_2.png" />
+    <Resource Include="Images\Numbers\_3.png" />
+    <Resource Include="Images\Numbers\_4.png" />
+    <Resource Include="Images\Numbers\_5.png" />
+    <Resource Include="Images\Numbers\_6.png" />
+    <Resource Include="Images\Numbers\_7.png" />
+    <Resource Include="Images\Numbers\_8.png" />
+    <Resource Include="Images\Numbers\_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\_QuestionMark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NumbersBlue\_0.png" />
+    <Resource Include="Images\NumbersBlue\_1.png" />
+    <Resource Include="Images\NumbersBlue\_2.png" />
+    <Resource Include="Images\NumbersBlue\_3.png" />
+    <Resource Include="Images\NumbersBlue\_4.png" />
+    <Resource Include="Images\NumbersBlue\_5.png" />
+    <Resource Include="Images\NumbersBlue\_6.png" />
+    <Resource Include="Images\NumbersBlue\_7.png" />
+    <Resource Include="Images\NumbersBlue\_8.png" />
+    <Resource Include="Images\NumbersBlue\_9.png" />
+    <Resource Include="Images\NumbersBlue\_QuestionMark.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

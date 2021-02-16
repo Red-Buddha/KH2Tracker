@@ -101,14 +101,9 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                for (int i = 0; i < data.Worlds.Count; ++i)
+                if (data.Grids[data.selected.Name].Handle_Report(this, window, data))
                 {
-                    if (data.selected == data.Worlds[i])
-                    {
-                        if (data.Grids[i].Handle_Report(this, window, data))
-                            data.Grids[i].Add_Item(this, window);
-                        break;
-                    }
+                    data.Grids[data.selected.Name].Add_Item(this, window);
                 }
             }
         }
