@@ -175,6 +175,16 @@ namespace KhTracker
             Defense.Visibility = Visibility.Visible;
             Weapon.Visibility = Visibility.Visible;
 
+            broadcast.LevelIcon.Visibility = Visibility.Visible;
+            broadcast.Level.Visibility = Visibility.Visible;
+            broadcast.StrengthIcon.Visibility = Visibility.Visible;
+            broadcast.Strength.Visibility = Visibility.Visible;
+            broadcast.MagicIcon.Visibility = Visibility.Visible;
+            broadcast.Magic.Visibility = Visibility.Visible;
+            broadcast.DefenseIcon.Visibility = Visibility.Visible;
+            broadcast.Defense.Visibility = Visibility.Visible;
+            broadcast.Weapon.Visibility = Visibility.Visible;
+
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -447,13 +457,421 @@ namespace KhTracker
                 else
                 {
                     // add check to current world
-                    foreach (WorldGrid grid in data.Grids)
-                    {
-                        if (world.worldName == grid.Name.Substring(0, grid.Name.Length - 4))
-                        {
-                            TrackItem(check.Name + count, grid);
-                        }
-                    }
+                    TrackItem(check.Name + count, data.Grids[world.worldName]);
+                }
+            }
+        }
+
+        void UpdateWorldProgress(string world, int roomNumber, int eventID1, int eventID2, int eventID3)
+        {
+            if (world == "SimulatedTwilightTown")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "ComputerRoom");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "DataRoxas");
+                }
+            }
+            else if (world == "TwilightTown")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "MysteriousTower");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "Sandlot");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "Mansion");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "BetwixtandBetween");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "DataAxel");
+                }
+            }
+            else if (world == "HollowBastion")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Bailey");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "AnsemStudy");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Corridor");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Dancers");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "HBDemyx");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "FinalFantasy");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "1000Heartless");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Sephiroth");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "DataDemyx");
+                }
+            }
+            else if (world == "BeastsCastle")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "Wardrobe");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "Thresholder");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "Beast");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "DarkThorn");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "Dragoons");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "Xaldin");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "DataXaldin");
+                }
+            }
+            else if (world == "OlympusColiseum")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "OCChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "Cerberus");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "OCDemyx");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "OCPete");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "Hydra");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "AuronStatue");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "Hades");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "Zexion");
+                }
+            }
+            else if (world == "Agrabah")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "AGChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "Abu");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "Chasm");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "TreasureRoom");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "Lords");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "Carpet");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "GenieJafar");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "Lexaeus");
+                }
+            }
+            else if (world == "LandofDragons")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "LoDChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "Cave");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "Summit");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "ShanYu");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "ThroneRoom");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "StormRider");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "DataXigbar");
+                }
+            }
+            else if (world == "HundredAcreWoods")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "Pooh");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "Piglet");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "Rabbit");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "Kanga");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "SpookyCave");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "StarryHill");
+                }
+            }
+            else if (world == "PrideLands")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "PLChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Simba");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Hyenas");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Scar");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Groundshaker");
+                }
+            }
+            else if (world == "DisneyCastle")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "DCChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "Minnie");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "OldPete");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "Windows");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "BoatPete");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "DCPete");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "Marluxia");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "LingeringWill");
+                }
+            }
+            else if (world == "HalloweenTown")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "HTChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "CandyCaneLane");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "PrisonKeeper");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "OogieBoogie");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "Presents");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "Experiment");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "Vexen");
+                }
+            }
+            else if (world == "PortRoyal")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "PRChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "Town");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "Barbossa");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "Gambler");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "GrimReaper");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "DataLuxord");
+                }
+            }
+            else if (world == "SpaceParanoids")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "SPChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "Screens");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "HostileProgram");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "SolarSailer");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "MCP");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "Larxene");
+                }
+            }
+            else if (world == "TWTNW")
+            {
+                if (roomNumber == 1 && eventID1 == 1)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "TWTNWChests");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "Roxas");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "Xigbar");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "Luxord");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "Saix");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "Xemnas1");
+                }
+                else if (roomNumber == 2 && eventID1 == 2)
+                {
+                    broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "DataXemnas");
                 }
             }
         }
