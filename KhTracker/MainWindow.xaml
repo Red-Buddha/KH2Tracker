@@ -724,9 +724,9 @@
                 <local:Item x:Name="TornPage3" Content="{DynamicResource TornPage}" Grid.Row="3" Grid.Column="2"/>
                 <local:Item x:Name="TornPage4" Content="{DynamicResource TornPage}" Grid.Row="3" Grid.Column="3"/>
                 <local:Item x:Name="TornPage5" Content="{DynamicResource TornPage}" Grid.Row="3" Grid.Column="4"/>
-                <local:Item x:Name="Lamp" Content="{DynamicResource Genie}" Grid.Row="3" Grid.Column="5"/>
-                <local:Item x:Name="Ukulele" Content="{DynamicResource Stitch}" Grid.Row="3" Grid.Column="6"/>
-                <local:Item x:Name="Baseball" Content="{DynamicResource ChickenLittle}" Grid.Row="3" Grid.Column="7"/>
+                <local:Item x:Name="Baseball" Content="{DynamicResource ChickenLittle}" Grid.Row="3" Grid.Column="5"/>
+                <local:Item x:Name="Lamp" Content="{DynamicResource Genie}" Grid.Row="3" Grid.Column="6"/>
+                <local:Item x:Name="Ukulele" Content="{DynamicResource Stitch}" Grid.Row="3" Grid.Column="7"/>
                 <local:Item x:Name="Feather" Content="{DynamicResource PeterPan}" Grid.Row="3" Grid.Column="8"/>
                 <local:Item x:Name="Nonexistence" Content="{DynamicResource ProofOfNonexistence}" Grid.Row="3" Grid.Column="9"/>
                 <local:Item x:Name="Connection" Content="{DynamicResource ProofOfConnection}" Grid.Row="3" Grid.Column="10"/>
