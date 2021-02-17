@@ -114,7 +114,7 @@ namespace KhTracker
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             int index = (int)GetValue(Grid.ColumnProperty);
 
-            window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks");
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
         }
 
         public void DragDropEventFire(string item, string world, bool add)

@@ -14,76 +14,138 @@ namespace KhTracker
             {
                 return "GoA";
             }
-            if (SimulatedTwilightTown.Contains(code))
+            else if (SimulatedTwilightTown.Contains(code))
             {
                 return "SimulatedTwilightTown";
             }
-            if (TwilightTown.Contains(code))
+            else if (TwilightTown.Contains(code))
             {
                 return "TwilightTown";
             }
-            if (HollowBastion.Contains(code))
+            else if (HollowBastion.Contains(code))
             {
                 return "HollowBastion";
             }
-            if (LandOfDragons.Contains(code))
+            else if (LandOfDragons.Contains(code))
             {
                 return "LandofDragons";
             }
-            if (BeastsCastle.Contains(code))
+            else if (BeastsCastle.Contains(code))
             {
                 return "BeastsCastle";
             }
-            if (OlympusColiseum.Contains(code))
+            else if (OlympusColiseum.Contains(code))
             {
                 return "OlympusColiseum";
             }
-            if (DisneyCastle.Contains(code))
+            else if (DisneyCastle.Contains(code))
             {
                 return "DisneyCastle";
             }
-            if (PortRoyal.Contains(code))
+            else if (PortRoyal.Contains(code))
             {
                 return "PortRoyal";
             }
-            if (Agrabah.Contains(code))
+            else if (Agrabah.Contains(code))
             {
                 return "Agrabah";
             }
-            if (HalloweenTown.Contains(code))
+            else if (HalloweenTown.Contains(code))
             {
                 return "HalloweenTown";
             }
-            if (PrideLands.Contains(code))
+            else if (PrideLands.Contains(code))
             {
                 return "PrideLands";
             }
-            if (Atlantica.Contains(code))
+            else if (Atlantica.Contains(code))
             {
                 return "Atlantica";
             }
-            if (AcreWood.Contains(code))
+            else if (AcreWood.Contains(code))
             {
                 return "HundredAcreWood";
             }
-            if (SpaceParanoids.Contains(code))
+            else if (SpaceParanoids.Contains(code))
             {
                 return "SpaceParanoids";
             }
-            if (TheWorldThatNeverWas.Contains(code))
+            else if (TheWorldThatNeverWas.Contains(code))
             {
                 return "TWTNW";
             }
-            if (Forms.Contains(code))
+            else if (Forms.Contains(code))
             {
                 return "DriveForms";
             }
-            if (Levels.Contains(code))
+            else if (Levels.Contains(code))
             {
                 return "SorasHeart";
             }
 
             return "";
+        }
+
+        static public string GetHintTextName(string worldName)
+        {
+            if (worldName == "SimulatedTwilightTown")
+            {
+                return "Simulated Twilight Town";
+            }
+            else if (worldName == "TwilightTown")
+            {
+                return "Twilight Town";
+            }
+            else if (worldName == "HollowBastion")
+            {
+                return "Hollow Bastion";
+            }
+            else if (worldName == "LandofDragons")
+            {
+                return "Land of Dragons";
+            }
+            else if (worldName == "BeastsCastle")
+            {
+                return "Beasts Castle";
+            }
+            else if (worldName == "OlympusColiseum")
+            {
+                return "Olympus Coliseum";
+            }
+            else if (worldName == "DisneyCastle")
+            {
+                return "Disney Castle";
+            }
+            else if (worldName == "PortRoyal")
+            {
+                return "Port Royal";
+            }
+            else if (worldName == "HalloweenTown")
+            {
+                return "Halloween Town";
+            }
+            else if (worldName == "PrideLands")
+            {
+                return "Pride Lands";
+            }
+            else if (worldName == "HundredAcreWood")
+            {
+                return "Hundred Acre Wood";
+            }
+            else if (worldName == "SpaceParanoids")
+            {
+                return "Space Paranoids";
+            }
+            else if (worldName == "DriveForms")
+            {
+                return "Drive Forms";
+            }
+            else if (worldName == "SorasHeart")
+            {
+                return "Soras Heart";
+            }
+
+            return worldName;
         }
 
 
@@ -94,16 +156,16 @@ namespace KhTracker
 
         string[] Default = new string[]
         {
-            "Hollow Bastion",
-            "Twilight Town",
+            "HollowBastion",
+            "TwilightTown",
             "TWTNW",
-            "Beasts Castle",
-            "Olympus Coliseum",
-            "Port Royal",
-            "Hollow Bastion",
+            "BeastsCastle",
+            "OlympusColiseum",
+            "PortRoyal",
+            "HollowBastion",
             "TWTNW",
             "TWTNW",
-            "Twilight Town",
+            "TwilightTown",
             "TWTNW",
             "TWTNW",
             "TWTNW"
