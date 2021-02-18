@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.IO;
 using Microsoft.Win32;
+using System.Linq;
 
 namespace KhTracker
 {
@@ -69,7 +70,7 @@ namespace KhTracker
                 }
                 // store hint values
                 string hintValues = "HintValues:";
-                foreach (Image hint in data.Hints)
+                foreach (Image hint in data.Hints.Values.ToList())
                 {
                     int num = 0;
                     for (int i = 0; i < data.Numbers.Count; ++i)
@@ -82,92 +83,92 @@ namespace KhTracker
 
                 // save items in worlds
                 string soraHeart = "SorasHeart:";
-                foreach (Item item in data.Grids[0].Children)
+                foreach (Item item in data.Grids["SorasHeart"].Children)
                 {
                     soraHeart += " " + item.Name;
                 }
                 string driveForms = "DriveForms:";
-                foreach (Item item in data.Grids[1].Children)
+                foreach (Item item in data.Grids["DriveForms"].Children)
                 {
                     driveForms += " " + item.Name;
                 }
                 string simulated = "SimulatedTwilightTown:";
-                foreach (Item item in data.Grids[2].Children)
+                foreach (Item item in data.Grids["SimulatedTwilightTown"].Children)
                 {
                     simulated += " " + item.Name;
                 }
                 string twilightTown = "TwilightTown:";
-                foreach (Item item in data.Grids[3].Children)
+                foreach (Item item in data.Grids["TwilightTown"].Children)
                 {
                     twilightTown += " " + item.Name;
                 }
                 string hollowBastion = "HollowBastion:";
-                foreach (Item item in data.Grids[4].Children)
+                foreach (Item item in data.Grids["HollowBastion"].Children)
                 {
                     hollowBastion += " " + item.Name;
                 }
                 string beastCastle = "BeastsCastle:";
-                foreach (Item item in data.Grids[5].Children)
+                foreach (Item item in data.Grids["BeastsCastle"].Children)
                 {
                     beastCastle += " " + item.Name;
                 }
                 string olympusColiseum = "OlympusColiseum:";
-                foreach (Item item in data.Grids[6].Children)
+                foreach (Item item in data.Grids["OlympusColiseum"].Children)
                 {
                     olympusColiseum += " " + item.Name;
                 }
                 string agrabah = "Agrabah:";
-                foreach (Item item in data.Grids[7].Children)
+                foreach (Item item in data.Grids["Agrabah"].Children)
                 {
                     agrabah += " " + item.Name;
                 }
                 string landOfDragons = "LandofDragons:";
-                foreach (Item item in data.Grids[8].Children)
+                foreach (Item item in data.Grids["LandofDragons"].Children)
                 {
                     landOfDragons += " " + item.Name;
                 }
                 string hundredAcreWood = "HundredAcreWood:";
-                foreach (Item item in data.Grids[9].Children)
+                foreach (Item item in data.Grids["HundredAcreWood"].Children)
                 {
                     hundredAcreWood += " " + item.Name;
                 }
                 string prideLands = "PrideLands:";
-                foreach (Item item in data.Grids[10].Children)
+                foreach (Item item in data.Grids["PrideLands"].Children)
                 {
                     prideLands += " " + item.Name;
                 }
                 string disneyCastle = "DisneyCastle:";
-                foreach (Item item in data.Grids[11].Children)
+                foreach (Item item in data.Grids["DisneyCastle"].Children)
                 {
                     disneyCastle += " " + item.Name;
                 }
                 string halloweenTown = "HalloweenTown:";
-                foreach (Item item in data.Grids[12].Children)
+                foreach (Item item in data.Grids["HalloweenTown"].Children)
                 {
                     halloweenTown += " " + item.Name;
                 }
                 string portRoyal = "PortRoyal:";
-                foreach (Item item in data.Grids[13].Children)
+                foreach (Item item in data.Grids["PortRoyal"].Children)
                 {
                     portRoyal += " " + item.Name;
                 }
                 string spaceparanoids = "SpaceParanoids:";
-                foreach (Item item in data.Grids[14].Children)
+                foreach (Item item in data.Grids["SpaceParanoids"].Children)
                 {
                     spaceparanoids += " " + item.Name;
                 }
                 string TWTNW = "TWTNW:";
-                foreach (Item item in data.Grids[15].Children)
+                foreach (Item item in data.Grids["TWTNW"].Children)
                 {
                     TWTNW += " " + item.Name;
                 }
                 string atlantica = "Atlantica:";
-                foreach (Item item in data.Grids[16].Children)
+                foreach (Item item in data.Grids["Atlantica"].Children)
                 {
                     atlantica += " " + item.Name;
                 }
                 string GoA = "GoA:";
-                foreach (Item item in data.Grids[17].Children)
+                foreach (Item item in data.Grids["GoA"].Children)
                 {
                     GoA += " " + item.Name;
                 }
@@ -253,12 +254,27 @@ namespace KhTracker
                         data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                     }
                 }
-                // set hint values
+
+                // set hint values (DUMB)
                 string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-                for (int i = 0; i < hintValues.Length; ++i)
-                {
-                    SetReportValue(data.Hints[i], int.Parse(hintValues[i]));
-                }
+                SetReportValue(data.Hints["SorasHeart"], int.Parse(hintValues[0]));
+                SetReportValue(data.Hints["DriveForms"], int.Parse(hintValues[1]));
+                SetReportValue(data.Hints["SimulatedTwilightTown"], int.Parse(hintValues[2]));
+                SetReportValue(data.Hints["TwilightTown"], int.Parse(hintValues[3]));
+                SetReportValue(data.Hints["HollowBastion"], int.Parse(hintValues[4]));
+                SetReportValue(data.Hints["BeastsCastle"], int.Parse(hintValues[5]));
+                SetReportValue(data.Hints["OlympusColiseum"], int.Parse(hintValues[6]));
+                SetReportValue(data.Hints["Agrabah"], int.Parse(hintValues[7]));
+                SetReportValue(data.Hints["LandofDragons"], int.Parse(hintValues[8]));
+                SetReportValue(data.Hints["HundredAcreWood"], int.Parse(hintValues[9]));
+                SetReportValue(data.Hints["PrideLands"], int.Parse(hintValues[10]));
+                SetReportValue(data.Hints["DisneyCastle"], int.Parse(hintValues[11]));
+                SetReportValue(data.Hints["HalloweenTown"], int.Parse(hintValues[12]));
+                SetReportValue(data.Hints["PortRoyal"], int.Parse(hintValues[13]));
+                SetReportValue(data.Hints["SpaceParanoids"], int.Parse(hintValues[14]));
+                SetReportValue(data.Hints["TWTNW"], int.Parse(hintValues[15]));
+                SetReportValue(data.Hints["Atlantica"], int.Parse(hintValues[16]));
+
                 // add items to worlds
                 while (reader.EndOfStream == false)
                 {
@@ -356,23 +372,33 @@ namespace KhTracker
             data.reportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
+            foreach (var key in data.HintedWorlds.Keys.ToList())
+            {
+                data.HintedWorlds[key] = false;
+            }
+            data.HintedWorlds["GoA"] = true;
+
+            foreach (var key in data.HintedHintWorlds.Keys.ToList())
+            {
+                data.HintedHintWorlds[key] = false;
+            }
+
             foreach (ContentControl report in data.ReportAttemptVisual)
             {
                 report.SetResourceReference(ContentProperty, "Fail0");
             }
-
-            for (int i = 0; i < data.Hints.Count; ++i)
+            
+            foreach (Image hint in data.Hints.Values.ToList())
             {
-                data.Hints[i].Source = new BitmapImage(new Uri("Images/Numbers/QuestionMark.png", UriKind.Relative));
-
-                (data.Hints[i].Parent as Grid).ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                (data.Hints[i].Parent as Grid).ColumnDefinitions[2].Width = new GridLength(.1, GridUnitType.Star);
+                hint.Source = data.Numbers[0];
             }
 
             for (int i = 0; i < data.Reports.Count; ++i)
             {
                 data.Reports[i].HandleItemReturn();
             }
+
+            broadcast.OnResetHints();
         }
 
         private void LoadSettings(string settings)
@@ -439,22 +465,16 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                for (int i = 0; i < data.SelectedBars.Count; ++i)
-                {
-                    if (data.Worlds[i] == data.selected)
-                    {
-                        data.SelectedBars[i].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
-                    }
-                }
+                data.SelectedBars[data.selected.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
             }
             data.selected = null;
 
-            for (int i = 0; i < data.Grids.Count; ++i)
+            foreach (WorldGrid grid in data.Grids.Values.ToList())
             {
-                for (int j = data.Grids[i].Children.Count - 1; j >= 0; --j)
+                for (int j = grid.Children.Count - 1; j >= 0; --j)
                 {
-                    Item item = data.Grids[i].Children[j] as Item;
-                    data.Grids[i].Children.Remove(data.Grids[i].Children[j]);
+                    Item item = grid.Children[j] as Item;
+                    grid.Children.Remove(grid.Children[j]);
                     ItemPool.Children.Add(item);
 
                     item.MouseDown -= item.Item_Return;
@@ -477,7 +497,7 @@ namespace KhTracker
             }
 
             // Reset 1st column row heights
-            RowDefinitionCollection rows1 = ((data.Grids[0].Parent as Grid).Parent as Grid).RowDefinitions;
+            RowDefinitionCollection rows1 = ((data.Grids["SorasHeart"].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows1)
             {
                 // don't reset turned off worlds
@@ -486,7 +506,7 @@ namespace KhTracker
             }
 
             // Reset 2nd column row heights
-            RowDefinitionCollection rows2 = ((data.Grids[1].Parent as Grid).Parent as Grid).RowDefinitions;
+            RowDefinitionCollection rows2 = ((data.Grids["DriveForms"].Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows2)
             {
                 // don't reset turned off worlds
@@ -495,6 +515,17 @@ namespace KhTracker
             }
 
             ResetHints();
+
+            foreach (var key in data.HintedWorlds.Keys.ToList())
+            {
+                data.HintedWorlds[key] = false;
+            }
+            data.HintedWorlds["GoA"] = true;
+
+            foreach (var key in data.HintedHintWorlds.Keys.ToList())
+            {
+                data.HintedHintWorlds[key] = false;
+            }
 
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
@@ -520,16 +551,19 @@ namespace KhTracker
             magnetLevel = 0;
             tornPageCount = 0;
 
-            double broadcastLeft = broadcast.Left;
-            double broadcastTop = broadcast.Top;
-            bool broadcastVisible = broadcast.IsVisible;
-            broadcast.canClose = true;
-            broadcast.Close();
-            broadcast = new BroadcastWindow(data);
-            broadcast.Left = broadcastLeft;
-            broadcast.Top = broadcastTop;
-            if (broadcastVisible)
-                broadcast.Show();
+            broadcast.OnReset();
+            broadcast.UpdateNumbers();
+
+            //double broadcastLeft = broadcast.Left;
+            //double broadcastTop = broadcast.Top;
+            //bool broadcastVisible = broadcast.IsVisible;
+            //broadcast.canClose = true;
+            //broadcast.Close();
+            //broadcast = new BroadcastWindow(data);
+            //broadcast.Left = broadcastLeft;
+            //broadcast.Top = broadcastTop;
+            //if (broadcastVisible)
+            //    broadcast.Show();
         }
         
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)

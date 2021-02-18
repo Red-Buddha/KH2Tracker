@@ -116,33 +116,41 @@ namespace KhTracker
                     return false;
 
                 // check for correct report location
-                if (data.reportLocations[index].Replace(" ", "") == Name.Substring(0, Name.Length - 4))
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
                     // hint text and resetting fail icons
-                    window.SetHintText(data.reportInformation[index].Item1 + " has " + data.reportInformation[index].Item2 + " important checks");
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
-                    item.DragDropEventFire(data.reportInformation[index].Item1.Replace(" ", String.Empty), data.reportInformation[index].Item2);
+                    item.DragDropEventFire(data.reportInformation[index].Item1, data.reportInformation[index].Item2);
 
-                    // auto update world immportant check number
-                    for (int i = 0; i < data.Hints.Count; ++i)
+                    // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
+                    data.HintedWorlds[data.reportInformation[index].Item1] = true;
+                    if (data.HintedWorlds[data.reportLocations[index]] == true)
                     {
-                        if (data.Worlds[i].Name == data.reportInformation[index].Item1.Replace(" ", ""))
-                            window.SetReportValue(data.Hints[i], data.reportInformation[index].Item2 + 1);
+                        data.HintedHintWorlds[data.reportInformation[index].Item1] = true;
                     }
+
+                    // loop through hinted world for reports to set their info as hinted hints
+                    for (int i = 0; i < data.Grids[data.reportInformation[index].Item1].Children.Count; ++i)
+                    {
+                        Item gridItem = data.Grids[data.reportInformation[index].Item1].Children[i] as Item;
+                        if (gridItem.Name.Contains("Report"))
+                        {
+                            int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
+                            data.HintedHintWorlds[data.reportInformation[reportIndex].Item1] = true;
+                            window.SetReportValue(data.Hints[data.reportInformation[reportIndex].Item1], data.reportInformation[reportIndex].Item2 + 1);
+                        }
+                    }
+
+                    // auto update world important check number
+                    window.SetReportValue(data.Hints[data.reportInformation[index].Item1], data.reportInformation[index].Item2 + 1);
                 }
                 else
                 {
                     // update fail icons when location is report location is wrong
-                    data.reportAttempts[index]--;
-                    if (data.reportAttempts[index] == 0)
-                        data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail3");
-                    else if (data.reportAttempts[index] == 1)
-                        data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail2");
-                    else if (data.reportAttempts[index] == 2)
-                        data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
-
+                    AddFailIcon(index);
                     return false;
                 }
             }
@@ -154,6 +162,19 @@ namespace KhTracker
             }
 
             return true;
+        }
+
+        private void AddFailIcon(int index)
+        {
+            Data data = MainWindow.data;
+
+            data.reportAttempts[index]--;
+            if (data.reportAttempts[index] == 0)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail3");
+            else if (data.reportAttempts[index] == 1)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail2");
+            else if (data.reportAttempts[index] == 2)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
         }
     }
 }
