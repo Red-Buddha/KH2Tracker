@@ -24,7 +24,7 @@ namespace KhTracker
             if (Obtained == false && flag == true)
             {
                 Obtained = true;
-                App.logger.Record(Name + " obtained");
+                //App.logger.Record(Name + " obtained");
             }
             return null;
         }
