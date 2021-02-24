@@ -296,13 +296,16 @@ namespace KhTracker
             }
         }
 
-        private void DropHints(object sender, DragEventArgs e)
+        private void DropFile(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                LoadHints(files[0]);
+                if (Path.GetExtension(files[0]).ToUpper() == ".TXT")
+                    LoadHints(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
+                    ParseSeed(files[0]);
             }
         }
 
@@ -593,13 +596,14 @@ namespace KhTracker
             openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
             if (openFileDialog.ShowDialog() == true)
             {
-                SetMode(Mode.AltHints);
                 ParseSeed(openFileDialog.FileName);
             }
         }
 
-        private void ParseSeed(string filename)
+        public void ParseSeed(string filename)
         {
+            SetMode(Mode.AltHints);
+
             foreach (string world in data.WorldCheckCount.Keys.ToList())
             {
                 data.WorldCheckCount[world].Clear();

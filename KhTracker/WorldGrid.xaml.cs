@@ -84,7 +84,10 @@ namespace KhTracker
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                window.LoadHints(files[0]);
+                if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".TXT")
+                    window.LoadHints(files[0]);
+                else if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".PNACH")
+                    window.ParseSeed(files[0]);
             }
         }
 
