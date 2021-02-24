@@ -148,11 +148,49 @@ namespace KhTracker
             return worldName;
         }
 
-
         public string GetDefault(int index)
         {
             return Default[index];
         }
+
+        public Dictionary<int, string> itemCodes = new Dictionary<int, string>
+        {
+            {21, "Fire"},
+            {22, "Blizzard"},
+            {23, "Thunder"},
+            {24, "Cure"},
+            {25, "Ukulele"},
+            {26, "Valor"},
+            {27, "Wisdom"},
+            {29, "Final"},
+            {31, "Master"},
+            {32, "TornPage"},
+            {87, "Magnet"},
+            {88, "Reflect"},
+            {159, "Lamp"},
+            {160, "Feather"},
+            {226, "Report1"},
+            {227, "Report2"},
+            {228, "Report3"},
+            {229, "Report4"},
+            {230, "Report5"},
+            {231, "Report6"},
+            {232, "Report7"},
+            {233, "Report8"},
+            {234, "Report9" },
+            {235, "Report10"},
+            {236, "Report11"},
+            {237, "Report12"},
+            {238, "Report13"},
+            {383, "Baseball"},
+            {415, "SecondChance"},
+            {416, "OnceMore"},
+            {524, "PromiseCharm"},
+            {563, "Limit"},
+            {593, "Connection"},
+            {594, "Nonexistence"},
+            {595, "Peace"},
+        };
 
         string[] Default = new string[]
         {

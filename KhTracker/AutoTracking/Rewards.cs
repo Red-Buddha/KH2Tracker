@@ -16,7 +16,6 @@ namespace KhTracker
         public List<Tuple<int, string>> limitChecks;
         public List<Tuple<int, string>> masterChecks;
         public List<Tuple<int, string>> finalChecks;
-        ItemCodes itemCodes;
 
         public int ADDRESS_OFFSET;
         
@@ -26,7 +25,6 @@ namespace KhTracker
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
-            itemCodes = new ItemCodes();
             swordChecks = new List<Tuple<int, string>>();
             shieldChecks = new List<Tuple<int, string>>();
             staffChecks = new List<Tuple<int, string>>();
@@ -200,9 +198,9 @@ namespace KhTracker
 
         private bool IsImportant(int num, out string name)
         {
-            if (itemCodes.levelCodes.ContainsKey(num))
+            if (MainWindow.data.codes.itemCodes.ContainsKey(num))
             {
-                name = itemCodes.levelCodes[num];
+                name = MainWindow.data.codes.itemCodes[num];
                 return true;
             }
             name = "";

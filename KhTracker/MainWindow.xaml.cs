@@ -357,6 +357,42 @@ namespace KhTracker
             data.HintedHintWorlds.Add("TWTNW", false);
             data.HintedHintWorlds.Add("Atlantica", false);
 
+            data.WorldCheckCount.Add("SorasHeart", new List<string>());
+            data.WorldCheckCount.Add("DriveForms", new List<string>());
+            data.WorldCheckCount.Add("SimulatedTwilightTown", new List<string>());
+            data.WorldCheckCount.Add("TwilightTown", new List<string>());
+            data.WorldCheckCount.Add("HollowBastion", new List<string>());
+            data.WorldCheckCount.Add("BeastsCastle", new List<string>());
+            data.WorldCheckCount.Add("OlympusColiseum", new List<string>());
+            data.WorldCheckCount.Add("Agrabah", new List<string>());
+            data.WorldCheckCount.Add("LandofDragons", new List<string>());
+            data.WorldCheckCount.Add("HundredAcreWood", new List<string>());
+            data.WorldCheckCount.Add("PrideLands", new List<string>());
+            data.WorldCheckCount.Add("DisneyCastle", new List<string>());
+            data.WorldCheckCount.Add("HalloweenTown", new List<string>());
+            data.WorldCheckCount.Add("PortRoyal", new List<string>());
+            data.WorldCheckCount.Add("SpaceParanoids", new List<string>());
+            data.WorldCheckCount.Add("TWTNW", new List<string>());
+            data.WorldCheckCount.Add("Atlantica", new List<string>());
+
+            data.WorldComplete.Add("SorasHeart", false);
+            data.WorldComplete.Add("DriveForms", false);
+            data.WorldComplete.Add("SimulatedTwilightTown", false);
+            data.WorldComplete.Add("TwilightTown", false);
+            data.WorldComplete.Add("HollowBastion", false);
+            data.WorldComplete.Add("BeastsCastle", false);
+            data.WorldComplete.Add("OlympusColiseum", false);
+            data.WorldComplete.Add("Agrabah", false);
+            data.WorldComplete.Add("LandofDragons", false);
+            data.WorldComplete.Add("HundredAcreWood", false);
+            data.WorldComplete.Add("PrideLands", false);
+            data.WorldComplete.Add("DisneyCastle", false);
+            data.WorldComplete.Add("HalloweenTown", false);
+            data.WorldComplete.Add("PortRoyal", false);
+            data.WorldComplete.Add("SpaceParanoids", false);
+            data.WorldComplete.Add("TWTNW", false);
+            data.WorldComplete.Add("Atlantica", false);
+
             foreach (ContentControl item in ItemPool.Children)
             {
                 if (item is Item)
@@ -514,7 +550,7 @@ namespace KhTracker
         /// 
         private void HandleReportValue(Image Hint, int delta)
         {
-            if (data.hintsLoaded)
+            if (data.hintsLoaded || data.mode == Mode.AltHints)
                 return;
 
             int num = 0;
@@ -532,11 +568,13 @@ namespace KhTracker
             else
                 --num;
 
-            // cap hint value to 20
+            // cap hint value to 51
             if (num > 52)
                 num = 52;
 
-            if (num < 0)
+            if (num < 1 && data.mode == Mode.AltHints)
+                Hint.Source = data.Numbers[1];
+            else if (num < 0)
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[num];
@@ -549,13 +587,15 @@ namespace KhTracker
             var numList = data.Numbers;
 
             string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
-            if (data.HintedHintWorlds[location])
+            if (data.HintedHintWorlds[location] || data.WorldComplete[location])
                 numList = data.BlueNumbers;
 
             if (value > 52)
                 value = 52;
 
-            if (value < 0)
+            if (value < 1 && data.mode == Mode.AltHints)
+                Hint.Source = numList[1];
+            else if (value < 0)
                 Hint.Source = numList[0];
             else
                 Hint.Source = numList[value];

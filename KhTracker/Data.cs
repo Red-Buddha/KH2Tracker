@@ -11,6 +11,7 @@ namespace KhTracker
 {
     public class Data
     {
+        public Mode mode;
         public bool hintsLoaded = false;
         public Button selected = null;
         public bool dragDrop = true;
@@ -24,6 +25,9 @@ namespace KhTracker
 
         public Dictionary<string, bool> HintedWorlds = new Dictionary<string, bool>();
         public Dictionary<string, bool> HintedHintWorlds = new Dictionary<string, bool>();
+        public Dictionary<string, List<string>> WorldCheckCount = new Dictionary<string, List<string>>();
+        public Dictionary<string, bool> WorldComplete = new Dictionary<string, bool>();
+
         public Dictionary<string, Button> Worlds = new Dictionary<string, Button>();
         public Dictionary<string, Image> Hints = new Dictionary<string, Image>();
         public Dictionary<string, WorldGrid> Grids = new Dictionary<string, WorldGrid>();
@@ -39,5 +43,11 @@ namespace KhTracker
         public List<BitmapImage> BlueSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
+    }
+
+    public enum Mode
+    {
+        Hints,
+        AltHints
     }
 }

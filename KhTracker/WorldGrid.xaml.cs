@@ -54,6 +54,18 @@ namespace KhTracker
             var outerGrid = ((Parent as Grid).Parent as Grid);
             int row = (int)Parent.GetValue(Grid.RowProperty);
             outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
+
+            if (MainWindow.data.mode == Mode.AltHints)
+            {
+                WorldComplete();
+
+                string worldName = Name.Substring(0, Name.Length - 4);
+                if (MainWindow.data.Hints.ContainsKey(worldName))
+                {
+                    Image hint = MainWindow.data.Hints[Name.Substring(0, Name.Length - 4)];
+                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
+                }
+            }
         }
 
         private void Item_Drop(Object sender, DragEventArgs e)
@@ -84,7 +96,7 @@ namespace KhTracker
 
             // update collection count
             window.IncrementCollected();
-
+            
             // update mouse actions
             if (MainWindow.data.dragDrop)
             {
@@ -175,6 +187,31 @@ namespace KhTracker
                 data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail2");
             else if (data.reportAttempts[index] == 2)
                 data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
+        }
+
+        public void WorldComplete()
+        {
+            string worldName = Name.Substring(0, Name.Length - 4);
+            if (MainWindow.data.WorldComplete.ContainsKey(worldName) == false || MainWindow.data.WorldComplete[worldName] == true)
+                return;
+
+            List<string> items = new List<string>();
+            items.AddRange(MainWindow.data.WorldCheckCount[Name.Substring(0, Name.Length - 4)]);
+
+            foreach (var child in Children)
+            {
+                Item item = child as Item;
+                char[] numbers = { '1', '2', '3', '4', '5' };
+                if (items.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    items.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            if (items.Count == 0)
+            {
+                MainWindow.data.WorldComplete[Name.Substring(0, Name.Length - 4)] = true;
+            }
         }
     }
 }
