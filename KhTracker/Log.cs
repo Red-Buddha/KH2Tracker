@@ -17,6 +17,7 @@ namespace KhTracker
             path = Path;
 
             writer = new StreamWriter(path);
+            writer.AutoFlush = true;
         }
 
         public void Close()

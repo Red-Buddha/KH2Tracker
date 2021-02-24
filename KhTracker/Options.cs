@@ -319,6 +319,7 @@ namespace KhTracker
 
         public void LoadHints(string filename)
         {
+            SetMode(Mode.Hints);
             ResetHints();
             
             StreamReader streamReader = new StreamReader(filename);
@@ -459,6 +460,9 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
+            ModeDisplay.Header = "Hints Mode";
+            data.mode = Mode.Hints;
+
             collected = 0;
             Collected.Source = data.Numbers[1];
             HintText.Content = "";
@@ -527,6 +531,16 @@ namespace KhTracker
                 data.HintedHintWorlds[key] = false;
             }
 
+            foreach (var key in data.WorldComplete.Keys.ToList())
+            {
+                data.WorldComplete[key] = false;
+            }
+
+            foreach (var key in data.WorldCheckCount.Keys.ToList())
+            {
+                data.WorldCheckCount[key].Clear();
+            }
+
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
             StrengthIcon.Visibility = Visibility.Hidden;
@@ -536,6 +550,18 @@ namespace KhTracker
             DefenseIcon.Visibility = Visibility.Hidden;
             Defense.Visibility = Visibility.Hidden;
             Weapon.Visibility = Visibility.Hidden;
+
+            broadcast.LevelIcon.Visibility = Visibility.Hidden;
+            broadcast.Level.Visibility = Visibility.Hidden;
+            broadcast.StrengthIcon.Visibility = Visibility.Hidden;
+            broadcast.Strength.Visibility = Visibility.Hidden;
+            broadcast.MagicIcon.Visibility = Visibility.Hidden;
+            broadcast.Magic.Visibility = Visibility.Hidden;
+            broadcast.DefenseIcon.Visibility = Visibility.Hidden;
+            broadcast.Defense.Visibility = Visibility.Hidden;
+            broadcast.Weapon.Visibility = Visibility.Hidden;
+
+            broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
 
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
@@ -553,22 +579,99 @@ namespace KhTracker
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
-
-            //double broadcastLeft = broadcast.Left;
-            //double broadcastTop = broadcast.Top;
-            //bool broadcastVisible = broadcast.IsVisible;
-            //broadcast.canClose = true;
-            //broadcast.Close();
-            //broadcast = new BroadcastWindow(data);
-            //broadcast.Left = broadcastLeft;
-            //broadcast.Top = broadcastTop;
-            //if (broadcastVisible)
-            //    broadcast.Show();
         }
         
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
         {
             broadcast.Show();
+        }
+
+        private void ParseSeed(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".pnach";
+            openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SetMode(Mode.AltHints);
+                ParseSeed(openFileDialog.FileName);
+            }
+        }
+
+        private void ParseSeed(string filename)
+        {
+            foreach (string world in data.WorldCheckCount.Keys.ToList())
+            {
+                data.WorldCheckCount[world].Clear();
+            }
+
+            StreamReader streamReader = new StreamReader(filename);
+            bool check1 = false;
+            bool check2 = false;
+
+            while (streamReader.EndOfStream == false)
+            {
+                string line = streamReader.ReadLine();
+
+                string[] codes = line.Split(',');
+                if (codes.Length == 5)
+                {
+                    string world = data.codes.FindCode(codes[2]);
+                    int id = Convert.ToInt32(codes[4], 16);
+                    if (world == "" || world == "GoA" || data.codes.itemCodes.ContainsKey(id) == false || (id >= 226 && id <= 238))
+                        continue;
+
+                    string item = data.codes.itemCodes[Convert.ToInt32(codes[4], 16)];
+                    data.WorldCheckCount[world].Add(item);
+                }
+                else if (codes.Length == 1)
+                {
+                    if (codes[0] == "//Remove High Jump LVl" || codes[0] == "//Remove Quick Run LVl")
+                    {
+                        check1 = true;
+                    }
+                    else if (codes[0] == "//Remove Dodge Roll LVl")
+                    {
+                        check2 = true;
+                    }
+                }
+            }
+            streamReader.Close();
+
+            if (check1 == true && check2 == false)
+            {
+                foreach (string world in data.WorldCheckCount.Keys.ToList())
+                {
+                    data.WorldCheckCount[world].Clear();
+                }
+            }
+
+            foreach (var key in data.Grids.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                data.Grids[key].WorldComplete();
+                SetReportValue(data.Hints[key], 1);
+            }
+        }
+
+        private void SetMode(Mode mode)
+        {
+            if (data.mode != mode || mode == Mode.AltHints)
+                OnReset(null, null);
+
+            if (mode == Mode.AltHints)
+            {
+                ModeDisplay.Header = "Alt Hints Mode";
+                data.mode = mode;
+                ReportsToggle(false);
+            }
+            else
+            {
+                ModeDisplay.Header = "Hints Mode";
+                data.mode = mode;
+            }
         }
     }
 }
