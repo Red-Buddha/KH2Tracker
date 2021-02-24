@@ -537,6 +537,18 @@ namespace KhTracker
             Defense.Visibility = Visibility.Hidden;
             Weapon.Visibility = Visibility.Hidden;
 
+            broadcast.LevelIcon.Visibility = Visibility.Hidden;
+            broadcast.Level.Visibility = Visibility.Hidden;
+            broadcast.StrengthIcon.Visibility = Visibility.Hidden;
+            broadcast.Strength.Visibility = Visibility.Hidden;
+            broadcast.MagicIcon.Visibility = Visibility.Hidden;
+            broadcast.Magic.Visibility = Visibility.Hidden;
+            broadcast.DefenseIcon.Visibility = Visibility.Hidden;
+            broadcast.Defense.Visibility = Visibility.Hidden;
+            broadcast.Weapon.Visibility = Visibility.Hidden;
+
+            broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
+
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();

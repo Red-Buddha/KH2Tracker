@@ -530,9 +530,9 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width=".8*"/>
-                        <ColumnDefinition Width=".5*"/>
-                        <ColumnDefinition Width=".3*"/>
-                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".4*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
@@ -550,7 +550,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width=".8*"/>
-                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width=".25*"/>
                         <ColumnDefinition Width=".8*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -601,12 +601,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition Name="GrowthAbilityRow" Height="0"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <!-- Proofs, Promise Charm, Once More, Second Chance -->
-                <Grid Name="ProofRow" Grid.Row="3">
+                <Grid Name="ProofRow" Grid.Row="4">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="4.4*"/>
@@ -740,8 +741,8 @@
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="2.2*"/>
-                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="2.5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -763,17 +764,11 @@
                     <ContentControl Content="{DynamicResource Master}" Opacity="0.25" Name="Master" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"></ContentControl>
                     <ContentControl Content="{DynamicResource Final}" Opacity="0.25" Name="Final" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"></ContentControl>
 
-                    <Image Name="ValorHinted" Grid.Row="2" Grid.Column="0"/>
+                    <Image Name="ValorHinted" Grid.Row="1" Grid.Column="0"/>
                     <Image Name="WisdomHinted" Grid.Row="2" Grid.Column="2"/>
                     <Image Name="LimitHinted" Grid.Row="2" Grid.Column="4"/>
                     <Image Name="MasterHinted" Grid.Row="2" Grid.Column="6"/>
                     <Image Name="FinalHinted" Grid.Row="2" Grid.Column="8"/>
-                    
-                    <Image Name="HighJumpLevel" Grid.Row="1" Grid.Column="0"/>
-                    <Image Name="QuickRunLevel" Grid.Row="1" Grid.Column="2"/>
-                    <Image Name="DodgeRollLevel" Grid.Row="1" Grid.Column="4"/>
-                    <Image Name="AerialDodgeLevel" Grid.Row="1" Grid.Column="6"/>
-                    <Image Name="GlideLevel" Grid.Row="1" Grid.Column="8"/>
 
                     <Image Name="ValorLevel" Grid.Row="2" Grid.Column="1"/>
                     <Image Name="WisdomLevel" Grid.Row="2" Grid.Column="3"/>
@@ -783,8 +778,94 @@
 
                 </Grid>
 
-                <!-- Summons -->
+                <!-- Growth Abilities -->
                 <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="HighJump" Opacity="0.25" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="Images\GrowthAbilities\jump.png"/>
+                        <Image Name="HighJumpLevel" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="QuickRun" Opacity="0.25" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="Images\GrowthAbilities\quick.png"/>
+                        <Image Name="QuickRunLevel" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="DodgeRoll" Opacity="0.25" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="Images\GrowthAbilities\dodge.png"/>
+                        <Image Name="DodgeRollLevel" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="AerialDodge" Opacity="0.25" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="Images\GrowthAbilities\aerial.png"/>
+                        <Image Name="AerialDodgeLevel" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Margin="5" Grid.Row="1" Grid.Column="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="Glide" Opacity="0.25" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="Images\GrowthAbilities\glide.png"/>
+                        <Image Name="GlideLevel" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+
+                <!-- Summons -->
+                <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="4.4*"/>
@@ -797,9 +878,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <ContentControl Content="{DynamicResource ChickenLittle}" Opacity="0.25" Name="Baseball" Grid.Row="1" Grid.Column="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Genie}" Opacity="0.25" Name="Lamp" Grid.Row="1" Grid.Column="0"></ContentControl>
-                    <ContentControl Content="{DynamicResource Stitch}" Opacity="0.25" Name="Ukulele" Grid.Row="1" Grid.Column="1"></ContentControl>
+                    <ContentControl Content="{DynamicResource ChickenLittle}" Opacity="0.25" Name="Baseball" Grid.Row="1" Grid.Column="0"></ContentControl>
+                    <ContentControl Content="{DynamicResource Genie}" Opacity="0.25" Name="Lamp" Grid.Row="1" Grid.Column="1"></ContentControl>
+                    <ContentControl Content="{DynamicResource Stitch}" Opacity="0.25" Name="Ukulele" Grid.Row="1" Grid.Column="2"></ContentControl>
                     <ContentControl Content="{DynamicResource PeterPan}" Opacity="0.25" Name="Feather" Grid.Row="1" Grid.Column="3"></ContentControl>
                 </Grid>
             </Grid>

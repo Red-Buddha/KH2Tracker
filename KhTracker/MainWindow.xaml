@@ -618,8 +618,9 @@
                     <ColumnDefinition Width=".5*"/>
                 </Grid.ColumnDefinitions>
 
-
-                <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Grid.Row="1" Grid.ColumnSpan="19" Grid.Column="0" Padding="0"/>
+                <Viewbox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15">
+                    <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0"/>
+                </Viewbox>
 
                 <Image Name="LevelIcon" Source="Images/Simple/level.png" Grid.Row="3" Grid.Column="1" Visibility="Hidden"/>
                 <Image Name="Level" Source="Images/Numbers/1.png" Grid.Row="3" Grid.Column="2" Visibility="Hidden"/>

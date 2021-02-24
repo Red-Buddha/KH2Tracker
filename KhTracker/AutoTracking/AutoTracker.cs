@@ -185,6 +185,8 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Visible;
             broadcast.Weapon.Visibility = Visibility.Visible;
 
+            broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
+
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -229,11 +231,17 @@ namespace KhTracker
             BindLevel(broadcast.MasterLevel, "Level", master);
             BindLevel(broadcast.FinalLevel, "Level", final);
 
-            BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new HighJumpConverter());
-            BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new QuickRunConverter());
-            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new DodgeRollConverter());
-            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new AerialDodgeConverter());
-            BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GlideConverter());
+            BindAbility(broadcast.HighJump, "Obtained", highJump);
+            BindAbility(broadcast.QuickRun, "Obtained", quickRun);
+            BindAbility(broadcast.DodgeRoll, "Obtained", dodgeRoll);
+            BindAbility(broadcast.AerialDodge, "Obtained", aerialDodge);
+            BindAbility(broadcast.Glide, "Obtained", glide);
+
+            BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
         }
         private void SetTimer()
         {
@@ -915,6 +923,14 @@ namespace KhTracker
             binding.Source = source;
             binding.Converter = convertor;
             img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindAbility(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new ObtainedConverter();
+            img.SetBinding(OpacityProperty, binding);
         }
 
         public string GetWorld()
