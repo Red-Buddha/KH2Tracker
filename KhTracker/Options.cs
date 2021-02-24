@@ -460,6 +460,9 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
+            ModeDisplay.Header = "Hints Mode";
+            data.mode = Mode.Hints;
+
             collected = 0;
             Collected.Source = data.Numbers[1];
             HintText.Content = "";
@@ -533,6 +536,11 @@ namespace KhTracker
                 data.WorldComplete[key] = false;
             }
 
+            foreach (var key in data.WorldCheckCount.Keys.ToList())
+            {
+                data.WorldCheckCount[key].Clear();
+            }
+
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
             StrengthIcon.Visibility = Visibility.Hidden;
@@ -585,8 +593,8 @@ namespace KhTracker
             openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
             if (openFileDialog.ShowDialog() == true)
             {
-                ParseSeed(openFileDialog.FileName);
                 SetMode(Mode.AltHints);
+                ParseSeed(openFileDialog.FileName);
             }
         }
 
@@ -637,6 +645,15 @@ namespace KhTracker
                     data.WorldCheckCount[world].Clear();
                 }
             }
+
+            foreach (var key in data.Grids.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                data.Grids[key].WorldComplete();
+                SetReportValue(data.Hints[key], 1);
+            }
         }
 
         private void SetMode(Mode mode)
@@ -649,15 +666,6 @@ namespace KhTracker
                 ModeDisplay.Header = "Alt Hints Mode";
                 data.mode = mode;
                 ReportsToggle(false);
-                foreach (var key in data.Grids.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-
-                    data.Grids[key].WorldComplete();
-                    SetReportValue(data.Hints[key], 1);
-                }
-
             }
             else
             {
