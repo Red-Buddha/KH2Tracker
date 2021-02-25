@@ -311,6 +311,7 @@ namespace KhTracker
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".txt";
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog.Title = "Select Hints File";
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadHints(openFileDialog.FileName);
@@ -591,6 +592,7 @@ namespace KhTracker
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".pnach";
             openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
+            openFileDialog.Title = "Select Seed File";
             if (openFileDialog.ShowDialog() == true)
             {
                 SetMode(Mode.AltHints);
