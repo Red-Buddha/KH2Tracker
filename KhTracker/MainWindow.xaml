@@ -608,25 +608,25 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="11*"/>
-                    <ColumnDefinition Width="33"/>
-                    <ColumnDefinition Width="45*"/>
-                    <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="44*"/>
-                    <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="44*"/>
-                    <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="44*"/>
-                    <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="44*"/>
-                    <ColumnDefinition Width="22*" />
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="11*"/>
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
                 <Viewbox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15">
