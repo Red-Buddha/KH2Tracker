@@ -430,7 +430,7 @@
 
                         <Image Source="/Images/Numbers/_0.png" Name="HundredAcreWoodFound" Grid.Column="1"/>
                         <Image Source="/Images/Bar.png" Name="HundredAcreWoodBar" Grid.Column="2"/>
-                        <Image Source="/Images/Numbers/0.png" Name="HundredAcreWoodTotal" Grid.Column="3"/>
+                        <Image Source="/Images/Numbers/QuestionMark.png" Name="HundredAcreWoodTotal" Grid.Column="3"/>
                     </Grid>
                 </Grid>
 
