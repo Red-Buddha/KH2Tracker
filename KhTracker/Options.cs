@@ -623,7 +623,11 @@ namespace KhTracker
                 if (codes.Length == 5)
                 {
                     string world = data.codes.FindCode(codes[2]);
-                    int id = Convert.ToInt32(codes[4], 16);
+
+                    //stupid fix
+                    string[] idCode = codes[4].Split('/', ' ');
+
+                    int id = Convert.ToInt32(idCode[0], 16);
                     if (world == "" || world == "GoA" || data.codes.itemCodes.ContainsKey(id) == false || (id >= 226 && id <= 238))
                         continue;
 
