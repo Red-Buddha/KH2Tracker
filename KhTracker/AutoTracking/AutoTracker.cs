@@ -185,6 +185,8 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Visible;
             broadcast.Weapon.Visibility = Visibility.Visible;
 
+            broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
+
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -229,11 +231,17 @@ namespace KhTracker
             BindLevel(broadcast.MasterLevel, "Level", master);
             BindLevel(broadcast.FinalLevel, "Level", final);
 
-            BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new HighJumpConverter());
-            BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new QuickRunConverter());
-            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new DodgeRollConverter());
-            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new AerialDodgeConverter());
-            BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GlideConverter());
+            BindAbility(broadcast.HighJump, "Obtained", highJump);
+            BindAbility(broadcast.QuickRun, "Obtained", quickRun);
+            BindAbility(broadcast.DodgeRoll, "Obtained", dodgeRoll);
+            BindAbility(broadcast.AerialDodge, "Obtained", aerialDodge);
+            BindAbility(broadcast.Glide, "Obtained", glide);
+
+            BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
         }
         private void SetTimer()
         {
@@ -421,6 +429,23 @@ namespace KhTracker
                 .Where(reward => reward.Item1 > final.previousLevels[0] && reward.Item1 <= final.Level)
                 .Select(reward => reward.Item2));
 
+            if (stats.Level > stats.previousLevels[0])
+                App.logger.Record("Levels " + stats.previousLevels[0].ToString() + " to " + stats.Level.ToString());
+            if (valor.Level > valor.previousLevels[0])
+                App.logger.Record("Valor Levels " + valor.previousLevels[0].ToString() + " to " + valor.Level.ToString());
+            if (wisdom.Level > wisdom.previousLevels[0])
+                App.logger.Record("Wisdom Levels " + wisdom.previousLevels[0].ToString() + " to " + wisdom.Level.ToString());
+            if (limit.Level > limit.previousLevels[0])
+                App.logger.Record("Limit Levels " + limit.previousLevels[0].ToString() + " to " + limit.Level.ToString());
+            if (master.Level > master.previousLevels[0])
+                App.logger.Record("Master Levels " + master.previousLevels[0].ToString() + " to " + master.Level.ToString());
+            if (final.Level > final.previousLevels[0])
+                App.logger.Record("Final Levels " + final.previousLevels[0].ToString() + " to " + final.Level.ToString());
+            foreach (string str in levelRewards)
+                App.logger.Record("Level reward " + str);
+            foreach (string str in driveRewards)
+                App.logger.Record("Drive reward " + str);
+
             foreach (ImportantCheck check in previousChecks)
             {
                 string count = "";
@@ -430,17 +455,6 @@ namespace KhTracker
                     count = check.Name.Substring(check.Name.Length - 1);
                     check.Name = check.Name.Substring(0, check.Name.Length - 1);
                 }
-
-                App.logger.Record("Levels " + stats.previousLevels[0].ToString() + " to " + stats.Level.ToString());
-                App.logger.Record("Valor Levels " + valor.previousLevels[0].ToString() + " to " + valor.Level.ToString());
-                App.logger.Record("Wisdom Levels " + wisdom.previousLevels[0].ToString() + " to " + wisdom.Level.ToString());
-                App.logger.Record("Limit Levels " + limit.previousLevels[0].ToString() + " to " + limit.Level.ToString());
-                App.logger.Record("Master Levels " + master.previousLevels[0].ToString() + " to " + master.Level.ToString());
-                App.logger.Record("Final Levels " + final.previousLevels[0].ToString() + " to " + final.Level.ToString());
-                foreach (string str in levelRewards)
-                    App.logger.Record("Level reward " + str);
-                foreach (string str in driveRewards)
-                    App.logger.Record("Drive reward " + str);
 
                 if (levelRewards.Exists(x => x == check.Name))
                 {
@@ -915,6 +929,14 @@ namespace KhTracker
             binding.Source = source;
             binding.Converter = convertor;
             img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindAbility(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new ObtainedConverter();
+            img.SetBinding(OpacityProperty, binding);
         }
 
         public string GetWorld()

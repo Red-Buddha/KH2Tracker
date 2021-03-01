@@ -26,7 +26,7 @@ namespace KhTracker
 
         public Ability(MemoryReader mem, int address, int offset, string name) : base(mem, address, offset, name)
         {
-            Bytes = 2;
+            Bytes = 158;
             levelOffset = 0;
             this.Address = ADDRESS_START;
         }
@@ -39,53 +39,24 @@ namespace KhTracker
 
         public override byte[] UpdateMemory()
         {
-            byte[] data = base.UpdateMemory();
-            int convertedData = BitConverter.ToUInt16(data, 0);
-
             if(levelOffset == 0)
             {
-                switch (data[0])
+                byte[] abilityData = base.UpdateMemory();
+                for (int i = 0; i < abilityData.Length; i += 2)
                 {
-                    // backup ability list index after losing abilities and cap at the start of the list
-                    case 0x00:
-                        while (data[0] == 0x00)
-                        {
-                            if (Address < ADDRESS_START)
-                            {
-                                Address = ADDRESS_START;
-                                return null;
-                            }
-                            Address -= 0x02;
-                            data = base.UpdateMemory();
-                        }
-                        Address += 0x02;
-                        return null;
-
-                    case 0xA0:
-                        if (Name == "OnceMore" && data[1] == 0x01)
-                        {
-                            Obtained = true;
-                            App.logger.Record("Once More obtained");
-                        }
-                        Address += 0x02;
-                        return null;
-
-                    case 0x9F:
-                        if (this.Name == "SecondChance" && data[1] == 0x01)
-                        {
-                            Obtained = true;
-                            App.logger.Record("Second Chance obtained");
-                        }
-                        Address += 0x02;
-                        return null;
-
-                    default:
-                        Address += 0x02;
-                        Console.WriteLine("Skill, but not SC OM");
-                        return null;
+                    if (abilityData[i+1] == 1 && abilityData[i] == 159 && this.Name == "SecondChance")
+                    {
+                        if (!this.Obtained) { this.Obtained = true; }
+                    }
+                    if (abilityData[i + 1] == 1 && abilityData[i] == 160 && this.Name == "OnceMore")
+                    {
+                        if (!this.Obtained) { this.Obtained = true; }
+                    }
                 }
+                return null;
             }
-
+            byte[] data = base.UpdateMemory();
+            int convertedData = BitConverter.ToUInt16(data, 0);
             int equipped = 0;
             if (levelOffset > 0 && convertedData > 0)
             {
@@ -109,7 +80,7 @@ namespace KhTracker
             if (Obtained == false && Level >= 1)
             {
                 Obtained = true;
-                App.logger.Record(Name + " obtained");
+                //App.logger.Record(Name + " obtained");
             }
             return null;
         }
