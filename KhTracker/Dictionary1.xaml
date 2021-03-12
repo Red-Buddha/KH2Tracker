@@ -157,6 +157,7 @@
 
     <!--World Progression-->
     <!--Hollow Bastion-->
+    <Image x:Key="HBChests" Source="Images\Progression\chest.png" x:Shared="False"/>
     <Image x:Key="Bailey" Source="Images\Progression\merlin.png" x:Shared="False"/>
     <Image x:Key="AnsemStudy" Source="Images\Progression\ansem_the_wise.png" x:Shared="False"/>
     <Image x:Key="Corridor" Source="Images\Progression\crimson_jazz.png" x:Shared="False"/>

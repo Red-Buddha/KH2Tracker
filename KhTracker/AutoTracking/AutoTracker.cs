@@ -536,59 +536,65 @@ namespace KhTracker
             }
             else if (world.worldName == "HollowBastion")
             {
-                if (world.roomNumber == 8 && world.eventID1 == 52 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 0) // Bailey finish
+                if (world.roomNumber == 10 && data.WorldProgress[world.worldName] <= 0) // Marketplace
+                {
+                    broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "HBChests");
+                    HollowBastionProgression.SetResourceReference(ContentProperty, "HBChests");
+                    data.WorldProgress[world.worldName] = 1;
+                }
+                if (world.roomNumber == 8 && world.eventID1 == 52 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 1) // Bailey finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Bailey");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "Bailey");
-                    data.WorldProgress[world.worldName] = 1;
+                    data.WorldProgress[world.worldName] = 2;
                 }
-                else if (world.roomNumber == 5 && world.eventID1 == 15 && world.eventID3 == 20 && data.WorldProgress[world.worldName] <= 1) // Ansem Study post Computer
+                else if (world.roomNumber == 5 && world.eventID1 == 15 && world.eventID3 == 20 && data.WorldProgress[world.worldName] <= 2) // Ansem Study post Computer
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "AnsemStudy");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "AnsemStudy");
-                    data.WorldProgress[world.worldName] = 2;
+                    data.WorldProgress[world.worldName] = 3;
                 }
-                else if (world.roomNumber == 20 && world.eventID1 == 86 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 2) // Corridor finish
+                else if (world.roomNumber == 20 && world.eventID1 == 86 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 3) // Corridor finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Corridor");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "Corridor");
-                    data.WorldProgress[world.worldName] = 3;
+                    data.WorldProgress[world.worldName] = 4;
                 }
-                else if (world.roomNumber == 18 && world.eventID1 == 73 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 3) // Dancers finish
+                else if (world.roomNumber == 18 && world.eventID1 == 73 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 4) // Dancers finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Dancers");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "Dancers");
-                    data.WorldProgress[world.worldName] = 4;
+                    data.WorldProgress[world.worldName] = 5;
                 }
-                else if (world.roomNumber == 4 && world.eventID1 == 55 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 4) // HB Demyx finish
+                else if (world.roomNumber == 4 && world.eventID1 == 55 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 5) // HB Demyx finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "HBDemyx");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "HBDemyx");
-                    data.WorldProgress[world.worldName] = 5;
+                    data.WorldProgress[world.worldName] = 6;
                 }
-                else if (world.roomNumber == 3 && world.eventID1 == 1 && world.eventID3 == 22 && data.WorldProgress[world.worldName] <= 5) // Crystal Fissure (forgot to get the FF fight ids)
+                else if (world.roomNumber == 3 && world.eventID1 == 1 && world.eventID3 == 22 && data.WorldProgress[world.worldName] <= 6) // Crystal Fissure (forgot to get the FF fight ids)
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "FinalFantasy");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "FinalFantasy");
-                    data.WorldProgress[world.worldName] = 6;
+                    data.WorldProgress[world.worldName] = 7;
                 }
-                else if (world.roomNumber == 17 && world.eventID1 == 66 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 6) // 1k Heartless finish
+                else if (world.roomNumber == 17 && world.eventID1 == 66 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 7) // 1k Heartless finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "1000Heartless");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "1000Heartless");
-                    data.WorldProgress[world.worldName] = 7;
+                    data.WorldProgress[world.worldName] = 8;
                 }
-                else if (world.roomNumber == 1 && world.eventID1 == 75 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 7) // Sephiroth finish
+                else if (world.roomNumber == 1 && world.eventID1 == 75 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 8) // Sephiroth finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "Sephiroth");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "Sephiroth");
-                    data.WorldProgress[world.worldName] = 8;
+                    data.WorldProgress[world.worldName] = 9;
                 }
-                else if (world.roomNumber == 4 && world.eventID1 == 114 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 8) // Data Demyx finish
+                else if (world.roomNumber == 4 && world.eventID1 == 114 && world.eventComplete == 1 && data.WorldProgress[world.worldName] <= 9) // Data Demyx finish
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "DataDemyx");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "DataDemyx");
-                    data.WorldProgress[world.worldName] = 9;
+                    data.WorldProgress[world.worldName] = 10;
                 }
             }
             else if (world.worldName == "BeastsCastle")
@@ -638,7 +644,7 @@ namespace KhTracker
             }
             else if (world.worldName == "OlympusColiseum")
             {
-                if (world.roomNumber == 3 && world.eventID1 == 1 && world.eventID2 == 22 && world.eventID3 == 2 && data.WorldProgress[world.worldName] <= 0) // Underworld Entrance
+                if (world.roomNumber == 3 && data.WorldProgress[world.worldName] <= 0) // Underworld Entrance
                 {
                     broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "OCChests");
                     OlympusColiseumProgression.SetResourceReference(ContentProperty, "OCChests");
