@@ -196,8 +196,8 @@ namespace KhTracker
         {
             bool found = false;
             Int32 offset = 0x00000000;
-            Int32 testAddr = 0x0010001C;
-            string good = "280C";
+            Int32 testAddr = 0x0032EE36;
+            string good = "F680";
             while (!found)
             {
                 string tester = BytesToHex(memory.ReadMemory(testAddr + offset, 2));
