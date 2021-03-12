@@ -393,6 +393,59 @@ namespace KhTracker
             data.WorldComplete.Add("TWTNW", false);
             data.WorldComplete.Add("Atlantica", false);
 
+            data.WorldProgress.Add("SorasHeart", 0);
+            data.WorldProgress.Add("DriveForms", 0);
+            data.WorldProgress.Add("SimulatedTwilightTown", 0);
+            data.WorldProgress.Add("TwilightTown", 0);
+            data.WorldProgress.Add("HollowBastion", 0);
+            data.WorldProgress.Add("BeastsCastle", 0);
+            data.WorldProgress.Add("OlympusColiseum", 0);
+            data.WorldProgress.Add("Agrabah", 0);
+            data.WorldProgress.Add("LandofDragons", 0);
+            data.WorldProgress.Add("HundredAcreWood", 0);
+            data.WorldProgress.Add("PrideLands", 0);
+            data.WorldProgress.Add("DisneyCastle", 0);
+            data.WorldProgress.Add("HalloweenTown", 0);
+            data.WorldProgress.Add("PortRoyal", 0);
+            data.WorldProgress.Add("SpaceParanoids", 0);
+            data.WorldProgress.Add("TWTNW", 0);
+            data.WorldProgress.Add("Atlantica", 0);
+
+            data.WorldsTop.Add("SorasHeart", SorasHeartTop);
+            data.WorldsTop.Add("DriveForms", DriveFormsTop);
+            data.WorldsTop.Add("SimulatedTwilightTown", SimulatedTwilightTownTop);
+            data.WorldsTop.Add("TwilightTown", TwilightTownTop);
+            data.WorldsTop.Add("HollowBastion", HollowBastionTop);
+            data.WorldsTop.Add("BeastsCastle", BeastsCastleTop);
+            data.WorldsTop.Add("OlympusColiseum", OlympusColiseumTop);
+            data.WorldsTop.Add("Agrabah", AgrabahTop);
+            data.WorldsTop.Add("LandofDragons", LandofDragonsTop);
+            data.WorldsTop.Add("HundredAcreWood", HundredAcreWoodTop);
+            data.WorldsTop.Add("PrideLands", PrideLandsTop);
+            data.WorldsTop.Add("DisneyCastle", DisneyCastleTop);
+            data.WorldsTop.Add("HalloweenTown", HalloweenTownTop);
+            data.WorldsTop.Add("PortRoyal", PortRoyalTop);
+            data.WorldsTop.Add("SpaceParanoids", SpaceParanoidsTop);
+            data.WorldsTop.Add("TWTNW", TWTNWTop);
+            data.WorldsTop.Add("GoA", GoATop);
+            data.WorldsTop.Add("Atlantica", AtlanticaTop);
+            
+            data.Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
+            data.Progression.Add("TwilightTown", TwilightTownProgression);
+            data.Progression.Add("HollowBastion", HollowBastionProgression);
+            data.Progression.Add("BeastsCastle", BeastsCastleProgression);
+            data.Progression.Add("OlympusColiseum", OlympusColiseumProgression);
+            data.Progression.Add("Agrabah", AgrabahProgression);
+            data.Progression.Add("LandofDragons", LandofDragonsProgression);
+            data.Progression.Add("HundredAcreWood", HundredAcreWoodProgression);
+            data.Progression.Add("PrideLands", PrideLandsProgression);
+            data.Progression.Add("DisneyCastle", DisneyCastleProgression);
+            data.Progression.Add("HalloweenTown", HalloweenTownProgression);
+            data.Progression.Add("PortRoyal", PortRoyalProgression);
+            data.Progression.Add("SpaceParanoids", SpaceParanoidsProgression);
+            data.Progression.Add("TWTNW", TWTNWProgression);
+            data.Progression.Add("Atlantica", AtlanticaProgression);
+
             foreach (ContentControl item in ItemPool.Children)
             {
                 if (item is Item)
@@ -445,8 +498,8 @@ namespace KhTracker
             if (AltOption.IsChecked)
                 AltToggle(null, null);
 
-            WorldIconsOption.IsChecked = Properties.Settings.Default.WorldIcons;
-            WorldIconsToggle(null, null);
+            WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
+            WorldProgressToggle(null, null);
 
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
             SoraHeartToggle(SoraHeartOption.IsChecked);

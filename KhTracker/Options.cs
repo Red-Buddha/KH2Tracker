@@ -545,6 +545,41 @@ namespace KhTracker
                 data.WorldCheckCount[key].Clear();
             }
 
+            foreach (var key in data.WorldProgress.Keys.ToList())
+            {
+                data.WorldProgress[key] = 0;
+            }
+
+            broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "");
+            broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "");
+
+           TwilightTownProgression.SetResourceReference(ContentProperty, "");
+           HollowBastionProgression.SetResourceReference(ContentProperty, "");
+           LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+           BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+           OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+           SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+           HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+           PortRoyalProgression.SetResourceReference(ContentProperty, "");
+           AgrabahProgression.SetResourceReference(ContentProperty, "");
+           PrideLandsProgression.SetResourceReference(ContentProperty, "");
+           DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+           HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+           SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+           TWTNWProgression.SetResourceReference(ContentProperty, "");
+
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
             StrengthIcon.Visibility = Visibility.Hidden;

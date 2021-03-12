@@ -27,8 +27,11 @@ namespace KhTracker
         public Dictionary<string, bool> HintedHintWorlds = new Dictionary<string, bool>();
         public Dictionary<string, List<string>> WorldCheckCount = new Dictionary<string, List<string>>();
         public Dictionary<string, bool> WorldComplete = new Dictionary<string, bool>();
+        public Dictionary<string, int> WorldProgress = new Dictionary<string, int>();
 
+        public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
         public Dictionary<string, Button> Worlds = new Dictionary<string, Button>();
+        public Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
         public Dictionary<string, Image> Hints = new Dictionary<string, Image>();
         public Dictionary<string, WorldGrid> Grids = new Dictionary<string, WorldGrid>();
         public Dictionary<string, Image> SelectedBars = new Dictionary<string, Image>();

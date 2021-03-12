@@ -24,9 +24,9 @@ namespace KhTracker
         Dictionary<string, int> worlds = new Dictionary<string, int>();
         Dictionary<string, int> totals = new Dictionary<string, int>();
         Dictionary<string, int> important = new Dictionary<string, int>();
+        Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
         List<BitmapImage> Numbers = null;
         Data data;
-        public Dictionary<string, bool> toggles = new Dictionary<string, bool>();
 
         public BroadcastWindow(Data dataIn)
         {
@@ -101,6 +101,21 @@ namespace KhTracker
             important.Add("TornPage", 0);
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
+
+            Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
+            Progression.Add("TwilightTown", TwilightTownProgression);
+            Progression.Add("HollowBastion", HollowBastionProgression);
+            Progression.Add("BeastsCastle", BeastsCastleProgression);
+            Progression.Add("OlympusColiseum", OlympusColiseumProgression);
+            Progression.Add("Agrabah", AgrabahProgression);
+            Progression.Add("LandofDragons", LandofDragonsProgression);
+            Progression.Add("HundredAcreWood", HundredAcreWoodProgression);
+            Progression.Add("PrideLands", PrideLandsProgression);
+            Progression.Add("DisneyCastle", DisneyCastleProgression);
+            Progression.Add("HalloweenTown", HalloweenTownProgression);
+            Progression.Add("PortRoyal", PortRoyalProgression);
+            Progression.Add("SpaceParanoids", SpaceParanoidsProgression);
+            Progression.Add("TWTNW", TWTNWProgression);
 
             data = dataIn;
 
@@ -372,6 +387,24 @@ namespace KhTracker
             TWTNWBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
 
             Collected.Source = data.Numbers[1];
+        }
+
+        public void ToggleProgression(bool toggle)
+        {
+            if (toggle == true)
+            {
+                foreach (string key in Progression.Keys.ToList())
+                {
+                    Progression[key].Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                foreach (string key in Progression.Keys.ToList())
+                {
+                    Progression[key].Visibility = Visibility.Hidden;
+                }
+            }
         }
     }
 }

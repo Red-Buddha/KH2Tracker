@@ -25,24 +25,27 @@ namespace KhTracker
         }
         private int worldNum;
         private int worldAddress;
+        private int eventCompleteAddress;
 
         public int roomNumber;
         public int eventID1;
         public int eventID2;
         public int eventID3;
+        public int eventComplete;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public World(MemoryReader mem, int offset, int address)
+        public World(MemoryReader mem, int offset, int address, int completeAddress)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             worldAddress = address;
+            eventCompleteAddress = completeAddress;
 
             worldCodes = new Dictionary<int, string>();
-            worldCodes.Add(01, "EndofSea");
+            worldCodes.Add(01, "WorldofDarkness");
             worldCodes.Add(02, "TwilightTown");
             worldCodes.Add(03, "DestinyIsland");
             worldCodes.Add(04, "HollowBastion");
@@ -70,6 +73,9 @@ namespace KhTracker
             eventID1 = worldData[4];
             eventID2 = worldData[6];
             eventID3 = worldData[8];
+
+            byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
+            eventComplete = eventData[0];
 
             string tempWorld;
             if (worldCodes.ContainsKey(worldNum))

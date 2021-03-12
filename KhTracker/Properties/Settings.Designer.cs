@@ -266,12 +266,12 @@ namespace KhTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool WorldIcons {
+        public bool WorldProgress {
             get {
-                return ((bool)(this["WorldIcons"]));
+                return ((bool)(this["WorldProgress"]));
             }
             set {
-                this["WorldIcons"] = value;
+                this["WorldProgress"] = value;
             }
         }
         
