@@ -17,7 +17,7 @@ namespace KhTracker
 
         App()
         {
-            logger = new Log("log.txt");
+            logger = new Log(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\KhTracker\\log.txt");
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
