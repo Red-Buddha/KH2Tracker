@@ -48,21 +48,21 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Width" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">570</Value>
     </Setting>
     <Setting Name="Height" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">800</Value>
     </Setting>
     <Setting Name="BroadcastWindowWidth" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">500</Value>
     </Setting>
     <Setting Name="BroadcastWindowHeight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">680</Value>
     </Setting>
     <Setting Name="DragDrop" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="WorldIcons" Type="System.Boolean" Scope="User">
+    <Setting Name="WorldProgress" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Orb" Type="System.Boolean" Scope="User">
