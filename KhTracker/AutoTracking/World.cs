@@ -103,9 +103,9 @@ namespace KhTracker
                     worldName = "GoA";
                 else if (roomNumber == 32)
                     worldName = "HalloweenTown"; // Vexen
-                else if (roomNumber == 33 && eventID1 == 123)
+                else if (roomNumber == 33 && (eventID1 == 123 || eventID1 == 142))
                     worldName = "Agrabah"; // Lexaeus
-                else if (roomNumber == 33 && eventID1 == 129)
+                else if (roomNumber == 33 && (eventID1 == 129 || eventID1 == 143))
                     worldName = "SpaceParanoids"; // Larxene
                 else if (roomNumber == 34)
                     worldName = "OlympusColiseum"; // Zexion
