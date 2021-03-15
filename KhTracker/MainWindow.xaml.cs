@@ -533,6 +533,9 @@ namespace KhTracker
         {
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
+
+            broadcast.Width = Properties.Settings.Default.BroadcastWindowWidth;
+            broadcast.Height = Properties.Settings.Default.BroadcastWindowHeight;
         }
 
         /// 
