@@ -137,9 +137,6 @@ namespace KhTracker
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.PreviousSize.Height == 0 && e.PreviousSize.Width == 0)
-                return;
-
             Properties.Settings.Default.BroadcastWindowWidth = Width;
             Properties.Settings.Default.BroadcastWindowHeight = Height;
         }

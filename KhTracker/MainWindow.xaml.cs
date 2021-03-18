@@ -519,23 +519,8 @@ namespace KhTracker
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 
-            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            timer.Tick += (o, e) =>
-            {
-                timer.Stop();
-                SetWindowSize();
-            };
-            timer.Start();
-        }
-
-        private void SetWindowSize()
-        {
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
-
-            broadcast.Width = Properties.Settings.Default.BroadcastWindowWidth;
-            broadcast.Height = Properties.Settings.Default.BroadcastWindowHeight;
         }
 
         /// 
@@ -607,9 +592,6 @@ namespace KhTracker
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.PreviousSize.Height == 0 && e.PreviousSize.Width == 0)
-                return;
-
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
         }

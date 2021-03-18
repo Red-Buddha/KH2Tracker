@@ -51,7 +51,7 @@
       <Value Profile="(Default)">570</Value>
     </Setting>
     <Setting Name="Height" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">800</Value>
+      <Value Profile="(Default)">880</Value>
     </Setting>
     <Setting Name="BroadcastWindowWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">500</Value>
