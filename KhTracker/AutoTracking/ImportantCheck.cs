@@ -22,7 +22,8 @@ namespace KhTracker
             set
             {
                 obtained = value;
-                App.logger.Record(this.Name + " obtained");
+                if (App.logger != null)
+                    App.logger.Record(this.Name + " obtained");
                 OnPropertyChanged("Obtained");
             }
         }

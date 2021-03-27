@@ -295,7 +295,8 @@ namespace KhTracker
                     if (world.Handle_Report(item as Item, this, data))
                     {
                         world.Add_Item(item as Item, this);
-                        App.logger.Record(item.Name + " tracked");
+                        if (App.logger != null)
+                            App.logger.Record(item.Name + " tracked");
                     }
                     break;
                 }
@@ -431,22 +432,28 @@ namespace KhTracker
                 .Where(reward => reward.Item1 > final.previousLevels[0] && reward.Item1 <= final.Level)
                 .Select(reward => reward.Item2));
 
-            if (stats.Level > stats.previousLevels[0])
+            if (stats.Level > stats.previousLevels[0] && App.logger != null)
                 App.logger.Record("Levels " + stats.previousLevels[0].ToString() + " to " + stats.Level.ToString());
-            if (valor.Level > valor.previousLevels[0])
+            if (valor.Level > valor.previousLevels[0] && App.logger != null)
                 App.logger.Record("Valor Levels " + valor.previousLevels[0].ToString() + " to " + valor.Level.ToString());
-            if (wisdom.Level > wisdom.previousLevels[0])
+            if (wisdom.Level > wisdom.previousLevels[0] && App.logger != null)
                 App.logger.Record("Wisdom Levels " + wisdom.previousLevels[0].ToString() + " to " + wisdom.Level.ToString());
-            if (limit.Level > limit.previousLevels[0])
+            if (limit.Level > limit.previousLevels[0] && App.logger != null)
                 App.logger.Record("Limit Levels " + limit.previousLevels[0].ToString() + " to " + limit.Level.ToString());
-            if (master.Level > master.previousLevels[0])
+            if (master.Level > master.previousLevels[0] && App.logger != null)
                 App.logger.Record("Master Levels " + master.previousLevels[0].ToString() + " to " + master.Level.ToString());
-            if (final.Level > final.previousLevels[0])
+            if (final.Level > final.previousLevels[0] && App.logger != null)
                 App.logger.Record("Final Levels " + final.previousLevels[0].ToString() + " to " + final.Level.ToString());
             foreach (string str in levelRewards)
-                App.logger.Record("Level reward " + str);
+            {
+                if (App.logger != null)
+                    App.logger.Record("Level reward " + str);
+            }
             foreach (string str in driveRewards)
-                App.logger.Record("Drive reward " + str);
+            {
+                if (App.logger != null)
+                    App.logger.Record("Drive reward " + str);
+            }
 
             foreach (ImportantCheck check in previousChecks)
             {

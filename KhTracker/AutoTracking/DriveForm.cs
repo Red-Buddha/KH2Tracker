@@ -48,7 +48,8 @@ namespace KhTracker
             if (Level < levelData[0])
             {
                 Level = levelData[0];
-                App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+                if (App.logger != null)
+                    App.logger.Record(Name + " level " + Level.ToString() + " obtained");
             }
             
             return null;

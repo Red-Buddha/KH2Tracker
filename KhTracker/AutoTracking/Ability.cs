@@ -69,7 +69,8 @@ namespace KhTracker
                 if (curLevel > Level)
                 {
                     Level = curLevel;
-                    App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+                    if (App.logger != null)
+                        App.logger.Record(Name + " level " + Level.ToString() + " obtained");
                 }
             }
             else
