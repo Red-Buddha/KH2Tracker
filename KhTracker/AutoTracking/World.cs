@@ -81,8 +81,8 @@ namespace KhTracker
             string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
             {
-                // simplify determining if in stt
-                if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
+                // simplify determining if in stt, fix for TT3 beam putting you in STT
+                if ((worldName == "SimulatedTwilightTown" || worldName == "TwilightTown") && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
                     return;
 
                 tempWorld = worldCodes[worldNum];

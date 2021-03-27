@@ -555,7 +555,7 @@ namespace KhTracker
                     HollowBastionProgression.SetResourceReference(ContentProperty, "Bailey");
                     data.WorldProgress[world.worldName] = 2;
                 }
-                else if (world.roomNumber == 5 && world.eventID1 == 15 && world.eventID3 == 20 && data.WorldProgress[world.worldName] <= 2) // Ansem Study post Computer
+                else if (world.roomNumber == 5 && world.eventID3 == 20 && data.WorldProgress[world.worldName] <= 2) // Ansem Study post Computer
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "AnsemStudy");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "AnsemStudy");
@@ -828,7 +828,7 @@ namespace KhTracker
                     HundredAcreWoodProgression.SetResourceReference(ContentProperty, "SpookyCave");
                     data.WorldProgress[world.worldName] = 5;
                 }
-                else if (world.roomNumber == 1 && data.WorldProgress[world.worldName] <= 5) // Starry Hill
+                else if (world.roomNumber == 1 && world.eventID3 == 2 && data.WorldProgress[world.worldName] <= 5) // Starry Hill
                 {
                     broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "StarryHill");
                     HundredAcreWoodProgression.SetResourceReference(ContentProperty, "StarryHill");

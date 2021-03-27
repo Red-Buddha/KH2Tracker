@@ -81,6 +81,23 @@ namespace KhTracker
                     hintValues += " " + num.ToString();
                 }
 
+                // Save progress of worlds
+                string Progress = "Progress:";
+                Progress += " " + data.WorldProgress["SimulatedTwilightTown"].ToString();
+                Progress += " " + data.WorldProgress["TwilightTown"].ToString();
+                Progress += " " + data.WorldProgress["HollowBastion"].ToString();
+                Progress += " " + data.WorldProgress["BeastsCastle"].ToString();
+                Progress += " " + data.WorldProgress["OlympusColiseum"].ToString();
+                Progress += " " + data.WorldProgress["Agrabah"].ToString();
+                Progress += " " + data.WorldProgress["LandofDragons"].ToString();
+                Progress += " " + data.WorldProgress["HundredAcreWood"].ToString();
+                Progress += " " + data.WorldProgress["PrideLands"].ToString();
+                Progress += " " + data.WorldProgress["DisneyCastle"].ToString();
+                Progress += " " + data.WorldProgress["HalloweenTown"].ToString();
+                Progress += " " + data.WorldProgress["PortRoyal"].ToString();
+                Progress += " " + data.WorldProgress["SpaceParanoids"].ToString();
+                Progress += " " + data.WorldProgress["TWTNW"].ToString();
+
                 // save items in worlds
                 string soraHeart = "SorasHeart:";
                 foreach (Item item in data.Grids["SorasHeart"].Children)
@@ -185,6 +202,7 @@ namespace KhTracker
                     writer.WriteLine(data.hintFileText[1]);
                 }
                 writer.WriteLine(hintValues);
+                writer.WriteLine(Progress);
                 writer.WriteLine(soraHeart);
                 writer.WriteLine(driveForms);
                 writer.WriteLine(simulated);
@@ -275,6 +293,24 @@ namespace KhTracker
                 SetReportValue(data.Hints["TWTNW"], int.Parse(hintValues[15]));
                 SetReportValue(data.Hints["Atlantica"], int.Parse(hintValues[16]));
 
+                string[] progress = reader.ReadLine().Substring(10).Split(' ');
+                data.WorldProgress["SimulatedTwilightTown"] = int.Parse(progress[0]);
+                data.WorldProgress["TwilightTown"] = int.Parse(progress[1]);
+                data.WorldProgress["HollowBastion"] = int.Parse(progress[2]);
+                data.WorldProgress["BeastsCastle"] = int.Parse(progress[3]);
+                data.WorldProgress["OlympusColiseum"] = int.Parse(progress[4]);
+                data.WorldProgress["Agrabah"] = int.Parse(progress[5]);
+                data.WorldProgress["LandofDragons"] = int.Parse(progress[6]);
+                data.WorldProgress["HundredAcreWood"] = int.Parse(progress[7]);
+                data.WorldProgress["PrideLands"] = int.Parse(progress[8]);
+                data.WorldProgress["DisneyCastle"] = int.Parse(progress[9]);
+                data.WorldProgress["HalloweenTown"] = int.Parse(progress[10]);
+                data.WorldProgress["PortRoyal"] = int.Parse(progress[11]);
+                data.WorldProgress["SpaceParanoids"] = int.Parse(progress[12]);
+                data.WorldProgress["TWTNW"] = int.Parse(progress[13]);
+
+                SetProgressIcons();
+
                 // add items to worlds
                 while (reader.EndOfStream == false)
                 {
@@ -294,6 +330,38 @@ namespace KhTracker
                     }
                 }
             }
+        }
+
+        private void SetProgressIcons()
+        {
+            string STTkey = data.ProgressKeys["SimulatedTwilightTown"][data.WorldProgress["SimulatedTwilightTown"]];
+            data.Progression["SimulatedTwilightTown"].SetResourceReference(ContentProperty, STTkey);
+            string TTkey = data.ProgressKeys["TwilightTown"][data.WorldProgress["TwilightTown"]];
+            data.Progression["TwilightTown"].SetResourceReference(ContentProperty, TTkey);
+            string HBkey = data.ProgressKeys["HollowBastion"][data.WorldProgress["HollowBastion"]];
+            data.Progression["HollowBastion"].SetResourceReference(ContentProperty, HBkey);
+            string BCkey = data.ProgressKeys["BeastsCastle"][data.WorldProgress["BeastsCastle"]];
+            data.Progression["BeastsCastle"].SetResourceReference(ContentProperty, BCkey);
+            string OCkey = data.ProgressKeys["OlympusColiseum"][data.WorldProgress["OlympusColiseum"]];
+            data.Progression["OlympusColiseum"].SetResourceReference(ContentProperty, OCkey);
+            string AGkey = data.ProgressKeys["Agrabah"][data.WorldProgress["Agrabah"]];
+            data.Progression["Agrabah"].SetResourceReference(ContentProperty, AGkey);
+            string LoDkey = data.ProgressKeys["LandofDragons"][data.WorldProgress["LandofDragons"]];
+            data.Progression["LandofDragons"].SetResourceReference(ContentProperty, LoDkey);
+            string HAWkey = data.ProgressKeys["HundredAcreWood"][data.WorldProgress["HundredAcreWood"]];
+            data.Progression["HundredAcreWood"].SetResourceReference(ContentProperty, HAWkey);
+            string PLkey = data.ProgressKeys["PrideLands"][data.WorldProgress["PrideLands"]];
+            data.Progression["PrideLands"].SetResourceReference(ContentProperty, PLkey);
+            string DCkey = data.ProgressKeys["DisneyCastle"][data.WorldProgress["DisneyCastle"]];
+            data.Progression["DisneyCastle"].SetResourceReference(ContentProperty, DCkey);
+            string HTkey = data.ProgressKeys["HalloweenTown"][data.WorldProgress["HalloweenTown"]];
+            data.Progression["HalloweenTown"].SetResourceReference(ContentProperty, HTkey);
+            string PRkey = data.ProgressKeys["PortRoyal"][data.WorldProgress["PortRoyal"]];
+            data.Progression["PortRoyal"].SetResourceReference(ContentProperty, PRkey);
+            string SPkey = data.ProgressKeys["SpaceParanoids"][data.WorldProgress["SpaceParanoids"]];
+            data.Progression["SpaceParanoids"].SetResourceReference(ContentProperty, SPkey);
+            string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldProgress["TWTNW"]];
+            data.Progression["TWTNW"].SetResourceReference(ContentProperty, TWTNWkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)

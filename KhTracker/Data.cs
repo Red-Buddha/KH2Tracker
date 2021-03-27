@@ -23,6 +23,8 @@ namespace KhTracker
         public List<string> reportLocations = new List<string>();
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
+        public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
+
         public Dictionary<string, bool> HintedWorlds = new Dictionary<string, bool>();
         public Dictionary<string, bool> HintedHintWorlds = new Dictionary<string, bool>();
         public Dictionary<string, List<string>> WorldCheckCount = new Dictionary<string, List<string>>();
@@ -36,6 +38,8 @@ namespace KhTracker
         public Dictionary<string, WorldGrid> Grids = new Dictionary<string, WorldGrid>();
         public Dictionary<string, Image> SelectedBars = new Dictionary<string, Image>();
 
+        public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
+
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
         public List<Item> TornPages = new List<Item>();
@@ -46,6 +50,37 @@ namespace KhTracker
         public List<BitmapImage> BlueSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
+    }
+
+    public class WorldData
+    {
+        bool hinted;
+        bool hintedHint;
+        bool complete;
+        int progress;
+
+        List<string> checkCount = new List<string>();
+
+        Grid top;
+        Button world;
+        ContentControl progression;
+        Image hint;
+        WorldGrid worldGrid;
+        Image selectedBar;
+
+        public WorldData(Grid Top, Button World, ContentControl Progression, Image Hint, WorldGrid grid, Image SelectedBar, bool Hinted)
+        {
+            top = Top;
+            world = World;
+            progression = Progression;
+            hint = Hint;
+            worldGrid = grid;
+            selectedBar = SelectedBar;
+            hinted = Hinted;
+            hintedHint = false;
+            complete = false;
+            progress = 0;
+        }
     }
 
     public enum Mode
