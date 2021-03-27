@@ -336,32 +336,46 @@ namespace KhTracker
         {
             string STTkey = data.ProgressKeys["SimulatedTwilightTown"][data.WorldProgress["SimulatedTwilightTown"]];
             data.Progression["SimulatedTwilightTown"].SetResourceReference(ContentProperty, STTkey);
+            broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
             string TTkey = data.ProgressKeys["TwilightTown"][data.WorldProgress["TwilightTown"]];
             data.Progression["TwilightTown"].SetResourceReference(ContentProperty, TTkey);
+            broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
             string HBkey = data.ProgressKeys["HollowBastion"][data.WorldProgress["HollowBastion"]];
             data.Progression["HollowBastion"].SetResourceReference(ContentProperty, HBkey);
+            broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, STTkey);
             string BCkey = data.ProgressKeys["BeastsCastle"][data.WorldProgress["BeastsCastle"]];
             data.Progression["BeastsCastle"].SetResourceReference(ContentProperty, BCkey);
+            broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, STTkey);
             string OCkey = data.ProgressKeys["OlympusColiseum"][data.WorldProgress["OlympusColiseum"]];
             data.Progression["OlympusColiseum"].SetResourceReference(ContentProperty, OCkey);
+            broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, STTkey);
             string AGkey = data.ProgressKeys["Agrabah"][data.WorldProgress["Agrabah"]];
             data.Progression["Agrabah"].SetResourceReference(ContentProperty, AGkey);
+            broadcast.AgrabahProgression.SetResourceReference(ContentProperty, STTkey);
             string LoDkey = data.ProgressKeys["LandofDragons"][data.WorldProgress["LandofDragons"]];
             data.Progression["LandofDragons"].SetResourceReference(ContentProperty, LoDkey);
+            broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, STTkey);
             string HAWkey = data.ProgressKeys["HundredAcreWood"][data.WorldProgress["HundredAcreWood"]];
             data.Progression["HundredAcreWood"].SetResourceReference(ContentProperty, HAWkey);
+            broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, STTkey);
             string PLkey = data.ProgressKeys["PrideLands"][data.WorldProgress["PrideLands"]];
             data.Progression["PrideLands"].SetResourceReference(ContentProperty, PLkey);
+            broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, STTkey);
             string DCkey = data.ProgressKeys["DisneyCastle"][data.WorldProgress["DisneyCastle"]];
             data.Progression["DisneyCastle"].SetResourceReference(ContentProperty, DCkey);
+            broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, STTkey);
             string HTkey = data.ProgressKeys["HalloweenTown"][data.WorldProgress["HalloweenTown"]];
             data.Progression["HalloweenTown"].SetResourceReference(ContentProperty, HTkey);
+            broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, STTkey);
             string PRkey = data.ProgressKeys["PortRoyal"][data.WorldProgress["PortRoyal"]];
             data.Progression["PortRoyal"].SetResourceReference(ContentProperty, PRkey);
+            broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, STTkey);
             string SPkey = data.ProgressKeys["SpaceParanoids"][data.WorldProgress["SpaceParanoids"]];
             data.Progression["SpaceParanoids"].SetResourceReference(ContentProperty, SPkey);
+            broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, STTkey);
             string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldProgress["TWTNW"]];
             data.Progression["TWTNW"].SetResourceReference(ContentProperty, TWTNWkey);
+            broadcast.TWTNWProgression.SetResourceReference(ContentProperty, STTkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
