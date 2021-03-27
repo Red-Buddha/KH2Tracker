@@ -78,12 +78,18 @@ namespace KhTracker
             byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
             eventComplete = eventData[0];
 
-            string tempWorld = "";
+            string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
-            {                
-                if (worldName == "GOA")
-                    tempWorld = worldCodes[worldNum];
-            }
+            {
+                // simplify determining if in stt
+                //if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
+                //    return;
+
+                if (worldName != "GoA" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
+                    return;
+
+                tempWorld = worldCodes[worldNum];
+            } 
             else
             {
                 tempWorld = "";
