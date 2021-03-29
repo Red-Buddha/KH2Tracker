@@ -63,7 +63,6 @@ namespace KhTracker
             worldCodes.Add(16, "PortRoyal");
             worldCodes.Add(17, "SpaceParanoids");
             worldCodes.Add(18, "TWTNW");
-
         }
 
         public void UpdateMemory()
@@ -82,14 +81,11 @@ namespace KhTracker
             if (worldCodes.ContainsKey(worldNum))
             {
                 // simplify determining if in stt
-                //if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
-                //    return;
-
-                if (worldName != "GoA" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
+                if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
                     return;
 
                 tempWorld = worldCodes[worldNum];
-            } 
+            }
             else
             {
                 tempWorld = "";
@@ -122,7 +118,7 @@ namespace KhTracker
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
-                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7))
+                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
                     worldName = "SimulatedTwilightTown";
                 else
                     worldName = "TwilightTown";
