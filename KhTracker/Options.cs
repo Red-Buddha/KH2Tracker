@@ -24,206 +24,211 @@ namespace KhTracker
             saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             if (saveFileDialog.ShowDialog() == true)
             {
-                // save settings
-                string settings = "Settings: ";
-                if (PromiseCharmOption.IsChecked)
-                    settings += "Promise Charm - ";
-                if (ReportsOption.IsChecked)
-                    settings += "Secret Ansem Reports - ";
-                if (AbilitiesOption.IsChecked)
-                    settings += "Once More & Second Chance - ";
-                if (TornPagesOption.IsChecked)
-                    settings += "Torn Pages - ";
-                if (CureOption.IsChecked)
-                    settings += "Cure - ";
-                if (FinalFormOption.IsChecked)
-                    settings += "Final Form - ";
-                if (SoraHeartOption.IsChecked)
-                    settings += "Sora's Heart - ";
-                if (SimulatedOption.IsChecked)
-                    settings += "Simulated Twilight Town - ";
-                if (HundredAcreWoodOption.IsChecked)
-                    settings += "100 Acre Wood - ";
-                if (AtlanticaOption.IsChecked)
-                    settings += "Atlantica - ";
-
-                // save hint state (hint info, hints, track attempts)
-                string attempts = "Attempts: ";
-                string reportInfo = "Info: ";
-                string locations = "Locations: ";
-                if (data.hintsLoaded)
-                {
-                    foreach (int num in data.reportAttempts)
-                    {
-                        attempts += " - " + num.ToString();
-                    }
-
-                    foreach (Tuple<string, int> info in data.reportInformation)
-                    {
-                        reportInfo += " - " + info.Item1 + " " + info.Item2.ToString();
-                    }
-
-                    foreach (string location in data.reportLocations)
-                    {
-                        locations += " - " + location;
-                    }
-                }
-                // store hint values
-                string hintValues = "HintValues:";
-                foreach (Image hint in data.Hints.Values.ToList())
-                {
-                    int num = 0;
-                    for (int i = 0; i < data.Numbers.Count; ++i)
-                    {
-                        if (hint.Source == data.Numbers[i])
-                            num = i;
-                    }
-                    hintValues += " " + num.ToString();
-                }
-
-                // Save progress of worlds
-                string Progress = "Progress:";
-                Progress += " " + data.WorldProgress["SimulatedTwilightTown"].ToString();
-                Progress += " " + data.WorldProgress["TwilightTown"].ToString();
-                Progress += " " + data.WorldProgress["HollowBastion"].ToString();
-                Progress += " " + data.WorldProgress["BeastsCastle"].ToString();
-                Progress += " " + data.WorldProgress["OlympusColiseum"].ToString();
-                Progress += " " + data.WorldProgress["Agrabah"].ToString();
-                Progress += " " + data.WorldProgress["LandofDragons"].ToString();
-                Progress += " " + data.WorldProgress["HundredAcreWood"].ToString();
-                Progress += " " + data.WorldProgress["PrideLands"].ToString();
-                Progress += " " + data.WorldProgress["DisneyCastle"].ToString();
-                Progress += " " + data.WorldProgress["HalloweenTown"].ToString();
-                Progress += " " + data.WorldProgress["PortRoyal"].ToString();
-                Progress += " " + data.WorldProgress["SpaceParanoids"].ToString();
-                Progress += " " + data.WorldProgress["TWTNW"].ToString();
-
-                // save items in worlds
-                string soraHeart = "SorasHeart:";
-                foreach (Item item in data.Grids["SorasHeart"].Children)
-                {
-                    soraHeart += " " + item.Name;
-                }
-                string driveForms = "DriveForms:";
-                foreach (Item item in data.Grids["DriveForms"].Children)
-                {
-                    driveForms += " " + item.Name;
-                }
-                string simulated = "SimulatedTwilightTown:";
-                foreach (Item item in data.Grids["SimulatedTwilightTown"].Children)
-                {
-                    simulated += " " + item.Name;
-                }
-                string twilightTown = "TwilightTown:";
-                foreach (Item item in data.Grids["TwilightTown"].Children)
-                {
-                    twilightTown += " " + item.Name;
-                }
-                string hollowBastion = "HollowBastion:";
-                foreach (Item item in data.Grids["HollowBastion"].Children)
-                {
-                    hollowBastion += " " + item.Name;
-                }
-                string beastCastle = "BeastsCastle:";
-                foreach (Item item in data.Grids["BeastsCastle"].Children)
-                {
-                    beastCastle += " " + item.Name;
-                }
-                string olympusColiseum = "OlympusColiseum:";
-                foreach (Item item in data.Grids["OlympusColiseum"].Children)
-                {
-                    olympusColiseum += " " + item.Name;
-                }
-                string agrabah = "Agrabah:";
-                foreach (Item item in data.Grids["Agrabah"].Children)
-                {
-                    agrabah += " " + item.Name;
-                }
-                string landOfDragons = "LandofDragons:";
-                foreach (Item item in data.Grids["LandofDragons"].Children)
-                {
-                    landOfDragons += " " + item.Name;
-                }
-                string hundredAcreWood = "HundredAcreWood:";
-                foreach (Item item in data.Grids["HundredAcreWood"].Children)
-                {
-                    hundredAcreWood += " " + item.Name;
-                }
-                string prideLands = "PrideLands:";
-                foreach (Item item in data.Grids["PrideLands"].Children)
-                {
-                    prideLands += " " + item.Name;
-                }
-                string disneyCastle = "DisneyCastle:";
-                foreach (Item item in data.Grids["DisneyCastle"].Children)
-                {
-                    disneyCastle += " " + item.Name;
-                }
-                string halloweenTown = "HalloweenTown:";
-                foreach (Item item in data.Grids["HalloweenTown"].Children)
-                {
-                    halloweenTown += " " + item.Name;
-                }
-                string portRoyal = "PortRoyal:";
-                foreach (Item item in data.Grids["PortRoyal"].Children)
-                {
-                    portRoyal += " " + item.Name;
-                }
-                string spaceparanoids = "SpaceParanoids:";
-                foreach (Item item in data.Grids["SpaceParanoids"].Children)
-                {
-                    spaceparanoids += " " + item.Name;
-                }
-                string TWTNW = "TWTNW:";
-                foreach (Item item in data.Grids["TWTNW"].Children)
-                {
-                    TWTNW += " " + item.Name;
-                }
-                string atlantica = "Atlantica:";
-                foreach (Item item in data.Grids["Atlantica"].Children)
-                {
-                    atlantica += " " + item.Name;
-                }
-                string GoA = "GoA:";
-                foreach (Item item in data.Grids["GoA"].Children)
-                {
-                    GoA += " " + item.Name;
-                }
-
-                FileStream file = File.Create(saveFileDialog.FileName);
-                StreamWriter writer = new StreamWriter(file);
-
-                writer.WriteLine(settings);
-                writer.WriteLine(data.hintsLoaded.ToString());
-                if (data.hintsLoaded)
-                {
-                    writer.WriteLine(attempts);
-                    writer.WriteLine(data.hintFileText[0]);
-                    writer.WriteLine(data.hintFileText[1]);
-                }
-                writer.WriteLine(hintValues);
-                writer.WriteLine(Progress);
-                writer.WriteLine(soraHeart);
-                writer.WriteLine(driveForms);
-                writer.WriteLine(simulated);
-                writer.WriteLine(twilightTown);
-                writer.WriteLine(hollowBastion);
-                writer.WriteLine(beastCastle);
-                writer.WriteLine(olympusColiseum);
-                writer.WriteLine(agrabah);
-                writer.WriteLine(landOfDragons);
-                writer.WriteLine(hundredAcreWood);
-                writer.WriteLine(prideLands);
-                writer.WriteLine(disneyCastle);
-                writer.WriteLine(halloweenTown);
-                writer.WriteLine(portRoyal);
-                writer.WriteLine(spaceparanoids);
-                writer.WriteLine(TWTNW);
-                writer.WriteLine(atlantica);
-                writer.WriteLine(GoA);
-
-                writer.Close();
+                Save(saveFileDialog.FileName);
             }
+        }
+
+        private void Save(string filename)
+        {
+            // save settings
+            string settings = "Settings: ";
+            if (PromiseCharmOption.IsChecked)
+                settings += "Promise Charm - ";
+            if (ReportsOption.IsChecked)
+                settings += "Secret Ansem Reports - ";
+            if (AbilitiesOption.IsChecked)
+                settings += "Once More & Second Chance - ";
+            if (TornPagesOption.IsChecked)
+                settings += "Torn Pages - ";
+            if (CureOption.IsChecked)
+                settings += "Cure - ";
+            if (FinalFormOption.IsChecked)
+                settings += "Final Form - ";
+            if (SoraHeartOption.IsChecked)
+                settings += "Sora's Heart - ";
+            if (SimulatedOption.IsChecked)
+                settings += "Simulated Twilight Town - ";
+            if (HundredAcreWoodOption.IsChecked)
+                settings += "100 Acre Wood - ";
+            if (AtlanticaOption.IsChecked)
+                settings += "Atlantica - ";
+
+            // save hint state (hint info, hints, track attempts)
+            string attempts = "Attempts: ";
+            string reportInfo = "Info: ";
+            string locations = "Locations: ";
+            if (data.hintsLoaded)
+            {
+                foreach (int num in data.reportAttempts)
+                {
+                    attempts += " - " + num.ToString();
+                }
+
+                foreach (Tuple<string, int> info in data.reportInformation)
+                {
+                    reportInfo += " - " + info.Item1 + " " + info.Item2.ToString();
+                }
+
+                foreach (string location in data.reportLocations)
+                {
+                    locations += " - " + location;
+                }
+            }
+            // store hint values
+            string hintValues = "HintValues:";
+            foreach (Image hint in data.Hints.Values.ToList())
+            {
+                int num = 0;
+                for (int i = 0; i < data.Numbers.Count; ++i)
+                {
+                    if (hint.Source == data.Numbers[i])
+                        num = i;
+                }
+                hintValues += " " + num.ToString();
+            }
+
+            // Save progress of worlds
+            string Progress = "Progress:";
+            Progress += " " + data.WorldProgress["SimulatedTwilightTown"].ToString();
+            Progress += " " + data.WorldProgress["TwilightTown"].ToString();
+            Progress += " " + data.WorldProgress["HollowBastion"].ToString();
+            Progress += " " + data.WorldProgress["BeastsCastle"].ToString();
+            Progress += " " + data.WorldProgress["OlympusColiseum"].ToString();
+            Progress += " " + data.WorldProgress["Agrabah"].ToString();
+            Progress += " " + data.WorldProgress["LandofDragons"].ToString();
+            Progress += " " + data.WorldProgress["HundredAcreWood"].ToString();
+            Progress += " " + data.WorldProgress["PrideLands"].ToString();
+            Progress += " " + data.WorldProgress["DisneyCastle"].ToString();
+            Progress += " " + data.WorldProgress["HalloweenTown"].ToString();
+            Progress += " " + data.WorldProgress["PortRoyal"].ToString();
+            Progress += " " + data.WorldProgress["SpaceParanoids"].ToString();
+            Progress += " " + data.WorldProgress["TWTNW"].ToString();
+
+            // save items in worlds
+            string soraHeart = "SorasHeart:";
+            foreach (Item item in data.Grids["SorasHeart"].Children)
+            {
+                soraHeart += " " + item.Name;
+            }
+            string driveForms = "DriveForms:";
+            foreach (Item item in data.Grids["DriveForms"].Children)
+            {
+                driveForms += " " + item.Name;
+            }
+            string simulated = "SimulatedTwilightTown:";
+            foreach (Item item in data.Grids["SimulatedTwilightTown"].Children)
+            {
+                simulated += " " + item.Name;
+            }
+            string twilightTown = "TwilightTown:";
+            foreach (Item item in data.Grids["TwilightTown"].Children)
+            {
+                twilightTown += " " + item.Name;
+            }
+            string hollowBastion = "HollowBastion:";
+            foreach (Item item in data.Grids["HollowBastion"].Children)
+            {
+                hollowBastion += " " + item.Name;
+            }
+            string beastCastle = "BeastsCastle:";
+            foreach (Item item in data.Grids["BeastsCastle"].Children)
+            {
+                beastCastle += " " + item.Name;
+            }
+            string olympusColiseum = "OlympusColiseum:";
+            foreach (Item item in data.Grids["OlympusColiseum"].Children)
+            {
+                olympusColiseum += " " + item.Name;
+            }
+            string agrabah = "Agrabah:";
+            foreach (Item item in data.Grids["Agrabah"].Children)
+            {
+                agrabah += " " + item.Name;
+            }
+            string landOfDragons = "LandofDragons:";
+            foreach (Item item in data.Grids["LandofDragons"].Children)
+            {
+                landOfDragons += " " + item.Name;
+            }
+            string hundredAcreWood = "HundredAcreWood:";
+            foreach (Item item in data.Grids["HundredAcreWood"].Children)
+            {
+                hundredAcreWood += " " + item.Name;
+            }
+            string prideLands = "PrideLands:";
+            foreach (Item item in data.Grids["PrideLands"].Children)
+            {
+                prideLands += " " + item.Name;
+            }
+            string disneyCastle = "DisneyCastle:";
+            foreach (Item item in data.Grids["DisneyCastle"].Children)
+            {
+                disneyCastle += " " + item.Name;
+            }
+            string halloweenTown = "HalloweenTown:";
+            foreach (Item item in data.Grids["HalloweenTown"].Children)
+            {
+                halloweenTown += " " + item.Name;
+            }
+            string portRoyal = "PortRoyal:";
+            foreach (Item item in data.Grids["PortRoyal"].Children)
+            {
+                portRoyal += " " + item.Name;
+            }
+            string spaceparanoids = "SpaceParanoids:";
+            foreach (Item item in data.Grids["SpaceParanoids"].Children)
+            {
+                spaceparanoids += " " + item.Name;
+            }
+            string TWTNW = "TWTNW:";
+            foreach (Item item in data.Grids["TWTNW"].Children)
+            {
+                TWTNW += " " + item.Name;
+            }
+            string atlantica = "Atlantica:";
+            foreach (Item item in data.Grids["Atlantica"].Children)
+            {
+                atlantica += " " + item.Name;
+            }
+            string GoA = "GoA:";
+            foreach (Item item in data.Grids["GoA"].Children)
+            {
+                GoA += " " + item.Name;
+            }
+
+            FileStream file = File.Create(filename);
+            StreamWriter writer = new StreamWriter(file);
+
+            writer.WriteLine(settings);
+            writer.WriteLine(data.hintsLoaded.ToString());
+            if (data.hintsLoaded)
+            {
+                writer.WriteLine(attempts);
+                writer.WriteLine(data.hintFileText[0]);
+                writer.WriteLine(data.hintFileText[1]);
+            }
+            writer.WriteLine(hintValues);
+            writer.WriteLine(Progress);
+            writer.WriteLine(soraHeart);
+            writer.WriteLine(driveForms);
+            writer.WriteLine(simulated);
+            writer.WriteLine(twilightTown);
+            writer.WriteLine(hollowBastion);
+            writer.WriteLine(beastCastle);
+            writer.WriteLine(olympusColiseum);
+            writer.WriteLine(agrabah);
+            writer.WriteLine(landOfDragons);
+            writer.WriteLine(hundredAcreWood);
+            writer.WriteLine(prideLands);
+            writer.WriteLine(disneyCastle);
+            writer.WriteLine(halloweenTown);
+            writer.WriteLine(portRoyal);
+            writer.WriteLine(spaceparanoids);
+            writer.WriteLine(TWTNW);
+            writer.WriteLine(atlantica);
+            writer.WriteLine(GoA);
+
+            writer.Close();
         }
 
         private void LoadProgress(object sender, RoutedEventArgs e)
@@ -235,101 +240,108 @@ namespace KhTracker
             openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
-                Stream file = openFileDialog.OpenFile();
-                StreamReader reader = new StreamReader(file);
-                // reset tracker
-                OnReset(null, null);
+                Load(openFileDialog.FileName);
+            }
+        }
 
-                // set settings
-                string settings = reader.ReadLine();
-                LoadSettings(settings.Substring(10));
+        private void Load(string filename)
+        {
+            Stream file = File.Open(filename, FileMode.Open);
+            StreamReader reader = new StreamReader(file);
+            // reset tracker
+            OnReset(null, null);
 
-                // set hint state
-                data.hintsLoaded = bool.Parse(reader.ReadLine());
-                if (data.hintsLoaded)
+            // set settings
+            string settings = reader.ReadLine();
+            LoadSettings(settings.Substring(10));
+
+            // set hint state
+            data.hintsLoaded = bool.Parse(reader.ReadLine());
+            if (data.hintsLoaded)
+            {
+                string attempts = reader.ReadLine();
+                attempts = attempts.Substring(13);
+                string[] attemptsArray = attempts.Split('-');
+                for (int i = 0; i < attemptsArray.Length; ++i)
                 {
-                    string attempts = reader.ReadLine();
-                    attempts = attempts.Substring(13);
-                    string[] attemptsArray = attempts.Split('-');
-                    for (int i = 0; i < attemptsArray.Length; ++i)
-                    {
-                        data.reportAttempts[i] = int.Parse(attemptsArray[i]);
-                    }
-
-                    string line1 = reader.ReadLine();
-                    data.hintFileText[0] = line1;
-                    string[] reportvalues = line1.Split('.');
-
-                    string line2 = reader.ReadLine();
-                    data.hintFileText[1] = line2;
-                    line2 = line2.TrimEnd('.');
-                    string[] reportorder = line2.Split('.');
-
-                    for (int i = 0; i < reportorder.Length; ++i)
-                    {
-                        data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
-                        string[] temp = reportvalues[i].Split(',');
-                        data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
-                    }
+                    data.reportAttempts[i] = int.Parse(attemptsArray[i]);
                 }
 
-                // set hint values (DUMB)
-                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-                SetReportValue(data.Hints["SorasHeart"], int.Parse(hintValues[0]));
-                SetReportValue(data.Hints["DriveForms"], int.Parse(hintValues[1]));
-                SetReportValue(data.Hints["SimulatedTwilightTown"], int.Parse(hintValues[2]));
-                SetReportValue(data.Hints["TwilightTown"], int.Parse(hintValues[3]));
-                SetReportValue(data.Hints["HollowBastion"], int.Parse(hintValues[4]));
-                SetReportValue(data.Hints["BeastsCastle"], int.Parse(hintValues[5]));
-                SetReportValue(data.Hints["OlympusColiseum"], int.Parse(hintValues[6]));
-                SetReportValue(data.Hints["Agrabah"], int.Parse(hintValues[7]));
-                SetReportValue(data.Hints["LandofDragons"], int.Parse(hintValues[8]));
-                SetReportValue(data.Hints["HundredAcreWood"], int.Parse(hintValues[9]));
-                SetReportValue(data.Hints["PrideLands"], int.Parse(hintValues[10]));
-                SetReportValue(data.Hints["DisneyCastle"], int.Parse(hintValues[11]));
-                SetReportValue(data.Hints["HalloweenTown"], int.Parse(hintValues[12]));
-                SetReportValue(data.Hints["PortRoyal"], int.Parse(hintValues[13]));
-                SetReportValue(data.Hints["SpaceParanoids"], int.Parse(hintValues[14]));
-                SetReportValue(data.Hints["TWTNW"], int.Parse(hintValues[15]));
-                SetReportValue(data.Hints["Atlantica"], int.Parse(hintValues[16]));
+                string line1 = reader.ReadLine();
+                data.hintFileText[0] = line1;
+                string[] reportvalues = line1.Split('.');
 
-                string[] progress = reader.ReadLine().Substring(10).Split(' ');
-                data.WorldProgress["SimulatedTwilightTown"] = int.Parse(progress[0]);
-                data.WorldProgress["TwilightTown"] = int.Parse(progress[1]);
-                data.WorldProgress["HollowBastion"] = int.Parse(progress[2]);
-                data.WorldProgress["BeastsCastle"] = int.Parse(progress[3]);
-                data.WorldProgress["OlympusColiseum"] = int.Parse(progress[4]);
-                data.WorldProgress["Agrabah"] = int.Parse(progress[5]);
-                data.WorldProgress["LandofDragons"] = int.Parse(progress[6]);
-                data.WorldProgress["HundredAcreWood"] = int.Parse(progress[7]);
-                data.WorldProgress["PrideLands"] = int.Parse(progress[8]);
-                data.WorldProgress["DisneyCastle"] = int.Parse(progress[9]);
-                data.WorldProgress["HalloweenTown"] = int.Parse(progress[10]);
-                data.WorldProgress["PortRoyal"] = int.Parse(progress[11]);
-                data.WorldProgress["SpaceParanoids"] = int.Parse(progress[12]);
-                data.WorldProgress["TWTNW"] = int.Parse(progress[13]);
+                string line2 = reader.ReadLine();
+                data.hintFileText[1] = line2;
+                line2 = line2.TrimEnd('.');
+                string[] reportorder = line2.Split('.');
 
-                SetProgressIcons();
-
-                // add items to worlds
-                while (reader.EndOfStream == false)
+                for (int i = 0; i < reportorder.Length; ++i)
                 {
-                    string world = reader.ReadLine();
-                    string worldName = world.Substring(0, world.IndexOf(':'));
-                    string items = world.Substring(world.IndexOf(':') + 1).Trim();
-                    if (items != string.Empty)
-                    {
-                        foreach (string item in items.Split(' '))
-                        {
-                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                            Item importantCheck = FindName(item) as Item;
+                    data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
+                    string[] temp = reportvalues[i].Split(',');
+                    data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                }
+            }
 
-                            if (grid.Handle_Report(importantCheck, this, data))
-                                grid.Add_Item(importantCheck, this);
-                        }
+            // set hint values (DUMB)
+            string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
+            SetReportValue(data.Hints["SorasHeart"], int.Parse(hintValues[0]));
+            SetReportValue(data.Hints["DriveForms"], int.Parse(hintValues[1]));
+            SetReportValue(data.Hints["SimulatedTwilightTown"], int.Parse(hintValues[2]));
+            SetReportValue(data.Hints["TwilightTown"], int.Parse(hintValues[3]));
+            SetReportValue(data.Hints["HollowBastion"], int.Parse(hintValues[4]));
+            SetReportValue(data.Hints["BeastsCastle"], int.Parse(hintValues[5]));
+            SetReportValue(data.Hints["OlympusColiseum"], int.Parse(hintValues[6]));
+            SetReportValue(data.Hints["Agrabah"], int.Parse(hintValues[7]));
+            SetReportValue(data.Hints["LandofDragons"], int.Parse(hintValues[8]));
+            SetReportValue(data.Hints["HundredAcreWood"], int.Parse(hintValues[9]));
+            SetReportValue(data.Hints["PrideLands"], int.Parse(hintValues[10]));
+            SetReportValue(data.Hints["DisneyCastle"], int.Parse(hintValues[11]));
+            SetReportValue(data.Hints["HalloweenTown"], int.Parse(hintValues[12]));
+            SetReportValue(data.Hints["PortRoyal"], int.Parse(hintValues[13]));
+            SetReportValue(data.Hints["SpaceParanoids"], int.Parse(hintValues[14]));
+            SetReportValue(data.Hints["TWTNW"], int.Parse(hintValues[15]));
+            SetReportValue(data.Hints["Atlantica"], int.Parse(hintValues[16]));
+
+            string[] progress = reader.ReadLine().Substring(10).Split(' ');
+            data.WorldProgress["SimulatedTwilightTown"] = int.Parse(progress[0]);
+            data.WorldProgress["TwilightTown"] = int.Parse(progress[1]);
+            data.WorldProgress["HollowBastion"] = int.Parse(progress[2]);
+            data.WorldProgress["BeastsCastle"] = int.Parse(progress[3]);
+            data.WorldProgress["OlympusColiseum"] = int.Parse(progress[4]);
+            data.WorldProgress["Agrabah"] = int.Parse(progress[5]);
+            data.WorldProgress["LandofDragons"] = int.Parse(progress[6]);
+            data.WorldProgress["HundredAcreWood"] = int.Parse(progress[7]);
+            data.WorldProgress["PrideLands"] = int.Parse(progress[8]);
+            data.WorldProgress["DisneyCastle"] = int.Parse(progress[9]);
+            data.WorldProgress["HalloweenTown"] = int.Parse(progress[10]);
+            data.WorldProgress["PortRoyal"] = int.Parse(progress[11]);
+            data.WorldProgress["SpaceParanoids"] = int.Parse(progress[12]);
+            data.WorldProgress["TWTNW"] = int.Parse(progress[13]);
+
+            SetProgressIcons();
+
+            // add items to worlds
+            while (reader.EndOfStream == false)
+            {
+                string world = reader.ReadLine();
+                string worldName = world.Substring(0, world.IndexOf(':'));
+                string items = world.Substring(world.IndexOf(':') + 1).Trim();
+                if (items != string.Empty)
+                {
+                    foreach (string item in items.Split(' '))
+                    {
+                        WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                        Item importantCheck = FindName(item) as Item;
+
+                        if (grid.Handle_Report(importantCheck, this, data))
+                            grid.Add_Item(importantCheck, this);
                     }
                 }
             }
+
+            reader.Close();
         }
 
         private void SetProgressIcons()

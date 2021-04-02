@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using System.Drawing;
 using System.Windows.Documents;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace KhTracker
 {
@@ -612,8 +613,9 @@ namespace KhTracker
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
+            Save("kh2fm-tracker-autosave.txt");
             Properties.Settings.Default.Save();
             broadcast.canClose = true;
             broadcast.Close();
