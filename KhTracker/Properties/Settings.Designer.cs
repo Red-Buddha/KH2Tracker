@@ -205,7 +205,7 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("570")]
         public double Width {
             get {
                 return ((double)(this["Width"]));
@@ -217,7 +217,7 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("880")]
         public double Height {
             get {
                 return ((double)(this["Height"]));
@@ -229,7 +229,7 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
         public double BroadcastWindowWidth {
             get {
                 return ((double)(this["BroadcastWindowWidth"]));
@@ -241,7 +241,7 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("680")]
         public double BroadcastWindowHeight {
             get {
                 return ((double)(this["BroadcastWindowHeight"]));
@@ -266,12 +266,12 @@ namespace KhTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool WorldIcons {
+        public bool WorldProgress {
             get {
-                return ((bool)(this["WorldIcons"]));
+                return ((bool)(this["WorldProgress"]));
             }
             set {
-                this["WorldIcons"] = value;
+                this["WorldProgress"] = value;
             }
         }
         

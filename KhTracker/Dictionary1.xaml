@@ -157,109 +157,110 @@
 
     <!--World Progression-->
     <!--Hollow Bastion-->
+    <Image x:Key="HBChests" Source="Images\Progression\chest.png" x:Shared="False"/>
     <Image x:Key="Bailey" Source="Images\Progression\merlin.png" x:Shared="False"/>
-    <Image x:Key="AnsemStudy" Source="Images\Progression\ansem_the_wise.png"/>
-    <Image x:Key="Corridor" Source="Images\Progression\crimson_jazz.png"/>
-    <Image x:Key="Dancers" Source="Images\Progression\dancer.png"/>
-    <Image x:Key="HBDemyx" Source="Images\Progression\demyx.png"/>
-    <Image x:Key="FinalFantasy" Source="Images\Progression\cloud.png"/>
-    <Image x:Key="1000Heartless" Source="Images\Progression\1k.png"/>
-    <Image x:Key="Sephiroth" Source="Images\Progression\sephiroth.png"/>
-    <Image x:Key="DataDemyx" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="AnsemStudy" Source="Images\Progression\ansem_the_wise.png" x:Shared="False"/>
+    <Image x:Key="Corridor" Source="Images\Progression\crimson_jazz.png" x:Shared="False"/>
+    <Image x:Key="Dancers" Source="Images\Progression\dancer.png" x:Shared="False"/>
+    <Image x:Key="HBDemyx" Source="Images\Progression\demyx.png" x:Shared="False"/>
+    <Image x:Key="FinalFantasy" Source="Images\Progression\cloud.png" x:Shared="False"/>
+    <Image x:Key="1000Heartless" Source="Images\Progression\1k.png" x:Shared="False"/>
+    <Image x:Key="Sephiroth" Source="Images\Progression\sephiroth.png" x:Shared="False"/>
+    <Image x:Key="DataDemyx" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Twilight Town-->
-    <Image x:Key="MysteriousTower" Source="Images\Progression\yen_sid.png"/>
-    <Image x:Key="Sandlot" Source="Images\Progression\berserker.png"/>
-    <Image x:Key="Mansion" Source="Images\Progression\mickey.png"/>
-    <Image x:Key="BetwixtandBetween" Source="Images\Progression\axel.png"/>
-    <Image x:Key="DataAxel" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="MysteriousTower" Source="Images\Progression\yen_sid.png" x:Shared="False"/>
+    <Image x:Key="Sandlot" Source="Images\Progression\berserker.png" x:Shared="False"/>
+    <Image x:Key="Mansion" Source="Images\Progression\mickey.png" x:Shared="False"/>
+    <Image x:Key="BetwixtandBetween" Source="Images\Progression\axel.png" x:Shared="False"/>
+    <Image x:Key="DataAxel" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Land of Dragons-->
     <Image x:Key="LoDChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Cave" Source="Images\Progression\assault_rider.png"/>
-    <Image x:Key="Summit" Source="Images\Progression\rapid_thruster.png"/>
-    <Image x:Key="ShanYu" Source="Images\Progression\shan_yu.png"/>
-    <Image x:Key="ThroneRoom" Source="Images\Progression\emperor.png"/>
-    <Image x:Key="StormRider" Source="Images\Progression\storm_rider.png"/>
-    <Image x:Key="DataXigbar" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Cave" Source="Images\Progression\assault_rider.png" x:Shared="False"/>
+    <Image x:Key="Summit" Source="Images\Progression\rapid_thruster.png" x:Shared="False"/>
+    <Image x:Key="ShanYu" Source="Images\Progression\shan_yu.png" x:Shared="False"/>
+    <Image x:Key="ThroneRoom" Source="Images\Progression\emperor.png" x:Shared="False"/>
+    <Image x:Key="StormRider" Source="Images\Progression\storm_rider.png" x:Shared="False"/>
+    <Image x:Key="DataXigbar" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Beasts Castle-->
-    <Image x:Key="Wardrobe" Source="Images\Progression\wardrobe.png"/>
-    <Image x:Key="Thresholder" Source="Images\Progression\thresholder.png"/>
-    <Image x:Key="Beast" Source="Images\Progression\beast.png"/>
-    <Image x:Key="DarkThorn" Source="Images\Progression\dark_thorn.png"/>
-    <Image x:Key="Dragoons" Source="Images\Progression\dragoon.png"/>
-    <Image x:Key="Xaldin" Source="Images\Progression\xaldin.png"/>
-    <Image x:Key="DataXaldin" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="BCChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+    <Image x:Key="Thresholder" Source="Images\Progression\thresholder.png" x:Shared="False"/>
+    <Image x:Key="Beast" Source="Images\Progression\beast.png" x:Shared="False"/>
+    <Image x:Key="DarkThorn" Source="Images\Progression\dark_thorn.png" x:Shared="False"/>
+    <Image x:Key="Dragoons" Source="Images\Progression\dragoon.png" x:Shared="False"/>
+    <Image x:Key="Xaldin" Source="Images\Progression\xaldin.png" x:Shared="False"/>
+    <Image x:Key="DataXaldin" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Olympus Coliseum-->
     <Image x:Key="OCChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Cerberus" Source="Images\Progression\cerberus.png"/>
-    <Image x:Key="OCDemyx" Source="Images\Progression\demyx.png"/>
-    <Image x:Key="OCPete" Source="Images\Progression\pete.png"/>
-    <Image x:Key="Hydra" Source="Images\Progression\hydra.png"/>
-    <Image x:Key="AuronStatue" Source="Images\Progression\dusk.png"/>
-    <Image x:Key="Hades" Source="Images\Progression\hades.png"/>
-    <Image x:Key="Zexion" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Cerberus" Source="Images\Progression\cerberus.png" x:Shared="False"/>
+    <Image x:Key="OCDemyx" Source="Images\Progression\demyx.png" x:Shared="False"/>
+    <Image x:Key="OCPete" Source="Images\Progression\pete.png" x:Shared="False"/>
+    <Image x:Key="Hydra" Source="Images\Progression\hydra.png" x:Shared="False"/>
+    <Image x:Key="AuronStatue" Source="Images\Progression\dusk.png" x:Shared="False"/>
+    <Image x:Key="Hades" Source="Images\Progression\hades.png" x:Shared="False"/>
+    <Image x:Key="Zexion" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Space Paranoids-->
     <Image x:Key="SPChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Screens" Source="Images\Progression\screens.png"/>
-    <Image x:Key="HostileProgram" Source="Images\Progression\hostile_program.png"/>
-    <Image x:Key="SolarSailer" Source="Images\Progression\devastator.png"/>
-    <Image x:Key="MCP" Source="Images\Progression\master_control_program.png"/>
-    <Image x:Key="Larxene" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Screens" Source="Images\Progression\screens.png" x:Shared="False"/>
+    <Image x:Key="HostileProgram" Source="Images\Progression\hostile_program.png" x:Shared="False"/>
+    <Image x:Key="SolarSailer" Source="Images\Progression\devastator.png" x:Shared="False"/>
+    <Image x:Key="MCP" Source="Images\Progression\master_control_program.png" x:Shared="False"/>
+    <Image x:Key="Larxene" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Halloween Town-->
     <Image x:Key="HTChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="CandyCaneLane" Source="Images\Progression\toy_soldier.png"/>
-    <Image x:Key="PrisonKeeper" Source="Images\Progression\prison_keeper.png"/>
-    <Image x:Key="OogieBoogie" Source="Images\Progression\oogie_boogie.png"/>
-    <Image x:Key="Presents" Source="Images\Progression\presents.png"/>
-    <Image x:Key="Experiment" Source="Images\Progression\experiment.png"/>
-    <Image x:Key="Vexen" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="CandyCaneLane" Source="Images\Progression\toy_soldier.png" x:Shared="False"/>
+    <Image x:Key="PrisonKeeper" Source="Images\Progression\prison_keeper.png" x:Shared="False"/>
+    <Image x:Key="OogieBoogie" Source="Images\Progression\oogie_boogie.png" x:Shared="False"/>
+    <Image x:Key="Presents" Source="Images\Progression\presents.png" x:Shared="False"/>
+    <Image x:Key="Experiment" Source="Images\Progression\experiment.png" x:Shared="False"/>
+    <Image x:Key="Vexen" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Port Royal-->
     <Image x:Key="PRChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Town" Source="Images\Progression\cannon_gun.png"/>
-    <Image x:Key="Barbossa" Source="Images\Progression\barbossa.png"/>
-    <Image x:Key="Gambler" Source="Images\Progression\gambler.png"/>
-    <Image x:Key="GrimReaper" Source="Images\Progression\grim_reaper.png"/>
-    <Image x:Key="DataLuxord" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Town" Source="Images\Progression\cannon_gun.png" x:Shared="False"/>
+    <Image x:Key="Barbossa" Source="Images\Progression\barbossa.png" x:Shared="False"/>
+    <Image x:Key="Gambler" Source="Images\Progression\gambler.png" x:Shared="False"/>
+    <Image x:Key="GrimReaper" Source="Images\Progression\grim_reaper.png" x:Shared="False"/>
+    <Image x:Key="DataLuxord" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Agrabah-->
     <Image x:Key="AGChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Abu" Source="Images\Progression\abu.png"/>
-    <Image x:Key="Chasm" Source="Images\Progression\chasm_of_challenges.png"/>
-    <Image x:Key="TreasureRoom" Source="Images\Progression\treasure_room.png"/>
-    <Image x:Key="Lords" Source="Images\Progression\blizzard_lord.png"/>
-    <Image x:Key="Carpet" Source="Images\Progression\carpet.png"/>
-    <Image x:Key="GenieJafar" Source="Images\Progression\genie_jafar.png"/>
-    <Image x:Key="Lexaeus" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Abu" Source="Images\Progression\abu.png" x:Shared="False"/>
+    <Image x:Key="Chasm" Source="Images\Progression\chasm_of_challenges.png" x:Shared="False"/>
+    <Image x:Key="TreasureRoom" Source="Images\Progression\treasure_room.png" x:Shared="False"/>
+    <Image x:Key="Lords" Source="Images\Progression\blizzard_lord.png" x:Shared="False"/>
+    <Image x:Key="Carpet" Source="Images\Progression\carpet.png" x:Shared="False"/>
+    <Image x:Key="GenieJafar" Source="Images\Progression\genie_jafar.png" x:Shared="False"/>
+    <Image x:Key="Lexaeus" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Pride Lands-->
     <Image x:Key="PLChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Simba" Source="Images\Progression\simba.png"/>
-    <Image x:Key="Hyenas" Source="Images\Progression\hyenas.png"/>
-    <Image x:Key="Scar" Source="Images\Progression\scar.png"/>
-    <Image x:Key="Groundshaker" Source="Images\Progression\groundshaker.png"/>
+    <Image x:Key="Simba" Source="Images\Progression\simba.png" x:Shared="False"/>
+    <Image x:Key="Scar" Source="Images\Progression\scar.png" x:Shared="False"/>
+    <Image x:Key="Groundshaker" Source="Images\Progression\groundshaker.png" x:Shared="False"/>
+    <Image x:Key="DataSaix" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Disney Castle-->
     <Image x:Key="DCChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Minnie" Source="Images\Progression\minnie.png"/>
-    <Image x:Key="OldPete" Source="Images\Progression\old_pete.png"/>
-    <Image x:Key="Windows" Source="Images\Progression\hot_rod.png"/>
-    <Image x:Key="BoatPete" Source="Images\Progression\boat_pete.png"/>
-    <Image x:Key="DCPete" Source="Images\Progression\pete_pete.png"/>
-    <Image x:Key="Marluxia" Source="Images\Progression\marluxia.png"/>
-    <Image x:Key="LingeringWill" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Minnie" Source="Images\Progression\minnie.png" x:Shared="False"/>
+    <Image x:Key="OldPete" Source="Images\Progression\old_pete.png" x:Shared="False"/>
+    <Image x:Key="Windows" Source="Images\Progression\hot_rod.png" x:Shared="False"/>
+    <Image x:Key="BoatPete" Source="Images\Progression\boat_pete.png" x:Shared="False"/>
+    <Image x:Key="DCPete" Source="Images\Progression\pete_pete.png" x:Shared="False"/>
+    <Image x:Key="Marluxia" Source="Images\Progression\marluxia.png" x:Shared="False"/>
+    <Image x:Key="LingeringWill" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--100 Acre Wood-->
-    <Image x:Key="Pooh" Source="Images\Progression\pooh.png"/>
-    <Image x:Key="Piglet" Source="Images\Progression\piglet.png"/>
-    <Image x:Key="Rabbit" Source="Images\Progression\rabbit.png"/>
-    <Image x:Key="Kanga" Source="Images\Progression\kanga.png"/>
-    <Image x:Key="SpookyCave" Source="Images\Progression\bees.png"/>
-    <Image x:Key="StarryHill" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Pooh" Source="Images\Progression\pooh.png" x:Shared="False"/>
+    <Image x:Key="Piglet" Source="Images\Progression\piglet.png" x:Shared="False"/>
+    <Image x:Key="Rabbit" Source="Images\Progression\rabbit.png" x:Shared="False"/>
+    <Image x:Key="Kanga" Source="Images\Progression\kanga.png" x:Shared="False"/>
+    <Image x:Key="SpookyCave" Source="Images\Progression\bees.png" x:Shared="False"/>
+    <Image x:Key="StarryHill" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--Simulated Twilight Town-->
-    <Image x:Key="ComputerRoom" Source="Images\Progression\computer_room.png"/>
-    <Image x:Key="Axel" Source="Images\Progression\axel.png"/>
-    <Image x:Key="DataRoxas" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="ComputerRoom" Source="Images\Progression\computer_room.png" x:Shared="False"/>
+    <Image x:Key="Axel" Source="Images\Progression\axel.png" x:Shared="False"/>
+    <Image x:Key="DataRoxas" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
     <!--TWTNW-->
     <Image x:Key="TWTNWChests" Source="Images\Progression\chest.png" x:Shared="False"/>
-    <Image x:Key="Roxas" Source="Images\Progression\roxas.png"/>
-    <Image x:Key="Xigbar" Source="Images\Progression\xigbar.png"/>
-    <Image x:Key="Luxord" Source="Images\Progression\luxord.png"/>
-    <Image x:Key="Saix" Source="Images\Progression\saix.png"/>
-    <Image x:Key="Xemnas1" Source="Images\Progression\xemnas.png"/>
-    <Image x:Key="DataXemnas" Source="Images\Progression\mickey_head.png"/>
+    <Image x:Key="Roxas" Source="Images\Progression\roxas.png" x:Shared="False"/>
+    <Image x:Key="Xigbar" Source="Images\Progression\xigbar.png" x:Shared="False"/>
+    <Image x:Key="Luxord" Source="Images\Progression\luxord.png" x:Shared="False"/>
+    <Image x:Key="Saix" Source="Images\Progression\saix.png" x:Shared="False"/>
+    <Image x:Key="Xemnas1" Source="Images\Progression\xemnas.png" x:Shared="False"/>
+    <Image x:Key="DataXemnas" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
 </ResourceDictionary>

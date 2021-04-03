@@ -19,30 +19,34 @@ namespace KhTracker
                 if (world != value)
                 {
                     world = value;
-                    App.logger.RecordWorld(value);
+                    if (App.logger != null)
+                        App.logger.RecordWorld(value);
                 }
             }
         }
         private int worldNum;
         private int worldAddress;
+        private int eventCompleteAddress;
 
         public int roomNumber;
         public int eventID1;
         public int eventID2;
         public int eventID3;
+        public int eventComplete;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public World(MemoryReader mem, int offset, int address)
+        public World(MemoryReader mem, int offset, int address, int completeAddress)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             worldAddress = address;
+            eventCompleteAddress = completeAddress;
 
             worldCodes = new Dictionary<int, string>();
-            worldCodes.Add(01, "EndofSea");
+            worldCodes.Add(01, "WorldofDarkness");
             worldCodes.Add(02, "TwilightTown");
             worldCodes.Add(03, "DestinyIsland");
             worldCodes.Add(04, "HollowBastion");
@@ -59,7 +63,6 @@ namespace KhTracker
             worldCodes.Add(16, "PortRoyal");
             worldCodes.Add(17, "SpaceParanoids");
             worldCodes.Add(18, "TWTNW");
-
         }
 
         public void UpdateMemory()
@@ -71,6 +74,9 @@ namespace KhTracker
             eventID2 = worldData[6];
             eventID3 = worldData[8];
 
+            byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
+            eventComplete = eventData[0];
+
             string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
             {
@@ -79,7 +85,7 @@ namespace KhTracker
                     return;
 
                 tempWorld = worldCodes[worldNum];
-            } 
+            }
             else
             {
                 tempWorld = "";
@@ -97,9 +103,9 @@ namespace KhTracker
                     worldName = "GoA";
                 else if (roomNumber == 32)
                     worldName = "HalloweenTown"; // Vexen
-                else if (roomNumber == 33 && eventID1 == 123)
+                else if (roomNumber == 33 && (eventID1 == 123 || eventID1 == 142))
                     worldName = "Agrabah"; // Lexaeus
-                else if (roomNumber == 33 && eventID1 == 129)
+                else if (roomNumber == 33 && (eventID1 == 129 || eventID1 == 143))
                     worldName = "SpaceParanoids"; // Larxene
                 else if (roomNumber == 34)
                     worldName = "OlympusColiseum"; // Zexion
@@ -112,7 +118,7 @@ namespace KhTracker
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
-                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7))
+                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
                     worldName = "SimulatedTwilightTown";
                 else
                     worldName = "TwilightTown";

@@ -17,12 +17,18 @@ namespace KhTracker
 
         App()
         {
-            logger = new Log("log.txt");
+            try
+            {
+                logger = new Log(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\KhTracker\\log.txt");
+            }
+            catch
+            { };
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
         {
-            logger.Close();
+            if (App.logger != null)
+                logger.Close();
         }
     }
 }

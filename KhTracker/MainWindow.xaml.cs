@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using System.Drawing;
 using System.Windows.Documents;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace KhTracker
 {
@@ -393,6 +394,94 @@ namespace KhTracker
             data.WorldComplete.Add("TWTNW", false);
             data.WorldComplete.Add("Atlantica", false);
 
+            data.WorldProgress.Add("SorasHeart", 0);
+            data.WorldProgress.Add("DriveForms", 0);
+            data.WorldProgress.Add("SimulatedTwilightTown", 0);
+            data.WorldProgress.Add("TwilightTown", 0);
+            data.WorldProgress.Add("HollowBastion", 0);
+            data.WorldProgress.Add("BeastsCastle", 0);
+            data.WorldProgress.Add("OlympusColiseum", 0);
+            data.WorldProgress.Add("Agrabah", 0);
+            data.WorldProgress.Add("LandofDragons", 0);
+            data.WorldProgress.Add("HundredAcreWood", 0);
+            data.WorldProgress.Add("PrideLands", 0);
+            data.WorldProgress.Add("DisneyCastle", 0);
+            data.WorldProgress.Add("HalloweenTown", 0);
+            data.WorldProgress.Add("PortRoyal", 0);
+            data.WorldProgress.Add("SpaceParanoids", 0);
+            data.WorldProgress.Add("TWTNW", 0);
+            data.WorldProgress.Add("Atlantica", 0);
+
+            data.WorldsTop.Add("SorasHeart", SorasHeartTop);
+            data.WorldsTop.Add("DriveForms", DriveFormsTop);
+            data.WorldsTop.Add("SimulatedTwilightTown", SimulatedTwilightTownTop);
+            data.WorldsTop.Add("TwilightTown", TwilightTownTop);
+            data.WorldsTop.Add("HollowBastion", HollowBastionTop);
+            data.WorldsTop.Add("BeastsCastle", BeastsCastleTop);
+            data.WorldsTop.Add("OlympusColiseum", OlympusColiseumTop);
+            data.WorldsTop.Add("Agrabah", AgrabahTop);
+            data.WorldsTop.Add("LandofDragons", LandofDragonsTop);
+            data.WorldsTop.Add("HundredAcreWood", HundredAcreWoodTop);
+            data.WorldsTop.Add("PrideLands", PrideLandsTop);
+            data.WorldsTop.Add("DisneyCastle", DisneyCastleTop);
+            data.WorldsTop.Add("HalloweenTown", HalloweenTownTop);
+            data.WorldsTop.Add("PortRoyal", PortRoyalTop);
+            data.WorldsTop.Add("SpaceParanoids", SpaceParanoidsTop);
+            data.WorldsTop.Add("TWTNW", TWTNWTop);
+            data.WorldsTop.Add("GoA", GoATop);
+            data.WorldsTop.Add("Atlantica", AtlanticaTop);
+            
+            data.Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
+            data.Progression.Add("TwilightTown", TwilightTownProgression);
+            data.Progression.Add("HollowBastion", HollowBastionProgression);
+            data.Progression.Add("BeastsCastle", BeastsCastleProgression);
+            data.Progression.Add("OlympusColiseum", OlympusColiseumProgression);
+            data.Progression.Add("Agrabah", AgrabahProgression);
+            data.Progression.Add("LandofDragons", LandofDragonsProgression);
+            data.Progression.Add("HundredAcreWood", HundredAcreWoodProgression);
+            data.Progression.Add("PrideLands", PrideLandsProgression);
+            data.Progression.Add("DisneyCastle", DisneyCastleProgression);
+            data.Progression.Add("HalloweenTown", HalloweenTownProgression);
+            data.Progression.Add("PortRoyal", PortRoyalProgression);
+            data.Progression.Add("SpaceParanoids", SpaceParanoidsProgression);
+            data.Progression.Add("TWTNW", TWTNWProgression);
+            data.Progression.Add("Atlantica", AtlanticaProgression);
+
+            data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
+            data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));
+            data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false));
+            data.WorldsData.Add("TwilightTown", new WorldData(TwilightTownTop, TwilightTown, TwilightTownProgression, TwilightTownHint, TwilightTownGrid, TwilightTownBar, false));
+            data.WorldsData.Add("HollowBastion", new WorldData(HollowBastionTop, HollowBastion, HollowBastionProgression, HollowBastionHint, HollowBastionGrid, HollowBastionBar, false));
+            data.WorldsData.Add("BeastsCastle", new WorldData(BeastsCastleTop, BeastsCastle, BeastsCastleProgression, BeastsCastleHint, BeastsCastleGrid, BeastsCastleBar, false));
+            data.WorldsData.Add("OlympusColiseum", new WorldData(OlympusColiseumTop, OlympusColiseum, OlympusColiseumProgression, OlympusColiseumHint, OlympusColiseumGrid, OlympusBar, false));
+            data.WorldsData.Add("Agrabah", new WorldData(AgrabahTop, Agrabah, AgrabahProgression, AgrabahHint, AgrabahGrid, AgrabahBar, false));
+            data.WorldsData.Add("LandofDragons", new WorldData(LandofDragonsTop, LandofDragons, LandofDragonsProgression, LandofDragonsHint, LandofDragonsGrid, LandofDragonsBar, false));
+            data.WorldsData.Add("HundredAcreWood", new WorldData(HundredAcreWoodTop, HundredAcreWood, HundredAcreWoodProgression, HundredAcreWoodHint, HundredAcreWoodGrid, HundredAcreWoodBar, false));
+            data.WorldsData.Add("PrideLands", new WorldData(PrideLandsTop, PrideLands, PrideLandsProgression, PrideLandsHint, PrideLandsGrid, PrideLandsBar, false));
+            data.WorldsData.Add("DisneyCastle", new WorldData(DisneyCastleTop, DisneyCastle, DisneyCastleProgression, DisneyCastleHint, DisneyCastleGrid, DisneyCastleBar, false));
+            data.WorldsData.Add("HalloweenTown", new WorldData(HalloweenTownTop, HalloweenTown, HalloweenTownProgression, HalloweenTownHint, HalloweenTownGrid, HalloweenTownBar, false));
+            data.WorldsData.Add("PortRoyal", new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, PortRoyalBar, false));
+            data.WorldsData.Add("SpaceParanoids", new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, SpaceParanoidsBar, false));
+            data.WorldsData.Add("TWTNW", new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, TWTNWBar, false));
+            data.WorldsData.Add("GoA", new WorldData(GoATop, GoA, null, null, GoAGrid, GoABar, true));
+            data.WorldsData.Add("Atlantica", new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, AtlanticaBar, false));
+
+            data.ProgressKeys.Add("SimulatedTwilightTown", new List<string>() { "", "ComputerRoom", "Axel", "DataRoxas" });
+            data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
+            data.ProgressKeys.Add("HollowBastion", new List<string>() { "", "HBChests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx" });
+            data.ProgressKeys.Add("BeastsCastle", new List<string>() { "", "BCChests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
+            data.ProgressKeys.Add("OlympusColiseum", new List<string>() { "", "OCChests", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
+            data.ProgressKeys.Add("Agrabah", new List<string>() { "", "AGChests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
+            data.ProgressKeys.Add("LandofDragons", new List<string>() { "", "LoDChests", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
+            data.ProgressKeys.Add("HundredAcreWood", new List<string>() { "", "Pooh", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
+            data.ProgressKeys.Add("PrideLands", new List<string>() { "", "PLChests", "Simba", "Scar", "GroundShaker", "DataSaix" });
+            data.ProgressKeys.Add("DisneyCastle", new List<string>() { "", "DCChests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill" });
+            data.ProgressKeys.Add("HalloweenTown", new List<string>() { "", "HTChests", "CandyCaneLane", "PrisonKeeper", "OogieBoogie", "Presents", "Experiment", "Vexen" });
+            data.ProgressKeys.Add("PortRoyal", new List<string>() { "", "PRChests", "Town", "Barbossa", "Gambler", "GrimReaper", "DataLuxord" });
+            data.ProgressKeys.Add("SpaceParanoids", new List<string>() { "", "SPChests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
+            data.ProgressKeys.Add("TWTNW", new List<string>() { "", "TWTNWChests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
+            data.ProgressKeys.Add("Atlantica", new List<string>() { "" });
+
             foreach (ContentControl item in ItemPool.Children)
             {
                 if (item is Item)
@@ -445,8 +534,8 @@ namespace KhTracker
             if (AltOption.IsChecked)
                 AltToggle(null, null);
 
-            WorldIconsOption.IsChecked = Properties.Settings.Default.WorldIcons;
-            WorldIconsToggle(null, null);
+            WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
+            WorldProgressToggle(null, null);
 
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
             SoraHeartToggle(SoraHeartOption.IsChecked);
@@ -469,7 +558,6 @@ namespace KhTracker
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
         }
-
 
         /// 
         /// Input Handling
@@ -525,8 +613,9 @@ namespace KhTracker
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
+            Save("kh2fm-tracker-autosave.txt");
             Properties.Settings.Default.Save();
             broadcast.canClose = true;
             broadcast.Close();
@@ -542,7 +631,6 @@ namespace KhTracker
         {
             Properties.Settings.Default.Width = Width;
             Properties.Settings.Default.Height = Height;
-            
         }
 
         /// 

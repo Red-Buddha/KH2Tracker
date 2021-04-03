@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
+using System.Linq;
 
 namespace KhTracker
 {
@@ -482,52 +483,57 @@ namespace KhTracker
             }
         }
 
-        private void WorldIconsToggle(object sender, RoutedEventArgs e)
+        private void WorldProgressToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.WorldIcons = WorldIconsOption.IsChecked;
-            if (WorldIconsOption.IsChecked)
+            Properties.Settings.Default.WorldProgress = WorldProgressOption.IsChecked;
+            if (WorldProgressOption.IsChecked)
             {
-                SorasHeart.SetResourceReference(ContentProperty, "SoraHeartImage");
-                SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedImage");
-                HollowBastion.SetResourceReference(ContentProperty, "HollowBastionImage");
-                OlympusColiseum.SetResourceReference(ContentProperty, "OlympusImage");
-                LandofDragons.SetResourceReference(ContentProperty, "LandofDragonsImage");
-                PrideLands.SetResourceReference(ContentProperty, "PrideLandsImage");
-                HalloweenTown.SetResourceReference(ContentProperty, "HalloweenTownImage");
-                SpaceParanoids.SetResourceReference(ContentProperty, "SpaceParanoidsImage");
-                GoA.SetResourceReference(ContentProperty, "GardenofAssemblageImage");
+                broadcast.ToggleProgression(true);
 
-                DriveForms.SetResourceReference(ContentProperty, "DriveFormsImage");
-                TwilightTown.SetResourceReference(ContentProperty, "TwilightTownImage");
-                BeastsCastle.SetResourceReference(ContentProperty, "BeastCastleImage");
-                Agrabah.SetResourceReference(ContentProperty, "AgrabahImage");
-                HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreImage");
-                DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleImage");
-                PortRoyal.SetResourceReference(ContentProperty, "PortRoyalImage");
-                TWTNW.SetResourceReference(ContentProperty, "TWTNWImage");
-                Atlantica.SetResourceReference(ContentProperty, "AtlanticaImage");
+                foreach (string key in data.Progression.Keys.ToList())
+                {
+                    data.Progression[key].Visibility = Visibility.Visible;
+                }
+
+                foreach (string key in data.WorldsTop.Keys.ToList())
+                {
+                    data.WorldsTop[key].ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                    data.WorldsTop[key].ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
+                }
+
+                foreach (string key in data.Worlds.Keys.ToList())
+                {
+                    Grid grid = data.Worlds[key].Parent as Grid;
+
+                    grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
+                    grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                    grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
+                    Grid.SetColumnSpan(data.Worlds[key], 2);
+                }
             }
             else
             {
-                SorasHeart.SetResourceReference(ContentProperty, "SoraHeartText");
-                SimulatedTwilightTown.SetResourceReference(ContentProperty, "SimulatedText");
-                HollowBastion.SetResourceReference(ContentProperty, "HollowBastionText");
-                OlympusColiseum.SetResourceReference(ContentProperty, "OlympusText");
-                LandofDragons.SetResourceReference(ContentProperty, "LandofDragonsText");
-                PrideLands.SetResourceReference(ContentProperty, "PrideLandsText");
-                HalloweenTown.SetResourceReference(ContentProperty, "HalloweenTownText");
-                SpaceParanoids.SetResourceReference(ContentProperty, "SpaceParanoidsText");
-                GoA.SetResourceReference(ContentProperty, "GardenofAssemblageText");
+                broadcast.ToggleProgression(false);
 
-                DriveForms.SetResourceReference(ContentProperty, "DriveFormsText");
-                TwilightTown.SetResourceReference(ContentProperty, "TwilightTownText");
-                BeastsCastle.SetResourceReference(ContentProperty, "BeastCastleText");
-                Agrabah.SetResourceReference(ContentProperty, "AgrabahText");
-                HundredAcreWood.SetResourceReference(ContentProperty, "HundredAcreText");
-                DisneyCastle.SetResourceReference(ContentProperty, "DisneyCastleText");
-                PortRoyal.SetResourceReference(ContentProperty, "PortRoyalText");
-                TWTNW.SetResourceReference(ContentProperty, "TWTNWText");
-                Atlantica.SetResourceReference(ContentProperty, "AtlanticaText");
+                foreach (string key in data.Progression.Keys.ToList())
+                {
+                    data.Progression[key].Visibility = Visibility.Hidden;
+                }                
+
+                foreach (string key in data.WorldsTop.Keys.ToList())
+                {
+                    data.WorldsTop[key].ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                    data.WorldsTop[key].ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
+                }
+
+                foreach (string key in data.Worlds.Keys.ToList())
+                {
+                    Grid grid = data.Worlds[key].Parent as Grid;
+                    grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
+                    grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
+                    grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
+                    Grid.SetColumnSpan(data.Worlds[key], 3);
+                }
             }
         }
 
