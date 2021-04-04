@@ -243,6 +243,7 @@ namespace KhTracker
             BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
         }
+
         private void SetTimer()
         {
             aTimer = new DispatcherTimer();

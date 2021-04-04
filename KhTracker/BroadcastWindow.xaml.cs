@@ -127,6 +127,9 @@ namespace KhTracker
 
             Top = Properties.Settings.Default.BroadcastWindowY;
             Left = Properties.Settings.Default.BroadcastWindowX;
+
+            Width = Properties.Settings.Default.BroadcastWindowWidth;
+            Height = Properties.Settings.Default.BroadcastWindowHeight;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
