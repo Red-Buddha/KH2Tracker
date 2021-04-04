@@ -396,7 +396,7 @@ namespace KhTracker
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                if (Path.GetExtension(files[0]).ToUpper() == ".TXT")
+                if (Path.GetExtension(files[0]).ToUpper() == ".HINT")
                     LoadHints(files[0]);
                 else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
                     ParseSeed(files[0]);
@@ -406,8 +406,8 @@ namespace KhTracker
         private void LoadHints(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".txt";
-            openFileDialog.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog.DefaultExt = ".hint";
+            openFileDialog.Filter = "hint files (*.hint)|*.hint";
             openFileDialog.Title = "Select Hints File";
             if (openFileDialog.ShowDialog() == true)
             {
