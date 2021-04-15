@@ -4,8 +4,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.IO.Compression;
 using Microsoft.Win32;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace KhTracker
 {
@@ -419,7 +423,7 @@ namespace KhTracker
         {
             SetMode(Mode.Hints);
             ResetHints();
-            
+
             StreamReader streamReader = new StreamReader(filename);
 
             if (streamReader.EndOfStream)
@@ -486,7 +490,7 @@ namespace KhTracker
             {
                 report.SetResourceReference(ContentProperty, "Fail0");
             }
-            
+
             foreach (Image hint in data.Hints.Values.ToList())
             {
                 hint.Source = data.Numbers[0];
@@ -659,20 +663,20 @@ namespace KhTracker
             broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "");
 
-           TwilightTownProgression.SetResourceReference(ContentProperty, "");
-           HollowBastionProgression.SetResourceReference(ContentProperty, "");
-           LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-           BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-           OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-           SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-           HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-           PortRoyalProgression.SetResourceReference(ContentProperty, "");
-           AgrabahProgression.SetResourceReference(ContentProperty, "");
-           PrideLandsProgression.SetResourceReference(ContentProperty, "");
-           DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-           HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-           SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-           TWTNWProgression.SetResourceReference(ContentProperty, "");
+            TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            AgrabahProgression.SetResourceReference(ContentProperty, "");
+            PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            TWTNWProgression.SetResourceReference(ContentProperty, "");
 
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
@@ -713,7 +717,7 @@ namespace KhTracker
             broadcast.OnReset();
             broadcast.UpdateNumbers();
         }
-        
+
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
         {
             broadcast.Show();
@@ -811,6 +815,118 @@ namespace KhTracker
                 ModeDisplay.Header = "Hints Mode";
                 data.mode = mode;
             }
+        }
+
+        private void OpenKHSeed(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".zip";
+            openFileDialog.Filter = "OpenKH Seeds (*.zip)|*.zip";
+            openFileDialog.Title = "Select Seed File";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                OpenKHSeed(openFileDialog.FileName);
+            }
+        }
+
+        private Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
+        {
+            {"Level", "SorasHeart" },
+            {"Form Levels", "DriveForms" },
+            {"Simulated Twilight Town", "SimulatedTwilightTown" },
+            {"Twilight Town", "TwilightTown" },
+            {"Hollow Bastion", "HollowBastion" },
+            {"Beast's Castle", "BeastsCastle" },
+            {"Olympus Coliseum", "OlympusColiseum" },
+            {"Agrabah", "Agrabah" },
+            {"Land of Dragons", "LandofDragons" },
+            {"Hundred Acre Wood", "HundredAcreWood" },
+            {"Pride Lands", "PrideLands" },
+            {"Disney Castle / Timeless River", "DisneyCastle" },
+            {"Halloween Town", "HalloweenTown" },
+            {"Port Royal", "PortRoyal" },
+            {"Space Paranoids", "SpaceParanoids" },
+            {"The World That Never Was", "TWTNW" },
+            {"Atlantica", "Atlantica" },
+            {"Proof of Connection", "Connection" },
+            {"Proof of Nonexistence", "Nonexistence" },
+            {"Proof of Peace", "Peace" },
+            {"Valor Form", "Valor" },
+            {"Wisdom Form", "Wisdom" },
+            {"Limit Form", "Limit" },
+            {"Master Form", "Master" },
+            {"Final Form", "Final" },
+            {"Fire Element", "Fire" },
+            {"Blizzard Element", "Blizzard" },
+            {"Thunder Element", "Thunder" },
+            {"Cure Element", "Cure" },
+            {"Magnet Element", "Magnet" },
+            {"Reflect Element", "Reflect" },
+            {"Ukulele Charm (Stitch)", "Ukulele" },
+            {"Baseball Charm (Chicken Little)", "Baseball" },
+            {"Lamp Charm (Genie)", "Lamp" },
+            {"Feather Charm (Peter Pan)", "Feather" },
+            {"Torn Pages", "TornPage" },
+
+        };
+
+
+
+        private void OpenKHSeed(string filename)
+        {
+            foreach (string world in data.WorldCheckCount.Keys.ToList())
+            {
+                data.WorldCheckCount[world].Clear();
+            }
+            using (ZipArchive archive = ZipFile.OpenRead(filename))
+            {
+                
+                foreach (var entry in archive.Entries)
+                {
+                    if (entry.FullName.EndsWith(".Hints"))
+                    {
+                        using (StreamReader reader = new StreamReader(entry.Open()))
+                        {
+                            var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadToEnd()));
+                            var hintObject = JsonSerializer.Deserialize<Dictionary<string,object>>(hintText);
+                            switch (hintObject["hintsType"].ToString())
+                            {
+                                case "Shananas":
+                                    SetMode(Mode.AltHints);
+                                    var worlds = JsonSerializer.Deserialize<Dictionary<string,List<string>>>(hintObject["world"].ToString());
+
+                                    foreach (var world in worlds)
+                                    {
+                                        foreach (var item in world.Value)
+                                        {
+                                            data.WorldCheckCount[convertOpenKH[world.Key]].Add(convertOpenKH[item]);
+                                        }
+
+                                    }
+                                    foreach (var key in data.Grids.Keys.ToList())
+                                    {
+                                        if (key == "GoA")
+                                            continue;
+
+                                        data.Grids[key].WorldComplete();
+                                        SetReportValue(data.Hints[key], 1);
+                                    }
+
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                            Console.WriteLine();
+                        }
+                    }
+                }
+
+
+            }
+
+
+
         }
     }
 }
