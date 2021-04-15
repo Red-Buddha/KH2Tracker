@@ -36,6 +36,7 @@
                 <MenuItem Header="Mode">
                     <MenuItem Header="Load JSmartee Hints" Click="LoadHints"/>
                     <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
+                    <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
