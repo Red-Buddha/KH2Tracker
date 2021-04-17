@@ -404,6 +404,8 @@ namespace KhTracker
                     LoadHints(files[0]);
                 else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
                     ParseSeed(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".ZIP")
+                    OpenKHSeed(files[0]);
             }
         }
 
@@ -867,6 +869,8 @@ namespace KhTracker
             {"Lamp Charm (Genie)", "Lamp" },
             {"Feather Charm (Peter Pan)", "Feather" },
             {"Torn Pages", "TornPage" },
+            {"Second Chance", "SecondChance" },
+            {"Once More", "OnceMore" }
 
         };
 
@@ -897,6 +901,10 @@ namespace KhTracker
 
                                     foreach (var world in worlds)
                                     {
+                                        if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                                        {
+                                            continue;
+                                        }
                                         foreach (var item in world.Value)
                                         {
                                             data.WorldCheckCount[convertOpenKH[world.Key]].Add(convertOpenKH[item]);
@@ -911,6 +919,28 @@ namespace KhTracker
                                         data.Grids[key].WorldComplete();
                                         SetReportValue(data.Hints[key], 1);
                                     }
+
+                                    break;
+
+                                case "JSmartee":
+                                    SetMode(Mode.Hints);
+                                    var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string,object>>>(hintObject["Reports"].ToString());
+
+                                    List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                                    reportKeys.Sort();
+
+                                    foreach (var report in reportKeys)
+                                    {
+                                        var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                                        var count = reports[report.ToString()]["Count"].ToString();
+                                        var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                                        data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                                        data.reportLocations.Add(location);
+                                        
+                                    }
+                                    ReportsToggle(true);
+                                    data.hintsLoaded = true;
+                                    HintText.Content = "Hints Loaded";
 
                                     break;
 
