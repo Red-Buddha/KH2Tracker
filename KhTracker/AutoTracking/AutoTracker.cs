@@ -130,7 +130,8 @@ namespace KhTracker
             if (PCSX2)
             {
                 findAddressOffset();
-                // PCSX2 anchors set here
+                
+                // PCSX2 anchors 
                 Now = 0x032BAE0;
                 Save = 0x032BB30;
                 Bt10 = 0x1CE5D80;
@@ -145,8 +146,8 @@ namespace KhTracker
             importantChecks.Add(aerialDodge = new Ability(memory, Save + 0x25D4, ADDRESS_OFFSET, 101, "AerialDodge"));
             importantChecks.Add(glide = new Ability(memory, Save + 0x25D6, ADDRESS_OFFSET, 105, "Glide"));
 
-            importantChecks.Add(secondChance = new Ability(memory, 0x009A95B4, ADDRESS_OFFSET, "SecondChance"));
-            importantChecks.Add(onceMore = new Ability(memory, 0x009A95B4, ADDRESS_OFFSET, "OnceMore"));
+            importantChecks.Add(secondChance = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "SecondChance"));
+            importantChecks.Add(onceMore = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "OnceMore"));
             
             importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 2, Save + 0x332E, "Wisdom"));
