@@ -185,6 +185,7 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Visible;
             broadcast.Weapon.Visibility = Visibility.Visible;
 
+            broadcast.WorldRow.Height = new GridLength(6, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
 
             SetBindings();
@@ -481,7 +482,7 @@ namespace KhTracker
                 else
                 {
                     // add check to current world
-                    TrackItem(check.Name + count, data.Grids[world.worldName]);
+                    TrackItem(check.Name + count, data.WorldsData[world.worldName].worldGrid);
                 }
             }
         }

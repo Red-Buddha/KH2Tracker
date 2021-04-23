@@ -24,19 +24,10 @@ namespace KhTracker
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
         public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
-
-        public Dictionary<string, bool> HintedWorlds = new Dictionary<string, bool>();
-        public Dictionary<string, bool> HintedHintWorlds = new Dictionary<string, bool>();
-        public Dictionary<string, List<string>> WorldCheckCount = new Dictionary<string, List<string>>();
-        public Dictionary<string, bool> WorldComplete = new Dictionary<string, bool>();
+        
         public Dictionary<string, int> WorldProgress = new Dictionary<string, int>();
 
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
-        public Dictionary<string, Button> Worlds = new Dictionary<string, Button>();
-        public Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
-        public Dictionary<string, Image> Hints = new Dictionary<string, Image>();
-        public Dictionary<string, WorldGrid> Grids = new Dictionary<string, WorldGrid>();
-        public Dictionary<string, Image> SelectedBars = new Dictionary<string, Image>();
 
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
 
@@ -54,19 +45,19 @@ namespace KhTracker
 
     public class WorldData
     {
-        bool hinted;
-        bool hintedHint;
-        bool complete;
-        int progress;
+        public bool hinted;
+        public bool hintedHint;
+        public bool complete;
+        public int progress;
 
-        List<string> checkCount = new List<string>();
+        public List<string> checkCount = new List<string>();
 
-        Grid top;
-        Button world;
-        ContentControl progression;
-        Image hint;
-        WorldGrid worldGrid;
-        Image selectedBar;
+        public Grid top;
+        public Button world;
+        public ContentControl progression;
+        public Image hint;
+        public WorldGrid worldGrid;
+        public Image selectedBar;
 
         public WorldData(Grid Top, Button World, ContentControl Progression, Image Hint, WorldGrid grid, Image SelectedBar, bool Hinted)
         {

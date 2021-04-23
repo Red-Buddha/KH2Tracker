@@ -22,7 +22,7 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Name="WorldRow" Height="6*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="0*"/>
                 <RowDefinition Height="6*"/>
@@ -601,7 +601,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition Name="GrowthAbilityRow" Height="0"/>
+                    <RowDefinition Name="GrowthAbilityRow" Height="0*"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>

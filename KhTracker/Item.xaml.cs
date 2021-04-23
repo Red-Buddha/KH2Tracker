@@ -101,9 +101,9 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                if (data.Grids[data.selected.Name].Handle_Report(this, window, data))
+                if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
                 {
-                    data.Grids[data.selected.Name].Add_Item(this, window);
+                    data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                 }
             }
         }
