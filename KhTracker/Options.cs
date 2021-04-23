@@ -701,6 +701,7 @@ namespace KhTracker
             broadcast.Weapon.Visibility = Visibility.Hidden;
 
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
+            FormRow.Height = new GridLength(0, GridUnitType.Star);
 
             // Reset / Turn off auto tracking
             collectedChecks.Clear();

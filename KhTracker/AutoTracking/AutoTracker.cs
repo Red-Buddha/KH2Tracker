@@ -44,6 +44,12 @@ namespace KhTracker
         private DriveForm limit;
         private DriveForm final;
 
+        private DriveForm valorM;
+        private DriveForm wisdomM;
+        private DriveForm masterM;
+        private DriveForm limitM;
+        private DriveForm finalM;
+
         private Magic fire;
         private Magic blizzard;
         private Magic thunder;
@@ -121,12 +127,18 @@ namespace KhTracker
 
             importantChecks.Add(secondChance = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "SecondChance"));
             importantChecks.Add(onceMore = new Ability(memory, 0x0032E074, ADDRESS_OFFSET, "OnceMore"));
-            
+
             importantChecks.Add(valor = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, 0x0032F1FA, ADDRESS_OFFSET, 3, 0x0032EE96, "Limit"));
             importantChecks.Add(master = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 6, 0x0032EECE, "Master"));
             importantChecks.Add(final = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 4, 0x0032EF06, "Final"));
+
+            importantChecks.Add(valorM = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 1, 0x0032EE26, "ValorM"));
+            importantChecks.Add(wisdomM = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 2, 0x0032EE5E, "WisdomM"));
+            importantChecks.Add(limitM = new DriveForm(memory, 0x0032F1FA, ADDRESS_OFFSET, 3, 0x0032EE96, "LimitM"));
+            importantChecks.Add(masterM = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 6, 0x0032EECE, "MasterM"));
+            importantChecks.Add(finalM = new DriveForm(memory, 0x0032F1F0, ADDRESS_OFFSET, 4, 0x0032EF06, "FinalM"));
 
             importantChecks.Add(fire = new Magic(memory, 0x0032F0C4, 0x0032D822, ADDRESS_OFFSET, "Fire"));
             importantChecks.Add(blizzard = new Magic(memory, 0x0032F0C5, 0x0032D823, ADDRESS_OFFSET, "Blizzard"));
@@ -186,6 +198,7 @@ namespace KhTracker
             broadcast.Weapon.Visibility = Visibility.Visible;
 
             broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
+            FormRow.Height = new GridLength(0.65, GridUnitType.Star);
 
             SetBindings();
             SetTimer();
@@ -242,6 +255,31 @@ namespace KhTracker
             BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
+
+            //track in main window
+            BindAbility(HighJump, "Obtained", highJump);
+            BindAbility(QuickRun, "Obtained", quickRun);
+            BindAbility(DodgeRoll, "Obtained", dodgeRoll);
+            BindAbility(AerialDodge, "Obtained", aerialDodge);
+            BindAbility(Glide, "Obtained", glide);
+
+            BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
+
+            BindLevel(ValorLevel, "Level", valorM);
+            BindLevel(WisdomLevel, "Level", wisdomM);
+            BindLevel(LimitLevel, "Level", limitM);
+            BindLevel(MasterLevel, "Level", masterM);
+            BindLevel(FinalLevel, "Level", finalM);
+
+            //BindForm(ValorM, "Obtained", valorM); //thanks genie
+            BindForm(WisdomM, "Obtained", wisdomM);
+            BindForm(LimitM, "Obtained", limitM);
+            BindForm(MasterM, "Obtained", masterM);
+            BindForm(FinalM, "Obtained", finalM);
         }
 
         private void SetTimer()
@@ -1098,7 +1136,7 @@ namespace KhTracker
             }
             return BitConverter.ToString(bytes).Replace("-", "");
         }
-        
+
         private void BindStats(Image img, string property, object source)
         {
             Binding binding = new Binding(property);
@@ -1108,6 +1146,22 @@ namespace KhTracker
         }
 
         private void BindLevel(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new LevelConverter();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindForm(ContentControl img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new ObtainedConverter();
+            img.SetBinding(OpacityProperty, binding);
+        }
+
+        private void BindFormLevel(Image img, string property, object source, IValueConverter convertor)
         {
             Binding binding = new Binding(property);
             binding.Source = source;
