@@ -36,6 +36,7 @@
                 <MenuItem Header="Mode">
                     <MenuItem Header="Load JSmartee Hints" Click="LoadHints"/>
                     <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
+                    <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>
@@ -66,7 +67,7 @@
                 <MenuItem Name="TopMostOption" Header="Always on Top" IsCheckable="True" IsChecked="False" Click="TopMostToggle"/>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header="Hints Mode" Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="v2.5.2" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="v2.6.0" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
