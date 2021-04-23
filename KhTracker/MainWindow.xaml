@@ -31,7 +31,10 @@
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <Separator/>
-                <MenuItem Header="Run Auto Tracker" Click="InitAutoTracker"/>
+                <MenuItem Header="Auto Tracking">
+                    <MenuItem Header="PCSX2" Click="InitPCSX2Tracker"/>
+                    <MenuItem Header="PC" Click="InitPCTracker"/>
+                </MenuItem>
                 <Separator/>
                 <MenuItem Header="Mode">
                     <MenuItem Header="Load JSmartee Hints" Click="LoadHints"/>

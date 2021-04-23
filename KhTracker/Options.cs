@@ -28,7 +28,7 @@ namespace KhTracker
             }
         }
 
-        private void Save(string filename)
+        public void Save(string filename)
         {
             // save settings
             string settings = "Settings: ";
@@ -37,7 +37,7 @@ namespace KhTracker
             if (ReportsOption.IsChecked)
                 settings += "Secret Ansem Reports - ";
             if (AbilitiesOption.IsChecked)
-                settings += "Once More & Second Chance - ";
+                settings += "Second Chance & Once More - ";
             if (TornPagesOption.IsChecked)
                 settings += "Torn Pages - ";
             if (CureOption.IsChecked)
@@ -425,6 +425,7 @@ namespace KhTracker
             openFileDialog.DefaultExt = ".hint";
             openFileDialog.Filter = "hint files (*.hint)|*.hint";
             openFileDialog.Title = "Select Hints File";
+            
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadHints(openFileDialog.FileName);
@@ -533,7 +534,7 @@ namespace KhTracker
                     case "Secret Ansem Reports":
                         newsettings[1] = true;
                         break;
-                    case "Once More & Second Chance":
+                    case "Second Chance & Once More":
                         newsettings[2] = true;
                         break;
                     case "Torn Pages":

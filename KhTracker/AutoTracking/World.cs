@@ -118,7 +118,7 @@ namespace KhTracker
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
-                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
+                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown") || (roomNumber == 1 && eventID1 == 52))
                     worldName = "SimulatedTwilightTown";
                 else
                     worldName = "TwilightTown";
