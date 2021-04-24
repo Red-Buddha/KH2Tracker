@@ -644,28 +644,18 @@ namespace KhTracker
             foreach (var key in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[key].hinted = false;
-            }
-            data.WorldsData["GoA"].hinted = true;
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
                 data.WorldsData[key].hintedHint = false;
-            }
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
                 data.WorldsData[key].complete = false;
-            }
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
                 data.WorldsData[key].checkCount.Clear();
             }
+            data.WorldsData["GoA"].hinted = true;
 
             foreach (var key in data.WorldProgress.Keys.ToList())
             {
                 data.WorldProgress[key] = 0;
             }
+
+            
 
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
@@ -719,7 +709,20 @@ namespace KhTracker
 
             broadcast.WorldRow.Height = new GridLength(7, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
+            FormRow.Height = new GridLength(0, GridUnitType.Star);
 
+            ValorM.Opacity = .25;
+            WisdomM.Opacity = .25;
+            LimitM.Opacity = .25;
+            MasterM.Opacity = .25;
+            FinalM.Opacity = .25;
+
+            HighJump.Opacity = .25;
+            QuickRun.Opacity = .25;
+            DodgeRoll.Opacity = .25;
+            AerialDodge.Opacity = .25;
+            Glide.Opacity = .25;
+            
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();

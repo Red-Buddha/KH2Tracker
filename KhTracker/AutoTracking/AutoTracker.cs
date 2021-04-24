@@ -43,7 +43,7 @@ namespace KhTracker
         private DriveForm master;
         private DriveForm limit;
         private DriveForm final;
-
+        
         private Magic fire;
         private Magic blizzard;
         private Magic thunder;
@@ -214,6 +214,7 @@ namespace KhTracker
 
             broadcast.WorldRow.Height = new GridLength(6, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
+            FormRow.Height = new GridLength(0.65, GridUnitType.Star);
 
             SetBindings();
             SetTimer();
@@ -270,6 +271,31 @@ namespace KhTracker
             BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
+
+            //track in main window
+            BindAbility(HighJump, "Obtained", highJump);
+            BindAbility(QuickRun, "Obtained", quickRun);
+            BindAbility(DodgeRoll, "Obtained", dodgeRoll);
+            BindAbility(AerialDodge, "Obtained", aerialDodge);
+            BindAbility(Glide, "Obtained", glide);
+
+            BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
+
+            BindLevel(ValorLevel, "Level", valor);
+            BindLevel(WisdomLevel, "Level", wisdom);
+            BindLevel(LimitLevel, "Level", limit);
+            BindLevel(MasterLevel, "Level", master);
+            BindLevel(FinalLevel, "Level", final);
+
+            //BindForm(ValorM, "Obtained", valor); //thanks genie
+            BindForm(WisdomM, "Obtained", wisdom);
+            BindForm(LimitM, "Obtained", limit);
+            BindForm(MasterM, "Obtained", master);
+            BindForm(FinalM, "Obtained", final);
         }
 
         private void SetTimer()
@@ -285,11 +311,6 @@ namespace KhTracker
             previousChecks.Clear();
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
-
-            if (ADDRESS_OFFSET == 0)
-            {
-                //findAddressOffset();
-            }
 
             // Checks to see if the connection has exited.
             byte[] tester = memory.ReadMemory(0x0010001C + ADDRESS_OFFSET, 2);
@@ -418,7 +439,7 @@ namespace KhTracker
                 if (check.Obtained && collectedChecks.Contains(check) == false)
                 {
                     // skip auto tracking final if it was forced and valor
-                    if ((check.Name == "Final" && stats.form == 5) || check.Name == "Valor")
+                    if ((check.Name == "Final" && stats.form == 5) || (check.Name == "Valor" && TrackValorOption.IsChecked == false))
                     {
                         collectedChecks.Add(check);
                     }
@@ -1126,7 +1147,7 @@ namespace KhTracker
             }
             return BitConverter.ToString(bytes).Replace("-", "");
         }
-        
+
         private void BindStats(Image img, string property, object source)
         {
             Binding binding = new Binding(property);
@@ -1136,6 +1157,22 @@ namespace KhTracker
         }
 
         private void BindLevel(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new LevelConverter();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindForm(ContentControl img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new ObtainedConverter();
+            img.SetBinding(OpacityProperty, binding);
+        }
+
+        private void BindFormLevel(Image img, string property, object source, IValueConverter convertor)
         {
             Binding binding = new Binding(property);
             binding.Source = source;

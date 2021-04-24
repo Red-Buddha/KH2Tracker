@@ -42,7 +42,7 @@ namespace KhTracker
         public void ReadRewards()
         {
             // if sword
-            ReadReward(Bt10 + 0x25940, 2, swordChecks, 2); //25940
+            ReadReward(Bt10 + 0x25940, 2, swordChecks, 2);
             ReadReward(Bt10 + 0x25960, 2, swordChecks, 4);
             ReadReward(Bt10 + 0x25990, 2, swordChecks, 7);
             ReadReward(Bt10 + 0x259B0, 2, swordChecks, 9);

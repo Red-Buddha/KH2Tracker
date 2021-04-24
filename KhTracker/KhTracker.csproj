@@ -641,6 +641,6 @@
   </ItemGroup>
   <Target Name="ILMerge">
     <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
-    <Exec Command="$(ILMergeConsolePath) bin\Release\KhTracker.exe ^&#xD;&#xA;    /out:KhTracker.exe ^&#xD;&#xA;    bin\Release\System.Text.Json.dll ^&#xD;&#xA;    bin\Release\System.Buffers.dll ^&#xD;&#xA;    bin\Release\System.Memory.dll ^&#xD;&#xA;    bin\Release\System.Numerics.Vectors.dll ^&#xD;&#xA;    bin\Release\System.Runtime.CompilerServices.Unsafe.dll ^&#xD;&#xA;    bin\Release\System.Text.Encodings.Web.dll ^&#xD;&#xA;    bin\Release\System.Threading.Tasks.Extensions.dll ^&#xD;&#xA;    bin\Release\System.ValueTuple.dll" />
+    <Exec Command="$(ILMergeConsolePath) bin\Release\KhTracker.exe ^&#xD;&#xA;    /out:bin\KhTracker.exe ^&#xD;&#xA;    bin\Release\System.Text.Json.dll ^&#xD;&#xA;    bin\Release\System.Buffers.dll ^&#xD;&#xA;    bin\Release\System.Memory.dll ^&#xD;&#xA;    bin\Release\System.Numerics.Vectors.dll ^&#xD;&#xA;    bin\Release\System.Runtime.CompilerServices.Unsafe.dll ^&#xD;&#xA;    bin\Release\System.Text.Encodings.Web.dll ^&#xD;&#xA;    bin\Release\System.Threading.Tasks.Extensions.dll ^&#xD;&#xA;    bin\Release\System.ValueTuple.dll" />
   </Target>
 </Project>
