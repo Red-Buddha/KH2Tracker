@@ -593,7 +593,7 @@ namespace KhTracker
 
         private void TrackValorToggle(object sender, RoutedEventArgs e)
         {
-            if (TrackValorOption.IsChecked)
+            if (TrackValorOption.IsChecked && valor != null)
                 BindForm(ValorM, "Obtained", valor);
             else
                 BindingOperations.ClearBinding(ValorM, OpacityProperty);
