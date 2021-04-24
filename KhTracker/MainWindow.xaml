@@ -77,14 +77,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
-				
                 <RowDefinition Height=".9*"/>
-
-				<RowDefinition Name="FormRow" Height="0"/>
-				
+                <RowDefinition Name="FormRow" Height="1*"/>
                 <RowDefinition Height="2*"/>
-
-
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
