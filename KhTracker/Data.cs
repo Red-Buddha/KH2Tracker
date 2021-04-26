@@ -24,8 +24,6 @@ namespace KhTracker
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
         public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
-        
-        public Dictionary<string, int> WorldProgress = new Dictionary<string, int>();
 
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
 

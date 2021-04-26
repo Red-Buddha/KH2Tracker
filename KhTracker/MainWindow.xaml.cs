@@ -246,24 +246,6 @@ namespace KhTracker
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/8.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/9.png", UriKind.Relative)));
 
-            data.WorldProgress.Add("SorasHeart", 0);
-            data.WorldProgress.Add("DriveForms", 0);
-            data.WorldProgress.Add("SimulatedTwilightTown", 0);
-            data.WorldProgress.Add("TwilightTown", 0);
-            data.WorldProgress.Add("HollowBastion", 0);
-            data.WorldProgress.Add("BeastsCastle", 0);
-            data.WorldProgress.Add("OlympusColiseum", 0);
-            data.WorldProgress.Add("Agrabah", 0);
-            data.WorldProgress.Add("LandofDragons", 0);
-            data.WorldProgress.Add("HundredAcreWood", 0);
-            data.WorldProgress.Add("PrideLands", 0);
-            data.WorldProgress.Add("DisneyCastle", 0);
-            data.WorldProgress.Add("HalloweenTown", 0);
-            data.WorldProgress.Add("PortRoyal", 0);
-            data.WorldProgress.Add("SpaceParanoids", 0);
-            data.WorldProgress.Add("TWTNW", 0);
-            data.WorldProgress.Add("Atlantica", 0);
-
             data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
             data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));
             data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false));

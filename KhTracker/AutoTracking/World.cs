@@ -27,23 +27,26 @@ namespace KhTracker
         private int worldNum;
         private int worldAddress;
         private int eventCompleteAddress;
+        private int SttAddress;
 
         public int roomNumber;
         public int eventID1;
         public int eventID2;
         public int eventID3;
         public int eventComplete;
+        public int inStt;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public World(MemoryReader mem, int offset, int address, int completeAddress)
+        public World(MemoryReader mem, int offset, int address, int completeAddress, int sttAddress)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             worldAddress = address;
             eventCompleteAddress = completeAddress;
+            SttAddress = sttAddress;
 
             worldCodes = new Dictionary<int, string>();
             worldCodes.Add(01, "WorldofDarkness");
@@ -63,6 +66,7 @@ namespace KhTracker
             worldCodes.Add(16, "PortRoyal");
             worldCodes.Add(17, "SpaceParanoids");
             worldCodes.Add(18, "TWTNW");
+            worldCodes.Add(255, "GoA");
         }
 
         public void UpdateMemory()
@@ -76,6 +80,10 @@ namespace KhTracker
 
             byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
             eventComplete = eventData[0];
+
+            byte[] sttData = memory.ReadMemory(SttAddress + ADDRESS_OFFSET, 1);
+            inStt = sttData[0];
+
 
             string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
@@ -91,13 +99,8 @@ namespace KhTracker
                 tempWorld = "";
             }
             
-            // Handle crit bonus start
-            if (tempWorld == "TwilightTown" && roomNumber == 32 && eventID1 == 1 && eventID2 == 1 && eventID3 == 1)
-            {
-                worldName = "GoA";
-            }
             // Handle AS fights
-            else if (tempWorld == "HollowBastion")
+            if (tempWorld == "HollowBastion")
             {
                 if (roomNumber == 26)
                     worldName = "GoA";
@@ -118,8 +121,10 @@ namespace KhTracker
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
-                if ((roomNumber == 2 && eventID1 == 63) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown") || (roomNumber == 1 && eventID1 == 52))
+                if (inStt == 13 || (roomNumber == 2 && eventID1 == 95) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
                     worldName = "SimulatedTwilightTown";
+                else if ((roomNumber == 32 && eventID1 == 1 && eventID2 == 1 && eventID3 == 1) || (roomNumber == 1 && eventID1 == 34) || (roomNumber == 20 && eventID1 == 1))
+                    worldName = "GoA"; // Crit bonuses
                 else
                     worldName = "TwilightTown";
             }

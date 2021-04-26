@@ -28,19 +28,13 @@
 	<Image x:Key="ReflectOld" Source="Images\Old\reflect.png" x:Shared="false"/>
 	<Image x:Key="MagnetOld" Source="Images\Old\magnet.png" x:Shared="false"/>
 
-	<Image x:Key="ValorOld"  Source="Images\Old\valor.png"/>
-	<Image x:Key="WisdomOld" Source="Images\Old\wisdom.png"/>
-	<Image x:Key="LimitOld"  Source="Images\Old\limit.png"/>
-	<Image x:Key="MasterOld" Source="Images\Old\master.png"/>
-	<Image x:Key="FinalOld"  Source="Images\Old\final.png"/>
+	<Image x:Key="ValorOld"  Source="Images\Old\valor.png" x:Shared="false"/>
+	<Image x:Key="WisdomOld" Source="Images\Old\wisdom.png" x:Shared="false"/>
+	<Image x:Key="LimitOld"  Source="Images\Old\limit.png" x:Shared="false"/>
+	<Image x:Key="MasterOld" Source="Images\Old\master.png" x:Shared="false"/>
+    <Image x:Key="FinalOld"  Source="Images\Old\final.png" x:Shared="false"/>
 
-	<Image x:Key="ValorMOld"  Source="Images\Old\valor.png"/>
-	<Image x:Key="WisdomMOld" Source="Images\Old\wisdom.png"/>
-	<Image x:Key="LimitMOld"  Source="Images\Old\limit.png"/>
-	<Image x:Key="MasterMOld" Source="Images\Old\master.png"/>
-	<Image x:Key="FinalMOld"  Source="Images\Old\final.png"/>
-
-	<Image x:Key="OnceMoreOld" Source="Images\One.png"/>
+    <Image x:Key="OnceMoreOld" Source="Images\One.png"/>
 	<Image x:Key="SecondChanceOld" Source="Images\Two.png"/>
 	<Image x:Key="TornPageOld" Source="Images\Old\torn_page.png" x:Shared="false"/>
 	<Image x:Key="GenieOld" Source="Images\Old\genie.png"/>
@@ -74,11 +68,11 @@
 	<Image x:Key="Reflect" Source="Images\Simple\reflect.png" x:Shared="false"/>
 	<Image x:Key="Magnet" Source="Images\Simple\magnet.png" x:Shared="false"/>
 
-	<Image x:Key="Valor" Source="Images\Simple\valor.png"/>
-	<Image x:Key="Wisdom" Source="Images\Simple\wisdom.png"/>
-	<Image x:Key="Limit" Source="Images\Simple\limit.png"/>
-	<Image x:Key="Master" Source="Images\Simple\master.png"/>
-	<Image x:Key="Final" Source="Images\Simple\final.png"/>
+	<Image x:Key="Valor" Source="Images\Simple\valor.png" x:Shared="false"/>
+	<Image x:Key="Wisdom" Source="Images\Simple\wisdom.png" x:Shared="false"/>
+	<Image x:Key="Limit" Source="Images\Simple\limit.png" x:Shared="false"/>
+	<Image x:Key="Master" Source="Images\Simple\master.png" x:Shared="false"/>
+	<Image x:Key="Final" Source="Images\Simple\final.png" x:Shared="false"/>
 
 	<Image x:Key="ValorM" Source="Images\Simple\valor.png"/>
 	<Image x:Key="WisdomM" Source="Images\Simple\wisdom.png"/>

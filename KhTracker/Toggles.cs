@@ -251,11 +251,11 @@ namespace KhTracker
                 Master.SetResourceReference(ContentProperty, "Master");
                 Final.SetResourceReference(ContentProperty, "Final");
 
-                ValorM.SetResourceReference(ContentProperty, "ValorM");
-                WisdomM.SetResourceReference(ContentProperty, "WisdomM");
-                LimitM.SetResourceReference(ContentProperty, "LimitM");
-                MasterM.SetResourceReference(ContentProperty, "MasterM");
-                FinalM.SetResourceReference(ContentProperty, "FinalM");
+                ValorM.SetResourceReference(ContentProperty, "Valor");
+                WisdomM.SetResourceReference(ContentProperty, "Wisdom");
+                LimitM.SetResourceReference(ContentProperty, "Limit");
+                MasterM.SetResourceReference(ContentProperty, "Master");
+                FinalM.SetResourceReference(ContentProperty, "Final");
 
                 TornPage1.SetResourceReference(ContentProperty, "TornPage");
                 TornPage2.SetResourceReference(ContentProperty, "TornPage");
@@ -355,11 +355,11 @@ namespace KhTracker
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
 
-                ValorM.SetResourceReference(ContentProperty, "ValorMOld");
-                WisdomM.SetResourceReference(ContentProperty, "WisdomMOld");
-                LimitM.SetResourceReference(ContentProperty, "LimitMOld");
-                MasterM.SetResourceReference(ContentProperty, "MasterMOld");
-                FinalM.SetResourceReference(ContentProperty, "FinalMOld");
+                ValorM.SetResourceReference(ContentProperty, "ValorOld");
+                WisdomM.SetResourceReference(ContentProperty, "WisdomOld");
+                LimitM.SetResourceReference(ContentProperty, "LimitOld");
+                MasterM.SetResourceReference(ContentProperty, "MasterOld");
+                FinalM.SetResourceReference(ContentProperty, "FinalOld");
 
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
@@ -460,11 +460,11 @@ namespace KhTracker
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
 
-                ValorM.SetResourceReference(ContentProperty, "ValorMOld");
-                WisdomM.SetResourceReference(ContentProperty, "WisdomMOld");
-                LimitM.SetResourceReference(ContentProperty, "LimitMOld");
-                MasterM.SetResourceReference(ContentProperty, "MasterMOld");
-                FinalM.SetResourceReference(ContentProperty, "FinalMOld");
+                ValorM.SetResourceReference(ContentProperty, "ValorOld");
+                WisdomM.SetResourceReference(ContentProperty, "WisdomOld");
+                LimitM.SetResourceReference(ContentProperty, "LimitOld");
+                MasterM.SetResourceReference(ContentProperty, "MasterOld");
+                FinalM.SetResourceReference(ContentProperty, "FinalOld");
 
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");

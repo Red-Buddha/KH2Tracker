@@ -78,7 +78,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height=".9*"/>
-                <RowDefinition Name="FormRow" Height="1*"/>
+                <RowDefinition Name="FormRow" Height="0*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
@@ -735,11 +735,11 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ContentControl Content="{DynamicResource ValorM}" Opacity="0.25" Name="ValorM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"></ContentControl>
-                <ContentControl Content="{DynamicResource WisdomM}" Opacity="0.25" Name="WisdomM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2"></ContentControl>
-                <ContentControl Content="{DynamicResource LimitM}" Opacity="0.25" Name="LimitM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"></ContentControl>
-                <ContentControl Content="{DynamicResource MasterM}" Opacity="0.25" Name="MasterM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"></ContentControl>
-                <ContentControl Content="{DynamicResource FinalM}" Opacity="0.25" Name="FinalM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"></ContentControl>
+                <ContentControl Content="{DynamicResource Valor}" Opacity="0.25" Name="ValorM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"></ContentControl>
+                <ContentControl Content="{DynamicResource Wisdom}" Opacity="0.25" Name="WisdomM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2"></ContentControl>
+                <ContentControl Content="{DynamicResource Limit}" Opacity="0.25" Name="LimitM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"></ContentControl>
+                <ContentControl Content="{DynamicResource Master}" Opacity="0.25" Name="MasterM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"></ContentControl>
+                <ContentControl Content="{DynamicResource Final}" Opacity="0.25" Name="FinalM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"></ContentControl>
 
                 <Image Name="ValorLevel" Grid.Row="2" Grid.Column="1"/>
                 <Image Name="WisdomLevel" Grid.Row="2" Grid.Column="3"/>
