@@ -10,6 +10,7 @@ namespace KhTracker
     {
         private Dictionary<int, string> worldCodes;
 
+        public string previousworldName;
         private string world;
         public string worldName
         {
@@ -71,6 +72,8 @@ namespace KhTracker
 
         public void UpdateMemory()
         {
+            previousworldName = worldName;
+
             byte[] worldData = memory.ReadMemory(worldAddress + ADDRESS_OFFSET, 9);
             worldNum = worldData[0];
             roomNumber = worldData[1];
@@ -121,9 +124,9 @@ namespace KhTracker
             else if (tempWorld == "TwilightTown")
             {
                 // probably need to track every save point for safety
-                if (inStt == 13 || (roomNumber == 2 && eventID1 == 95) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
+                if (inStt == 13 || (roomNumber == 7 && eventID1 == 95) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
                     worldName = "SimulatedTwilightTown";
-                else if ((roomNumber == 32 && eventID1 == 1 && eventID2 == 1 && eventID3 == 1) || (roomNumber == 1 && eventID1 == 34) || (roomNumber == 20 && eventID1 == 1))
+                else if ((roomNumber == 32 && eventID1 == 1) || (roomNumber == 1 && eventID1 == 52))
                     worldName = "GoA"; // Crit bonuses
                 else
                     worldName = "TwilightTown";

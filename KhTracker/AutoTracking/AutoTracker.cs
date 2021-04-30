@@ -155,24 +155,12 @@ namespace KhTracker
             importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
             importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
 
-            if (PCSX2)
-            {
-                importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF2, ADDRESS_OFFSET, "Fire")); // 1CF2 on PS2
-                importantChecks.Add(blizzard = new Magic(memory, Save + 0x3595, Save + 0x1CF3, ADDRESS_OFFSET, "Blizzard"));
-                importantChecks.Add(thunder = new Magic(memory, Save + 0x3596, Save + 0x1CF4, ADDRESS_OFFSET, "Thunder"));
-                importantChecks.Add(cure = new Magic(memory, Save + 0x3597, Save + 0x1CF5, ADDRESS_OFFSET, "Cure"));
-                importantChecks.Add(magnet = new Magic(memory, Save + 0x35CF, Save + 0x1CF6, ADDRESS_OFFSET, "Magnet"));
-                importantChecks.Add(reflect = new Magic(memory, Save + 0x35D0, Save + 0x1CF7, ADDRESS_OFFSET, "Reflect"));
-            }
-            else
-            {
-                importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF1, ADDRESS_OFFSET, "Fire")); // 1CF2 on PS2
-                importantChecks.Add(blizzard = new Magic(memory, Save + 0x3595, Save + 0x1CF2, ADDRESS_OFFSET, "Blizzard"));
-                importantChecks.Add(thunder = new Magic(memory, Save + 0x3596, Save + 0x1CF3, ADDRESS_OFFSET, "Thunder"));
-                importantChecks.Add(cure = new Magic(memory, Save + 0x3597, Save + 0x1CF4, ADDRESS_OFFSET, "Cure"));
-                importantChecks.Add(magnet = new Magic(memory, Save + 0x35CF, Save + 0x1CF5, ADDRESS_OFFSET, "Magnet"));
-                importantChecks.Add(reflect = new Magic(memory, Save + 0x35D0, Save + 0x1CF6, ADDRESS_OFFSET, "Reflect"));
-            }
+            importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF2, ADDRESS_OFFSET, "Fire")); // 1CF2 on PS2
+            importantChecks.Add(blizzard = new Magic(memory, Save + 0x3595, Save + 0x1CF3, ADDRESS_OFFSET, "Blizzard"));
+            importantChecks.Add(thunder = new Magic(memory, Save + 0x3596, Save + 0x1CF4, ADDRESS_OFFSET, "Thunder"));
+            importantChecks.Add(cure = new Magic(memory, Save + 0x3597, Save + 0x1CF5, ADDRESS_OFFSET, "Cure"));
+            importantChecks.Add(magnet = new Magic(memory, Save + 0x35CF, Save + 0x1CF6, ADDRESS_OFFSET, "Magnet"));
+            importantChecks.Add(reflect = new Magic(memory, Save + 0x35D0, Save + 0x1CF7, ADDRESS_OFFSET, "Reflect"));
 
             importantChecks.Add(rep1 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 6, "Report1"));
             importantChecks.Add(rep2 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 7, "Report2"));
@@ -319,7 +307,7 @@ namespace KhTracker
         {
             aTimer = new DispatcherTimer();
             aTimer.Tick += OnTimedEvent;
-            aTimer.Interval = new TimeSpan(0, 0, 1);
+            aTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             aTimer.Start();
         }
 
@@ -547,7 +535,7 @@ namespace KhTracker
                 else
                 {
                     // add check to current world
-                    TrackItem(check.Name + count, data.WorldsData[world.worldName].worldGrid);
+                    TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);
                 }
             }
         }
