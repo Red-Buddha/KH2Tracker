@@ -591,12 +591,20 @@ namespace KhTracker
             broadcast.Topmost = TopMostOption.IsChecked;
         }
 
-        private void TrackValorToggle(object sender, RoutedEventArgs e)
+        private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
         {
-            if (TrackValorOption.IsChecked && valor != null)
-                BindForm(ValorM, "Obtained", valor);
+            Properties.Settings.Default.BroadcastStartup = BroadcastStartupOption.IsChecked;
+            if (BroadcastStartupOption.IsChecked)
+                broadcast.Show();
+        }
+
+        private void FormsGrowthToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.FormsGrowth = FormsGrowthOption.IsChecked;
+            if (FormsGrowthOption.IsChecked)
+                FormRow.Height = new GridLength(0.65, GridUnitType.Star);
             else
-                BindingOperations.ClearBinding(ValorM, OpacityProperty);
+                FormRow.Height = new GridLength(0, GridUnitType.Star);
         }
     }
 }

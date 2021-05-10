@@ -71,10 +71,10 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C40, 2, swordChecks, 50);
             ReadReward(Bt10 + 0x25C70, 2, swordChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD0, 2, swordChecks, 59); // 99
-            ReadReward(Bt10 + 0x25D40, 2, swordChecks, 65); // 99
+            ReadReward(Bt10 + 0x25D30, 2, swordChecks, 65); // 99
             ReadReward(Bt10 + 0x25DC0, 2, swordChecks, 73); // 99
-            ReadReward(Bt10 + 0x25E00, 2, swordChecks, 85); // 99
-            ReadReward(Bt10 + 0x25F70, 2, swordChecks, 99); // 99
+            ReadReward(Bt10 + 0x25E70, 2, swordChecks, 85); // 99
+            ReadReward(Bt10 + 0x25F50, 2, swordChecks, 99); // 99
 
             // if shield
             ReadReward(Bt10 + 0x25942, 2, shieldChecks, 2);
@@ -106,10 +106,10 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C42, 2, shieldChecks, 50);
             ReadReward(Bt10 + 0x25C72, 2, shieldChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD2, 2, shieldChecks, 59); // 99
-            ReadReward(Bt10 + 0x25D42, 2, shieldChecks, 65); // 99
+            ReadReward(Bt10 + 0x25D32, 2, shieldChecks, 65); // 99
             ReadReward(Bt10 + 0x25DC2, 2, shieldChecks, 73); // 99
-            ReadReward(Bt10 + 0x25E02, 2, shieldChecks, 85); // 99
-            ReadReward(Bt10 + 0x25F72, 2, shieldChecks, 99); // 99
+            ReadReward(Bt10 + 0x25E72, 2, shieldChecks, 85); // 99
+            ReadReward(Bt10 + 0x25F52, 2, shieldChecks, 99); // 99
 
             // if staff
             ReadReward(Bt10 + 0x25944, 2, staffChecks, 2);
@@ -141,10 +141,10 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C44, 2, staffChecks, 50);
             ReadReward(Bt10 + 0x25C74, 2, staffChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD4, 2, staffChecks, 59); // 99
-            ReadReward(Bt10 + 0x25D44, 2, staffChecks, 65); // 99
+            ReadReward(Bt10 + 0x25D34, 2, staffChecks, 65); // 99
             ReadReward(Bt10 + 0x25DC4, 2, staffChecks, 73); // 99
-            ReadReward(Bt10 + 0x25E04, 2, staffChecks, 85); // 99
-            ReadReward(Bt10 + 0x25F74, 2, staffChecks, 99); // 99
+            ReadReward(Bt10 + 0x25E74, 2, staffChecks, 85); // 99
+            ReadReward(Bt10 + 0x25F54, 2, staffChecks, 99); // 99
 
             // valor
             ReadReward(Bt10 + 0x344AE, 2, valorChecks, 2);

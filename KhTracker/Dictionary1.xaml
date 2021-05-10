@@ -99,32 +99,10 @@
 		<Image Source="Images\FailBar.png" Margin="-25,-15,0,0" Height="15"/>
 		<Image Source="Images\FailBar.png" Margin="-15,-15,0,0" Height="15"/>
 	</StackPanel>
-	<Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
+    <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
 
 
-	<!--World Text Abbreviations-->
-	<TextBlock x:Key="SoraHeartText" Text="SH" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="SimulatedText" Text="STT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-3,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="HollowBastionText" Text="HB" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="OlympusText" Text="OC" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="LandofDragonsText" Text="LoD" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="0,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="PrideLandsText" Text="PL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="HalloweenTownText" Text="HT" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-7,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="SpaceParanoidsText" Text="SP" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-9,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="GardenofAssemblageText" Text="GoA" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" IsHitTestVisible="False"/>
-
-	<TextBlock x:Key="DriveFormsText" Text="DF" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="TwilightTownText" Text="TT" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="BeastCastleText" Text="BC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="AgrabahText" Text="A" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-19,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="HundredAcreText" Text="100" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-4,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="DisneyCastleText" Text="DC" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-6,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="PortRoyalText" Text="PR" FontSize="20" FontStyle="Normal" Foreground="White"    HorizontalAlignment="Center" Margin="-8,-18,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="TWTNWText" Text="TWTNW" FontSize="13" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-15,0,0" IsHitTestVisible="False"/>
-	<TextBlock x:Key="AtlanticaText" Text="ATL" FontSize="20" FontStyle="Normal" Foreground="White" HorizontalAlignment="Center" Margin="-1,-18,0,0" IsHitTestVisible="False"/>
-
-
-	<!--Simple World Icons-->
+    <!--Simple World Icons-->
 	<Image x:Key="SoraHeartImage" Source="Images\Simple\level.png"/>
 	<Image x:Key="SimulatedImage" Source="Images\Simple\simulated_twilight_town.png"/>
 	<Image x:Key="HollowBastionImage" Source="Images\Simple\hollow_bastion.png"/>

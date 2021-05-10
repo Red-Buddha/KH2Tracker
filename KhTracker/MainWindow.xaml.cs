@@ -351,6 +351,12 @@ namespace KhTracker
             TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
             TopMostToggle(null, null);
 
+            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
+            BroadcastStartupToggle(null, null);
+
+            FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
+            FormsGrowthToggle(null, null);
+
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 

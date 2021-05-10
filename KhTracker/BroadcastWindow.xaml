@@ -24,7 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Name="WorldRow" Height="6*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0*"/>
+                <RowDefinition Name="StatsRow" Height="0*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
 

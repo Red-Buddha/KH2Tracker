@@ -68,7 +68,8 @@
                 <Separator/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
                 <MenuItem Name="TopMostOption" Header="Always on Top" IsCheckable="True" IsChecked="False" Click="TopMostToggle"/>
-                <MenuItem Name="TrackValorOption" Header="Track Valor" IsCheckable="True" IsChecked="False" Click="TrackValorToggle"/>
+                <MenuItem Name="BroadcastStartupOption" Header="Broadcast Window On Startup" IsCheckable="True" IsChecked="False" Click="BroadcastStartupToggle"/>
+                <MenuItem Name="FormsGrowthOption" Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header="Hints Mode" Focusable="False" IsHitTestVisible="False"/>
             <MenuItem Header="v2.6" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>

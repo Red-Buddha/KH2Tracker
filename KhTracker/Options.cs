@@ -703,7 +703,7 @@ namespace KhTracker
 
             broadcast.WorldRow.Height = new GridLength(7, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
-            FormRow.Height = new GridLength(0, GridUnitType.Star);
+            //FormRow.Height = new GridLength(0, GridUnitType.Star);
 
             ValorM.Opacity = .25;
             WisdomM.Opacity = .25;
