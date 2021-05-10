@@ -129,7 +129,16 @@ namespace KhTracker
 
             if (PCSX2)
             {
-                findAddressOffset();
+                try
+                {
+                    findAddressOffset();
+                }
+                catch
+                {
+                    memory = null;
+                    MessageBox.Show("Please start KH2 before loading the Auto Tracker.");
+                    return;
+                }
                 
                 // PCSX2 anchors 
                 Now = 0x032BAE0;
@@ -149,18 +158,32 @@ namespace KhTracker
             importantChecks.Add(secondChance = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "SecondChance", Save));
             importantChecks.Add(onceMore = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "OnceMore", Save));
             
-            importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, "Valor"));
+            importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, Save + 0x06B2, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 2, Save + 0x332E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, Save + 0x36CA, ADDRESS_OFFSET, 3, Save + 0x3366, "Limit"));
             importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
             importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
 
-            importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF2, ADDRESS_OFFSET, "Fire")); // 1CF2 on PS2
+            int fireCount = fire != null ? fire.Level : 0;
+            int blizzardCount = blizzard != null ? blizzard.Level : 0;
+            int thunderCount = thunder != null ? thunder.Level : 0;
+            int cureCount = cure != null ? cure.Level : 0;
+            int magnetCount = magnet != null ? magnet.Level : 0;
+            int reflectCount = reflect != null ? reflect.Level : 0;
+
+            importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF2, ADDRESS_OFFSET, "Fire"));
             importantChecks.Add(blizzard = new Magic(memory, Save + 0x3595, Save + 0x1CF3, ADDRESS_OFFSET, "Blizzard"));
             importantChecks.Add(thunder = new Magic(memory, Save + 0x3596, Save + 0x1CF4, ADDRESS_OFFSET, "Thunder"));
             importantChecks.Add(cure = new Magic(memory, Save + 0x3597, Save + 0x1CF5, ADDRESS_OFFSET, "Cure"));
             importantChecks.Add(magnet = new Magic(memory, Save + 0x35CF, Save + 0x1CF6, ADDRESS_OFFSET, "Magnet"));
             importantChecks.Add(reflect = new Magic(memory, Save + 0x35D0, Save + 0x1CF7, ADDRESS_OFFSET, "Reflect"));
+
+            fire.Level = fireCount;
+            blizzard.Level = blizzardCount;
+            thunder.Level = thunderCount;
+            cure.Level = cureCount;
+            magnet.Level = magnetCount;
+            reflect.Level = reflectCount;
 
             importantChecks.Add(rep1 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 6, "Report1"));
             importantChecks.Add(rep2 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 7, "Report2"));
@@ -186,7 +209,9 @@ namespace KhTracker
             importantChecks.Add(nonexist = new Proof(memory, Save + 0x36B3, ADDRESS_OFFSET, "Nonexistence"));
             importantChecks.Add(connection = new Proof(memory, Save + 0x36B2, ADDRESS_OFFSET, "Connection"));
 
+            int count = pages != null ? pages.Quantity : 0;
             importantChecks.Add(pages = new TornPage(memory, Save + 0x3598, ADDRESS_OFFSET, "TornPage"));
+            pages.Quantity = count;
 
             if (PCSX2)
                 world = new World(memory, ADDRESS_OFFSET, Now, 0x00351EC8, Save + 0x1CFF);
@@ -218,7 +243,7 @@ namespace KhTracker
 
             broadcast.WorldRow.Height = new GridLength(6, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
-            FormRow.Height = new GridLength(0.65, GridUnitType.Star);
+            //FormRow.Height = new GridLength(0.65, GridUnitType.Star);
 
             SetBindings();
             SetTimer();
@@ -294,9 +319,8 @@ namespace KhTracker
             BindLevel(LimitLevel, "Level", limit);
             BindLevel(MasterLevel, "Level", master);
             BindLevel(FinalLevel, "Level", final);
-
-            if (TrackValorOption.IsChecked)
-                BindForm(ValorM, "Obtained", valor);
+            
+            BindForm(ValorM, "Obtained", valor);
             BindForm(WisdomM, "Obtained", wisdom);
             BindForm(LimitM, "Obtained", limit);
             BindForm(MasterM, "Obtained", master);
@@ -317,25 +341,34 @@ namespace KhTracker
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
 
-            // Checks to see if the connection has exited.
-            byte[] tester = memory.ReadMemory(0x0010001C + ADDRESS_OFFSET, 2);
-            if (Enumerable.SequenceEqual(tester, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }))
+            //// Checks to see if the connection has exited.
+            //byte[] tester = memory.ReadMemory(0x0010001C + ADDRESS_OFFSET, 2);
+            //if (Enumerable.SequenceEqual(tester, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }))
+            //{
+            //    aTimer.Stop();
+            //    MessageBox.Show("KH2FM has exited. Stopping auto tracker.");
+            //    return;
+            //}
+
+            try
+            {
+                stats.UpdateMemory();
+                world.UpdateMemory();
+                UpdateMagicAddresses();
+                UpdateWorldProgress(world);
+
+
+                importantChecks.ForEach(delegate (ImportantCheck importantCheck)
+                {
+                    importantCheck.UpdateMemory();
+                });
+            }
+            catch
             {
                 aTimer.Stop();
-                MessageBox.Show("PCSX2 has exited. Stopping auto tracker.");
+                MessageBox.Show("KH2FM has exited. Stopping auto tracker.");
                 return;
             }
-
-            stats.UpdateMemory();
-            world.UpdateMemory();
-            UpdateMagicAddresses();
-            UpdateWorldProgress(world);
-
-
-            importantChecks.ForEach(delegate (ImportantCheck importantCheck)
-            {
-                importantCheck.UpdateMemory();
-            });
 
             UpdateCollectedItems();
             DetermineItemLocations();
@@ -444,7 +477,11 @@ namespace KhTracker
                 if (check.Obtained && collectedChecks.Contains(check) == false)
                 {
                     // skip auto tracking final if it was forced and valor
-                    if ((check.Name == "Final" && stats.form == 5) || (check.Name == "Valor" && TrackValorOption.IsChecked == false))
+                    if (check.Name == "Valor" && valor.genieFix == true)
+                    {
+                        valor.Obtained = false;
+                    }
+                    else if ((check.Name == "Final" && stats.form == 5))
                     {
                         collectedChecks.Add(check);
                     }

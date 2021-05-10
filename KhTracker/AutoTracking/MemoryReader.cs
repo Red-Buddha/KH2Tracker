@@ -41,32 +41,21 @@ namespace KhTracker
 
         public byte[] ReadMemory(Int32 address, int bytesToRead)
         {
-            try
+            if (process.HasExited)
             {
-                if (process.HasExited)
-                {
-                    if (PCSX2)
-                        process = Process.GetProcessesByName("pcsx2")[0];
-                    else
-                        process = Process.GetProcessesByName("KINGDOM HEARTS II FINAL MIX")[0];
-                    processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
-                }
-                int bytesRead = 0;
-                byte[] buffer = new byte[bytesToRead];
-
-                ProcessModule processModule = process.MainModule;
-
-                if (PCSX2)
-                    ReadProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesRead);
-                else
-                    ReadProcessMemory((int)processHandle, processModule.BaseAddress.ToInt64() + address, buffer, buffer.Length, ref bytesRead);
-                //Array.Reverse(buffer, 0, buffer.Length);
-                return buffer;
+                throw new Exception();
             }
-            catch (IndexOutOfRangeException e)
-            {
-                return new byte[4] { 0x00, 0x00, 0x00, 0x00 };
-            }
+            int bytesRead = 0;
+            byte[] buffer = new byte[bytesToRead];
+
+            ProcessModule processModule = process.MainModule;
+
+            if (PCSX2)
+                ReadProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesRead);
+            else
+                ReadProcessMemory((int)processHandle, processModule.BaseAddress.ToInt64() + address, buffer, buffer.Length, ref bytesRead);
+
+            return buffer;
         }
     }
 }

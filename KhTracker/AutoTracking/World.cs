@@ -91,10 +91,6 @@ namespace KhTracker
             string tempWorld;
             if (worldCodes.ContainsKey(worldNum))
             {
-                // simplify determining if in stt
-                if (worldName == "SimulatedTwilightTown" && !(worldCodes[worldNum] == "HollowBastion" && roomNumber == 26))
-                    return;
-
                 tempWorld = worldCodes[worldNum];
             }
             else
@@ -123,8 +119,7 @@ namespace KhTracker
             // Handle STT
             else if (tempWorld == "TwilightTown")
             {
-                // probably need to track every save point for safety
-                if (inStt == 13 || (roomNumber == 7 && eventID1 == 95) || (roomNumber == 21 && eventID1 == 7 && worldName != "TwilightTown"))
+                if (inStt == 13)
                     worldName = "SimulatedTwilightTown";
                 else if ((roomNumber == 32 && eventID1 == 1) || (roomNumber == 1 && eventID1 == 52))
                     worldName = "GoA"; // Crit bonuses
