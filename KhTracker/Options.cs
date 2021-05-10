@@ -893,8 +893,8 @@ namespace KhTracker
             {"Feather Charm (Peter Pan)", "Feather" },
             {"Torn Pages", "TornPage" },
             {"Second Chance", "SecondChance" },
-            {"Once More", "OnceMore" }
-
+            {"Once More", "OnceMore" },
+            {"", "GoA"}
         };
 
 
