@@ -731,13 +731,20 @@ namespace KhTracker
             magnetLevel = 0;
             tornPageCount = 0;
 
-            fire.Level = 0;
-            blizzard.Level = 0;
-            thunder.Level = 0;
-            cure.Level = 0;
-            reflect.Level = 0;
-            magnet.Level = 0;
-            pages.Quantity = 0;
+            if (fire != null)
+                fire.Level = 0;
+            if (blizzard != null)
+                blizzard.Level = 0;
+            if (thunder != null)
+                thunder.Level = 0;
+            if (cure != null)
+                cure.Level = 0;
+            if (reflect != null)
+                reflect.Level = 0;
+            if (magnet != null)
+                magnet.Level = 0;
+            if (pages != null)
+                pages.Quantity = 0;
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
