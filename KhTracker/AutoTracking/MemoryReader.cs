@@ -13,16 +13,21 @@ namespace KhTracker
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
-        public static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
+        public static extern bool ReadProcessMemory(int hProcess, Int64 lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
         Process process;
         IntPtr processHandle;
         public bool Hooked;
-        public MemoryReader()
+        private bool PCSX2;
+        public MemoryReader(bool ps2)
         {
+            PCSX2 = ps2;
             try
             {
-                process = Process.GetProcessesByName("pcsx2")[0];
+                if (PCSX2)
+                    process = Process.GetProcessesByName("pcsx2")[0];
+                else
+                    process = Process.GetProcessesByName("KINGDOM HEARTS II FINAL MIX")[0];
                 processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
             }
             catch (IndexOutOfRangeException e)
@@ -36,25 +41,21 @@ namespace KhTracker
 
         public byte[] ReadMemory(Int32 address, int bytesToRead)
         {
-            try
+            if (process.HasExited)
             {
-                if (process.HasExited)
-                {
-                    /*process = Process.GetProcessesByName("pcsx2")[0];
-                    processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);*/
-                        return new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF };
-                }
-                int bytesRead = 0;
-                byte[] buffer = new byte[bytesToRead];
-                
+                throw new Exception();
+            }
+            int bytesRead = 0;
+            byte[] buffer = new byte[bytesToRead];
+
+            ProcessModule processModule = process.MainModule;
+
+            if (PCSX2)
                 ReadProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesRead);
-                //Array.Reverse(buffer, 0, buffer.Length);
-                return buffer;
-            }
-            catch (IndexOutOfRangeException e)
-            {
-                return new byte[4] { 0x00, 0x00, 0x00, 0x00 };
-            }
+            else
+                ReadProcessMemory((int)processHandle, processModule.BaseAddress.ToInt64() + address, buffer, buffer.Length, ref bytesRead);
+
+            return buffer;
         }
     }
 }

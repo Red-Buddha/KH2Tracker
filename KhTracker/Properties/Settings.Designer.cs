@@ -310,5 +310,29 @@ namespace KhTracker.Properties {
                 this["TopMost"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BroadcastStartup {
+            get {
+                return ((bool)(this["BroadcastStartup"]));
+            }
+            set {
+                this["BroadcastStartup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FormsGrowth {
+            get {
+                return ((bool)(this["FormsGrowth"]));
+            }
+            set {
+                this["FormsGrowth"] = value;
+            }
+        }
     }
 }

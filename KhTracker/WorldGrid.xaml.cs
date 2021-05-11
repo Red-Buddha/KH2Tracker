@@ -60,9 +60,9 @@ namespace KhTracker
                 WorldComplete();
 
                 string worldName = Name.Substring(0, Name.Length - 4);
-                if (MainWindow.data.Hints.ContainsKey(worldName))
+                if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
-                    Image hint = MainWindow.data.Hints[Name.Substring(0, Name.Length - 4)];
+                    Image hint = MainWindow.data.WorldsData[worldName].hint;
                     ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
                 }
             }
@@ -141,26 +141,26 @@ namespace KhTracker
                     item.DragDropEventFire(data.reportInformation[index].Item1, data.reportInformation[index].Item2);
 
                     // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
-                    data.HintedWorlds[data.reportInformation[index].Item1] = true;
-                    if (data.HintedWorlds[data.reportLocations[index]] == true)
+                    data.WorldsData[data.reportInformation[index].Item1].hinted = true;
+                    if (data.WorldsData[data.reportLocations[index]].hinted == true)
                     {
-                        data.HintedHintWorlds[data.reportInformation[index].Item1] = true;
+                        data.WorldsData[data.reportInformation[index].Item1].hintedHint = true;
                     }
 
                     // loop through hinted world for reports to set their info as hinted hints
-                    for (int i = 0; i < data.Grids[data.reportInformation[index].Item1].Children.Count; ++i)
+                    for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children.Count; ++i)
                     {
-                        Item gridItem = data.Grids[data.reportInformation[index].Item1].Children[i] as Item;
+                        Item gridItem = data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children[i] as Item;
                         if (gridItem.Name.Contains("Report"))
                         {
                             int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
-                            data.HintedHintWorlds[data.reportInformation[reportIndex].Item1] = true;
-                            window.SetReportValue(data.Hints[data.reportInformation[reportIndex].Item1], data.reportInformation[reportIndex].Item2 + 1);
+                            data.WorldsData[data.reportInformation[reportIndex].Item1].hintedHint = true;
+                            window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2 + 1);
                         }
                     }
 
                     // auto update world important check number
-                    window.SetReportValue(data.Hints[data.reportInformation[index].Item1], data.reportInformation[index].Item2 + 1);
+                    window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2 + 1);
                 }
                 else
                 {
@@ -195,11 +195,11 @@ namespace KhTracker
         public void WorldComplete()
         {
             string worldName = Name.Substring(0, Name.Length - 4);
-            if (MainWindow.data.WorldComplete.ContainsKey(worldName) == false || MainWindow.data.WorldComplete[worldName] == true)
+            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
                 return;
 
             List<string> items = new List<string>();
-            items.AddRange(MainWindow.data.WorldCheckCount[Name.Substring(0, Name.Length - 4)]);
+            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
 
             foreach (var child in Children)
             {
@@ -213,7 +213,7 @@ namespace KhTracker
 
             if (items.Count == 0)
             {
-                MainWindow.data.WorldComplete[Name.Substring(0, Name.Length - 4)] = true;
+                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
             }
         }
     }

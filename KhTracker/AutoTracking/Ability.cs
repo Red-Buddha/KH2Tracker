@@ -8,8 +8,8 @@ namespace KhTracker
 {
     class Ability : ImportantCheck
     {
-        const int ADDRESS_START = 0x0032E074;
-        const int ADDRESS_END = 0x0032E112;
+        const int ADDRESS_START = 0x2544;
+        const int ADDRESS_END = 0x25CC;
 
         private int level;
         public int Level
@@ -24,11 +24,11 @@ namespace KhTracker
 
         private int levelOffset;
 
-        public Ability(MemoryReader mem, int address, int offset, string name) : base(mem, address, offset, name)
+        public Ability(MemoryReader mem, int address, int offset, string name, int save) : base(mem, address, offset, name)
         {
             Bytes = 158;
             levelOffset = 0;
-            this.Address = ADDRESS_START;
+            this.Address = ADDRESS_START + save;
         }
 
         public Ability(MemoryReader mem, int address, int offset, int levOffset, string name) : base(mem, address, offset, name)

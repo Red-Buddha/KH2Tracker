@@ -42,81 +42,6 @@ namespace KhTracker
         {
             data = new Data();
 
-            data.Worlds.Add("SorasHeart", SorasHeart);
-            data.Worlds.Add("DriveForms", DriveForms);
-            data.Worlds.Add("SimulatedTwilightTown", SimulatedTwilightTown);
-            data.Worlds.Add("TwilightTown", TwilightTown);
-            data.Worlds.Add("HollowBastion", HollowBastion);
-            data.Worlds.Add("BeastsCastle", BeastsCastle);
-            data.Worlds.Add("OlympusColiseum", OlympusColiseum);
-            data.Worlds.Add("Agrabah", Agrabah);
-            data.Worlds.Add("LandofDragons", LandofDragons);
-            data.Worlds.Add("HundredAcreWood", HundredAcreWood);
-            data.Worlds.Add("PrideLands", PrideLands);
-            data.Worlds.Add("DisneyCastle", DisneyCastle);
-            data.Worlds.Add("HalloweenTown", HalloweenTown);
-            data.Worlds.Add("PortRoyal", PortRoyal);
-            data.Worlds.Add("SpaceParanoids", SpaceParanoids);
-            data.Worlds.Add("TWTNW", TWTNW);
-            data.Worlds.Add("Atlantica", Atlantica);
-            data.Worlds.Add("GoA", GoA);
-
-            data.Hints.Add("SorasHeart", SorasHeartHint);
-            data.Hints.Add("DriveForms", DriveFormsHint);
-            data.Hints.Add("SimulatedTwilightTown", SimulatedTwilightTownHint);
-            data.Hints.Add("TwilightTown", TwilightTownHint);
-            data.Hints.Add("HollowBastion", HollowBastionHint);
-            data.Hints.Add("BeastsCastle", BeastsCastleHint);
-            data.Hints.Add("OlympusColiseum", OlympusColiseumHint);
-            data.Hints.Add("Agrabah", AgrabahHint);
-            data.Hints.Add("LandofDragons", LandofDragonsHint);
-            data.Hints.Add("HundredAcreWood", HundredAcreWoodHint);
-            data.Hints.Add("PrideLands", PrideLandsHint);
-            data.Hints.Add("DisneyCastle", DisneyCastleHint);
-            data.Hints.Add("HalloweenTown", HalloweenTownHint);
-            data.Hints.Add("PortRoyal", PortRoyalHint);
-            data.Hints.Add("SpaceParanoids", SpaceParanoidsHint);
-            data.Hints.Add("TWTNW", TWTNWHint);
-            data.Hints.Add("Atlantica", AtlanticaHint);
-
-            data.Grids.Add("SorasHeart", SorasHeartGrid);
-            data.Grids.Add("DriveForms", DriveFormsGrid);
-            data.Grids.Add("SimulatedTwilightTown", SimulatedTwilightTownGrid);
-            data.Grids.Add("TwilightTown", TwilightTownGrid);
-            data.Grids.Add("HollowBastion", HollowBastionGrid);
-            data.Grids.Add("BeastsCastle", BeastsCastleGrid);
-            data.Grids.Add("OlympusColiseum", OlympusColiseumGrid);
-            data.Grids.Add("Agrabah", AgrabahGrid);
-            data.Grids.Add("LandofDragons", LandofDragonsGrid);
-            data.Grids.Add("HundredAcreWood", HundredAcreWoodGrid);
-            data.Grids.Add("PrideLands", PrideLandsGrid);
-            data.Grids.Add("DisneyCastle", DisneyCastleGrid);
-            data.Grids.Add("HalloweenTown", HalloweenTownGrid);
-            data.Grids.Add("PortRoyal", PortRoyalGrid);
-            data.Grids.Add("SpaceParanoids", SpaceParanoidsGrid);
-            data.Grids.Add("TWTNW", TWTNWGrid);
-            data.Grids.Add("Atlantica", AtlanticaGrid);
-            data.Grids.Add("GoA", GoAGrid);
-
-            data.SelectedBars.Add("SorasHeart", SorasHeartBar);
-            data.SelectedBars.Add("DriveForms", DriveFormsBar);
-            data.SelectedBars.Add("SimulatedTwilightTown", SimulatedTwilightTownBar);
-            data.SelectedBars.Add("TwilightTown", TwilightTownBar);
-            data.SelectedBars.Add("HollowBastion", HollowBastionBar);
-            data.SelectedBars.Add("BeastsCastle", BeastsCastleBar);
-            data.SelectedBars.Add("OlympusColiseum", OlympusBar);
-            data.SelectedBars.Add("Agrabah", AgrabahBar);
-            data.SelectedBars.Add("LandofDragons", LandofDragonsBar);
-            data.SelectedBars.Add("HundredAcreWood", HundredAcreWoodBar);
-            data.SelectedBars.Add("PrideLands", PrideLandsBar);
-            data.SelectedBars.Add("DisneyCastle", DisneyCastleBar);
-            data.SelectedBars.Add("HalloweenTown", HalloweenTownBar);
-            data.SelectedBars.Add("PortRoyal", PortRoyalBar);
-            data.SelectedBars.Add("SpaceParanoids", SpaceParanoidsBar);
-            data.SelectedBars.Add("TWTNW", TWTNWBar);
-            data.SelectedBars.Add("Atlantica", AtlanticaBar);
-            data.SelectedBars.Add("GoA", GoABar);
-
             data.Reports.Add(Report1);
             data.Reports.Add(Report2);
             data.Reports.Add(Report3);
@@ -321,132 +246,6 @@ namespace KhTracker
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/8.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/NumbersBlue/9.png", UriKind.Relative)));
 
-            data.HintedWorlds.Add("SorasHeart", false);
-            data.HintedWorlds.Add("DriveForms", false);
-            data.HintedWorlds.Add("SimulatedTwilightTown", false);
-            data.HintedWorlds.Add("TwilightTown", false);
-            data.HintedWorlds.Add("HollowBastion", false);
-            data.HintedWorlds.Add("BeastsCastle", false);
-            data.HintedWorlds.Add("OlympusColiseum", false);
-            data.HintedWorlds.Add("Agrabah", false);
-            data.HintedWorlds.Add("LandofDragons", false);
-            data.HintedWorlds.Add("HundredAcreWood", false);
-            data.HintedWorlds.Add("PrideLands", false);
-            data.HintedWorlds.Add("DisneyCastle", false);
-            data.HintedWorlds.Add("HalloweenTown", false);
-            data.HintedWorlds.Add("PortRoyal", false);
-            data.HintedWorlds.Add("SpaceParanoids", false);
-            data.HintedWorlds.Add("TWTNW", false);
-            data.HintedWorlds.Add("Atlantica", false);
-            data.HintedWorlds.Add("GoA", true);
-
-            data.HintedHintWorlds.Add("SorasHeart", false);
-            data.HintedHintWorlds.Add("DriveForms", false);
-            data.HintedHintWorlds.Add("SimulatedTwilightTown", false);
-            data.HintedHintWorlds.Add("TwilightTown", false);
-            data.HintedHintWorlds.Add("HollowBastion", false);
-            data.HintedHintWorlds.Add("BeastsCastle", false);
-            data.HintedHintWorlds.Add("OlympusColiseum", false);
-            data.HintedHintWorlds.Add("Agrabah", false);
-            data.HintedHintWorlds.Add("LandofDragons", false);
-            data.HintedHintWorlds.Add("HundredAcreWood", false);
-            data.HintedHintWorlds.Add("PrideLands", false);
-            data.HintedHintWorlds.Add("DisneyCastle", false);
-            data.HintedHintWorlds.Add("HalloweenTown", false);
-            data.HintedHintWorlds.Add("PortRoyal", false);
-            data.HintedHintWorlds.Add("SpaceParanoids", false);
-            data.HintedHintWorlds.Add("TWTNW", false);
-            data.HintedHintWorlds.Add("Atlantica", false);
-
-            data.WorldCheckCount.Add("SorasHeart", new List<string>());
-            data.WorldCheckCount.Add("DriveForms", new List<string>());
-            data.WorldCheckCount.Add("SimulatedTwilightTown", new List<string>());
-            data.WorldCheckCount.Add("TwilightTown", new List<string>());
-            data.WorldCheckCount.Add("HollowBastion", new List<string>());
-            data.WorldCheckCount.Add("BeastsCastle", new List<string>());
-            data.WorldCheckCount.Add("OlympusColiseum", new List<string>());
-            data.WorldCheckCount.Add("Agrabah", new List<string>());
-            data.WorldCheckCount.Add("LandofDragons", new List<string>());
-            data.WorldCheckCount.Add("HundredAcreWood", new List<string>());
-            data.WorldCheckCount.Add("PrideLands", new List<string>());
-            data.WorldCheckCount.Add("DisneyCastle", new List<string>());
-            data.WorldCheckCount.Add("HalloweenTown", new List<string>());
-            data.WorldCheckCount.Add("PortRoyal", new List<string>());
-            data.WorldCheckCount.Add("SpaceParanoids", new List<string>());
-            data.WorldCheckCount.Add("TWTNW", new List<string>());
-            data.WorldCheckCount.Add("Atlantica", new List<string>());
-
-            data.WorldComplete.Add("SorasHeart", false);
-            data.WorldComplete.Add("DriveForms", false);
-            data.WorldComplete.Add("SimulatedTwilightTown", false);
-            data.WorldComplete.Add("TwilightTown", false);
-            data.WorldComplete.Add("HollowBastion", false);
-            data.WorldComplete.Add("BeastsCastle", false);
-            data.WorldComplete.Add("OlympusColiseum", false);
-            data.WorldComplete.Add("Agrabah", false);
-            data.WorldComplete.Add("LandofDragons", false);
-            data.WorldComplete.Add("HundredAcreWood", false);
-            data.WorldComplete.Add("PrideLands", false);
-            data.WorldComplete.Add("DisneyCastle", false);
-            data.WorldComplete.Add("HalloweenTown", false);
-            data.WorldComplete.Add("PortRoyal", false);
-            data.WorldComplete.Add("SpaceParanoids", false);
-            data.WorldComplete.Add("TWTNW", false);
-            data.WorldComplete.Add("Atlantica", false);
-
-            data.WorldProgress.Add("SorasHeart", 0);
-            data.WorldProgress.Add("DriveForms", 0);
-            data.WorldProgress.Add("SimulatedTwilightTown", 0);
-            data.WorldProgress.Add("TwilightTown", 0);
-            data.WorldProgress.Add("HollowBastion", 0);
-            data.WorldProgress.Add("BeastsCastle", 0);
-            data.WorldProgress.Add("OlympusColiseum", 0);
-            data.WorldProgress.Add("Agrabah", 0);
-            data.WorldProgress.Add("LandofDragons", 0);
-            data.WorldProgress.Add("HundredAcreWood", 0);
-            data.WorldProgress.Add("PrideLands", 0);
-            data.WorldProgress.Add("DisneyCastle", 0);
-            data.WorldProgress.Add("HalloweenTown", 0);
-            data.WorldProgress.Add("PortRoyal", 0);
-            data.WorldProgress.Add("SpaceParanoids", 0);
-            data.WorldProgress.Add("TWTNW", 0);
-            data.WorldProgress.Add("Atlantica", 0);
-
-            data.WorldsTop.Add("SorasHeart", SorasHeartTop);
-            data.WorldsTop.Add("DriveForms", DriveFormsTop);
-            data.WorldsTop.Add("SimulatedTwilightTown", SimulatedTwilightTownTop);
-            data.WorldsTop.Add("TwilightTown", TwilightTownTop);
-            data.WorldsTop.Add("HollowBastion", HollowBastionTop);
-            data.WorldsTop.Add("BeastsCastle", BeastsCastleTop);
-            data.WorldsTop.Add("OlympusColiseum", OlympusColiseumTop);
-            data.WorldsTop.Add("Agrabah", AgrabahTop);
-            data.WorldsTop.Add("LandofDragons", LandofDragonsTop);
-            data.WorldsTop.Add("HundredAcreWood", HundredAcreWoodTop);
-            data.WorldsTop.Add("PrideLands", PrideLandsTop);
-            data.WorldsTop.Add("DisneyCastle", DisneyCastleTop);
-            data.WorldsTop.Add("HalloweenTown", HalloweenTownTop);
-            data.WorldsTop.Add("PortRoyal", PortRoyalTop);
-            data.WorldsTop.Add("SpaceParanoids", SpaceParanoidsTop);
-            data.WorldsTop.Add("TWTNW", TWTNWTop);
-            data.WorldsTop.Add("GoA", GoATop);
-            data.WorldsTop.Add("Atlantica", AtlanticaTop);
-            
-            data.Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
-            data.Progression.Add("TwilightTown", TwilightTownProgression);
-            data.Progression.Add("HollowBastion", HollowBastionProgression);
-            data.Progression.Add("BeastsCastle", BeastsCastleProgression);
-            data.Progression.Add("OlympusColiseum", OlympusColiseumProgression);
-            data.Progression.Add("Agrabah", AgrabahProgression);
-            data.Progression.Add("LandofDragons", LandofDragonsProgression);
-            data.Progression.Add("HundredAcreWood", HundredAcreWoodProgression);
-            data.Progression.Add("PrideLands", PrideLandsProgression);
-            data.Progression.Add("DisneyCastle", DisneyCastleProgression);
-            data.Progression.Add("HalloweenTown", HalloweenTownProgression);
-            data.Progression.Add("PortRoyal", PortRoyalProgression);
-            data.Progression.Add("SpaceParanoids", SpaceParanoidsProgression);
-            data.Progression.Add("TWTNW", TWTNWProgression);
-            data.Progression.Add("Atlantica", AtlanticaProgression);
-
             data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
             data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));
             data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false));
@@ -552,6 +351,12 @@ namespace KhTracker
             TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
             TopMostToggle(null, null);
 
+            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
+            BroadcastStartupToggle(null, null);
+
+            FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
+            FormsGrowthToggle(null, null);
+
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 
@@ -570,17 +375,17 @@ namespace KhTracker
             {
                 if (data.selected != null)
                 {
-                    data.SelectedBars[data.selected.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                    data.WorldsData[data.selected.Name].selectedBar.Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                 }
 
                 data.selected = button;
-                data.SelectedBars[button.Name].Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
+                data.WorldsData[button.Name].selectedBar.Source = new BitmapImage(new Uri("Images\\VerticalBar.png", UriKind.Relative));
             }
             else if (e.ChangedButton == MouseButton.Middle)
             {
-                if (data.Hints.ContainsKey(button.Name))
+                if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null)
                 {
-                    data.Hints[button.Name].Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                    data.WorldsData[button.Name].hint.Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
                 }
             }
         }
@@ -589,9 +394,9 @@ namespace KhTracker
         {
             Button button = sender as Button;
 
-            if (data.Hints.ContainsKey(button.Name))
+            if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null)
             {
-                HandleReportValue(data.Hints[button.Name], e.Delta);
+                HandleReportValue(data.WorldsData[button.Name].hint, e.Delta);
             }
         }
 
@@ -599,16 +404,16 @@ namespace KhTracker
         {
             if (e.Key == Key.PageDown && data.selected != null)
             {
-                if (data.Hints.ContainsKey(data.selected.Name))
+                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].hint != null)
                 {
-                    HandleReportValue(data.Hints[data.selected.Name], -1);
+                    HandleReportValue(data.WorldsData[data.selected.Name].hint, -1);
                 }
             }
             if (e.Key == Key.PageUp && data.selected != null)
             {
-                if (data.Hints.ContainsKey(data.selected.Name))
+                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].hint != null)
                 {
-                    HandleReportValue(data.Hints[data.selected.Name], 1);
+                    HandleReportValue(data.WorldsData[data.selected.Name].hint, 1);
                 }
             }
         }
@@ -675,7 +480,7 @@ namespace KhTracker
             var numList = data.Numbers;
 
             string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
-            if (data.HintedHintWorlds[location] || data.WorldComplete[location])
+            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete)
                 numList = data.BlueNumbers;
 
             if (value > 52)

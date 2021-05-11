@@ -4,8 +4,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.IO.Compression;
 using Microsoft.Win32;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace KhTracker
 {
@@ -28,7 +32,7 @@ namespace KhTracker
             }
         }
 
-        private void Save(string filename)
+        public void Save(string filename)
         {
             // save settings
             string settings = "Settings: ";
@@ -37,7 +41,7 @@ namespace KhTracker
             if (ReportsOption.IsChecked)
                 settings += "Secret Ansem Reports - ";
             if (AbilitiesOption.IsChecked)
-                settings += "Once More & Second Chance - ";
+                settings += "Second Chance & Once More - ";
             if (TornPagesOption.IsChecked)
                 settings += "Torn Pages - ";
             if (CureOption.IsChecked)
@@ -76,12 +80,15 @@ namespace KhTracker
             }
             // store hint values
             string hintValues = "HintValues:";
-            foreach (Image hint in data.Hints.Values.ToList())
+            foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
+                if (worldData.hint == null)
+                    continue;
+
                 int num = 0;
                 for (int i = 0; i < data.Numbers.Count; ++i)
                 {
-                    if (hint.Source == data.Numbers[i])
+                    if (worldData.hint.Source == data.Numbers[i])
                         num = i;
                 }
                 hintValues += " " + num.ToString();
@@ -89,109 +96,109 @@ namespace KhTracker
 
             // Save progress of worlds
             string Progress = "Progress:";
-            Progress += " " + data.WorldProgress["SimulatedTwilightTown"].ToString();
-            Progress += " " + data.WorldProgress["TwilightTown"].ToString();
-            Progress += " " + data.WorldProgress["HollowBastion"].ToString();
-            Progress += " " + data.WorldProgress["BeastsCastle"].ToString();
-            Progress += " " + data.WorldProgress["OlympusColiseum"].ToString();
-            Progress += " " + data.WorldProgress["Agrabah"].ToString();
-            Progress += " " + data.WorldProgress["LandofDragons"].ToString();
-            Progress += " " + data.WorldProgress["HundredAcreWood"].ToString();
-            Progress += " " + data.WorldProgress["PrideLands"].ToString();
-            Progress += " " + data.WorldProgress["DisneyCastle"].ToString();
-            Progress += " " + data.WorldProgress["HalloweenTown"].ToString();
-            Progress += " " + data.WorldProgress["PortRoyal"].ToString();
-            Progress += " " + data.WorldProgress["SpaceParanoids"].ToString();
-            Progress += " " + data.WorldProgress["TWTNW"].ToString();
+            Progress += " " + data.WorldsData["SimulatedTwilightTown"].progress.ToString();
+            Progress += " " + data.WorldsData["TwilightTown"].progress.ToString();
+            Progress += " " + data.WorldsData["HollowBastion"].progress.ToString();
+            Progress += " " + data.WorldsData["BeastsCastle"].progress.ToString();
+            Progress += " " + data.WorldsData["OlympusColiseum"].progress.ToString();
+            Progress += " " + data.WorldsData["Agrabah"].progress.ToString();
+            Progress += " " + data.WorldsData["LandofDragons"].progress.ToString();
+            Progress += " " + data.WorldsData["HundredAcreWood"].progress.ToString();
+            Progress += " " + data.WorldsData["PrideLands"].progress.ToString();
+            Progress += " " + data.WorldsData["DisneyCastle"].progress.ToString();
+            Progress += " " + data.WorldsData["HalloweenTown"].progress.ToString();
+            Progress += " " + data.WorldsData["PortRoyal"].progress.ToString();
+            Progress += " " + data.WorldsData["SpaceParanoids"].progress.ToString();
+            Progress += " " + data.WorldsData["TWTNW"].progress.ToString();
 
             // save items in worlds
             string soraHeart = "SorasHeart:";
-            foreach (Item item in data.Grids["SorasHeart"].Children)
+            foreach (Item item in data.WorldsData["SorasHeart"].worldGrid.Children)
             {
                 soraHeart += " " + item.Name;
             }
             string driveForms = "DriveForms:";
-            foreach (Item item in data.Grids["DriveForms"].Children)
+            foreach (Item item in data.WorldsData["DriveForms"].worldGrid.Children)
             {
                 driveForms += " " + item.Name;
             }
             string simulated = "SimulatedTwilightTown:";
-            foreach (Item item in data.Grids["SimulatedTwilightTown"].Children)
+            foreach (Item item in data.WorldsData["SimulatedTwilightTown"].worldGrid.Children)
             {
                 simulated += " " + item.Name;
             }
             string twilightTown = "TwilightTown:";
-            foreach (Item item in data.Grids["TwilightTown"].Children)
+            foreach (Item item in data.WorldsData["TwilightTown"].worldGrid.Children)
             {
                 twilightTown += " " + item.Name;
             }
             string hollowBastion = "HollowBastion:";
-            foreach (Item item in data.Grids["HollowBastion"].Children)
+            foreach (Item item in data.WorldsData["HollowBastion"].worldGrid.Children)
             {
                 hollowBastion += " " + item.Name;
             }
             string beastCastle = "BeastsCastle:";
-            foreach (Item item in data.Grids["BeastsCastle"].Children)
+            foreach (Item item in data.WorldsData["BeastsCastle"].worldGrid.Children)
             {
                 beastCastle += " " + item.Name;
             }
             string olympusColiseum = "OlympusColiseum:";
-            foreach (Item item in data.Grids["OlympusColiseum"].Children)
+            foreach (Item item in data.WorldsData["OlympusColiseum"].worldGrid.Children)
             {
                 olympusColiseum += " " + item.Name;
             }
             string agrabah = "Agrabah:";
-            foreach (Item item in data.Grids["Agrabah"].Children)
+            foreach (Item item in data.WorldsData["Agrabah"].worldGrid.Children)
             {
                 agrabah += " " + item.Name;
             }
             string landOfDragons = "LandofDragons:";
-            foreach (Item item in data.Grids["LandofDragons"].Children)
+            foreach (Item item in data.WorldsData["LandofDragons"].worldGrid.Children)
             {
                 landOfDragons += " " + item.Name;
             }
             string hundredAcreWood = "HundredAcreWood:";
-            foreach (Item item in data.Grids["HundredAcreWood"].Children)
+            foreach (Item item in data.WorldsData["HundredAcreWood"].worldGrid.Children)
             {
                 hundredAcreWood += " " + item.Name;
             }
             string prideLands = "PrideLands:";
-            foreach (Item item in data.Grids["PrideLands"].Children)
+            foreach (Item item in data.WorldsData["PrideLands"].worldGrid.Children)
             {
                 prideLands += " " + item.Name;
             }
             string disneyCastle = "DisneyCastle:";
-            foreach (Item item in data.Grids["DisneyCastle"].Children)
+            foreach (Item item in data.WorldsData["DisneyCastle"].worldGrid.Children)
             {
                 disneyCastle += " " + item.Name;
             }
             string halloweenTown = "HalloweenTown:";
-            foreach (Item item in data.Grids["HalloweenTown"].Children)
+            foreach (Item item in data.WorldsData["HalloweenTown"].worldGrid.Children)
             {
                 halloweenTown += " " + item.Name;
             }
             string portRoyal = "PortRoyal:";
-            foreach (Item item in data.Grids["PortRoyal"].Children)
+            foreach (Item item in data.WorldsData["PortRoyal"].worldGrid.Children)
             {
                 portRoyal += " " + item.Name;
             }
             string spaceparanoids = "SpaceParanoids:";
-            foreach (Item item in data.Grids["SpaceParanoids"].Children)
+            foreach (Item item in data.WorldsData["SpaceParanoids"].worldGrid.Children)
             {
                 spaceparanoids += " " + item.Name;
             }
             string TWTNW = "TWTNW:";
-            foreach (Item item in data.Grids["TWTNW"].Children)
+            foreach (Item item in data.WorldsData["TWTNW"].worldGrid.Children)
             {
                 TWTNW += " " + item.Name;
             }
             string atlantica = "Atlantica:";
-            foreach (Item item in data.Grids["Atlantica"].Children)
+            foreach (Item item in data.WorldsData["Atlantica"].worldGrid.Children)
             {
                 atlantica += " " + item.Name;
             }
             string GoA = "GoA:";
-            foreach (Item item in data.Grids["GoA"].Children)
+            foreach (Item item in data.WorldsData["GoA"].worldGrid.Children)
             {
                 GoA += " " + item.Name;
             }
@@ -286,39 +293,39 @@ namespace KhTracker
 
             // set hint values (DUMB)
             string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-            SetReportValue(data.Hints["SorasHeart"], int.Parse(hintValues[0]));
-            SetReportValue(data.Hints["DriveForms"], int.Parse(hintValues[1]));
-            SetReportValue(data.Hints["SimulatedTwilightTown"], int.Parse(hintValues[2]));
-            SetReportValue(data.Hints["TwilightTown"], int.Parse(hintValues[3]));
-            SetReportValue(data.Hints["HollowBastion"], int.Parse(hintValues[4]));
-            SetReportValue(data.Hints["BeastsCastle"], int.Parse(hintValues[5]));
-            SetReportValue(data.Hints["OlympusColiseum"], int.Parse(hintValues[6]));
-            SetReportValue(data.Hints["Agrabah"], int.Parse(hintValues[7]));
-            SetReportValue(data.Hints["LandofDragons"], int.Parse(hintValues[8]));
-            SetReportValue(data.Hints["HundredAcreWood"], int.Parse(hintValues[9]));
-            SetReportValue(data.Hints["PrideLands"], int.Parse(hintValues[10]));
-            SetReportValue(data.Hints["DisneyCastle"], int.Parse(hintValues[11]));
-            SetReportValue(data.Hints["HalloweenTown"], int.Parse(hintValues[12]));
-            SetReportValue(data.Hints["PortRoyal"], int.Parse(hintValues[13]));
-            SetReportValue(data.Hints["SpaceParanoids"], int.Parse(hintValues[14]));
-            SetReportValue(data.Hints["TWTNW"], int.Parse(hintValues[15]));
-            SetReportValue(data.Hints["Atlantica"], int.Parse(hintValues[16]));
+            SetReportValue(data.WorldsData["SorasHeart"].hint, int.Parse(hintValues[0]));
+            SetReportValue(data.WorldsData["DriveForms"].hint, int.Parse(hintValues[1]));
+            SetReportValue(data.WorldsData["SimulatedTwilightTown"].hint, int.Parse(hintValues[2]));
+            SetReportValue(data.WorldsData["TwilightTown"].hint, int.Parse(hintValues[3]));
+            SetReportValue(data.WorldsData["HollowBastion"].hint, int.Parse(hintValues[4]));
+            SetReportValue(data.WorldsData["BeastsCastle"].hint, int.Parse(hintValues[5]));
+            SetReportValue(data.WorldsData["OlympusColiseum"].hint, int.Parse(hintValues[6]));
+            SetReportValue(data.WorldsData["Agrabah"].hint, int.Parse(hintValues[7]));
+            SetReportValue(data.WorldsData["LandofDragons"].hint, int.Parse(hintValues[8]));
+            SetReportValue(data.WorldsData["HundredAcreWood"].hint, int.Parse(hintValues[9]));
+            SetReportValue(data.WorldsData["PrideLands"].hint, int.Parse(hintValues[10]));
+            SetReportValue(data.WorldsData["DisneyCastle"].hint, int.Parse(hintValues[11]));
+            SetReportValue(data.WorldsData["HalloweenTown"].hint, int.Parse(hintValues[12]));
+            SetReportValue(data.WorldsData["PortRoyal"].hint, int.Parse(hintValues[13]));
+            SetReportValue(data.WorldsData["SpaceParanoids"].hint, int.Parse(hintValues[14]));
+            SetReportValue(data.WorldsData["TWTNW"].hint, int.Parse(hintValues[15]));
+            SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
 
             string[] progress = reader.ReadLine().Substring(10).Split(' ');
-            data.WorldProgress["SimulatedTwilightTown"] = int.Parse(progress[0]);
-            data.WorldProgress["TwilightTown"] = int.Parse(progress[1]);
-            data.WorldProgress["HollowBastion"] = int.Parse(progress[2]);
-            data.WorldProgress["BeastsCastle"] = int.Parse(progress[3]);
-            data.WorldProgress["OlympusColiseum"] = int.Parse(progress[4]);
-            data.WorldProgress["Agrabah"] = int.Parse(progress[5]);
-            data.WorldProgress["LandofDragons"] = int.Parse(progress[6]);
-            data.WorldProgress["HundredAcreWood"] = int.Parse(progress[7]);
-            data.WorldProgress["PrideLands"] = int.Parse(progress[8]);
-            data.WorldProgress["DisneyCastle"] = int.Parse(progress[9]);
-            data.WorldProgress["HalloweenTown"] = int.Parse(progress[10]);
-            data.WorldProgress["PortRoyal"] = int.Parse(progress[11]);
-            data.WorldProgress["SpaceParanoids"] = int.Parse(progress[12]);
-            data.WorldProgress["TWTNW"] = int.Parse(progress[13]);
+            data.WorldsData["SimulatedTwilightTown"].progress = int.Parse(progress[0]);
+            data.WorldsData["TwilightTown"].progress = int.Parse(progress[1]);
+            data.WorldsData["HollowBastion"].progress = int.Parse(progress[2]);
+            data.WorldsData["BeastsCastle"].progress = int.Parse(progress[3]);
+            data.WorldsData["OlympusColiseum"].progress = int.Parse(progress[4]);
+            data.WorldsData["Agrabah"].progress = int.Parse(progress[5]);
+            data.WorldsData["LandofDragons"].progress = int.Parse(progress[6]);
+            data.WorldsData["HundredAcreWood"].progress = int.Parse(progress[7]);
+            data.WorldsData["PrideLands"].progress = int.Parse(progress[8]);
+            data.WorldsData["DisneyCastle"].progress = int.Parse(progress[9]);
+            data.WorldsData["HalloweenTown"].progress = int.Parse(progress[10]);
+            data.WorldsData["PortRoyal"].progress = int.Parse(progress[11]);
+            data.WorldsData["SpaceParanoids"].progress = int.Parse(progress[12]);
+            data.WorldsData["TWTNW"].progress = int.Parse(progress[13]);
 
             SetProgressIcons();
 
@@ -346,47 +353,60 @@ namespace KhTracker
 
         private void SetProgressIcons()
         {
-            string STTkey = data.ProgressKeys["SimulatedTwilightTown"][data.WorldProgress["SimulatedTwilightTown"]];
-            data.Progression["SimulatedTwilightTown"].SetResourceReference(ContentProperty, STTkey);
+            string STTkey = data.ProgressKeys["SimulatedTwilightTown"][data.WorldsData["SimulatedTwilightTown"].progress];
+            data.WorldsData["SimulatedTwilightTown"].progression.SetResourceReference(ContentProperty, STTkey);
             broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
-            string TTkey = data.ProgressKeys["TwilightTown"][data.WorldProgress["TwilightTown"]];
-            data.Progression["TwilightTown"].SetResourceReference(ContentProperty, TTkey);
+
+            string TTkey = data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
+            data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
-            string HBkey = data.ProgressKeys["HollowBastion"][data.WorldProgress["HollowBastion"]];
-            data.Progression["HollowBastion"].SetResourceReference(ContentProperty, HBkey);
+
+            string HBkey = data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
+            data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
             broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, STTkey);
-            string BCkey = data.ProgressKeys["BeastsCastle"][data.WorldProgress["BeastsCastle"]];
-            data.Progression["BeastsCastle"].SetResourceReference(ContentProperty, BCkey);
+
+            string BCkey = data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
+            data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
             broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, STTkey);
-            string OCkey = data.ProgressKeys["OlympusColiseum"][data.WorldProgress["OlympusColiseum"]];
-            data.Progression["OlympusColiseum"].SetResourceReference(ContentProperty, OCkey);
+
+            string OCkey = data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
+            data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
             broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, STTkey);
-            string AGkey = data.ProgressKeys["Agrabah"][data.WorldProgress["Agrabah"]];
-            data.Progression["Agrabah"].SetResourceReference(ContentProperty, AGkey);
+
+            string AGkey = data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
+            data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
             broadcast.AgrabahProgression.SetResourceReference(ContentProperty, STTkey);
-            string LoDkey = data.ProgressKeys["LandofDragons"][data.WorldProgress["LandofDragons"]];
-            data.Progression["LandofDragons"].SetResourceReference(ContentProperty, LoDkey);
+
+            string LoDkey = data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
+            data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
             broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, STTkey);
-            string HAWkey = data.ProgressKeys["HundredAcreWood"][data.WorldProgress["HundredAcreWood"]];
-            data.Progression["HundredAcreWood"].SetResourceReference(ContentProperty, HAWkey);
+
+            string HAWkey = data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
+            data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
             broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, STTkey);
-            string PLkey = data.ProgressKeys["PrideLands"][data.WorldProgress["PrideLands"]];
-            data.Progression["PrideLands"].SetResourceReference(ContentProperty, PLkey);
+
+            string PLkey = data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
+            data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
             broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, STTkey);
-            string DCkey = data.ProgressKeys["DisneyCastle"][data.WorldProgress["DisneyCastle"]];
-            data.Progression["DisneyCastle"].SetResourceReference(ContentProperty, DCkey);
+
+            string DCkey = data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
+            data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
             broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, STTkey);
-            string HTkey = data.ProgressKeys["HalloweenTown"][data.WorldProgress["HalloweenTown"]];
-            data.Progression["HalloweenTown"].SetResourceReference(ContentProperty, HTkey);
+
+            string HTkey = data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
+            data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
             broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, STTkey);
-            string PRkey = data.ProgressKeys["PortRoyal"][data.WorldProgress["PortRoyal"]];
-            data.Progression["PortRoyal"].SetResourceReference(ContentProperty, PRkey);
+
+            string PRkey = data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
+            data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
             broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, STTkey);
-            string SPkey = data.ProgressKeys["SpaceParanoids"][data.WorldProgress["SpaceParanoids"]];
-            data.Progression["SpaceParanoids"].SetResourceReference(ContentProperty, SPkey);
+
+            string SPkey = data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
+            data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
             broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, STTkey);
-            string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldProgress["TWTNW"]];
-            data.Progression["TWTNW"].SetResourceReference(ContentProperty, TWTNWkey);
+
+            string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
+            data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
             broadcast.TWTNWProgression.SetResourceReference(ContentProperty, STTkey);
         }
 
@@ -400,6 +420,8 @@ namespace KhTracker
                     LoadHints(files[0]);
                 else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
                     ParseSeed(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".ZIP")
+                    OpenKHSeed(files[0]);
             }
         }
 
@@ -419,7 +441,7 @@ namespace KhTracker
         {
             SetMode(Mode.Hints);
             ResetHints();
-            
+
             StreamReader streamReader = new StreamReader(filename);
 
             if (streamReader.EndOfStream)
@@ -471,15 +493,15 @@ namespace KhTracker
             data.reportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
-            foreach (var key in data.HintedWorlds.Keys.ToList())
+            foreach (var key in data.WorldsData.Keys.ToList())
             {
-                data.HintedWorlds[key] = false;
+                data.WorldsData[key].hinted = false;
             }
-            data.HintedWorlds["GoA"] = true;
+            data.WorldsData["GoA"].hinted = true;
 
-            foreach (var key in data.HintedHintWorlds.Keys.ToList())
+            foreach (var key in data.WorldsData.Keys.ToList())
             {
-                data.HintedHintWorlds[key] = false;
+                data.WorldsData[key].hintedHint = false;
             }
 
             foreach (ContentControl report in data.ReportAttemptVisual)
@@ -487,9 +509,10 @@ namespace KhTracker
                 report.SetResourceReference(ContentProperty, "Fail0");
             }
             
-            foreach (Image hint in data.Hints.Values.ToList())
+            foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
-                hint.Source = data.Numbers[0];
+                if (worldData.hint != null)
+                    worldData.hint.Source = data.Numbers[0];
             }
 
             for (int i = 0; i < data.Reports.Count; ++i)
@@ -567,16 +590,16 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                data.SelectedBars[data.selected.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                data.WorldsData[data.selected.Name].selectedBar.Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
             }
             data.selected = null;
 
-            foreach (WorldGrid grid in data.Grids.Values.ToList())
+            foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
-                for (int j = grid.Children.Count - 1; j >= 0; --j)
+                for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
                 {
-                    Item item = grid.Children[j] as Item;
-                    grid.Children.Remove(grid.Children[j]);
+                    Item item = worldData.worldGrid.Children[j] as Item;
+                    worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
                     ItemPool.Children.Add(item);
 
                     item.MouseDown -= item.Item_Return;
@@ -599,7 +622,7 @@ namespace KhTracker
             }
 
             // Reset 1st column row heights
-            RowDefinitionCollection rows1 = ((data.Grids["SorasHeart"].Parent as Grid).Parent as Grid).RowDefinitions;
+            RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows1)
             {
                 // don't reset turned off worlds
@@ -608,7 +631,7 @@ namespace KhTracker
             }
 
             // Reset 2nd column row heights
-            RowDefinitionCollection rows2 = ((data.Grids["DriveForms"].Parent as Grid).Parent as Grid).RowDefinitions;
+            RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
             foreach (RowDefinition row in rows2)
             {
                 // don't reset turned off worlds
@@ -618,31 +641,15 @@ namespace KhTracker
 
             ResetHints();
 
-            foreach (var key in data.HintedWorlds.Keys.ToList())
+            foreach (var key in data.WorldsData.Keys.ToList())
             {
-                data.HintedWorlds[key] = false;
+                data.WorldsData[key].hinted = false;
+                data.WorldsData[key].hintedHint = false;
+                data.WorldsData[key].complete = false;
+                data.WorldsData[key].checkCount.Clear();
+                data.WorldsData[key].progress = 0;
             }
-            data.HintedWorlds["GoA"] = true;
-
-            foreach (var key in data.HintedHintWorlds.Keys.ToList())
-            {
-                data.HintedHintWorlds[key] = false;
-            }
-
-            foreach (var key in data.WorldComplete.Keys.ToList())
-            {
-                data.WorldComplete[key] = false;
-            }
-
-            foreach (var key in data.WorldCheckCount.Keys.ToList())
-            {
-                data.WorldCheckCount[key].Clear();
-            }
-
-            foreach (var key in data.WorldProgress.Keys.ToList())
-            {
-                data.WorldProgress[key] = 0;
-            }
+            data.WorldsData["GoA"].hinted = true;            
 
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
@@ -659,20 +666,20 @@ namespace KhTracker
             broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "");
 
-           TwilightTownProgression.SetResourceReference(ContentProperty, "");
-           HollowBastionProgression.SetResourceReference(ContentProperty, "");
-           LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-           BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-           OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-           SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-           HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-           PortRoyalProgression.SetResourceReference(ContentProperty, "");
-           AgrabahProgression.SetResourceReference(ContentProperty, "");
-           PrideLandsProgression.SetResourceReference(ContentProperty, "");
-           DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-           HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-           SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-           TWTNWProgression.SetResourceReference(ContentProperty, "");
+            TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            AgrabahProgression.SetResourceReference(ContentProperty, "");
+            PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            TWTNWProgression.SetResourceReference(ContentProperty, "");
 
             LevelIcon.Visibility = Visibility.Hidden;
             Level.Visibility = Visibility.Hidden;
@@ -694,8 +701,22 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Hidden;
             broadcast.Weapon.Visibility = Visibility.Hidden;
 
+            broadcast.WorldRow.Height = new GridLength(7, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
+            //FormRow.Height = new GridLength(0, GridUnitType.Star);
 
+            ValorM.Opacity = .25;
+            WisdomM.Opacity = .25;
+            LimitM.Opacity = .25;
+            MasterM.Opacity = .25;
+            FinalM.Opacity = .25;
+
+            HighJump.Opacity = .25;
+            QuickRun.Opacity = .25;
+            DodgeRoll.Opacity = .25;
+            AerialDodge.Opacity = .25;
+            Glide.Opacity = .25;
+            
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();
@@ -709,6 +730,14 @@ namespace KhTracker
             reflectLevel = 0;
             magnetLevel = 0;
             tornPageCount = 0;
+
+            fire.Level = 0;
+            blizzard.Level = 0;
+            thunder.Level = 0;
+            cure.Level = 0;
+            reflect.Level = 0;
+            magnet.Level = 0;
+            pages.Quantity = 0;
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
@@ -735,9 +764,9 @@ namespace KhTracker
         {
             SetMode(Mode.AltHints);
 
-            foreach (string world in data.WorldCheckCount.Keys.ToList())
+            foreach (string world in data.WorldsData.Keys.ToList())
             {
-                data.WorldCheckCount[world].Clear();
+                data.WorldsData[world].checkCount.Clear();
             }
 
             StreamReader streamReader = new StreamReader(filename);
@@ -761,7 +790,7 @@ namespace KhTracker
                         continue;
 
                     string item = data.codes.itemCodes[Convert.ToInt32(codes[4], 16)];
-                    data.WorldCheckCount[world].Add(item);
+                    data.WorldsData[world].checkCount.Add(item);
                 }
                 else if (codes.Length == 1)
                 {
@@ -779,19 +808,19 @@ namespace KhTracker
 
             if (check1 == true && check2 == false)
             {
-                foreach (string world in data.WorldCheckCount.Keys.ToList())
+                foreach (string world in data.WorldsData.Keys.ToList())
                 {
-                    data.WorldCheckCount[world].Clear();
+                    data.WorldsData[world].checkCount.Clear();
                 }
             }
 
-            foreach (var key in data.Grids.Keys.ToList())
+            foreach (var key in data.WorldsData.Keys.ToList())
             {
                 if (key == "GoA")
                     continue;
 
-                data.Grids[key].WorldComplete();
-                SetReportValue(data.Hints[key], 1);
+                data.WorldsData[key].worldGrid.WorldComplete();
+                SetReportValue(data.WorldsData[key].hint, 1);
             }
         }
 
@@ -811,6 +840,146 @@ namespace KhTracker
                 ModeDisplay.Header = "Hints Mode";
                 data.mode = mode;
             }
+        }
+
+        private void OpenKHSeed(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".zip";
+            openFileDialog.Filter = "OpenKH Seeds (*.zip)|*.zip";
+            openFileDialog.Title = "Select Seed File";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                OpenKHSeed(openFileDialog.FileName);
+            }
+        }
+
+        private Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
+        {
+            {"Level", "SorasHeart" },
+            {"Form Levels", "DriveForms" },
+            {"Simulated Twilight Town", "SimulatedTwilightTown" },
+            {"Twilight Town", "TwilightTown" },
+            {"Hollow Bastion", "HollowBastion" },
+            {"Beast's Castle", "BeastsCastle" },
+            {"Olympus Coliseum", "OlympusColiseum" },
+            {"Agrabah", "Agrabah" },
+            {"Land of Dragons", "LandofDragons" },
+            {"Hundred Acre Wood", "HundredAcreWood" },
+            {"Pride Lands", "PrideLands" },
+            {"Disney Castle / Timeless River", "DisneyCastle" },
+            {"Halloween Town", "HalloweenTown" },
+            {"Port Royal", "PortRoyal" },
+            {"Space Paranoids", "SpaceParanoids" },
+            {"The World That Never Was", "TWTNW" },
+            {"Atlantica", "Atlantica" },
+            {"Proof of Connection", "Connection" },
+            {"Proof of Nonexistence", "Nonexistence" },
+            {"Proof of Peace", "Peace" },
+            {"Valor Form", "Valor" },
+            {"Wisdom Form", "Wisdom" },
+            {"Limit Form", "Limit" },
+            {"Master Form", "Master" },
+            {"Final Form", "Final" },
+            {"Fire Element", "Fire" },
+            {"Blizzard Element", "Blizzard" },
+            {"Thunder Element", "Thunder" },
+            {"Cure Element", "Cure" },
+            {"Magnet Element", "Magnet" },
+            {"Reflect Element", "Reflect" },
+            {"Ukulele Charm (Stitch)", "Ukulele" },
+            {"Baseball Charm (Chicken Little)", "Baseball" },
+            {"Lamp Charm (Genie)", "Lamp" },
+            {"Feather Charm (Peter Pan)", "Feather" },
+            {"Torn Pages", "TornPage" },
+            {"Second Chance", "SecondChance" },
+            {"Once More", "OnceMore" },
+            {"", "GoA"}
+        };
+
+
+
+        private void OpenKHSeed(string filename)
+        {
+            foreach (string world in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[world].checkCount.Clear();
+            }
+            using (ZipArchive archive = ZipFile.OpenRead(filename))
+            {
+                
+                foreach (var entry in archive.Entries)
+                {
+                    if (entry.FullName.EndsWith(".Hints"))
+                    {
+                        using (StreamReader reader = new StreamReader(entry.Open()))
+                        {
+                            var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadToEnd()));
+                            var hintObject = JsonSerializer.Deserialize<Dictionary<string,object>>(hintText);
+                            switch (hintObject["hintsType"].ToString())
+                            {
+                                case "Shananas":
+                                    SetMode(Mode.AltHints);
+                                    var worlds = JsonSerializer.Deserialize<Dictionary<string,List<string>>>(hintObject["world"].ToString());
+
+                                    foreach (var world in worlds)
+                                    {
+                                        if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                                        {
+                                            continue;
+                                        }
+                                        foreach (var item in world.Value)
+                                        {
+                                            data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                                        }
+
+                                    }
+                                    foreach (var key in data.WorldsData.Keys.ToList())
+                                    {
+                                        if (key == "GoA")
+                                            continue;
+
+                                        data.WorldsData[key].worldGrid.WorldComplete();
+                                        SetReportValue(data.WorldsData[key].hint, 1);
+                                    }
+
+                                    break;
+
+                                case "JSmartee":
+                                    SetMode(Mode.Hints);
+                                    var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string,object>>>(hintObject["Reports"].ToString());
+
+                                    List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                                    reportKeys.Sort();
+
+                                    foreach (var report in reportKeys)
+                                    {
+                                        var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                                        var count = reports[report.ToString()]["Count"].ToString();
+                                        var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                                        data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                                        data.reportLocations.Add(location);
+                                        
+                                    }
+                                    ReportsToggle(true);
+                                    data.hintsLoaded = true;
+                                    HintText.Content = "Hints Loaded";
+
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                            Console.WriteLine();
+                        }
+                    }
+                }
+
+
+            }
+
+
+
         }
     }
 }

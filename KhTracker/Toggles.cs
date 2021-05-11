@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 using System.Linq;
+using System.Windows.Data;
 
 namespace KhTracker
 {
@@ -44,7 +45,7 @@ namespace KhTracker
             {
                 if (data.selected == button)
                 {
-                    data.SelectedBars[button.Name].Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
+                    data.WorldsData[button.Name].selectedBar.Source = new BitmapImage(new Uri("Images\\VerticalBarWhite.png", UriKind.Relative));
                     data.selected = null;
                 }
 
@@ -243,11 +244,19 @@ namespace KhTracker
                 Magnet1.SetResourceReference(ContentProperty, "Magnet");
                 Magnet2.SetResourceReference(ContentProperty, "Magnet");
                 Magnet3.SetResourceReference(ContentProperty, "Magnet");
+
                 Valor.SetResourceReference(ContentProperty, "Valor");
                 Wisdom.SetResourceReference(ContentProperty, "Wisdom");
                 Limit.SetResourceReference(ContentProperty, "Limit");
                 Master.SetResourceReference(ContentProperty, "Master");
                 Final.SetResourceReference(ContentProperty, "Final");
+
+                ValorM.SetResourceReference(ContentProperty, "Valor");
+                WisdomM.SetResourceReference(ContentProperty, "Wisdom");
+                LimitM.SetResourceReference(ContentProperty, "Limit");
+                MasterM.SetResourceReference(ContentProperty, "Master");
+                FinalM.SetResourceReference(ContentProperty, "Final");
+
                 TornPage1.SetResourceReference(ContentProperty, "TornPage");
                 TornPage2.SetResourceReference(ContentProperty, "TornPage");
                 TornPage3.SetResourceReference(ContentProperty, "TornPage");
@@ -339,11 +348,19 @@ namespace KhTracker
                 Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
                 Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
                 Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
+
                 Valor.SetResourceReference(ContentProperty, "ValorOld");
                 Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
                 Limit.SetResourceReference(ContentProperty, "LimitOld");
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
+
+                ValorM.SetResourceReference(ContentProperty, "ValorOld");
+                WisdomM.SetResourceReference(ContentProperty, "WisdomOld");
+                LimitM.SetResourceReference(ContentProperty, "LimitOld");
+                MasterM.SetResourceReference(ContentProperty, "MasterOld");
+                FinalM.SetResourceReference(ContentProperty, "FinalOld");
+
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
@@ -374,6 +391,7 @@ namespace KhTracker
                 broadcast.Limit.SetResourceReference(ContentProperty, "LimitOld");
                 broadcast.Master.SetResourceReference(ContentProperty, "MasterOld");
                 broadcast.Final.SetResourceReference(ContentProperty, "FinalOld");
+
                 broadcast.Baseball.SetResourceReference(ContentProperty, "ChickenLittleOld");
                 broadcast.Lamp.SetResourceReference(ContentProperty, "GenieOld");
                 broadcast.Ukulele.SetResourceReference(ContentProperty, "StitchOld");
@@ -435,11 +453,19 @@ namespace KhTracker
                 Magnet1.SetResourceReference(ContentProperty, "MagnetOld");
                 Magnet2.SetResourceReference(ContentProperty, "MagnetOld");
                 Magnet3.SetResourceReference(ContentProperty, "MagnetOld");
+
                 Valor.SetResourceReference(ContentProperty, "ValorOld");
                 Wisdom.SetResourceReference(ContentProperty, "WisdomOld");
                 Limit.SetResourceReference(ContentProperty, "LimitOld");
                 Master.SetResourceReference(ContentProperty, "MasterOld");
                 Final.SetResourceReference(ContentProperty, "FinalOld");
+
+                ValorM.SetResourceReference(ContentProperty, "ValorOld");
+                WisdomM.SetResourceReference(ContentProperty, "WisdomOld");
+                LimitM.SetResourceReference(ContentProperty, "LimitOld");
+                MasterM.SetResourceReference(ContentProperty, "MasterOld");
+                FinalM.SetResourceReference(ContentProperty, "FinalOld");
+
                 TornPage1.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage2.SetResourceReference(ContentProperty, "TornPageOld");
                 TornPage3.SetResourceReference(ContentProperty, "TornPageOld");
@@ -490,49 +516,38 @@ namespace KhTracker
             {
                 broadcast.ToggleProgression(true);
 
-                foreach (string key in data.Progression.Keys.ToList())
+                foreach (string key in data.WorldsData.Keys.ToList())
                 {
-                    data.Progression[key].Visibility = Visibility.Visible;
-                }
+                    if (data.WorldsData[key].progression != null)
+                        data.WorldsData[key].progression.Visibility = Visibility.Visible;
 
-                foreach (string key in data.WorldsTop.Keys.ToList())
-                {
-                    data.WorldsTop[key].ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-                    data.WorldsTop[key].ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
-                }
+                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
 
-                foreach (string key in data.Worlds.Keys.ToList())
-                {
-                    Grid grid = data.Worlds[key].Parent as Grid;
-
+                    Grid grid = data.WorldsData[key].world.Parent as Grid;
                     grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
                     grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
                     grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.Worlds[key], 2);
+                    Grid.SetColumnSpan(data.WorldsData[key].world, 2);
                 }
             }
             else
             {
                 broadcast.ToggleProgression(false);
 
-                foreach (string key in data.Progression.Keys.ToList())
+                foreach (string key in data.WorldsData.Keys.ToList())
                 {
-                    data.Progression[key].Visibility = Visibility.Hidden;
-                }                
+                    if (data.WorldsData[key].progression != null)
+                        data.WorldsData[key].progression.Visibility = Visibility.Hidden;
 
-                foreach (string key in data.WorldsTop.Keys.ToList())
-                {
-                    data.WorldsTop[key].ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                    data.WorldsTop[key].ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
-                }
+                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
 
-                foreach (string key in data.Worlds.Keys.ToList())
-                {
-                    Grid grid = data.Worlds[key].Parent as Grid;
+                    Grid grid = data.WorldsData[key].world.Parent as Grid;
                     grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
                     grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
                     grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.Worlds[key], 3);
+                    Grid.SetColumnSpan(data.WorldsData[key].world, 3);
                 }
             }
         }
@@ -574,6 +589,22 @@ namespace KhTracker
             Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
             Topmost = TopMostOption.IsChecked;
             broadcast.Topmost = TopMostOption.IsChecked;
+        }
+
+        private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.BroadcastStartup = BroadcastStartupOption.IsChecked;
+            if (BroadcastStartupOption.IsChecked)
+                broadcast.Show();
+        }
+
+        private void FormsGrowthToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.FormsGrowth = FormsGrowthOption.IsChecked;
+            if (FormsGrowthOption.IsChecked)
+                FormRow.Height = new GridLength(0.65, GridUnitType.Star);
+            else
+                FormRow.Height = new GridLength(0, GridUnitType.Star);
         }
     }
 }

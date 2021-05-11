@@ -22,11 +22,22 @@ namespace KhTracker
         }
         private int byteNum;
         private int levelAddr;
+        private int genieFixAddr;
+        public bool genieFix;
 
         public DriveForm(MemoryReader mem, int address, int offset, int byteNumber, int levelAddress, string name) : base(mem, address, offset, name)
         {
             byteNum = byteNumber;
             levelAddr = levelAddress;
+            Bytes = 2;
+        }
+
+        public DriveForm(MemoryReader mem, int address, int offset, int byteNumber, int levelAddress, int genieFixAddress, string name) : base(mem, address, offset, name)
+        {
+            byteNum = byteNumber;
+            levelAddr = levelAddress;
+            genieFixAddr = genieFixAddress;
+            genieFix = false;
             Bytes = 2;
         }
 
@@ -50,6 +61,12 @@ namespace KhTracker
                 Level = levelData[0];
                 if (App.logger != null)
                     App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+            }
+
+            if (genieFixAddr != 0)
+            {
+                byte[] genieData = memory.ReadMemory(genieFixAddr + ADDRESS_OFFSET, 1);
+                genieFix = new BitArray(genieData)[0];
             }
             
             return null;
