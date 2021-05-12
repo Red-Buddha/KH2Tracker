@@ -294,74 +294,82 @@ namespace KhTracker
 
         private void InitOptions()
         {
-            PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
-            HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
-
-            ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
-            for (int i = 0; i < data.Reports.Count; ++i)
+            try
             {
-                HandleItemToggle(ReportsOption.IsChecked, data.Reports[i], true);
+                PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
+                HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
+
+                ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
+                for (int i = 0; i < data.Reports.Count; ++i)
+                {
+                    HandleItemToggle(ReportsOption.IsChecked, data.Reports[i], true);
+                }
+
+                AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
+                HandleItemToggle(AbilitiesOption.IsChecked, OnceMore, true);
+                HandleItemToggle(AbilitiesOption.IsChecked, SecondChance, true);
+
+                TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
+                for (int i = 0; i < data.TornPages.Count; ++i)
+                {
+                    HandleItemToggle(TornPagesOption.IsChecked, data.TornPages[i], true);
+                }
+
+                CureOption.IsChecked = Properties.Settings.Default.Cure;
+                HandleItemToggle(CureOption.IsChecked, Cure1, true);
+                HandleItemToggle(CureOption.IsChecked, Cure2, true);
+                HandleItemToggle(CureOption.IsChecked, Cure3, true);
+
+                FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
+                HandleItemToggle(FinalFormOption.IsChecked, Final, true);
+
+                SimpleOption.IsChecked = Properties.Settings.Default.Simple;
+                if (SimpleOption.IsChecked)
+                    SimpleToggle(null, null);
+
+                OrbOption.IsChecked = Properties.Settings.Default.Orb;
+                if (OrbOption.IsChecked)
+                    OrbToggle(null, null);
+
+                AltOption.IsChecked = Properties.Settings.Default.Alt;
+                if (AltOption.IsChecked)
+                    AltToggle(null, null);
+
+                WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
+                WorldProgressToggle(null, null);
+
+                SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
+                SoraHeartToggle(SoraHeartOption.IsChecked);
+                SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
+                SimulatedToggle(SimulatedOption.IsChecked);
+                HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
+                HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
+                AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
+                AtlanticaToggle(AtlanticaOption.IsChecked);
+
+                DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
+                DragDropToggle(null, null);
+
+                TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
+                TopMostToggle(null, null);
+
+                BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
+                BroadcastStartupToggle(null, null);
+
+                FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
+                FormsGrowthToggle(null, null);
+
+                Top = Properties.Settings.Default.WindowY;
+                Left = Properties.Settings.Default.WindowX;
+
+                Width = Properties.Settings.Default.Width;
+                Height = Properties.Settings.Default.Height;
             }
-
-            AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
-            HandleItemToggle(AbilitiesOption.IsChecked, OnceMore, true);
-            HandleItemToggle(AbilitiesOption.IsChecked, SecondChance, true);
-
-            TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            for (int i = 0; i < data.TornPages.Count; ++i)
+            catch(Exception e)
             {
-                HandleItemToggle(TornPagesOption.IsChecked, data.TornPages[i], true);
+                Properties.Settings.Default.Reset();
+
             }
-
-            CureOption.IsChecked = Properties.Settings.Default.Cure;
-            HandleItemToggle(CureOption.IsChecked, Cure1, true);
-            HandleItemToggle(CureOption.IsChecked, Cure2, true);
-            HandleItemToggle(CureOption.IsChecked, Cure3, true);
-
-            FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            HandleItemToggle(FinalFormOption.IsChecked, Final, true);
-
-            SimpleOption.IsChecked = Properties.Settings.Default.Simple;
-            if (SimpleOption.IsChecked)
-                SimpleToggle(null, null);
-
-            OrbOption.IsChecked = Properties.Settings.Default.Orb;
-            if (OrbOption.IsChecked)
-                OrbToggle(null, null);
-
-            AltOption.IsChecked = Properties.Settings.Default.Alt;
-            if (AltOption.IsChecked)
-                AltToggle(null, null);
-
-            WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
-            WorldProgressToggle(null, null);
-
-            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
-            SoraHeartToggle(SoraHeartOption.IsChecked);
-            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
-            SimulatedToggle(SimulatedOption.IsChecked);
-            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
-            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
-            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
-            AtlanticaToggle(AtlanticaOption.IsChecked);
-
-            DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
-            DragDropToggle(null, null);
-
-            TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
-            TopMostToggle(null, null);
-
-            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
-            BroadcastStartupToggle(null, null);
-
-            FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
-            FormsGrowthToggle(null, null);
-
-            Top = Properties.Settings.Default.WindowY;
-            Left = Properties.Settings.Default.WindowX;
-
-            Width = Properties.Settings.Default.Width;
-            Height = Properties.Settings.Default.Height;
         }
 
         /// 
