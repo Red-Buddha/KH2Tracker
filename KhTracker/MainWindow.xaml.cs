@@ -428,14 +428,14 @@ namespace KhTracker
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.WindowY = Top;
-            Properties.Settings.Default.WindowX = Left;
+            Properties.Settings.Default.WindowY = RestoreBounds.Top;
+            Properties.Settings.Default.WindowX = RestoreBounds.Left;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Properties.Settings.Default.Width = Width;
-            Properties.Settings.Default.Height = Height;
+            Properties.Settings.Default.Width = RestoreBounds.Width;
+            Properties.Settings.Default.Height = RestoreBounds.Height;
         }
 
         /// 
