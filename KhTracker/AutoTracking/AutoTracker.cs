@@ -127,16 +127,41 @@ namespace KhTracker
             int BtlEnd = 0x2A0D3A0;
             int Slot1 = 0x2A20C58;
 
-            if (PCSX2)
+            if (PCSX2 == false)
+            {
+                try
+                {
+                    CheckPCOffset();
+                }
+                catch (Win32Exception)
+                {
+                    memory = null;
+                    MessageBox.Show("Unable to access KH2FM try running KHTracker as admin");
+                    return;
+                }
+                catch
+                {
+                    memory = null;
+                    MessageBox.Show("Error connecting to KH2FM");
+                    return;
+                }
+            }
+            else
             {
                 try
                 {
                     findAddressOffset();
                 }
+                catch (Win32Exception)
+                {
+                    memory = null;
+                    MessageBox.Show("Unable to access PCSX2 try running KHTracker as admin");
+                    return;
+                }
                 catch
                 {
                     memory = null;
-                    MessageBox.Show("Please start KH2 before loading the Auto Tracker.");
+                    MessageBox.Show("Error connecting to PCSX2");
                     return;
                 }
                 
@@ -250,6 +275,17 @@ namespace KhTracker
             OnTimedEvent(null, null);
         }
 
+        private void CheckPCOffset()
+        {
+            Int32 testAddr = 0x009AA376 - 0x1000;
+            string good = "F680";
+            string tester = BytesToHex(memory.ReadMemory(testAddr, 2));
+            if (tester == good)
+            {
+                ADDRESS_OFFSET = -0x1000;
+            }
+        }
+
         private void findAddressOffset()
         {
             bool found = false;
@@ -341,15 +377,6 @@ namespace KhTracker
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
 
-            //// Checks to see if the connection has exited.
-            //byte[] tester = memory.ReadMemory(0x0010001C + ADDRESS_OFFSET, 2);
-            //if (Enumerable.SequenceEqual(tester, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }))
-            //{
-            //    aTimer.Stop();
-            //    MessageBox.Show("KH2FM has exited. Stopping auto tracker.");
-            //    return;
-            //}
-
             try
             {
                 stats.UpdateMemory();
@@ -366,7 +393,7 @@ namespace KhTracker
             catch
             {
                 aTimer.Stop();
-                MessageBox.Show("KH2FM has exited. Stopping auto tracker.");
+                MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
                 return;
             }
 

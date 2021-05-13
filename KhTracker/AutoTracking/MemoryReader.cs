@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
 
 namespace KhTracker
 {
@@ -30,7 +31,7 @@ namespace KhTracker
                     process = Process.GetProcessesByName("KINGDOM HEARTS II FINAL MIX")[0];
                 processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 Hooked = false;
                 return;

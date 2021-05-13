@@ -134,14 +134,14 @@ namespace KhTracker
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.BroadcastWindowY = Top;
-            Properties.Settings.Default.BroadcastWindowX = Left;
+            Properties.Settings.Default.BroadcastWindowY = RestoreBounds.Top;
+            Properties.Settings.Default.BroadcastWindowX = RestoreBounds.Left;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Properties.Settings.Default.BroadcastWindowWidth = Width;
-            Properties.Settings.Default.BroadcastWindowHeight = Height;
+            Properties.Settings.Default.BroadcastWindowWidth = RestoreBounds.Width;
+            Properties.Settings.Default.BroadcastWindowHeight = RestoreBounds.Height;
         }
 
         public void UpdateFound(string item, string world, bool add)
