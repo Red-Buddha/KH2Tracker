@@ -472,7 +472,7 @@ namespace KhTracker
         /// 
         private void HandleReportValue(Image Hint, int delta)
         {
-            if (data.hintsLoaded || data.mode == Mode.AltHints)
+            if (data.mode != Mode.None)
                 return;
 
             int num = 0;
@@ -494,9 +494,7 @@ namespace KhTracker
             if (num > 52)
                 num = 52;
 
-            if (num < 1 && data.mode == Mode.AltHints)
-                Hint.Source = data.Numbers[1];
-            else if (num < 0)
+            if (num < 0)
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[num];
@@ -515,7 +513,7 @@ namespace KhTracker
             if (value > 52)
                 value = 52;
 
-            if (value < 1 && data.mode == Mode.AltHints)
+            if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
                 Hint.Source = numList[1];
             else if (value < 0)
                 Hint.Source = numList[0];

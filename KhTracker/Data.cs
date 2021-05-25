@@ -11,11 +11,12 @@ namespace KhTracker
 {
     public class Data
     {
-        public Mode mode;
+        public Mode mode = Mode.None;
         public bool hintsLoaded = false;
         public Button selected = null;
         public bool dragDrop = true;
 
+        public string openKHHintText = "";
         public string[] hintFileText = new string[2];
         public Codes codes = new Codes();
 
@@ -75,6 +76,9 @@ namespace KhTracker
     public enum Mode
     {
         Hints,
-        AltHints
+        AltHints,
+        OpenKHHints,
+        OpenKHAltHints,
+        None
     }
 }

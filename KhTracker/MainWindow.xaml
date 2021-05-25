@@ -71,8 +71,8 @@
                 <MenuItem Name="BroadcastStartupOption" Header="Broadcast Window On Startup" IsCheckable="True" IsChecked="False" Click="BroadcastStartupToggle"/>
                 <MenuItem Name="FormsGrowthOption" Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
             </MenuItem>
-            <MenuItem Name="ModeDisplay" Header="Hints Mode" Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="v2.6.2" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Name="ModeDisplay" Header="" Focusable="False" IsHitTestVisible="False"/>
+            <MenuItem Header="v2.6.3" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -844,7 +844,7 @@
             <!-- Items -->
             <Grid Name="ItemPool" Grid.Row="3">
                 <Grid.RowDefinitions>
-                    <RowDefinition />
+                    <RowDefinition Name="ReportRow"/>
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />

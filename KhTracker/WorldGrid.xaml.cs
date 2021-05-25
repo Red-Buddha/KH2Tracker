@@ -55,7 +55,7 @@ namespace KhTracker
             int row = (int)Parent.GetValue(Grid.RowProperty);
             outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
 
-            if (MainWindow.data.mode == Mode.AltHints)
+            if (MainWindow.data.mode == Mode.AltHints || MainWindow.data.mode == Mode.OpenKHAltHints)
             {
                 WorldComplete();
 
