@@ -72,7 +72,7 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C70, 2, swordChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD0, 2, swordChecks, 59); // 99
             ReadReward(Bt10 + 0x25D30, 2, swordChecks, 65); // 99
-            ReadReward(Bt10 + 0x25DC0, 2, swordChecks, 73); // 99
+            ReadReward(Bt10 + 0x25DB0, 2, swordChecks, 73); // 99
             ReadReward(Bt10 + 0x25E70, 2, swordChecks, 85); // 99
             ReadReward(Bt10 + 0x25F50, 2, swordChecks, 99); // 99
 
@@ -107,7 +107,7 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C72, 2, shieldChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD2, 2, shieldChecks, 59); // 99
             ReadReward(Bt10 + 0x25D32, 2, shieldChecks, 65); // 99
-            ReadReward(Bt10 + 0x25DC2, 2, shieldChecks, 73); // 99
+            ReadReward(Bt10 + 0x25DB2, 2, shieldChecks, 73); // 99
             ReadReward(Bt10 + 0x25E72, 2, shieldChecks, 85); // 99
             ReadReward(Bt10 + 0x25F52, 2, shieldChecks, 99); // 99
 
@@ -142,7 +142,7 @@ namespace KhTracker
             ReadReward(Bt10 + 0x25C74, 2, staffChecks, 53); // 99
             ReadReward(Bt10 + 0x25CD4, 2, staffChecks, 59); // 99
             ReadReward(Bt10 + 0x25D34, 2, staffChecks, 65); // 99
-            ReadReward(Bt10 + 0x25DC4, 2, staffChecks, 73); // 99
+            ReadReward(Bt10 + 0x25DB4, 2, staffChecks, 73); // 99
             ReadReward(Bt10 + 0x25E74, 2, staffChecks, 85); // 99
             ReadReward(Bt10 + 0x25F54, 2, staffChecks, 99); // 99
 

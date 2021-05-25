@@ -366,6 +366,7 @@ namespace KhTracker
         private void SetTimer()
         {
             aTimer = new DispatcherTimer();
+            aTimer.Tick -= OnTimedEvent;
             aTimer.Tick += OnTimedEvent;
             aTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             aTimer.Start();
@@ -598,8 +599,11 @@ namespace KhTracker
                 }
                 else
                 {
-                    // add check to current world
-                    TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);
+                    if (data.WorldsData.ContainsKey(world.previousworldName))
+                    {
+                        // add check to current world
+                        TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);
+                    }
                 }
             }
         }
