@@ -66,7 +66,7 @@ namespace KhTracker
             if (genieFixAddr != 0)
             {
                 byte[] genieData = memory.ReadMemory(genieFixAddr + ADDRESS_OFFSET, 1);
-                genieFix = new BitArray(genieData)[0];
+                genieFix = Convert.ToBoolean(genieData[0]);
             }
             
             return null;
