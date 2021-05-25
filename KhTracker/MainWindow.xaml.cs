@@ -148,6 +148,35 @@ namespace KhTracker
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/68.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/69.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/70.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/71.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/72.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/73.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/74.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/75.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/76.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/77.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/78.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/79.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/80.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/81.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/82.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/83.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/84.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/85.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/86.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/87.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/88.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/89.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/90.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/91.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/92.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/93.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/94.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/95.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/96.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/97.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/98.png", UriKind.Relative)));
+            data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/99.png", UriKind.Relative)));
 
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/QuestionMark.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/0.png", UriKind.Relative)));
@@ -443,7 +472,7 @@ namespace KhTracker
         /// 
         private void HandleReportValue(Image Hint, int delta)
         {
-            if (data.hintsLoaded || data.mode == Mode.AltHints)
+            if (data.mode != Mode.None)
                 return;
 
             int num = 0;
@@ -465,9 +494,7 @@ namespace KhTracker
             if (num > 52)
                 num = 52;
 
-            if (num < 1 && data.mode == Mode.AltHints)
-                Hint.Source = data.Numbers[1];
-            else if (num < 0)
+            if (num < 0)
                 Hint.Source = data.Numbers[0];
             else
                 Hint.Source = data.Numbers[num];
@@ -486,7 +513,7 @@ namespace KhTracker
             if (value > 52)
                 value = 52;
 
-            if (value < 1 && data.mode == Mode.AltHints)
+            if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
                 Hint.Source = numList[1];
             else if (value < 0)
                 Hint.Source = numList[0];

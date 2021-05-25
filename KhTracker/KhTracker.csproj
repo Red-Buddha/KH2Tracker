@@ -640,6 +640,37 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Numbers\71.png" />
+    <Resource Include="Images\Numbers\72.png" />
+    <Resource Include="Images\Numbers\73.png" />
+    <Resource Include="Images\Numbers\74.png" />
+    <Resource Include="Images\Numbers\75.png" />
+    <Resource Include="Images\Numbers\76.png" />
+    <Resource Include="Images\Numbers\77.png" />
+    <Resource Include="Images\Numbers\78.png" />
+    <Resource Include="Images\Numbers\79.png" />
+    <Resource Include="Images\Numbers\80.png" />
+    <Resource Include="Images\Numbers\81.png" />
+    <Resource Include="Images\Numbers\82.png" />
+    <Resource Include="Images\Numbers\83.png" />
+    <Resource Include="Images\Numbers\84.png" />
+    <Resource Include="Images\Numbers\85.png" />
+    <Resource Include="Images\Numbers\86.png" />
+    <Resource Include="Images\Numbers\87.png" />
+    <Resource Include="Images\Numbers\88.png" />
+    <Resource Include="Images\Numbers\89.png" />
+    <Resource Include="Images\Numbers\90.png" />
+    <Resource Include="Images\Numbers\91.png" />
+    <Resource Include="Images\Numbers\92.png" />
+    <Resource Include="Images\Numbers\93.png" />
+    <Resource Include="Images\Numbers\94.png" />
+    <Resource Include="Images\Numbers\95.png" />
+    <Resource Include="Images\Numbers\96.png" />
+    <Resource Include="Images\Numbers\97.png" />
+    <Resource Include="Images\Numbers\98.png" />
+    <Resource Include="Images\Numbers\99.png" />
+  </ItemGroup>
   <Target Name="ILMerge">
     <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
     <Exec Command="$(ILMergeConsolePath) bin\Release\KhTracker.exe ^&#xD;&#xA;    /out:bin\KhTracker.exe ^&#xD;&#xA;    bin\Release\System.Text.Json.dll ^&#xD;&#xA;    bin\Release\System.Buffers.dll ^&#xD;&#xA;    bin\Release\System.Memory.dll ^&#xD;&#xA;    bin\Release\System.Numerics.Vectors.dll ^&#xD;&#xA;    bin\Release\System.Runtime.CompilerServices.Unsafe.dll ^&#xD;&#xA;    bin\Release\System.Text.Encodings.Web.dll ^&#xD;&#xA;    bin\Release\System.Threading.Tasks.Extensions.dll ^&#xD;&#xA;    bin\Release\System.ValueTuple.dll" />

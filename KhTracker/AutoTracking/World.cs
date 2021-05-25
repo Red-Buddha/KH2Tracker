@@ -50,7 +50,6 @@ namespace KhTracker
             SttAddress = sttAddress;
 
             worldCodes = new Dictionary<int, string>();
-            worldCodes.Add(01, "WorldofDarkness");
             worldCodes.Add(02, "TwilightTown");
             worldCodes.Add(03, "DestinyIsland");
             worldCodes.Add(04, "HollowBastion");
@@ -142,11 +141,13 @@ namespace KhTracker
             }
             else
             {
-                if (worldName != tempWorld)
+                if (worldName != tempWorld && tempWorld != "")
                 {
                     worldName = tempWorld;
                 }
             }
+
+            //(App.Current.MainWindow as MainWindow).HintText.Content = worldName;
         }
     }
 }

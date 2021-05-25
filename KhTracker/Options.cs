@@ -34,6 +34,7 @@ namespace KhTracker
 
         public void Save(string filename)
         {
+            string mode = "Mode: " + data.mode.ToString();
             // save settings
             string settings = "Settings: ";
             if (PromiseCharmOption.IsChecked)
@@ -58,40 +59,33 @@ namespace KhTracker
                 settings += "Atlantica - ";
 
             // save hint state (hint info, hints, track attempts)
-            string attempts = "Attempts: ";
-            string reportInfo = "Info: ";
-            string locations = "Locations: ";
-            if (data.hintsLoaded)
+            string attempts = "";
+            string hintValues = "";
+            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints)
             {
-                foreach (int num in data.reportAttempts)
+                attempts = "Attempts: ";
+                if (data.hintsLoaded)
                 {
-                    attempts += " - " + num.ToString();
+                    foreach (int num in data.reportAttempts)
+                    {
+                        attempts += " - " + num.ToString();
+                    }
                 }
+                // store hint values
+                hintValues = "HintValues:";
+                foreach (WorldData worldData in data.WorldsData.Values.ToList())
+                {
+                    if (worldData.hint == null)
+                        continue;
 
-                foreach (Tuple<string, int> info in data.reportInformation)
-                {
-                    reportInfo += " - " + info.Item1 + " " + info.Item2.ToString();
+                    int num = 0;
+                    for (int i = 0; i < data.Numbers.Count; ++i)
+                    {
+                        if (worldData.hint.Source == data.Numbers[i])
+                            num = i;
+                    }
+                    hintValues += " " + num.ToString();
                 }
-
-                foreach (string location in data.reportLocations)
-                {
-                    locations += " - " + location;
-                }
-            }
-            // store hint values
-            string hintValues = "HintValues:";
-            foreach (WorldData worldData in data.WorldsData.Values.ToList())
-            {
-                if (worldData.hint == null)
-                    continue;
-
-                int num = 0;
-                for (int i = 0; i < data.Numbers.Count; ++i)
-                {
-                    if (worldData.hint.Source == data.Numbers[i])
-                        num = i;
-                }
-                hintValues += " " + num.ToString();
             }
 
             // Save progress of worlds
@@ -206,15 +200,36 @@ namespace KhTracker
             FileStream file = File.Create(filename);
             StreamWriter writer = new StreamWriter(file);
 
+            writer.WriteLine(mode);
             writer.WriteLine(settings);
-            writer.WriteLine(data.hintsLoaded.ToString());
-            if (data.hintsLoaded)
+            if (data.mode == Mode.Hints)
             {
                 writer.WriteLine(attempts);
                 writer.WriteLine(data.hintFileText[0]);
                 writer.WriteLine(data.hintFileText[1]);
+                writer.WriteLine(hintValues);
             }
-            writer.WriteLine(hintValues);
+            else if (data.mode == Mode.OpenKHHints)
+            {
+                writer.WriteLine(attempts);
+                writer.WriteLine(data.openKHHintText);
+                writer.WriteLine(hintValues);
+            }
+            else if (data.mode == Mode.AltHints)
+            {
+                Dictionary<string, List<string>> test = new Dictionary<string, List<string>>();
+                foreach (string key in data.WorldsData.Keys.ToList())
+                {
+                    test.Add(key, data.WorldsData[key].checkCount);
+                }
+                string hintObject = JsonSerializer.Serialize(test);
+                string hintText = Convert.ToBase64String(Encoding.UTF8.GetBytes(hintObject));
+                writer.WriteLine(hintText);
+            }
+            else if (data.mode == Mode.OpenKHAltHints)
+            {
+                writer.WriteLine(data.openKHHintText);
+            }
             writer.WriteLine(Progress);
             writer.WriteLine(soraHeart);
             writer.WriteLine(driveForms);
@@ -258,13 +273,22 @@ namespace KhTracker
             // reset tracker
             OnReset(null, null);
 
+            string mode = reader.ReadLine().Substring(6);
+            if (mode == "Hints")
+                SetMode(Mode.Hints);
+            else if (mode == "AltHints")
+                SetMode(Mode.AltHints);
+            else if (mode == "OpenKHHints")
+                SetMode(Mode.OpenKHHints);
+            else if (mode == "OpenKHAltHints")
+                SetMode(Mode.OpenKHAltHints);
+
             // set settings
             string settings = reader.ReadLine();
             LoadSettings(settings.Substring(10));
 
             // set hint state
-            data.hintsLoaded = bool.Parse(reader.ReadLine());
-            if (data.hintsLoaded)
+            if (mode == "Hints")
             {
                 string attempts = reader.ReadLine();
                 attempts = attempts.Substring(13);
@@ -273,7 +297,7 @@ namespace KhTracker
                 {
                     data.reportAttempts[i] = int.Parse(attemptsArray[i]);
                 }
-
+                
                 string line1 = reader.ReadLine();
                 data.hintFileText[0] = line1;
                 string[] reportvalues = line1.Split('.');
@@ -290,26 +314,113 @@ namespace KhTracker
                     data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                 }
             }
+            else if (mode == "AltHints")
+            {
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintText);
+
+                foreach (var world in worlds)
+                {
+                    if (world.Key == "GoA")
+                    {
+                        continue;
+                    }
+                    foreach (var item in world.Value)
+                    {
+                        data.WorldsData[world.Key].checkCount.Add(item);
+                    }
+
+                }
+                foreach (var key in data.WorldsData.Keys.ToList())
+                {
+                    if (key == "GoA")
+                        continue;
+
+                    data.WorldsData[key].worldGrid.WorldComplete();
+                    SetReportValue(data.WorldsData[key].hint, 1);
+                }
+            }
+            else if (mode == "OpenKHHints")
+            {
+                string attempts = reader.ReadLine();
+                attempts = attempts.Substring(13);
+                string[] attemptsArray = attempts.Split('-');
+                for (int i = 0; i < attemptsArray.Length; ++i)
+                {
+                    data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                }
+
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+
+                List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                reportKeys.Sort();
+
+                foreach (var report in reportKeys)
+                {
+                    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                    var count = reports[report.ToString()]["Count"].ToString();
+                    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                    data.reportLocations.Add(location);
+
+                }
+                ReportsToggle(true);
+                data.hintsLoaded = true;
+                HintText.Content = "Hints Loaded";
+            }
+            else if (mode == "OpenKHAltHints")
+            {
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+
+                foreach (var world in worlds)
+                {
+                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                    {
+                        continue;
+                    }
+                    foreach (var item in world.Value)
+                    {
+                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                    }
+
+                }
+                foreach (var key in data.WorldsData.Keys.ToList())
+                {
+                    if (key == "GoA")
+                        continue;
+
+                    data.WorldsData[key].worldGrid.WorldComplete();
+                    SetReportValue(data.WorldsData[key].hint, 1);
+                }
+            }
+
 
             // set hint values (DUMB)
-            string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-            SetReportValue(data.WorldsData["SorasHeart"].hint, int.Parse(hintValues[0]));
-            SetReportValue(data.WorldsData["DriveForms"].hint, int.Parse(hintValues[1]));
-            SetReportValue(data.WorldsData["SimulatedTwilightTown"].hint, int.Parse(hintValues[2]));
-            SetReportValue(data.WorldsData["TwilightTown"].hint, int.Parse(hintValues[3]));
-            SetReportValue(data.WorldsData["HollowBastion"].hint, int.Parse(hintValues[4]));
-            SetReportValue(data.WorldsData["BeastsCastle"].hint, int.Parse(hintValues[5]));
-            SetReportValue(data.WorldsData["OlympusColiseum"].hint, int.Parse(hintValues[6]));
-            SetReportValue(data.WorldsData["Agrabah"].hint, int.Parse(hintValues[7]));
-            SetReportValue(data.WorldsData["LandofDragons"].hint, int.Parse(hintValues[8]));
-            SetReportValue(data.WorldsData["HundredAcreWood"].hint, int.Parse(hintValues[9]));
-            SetReportValue(data.WorldsData["PrideLands"].hint, int.Parse(hintValues[10]));
-            SetReportValue(data.WorldsData["DisneyCastle"].hint, int.Parse(hintValues[11]));
-            SetReportValue(data.WorldsData["HalloweenTown"].hint, int.Parse(hintValues[12]));
-            SetReportValue(data.WorldsData["PortRoyal"].hint, int.Parse(hintValues[13]));
-            SetReportValue(data.WorldsData["SpaceParanoids"].hint, int.Parse(hintValues[14]));
-            SetReportValue(data.WorldsData["TWTNW"].hint, int.Parse(hintValues[15]));
-            SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
+            if (data.hintsLoaded)
+            {
+                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
+                SetReportValue(data.WorldsData["SorasHeart"].hint, int.Parse(hintValues[0]));
+                SetReportValue(data.WorldsData["DriveForms"].hint, int.Parse(hintValues[1]));
+                SetReportValue(data.WorldsData["SimulatedTwilightTown"].hint, int.Parse(hintValues[2]));
+                SetReportValue(data.WorldsData["TwilightTown"].hint, int.Parse(hintValues[3]));
+                SetReportValue(data.WorldsData["HollowBastion"].hint, int.Parse(hintValues[4]));
+                SetReportValue(data.WorldsData["BeastsCastle"].hint, int.Parse(hintValues[5]));
+                SetReportValue(data.WorldsData["OlympusColiseum"].hint, int.Parse(hintValues[6]));
+                SetReportValue(data.WorldsData["Agrabah"].hint, int.Parse(hintValues[7]));
+                SetReportValue(data.WorldsData["LandofDragons"].hint, int.Parse(hintValues[8]));
+                SetReportValue(data.WorldsData["HundredAcreWood"].hint, int.Parse(hintValues[9]));
+                SetReportValue(data.WorldsData["PrideLands"].hint, int.Parse(hintValues[10]));
+                SetReportValue(data.WorldsData["DisneyCastle"].hint, int.Parse(hintValues[11]));
+                SetReportValue(data.WorldsData["HalloweenTown"].hint, int.Parse(hintValues[12]));
+                SetReportValue(data.WorldsData["PortRoyal"].hint, int.Parse(hintValues[13]));
+                SetReportValue(data.WorldsData["SpaceParanoids"].hint, int.Parse(hintValues[14]));
+                SetReportValue(data.WorldsData["TWTNW"].hint, int.Parse(hintValues[15]));
+                SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
+            }
 
             string[] progress = reader.ReadLine().Substring(10).Split(' ');
             data.WorldsData["SimulatedTwilightTown"].progress = int.Parse(progress[0]);
@@ -581,8 +692,8 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            ModeDisplay.Header = "Hints Mode";
-            data.mode = Mode.Hints;
+            ModeDisplay.Header = "";
+            data.mode = Mode.None;
 
             collected = 0;
             Collected.Source = data.Numbers[1];
@@ -639,6 +750,8 @@ namespace KhTracker
                     row.Height = new GridLength(1, GridUnitType.Star);
             }
 
+            ReportsToggle(true);
+            ReportRow.Height = new GridLength(1, GridUnitType.Star);
             ResetHints();
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -833,19 +946,21 @@ namespace KhTracker
 
         private void SetMode(Mode mode)
         {
-            if (data.mode != mode || mode == Mode.AltHints)
+            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
                 OnReset(null, null);
 
-            if (mode == Mode.AltHints)
+            if (mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
             {
                 ModeDisplay.Header = "Alt Hints Mode";
                 data.mode = mode;
                 ReportsToggle(false);
+                ReportRow.Height = new GridLength(0, GridUnitType.Star);
             }
-            else
+            else if (mode == Mode.Hints || mode == Mode.OpenKHHints)
             {
                 ModeDisplay.Header = "Hints Mode";
                 data.mode = mode;
+                ReportRow.Height = new GridLength(1, GridUnitType.Star);
             }
         }
 
@@ -921,12 +1036,13 @@ namespace KhTracker
                     {
                         using (StreamReader reader = new StreamReader(entry.Open()))
                         {
-                            var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadToEnd()));
+                            data.openKHHintText = reader.ReadToEnd();
+                            var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string,object>>(hintText);
                             switch (hintObject["hintsType"].ToString())
                             {
                                 case "Shananas":
-                                    SetMode(Mode.AltHints);
+                                    SetMode(Mode.OpenKHAltHints);
                                     var worlds = JsonSerializer.Deserialize<Dictionary<string,List<string>>>(hintObject["world"].ToString());
 
                                     foreach (var world in worlds)
@@ -953,7 +1069,7 @@ namespace KhTracker
                                     break;
 
                                 case "JSmartee":
-                                    SetMode(Mode.Hints);
+                                    SetMode(Mode.OpenKHHints);
                                     var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string,object>>>(hintObject["Reports"].ToString());
 
                                     List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
