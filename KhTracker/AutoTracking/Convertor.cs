@@ -230,8 +230,8 @@ namespace KhTracker
         {
             if ((int)value >= 0)
             {
-                if ((int)value > 70)
-                    value = 70;
+                if ((int)value > 99)
+                    value = 99;
 
                 return "Images/Numbers/" + (value).ToString() + ".png";
             }
