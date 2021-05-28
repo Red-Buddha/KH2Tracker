@@ -313,6 +313,9 @@ namespace KhTracker
                     string[] temp = reportvalues[i].Split(',');
                     data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                 }
+
+                data.hintsLoaded = true;
+                HintText.Content = "Hints Loaded";
             }
             else if (mode == "AltHints")
             {
@@ -364,9 +367,8 @@ namespace KhTracker
                     var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
                     data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
                     data.reportLocations.Add(location);
-
                 }
-                ReportsToggle(true);
+
                 data.hintsLoaded = true;
                 HintText.Content = "Hints Loaded";
             }
@@ -1082,7 +1084,6 @@ namespace KhTracker
                                         var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
                                         data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
                                         data.reportLocations.Add(location);
-                                        
                                     }
                                     ReportsToggle(true);
                                     data.hintsLoaded = true;
@@ -1097,12 +1098,7 @@ namespace KhTracker
                         }
                     }
                 }
-
-
             }
-
-
-
         }
     }
 }
