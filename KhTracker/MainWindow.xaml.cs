@@ -412,9 +412,9 @@ namespace KhTracker
             }
             else if (e.ChangedButton == MouseButton.Middle)
             {
-                if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null)
+                if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
-                    data.WorldsData[button.Name].hint.Source = new BitmapImage(new Uri("Images\\QuestionMark.png", UriKind.Relative));
+                    data.WorldsData[button.Name].hint.Source = new BitmapImage(new Uri("Images\\Numbers\\_QuestionMark.png", UriKind.Relative));
                 }
             }
         }
