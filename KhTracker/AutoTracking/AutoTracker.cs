@@ -365,8 +365,10 @@ namespace KhTracker
 
         private void SetTimer()
         {
+            if (aTimer != null)
+                aTimer.Stop();
+
             aTimer = new DispatcherTimer();
-            aTimer.Tick -= OnTimedEvent;
             aTimer.Tick += OnTimedEvent;
             aTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             aTimer.Start();

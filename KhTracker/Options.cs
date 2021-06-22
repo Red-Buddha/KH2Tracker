@@ -831,6 +831,18 @@ namespace KhTracker
             DodgeRoll.Opacity = .25;
             AerialDodge.Opacity = .25;
             Glide.Opacity = .25;
+
+            ValorLevel.Source = null;
+            WisdomLevel.Source = null;
+            LimitLevel.Source = null;
+            MasterLevel.Source = null;
+            FinalLevel.Source = null;
+
+            HighJumpLevel.Source = null;
+            QuickRunLevel.Source = null;
+            DodgeRollLevel.Source = null;
+            AerialDodgeLevel.Source = null;
+            GlideLevel.Source = null;
             
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
