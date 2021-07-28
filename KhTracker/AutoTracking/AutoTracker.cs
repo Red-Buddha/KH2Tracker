@@ -92,6 +92,9 @@ namespace KhTracker
         private int magnetLevel;
         private int tornPageCount;
 
+        private bool forcedFinal;
+        private CheckEveryCheck checkEveryCheck;
+
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
             InitAutoTracker(true);
@@ -123,6 +126,7 @@ namespace KhTracker
             // PC Address anchors
             int Now = 0x0714DB8;
             int Save = 0x09A7070;
+            int Sys3 = 0x2A59DB0;
             int Bt10 = 0x2A74840;
             int BtlEnd = 0x2A0D3A0;
             int Slot1 = 0x2A20C58;
@@ -168,6 +172,7 @@ namespace KhTracker
                 // PCSX2 anchors 
                 Now = 0x032BAE0;
                 Save = 0x032BB30;
+                Sys3 = 0x1CCB300;
                 Bt10 = 0x1CE5D80;
                 BtlEnd = 0x1D490C0;
                 Slot1 = 0x1C6C750;
@@ -245,6 +250,9 @@ namespace KhTracker
 
             stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
+
+            forcedFinal = false;
+            checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards);
 
             LevelIcon.Visibility = Visibility.Visible;
             Level.Visibility = Visibility.Visible;
@@ -511,9 +519,21 @@ namespace KhTracker
                     {
                         valor.Obtained = false;
                     }
-                    else if ((check.Name == "Final" && stats.form == 5))
+                    else if (check.Name == "Final")
                     {
-                        collectedChecks.Add(check);
+                        // if forced Final, start tracking the Final Form check
+                        if (stats.form == 5)
+                        {
+                            forcedFinal = true;
+                            checkEveryCheck.TrackCheck(0x001D);
+                        }
+                        // if not forced Final, track Final Form check like normal
+                        // else if Final was forced, check the tracked Final Form check
+                        else if (!forcedFinal || checkEveryCheck.UpdateTargetMemory())
+                        {
+                            collectedChecks.Add(check);
+                            newChecks.Add(check);
+                        }
                     }
                     else
                     {
