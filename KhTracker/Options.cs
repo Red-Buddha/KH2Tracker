@@ -1012,6 +1012,7 @@ namespace KhTracker
             {"Proof of Connection", "Connection" },
             {"Proof of Nonexistence", "Nonexistence" },
             {"Proof of Peace", "Peace" },
+            {"PromiseCharm", "PromiseCharm" },
             {"Valor Form", "Valor" },
             {"Wisdom Form", "Wisdom" },
             {"Limit Form", "Limit" },
