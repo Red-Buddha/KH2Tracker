@@ -911,6 +911,10 @@ namespace KhTracker
             {
                 string line = streamReader.ReadLine();
 
+                // ignore comment lines
+                if (line.Length >= 2 && line[0] == '/' && line[1] == '/')
+                    continue;
+
                 string[] codes = line.Split(',');
                 if (codes.Length == 5)
                 {
