@@ -522,7 +522,7 @@ namespace KhTracker
                     else if (check.Name == "Final")
                     {
                         // if forced Final, start tracking the Final Form check
-                        if (stats.form == 5)
+                        if (!forcedFinal && stats.form == 5)
                         {
                             forcedFinal = true;
                             checkEveryCheck.TrackCheck(0x001D);
