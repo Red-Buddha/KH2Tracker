@@ -104,9 +104,9 @@ namespace KhTracker
                     worldName = "GoA";
                 else if (roomNumber == 32)
                     worldName = "HalloweenTown"; // Vexen
-                else if (roomNumber == 33 && (eventID1 == 123 || eventID1 == 142))
+                else if (roomNumber == 33 && (eventID3 == 122 || eventID1 == 123 || eventID1 == 142))
                     worldName = "Agrabah"; // Lexaeus
-                else if (roomNumber == 33 && (eventID1 == 129 || eventID1 == 143))
+                else if (roomNumber == 33 && (eventID3 == 128 || eventID1 == 129 || eventID1 == 143))
                     worldName = "SpaceParanoids"; // Larxene
                 else if (roomNumber == 34)
                     worldName = "OlympusColiseum"; // Zexion
@@ -128,14 +128,14 @@ namespace KhTracker
             // Handle Data fights
             else if (tempWorld == "TWTNW")
             {
-                if (roomNumber == 10 && eventID1 == 108)
+                if (roomNumber == 10 && (eventID1 == 100 || eventID3 == 107 || eventID1 == 108))
                     worldName = "LandofDragons"; // Xigbar
-                else if (roomNumber == 15 && eventID1 == 110)
+                else if (roomNumber == 15 && (eventID1 == 102 || eventID3 == 109 || eventID1 == 110))
                     worldName = "PrideLands"; // Saix
-                else if (roomNumber == 14 && eventID1 == 112)
+                else if (roomNumber == 14 && (eventID1 == 101 || eventID3 == 111 || eventID1 == 112))
                     worldName = "PortRoyal"; // Luxord
-                else if (roomNumber == 21 && eventID1 == 114)
-                    worldName = "SimulatedTwilightTown"; // roxas
+                else if (roomNumber == 21 && (eventID1 == 99 || eventID3 == 113 || eventID1 == 114))
+                    worldName = "SimulatedTwilightTown"; // Roxas
                 else
                     worldName = "TWTNW";
             }
