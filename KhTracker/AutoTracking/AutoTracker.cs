@@ -484,7 +484,8 @@ namespace KhTracker
 
         private void UpdateMagicAddresses()
         {
-            if (world.worldName == "SimulatedTwilightTown")
+            if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
+                && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
             {
                 fire.UseSTTAddress(true);
                 blizzard.UseSTTAddress(true);
@@ -645,12 +646,6 @@ namespace KhTracker
                     broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
                     SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
                     data.WorldsData[world.worldName].progress = 2;
-                }
-                else if (world.roomNumber == 21 && world.eventID1 == 99 && world.eventComplete == 1 && data.WorldsData[world.worldName].progress <= 2) // Data Roxas finish
-                {
-                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "DataRoxas");
-                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "DataRoxas");
-                    data.WorldsData[world.worldName].progress = 3;
                 }
             }
             else if (world.worldName == "TwilightTown")
@@ -934,12 +929,6 @@ namespace KhTracker
                     LandofDragonsProgression.SetResourceReference(ContentProperty, "StormRider");
                     data.WorldsData[world.worldName].progress = 6;
                 }
-                else if (world.roomNumber == 10 && world.eventID1 == 100 && world.eventComplete == 1 && data.WorldsData[world.worldName].progress <= 6) // Data Xigbar finish
-                {
-                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "DataXigbar");
-                    LandofDragonsProgression.SetResourceReference(ContentProperty, "DataXigbar");
-                    data.WorldsData[world.worldName].progress = 7;
-                }
             }
             else if (world.worldName == "HundredAcreWood")
             {
@@ -1005,12 +994,6 @@ namespace KhTracker
                     broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Groundshaker");
                     PrideLandsProgression.SetResourceReference(ContentProperty, "Groundshaker");
                     data.WorldsData[world.worldName].progress = 4;
-                }
-                else if (world.roomNumber == 15 && world.eventID1 == 102 && world.eventComplete == 1 && data.WorldsData[world.worldName].progress <= 4) // Data Saix finish
-                {
-                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "DataSaix");
-                    PrideLandsProgression.SetResourceReference(ContentProperty, "DataSaix");
-                    data.WorldsData[world.worldName].progress = 5;
                 }
             }
             else if (world.worldName == "DisneyCastle")
@@ -1141,12 +1124,6 @@ namespace KhTracker
                     PortRoyalProgression.SetResourceReference(ContentProperty, "GrimReaper");
                     data.WorldsData[world.worldName].progress = 5;
                 }
-                else if (world.roomNumber == 14 && world.eventID1 == 101 && world.eventComplete == 1 && data.WorldsData[world.worldName].progress <= 5) // Data Luxord finish
-                {
-                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "DataLuxord");
-                    PortRoyalProgression.SetResourceReference(ContentProperty, "DataLuxord");
-                    data.WorldsData[world.worldName].progress = 6;
-                }
             }
             else if (world.worldName == "SpaceParanoids")
             {
@@ -1230,6 +1207,32 @@ namespace KhTracker
                     broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "DataXemnas");
                     TWTNWProgression.SetResourceReference(ContentProperty, "DataXemnas");
                     data.WorldsData[world.worldName].progress = 7;
+                }
+
+                // Handle data fights
+                else if (world.roomNumber == 21 && world.eventID1 == 99 && world.eventComplete == 1 && data.WorldsData["SimulatedTwilightTown"].progress <= 2) // Data Roxas finish
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "DataRoxas");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "DataRoxas");
+                    data.WorldsData["SimulatedTwilightTown"].progress = 3;
+                }
+                else if (world.roomNumber == 10 && world.eventID1 == 100 && world.eventComplete == 1 && data.WorldsData["LandofDragons"].progress <= 6) // Data Xigbar finish
+                {
+                    broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "DataXigbar");
+                    LandofDragonsProgression.SetResourceReference(ContentProperty, "DataXigbar");
+                    data.WorldsData["LandofDragons"].progress = 7;
+                }
+                else if (world.roomNumber == 15 && world.eventID1 == 102 && world.eventComplete == 1 && data.WorldsData["PrideLands"].progress <= 4) // Data Saix finish
+                {
+                    broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "DataSaix");
+                    PrideLandsProgression.SetResourceReference(ContentProperty, "DataSaix");
+                    data.WorldsData["PrideLands"].progress = 5;
+                }
+                else if (world.roomNumber == 14 && world.eventID1 == 101 && world.eventComplete == 1 && data.WorldsData["PortRoyal"].progress <= 5) // Data Luxord finish
+                {
+                    broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "DataLuxord");
+                    PortRoyalProgression.SetResourceReference(ContentProperty, "DataLuxord");
+                    data.WorldsData["PortRoyal"].progress = 6;
                 }
             }
         }
