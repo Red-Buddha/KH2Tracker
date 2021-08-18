@@ -104,9 +104,11 @@ namespace KhTracker
                     worldName = "GoA";
                 else if (roomNumber == 32)
                     worldName = "HalloweenTown"; // Vexen
-                else if (roomNumber == 33 && (eventID3 == 122 || eventID1 == 123 || eventID1 == 142))
+                else if (roomNumber == 33 && (eventID3 == 122 || eventID1 == 123 || eventID1 == 142     // AS Lexaeus
+                                            || eventID3 == 132 || eventID1 == 133 || eventID1 == 147))  // Data Lexaeus
                     worldName = "Agrabah"; // Lexaeus
-                else if (roomNumber == 33 && (eventID3 == 128 || eventID1 == 129 || eventID1 == 143))
+                else if (roomNumber == 33 && (eventID3 == 128 || eventID1 == 129 || eventID1 == 143     // AS Larxene
+                                            || eventID3 == 138 || eventID1 == 139 || eventID1 == 148))  // Data Larxene
                     worldName = "SpaceParanoids"; // Larxene
                 else if (roomNumber == 34)
                     worldName = "OlympusColiseum"; // Zexion
