@@ -484,7 +484,8 @@ namespace KhTracker
 
         private void UpdateMagicAddresses()
         {
-            if (world.worldName == "SimulatedTwilightTown")
+            if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
+                && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
             {
                 fire.UseSTTAddress(true);
                 blizzard.UseSTTAddress(true);
