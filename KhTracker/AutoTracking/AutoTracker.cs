@@ -1016,7 +1016,7 @@ namespace KhTracker
                     DisneyCastleProgression.SetResourceReference(ContentProperty, "OldPete");
                     data.WorldsData[world.worldName].progress = 3;
                 }
-                else if (world.roomNumber == 8 && world.eventID3 == 4) // Windows popup
+                else if (world.roomNumber == 0 && world.eventID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
                 {
                     broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "Windows");
                     DisneyCastleProgression.SetResourceReference(ContentProperty, "Windows");
