@@ -683,7 +683,7 @@ namespace KhTracker
             }
             else if (world.worldName == "HollowBastion")
             {
-                if (world.roomNumber == 10 && world.eventID3 == 1) // Marketplace
+                if (world.roomNumber == 0 && world.eventID3 == 1) // Marketplace
                 {
                     broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "HBChests");
                     HollowBastionProgression.SetResourceReference(ContentProperty, "HBChests");
@@ -971,13 +971,13 @@ namespace KhTracker
             }
             else if (world.worldName == "PrideLands")
             {
-                if (world.roomNumber == 6 && world.eventID3 == 1) // Gorge
+                if (world.roomNumber == 16 && world.eventID3 == 1) // Gorge
                 {
                     broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "PLChests");
                     PrideLandsProgression.SetResourceReference(ContentProperty, "PLChests");
                     data.WorldsData[world.worldName].progress = 1;
                 }
-                else if (world.roomNumber == 11 && world.eventID3 == 1) // oasis after talking to simba
+                else if (world.roomNumber == 12 && world.eventID3 == 1) // oasis after talking to simba
                 {
                     broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Simba");
                     PrideLandsProgression.SetResourceReference(ContentProperty, "Simba");
@@ -998,7 +998,7 @@ namespace KhTracker
             }
             else if (world.worldName == "DisneyCastle")
             {
-                if (world.roomNumber == 6 && world.eventID3 == 1) // Gummi hangar
+                if (world.roomNumber == 1 && world.eventID3 == 53) // Gummi hangar
                 {
                     broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "DCChests");
                     DisneyCastleProgression.SetResourceReference(ContentProperty, "DCChests");
@@ -1016,7 +1016,7 @@ namespace KhTracker
                     DisneyCastleProgression.SetResourceReference(ContentProperty, "OldPete");
                     data.WorldsData[world.worldName].progress = 3;
                 }
-                else if (world.roomNumber == 8 && world.eventID3 == 4) // Windows popup
+                else if (world.roomNumber == 0 && world.eventID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
                 {
                     broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "Windows");
                     DisneyCastleProgression.SetResourceReference(ContentProperty, "Windows");
@@ -1049,7 +1049,7 @@ namespace KhTracker
             }
             else if (world.worldName == "HalloweenTown")
             {
-                if (world.roomNumber == 2 && world.eventID3 == 1) // graveyard
+                if (world.roomNumber == 4 && world.eventID3 == 1) // graveyard
                 {
                     broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "HTChests");
                     HalloweenTownProgression.SetResourceReference(ContentProperty, "HTChests");
@@ -1127,7 +1127,7 @@ namespace KhTracker
             }
             else if (world.worldName == "SpaceParanoids")
             {
-                if (world.roomNumber == 0 && world.eventID3 == 1) // Door
+                if (world.roomNumber == 0 && world.eventID3 == 2) // Door
                 {
                     broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "SPChests");
                     SpaceParanoidsProgression.SetResourceReference(ContentProperty, "SPChests");
