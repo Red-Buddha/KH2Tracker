@@ -240,6 +240,9 @@
 	<Image x:Key="SpookyCave" Source="Images\Progression\bees.png" x:Shared="False"/>
 	<Image x:Key="StarryHill" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
 	<!--Simulated Twilight Town-->
+	<Image x:Key="STTChests" Source="Images\Progression\chest.png" x:Shared="False"/>
+	<Image x:Key="TwilightThorn" Source="Images\Progression\twilight_thorn.png" x:Shared="False"/>
+	<Image x:Key="Struggle" Source="Images\Progression\struggle.png" x:Shared="False"/>
 	<Image x:Key="ComputerRoom" Source="Images\Progression\computer_room.png" x:Shared="False"/>
 	<Image x:Key="Axel" Source="Images\Progression\axel.png" x:Shared="False"/>
 	<Image x:Key="DataRoxas" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
@@ -251,4 +254,8 @@
 	<Image x:Key="Saix" Source="Images\Progression\saix.png" x:Shared="False"/>
 	<Image x:Key="Xemnas1" Source="Images\Progression\xemnas.png" x:Shared="False"/>
 	<Image x:Key="DataXemnas" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
+	<!--Atlantica-->
+	<Image x:Key="Tutorial" Source="Images\Progression\ariel.png" x:Shared="False"/>
+	<Image x:Key="Ursula" Source="Images\Progression\ursula.png" x:Shared="False"/>
+	<Image x:Key="NewDay" Source="Images\Progression\mickey_head.png" x:Shared="False"/>
 </ResourceDictionary>
