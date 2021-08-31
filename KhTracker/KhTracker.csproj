@@ -675,6 +675,14 @@
     <Resource Include="Images\Numbers\98.png" />
     <Resource Include="Images\Numbers\99.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Progression\Ariel.png" />
+    <Resource Include="Images\Progression\ursula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Progression\Struggle.png" />
+    <Resource Include="Images\Progression\twilight_thorn.png" />
+  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
