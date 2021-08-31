@@ -635,17 +635,41 @@ namespace KhTracker
         {
             if (world.worldName == "SimulatedTwilightTown")
             {
-                if (world.roomNumber == 21 && world.eventID3 == 1) // Mansion: Computer Room
+                if (world.roomNumber == 1 && world.eventID3 == 56 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "STTChests");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "STTChests");
+                    data.WorldsData[world.worldName].progress = 1;
+                }
+                else if (world.roomNumber == 34 && world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
+                    data.WorldsData[world.worldName].progress = 2;
+                }
+                else if (world.roomNumber == 5 && world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Struggle");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Struggle");
+                    data.WorldsData[world.worldName].progress = 3;
+                }
+                else if (world.roomNumber == 1 && world.eventID3 == 55 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 6)
+                {
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "STTChests");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "STTChests");
+                    data.WorldsData[world.worldName].progress = 1;
+                }
+                else if (world.roomNumber == 21 && world.eventID3 == 1) // Mansion: Computer Room
                 {
                     broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "ComputerRoom");
                     SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "ComputerRoom");
-                    data.WorldsData[world.worldName].progress = 1;
+                    data.WorldsData[world.worldName].progress = 4;
                 }
                 else if (world.roomNumber == 20 && world.eventID1 == 137 && world.eventComplete == 1) // Axel finish
                 {
                     broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
                     SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
-                    data.WorldsData[world.worldName].progress = 2;
+                    data.WorldsData[world.worldName].progress = 5;
                 }
             }
             else if (world.worldName == "TwilightTown")
@@ -1030,6 +1054,24 @@ namespace KhTracker
                     broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "Groundshaker");
                     PrideLandsProgression.SetResourceReference(ContentProperty, "Groundshaker");
                     data.WorldsData[world.worldName].progress = 4;
+                }
+            }
+            else if (world.worldName == "Atlantica")
+            {
+                if (world.roomNumber == 2 && world.eventID1 == 52 && world.eventComplete == 1) // Tutorial
+                {
+                    PrideLandsProgression.SetResourceReference(ContentProperty, "Tutorial");
+                    data.WorldsData[world.worldName].progress = 1;
+                }
+                else if (world.roomNumber == 9 && world.eventID1 == 65 && world.eventComplete == 1) // Ursula's Revenge
+                {
+                    PrideLandsProgression.SetResourceReference(ContentProperty, "Ursula");
+                    data.WorldsData[world.worldName].progress = 2;
+                }
+                else if (world.roomNumber == 4 && world.eventID1 == 55 && world.eventComplete == 1) // A New Day is Dawning
+                {
+                    PrideLandsProgression.SetResourceReference(ContentProperty, "NewDay");
+                    data.WorldsData[world.worldName].progress = 3;
                 }
             }
             else if (world.worldName == "DisneyCastle")
