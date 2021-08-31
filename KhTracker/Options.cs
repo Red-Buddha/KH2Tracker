@@ -472,55 +472,55 @@ namespace KhTracker
 
             string TTkey = data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
             data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
-            broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, TTkey);
 
             string HBkey = data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
             data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
-            broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, HBkey);
 
             string BCkey = data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
             data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
-            broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, BCkey);
 
             string OCkey = data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
             data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
-            broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, OCkey);
 
             string AGkey = data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
             data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
-            broadcast.AgrabahProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.AgrabahProgression.SetResourceReference(ContentProperty, AGkey);
 
             string LoDkey = data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
             data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
-            broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, LoDkey);
 
             string HAWkey = data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
             data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
-            broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, LoDkey);
 
             string PLkey = data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
             data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
-            broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, PLkey);
 
             string DCkey = data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
             data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
-            broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, DCkey);
 
             string HTkey = data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
             data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
-            broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, HTkey);
 
             string PRkey = data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
             data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
-            broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, PRkey);
 
             string SPkey = data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
             data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
-            broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, SPkey);
 
             string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
             data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
-            broadcast.TWTNWProgression.SetResourceReference(ContentProperty, STTkey);
+            broadcast.TWTNWProgression.SetResourceReference(ContentProperty, TWTNWkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
