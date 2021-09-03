@@ -522,7 +522,7 @@ namespace KhTracker
             data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
             broadcast.TWTNWProgression.SetResourceReference(ContentProperty, TWTNWkey);
 
-            string ATkey = data.ProgressKeys["Atalantica"][data.WorldsData["Atlantica"].progress];
+            string ATkey = data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
             data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
         }
 
