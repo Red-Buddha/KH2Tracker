@@ -521,6 +521,9 @@ namespace KhTracker
             string TWTNWkey = data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
             data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
             broadcast.TWTNWProgression.SetResourceReference(ContentProperty, TWTNWkey);
+
+            string ATkey = data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
+            data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)

@@ -643,8 +643,8 @@ namespace KhTracker
                 }
                 else if (world.roomNumber == 34 && world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
                 {
-                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
-                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "Axel");
+                    broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "TwilightThorn");
+                    SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "TwilightThorn");
                     data.WorldsData[world.worldName].progress = 2;
                 }
                 else if (world.roomNumber == 5 && world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
@@ -1058,19 +1058,19 @@ namespace KhTracker
             }
             else if (world.worldName == "Atlantica")
             {
-                if (world.roomNumber == 2 && world.eventID1 == 52 && world.eventComplete == 1) // Tutorial
+                if (world.roomNumber == 2 && world.eventID1 == 63) // Tutorial
                 {
-                    PrideLandsProgression.SetResourceReference(ContentProperty, "Tutorial");
+                    AtlanticaProgression.SetResourceReference(ContentProperty, "Tutorial");
                     data.WorldsData[world.worldName].progress = 1;
                 }
-                else if (world.roomNumber == 9 && world.eventID1 == 65 && world.eventComplete == 1) // Ursula's Revenge
+                else if (world.roomNumber == 9 && world.eventID1 == 65) // Ursula's Revenge
                 {
-                    PrideLandsProgression.SetResourceReference(ContentProperty, "Ursula");
+                    AtlanticaProgression.SetResourceReference(ContentProperty, "Ursula");
                     data.WorldsData[world.worldName].progress = 2;
                 }
-                else if (world.roomNumber == 4 && world.eventID1 == 55 && world.eventComplete == 1) // A New Day is Dawning
+                else if (world.roomNumber == 4 && world.eventID1 == 55) // A New Day is Dawning
                 {
-                    PrideLandsProgression.SetResourceReference(ContentProperty, "NewDay");
+                    AtlanticaProgression.SetResourceReference(ContentProperty, "NewDay");
                     data.WorldsData[world.worldName].progress = 3;
                 }
             }
