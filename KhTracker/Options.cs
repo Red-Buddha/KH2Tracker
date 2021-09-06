@@ -374,7 +374,8 @@ namespace KhTracker
             }
             else if (mode == "OpenKHAltHints")
             {
-                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                data.openKHHintText = reader.ReadLine();
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
 
