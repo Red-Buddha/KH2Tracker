@@ -352,8 +352,8 @@ namespace KhTracker
                 {
                     data.reportAttempts[i] = int.Parse(attemptsArray[i]);
                 }
-
-                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                data.openKHHintText = reader.ReadLine();
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
 
