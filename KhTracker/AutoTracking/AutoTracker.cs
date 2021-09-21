@@ -125,11 +125,11 @@ namespace KhTracker
 
             // PC Address anchors
             int Now = 0x0714DB8;
-            int Save = 0x09A7070;
-            int Sys3 = 0x2A59DB0;
-            int Bt10 = 0x2A74840;
-            int BtlEnd = 0x2A0D3A0;
-            int Slot1 = 0x2A20C58;
+            int Save = 0x09A70B0;
+            int Sys3 = 0x2A59DF0;
+            int Bt10 = 0x2A74880;
+            int BtlEnd = 0x2A0D3E0;
+            int Slot1 = 0x2A20C98;
 
             if (PCSX2 == false)
             {
