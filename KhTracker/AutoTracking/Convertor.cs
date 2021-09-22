@@ -46,7 +46,7 @@ namespace KhTracker
             }
             else
             {
-                return 0.25;
+                return 0.45;
             }
         }
 
@@ -65,31 +65,45 @@ namespace KhTracker
 
     public class LevelConverter : IValueConverter
     {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/";
+        private string CurrentPath = "Images/Numbers/Kh2/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
             if ((int)value == 2)
             {
-                return "Images/Numbers/2.png";
+                return CurrentPath + "Yellow/2.png";
             }
             else if ((int)value == 3)
             {
-                return "Images/Numbers/3.png";
+                return CurrentPath + "Yellow/3.png";
             }
             else if ((int)value == 4)
             {
-                return "Images/Numbers/4.png";
+                return CurrentPath + "Yellow/4.png";
             }
             else if ((int)value == 5)
             {
-                return "Images/Numbers/5.png";
+                return CurrentPath + "Yellow/5.png";
             }
             else if ((int)value == 6)
             {
-                return "Images/Numbers/6.png";
+                return CurrentPath + "Yellow/6.png";
             }
             else if ((int)value == 7)
             {
-                return "Images/Numbers/7.png";
+                return CurrentPath + "Yellow/7.png";
             }
             else
             {
@@ -99,27 +113,34 @@ namespace KhTracker
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((string)value == "Images/Numbers/2.png")
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
+            if ((string)value == CurrentPath + "Yellow/2.png")
             {
                 return 2;
             }
-            else if ((string)value == "Images/Numbers/3.png")
+            else if ((string)value == CurrentPath + "Yellow/3.png")
             {
                 return 3;
             }
-            else if ((string)value == "Images/Numbers/4.png")
+            else if ((string)value == CurrentPath + "Yellow/4.png")
             {
                 return 4;
             }
-            else if ((string)value == "Images/Numbers/5.png")
+            else if ((string)value == CurrentPath + "Yellow/5.png")
             {
                 return 5;
             }
-            else if ((string)value == "Images/Numbers/6.png")
+            else if ((string)value == CurrentPath + "Yellow/6.png")
             {
                 return 6;
             }
-            else if ((string)value == "Images/Numbers/7.png")
+            else if ((string)value == CurrentPath + "Yellow/7.png")
             {
                 return 7;
             }
@@ -132,19 +153,38 @@ namespace KhTracker
 
     public class WeaponConverter : IValueConverter
     {
+        private string CusPath = "pack://application:,,,/CustomImages/Other/";
+        private string EnabledPath1 = "Images/Other/"; //sword
+        private string EnabledPath2 = "Images/Other/"; //shield
+        private string EnabledPath3 = "Images/Other/"; //staff
+        private bool CusMode = Properties.Settings.Default.CustomIcons;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //get the correct path
+            {
+                if (CusMode)
+                {
+                    if (MainWindow.CustomSwordFound)
+                        EnabledPath1 = CusPath;
+                    if (MainWindow.CustomShieldFound)
+                        EnabledPath2 = CusPath;
+                    if (MainWindow.CustomStaffFound)
+                        EnabledPath3 = CusPath;
+                }
+            }
+
             if ((string)value == "Sword")
             {
-                return "Images/Simple/sword.png";
+                return EnabledPath1 + "sword.png";
             }
             else if ((string)value == "Shield")
             {
-                return "Images/Simple/shield.png";
+                return EnabledPath2 + "shield.png";
             }
             else if ((string)value == "Staff")
             {
-                return "Images/Simple/staff.png";
+                return EnabledPath3 + "staff.png";
             }
             else
             {
@@ -154,15 +194,28 @@ namespace KhTracker
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((string)value == "Images/Simple/sword.png")
+            //get the correct path
+            {
+                if (CusMode)
+                {
+                    if (MainWindow.CustomSwordFound)
+                        EnabledPath1 = CusPath;
+                    if (MainWindow.CustomShieldFound)
+                        EnabledPath2 = CusPath;
+                    if (MainWindow.CustomStaffFound)
+                        EnabledPath3 = CusPath;
+                }
+            }
+
+            if ((string)value == EnabledPath1 + "sword.png")
             {
                 return "Sword";
             }
-            else if ((string)value == "Images/Simple/shield.png")
+            else if ((string)value == EnabledPath2 + "shield.png")
             {
                 return "Shield";
             }
-            else if ((string)value == "Images/Simple/staff.png")
+            else if ((string)value == EnabledPath3 + "staff.png")
             {
                 return "Staff";
             }
@@ -175,23 +228,37 @@ namespace KhTracker
 
     public class GrowthAbilityConverter : IValueConverter
     {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/";
+        private string CurrentPath = "Images/Numbers/Kh2/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
             if ((int)value == 1)
             {
                 return "";
             }
             else if ((int)value == 2)
             {
-                return "Images/Numbers/2.png";
+                return CurrentPath + "Yellow/2.png";
             }
             else if ((int)value == 3)
             {
-                return "Images/Numbers/3.png";
+                return CurrentPath + "Yellow/3.png";
             }
             else if ((int)value == 4)
             {
-                return "Images/Numbers/4.png";
+                return CurrentPath + "Yellow/4.png";
             }
             else
             {
@@ -201,19 +268,26 @@ namespace KhTracker
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
             if ((string)value == "")
             {
                 return 1;
             }
-            else if ((string)value == "Images/Numbers/2.png")
+            else if ((string)value == CurrentPath + "Yellow/2.png")
             {
                 return 2;
             }
-            else if ((string)value == "Images/Numbers/3.png")
+            else if ((string)value == CurrentPath + "Yellow/3.png")
             {
                 return 3;
             }
-            else if ((string)value == "Images/Numbers/4.png")
+            else if ((string)value == CurrentPath + "Yellow/4.png")
             {
                 return 4;
             }
@@ -226,14 +300,28 @@ namespace KhTracker
 
     public class NumberConverter : IValueConverter
     {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/Yellow/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/Yellow/";
+        private string CurrentPath = "Images/Numbers/Kh2/Yellow/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
             if ((int)value >= 0)
             {
                 if ((int)value > 99)
                     value = 99;
 
-                return "Images/Numbers/" + (value).ToString() + ".png";
+                return CurrentPath + (value).ToString() + ".png";
             }
             else
             {

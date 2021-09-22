@@ -25,14 +25,20 @@ namespace KhTracker
         Dictionary<string, int> totals = new Dictionary<string, int>();
         Dictionary<string, int> important = new Dictionary<string, int>();
         Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
-        List<BitmapImage> Numbers = null;
+        //List<BitmapImage> Numbers = null;
+        //List<BitmapImage> OldNumbers = null;
+        //List<BitmapImage> CustomNumbers = null;
         Data data;
 
         public BroadcastWindow(Data dataIn)
         {
             InitializeComponent();
             //Item.UpdateTotal += new Item.TotalHandler(UpdateTotal);
-            Numbers = dataIn.Numbers;
+
+            //Numbers = dataIn.Numbers;
+            //OldNumbers = dataIn.OldNumbers;
+            //CustomNumbers = dataIn.CustomNumbers;
+
             worlds.Add("SorasHeart",0);
             worlds.Add("DriveForms", 0);
             worlds.Add("SimulatedTwilightTown",0);
@@ -101,6 +107,7 @@ namespace KhTracker
             important.Add("TornPage", 0);
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
+            //important.Add("HadesCup", 0);
 
             Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
             Progression.Add("TwilightTown", TwilightTownProgression);
@@ -116,6 +123,7 @@ namespace KhTracker
             Progression.Add("PortRoyal", PortRoyalProgression);
             Progression.Add("SpaceParanoids", SpaceParanoidsProgression);
             Progression.Add("TWTNW", TWTNWProgression);
+            Progression.Add("Atlantica", AtlanticaProgression);
 
             data = dataIn;
 
@@ -172,23 +180,98 @@ namespace KhTracker
 
         public void UpdateNumbers()
         {
-            foreach(KeyValuePair<string,int> world in worlds)
+            //all this garbage to get the correct number images when changing visual styles
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            var NormalNum = data.Numbers;
+            var BlueNum = data.BlueNumbers;
+            var SingleNum = data.SingleNumbers;
+            var BlueSingleNum = data.BlueSingleNumbers;
+            BitmapImage NumberBarB = data.SlashBarB;
+            BitmapImage NumberBarY = data.SlashBarY;
+            {
+                if (CustomMode)
+                {
+                    //Yellow Numbers
+                    if (MainWindow.CustomNumbersFound)
+                    {
+                        NormalNum = data.CustomNumbers;
+                        SingleNum = data.CustomSingleNumbers;
+                    }
+                    else if (OldMode && !MainWindow.CustomNumbersFound)
+                    {
+                        NormalNum = data.OldNumbers;
+                        SingleNum = data.OldSingleNumbers;
+                    }
+
+                    //Blue Numbers
+                    if (MainWindow.CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.CustomBlueNumbers;
+                        BlueSingleNum = data.CustomBlueSingleNumbers;
+                    }
+                    else if (OldMode && !MainWindow.CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.OldBlueNumbers;
+                        BlueSingleNum = data.OldBlueSingleNumbers;
+                    }
+                    //Bars
+                    if (MainWindow.CustomBarBFound)
+                    {
+                        NumberBarB = data.CustomSlashBarB;
+                    }
+
+                    if (MainWindow.CustomBarYFound)
+                    {
+                        NumberBarY = data.CustomSlashBarY;
+                    }
+
+                }
+                else if (OldMode)
+                {
+                    NormalNum =     data.OldNumbers;
+                    BlueNum =       data.OldBlueNumbers;
+                    SingleNum =     data.OldSingleNumbers;
+                    BlueSingleNum = data.OldBlueSingleNumbers;
+                }
+            }
+
+            //Fix Broadcast window report and torn page numbers
+            {
+                ReportFoundBar.Source = NumberBarY;
+                TornPageBar.Source = NumberBarY;
+                CollectedBar.Source = NumberBarY;             
+                ReportFoundTotal.Source = NormalNum[14];
+                TornPageTotal.Source = SingleNum[6];
+            }
+
+            foreach (KeyValuePair<string,int> world in worlds)
             {
                 if (world.Value < 52)
                 {
-                    BitmapImage number = Numbers[world.Value + 1];
+                    //Correctly set yellow num and bar
+                    BitmapImage number = NormalNum[world.Value + 1];
+
+                    if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint == false)
+                        || (data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].complete == false))
+                    {
+                        number = NormalNum[world.Value + 1];
+                        Image bar = FindName(world.Key + "Bar") as Image;
+                        bar.Source = NumberBarY;
+                    }
+
                     if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint) 
                         || (data.WorldsData.ContainsKey(world.Key) &&  world.Key != "GoA" && data.WorldsData[world.Key].complete))
                     {
-                        number = data.BlueNumbers[world.Value + 1];
+                        number = BlueNum[world.Value + 1];
                         Image bar = FindName(world.Key + "Bar") as Image;
-                        bar.Source = new BitmapImage(new Uri("Images/BarBlue.png", UriKind.Relative));
+                        bar.Source = NumberBarB;
                     }
 
                     if (world.Key == "TornPage" || world.Key == "Fire" || world.Key == "Blizzard"
                         || world.Key == "Thunder" || world.Key == "Cure" || world.Key == "Reflect" || world.Key == "Magnet")
                     {
-                        number = data.SingleNumbers[world.Value + 1];
+                        number = SingleNum[world.Value + 1];
                     }
 
                     Image worldFound = this.FindName(world.Key + "Found") as Image;
@@ -210,22 +293,22 @@ namespace KhTracker
                 Image worldTotal = this.FindName(total.Key + "Total") as Image;
                 if (total.Value == -1)
                 {
-                    worldTotal.Source = data.SingleNumbers[0];
+                    worldTotal.Source = SingleNum[0];
                 }
                 else if ((data.WorldsData.ContainsKey(total.Key) &&  total.Key != "GoA" && data.WorldsData[total.Key].hintedHint) 
                     || (data.WorldsData.ContainsKey(total.Key) &&  total.Key != "GoA" && data.WorldsData[total.Key].complete))
                 {
                     if (total.Value <= 10)
-                        worldTotal.Source = data.BlueSingleNumbers[total.Value];
+                        worldTotal.Source = BlueSingleNum[total.Value];
                     else
-                        worldTotal.Source = data.BlueNumbers[total.Value];
+                        worldTotal.Source = BlueNum[total.Value];
                 }
                 else
                 {
                     if (total.Value <= 10)
-                        worldTotal.Source = data.SingleNumbers[total.Value];
+                        worldTotal.Source = SingleNum[total.Value];
                     else
-                        worldTotal.Source = data.Numbers[total.Value];
+                        worldTotal.Source = NormalNum[total.Value];
                 }
 
                 // Format fixing for double digit numbers
@@ -254,7 +337,7 @@ namespace KhTracker
                 else
                 {
                     if (impCheck.Key != "Report" && impCheck.Key != "TornPage")
-                    imp.Opacity = 0.25;
+                    imp.Opacity = 0.45;
                 }
             }
         }
@@ -279,22 +362,32 @@ namespace KhTracker
 
         public void OnResetHints()
         {
-            SorasHeartBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            DriveFormsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HollowBastionBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            TwilightTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            LandofDragonsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            BeastsCastleBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            OlympusColiseumBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            SpaceParanoidsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HalloweenTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            PortRoyalBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            AgrabahBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            PrideLandsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            DisneyCastleBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HundredAcreWoodBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            SimulatedTwilightTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            TWTNWBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
+            //Redone so that we can get the proper custom image (if it exists)
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            BitmapImage NumberBar = data.SlashBarY;
+
+            if (CustomMode && MainWindow.CustomBarYFound)
+            {
+                NumberBar = data.CustomSlashBarY;
+            }
+
+            SorasHeartBar.Source = NumberBar;
+            DriveFormsBar.Source = NumberBar;
+            HollowBastionBar.Source = NumberBar;
+            TwilightTownBar.Source = NumberBar;
+            LandofDragonsBar.Source = NumberBar;
+            BeastsCastleBar.Source = NumberBar;
+            OlympusColiseumBar.Source = NumberBar;
+            SpaceParanoidsBar.Source = NumberBar;
+            HalloweenTownBar.Source = NumberBar;
+            PortRoyalBar.Source = NumberBar;
+            AgrabahBar.Source = NumberBar;
+            PrideLandsBar.Source = NumberBar;
+            DisneyCastleBar.Source = NumberBar;
+            HundredAcreWoodBar.Source = NumberBar;
+            SimulatedTwilightTownBar.Source = NumberBar;
+            TWTNWBar.Source = NumberBar;
+            AtlanticaBar.Source = NumberBar;
         }
 
         public void OnReset()
@@ -370,25 +463,23 @@ namespace KhTracker
             important.Add("TornPage", 0);
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
+            //important.Add("HadesCup", 0);
 
-            SorasHeartBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            DriveFormsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HollowBastionBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            TwilightTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            LandofDragonsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            BeastsCastleBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            OlympusColiseumBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            SpaceParanoidsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HalloweenTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            PortRoyalBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            AgrabahBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            PrideLandsBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            DisneyCastleBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            HundredAcreWoodBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            SimulatedTwilightTownBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
-            TWTNWBar.Source = new BitmapImage(new Uri("Images/Bar.png", UriKind.Relative));
+            OnResetHints();
 
-            Collected.Source = data.Numbers[1];
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            var NormalNum = data.Numbers;
+            {
+                //check numbers
+                if (OldMode)
+                    NormalNum = data.OldNumbers;
+
+                if (CustomMode && MainWindow.CustomNumbersFound)
+                    NormalNum = data.CustomNumbers;
+            }
+
+            Collected.Source = NormalNum[1];
         }
 
         public void ToggleProgression(bool toggle)

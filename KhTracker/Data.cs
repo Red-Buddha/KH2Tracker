@@ -39,7 +39,41 @@ namespace KhTracker
         public List<BitmapImage> BlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> BlueSingleNumbers = new List<BitmapImage>();
 
+        public List<BitmapImage> OldNumbers = new List<BitmapImage>();
+        public List<BitmapImage> OldSingleNumbers = new List<BitmapImage>();
+        public List<BitmapImage> OldBlueNumbers = new List<BitmapImage>();
+        public List<BitmapImage> OldBlueSingleNumbers = new List<BitmapImage>();
+
+        public List<BitmapImage> CustomNumbers = new List<BitmapImage>();
+        public List<BitmapImage> CustomSingleNumbers = new List<BitmapImage>();
+        public List<BitmapImage> CustomBlueNumbers = new List<BitmapImage>();
+        public List<BitmapImage> CustomBlueSingleNumbers = new List<BitmapImage>();
+
         public List<Item> Items = new List<Item>();
+
+        //stupid bar images
+        public BitmapImage VerticalBarY;
+        public BitmapImage VerticalBarW;
+
+        public BitmapImage CustomVerticalBarY;
+        public BitmapImage CustomVerticalBarW;
+
+        public BitmapImage SlashBarY;
+        public BitmapImage SlashBarB;
+
+        public BitmapImage CustomSlashBarY;
+        public BitmapImage CustomSlashBarB;
+
+        //public BitmapImage SecondChanceNormal;
+        //public BitmapImage SecondChanceKey;
+        //public BitmapImage SecondChanceCus;
+        //public BitmapImage SecondChanceCusKey;
+        //
+        //public BitmapImage OnceMoreNormal;
+        //public BitmapImage OnceMoreKey;
+        //public BitmapImage OnceMoreCus;
+        //public BitmapImage OnceMoreCusKey;
+
     }
 
     public class WorldData
