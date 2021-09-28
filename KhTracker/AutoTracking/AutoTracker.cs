@@ -1363,6 +1363,17 @@ namespace KhTracker
                     data.WorldsData["PortRoyal"].progress = 6;
                 }
             }
+            else if (world.worldName == "GoA")
+            {
+                if (world.roomNumber == 32 && SeedHashLoaded)
+                {
+                    HideSeedHash();
+                }
+                
+            }
+            //Console.WriteLine("World Name = " + world.worldName);
+            //Console.WriteLine("World Room = " + world.roomNumber);
+
         }
 
         private string BytesToHex(byte[] bytes)

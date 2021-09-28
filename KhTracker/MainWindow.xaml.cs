@@ -40,6 +40,8 @@ namespace KhTracker
         public static bool CustomBarBFound = false;
         public static bool CustomVBarWFound = false;
         public static bool CustomVBarYFound = false;
+        public static bool SeedHashLoaded = false;
+        public static bool SeedHashVisible = false;
 
         public MainWindow()
         {
@@ -915,6 +917,9 @@ namespace KhTracker
             CustomFolderOption.IsChecked = Properties.Settings.Default.CustomIcons;
             CustomImageToggle(null, null);
 
+            SeedHashOption.IsChecked = Properties.Settings.Default.SeedHash;
+            SeedHashToggle(null, null);
+
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
             SoraHeartToggle(SoraHeartOption.IsChecked);
             SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
@@ -1314,6 +1319,11 @@ namespace KhTracker
 
         public void SetHintText(string text)
         {
+            if (SeedHashLoaded)
+            {
+                HideSeedHash();
+            }
+
             HintText.Content = text;
         }
 
@@ -1513,5 +1523,35 @@ namespace KhTracker
             }
         }
 
+        private void HideSeedHash()
+        {
+            //Console.WriteLine(SeedHashVisible);
+
+            if (SeedHashVisible)
+            {
+                HashText.Visibility = Visibility.Hidden;
+                HashIcon1.Visibility = Visibility.Hidden;
+                HashIcon2.Visibility = Visibility.Hidden;
+                HashIcon3.Visibility = Visibility.Hidden;
+                HashIcon4.Visibility = Visibility.Hidden;
+                HashIcon5.Visibility = Visibility.Hidden;
+                HashIcon6.Visibility = Visibility.Hidden;
+                HashIcon7.Visibility = Visibility.Hidden;
+                SeedHashVisible = false;
+            }
+
+            if (SeedHashOption.IsChecked && SeedHashLoaded)
+            {
+                HashText.Visibility = Visibility.Visible;
+                HashIcon1.Visibility = Visibility.Visible;
+                HashIcon2.Visibility = Visibility.Visible;
+                HashIcon3.Visibility = Visibility.Visible;
+                HashIcon4.Visibility = Visibility.Visible;
+                HashIcon5.Visibility = Visibility.Visible;
+                HashIcon6.Visibility = Visibility.Visible;
+                HashIcon7.Visibility = Visibility.Visible;
+                SeedHashVisible = true;
+            }
+        }
     }
 }

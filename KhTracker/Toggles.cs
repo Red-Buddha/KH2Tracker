@@ -807,6 +807,19 @@ namespace KhTracker
             CustomWorldCheck();
         }
 
+        private void SeedHashToggle(object sender, RoutedEventArgs e)
+        {
+            SeedHashToggle(SeedHashOption.IsChecked);
+        }
+
+        private void SeedHashToggle(bool toggle)
+        {
+            Properties.Settings.Default.SeedHash = toggle;
+            SeedHashOption.IsChecked = toggle;
+
+            HideSeedHash();
+        }
+
         private void WorldProgressToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.WorldProgress = WorldProgressOption.IsChecked;

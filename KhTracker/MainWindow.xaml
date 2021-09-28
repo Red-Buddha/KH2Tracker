@@ -66,6 +66,7 @@
                 <MenuItem Name="TimelessOption" 		Header="Timeless River" IsCheckable="True" IsChecked="False" Click="TimelessToggle"/>
                 <MenuItem Name="OCCupsOption" 		    Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/>
                 <Separator/>
+                <MenuItem Name="SeedHashOption"         Header="Show Zip Seed Hash" IsCheckable="True" IsChecked="True" Click="SeedHashToggle"/>
                 <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
                 <MenuItem Name="FormsGrowthOption"   	Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
                 <MenuItem Name="BroadcastGrowthOption"  Header="Broadcast Window Growth Abilities" IsCheckable="True" IsChecked="False" Click="BroadcastGrowthToggle"/>
@@ -830,6 +831,41 @@
                 <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15"/>
                 <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16"/>
                 <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17"/>
+            </Grid>
+
+            <!-- Testing hash placement -->
+            <Grid Grid.Row="1" Name="HashRow">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.9*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.*"/>
+                    
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                     
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Label Name="HashText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="2" Content="Seed Hash:" Visibility="Hidden"/>
+                </Viewbox>
+
+                <local:Item x:Name="HashIcon1" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon2" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon3" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon4" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon5" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="5" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="6" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="7" Visibility="Hidden"/>
+
             </Grid>
 
             <!-- Drive Forms & Growth Abilities-->

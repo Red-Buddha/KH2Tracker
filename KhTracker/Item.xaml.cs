@@ -110,6 +110,7 @@ namespace KhTracker
 
         public void Report_Hover(object sender, RoutedEventArgs e)
         {
+
             Data data = MainWindow.data;
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             int index = (int)GetValue(Grid.ColumnProperty);

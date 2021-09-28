@@ -185,6 +185,45 @@
     <Image x:Key="CollectedBarBlue"     Source="pack://application:,,,/CustomImages/Numbers/BarBlue.png" x:Shared="false"/>
     <Image x:Key="VerticalBar" 		    Source="pack://application:,,,/CustomImages/VerticalBar.png" x:Shared="false"/>
     <Image x:Key="VerticalBarWhite"     Source="pack://application:,,,/CustomImages/VerticalBarWhite.png" x:Shared="false"/>
+    
+    <!--Hash Icons-->
+    <Image x:Key="ability-unequip" Source="Images\Icons\ability-unequip.png"/>
+    <Image x:Key="accessory" Source="Images\Icons\accessory.png"/>
+    <Image x:Key="ai-mode-frequent" Source="Images\Icons\ai-mode-frequent.png"/>
+    <Image x:Key="ai-mode-moderate" Source="Images\Icons\ai-mode-moderate.png"/>
+    <Image x:Key="ai-mode-rare" Source="Images\Icons\ai-mode-rare.png"/>
+    <Image x:Key="ai-settings" Source="Images\Icons\ai-settings.png"/>
+    <Image x:Key="armor" Source="Images\Icons\armor.png"/>
+    <Image x:Key="button-circle" Source="Images\Icons\button-circle.png"/>
+    <Image x:Key="button-cross" Source="Images\Icons\button-cross.png"/>
+    <Image x:Key="button-l1" Source="Images\Icons\button-l1.png"/>
+    <Image x:Key="button-l2" Source="Images\Icons\button-l2.png"/>
+    <Image x:Key="button-r1" Source="Images\Icons\button-r1.png"/>
+    <Image x:Key="button-r2" Source="Images\Icons\button-r2.png"/>
+    <Image x:Key="button-square" Source="Images\Icons\button-square.png"/>
+    <Image x:Key="button-triangle" Source="Images\Icons\button-triangle.png"/>
+    <Image x:Key="exclamation-mark" Source="Images\Icons\exclamation-mark.png"/>
+    <Image x:Key="form" Source="Images\Icons\form.png"/>
+    <Image x:Key="gumi-block" Source="Images\Icons\gumi-block.png"/>
+    <Image x:Key="gumi-blueprint" Source="Images\Icons\gumi-blueprint.png"/>
+    <Image x:Key="gumi-brush" Source="Images\Icons\gumi-brush.png"/>
+    <Image x:Key="gumi-gear" Source="Images\Icons\gumi-gear.png"/>
+    <Image x:Key="gumi-ship" Source="Images\Icons\gumi-ship.png"/>
+    <Image x:Key="item-consumable" Source="Images\Icons\item-consumable.png"/>
+    <Image x:Key="item-key" Source="Images\Icons\item-key.png"/>
+    <Image x:Key="item-tent" Source="Images\Icons\item-tent.png"/>
+    <Image x:Key="magic" Source="Images\Icons\magic.png"/>
+    <Image x:Key="material" Source="Images\Icons\material.png"/>
+    <Image x:Key="party" Source="Images\Icons\party.png"/>
+    <Image x:Key="question-mark" Source="Images\Icons\question-mark.png"/>
+    <Image x:Key="rank-a" Source="Images\Icons\rank-a.png"/>
+    <Image x:Key="rank-b" Source="Images\Icons\rank-b.png"/>
+    <Image x:Key="rank-c" Source="Images\Icons\rank-c.png"/>
+    <Image x:Key="rank-s" Source="Images\Icons\rank-s.png"/>
+    <Image x:Key="weapon-keyblade" Source="Images\Icons\weapon-keyblade.png"/>
+    <Image x:Key="weapon-shield" Source="Images\Icons\weapon-shield.png"/>
+    <Image x:Key="weapon-staff" Source="Images\Icons\weapon-staff.png"/>
+
 
     <!--Report Fail Icons-->
 	<Image x:Key="Fail0" x:Shared="false"/>

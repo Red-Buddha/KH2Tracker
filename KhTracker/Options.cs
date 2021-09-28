@@ -9,7 +9,8 @@ using Microsoft.Win32;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+//using System.Text.Json.Serialization;
+//using YamlDotNet.Serialization;
 
 namespace KhTracker
 {
@@ -1154,6 +1155,8 @@ namespace KhTracker
 
         private void OpenKHSeed(string filename)
         {
+            HintText.Content = "";
+
             foreach (string world in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[world].checkCount.Clear();
@@ -1216,14 +1219,51 @@ namespace KhTracker
                                     }
                                     ReportsToggle(true);
                                     data.hintsLoaded = true;
-                                    HintText.Content = "Hints Loaded";
+                                    //HintText.Content = "Hints Loaded";
 
                                     break;
 
                                 default:
                                     break;
                             }
-                            Console.WriteLine();
+                            //Console.WriteLine();
+                        }
+                    }
+                
+                    if (entry.FullName == "sys.yml")
+                    {
+                        using (var reader = new StreamReader(entry.Open()))
+                        {
+                            string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
+                            string text1 = reader.ReadLine();
+                            string text2 = reader.ReadLine();
+                            string text = text1 + text2;
+                            string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+                           
+                            //Set Icons
+                            HashIcon1.SetResourceReference(ContentProperty, hash[0]);
+                            HashIcon2.SetResourceReference(ContentProperty, hash[1]);
+                            HashIcon3.SetResourceReference(ContentProperty, hash[2]);
+                            HashIcon4.SetResourceReference(ContentProperty, hash[3]);
+                            HashIcon5.SetResourceReference(ContentProperty, hash[4]);
+                            HashIcon6.SetResourceReference(ContentProperty, hash[5]);
+                            HashIcon7.SetResourceReference(ContentProperty, hash[6]);
+                            SeedHashLoaded = true;
+
+                            //make visible
+                            if (SeedHashOption.IsChecked)
+                            {
+                                HashText.Visibility = Visibility.Visible;
+                                HashIcon1.Visibility = Visibility.Visible;
+                                HashIcon2.Visibility = Visibility.Visible;
+                                HashIcon3.Visibility = Visibility.Visible;
+                                HashIcon4.Visibility = Visibility.Visible;
+                                HashIcon5.Visibility = Visibility.Visible;
+                                HashIcon6.Visibility = Visibility.Visible;
+                                HashIcon7.Visibility = Visibility.Visible;
+
+                                SeedHashVisible = true;
+                            }
                         }
                     }
                 }

@@ -490,5 +490,17 @@ namespace KhTracker.Properties {
                 this["OCCups"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SeedHash {
+            get {
+                return ((bool)(this["SeedHash"]));
+            }
+            set {
+                this["SeedHash"] = value;
+            }
+        }
     }
 }
