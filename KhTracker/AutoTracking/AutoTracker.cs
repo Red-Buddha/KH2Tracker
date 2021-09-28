@@ -252,7 +252,7 @@ namespace KhTracker
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
 
             forcedFinal = false;
-            checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards);
+            checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
 
             LevelIcon.Visibility = Visibility.Visible;
             Level.Visibility = Visibility.Visible;

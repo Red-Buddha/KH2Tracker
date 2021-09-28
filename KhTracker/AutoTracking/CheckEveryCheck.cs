@@ -10,7 +10,6 @@ namespace KhTracker
     /* Author: Coraccio aka Racci
      * Implemented to track Final Form after being forced
      * (Searches all checks except for Sora/Drive levels, where it only looks through the important checks already scanned by Rewards)
-     * (Skips searching through Drive levels since forms cannot be on other forms as per rando logic)
      */
     class CheckEveryCheck
     {
@@ -22,8 +21,19 @@ namespace KhTracker
         public World World;
         public Stats Stats;
         public Rewards Rewards;
+        public DriveForm Valor;
+        public DriveForm Wisdom;
+        public DriveForm Limit;
+        public DriveForm Master;
+        public DriveForm Final;
         private bool onLevels = false;
         private Dictionary<string, int> targetLevel;
+        private bool onValor = false;
+        private bool onWisdom = false;
+        private bool onLimit = false;
+        private bool onMaster = false;
+        private bool onFinal = false;
+        private Dictionary<string, int> targetDriveLevel;
 
         private int target;
         public int Target
@@ -38,7 +48,8 @@ namespace KhTracker
             get { return targetObtained; }
         }
 
-        public CheckEveryCheck(MemoryReader mem, int offset, int saveAnchor, int sysAnchor, int battleAnchor, World world, Stats stats, Rewards rewards)
+        public CheckEveryCheck(MemoryReader mem, int offset, int saveAnchor, int sysAnchor, int battleAnchor, World world, Stats stats, Rewards rewards,
+            DriveForm valor, DriveForm wisdom, DriveForm limit, DriveForm master, DriveForm final)
         {
             memory = mem;
             ADDRESS_OFFSET = offset;
@@ -48,6 +59,12 @@ namespace KhTracker
             World = world;
             Stats = stats;
             Rewards = rewards;
+            Valor = valor;
+            Wisdom = wisdom;
+            Limit = limit;
+            Master = master;
+            Final = final;
+
             checksList = new List<Check>();
 
             // Chest (317)
@@ -520,8 +537,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x157FE, World, "PortRoyal",              0x0E, 0x70));   // Data Luxord
             checksList.Add(new Check(this, Sys3 + 0x1580A, World, "SimulatedTwilightTown",  0x15, 0x72));   // Data Roxas
 
-            // Handle Sora levels separately, since Rewards already scans through them
-            // Skip Drive levels, since forms cannot be on other forms
+            // Handle Sora levels and Drive levels separately, since Rewards already scans through them
         }
 
         public bool TrackCheck(int targetValue)
@@ -543,14 +559,24 @@ namespace KhTracker
                     targetCheck.Add(check);
                 }
             }
+
             // Search through levels, handled separately using Rewards
             onLevels = false;
+            onValor = false;
+            onWisdom = false;
+            onLimit = false;
+            onMaster = false;
+            onFinal = false;
+            targetLevel = null;
+            targetDriveLevel = null;
             if (MainWindow.data.codes.itemCodes.ContainsKey(target))
             {
+                string checkName = MainWindow.data.codes.itemCodes[target];
+
+                // Sora levels
                 int swordLevel = 100;
                 int shieldLevel = 100;
                 int staffLevel = 100;
-                string checkName = MainWindow.data.codes.itemCodes[target];
                 Tuple<int, string> swordReward = Rewards.GetLevelRewards("Sword").FirstOrDefault(reward => reward.Item2 == checkName);
                 Tuple<int, string> shieldReward = Rewards.GetLevelRewards("Shield").FirstOrDefault(reward => reward.Item2 == checkName);
                 Tuple<int, string> staffReward = Rewards.GetLevelRewards("Staff").FirstOrDefault(reward => reward.Item2 == checkName);
@@ -576,13 +602,92 @@ namespace KhTracker
                     };
                     onLevels = true;
                 }
+
+                // Drive levels
+                Tuple<int, string> valorReward = Rewards.valorChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> wisdomReward = Rewards.wisdomChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> limitReward = Rewards.limitChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> masterReward = Rewards.masterChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> finalReward = Rewards.finalChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                if (!(valorReward == null && wisdomReward == null && limitReward == null && masterReward == null && finalReward == null))
+                {
+                    targetDriveLevel = new Dictionary<string, int>();
+                    if (valorReward != null)
+                    {
+                        onValor = true;
+                        targetDriveLevel.Add("Valor", valorReward.Item1);
+                    }
+                    if (wisdomReward != null)
+                    {
+                        onWisdom = true;
+                        targetDriveLevel.Add("Wisdom", wisdomReward.Item1);
+                    }
+                    if (limitReward != null)
+                    {
+                        onLimit = true;
+                        targetDriveLevel.Add("Limit", limitReward.Item1);
+                    }
+                    if (masterReward != null)
+                    {
+                        onMaster = true;
+                        targetDriveLevel.Add("Master", masterReward.Item1);
+                    }
+                    if (finalReward != null)
+                    {
+                        onFinal = true;
+                        targetDriveLevel.Add("Final", finalReward.Item1);
+                    }
+                }
             }
         }
 
         public bool UpdateTargetMemory()
         {
             targetObtained = false;
-            if (targetCheck != null)
+            if (onLevels)
+            {
+                if (Stats.Level >= targetLevel[Stats.Weapon])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onValor)
+            {
+                if (Valor.Level >= targetDriveLevel["Valor"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onWisdom)
+            {
+                if (Wisdom.Level >= targetDriveLevel["Wisdom"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onLimit)
+            {
+                if (Limit.Level >= targetDriveLevel["Limit"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onMaster)
+            {
+                if (Master.Level >= targetDriveLevel["Master"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onFinal)
+            {
+                if (Final.Level >= targetDriveLevel["Final"])
+                {
+                    targetObtained = true;
+                }
+            }
+
+            if (!targetObtained && targetCheck != null)
             {
                 foreach (Check check in targetCheck)
                 {
@@ -591,13 +696,6 @@ namespace KhTracker
                         targetObtained = true;
                         break;
                     }
-                }
-            }
-            if (!targetObtained && onLevels)
-            {
-                if (Stats.Level >= targetLevel[Stats.Weapon])
-                {
-                    targetObtained = true;
                 }
             }
             return targetObtained;
