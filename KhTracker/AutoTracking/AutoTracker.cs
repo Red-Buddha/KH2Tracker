@@ -1365,9 +1365,20 @@ namespace KhTracker
             }
             else if (world.worldName == "GoA")
             {
-                if (world.roomNumber == 32 && SeedHashLoaded)
+                if (world.roomNumber == 32)
                 {
-                    HideSeedHash();
+                    if (SeedHashVisible)
+                    {
+                        HashText.Visibility = Visibility.Hidden;
+                        HashIcon1.Visibility = Visibility.Hidden;
+                        HashIcon2.Visibility = Visibility.Hidden;
+                        HashIcon3.Visibility = Visibility.Hidden;
+                        HashIcon4.Visibility = Visibility.Hidden;
+                        HashIcon5.Visibility = Visibility.Hidden;
+                        HashIcon6.Visibility = Visibility.Hidden;
+                        HashIcon7.Visibility = Visibility.Hidden;
+                        SeedHashVisible = false;
+                    }
                 }
                 
             }

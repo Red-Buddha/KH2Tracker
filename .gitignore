@@ -334,3 +334,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/KhTracker/Images/ReportTest3.png
+/KhTracker/Images/ReportTest2.png
+/KhTracker/Images/ReportTest1.png

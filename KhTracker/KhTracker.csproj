@@ -1337,6 +1337,9 @@
     <Content Include="CustomImages\Worlds\space_paranoids.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\ReportTest3.png" />
+    <Resource Include="Images\ReportTest1.png" />
+    <Resource Include="Images\ReportTest2.png" />
     <Resource Include="Images\Worlds\Simple\olympus_coliseum_cups.png" />
     <Resource Include="Images\Worlds\Old\cavern_of_remembrance.png" />
     <Resource Include="Images\Worlds\Old\disney_castle_tr.png" />

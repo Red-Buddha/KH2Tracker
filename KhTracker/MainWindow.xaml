@@ -155,7 +155,8 @@
                             <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SoraHeartImage"/>
                             </Button>
-                            <Image Name="SorasHeartHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="SorasHeartHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="SorasHeartReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
@@ -185,7 +186,8 @@
                                 <DynamicResource ResourceKey="Min-SimulatedImage"/>
                             </Button>
                             
-                            <Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="SimulatedTwilightTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="SimulatedTwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="SimulatedTwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -215,7 +217,8 @@
                             <Button Name="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-HollowBastionImage"/>
                             </Button>
-                            <Image Name="HollowBastionHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="HollowBastionHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="HollowBastionReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HollowBastionProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HollowBastionBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -245,7 +248,8 @@
                             <Button Name="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-OlympusImage"/>
                             </Button>
-                            <Image Name="OlympusColiseumHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="OlympusColiseumHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="OlympusColiseumReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="OlympusColiseumProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="OlympusBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -275,7 +279,8 @@
                             <Button Name="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-LandofDragonsImage"/>
                             </Button>
-                            <Image Name="LandofDragonsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="LandofDragonsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="LandofDragonsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="LandofDragonsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="LandofDragonsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -305,7 +310,8 @@
                             <Button Name="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-PrideLandsImage"/>
                             </Button>
-                            <Image Name="PrideLandsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="PrideLandsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="PrideLandsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="PrideLandsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="PrideLandsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -335,7 +341,8 @@
                             <Button Name="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-HalloweenTownImage"/>
                             </Button>
-                            <Image Name="HalloweenTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="HalloweenTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="HalloweenTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HalloweenTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HalloweenTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -365,7 +372,8 @@
                             <Button Name="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-SpaceParanoidsImage"/>
                             </Button>
-                            <Image Name="SpaceParanoidsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="SpaceParanoidsHint"    Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png"   IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="SpaceParanoidsReport"  Source="Images\ReportTest3.png"             IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Opacity="0.9" Grid.ColumnSpan="2" Stretch="Uniform" /> -->
                             <ContentControl Name="SpaceParanoidsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="SpaceParanoidsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -437,7 +445,8 @@
                             <Button Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-DriveFormsImage"/>
                             </Button>
-                            <Image Name="DriveFormsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="DriveFormsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="DriveFormsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <Image Name="DriveFormsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="1"/>
@@ -466,7 +475,8 @@
                             <Button Name="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-TwilightTownImage"/>
                             </Button>
-                            <Image Name="TwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="TwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="TwilightTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="TwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="TwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -496,7 +506,8 @@
                             <Button Name="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-BeastCastleImage"/>
                             </Button>
-                            <Image Name="BeastsCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="BeastsCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="BeastsCastleReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="BeastsCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="BeastsCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -526,7 +537,8 @@
                             <Button Name="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-AgrabahImage"/>
                             </Button>
-                            <Image Name="AgrabahHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="AgrabahHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="AgrabahReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="AgrabahProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="AgrabahBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -556,7 +568,8 @@
                             <Button Name="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-HundredAcreImage"/>
                             </Button>
-                            <Image Name="HundredAcreWoodHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="HundredAcreWoodHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="HundredAcreWoodReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HundredAcreWoodProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HundredAcreWoodBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -586,7 +599,8 @@
                             <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-DisneyCastleImage"/>
                             </Button>
-                            <Image Name="DisneyCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="DisneyCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="DisneyCastleReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="DisneyCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="DisneyCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -616,7 +630,8 @@
                             <Button Name="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-PortRoyalImage"/>
                             </Button>
-                            <Image Name="PortRoyalHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="PortRoyalHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="PortRoyalReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="PortRoyalProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="PortRoyalBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -646,7 +661,8 @@
                             <Button Name="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-TWTNWImage"/>
                             </Button>
-                            <Image Name="TWTNWHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="TWTNWHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="TWTNWReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="TWTNWProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="TWTNWBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -676,7 +692,8 @@
                             <Button Name="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-AtlanticaImage"/>
                             </Button>
-                            <Image Name="AtlanticaHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Name="AtlanticaHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!-- <Image Name="AtlanticaReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="AtlanticaProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="AtlanticaBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
