@@ -281,6 +281,12 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Visible;
             broadcast.Weapon.Visibility = Visibility.Visible;
 
+            broadcast.ValorLevel.Visibility = Visibility.Visible;
+            broadcast.WisdomLevel.Visibility = Visibility.Visible;
+            broadcast.LimitLevel.Visibility = Visibility.Visible;
+            broadcast.MasterLevel.Visibility = Visibility.Visible;
+            broadcast.FinalLevel.Visibility = Visibility.Visible;
+
             if (BroadcastGrowthOption.IsChecked)
                 broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
 
@@ -1369,21 +1375,14 @@ namespace KhTracker
                 {
                     if (SeedHashVisible)
                     {
-                        HashText.Visibility = Visibility.Hidden;
-                        HashIcon1.Visibility = Visibility.Hidden;
-                        HashIcon2.Visibility = Visibility.Hidden;
-                        HashIcon3.Visibility = Visibility.Hidden;
-                        HashIcon4.Visibility = Visibility.Hidden;
-                        HashIcon5.Visibility = Visibility.Hidden;
-                        HashIcon6.Visibility = Visibility.Hidden;
-                        HashIcon7.Visibility = Visibility.Hidden;
-                        SeedHashVisible = false;
+                        HideSeedHash();
                     }
                 }
                 
             }
             //Console.WriteLine("World Name = " + world.worldName);
             //Console.WriteLine("World Room = " + world.roomNumber);
+            //Console.WriteLine("Seed hash visible? = " + SeedHashVisible);
 
         }
 

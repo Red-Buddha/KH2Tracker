@@ -756,11 +756,15 @@ namespace KhTracker
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            ModeDisplay.Header = "";
+            ModeDisplay.Header = " ";
             data.mode = Mode.None;
 
             collected = 0;            
             HintText.Content = "";
+
+            //stop autotracking
+            if (aTimer != null)
+                aTimer.Stop();
 
             //all this garbage to get the correct number images when changing visual styles
             bool OldMode = Properties.Settings.Default.OldNum;
@@ -835,8 +839,14 @@ namespace KhTracker
                     row.Height = new GridLength(1, GridUnitType.Star);
             }
 
-            ReportsToggle(true);
-            ReportRow.Height = new GridLength(1, GridUnitType.Star);
+            //restore reports only if toggle was on before
+            if (ReportsOption.IsChecked)
+            {
+                ReportsToggle(true);
+                ReportRow.Height = new GridLength(1, GridUnitType.Star);
+            }
+
+
             ResetHints();
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -901,9 +911,10 @@ namespace KhTracker
             broadcast.Defense.Visibility = Visibility.Hidden;
             broadcast.Weapon.Visibility = Visibility.Hidden;
 
-            //broadcast.WorldRow.Height = new GridLength(7, GridUnitType.Star);
+            FormRow.Height = new GridLength(0, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
-            //FormRow.Height = new GridLength(0, GridUnitType.Star);
+            broadcast.StatsRow.Height = new GridLength(0, GridUnitType.Star);
+
 
             ValorM.Opacity = .45;
             WisdomM.Opacity = .45;
@@ -922,13 +933,23 @@ namespace KhTracker
             LimitLevel.Source = null;
             MasterLevel.Source = null;
             FinalLevel.Source = null;
-
             HighJumpLevel.Source = null;
             QuickRunLevel.Source = null;
             DodgeRollLevel.Source = null;
             AerialDodgeLevel.Source = null;
             GlideLevel.Source = null;
-            
+
+            broadcast.ValorLevel.Source = null;
+            broadcast.WisdomLevel.Source = null;
+            broadcast.LimitLevel.Source = null;
+            broadcast.MasterLevel.Source = null;
+            broadcast.FinalLevel.Source = null;
+            broadcast.HighJumpLevel.Source = null;
+            broadcast.QuickRunLevel.Source = null;
+            broadcast.DodgeRollLevel.Source = null;
+            broadcast.AerialDodgeLevel.Source = null;
+            broadcast.GlideLevel.Source = null;
+
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();
@@ -971,6 +992,8 @@ namespace KhTracker
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
+
+            HideSeedHash();
         }
         
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)

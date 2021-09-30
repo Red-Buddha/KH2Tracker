@@ -108,10 +108,12 @@ namespace KhTracker
             ReportsOption.IsChecked = toggle;
             if (toggle)
             {
+                ReportRow.Height = new GridLength(1.0, GridUnitType.Star);
                 broadcast.AnsemReport.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
+                ReportRow.Height = new GridLength(0, GridUnitType.Star);
                 broadcast.AnsemReport.Width = new GridLength(0, GridUnitType.Star);
             }
             for (int i = 0; i < data.Reports.Count; ++i)

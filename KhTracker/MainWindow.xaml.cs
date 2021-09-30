@@ -1525,9 +1525,7 @@ namespace KhTracker
 
         private void HideSeedHash()
         {
-            //Console.WriteLine(SeedHashVisible);
-
-            if (SeedHashVisible)
+            if (SeedHashVisible == true)
             {
                 HashText.Visibility = Visibility.Hidden;
                 HashIcon1.Visibility = Visibility.Hidden;
@@ -1539,8 +1537,7 @@ namespace KhTracker
                 HashIcon7.Visibility = Visibility.Hidden;
                 SeedHashVisible = false;
             }
-
-            if (SeedHashOption.IsChecked && SeedHashLoaded)
+            else if (SeedHashOption.IsChecked && SeedHashLoaded && !SeedHashVisible)
             {
                 HashText.Visibility = Visibility.Visible;
                 HashIcon1.Visibility = Visibility.Visible;

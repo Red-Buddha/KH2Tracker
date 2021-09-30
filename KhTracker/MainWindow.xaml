@@ -101,8 +101,8 @@
                     <MenuItem Name="BroadcastImg3Option" Header="Custom Image (No Scaling)" IsCheckable="True" IsChecked="False" Click="BroadcastBG_Img3Toggle"/>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Name="ModeDisplay" Header="" Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="v2.7 -DA-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
+            <MenuItem Header="v2.7 -DA v1.1-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
