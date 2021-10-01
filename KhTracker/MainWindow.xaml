@@ -102,13 +102,13 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="v2.7 -DA v1.1-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="v2.7 -DA v1.2-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
-                <RowDefinition Height=".9*"/>
+                <RowDefinition Height="0.9*"/>
                 <RowDefinition Name="FormRow" Height="0*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
@@ -851,10 +851,9 @@
             </Grid>
 
             <!-- Testing hash placement -->
-            <Grid Grid.Row="1" Name="HashRow">
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0*"/>
-                    <RowDefinition/>
+                    <RowDefinition Name="HashRow" Height="0*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -871,17 +870,17 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
-                    <Label Name="HashText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="2" Content="Seed Hash:" Visibility="Hidden"/>
+                <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Label Name="HashText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="2" Content="Seed Hash:"/>
                 </Viewbox>
 
-                <local:Item x:Name="HashIcon1" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon2" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon3" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon4" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon5" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="5" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="6" Visibility="Hidden"/>
-                <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="7" Visibility="Hidden"/>
+                <local:Item x:Name="HashIcon1" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                <local:Item x:Name="HashIcon2" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+                <local:Item x:Name="HashIcon3" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
+                <local:Item x:Name="HashIcon4" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4"/>
+                <local:Item x:Name="HashIcon5" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="5"/>
+                <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="6"/>
+                <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="7"/>
 
             </Grid>
 

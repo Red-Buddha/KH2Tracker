@@ -819,7 +819,21 @@ namespace KhTracker
             Properties.Settings.Default.SeedHash = toggle;
             SeedHashOption.IsChecked = toggle;
 
-            HideSeedHash();
+            if (toggle)
+                HintText.Content = "";
+
+            if (SeedHashLoaded && toggle)
+            {
+                HashRow.Height = new GridLength(1.0, GridUnitType.Star);
+                SeedHashVisible = true;
+            }
+            else
+            {
+                HashRow.Height = new GridLength(0, GridUnitType.Star);
+                SeedHashVisible = false;
+            }
+
+            //SeedHashVisibility(toggle);
         }
 
         private void WorldProgressToggle(object sender, RoutedEventArgs e)

@@ -762,10 +762,6 @@ namespace KhTracker
             collected = 0;            
             HintText.Content = "";
 
-            //stop autotracking
-            if (aTimer != null)
-                aTimer.Stop();
-
             //all this garbage to get the correct number images when changing visual styles
             bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
@@ -953,6 +949,7 @@ namespace KhTracker
             // Reset / Turn off auto tracking
             collectedChecks.Clear();
             newChecks.Clear();
+
             if (aTimer != null)
                 aTimer.Stop();
 
@@ -993,7 +990,13 @@ namespace KhTracker
             broadcast.OnReset();
             broadcast.UpdateNumbers();
 
-            HideSeedHash();
+            //hide & reset seed hash
+           if (ShouldResetHash)
+           {
+               HashRow.Height = new GridLength(0, GridUnitType.Star);
+               SeedHashLoaded = false;
+               SeedHashVisible = false;
+           }
         }
         
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
@@ -1102,7 +1105,9 @@ namespace KhTracker
         private void SetMode(Mode mode)
         {
             if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
+            {
                 OnReset(null, null);
+            }
 
             if (mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
             {
@@ -1199,7 +1204,9 @@ namespace KhTracker
                             switch (hintObject["hintsType"].ToString())
                             {
                                 case "Shananas":
+                                    ShouldResetHash = false;
                                     SetMode(Mode.OpenKHAltHints);
+                                    ShouldResetHash = true;
                                     var worlds = JsonSerializer.Deserialize<Dictionary<string,List<string>>>(hintObject["world"].ToString());
 
                                     foreach (var world in worlds)
@@ -1226,7 +1233,9 @@ namespace KhTracker
                                     break;
 
                                 case "JSmartee":
+                                    ShouldResetHash = false;
                                     SetMode(Mode.OpenKHHints);
+                                    ShouldResetHash = true;
                                     var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string,object>>>(hintObject["Reports"].ToString());
 
                                     List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
@@ -1253,13 +1262,13 @@ namespace KhTracker
                         }
                     }
                 
-                    if (entry.FullName == "sys.yml")
+                    if (entry.FullName.Equals("sys.yml"))
                     {
-                        using (var reader = new StreamReader(entry.Open()))
+                        using (var reader2 = new StreamReader(entry.Open()))
                         {
                             string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
-                            string text1 = reader.ReadLine();
-                            string text2 = reader.ReadLine();
+                            string text1 = reader2.ReadLine();
+                            string text2 = reader2.ReadLine();
                             string text = text1 + text2;
                             string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
                            
@@ -1272,19 +1281,11 @@ namespace KhTracker
                             HashIcon6.SetResourceReference(ContentProperty, hash[5]);
                             HashIcon7.SetResourceReference(ContentProperty, hash[6]);
                             SeedHashLoaded = true;
-
+                    
                             //make visible
                             if (SeedHashOption.IsChecked)
                             {
-                                HashText.Visibility = Visibility.Visible;
-                                HashIcon1.Visibility = Visibility.Visible;
-                                HashIcon2.Visibility = Visibility.Visible;
-                                HashIcon3.Visibility = Visibility.Visible;
-                                HashIcon4.Visibility = Visibility.Visible;
-                                HashIcon5.Visibility = Visibility.Visible;
-                                HashIcon6.Visibility = Visibility.Visible;
-                                HashIcon7.Visibility = Visibility.Visible;
-
+                                HashRow.Height = new GridLength(1.0, GridUnitType.Star);
                                 SeedHashVisible = true;
                             }
                         }

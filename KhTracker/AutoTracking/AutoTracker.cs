@@ -1375,7 +1375,8 @@ namespace KhTracker
                 {
                     if (SeedHashVisible)
                     {
-                        HideSeedHash();
+                        HashRow.Height = new GridLength(0, GridUnitType.Star);
+                        SeedHashVisible = false;
                     }
                 }
                 

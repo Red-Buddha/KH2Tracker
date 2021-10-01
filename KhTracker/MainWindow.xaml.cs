@@ -42,6 +42,9 @@ namespace KhTracker
         public static bool CustomVBarYFound = false;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
+        //this is stupid. Hash kept auto reseting because of SetMode
+        //during hint loading. this is here as a toggle to only reset the hash when i want it to
+        public static bool ShouldResetHash = true;
 
         public MainWindow()
         {
@@ -1321,7 +1324,8 @@ namespace KhTracker
         {
             if (SeedHashLoaded)
             {
-                HideSeedHash();
+                HashRow.Height = new GridLength(0, GridUnitType.Star);
+                SeedHashVisible = false;
             }
 
             HintText.Content = text;
@@ -1520,34 +1524,6 @@ namespace KhTracker
                     broadcast.Background = Application.Current.Resources["BG-BImage3"] as ImageBrush;
                 else
                     broadcast.Background = Application.Current.Resources["BG-BImageDef3"] as ImageBrush;
-            }
-        }
-
-        private void HideSeedHash()
-        {
-            if (SeedHashVisible == true)
-            {
-                HashText.Visibility = Visibility.Hidden;
-                HashIcon1.Visibility = Visibility.Hidden;
-                HashIcon2.Visibility = Visibility.Hidden;
-                HashIcon3.Visibility = Visibility.Hidden;
-                HashIcon4.Visibility = Visibility.Hidden;
-                HashIcon5.Visibility = Visibility.Hidden;
-                HashIcon6.Visibility = Visibility.Hidden;
-                HashIcon7.Visibility = Visibility.Hidden;
-                SeedHashVisible = false;
-            }
-            else if (SeedHashOption.IsChecked && SeedHashLoaded && !SeedHashVisible)
-            {
-                HashText.Visibility = Visibility.Visible;
-                HashIcon1.Visibility = Visibility.Visible;
-                HashIcon2.Visibility = Visibility.Visible;
-                HashIcon3.Visibility = Visibility.Visible;
-                HashIcon4.Visibility = Visibility.Visible;
-                HashIcon5.Visibility = Visibility.Visible;
-                HashIcon6.Visibility = Visibility.Visible;
-                HashIcon7.Visibility = Visibility.Visible;
-                SeedHashVisible = true;
             }
         }
     }
