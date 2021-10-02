@@ -66,6 +66,19 @@ namespace KhTracker
                     ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
                 }
             }
+
+            //if (MainWindow.data.mode == Mode.DAHints)
+            //{
+            //    WorldComplete();
+            //
+            //    string worldName = Name.Substring(0, Name.Length - 4);
+            //    if (MainWindow.data.WorldsData[worldName].hint != null)
+            //    {
+            //        Image hint = MainWindow.data.WorldsData[worldName].hint;
+            //
+            //        ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
+            //    }
+            //}
         }
 
         private void Item_Drop(Object sender, DragEventArgs e)
@@ -193,6 +206,31 @@ namespace KhTracker
         }
 
         public void WorldComplete()
+        {
+            string worldName = Name.Substring(0, Name.Length - 4);
+            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
+                return;
+
+            List<string> items = new List<string>();
+            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
+
+            foreach (var child in Children)
+            {
+                Item item = child as Item;
+                char[] numbers = { '1', '2', '3', '4', '5' };
+                if (items.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    items.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            if (items.Count == 0)
+            {
+                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
+            }
+        }
+
+        public void WorldPointsComplete()
         {
             string worldName = Name.Substring(0, Name.Length - 4);
             if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
