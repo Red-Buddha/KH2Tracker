@@ -20,6 +20,24 @@ namespace KhTracker
         /// Options
         ///
 
+        private int LevelPoints = 0, LevelPoints_c = 0;
+        private int DrivePoints = 0, DrivePoints_c = 0;
+        private int STTPoints = 0, STTPoints_c = 0;
+        private int HBPoints = 0, HBPoints_c = 0;
+        private int OCPoints = 0, OCPoints_c = 0;
+        private int LoDPoints = 0, LoDPoints_c = 0;
+        private int PLPoints = 0, PLPoints_c = 0;
+        private int HTPoints = 0, HTPoints_c = 0;
+        private int SPPoints = 0, SPPoints_c = 0;
+        private int TTPoints = 0, TTPoints_c = 0;
+        private int BCPoints = 0, BCPoints_c = 0;
+        private int AGPoints = 0, AGPoints_c = 0;
+        private int HAWPoints = 0, HAWPoints_c = 0;
+        private int DCPoints = 0, DCPoints_c = 0;
+        private int PRPoints = 0, PRPoints_c = 0;
+        private int TWTNWPoints = 0, TWTNWPoints_c = 0;
+        private int ATPoints = 0, ATPoints_c = 0;
+
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -1482,25 +1500,6 @@ namespace KhTracker
             PageItems.Add("Secret Ansem's Report 12");
             PageItems.Add("Secret Ansem's Report 13");
 
-            //set points to 0
-            int LevelPoints = 0;
-            int DrivePoints = 0;
-            int STTPoints = 0;
-            int HBPoints = 0;
-            int OCPoints = 0;
-            int LoDPoints = 0;
-            int PLPoints = 0;
-            int HTPoints = 0;
-            int SPPoints = 0;
-            int TTPoints = 0;
-            int BCPoints = 0;
-            int AGPoints = 0;
-            int HAWPoints = 0;
-            int DCPoints = 0;
-            int PRPoints = 0;
-            int TWTNWPoints = 0;
-            int ATPoints = 0;
-
             #endregion
 
             //clear worlds
@@ -2009,23 +2008,39 @@ namespace KhTracker
                             }
 
                             Console.WriteLine("LVl Points = " + LevelPoints);
+                            LevelPoints_c = LevelPoints;
                             Console.WriteLine("DRV Points = " + DrivePoints);
+                            DrivePoints_c = DrivePoints;
                             Console.WriteLine("STT Points = " + STTPoints);
+                            STTPoints_c = STTPoints;
                             Console.WriteLine("HB Points = " + HBPoints);
+                            HBPoints_c = HBPoints;
                             Console.WriteLine("OC Points = " + OCPoints);
+                            OCPoints_c = OCPoints;
                             Console.WriteLine("Lo Points = " + LoDPoints);
+                            LoDPoints_c = LoDPoints;
                             Console.WriteLine("PL Points = " + PLPoints);
+                            PLPoints_c = PLPoints;
                             Console.WriteLine("HT Points = " + HTPoints);
+                            HTPoints_c = HTPoints;
                             Console.WriteLine("SP Points = " + SPPoints);
+                            SPPoints_c = SPPoints;
                             Console.WriteLine("TT Points = " + TTPoints);
+                            TTPoints_c = TTPoints;
                             Console.WriteLine("BC Points = " + BCPoints);
+                            BCPoints_c = BCPoints;
                             Console.WriteLine("AG Points = " + AGPoints);
+                            AGPoints_c = AGPoints;
                             Console.WriteLine("HAW Points = " + HAWPoints);
+                            HAWPoints_c = HAWPoints;
                             Console.WriteLine("DC Points = " + DCPoints);
+                            DCPoints_c = DCPoints;
                             Console.WriteLine("PR Points = " + PRPoints);
+                            PRPoints_c = PRPoints;
                             Console.WriteLine("TWTNW Points = " + TWTNWPoints);
+                            TWTNWPoints_c = TWTNWPoints;
                             Console.WriteLine("AT Points = " + ATPoints);
-
+                            ATPoints_c = ATPoints;
                         }
                     }
 
@@ -2059,6 +2074,90 @@ namespace KhTracker
                     }
                 }
             }
+        }
+
+        public int GetPoints(string worldName)
+        {
+            if (worldName == "SimulatedTwilightTown")
+                return STTPoints_c;
+            else if (worldName == "TwilightTown")
+            {
+                Console.WriteLine("GET TTPoints = " + TTPoints_c);
+                return TTPoints_c;
+            }
+            else if (worldName == "HollowBastion")
+                return HBPoints_c;
+            else if (worldName == "LandofDragons")
+                return LoDPoints_c;
+            else if (worldName == "BeastsCastle")
+                return BCPoints_c;
+            else if (worldName == "OlympusColiseum")
+                return OCPoints_c;
+            else if (worldName == "DisneyCastle")
+                return DCPoints_c;
+            else if (worldName == "PortRoyal")
+                return PRPoints_c;
+            else if (worldName == "Agrabah")
+                return AGPoints_c;
+            else if (worldName == "HalloweenTown")
+                return HTPoints_c;
+            else if (worldName == "PrideLands")
+                return PLPoints_c;
+            else if (worldName == "Atlantica")
+                return ATPoints_c;
+            else if (worldName == "HundredAcreWood")
+                return HAWPoints_c;
+            else if (worldName == "SpaceParanoids")
+                return SPPoints_c;
+            else if (worldName == "TWTNW")
+                return TWTNWPoints_c;
+            else if (worldName == "DriveForms")
+                return DrivePoints_c;
+            else if (worldName == "SorasHeart")
+                return LevelPoints_c;
+            else
+                return 0;
+        }
+
+        public void SetPoints(string name, int value)
+        {
+            if (name == "SimulatedTwilightTown")
+                STTPoints_c = value;
+            else if (name == "TwilightTown")
+            {
+                TTPoints_c = value;
+                Console.WriteLine("SET TTPoints = " + TTPoints_c);
+            }
+            else if (name == "HollowBastion")
+                HBPoints_c = value;
+            else if (name == "LandofDragons")
+                LoDPoints_c = value;
+            else if (name == "BeastsCastle")
+                BCPoints_c = value;
+            else if (name == "OlympusColiseum")
+                OCPoints_c = value;
+            else if (name == "DisneyCastle")
+                DCPoints_c = value;
+            else if (name == "PortRoyal")
+                PRPoints_c = value;
+            else if (name == "Agrabah")
+                AGPoints_c = value;
+            else if (name == "HalloweenTown")
+                HTPoints_c = value;
+            else if (name == "PrideLands")
+                PLPoints_c = value;
+            else if (name == "Atlantica")
+                ATPoints_c = value;
+            else if (name == "HundredAcreWood")
+                HAWPoints_c = value;
+            else if (name == "SpaceParanoids")
+                SPPoints_c = value;
+            else if (name == "TWTNW")
+                TWTNWPoints_c = value;
+            else if (name == "DriveForms")
+                DrivePoints_c = value;
+            else if (name == "SorasHeart")
+                LevelPoints_c = value;
         }
     }
 }
