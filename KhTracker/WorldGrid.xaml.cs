@@ -20,6 +20,8 @@ namespace KhTracker
     /// </summary>
     public partial class WorldGrid : UniformGrid
     {
+        public int localLevelCount = 0;
+
         public WorldGrid()
         {
             InitializeComponent();
@@ -27,6 +29,8 @@ namespace KhTracker
 
         public void Handle_WorldGrid(Item button, bool add)
         {
+            int addRemove = 1;
+
             if (add)
             {
                 try
@@ -39,7 +43,11 @@ namespace KhTracker
                 }
             }
             else
+            {
+                //Console.WriteLine("Removing " + button.Name);
                 Children.Remove(button);
+                addRemove = -1;
+            }
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)
@@ -67,18 +75,23 @@ namespace KhTracker
                 }
             }
 
-            //if (MainWindow.data.mode == Mode.DAHints)
-            //{
-            //    WorldComplete();
-            //
-            //    string worldName = Name.Substring(0, Name.Length - 4);
-            //    if (MainWindow.data.WorldsData[worldName].hint != null)
-            //    {
-            //        Image hint = MainWindow.data.WorldsData[worldName].hint;
-            //
-            //        ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
-            //    }
-            //}
+            if (MainWindow.data.mode == Mode.DAHints)
+            {
+                //WorldComplete();
+
+                string worldName = Name.Substring(0, Name.Length - 4);
+                //if (MainWindow.data.WorldsData[worldName].hint != null)
+                //{
+                //    Image hint = MainWindow.data.WorldsData[worldName].hint;
+                //
+                //    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
+                //}
+
+                Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
+                Image hint = MainWindow.data.WorldsData[worldName].hint;
+                ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
+            }
         }
 
         private void Item_Drop(Object sender, DragEventArgs e)
@@ -253,6 +266,23 @@ namespace KhTracker
             {
                 MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
             }
+        }
+
+        public int TableReturn(string nameButton)
+        {
+            if (nameButton.Contains("Peace") || nameButton.Contains("Nonexistence") || nameButton.Contains("Connection") || nameButton.Contains("PromiseCharm"))
+                return 14;
+            else if (nameButton.Contains("Valor") || nameButton.Contains("Wisdom") || nameButton.Contains("Limit") || nameButton.Contains("Master") || nameButton.Contains("Final"))
+                return 10;
+            else if (nameButton.Contains("Fire") || nameButton.Contains("Blizzard") || nameButton.Contains("Thunder") ||
+                nameButton.Contains("Cure") || nameButton.Contains("Reflect") || nameButton.Contains("Magnet"))
+                return 8;
+            else if (nameButton.Contains("Baseball") || nameButton.Contains("Ukulele") || nameButton.Contains("Lamp") || nameButton.Contains("Feather"))
+                return 6;
+            else if (nameButton.Contains("Page") || nameButton.Contains("Report"))
+                return 2;
+            else
+                return 4;
         }
     }
 }
