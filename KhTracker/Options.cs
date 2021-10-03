@@ -1535,7 +1535,7 @@ namespace KhTracker
                                 }
                                 foreach (var item in world.Value)
                                 {
-                                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                                    //data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
                                     //check worlds and add points
                                     {
                                         if (convertOpenKH[world.Key] == "SimulatedTwilightTown")
