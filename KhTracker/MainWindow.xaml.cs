@@ -42,8 +42,8 @@ namespace KhTracker
         public static bool CustomVBarYFound = false;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
-        //this is stupid. Hash kept auto reseting because of SetMode
-        //during hint loading. this is here as a toggle to only reset the hash when i want it to
+        //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
+        //this is here as a toggle to only reset the hash when i want it to
         public static bool ShouldResetHash = true;
 
         public MainWindow()
@@ -285,6 +285,35 @@ namespace KhTracker
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/68.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/69.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/70.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/71.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/72.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/73.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/74.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/75.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/76.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/77.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/78.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/79.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/80.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/81.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/82.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/83.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/84.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/85.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/86.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/87.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/88.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/89.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/90.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/91.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/92.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/93.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/94.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/95.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/96.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/97.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/98.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/99.png", UriKind.Relative)));
 
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/QuestionMark.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/0.png", UriKind.Relative)));
@@ -485,6 +514,35 @@ namespace KhTracker
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/68.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/69.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/70.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/71.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/72.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/73.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/74.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/75.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/76.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/77.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/78.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/79.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/80.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/81.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/82.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/83.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/84.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/85.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/86.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/87.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/88.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/89.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/90.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/91.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/92.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/93.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/94.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/95.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/96.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/97.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/98.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/99.png", UriKind.Relative)));
 
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/QuestionMark.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/0.png", UriKind.Relative)));
@@ -712,6 +770,35 @@ namespace KhTracker
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/68.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/69.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/70.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/71.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/72.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/73.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/74.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/75.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/76.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/77.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/78.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/79.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/80.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/81.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/82.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/83.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/84.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/85.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/86.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/87.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/88.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/89.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/90.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/91.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/92.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/93.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/94.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/95.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/96.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/97.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/98.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/99.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/QuestionMark.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/0.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/1.png", urikindvarblue)));
@@ -1214,8 +1301,22 @@ namespace KhTracker
             if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete)
                 NormalNum = BlueNum;
 
-            if (value > 52)
-                value = 52;
+            if (data.mode == Mode.DAHints)
+            {
+                if (value > 100)
+                {
+                    //for testing. basically if a number is blue then i either need to
+                    //lower values or find a way to add triple digets
+                    NormalNum = BlueNum;
+                    value = 100;
+                }
+            }
+            else
+            {
+                if (value > 52)
+                    value = 52;
+            }
+
 
             if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
                 Hint.Source = NormalNum[1];
@@ -1233,22 +1334,46 @@ namespace KhTracker
             bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             var NormalNum = data.Numbers;
+            var BlueNum = data.BlueNumbers;
             {
                 //check numbers
                 if (OldMode)
+                {
                     NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
+                    BlueNum = data.OldBlueNumbers;
+                }
+                if (CustomMode)
+                {
+                    if (CustomNumbersFound)
+                        NormalNum = data.CustomNumbers;
+                    if (CustomBlueNumbersFound)
+                        BlueNum = data.CustomBlueNumbers;
+                }
             }
 
             ++collected;
-            if (collected > 51)
-                collected = 51;
 
-            Collected.Source = NormalNum[collected + 1];
-            broadcast.Collected.Source = NormalNum[collected + 1];
+            if (data.mode == Mode.DAHints)
+            {
+                if (collected > 99)
+                {
+                    //for testing. basically if a number is blue then i either need to
+                    //lower values or find a way to add triple digets
+                    NormalNum = BlueNum;
+                    collected = 99;
 
+                    Collected.Source = NormalNum[collected + 1];
+                    broadcast.Collected.Source = NormalNum[collected + 1];
+                }
+            }
+            else
+            {
+                if (collected > 51)
+                    collected = 51;
+
+                Collected.Source = NormalNum[collected + 1];
+                broadcast.Collected.Source = NormalNum[collected + 1];
+            }
         }
 
         public void DecrementCollected()

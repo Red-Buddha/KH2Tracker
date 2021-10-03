@@ -1020,6 +1020,42 @@ namespace KhTracker
                SeedHashLoaded = false;
                SeedHashVisible = false;
            }
+
+            LevelPoints = 0;
+            LevelPoints_c = 0;
+            DrivePoints = 0;
+            DrivePoints_c = 0;
+            STTPoints = 0;
+            STTPoints_c = 0;
+            HBPoints = 0;
+            HBPoints_c = 0;
+            OCPoints = 0;
+            OCPoints_c = 0;
+            LoDPoints = 0;
+            LoDPoints_c = 0;
+            PLPoints = 0;
+            PLPoints_c = 0;
+            HTPoints = 0;
+            HTPoints_c = 0;
+            SPPoints = 0;
+            SPPoints_c = 0;
+            TTPoints = 0;
+            TTPoints_c = 0;
+            BCPoints = 0;
+            BCPoints_c = 0;
+            AGPoints = 0;
+            AGPoints_c = 0;
+            HAWPoints = 0;
+            HAWPoints_c = 0;
+            DCPoints = 0;
+            DCPoints_c = 0;
+            PRPoints = 0;
+            PRPoints_c = 0;
+            TWTNWPoints = 0;
+            TWTNWPoints_c = 0;
+            ATPoints = 0;
+            ATPoints_c = 0;
+
         }
         
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
@@ -1127,7 +1163,7 @@ namespace KhTracker
 
         private void SetMode(Mode mode)
         {
-            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
+            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints)
             {
                 OnReset(null, null);
             }
@@ -1164,7 +1200,11 @@ namespace KhTracker
             openFileDialog.Title = "Select Seed File";
             if (openFileDialog.ShowDialog() == true)
             {
-                OpenKHSeed(openFileDialog.FileName);
+                if (PointsTestOption.IsChecked)
+                    ParseSeedPoints(openFileDialog.FileName);
+                else
+                    OpenKHSeed(openFileDialog.FileName);
+
             }
         }
 
@@ -1503,6 +1543,7 @@ namespace KhTracker
             #endregion
 
             //clear worlds
+
             foreach (string world in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[world].checkCount.Clear();
@@ -1534,7 +1575,7 @@ namespace KhTracker
                                 }
                                 foreach (var item in world.Value)
                                 {
-                                    //data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
                                     //check worlds and add points
                                     {
                                         if (convertOpenKH[world.Key] == "SimulatedTwilightTown")

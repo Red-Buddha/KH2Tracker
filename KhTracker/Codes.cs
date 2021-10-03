@@ -192,6 +192,47 @@ namespace KhTracker
             {595, "Peace"},
         };
 
+        public Dictionary<string, int> ItemPoints = new Dictionary<string, int>
+        {
+            {"PromiseCharm", 14},
+            {"Connection", 14},
+            {"Nonexistence", 14},
+            {"Peace", 14},
+            {"Valor", 10},
+            {"Wisdom", 10},
+            {"Final", 10},
+            {"Master", 10},
+            {"Limit", 10},
+            {"Fire", 8},
+            {"Blizzard", 8},
+            {"Thunder", 8},
+            {"Cure", 8},
+            {"Magnet", 8},
+            {"Reflect", 8},
+            {"Ukulele", 6},
+            {"Lamp", 6},
+            {"Feather", 6},
+            {"Baseball", 6},
+            {"SecondChance", 4},
+            {"OnceMore", 4},
+            {"TornPage", 2},
+            //commented out for now
+            //restore this once reports can be ICs in points mode
+            //{2, "Report1"},
+            //{2, "Report2"},
+            //{2, "Report3"},
+            //{2, "Report4"},
+            //{2, "Report5"},
+            //{2, "Report6"},
+            //{2, "Report7"},
+            //{2, "Report8"},
+            //{2, "Report9" },
+            //{2, "Report10"},
+            //{2, "Report11"},
+            //{2, "Report12"},
+            //{2, "Report13"},
+        };
+
         string[] Default = new string[]
         {
             "HollowBastion",

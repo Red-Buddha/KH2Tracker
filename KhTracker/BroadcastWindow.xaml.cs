@@ -291,12 +291,12 @@ namespace KhTracker
             foreach (KeyValuePair<string, int> total in totals)
             {
                 Image worldTotal = this.FindName(total.Key + "Total") as Image;
-                if (total.Value == -1)
+                if (total.Value <= -1)
                 {
                     worldTotal.Source = SingleNum[0];
                 }
-                else if ((data.WorldsData.ContainsKey(total.Key) &&  total.Key != "GoA" && data.WorldsData[total.Key].hintedHint) 
-                    || (data.WorldsData.ContainsKey(total.Key) &&  total.Key != "GoA" && data.WorldsData[total.Key].complete))
+                else if ((data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].hintedHint)
+                    || (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].complete))
                 {
                     if (total.Value <= 10)
                         worldTotal.Source = BlueSingleNum[total.Value];
