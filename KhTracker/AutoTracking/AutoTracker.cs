@@ -99,6 +99,7 @@ namespace KhTracker
         private CheckEveryCheck checkEveryCheck;
 
         public static bool pcsx2tracking = false;
+        //public static bool StartTracking = false;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -408,6 +409,10 @@ namespace KhTracker
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
+
+           // Console.WriteLine("World Num = " + world.worldNum);
+            //Console.WriteLine("World Room = " + world.roomNumber);
+
             previousChecks.Clear();
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
@@ -434,6 +439,7 @@ namespace KhTracker
 
             UpdateCollectedItems();
             DetermineItemLocations();
+
         }
 
         private void TrackItem(string itemName, WorldGrid world)
@@ -1092,16 +1098,19 @@ namespace KhTracker
             {
                 if (world.roomNumber == 2 && world.eventID1 == 63) // Tutorial
                 {
+                    broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "Tutorial");
                     AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "Tutorial");
                     data.WorldsData[world.worldName].progress = 1;
                 }
                 else if (world.roomNumber == 9 && world.eventID1 == 65) // Ursula's Revenge
                 {
+                    broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "Ursula");
                     AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "Ursula");
                     data.WorldsData[world.worldName].progress = 2;
                 }
                 else if (world.roomNumber == 4 && world.eventID1 == 55) // A New Day is Dawning
                 {
+                    broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "NewDay");
                     AtlanticaProgression.SetResourceReference(ContentProperty, Prog + "NewDay");
                     data.WorldsData[world.worldName].progress = 3;
                 }
@@ -1381,8 +1390,7 @@ namespace KhTracker
                 }
                 
             }
-            //Console.WriteLine("World Name = " + world.worldName);
-            //Console.WriteLine("World Room = " + world.roomNumber);
+
             //Console.WriteLine("Seed hash visible? = " + SeedHashVisible);
 
         }

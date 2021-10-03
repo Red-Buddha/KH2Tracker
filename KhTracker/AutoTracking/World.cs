@@ -25,7 +25,7 @@ namespace KhTracker
                 }
             }
         }
-        private int worldNum;
+        public int worldNum;
         private int worldAddress;
         private int eventCompleteAddress;
         private int SttAddress;

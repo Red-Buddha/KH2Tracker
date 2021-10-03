@@ -976,6 +976,8 @@ namespace KhTracker
             if (aTimer != null)
                 aTimer.Stop();
 
+            //StartTracking = false;
+
             fireLevel = 0;
             blizzardLevel = 0;
             thunderLevel = 0;

@@ -1276,6 +1276,9 @@ namespace KhTracker
 
         public void SetReportValue(Image Hint, int value)
         {
+            if (data.mode == Mode.DAHints && Hint == null)
+                return;
+
             //this chunk of garbage for using the correct vertical images
             bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
