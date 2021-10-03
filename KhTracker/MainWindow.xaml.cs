@@ -1353,27 +1353,27 @@ namespace KhTracker
 
             ++collected;
 
-            if (data.mode == Mode.DAHints)
-            {
-                if (collected > 99)
-                {
-                    //for testing. basically if a number is blue then i either need to
-                    //lower values or find a way to add triple digets
-                    NormalNum = BlueNum;
-                    collected = 99;
-
-                    Collected.Source = NormalNum[collected + 1];
-                    broadcast.Collected.Source = NormalNum[collected + 1];
-                }
-            }
-            else
-            {
+            //if (data.mode == Mode.DAHints)
+            //{
+            //    if (collected > 99)
+            //    {
+            //        //for testing. basically if a number is blue then i either need to
+            //        //lower values or find a way to add triple digets
+            //        NormalNum = BlueNum;
+            //        collected = 99;
+            //
+            //        Collected.Source = NormalNum[collected + 1];
+            //        broadcast.Collected.Source = NormalNum[collected + 1];
+            //    }
+            //}
+            //else
+            //{
                 if (collected > 51)
                     collected = 51;
 
                 Collected.Source = NormalNum[collected + 1];
                 broadcast.Collected.Source = NormalNum[collected + 1];
-            }
+            //}
         }
 
         public void DecrementCollected()
