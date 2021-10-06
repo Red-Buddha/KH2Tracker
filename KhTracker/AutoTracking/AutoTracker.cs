@@ -270,7 +270,9 @@ namespace KhTracker
             Magic.Visibility = Visibility.Visible;
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
-            Weapon.Visibility = Visibility.Visible;
+
+            if (PointsTestOption.IsChecked)
+                Weapon.Visibility = Visibility.Visible;
 
             broadcast.LevelIcon.Visibility = Visibility.Visible;
             broadcast.Level.Visibility = Visibility.Visible;
@@ -1519,33 +1521,18 @@ namespace KhTracker
             Updatenumbers();
             broadcast.UpdateNumbers();
             //broadcast.UpdateTotal();
+
+            UpdatePointScore(0);
         }
 
         private void Updatenumbers()
         {
-            //all this garbage to get the correct number images when changing visual styles
-            bool OldMode = Properties.Settings.Default.OldNum;
+            //get correct bar image
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
             BitmapImage NumberBarY = data.SlashBarY;
+            if (CustomMode && CustomBarYFound)
             {
-                //check numbers
-                if (OldMode)
-                {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                }
-
-                if (CustomMode)
-                {
-                    if (MainWindow.CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (MainWindow.CustomBlueNumbersFound)
-                        BlueNum = data.CustomBlueNumbers;
-                    if (MainWindow.CustomBarYFound)
-                        NumberBarY = data.CustomSlashBarY;
-                }
+                NumberBarY = data.CustomSlashBarY;
             }
 
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
@@ -1594,7 +1581,7 @@ namespace KhTracker
                                 WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
 
                             if (worldData.hint != null)
-                                worldData.hint.Source = NormalNum[WorldNumber];
+                                worldData.hint.Source = GetDataNumber("Y")[WorldNumber];
                         }
                         else
                         {
@@ -1625,7 +1612,7 @@ namespace KhTracker
                                 WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
 
                             if (worldData.hint != null)
-                                worldData.hint.Source = BlueNum[WorldNumber];
+                                worldData.hint.Source = GetDataNumber("B")[WorldNumber];
                         }
                     }
                 }
@@ -1649,12 +1636,14 @@ namespace KhTracker
                 }
             }
 
-            Collected.Source = NormalNum[collected + 1];
-            CheckTotal.Source = NormalNum[total + 1];
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
             CollectedBar.Source = NumberBarY;
 
-            broadcast.Collected.Source = NormalNum[collected + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
+
+
     }
 }

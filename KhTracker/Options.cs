@@ -568,6 +568,7 @@ namespace KhTracker
 
             string ATkey = Prog + data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
             data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
+            broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, ATkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
@@ -658,19 +659,6 @@ namespace KhTracker
             data.reportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
-            //get correct numbers when resetting (i really need to make a custom funtion just for this)
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             foreach (var key in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[key].hinted = false;
@@ -690,7 +678,7 @@ namespace KhTracker
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
                 if (worldData.hint != null)
-                    worldData.hint.Source = NormalNum[0];
+                    worldData.hint.Source = GetDataNumber("Y")[0];
             }
 
             for (int i = 0; i < data.Reports.Count; ++i)
@@ -785,27 +773,16 @@ namespace KhTracker
             collected = 0;            
             HintText.Content = "";
 
+            Collected.Visibility = Visibility.Visible;
+            CollectedBar.Visibility = Visibility.Visible;
+            CheckTotal.Visibility = Visibility.Visible;
+
             //all this garbage to get the correct number images when changing visual styles
-            bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage BarW = data.VerticalBarW;
-            Collected.Source = data.Numbers[1];
-            //CollectedBar.SetResourceReference(ContentProperty, "CollectedBarYellow");
-            {
-                //check numbers
-                if (OldMode)
-                {
-                    Collected.Source = data.OldNumbers[1];
-                }
-
-                if (CustomMode)
-                {
-                    if (MainWindow.CustomNumbersFound)
-                        Collected.Source = data.CustomNumbers[1];
-                    if (MainWindow.CustomVBarWFound)
-                        BarW = data.CustomVerticalBarW;
-                }
-            }
+            Collected.Source = GetDataNumber("Y")[1];
+            if (CustomMode && CustomVBarWFound)
+                BarW = data.CustomVerticalBarW;
 
             if (data.selected != null)
             {
@@ -1057,6 +1034,14 @@ namespace KhTracker
             TWTNWPoints_c = 0;
             ATPoints = 0;
             ATPoints_c = 0;
+
+            PointTotal = 0;
+
+            Score100.Visibility = Visibility.Hidden;
+            Score10.Visibility = Visibility.Hidden;
+            Score1.Visibility = Visibility.Hidden;
+
+            UpdatePointScore(0);
 
         }
         
@@ -1475,8 +1460,9 @@ namespace KhTracker
 
             SetMode(Mode.DAHints);
 
+
             //create lists
-            
+
             List<string> MagicItems = new List<string>();
             List<string> SummonItems = new List<string>();
             List<string> FormItems = new List<string>();
@@ -2117,6 +2103,14 @@ namespace KhTracker
                     }
                 }
             }
+
+            Collected.Visibility = Visibility.Hidden;
+            CollectedBar.Visibility = Visibility.Hidden;
+            CheckTotal.Visibility = Visibility.Hidden;
+
+            Score100.Visibility = Visibility.Visible;
+            Score10.Visibility = Visibility.Visible;
+            Score1.Visibility = Visibility.Visible;
         }
 
         public int GetPoints(string worldName)
@@ -2202,5 +2196,42 @@ namespace KhTracker
             else if (name == "SorasHeart")
                 LevelPoints_c = value;
         }
+
+        public void UpdatePointScore(int points)
+        {
+            int[] FinalNum = new int[] {1, 1, 1}; //Default 000
+            int num = PointTotal + points; //get new point total
+            PointTotal = num; //set new point total
+
+            //split point total into separate digits
+            List<int> listOfInts = new List<int>();
+            while (num > 0)
+            {
+                listOfInts.Add(num % 10);
+                num = num / 10;
+            }
+
+            //Set number images depending on number of digits in point total
+            if (listOfInts.Count == 3)
+            {
+                FinalNum[0] = listOfInts[0] + 1;
+                FinalNum[1] = listOfInts[1] + 1;
+                FinalNum[2] = listOfInts[2] + 1;
+            }
+            else if (listOfInts.Count == 2)
+            {
+                FinalNum[0] = listOfInts[0] + 1;
+                FinalNum[1] = listOfInts[1] + 1;
+            }
+            else if (listOfInts.Count == 1)
+            {
+                FinalNum[0] = listOfInts[0] + 1;
+            }
+
+            Score100.Source = GetDataNumber("S")[FinalNum[2]];
+            Score10.Source = GetDataNumber("S")[FinalNum[1]];
+            Score1.Source = GetDataNumber("S")[FinalNum[0]];
+        }
+    
     }
 }

@@ -25,19 +25,12 @@ namespace KhTracker
         Dictionary<string, int> totals = new Dictionary<string, int>();
         Dictionary<string, int> important = new Dictionary<string, int>();
         Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
-        //List<BitmapImage> Numbers = null;
-        //List<BitmapImage> OldNumbers = null;
-        //List<BitmapImage> CustomNumbers = null;
         Data data;
 
         public BroadcastWindow(Data dataIn)
         {
             InitializeComponent();
             //Item.UpdateTotal += new Item.TotalHandler(UpdateTotal);
-
-            //Numbers = dataIn.Numbers;
-            //OldNumbers = dataIn.OldNumbers;
-            //CustomNumbers = dataIn.CustomNumbers;
 
             worlds.Add("SorasHeart",0);
             worlds.Add("DriveForms", 0);
@@ -180,69 +173,25 @@ namespace KhTracker
 
         public void UpdateNumbers()
         {
-            //all this garbage to get the correct number images when changing visual styles
-            bool OldMode = Properties.Settings.Default.OldNum;
+            //Get correct bar images
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
-            var SingleNum = data.SingleNumbers;
-            var BlueSingleNum = data.BlueSingleNumbers;
             BitmapImage NumberBarB = data.SlashBarB;
             BitmapImage NumberBarY = data.SlashBarY;
+            if (CustomMode)
             {
-                if (CustomMode)
-                {
-                    //Yellow Numbers
-                    if (MainWindow.CustomNumbersFound)
-                    {
-                        NormalNum = data.CustomNumbers;
-                        SingleNum = data.CustomSingleNumbers;
-                    }
-                    else if (OldMode && !MainWindow.CustomNumbersFound)
-                    {
-                        NormalNum = data.OldNumbers;
-                        SingleNum = data.OldSingleNumbers;
-                    }
-
-                    //Blue Numbers
-                    if (MainWindow.CustomBlueNumbersFound)
-                    {
-                        BlueNum = data.CustomBlueNumbers;
-                        BlueSingleNum = data.CustomBlueSingleNumbers;
-                    }
-                    else if (OldMode && !MainWindow.CustomBlueNumbersFound)
-                    {
-                        BlueNum = data.OldBlueNumbers;
-                        BlueSingleNum = data.OldBlueSingleNumbers;
-                    }
-                    //Bars
-                    if (MainWindow.CustomBarBFound)
-                    {
-                        NumberBarB = data.CustomSlashBarB;
-                    }
-
-                    if (MainWindow.CustomBarYFound)
-                    {
-                        NumberBarY = data.CustomSlashBarY;
-                    }
-
-                }
-                else if (OldMode)
-                {
-                    NormalNum =     data.OldNumbers;
-                    BlueNum =       data.OldBlueNumbers;
-                    SingleNum =     data.OldSingleNumbers;
-                    BlueSingleNum = data.OldBlueSingleNumbers;
-                }
+                if (MainWindow.CustomBarBFound)
+                    NumberBarB = data.CustomSlashBarB;
+                if (MainWindow.CustomBarYFound)
+                    NumberBarY = data.CustomSlashBarY;
             }
 
             //Fix Broadcast window report and torn page numbers
             {
                 ReportFoundBar.Source = NumberBarY;
                 TornPageBar.Source = NumberBarY;
-                CollectedBar.Source = NumberBarY;             
-                ReportFoundTotal.Source = NormalNum[14];
-                TornPageTotal.Source = SingleNum[6];
+                CollectedBar.Source = NumberBarY;
+                ReportFoundTotal.Source = GetDataNumber("Y")[14];
+                TornPageTotal.Source = GetDataNumber("S")[6];
             }
 
             foreach (KeyValuePair<string,int> world in worlds)
@@ -250,12 +199,12 @@ namespace KhTracker
                 if (world.Value < 52)
                 {
                     //Correctly set yellow num and bar
-                    BitmapImage number = NormalNum[world.Value + 1];
+                    BitmapImage number = GetDataNumber("Y")[world.Value + 1];
 
                     if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint == false)
                         || (data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].complete == false))
                     {
-                        number = NormalNum[world.Value + 1];
+                        number = GetDataNumber("Y")[world.Value + 1];
                         Image bar = FindName(world.Key + "Bar") as Image;
                         bar.Source = NumberBarY;
                     }
@@ -263,7 +212,7 @@ namespace KhTracker
                     if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint) 
                         || (data.WorldsData.ContainsKey(world.Key) &&  world.Key != "GoA" && data.WorldsData[world.Key].complete))
                     {
-                        number = BlueNum[world.Value + 1];
+                        number = GetDataNumber("B")[world.Value + 1];
                         Image bar = FindName(world.Key + "Bar") as Image;
                         bar.Source = NumberBarB;
                     }
@@ -271,7 +220,7 @@ namespace KhTracker
                     if (world.Key == "TornPage" || world.Key == "Fire" || world.Key == "Blizzard"
                         || world.Key == "Thunder" || world.Key == "Cure" || world.Key == "Reflect" || world.Key == "Magnet")
                     {
-                        number = SingleNum[world.Value + 1];
+                        number = GetDataNumber("S")[world.Value + 1];
                     }
 
                     Image worldFound = this.FindName(world.Key + "Found") as Image;
@@ -293,22 +242,22 @@ namespace KhTracker
                 Image worldTotal = this.FindName(total.Key + "Total") as Image;
                 if (total.Value <= -1)
                 {
-                    worldTotal.Source = SingleNum[0];
+                    worldTotal.Source = GetDataNumber("S")[0];
                 }
                 else if ((data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].hintedHint)
                     || (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].complete))
                 {
                     if (total.Value <= 10)
-                        worldTotal.Source = BlueSingleNum[total.Value];
+                        worldTotal.Source = GetDataNumber("SB")[total.Value];
                     else
-                        worldTotal.Source = BlueNum[total.Value];
+                        worldTotal.Source = GetDataNumber("B")[total.Value];
                 }
                 else
                 {
                     if (total.Value <= 10)
-                        worldTotal.Source = SingleNum[total.Value];
+                        worldTotal.Source = GetDataNumber("S")[total.Value];
                     else
-                        worldTotal.Source = NormalNum[total.Value];
+                        worldTotal.Source = GetDataNumber("Y")[total.Value];
                 }
 
                 // Format fixing for double digit numbers
@@ -467,19 +416,7 @@ namespace KhTracker
 
             OnResetHints();
 
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && MainWindow.CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
-            Collected.Source = NormalNum[1];
+            Collected.Source = GetDataNumber("Y")[1];
         }
 
         public void ToggleProgression(bool toggle)
@@ -498,6 +435,62 @@ namespace KhTracker
                     Progression[key].Visibility = Visibility.Hidden;
                 }
             }
+        }
+
+        //stuff to call the right number image
+        public List<BitmapImage> GetDataNumber(string type)
+        {
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            var NormalNum = data.Numbers;
+            var BlueNum = data.BlueNumbers;
+            var SingleNum = data.SingleNumbers;
+            var SingleBlueNum = data.BlueSingleNumbers;
+
+            //Get correct numbers
+            {
+                if (OldMode)
+                {
+                    NormalNum = data.OldNumbers;
+                    BlueNum = data.OldBlueNumbers;
+                    SingleNum = data.OldSingleNumbers;
+                    SingleBlueNum = data.OldBlueSingleNumbers;
+                }
+
+                if (CustomMode)
+                {
+                    if (MainWindow.CustomNumbersFound)
+                    {
+                        NormalNum = data.CustomNumbers;
+                        SingleNum = data.OldSingleNumbers;
+                    }
+                    if (MainWindow.CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.CustomBlueNumbers;
+                        SingleBlueNum = data.OldBlueSingleNumbers;
+                    }
+                }
+            }
+
+            //return correct number list
+            if (type == "Y")
+            {
+                return NormalNum;
+            }
+            else if (type == "B")
+            {
+                return BlueNum;
+            }
+            else if (type == "S")
+            {
+                return SingleNum;
+            }
+            else if (type == "SB")
+            {
+                return SingleBlueNum;
+            }
+            else
+                return NormalNum;
         }
     }
 }

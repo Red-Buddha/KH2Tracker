@@ -753,7 +753,7 @@
                 <Image Name="Defense" Source="Images/Numbers/Kh2/Yellow/2.png" Grid.Row="3" Grid.Column="11" Visibility="Visible"/>
                 <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Visible"/-->
 
-                <Image Name="Level"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Level"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="2"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -763,7 +763,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -773,7 +773,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -783,7 +783,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -794,7 +794,7 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -804,7 +804,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -814,7 +814,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="7"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="7"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -824,7 +824,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -846,15 +846,45 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15"/>
-                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16"/>
-                <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17"/>
+                <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Visible"/>
+                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16" Visibility="Visible"/>
+                <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17" Visibility="Visible"/>
+
+                <!--Image Name="BattleLevelIcon" Source="Images/Other/sora_heart.png" Grid.Row="3" Grid.Column="15" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="BattleLevel"  Source="Images/Numbers/Kh2/Yellow/99.png" Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="2" Visibility="Hidden"/-->
+
+            </Grid>
+
+            <!-- Score grid -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.25*"/>
+                    <RowDefinition Name="PointsRow" Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*"/>
+                    
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Name="BattleLevelIcon2" Source="Images/Other/sora_heart.png" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Visibility="Hidden"/>
+
+                <Image Name="Score100"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="Score1"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" Visibility="Hidden"/>
+
             </Grid>
 
             <!-- Testing hash placement -->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Name="HashRow" Height="0*"/>
+                    <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -882,7 +912,6 @@
                 <local:Item x:Name="HashIcon5" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="5"/>
                 <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="6"/>
                 <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="7"/>
-
             </Grid>
 
             <!-- Drive Forms & Growth Abilities-->

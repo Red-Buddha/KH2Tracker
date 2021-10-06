@@ -629,10 +629,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Name="ChestIconCol" Width=".3*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Name="BarCol" Width=".3*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width=".3*"/>
                     </Grid.ColumnDefinitions>
@@ -642,10 +642,14 @@
                     <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Column="2"/>
                     <Image Name="CollectedBar" Source="Images/Numbers/bar.png" Grid.Column="3"/>
                     <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Column="4"/>
+
+                    <Image Name="Score100" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="2" Visibility="Hidden"/>
+                    <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="3" Visibility="Hidden"/>
+                    <Image Name="Score1"   Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="4" Visibility="Hidden"/>
                 </Grid>
             </Grid>
 
-            <!-- levels and stats -->
+        <!-- levels and stats -->
             <Grid Grid.Row="4">
                 <Grid.RowDefinitions>
                     <RowDefinition/>

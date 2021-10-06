@@ -24,6 +24,7 @@ namespace KhTracker
         private BroadcastWindow broadcast;
         public int collected;
         private int total = 51;
+        public static int PointTotal = 0;
 
         //dumb stuff to help figure out what to do about custom images
         public static bool CustomNumbersFound = false;
@@ -1123,26 +1124,17 @@ namespace KhTracker
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
             BitmapImage BarW = data.VerticalBarW;
             BitmapImage BarY = data.VerticalBarY;
+            if (CustomMode)
             {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (CustomVBarWFound)
-                        BarW = data.CustomVerticalBarW;
-                    if (CustomVBarYFound)
-                        BarY = data.CustomVerticalBarY;
-                }
+                if (CustomVBarWFound)
+                    BarW = data.CustomVerticalBarW;
+                if (CustomVBarYFound)
+                    BarY = data.CustomVerticalBarY;
             }
+
 
             Button button = sender as Button;
 
@@ -1160,7 +1152,7 @@ namespace KhTracker
             {
                 if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
-                    data.WorldsData[button.Name].hint.Source = NormalNum[0];
+                    data.WorldsData[button.Name].hint.Source = GetDataNumber("Y")[0];
                 }
             }
         }
@@ -1235,23 +1227,11 @@ namespace KhTracker
             if (data.mode != Mode.None)
                 return;
 
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             int num = 0;
 
             for (int i = 0; i < data.Numbers.Count; ++i)
             {
-                if (Hint.Source == NormalNum[i])
+                if (Hint.Source == GetDataNumber("Y")[i])
                 {
                     num = i;
                 }
@@ -1267,9 +1247,9 @@ namespace KhTracker
                 num = 52;
 
             if (num < 0)
-                Hint.Source = NormalNum[0];
+                Hint.Source = GetDataNumber("Y")[0];
             else
-                Hint.Source = NormalNum[num];
+                Hint.Source = GetDataNumber("Y")[num];
 
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
@@ -1279,30 +1259,10 @@ namespace KhTracker
             if (data.mode == Mode.DAHints && Hint == null)
                 return;
 
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
-            {
-                //check numbers
-                if (OldMode)
-                {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                }
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (CustomBlueNumbersFound)
-                        BlueNum = data.CustomBlueNumbers;
-                }
-            }
-
+            string Color = "Y";
             string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
             if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete)
-                NormalNum = BlueNum;
+                Color = "B";
 
             if (data.mode == Mode.DAHints)
             {
@@ -1310,7 +1270,7 @@ namespace KhTracker
                 {
                     //for testing. basically if a number is blue then i either need to
                     //lower values or find a way to add triple digets
-                    NormalNum = BlueNum;
+                    Color = "B";
                     value = 100;
                 }
             }
@@ -1322,130 +1282,53 @@ namespace KhTracker
 
 
             if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
-                Hint.Source = NormalNum[1];
+                Hint.Source = GetDataNumber(Color)[1];
             else if (value < 0)
-                Hint.Source = NormalNum[0];
+                Hint.Source = GetDataNumber(Color)[0];
             else
-                Hint.Source = NormalNum[value];
+                Hint.Source = GetDataNumber(Color)[value];
             
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
 
         public void IncrementCollected()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
-            {
-                //check numbers
-                if (OldMode)
-                {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                }
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (CustomBlueNumbersFound)
-                        BlueNum = data.CustomBlueNumbers;
-                }
-            }
-
             ++collected;
+            if (collected > 51)
+                collected = 51;
 
-            //if (data.mode == Mode.DAHints)
-            //{
-            //    if (collected > 99)
-            //    {
-            //        //for testing. basically if a number is blue then i either need to
-            //        //lower values or find a way to add triple digets
-            //        NormalNum = BlueNum;
-            //        collected = 99;
-            //
-            //        Collected.Source = NormalNum[collected + 1];
-            //        broadcast.Collected.Source = NormalNum[collected + 1];
-            //    }
-            //}
-            //else
-            //{
-                if (collected > 51)
-                    collected = 51;
-
-                Collected.Source = NormalNum[collected + 1];
-                broadcast.Collected.Source = NormalNum[collected + 1];
-            //}
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
         }
 
         public void DecrementCollected()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             --collected;
             if (collected < 0)
                 collected = 0;
 
-            Collected.Source = NormalNum[collected + 1];
-            broadcast.Collected.Source = NormalNum[collected + 1];
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
         }
 
         public void IncrementTotal()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             ++total;
             if (total > 51)
                 total = 51;
 
-            CheckTotal.Source = NormalNum[total + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
 
         public void DecrementTotal()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             --total;
             if (total < 0)
                 total = 0;
 
-            CheckTotal.Source = NormalNum[total + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
 
         public void SetHintText(string text)
@@ -1653,6 +1536,62 @@ namespace KhTracker
                 else
                     broadcast.Background = Application.Current.Resources["BG-BImageDef3"] as ImageBrush;
             }
+        }
+
+        //stuff to call the right number image
+        public List<BitmapImage> GetDataNumber(string type)
+        {
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            var NormalNum = data.Numbers;
+            var BlueNum = data.BlueNumbers;
+            var SingleNum = data.SingleNumbers;
+            var SingleBlueNum = data.BlueSingleNumbers;
+
+            //Get correct numbers
+            {
+                if (OldMode)
+                {
+                    NormalNum = data.OldNumbers;
+                    BlueNum = data.OldBlueNumbers;
+                    SingleNum = data.OldSingleNumbers;
+                    SingleBlueNum = data.OldBlueSingleNumbers;
+                }
+
+                if (CustomMode)
+                {
+                    if (CustomNumbersFound)
+                    {
+                        NormalNum = data.CustomNumbers;
+                        SingleNum = data.OldSingleNumbers;
+                    }
+                    if (CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.CustomBlueNumbers;
+                        SingleBlueNum = data.OldBlueSingleNumbers;
+                    }
+                }
+            }
+
+            //return correct number list
+            if (type == "Y")
+            {
+                return NormalNum;
+            }
+            else if (type == "B")
+            {
+                return BlueNum;
+            }
+            else if (type == "S")
+            {
+                return SingleNum;
+            }
+            else if (type == "SB")
+            {
+                return SingleBlueNum;
+            }
+            else
+                return NormalNum;
         }
     }
 }
