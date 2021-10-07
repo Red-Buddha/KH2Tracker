@@ -773,10 +773,6 @@ namespace KhTracker
             collected = 0;            
             HintText.Content = "";
 
-            Collected.Visibility = Visibility.Visible;
-            CollectedBar.Visibility = Visibility.Visible;
-            CheckTotal.Visibility = Visibility.Visible;
-
             //all this garbage to get the correct number images when changing visual styles
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage BarW = data.VerticalBarW;
@@ -841,7 +837,6 @@ namespace KhTracker
                 ReportsToggle(true);
                 ReportRow.Height = new GridLength(1, GridUnitType.Star);
             }
-
 
             ResetHints();
 
@@ -989,9 +984,6 @@ namespace KhTracker
             if (glide != null)
                 glide.Level = 0;
 
-            broadcast.OnReset();
-            broadcast.UpdateNumbers();
-
             //hide & reset seed hash
            if (ShouldResetHash)
            {
@@ -1037,10 +1029,25 @@ namespace KhTracker
 
             PointTotal = 0;
 
+            Collected.Visibility = Visibility.Visible;
+            CollectedBar.Visibility = Visibility.Visible;
+            CheckTotal.Visibility = Visibility.Visible;
             Score100.Visibility = Visibility.Hidden;
             Score10.Visibility = Visibility.Hidden;
             Score1.Visibility = Visibility.Hidden;
 
+            broadcast.Collected.Visibility = Visibility.Visible;
+            broadcast.CollectedBar.Visibility = Visibility.Visible;
+            broadcast.CheckTotal.Visibility = Visibility.Visible;
+            broadcast.Score100.Visibility = Visibility.Hidden;
+            broadcast.Score10.Visibility = Visibility.Hidden;
+            broadcast.Score1.Visibility = Visibility.Hidden;
+
+            broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
+            broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
+
+            broadcast.OnReset();
+            broadcast.UpdateNumbers();
             UpdatePointScore(0);
 
         }
@@ -2104,13 +2111,25 @@ namespace KhTracker
                 }
             }
 
+
+            //set visibility stuff
             Collected.Visibility = Visibility.Hidden;
             CollectedBar.Visibility = Visibility.Hidden;
             CheckTotal.Visibility = Visibility.Hidden;
-
             Score100.Visibility = Visibility.Visible;
             Score10.Visibility = Visibility.Visible;
             Score1.Visibility = Visibility.Visible;
+
+            broadcast.Collected.Visibility = Visibility.Hidden;
+            broadcast.CollectedBar.Visibility = Visibility.Hidden;
+            broadcast.CheckTotal.Visibility = Visibility.Hidden;
+            broadcast.Score100.Visibility = Visibility.Visible;
+            broadcast.Score10.Visibility = Visibility.Visible;
+            broadcast.Score1.Visibility = Visibility.Visible;
+
+            broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
+            broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
+            
         }
 
         public int GetPoints(string worldName)
@@ -2231,6 +2250,10 @@ namespace KhTracker
             Score100.Source = GetDataNumber("S")[FinalNum[2]];
             Score10.Source = GetDataNumber("S")[FinalNum[1]];
             Score1.Source = GetDataNumber("S")[FinalNum[0]];
+
+            broadcast.Score100.Source = GetDataNumber("S")[FinalNum[2]];
+            broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
+            broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
         }
     
     }

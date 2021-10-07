@@ -77,22 +77,14 @@ namespace KhTracker
 
             if (MainWindow.data.mode == Mode.DAHints)
             {
-                //WorldComplete();
-
                 string worldName = Name.Substring(0, Name.Length - 4);
-                //if (MainWindow.data.WorldsData[worldName].hint != null)
-                //{
-                //    Image hint = MainWindow.data.WorldsData[worldName].hint;
-                //
-                //    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
-                //}
 
                 WorldPointsComplete();
 
                 Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
-                //Console.WriteLine("test: " + button.Name);
 
                 Image hint = MainWindow.data.WorldsData[worldName].hint;
+
                 ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
                 ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
 
