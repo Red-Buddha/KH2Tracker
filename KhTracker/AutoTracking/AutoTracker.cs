@@ -271,7 +271,8 @@ namespace KhTracker
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
 
-            if (PointsTestOption.IsChecked)
+            //TEMP EDIT CORRECTLY LATER
+            if (!PointsTestOption.IsChecked)
                 Weapon.Visibility = Visibility.Visible;
 
             broadcast.LevelIcon.Visibility = Visibility.Visible;

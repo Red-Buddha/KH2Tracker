@@ -103,7 +103,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA TEST Oct-03-21-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA TEST Oct-06-21-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -753,7 +753,7 @@
                 <Image Name="Defense" Source="Images/Numbers/Kh2/Yellow/2.png" Grid.Row="3" Grid.Column="11" Visibility="Visible"/>
                 <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Visible"/-->
 
-                <Image Name="Level"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="2"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Level"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -763,7 +763,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -773,7 +773,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -783,7 +783,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -794,7 +794,7 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -804,7 +804,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -814,7 +814,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="7"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="7"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -824,7 +824,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
