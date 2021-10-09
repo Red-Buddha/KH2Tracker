@@ -21,6 +21,7 @@ namespace KhTracker
         public Codes codes = new Codes();
 
         public List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
+        public List<Tuple<string, string>> pointreportInformation = new List<Tuple<string, string>>();
         public List<string> reportLocations = new List<string>();
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
@@ -29,6 +30,8 @@ namespace KhTracker
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
 
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
+
+        public List<int> PointsData = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
@@ -74,6 +77,14 @@ namespace KhTracker
         //public BitmapImage OnceMoreCus;
         //public BitmapImage OnceMoreCusKey;
 
+        public List<string> MagicItems = new List<string>();
+        public List<string> SummonItems = new List<string>();
+        public List<string> FormItems = new List<string>();
+        public List<string> AbilityItems = new List<string>();
+        public List<string> ProofItems = new List<string>();
+        public List<string> OtherItems = new List<string>();
+        public List<string> PageItems = new List<string>();
+
     }
 
     public class WorldData
@@ -104,6 +115,26 @@ namespace KhTracker
             hintedHint = false;
             complete = false;
             progress = 0;
+        }
+    }
+
+    public class PointsData
+    {
+        public int proofValue;
+        public int formValue;
+        public int magicValue;
+        public int summonValue;
+        public int abilityValue;
+        public int pageValue;
+
+        public PointsData(int ProofP, int FormP, int MagicP, int SummonP, int AbilityP, int PageP)
+        {
+            proofValue = ProofP;
+            formValue = FormP;
+            magicValue = MagicP;
+            summonValue = SummonP;
+            abilityValue = AbilityP;
+            pageValue = PageP;
         }
     }
 

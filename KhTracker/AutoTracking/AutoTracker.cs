@@ -272,8 +272,8 @@ namespace KhTracker
             Defense.Visibility = Visibility.Visible;
 
             //TEMP EDIT CORRECTLY LATER
-            if (!PointsTestOption.IsChecked)
-                Weapon.Visibility = Visibility.Visible;
+           // if (data.mode != Mode.DAHints)
+            Weapon.Visibility = Visibility.Visible;
 
             broadcast.LevelIcon.Visibility = Visibility.Visible;
             broadcast.Level.Visibility = Visibility.Visible;
@@ -449,15 +449,31 @@ namespace KhTracker
         {
             foreach (ContentControl item in ItemPool.Children)
             {
-                if (item.Name == itemName && item.IsVisible)
+                if (data.mode == Mode.DAHints)
                 {
-                    if (world.Handle_Report(item as Item, this, data))
+                    if (item.Name == itemName && item.IsVisible)
                     {
-                        world.Add_Item(item as Item, this);
-                        if (App.logger != null)
-                            App.logger.Record(item.Name + " tracked");
+                        if (world.Handle_PointReport(item as Item, this, data))
+                        {
+                            world.Add_Item(item as Item, this);
+                            if (App.logger != null)
+                                App.logger.Record(item.Name + " tracked");
+                        }
+                        break;
                     }
-                    break;
+                }
+                else
+                {
+                    if (item.Name == itemName && item.IsVisible)
+                    {
+                        if (world.Handle_Report(item as Item, this, data))
+                        {
+                            world.Add_Item(item as Item, this);
+                            if (App.logger != null)
+                                App.logger.Record(item.Name + " tracked");
+                        }
+                        break;
+                    }
                 }
             }
         }

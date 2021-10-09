@@ -33,7 +33,7 @@
                     <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
                     <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
                 </MenuItem>
-                <MenuItem Name="PointsTestOption" Header="Points Mode Test" IsCheckable="True" IsChecked="False"/>
+                <!--MenuItem Name="PointsTestOption" Header="Points Mode Test" IsCheckable="True" IsChecked="False"/-->
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <Separator/>
@@ -103,7 +103,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA TEST Oct-06-21-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="v2.7 -DA 1.3-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>

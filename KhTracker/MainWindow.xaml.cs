@@ -98,6 +98,42 @@ namespace KhTracker
             data.TornPages.Add(TornPage4);
             data.TornPages.Add(TornPage5);
 
+            data.MagicItems.Add("Fire Element");
+            data.MagicItems.Add("Blizzard Element");
+            data.MagicItems.Add("Thunder Element");
+            data.MagicItems.Add("Cure Element");
+            data.MagicItems.Add("Magnet Element");
+            data.MagicItems.Add("Reflect Element");
+            data.SummonItems.Add("Ukulele Charm (Stitch)");
+            data.SummonItems.Add("Lamp Charm (Genie)");
+            data.SummonItems.Add("Feather Charm (Peter Pan)");
+            data.SummonItems.Add("Baseball Charm (Chicken Little)");
+            data.FormItems.Add("Valor Form");
+            data.FormItems.Add("Wisdom Form");
+            data.FormItems.Add("Final Form");
+            data.FormItems.Add("Master Form");
+            data.FormItems.Add("Limit Form");
+            data.AbilityItems.Add("Second Chance");
+            data.AbilityItems.Add("Once More");
+            data.ProofItems.Add("PromiseCharm");
+            data.ProofItems.Add("Proof of Connection");
+            data.ProofItems.Add("Proof of Nonexistence");
+            data.ProofItems.Add("Proof of Peace");
+            data.PageItems.Add("Torn Pages");
+            data.PageItems.Add("Secret Ansem's Report 1");
+            data.PageItems.Add("Secret Ansem's Report 2");
+            data.PageItems.Add("Secret Ansem's Report 3");
+            data.PageItems.Add("Secret Ansem's Report 4");
+            data.PageItems.Add("Secret Ansem's Report 5");
+            data.PageItems.Add("Secret Ansem's Report 6");
+            data.PageItems.Add("Secret Ansem's Report 7");
+            data.PageItems.Add("Secret Ansem's Report 8");
+            data.PageItems.Add("Secret Ansem's Report 9");
+            data.PageItems.Add("Secret Ansem's Report 10");
+            data.PageItems.Add("Secret Ansem's Report 11");
+            data.PageItems.Add("Secret Ansem's Report 12");
+            data.PageItems.Add("Secret Ansem's Report 13");
+
             #region Numbers
 
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/_QuestionMark.png", UriKind.Relative)));
@@ -812,7 +848,6 @@ namespace KhTracker
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/8.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
             #endregion
-
 
             data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
             data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));

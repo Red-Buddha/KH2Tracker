@@ -19,7 +19,6 @@ namespace KhTracker
         /// 
         /// Options
         ///
-
         private int LevelPoints = 0, LevelPoints_c = 0;
         private int DrivePoints = 0, DrivePoints_c = 0;
         private int STTPoints = 0, STTPoints_c = 0;
@@ -90,7 +89,7 @@ namespace KhTracker
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
             string hintValues = "";
-            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints)
+            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints || data.mode == Mode.DAHints)
             {
                 attempts = "Attempts: ";
                 if (data.hintsLoaded)
@@ -260,6 +259,12 @@ namespace KhTracker
             {
                 writer.WriteLine(data.openKHHintText);
             }
+            else if (data.mode == Mode.DAHints)
+            {
+                writer.WriteLine(attempts);
+                writer.WriteLine(data.openKHHintText);
+                writer.WriteLine(hintValues);
+            }
             writer.WriteLine(Progress);
             writer.WriteLine(soraHeart);
             writer.WriteLine(driveForms);
@@ -312,6 +317,8 @@ namespace KhTracker
                 SetMode(Mode.OpenKHHints);
             else if (mode == "OpenKHAltHints")
                 SetMode(Mode.OpenKHAltHints);
+            else if (mode == "DAHints")
+                SetMode(Mode.DAHints);
 
             // set settings
             string settings = reader.ReadLine();
@@ -430,7 +437,547 @@ namespace KhTracker
                     SetReportValue(data.WorldsData[key].hint, 1);
                 }
             }
+            else if (mode == "DAHints")
+            {
+                string attempts = reader.ReadLine();
+                attempts = attempts.Substring(13);
+                string[] attemptsArray = attempts.Split('-');
+                for (int i = 0; i < attemptsArray.Length; ++i)
+                {
+                    data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                }
+                data.openKHHintText = reader.ReadLine();
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
+                var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
 
+                List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
+                reportKeysP.Sort();
+
+                foreach (var point in points)
+                {
+                    if (point.Key == "proof")
+                        data.PointsData[0] = point.Value;
+                    else if (point.Key == "form")
+                        data.PointsData[1] = point.Value;
+                    else if (point.Key == "magic")
+                        data.PointsData[2] = point.Value;
+                    else if (point.Key == "summon")
+                        data.PointsData[3] = point.Value;
+                    else if (point.Key == "ability")
+                        data.PointsData[4] = point.Value;
+                    else if (point.Key == "page")
+                        data.PointsData[5] = point.Value;
+
+                }
+
+                foreach (var world in worldsP)
+                {
+                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                    {
+                        continue;
+                    }
+                    foreach (var item in world.Value)
+                    {
+                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                        //check worlds and add points
+                        {
+                            if (convertOpenKH[world.Key] == "SimulatedTwilightTown")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    STTPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    STTPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    STTPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    STTPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    STTPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    STTPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    STTPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "TwilightTown")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    TTPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    TTPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    TTPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    TTPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    TTPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    TTPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    TTPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "HollowBastion")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    HBPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    HBPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    HBPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    HBPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    HBPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    HBPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    HBPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "LandofDragons")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    LoDPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    LoDPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    LoDPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    LoDPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    LoDPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    LoDPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    LoDPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "BeastsCastle")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    BCPoints += data.PointsData[2];
+                                else if (data.SummonItems.Contains(item))
+                                    BCPoints += data.PointsData[3];
+                                else if (data.FormItems.Contains(item))
+                                    BCPoints += data.PointsData[1];
+                                else if (data.AbilityItems.Contains(item))
+                                    BCPoints += data.PointsData[4];
+                                else if (data.ProofItems.Contains(item))
+                                    BCPoints += data.PointsData[0];
+                                else if (data.PageItems.Contains(item))
+                                    BCPoints += data.PointsData[5];
+                                //if (OtherItems.Contains(item))
+                                //    BCPoints += OtherScore;
+                            }
+
+                            if (convertOpenKH[world.Key] == "OlympusColiseum")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    OCPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    OCPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    OCPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    OCPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    OCPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    OCPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    OCPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "DisneyCastle")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    DCPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    DCPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    DCPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    DCPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    DCPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    DCPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    DCPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "PortRoyal")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    PRPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    PRPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    PRPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    PRPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    PRPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    PRPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    PRPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "Agrabah")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    AGPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    AGPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    AGPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    AGPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    AGPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    AGPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    AGPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "HalloweenTown")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    HTPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    HTPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    HTPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    HTPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    HTPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    HTPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    HTPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "PrideLands")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    PLPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    PLPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    PLPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    PLPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    PLPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    PLPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    PLPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "Atlantica")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    ATPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    ATPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    ATPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    ATPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    ATPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    ATPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    ATPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "HundredAcreWood")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    HAWPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    HAWPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    HAWPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    HAWPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    HAWPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    HAWPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    HAWPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "SpaceParanoids")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    SPPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    SPPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    SPPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    SPPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    SPPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    SPPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    SPPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "TWTNW")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    TWTNWPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "DriveForms")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    DrivePoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    DrivePoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    DrivePoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    DrivePoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    DrivePoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    DrivePoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    DrivePoints += data.PointsData[5];
+                            }
+
+                            if (convertOpenKH[world.Key] == "SorasHeart")
+                            {
+                                if (data.MagicItems.Contains(item))
+                                    LevelPoints += data.PointsData[2];
+
+                                if (data.SummonItems.Contains(item))
+                                    LevelPoints += data.PointsData[3];
+
+                                if (data.FormItems.Contains(item))
+                                    LevelPoints += data.PointsData[1];
+
+                                if (data.AbilityItems.Contains(item))
+                                    LevelPoints += data.PointsData[4];
+
+                                if (data.ProofItems.Contains(item))
+                                    LevelPoints += data.PointsData[0];
+
+                                //if (OtherItems.Contains(item))
+                                //    LevelPoints += OtherScore;
+
+                                if (data.PageItems.Contains(item))
+                                    LevelPoints += data.PointsData[5];
+                            }
+                        }
+                    }
+                }
+
+                foreach (var key in data.WorldsData.Keys.ToList())
+                {
+                    if (key == "GoA")
+                        continue;
+
+                    data.WorldsData[key].worldGrid.WorldPointsComplete();
+
+                    if (key == "SimulatedTwilightTown")
+                        SetReportValue(data.WorldsData[key].hint, STTPoints + 1);
+
+                    if (key == "TwilightTown")
+                        SetReportValue(data.WorldsData[key].hint, TTPoints + 1);
+
+                    if (key == "HollowBastion")
+                        SetReportValue(data.WorldsData[key].hint, HBPoints + 1);
+
+                    if (key == "LandofDragons")
+                        SetReportValue(data.WorldsData[key].hint, LoDPoints + 1);
+
+                    if (key == "BeastsCastle")
+                        SetReportValue(data.WorldsData[key].hint, BCPoints + 1);
+
+                    if (key == "OlympusColiseum")
+                        SetReportValue(data.WorldsData[key].hint, OCPoints + 1);
+
+                    if (key == "DisneyCastle")
+                        SetReportValue(data.WorldsData[key].hint, DCPoints + 1);
+
+                    if (key == "PortRoyal")
+                        SetReportValue(data.WorldsData[key].hint, PRPoints + 1);
+
+                    if (key == "Agrabah")
+                        SetReportValue(data.WorldsData[key].hint, AGPoints + 1);
+
+                    if (key == "HalloweenTown")
+                        SetReportValue(data.WorldsData[key].hint, HTPoints + 1);
+
+                    if (key == "PrideLands")
+                        SetReportValue(data.WorldsData[key].hint, PLPoints + 1);
+
+                    if (key == "Atlantica")
+                        SetReportValue(data.WorldsData[key].hint, ATPoints + 1);
+
+                    if (key == "HundredAcreWood")
+                        SetReportValue(data.WorldsData[key].hint, HAWPoints + 1);
+
+                    if (key == "SpaceParanoids")
+                        SetReportValue(data.WorldsData[key].hint, SPPoints + 1);
+
+                    if (key == "TWTNW")
+                        SetReportValue(data.WorldsData[key].hint, TWTNWPoints + 1);
+
+                    if (key == "DriveForms")
+                        SetReportValue(data.WorldsData[key].hint, DrivePoints + 1);
+
+                    if (key == "SorasHeart")
+                        SetReportValue(data.WorldsData[key].hint, LevelPoints + 1);
+                }
+
+                foreach (var reportP in reportKeysP)
+                {
+                    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
+                    var checkP = reportsP[reportP.ToString()]["check"].ToString();
+                    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
+
+                    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
+                    data.reportLocations.Add(locationP);
+                }
+                ReportsToggle(true);
+                data.hintsLoaded = true;
+
+                LevelPoints_c = LevelPoints;
+                DrivePoints_c = DrivePoints;
+                STTPoints_c = STTPoints;
+                HBPoints_c = HBPoints;
+                OCPoints_c = OCPoints;
+                LoDPoints_c = LoDPoints;
+                PLPoints_c = PLPoints;
+                HTPoints_c = HTPoints;
+                SPPoints_c = SPPoints;
+                TTPoints_c = TTPoints;
+                BCPoints_c = BCPoints;
+                AGPoints_c = AGPoints;
+                HAWPoints_c = HAWPoints;
+                DCPoints_c = DCPoints;
+                PRPoints_c = PRPoints;
+                TWTNWPoints_c = TWTNWPoints;
+                ATPoints_c = ATPoints;
+            }
 
             // set hint values (DUMB)
             if (data.hintsLoaded)
@@ -486,13 +1033,27 @@ namespace KhTracker
                 string items = world.Substring(world.IndexOf(':') + 1).Trim();
                 if (items != string.Empty)
                 {
-                    foreach (string item in items.Split(' '))
+                    if (data.mode == Mode.DAHints)
                     {
-                        WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                        Item importantCheck = FindName(item) as Item;
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
 
-                        if (grid.Handle_Report(importantCheck, this, data))
-                            grid.Add_Item(importantCheck, this);
+                            if (grid.Handle_PointReport(importantCheck, this, data))
+                                grid.Add_Item(importantCheck, this);
+                        }
+                    }
+                    else
+                    {
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
+
+                            if (grid.Handle_Report(importantCheck, this, data))
+                                grid.Add_Item(importantCheck, this);
+                        }
                     }
                 }
             }
@@ -582,12 +1143,7 @@ namespace KhTracker
                 else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
                     ParseSeed(files[0]);
                 else if (Path.GetExtension(files[0]).ToUpper() == ".ZIP")
-                {
-                    if (PointsTestOption.IsChecked)
-                        ParseSeedPoints(files[0]);
-                    else
-                        OpenKHSeed(files[0]);
-                }
+                    OpenKHSeed(files[0]);
             }
         }
 
@@ -657,6 +1213,7 @@ namespace KhTracker
             data.hintsLoaded = false;
             data.reportLocations.Clear();
             data.reportInformation.Clear();
+            data.pointreportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -831,12 +1388,8 @@ namespace KhTracker
                     row.Height = new GridLength(1, GridUnitType.Star);
             }
 
-            //restore reports only if toggle was on before
-            if (ReportsOption.IsChecked)
-            {
-                ReportsToggle(true);
-                ReportRow.Height = new GridLength(1, GridUnitType.Star);
-            }
+            ReportsToggle(true);
+            ReportRow.Height = new GridLength(1, GridUnitType.Star);
 
             ResetHints();
 
@@ -848,7 +1401,7 @@ namespace KhTracker
                 data.WorldsData[key].checkCount.Clear();
                 data.WorldsData[key].progress = 0;
             }
-            data.WorldsData["GoA"].hinted = true;            
+            data.WorldsData["GoA"].hinted = true;
 
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
@@ -991,6 +1544,8 @@ namespace KhTracker
                SeedHashLoaded = false;
                SeedHashVisible = false;
            }
+
+            data.PointsData = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
             LevelPoints = 0;
             LevelPoints_c = 0;
@@ -1179,10 +1734,25 @@ namespace KhTracker
             {
                 ModeDisplay.Header = "Points Mode";
                 data.mode = mode;
-                ReportsToggle(false);
-                ReportRow.Height = new GridLength(0, GridUnitType.Star);
-                //ReportsToggle(true);
-                //ReportRow.Height = new GridLength(1, GridUnitType.Star);
+                ReportsToggle(true);
+                ReportRow.Height = new GridLength(1, GridUnitType.Star);
+
+                //set visibility stuff
+                Collected.Visibility = Visibility.Hidden;
+                CollectedBar.Visibility = Visibility.Hidden;
+                CheckTotal.Visibility = Visibility.Hidden;
+                Score100.Visibility = Visibility.Visible;
+                Score10.Visibility = Visibility.Visible;
+                Score1.Visibility = Visibility.Visible;
+                broadcast.Collected.Visibility = Visibility.Hidden;
+                broadcast.CollectedBar.Visibility = Visibility.Hidden;
+                broadcast.CheckTotal.Visibility = Visibility.Hidden;
+                broadcast.Score100.Visibility = Visibility.Visible;
+                broadcast.Score10.Visibility = Visibility.Visible;
+                broadcast.Score1.Visibility = Visibility.Visible;
+
+                broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
+                broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
             }
         }
 
@@ -1193,13 +1763,7 @@ namespace KhTracker
             openFileDialog.Filter = "OpenKH Seeds (*.zip)|*.zip";
             openFileDialog.Title = "Select Seed File";
             if (openFileDialog.ShowDialog() == true)
-            {
-                if (PointsTestOption.IsChecked)
-                    ParseSeedPoints(openFileDialog.FileName);
-                else
-                    OpenKHSeed(openFileDialog.FileName);
-
-            }
+                OpenKHSeed(openFileDialog.FileName);
         }
 
         private Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
@@ -1243,8 +1807,20 @@ namespace KhTracker
             {"Torn Pages", "TornPage" },
             {"Second Chance", "SecondChance" },
             {"Once More", "OnceMore" },
+            {"Secret Ansem's Report 1", "Report1"},
+            {"Secret Ansem's Report 2", "Report2"},
+            {"Secret Ansem's Report 3", "Report3"},
+            {"Secret Ansem's Report 4", "Report4"},
+            {"Secret Ansem's Report 5", "Report5"},
+            {"Secret Ansem's Report 6", "Report6"},
+            {"Secret Ansem's Report 7", "Report7"},
+            {"Secret Ansem's Report 8", "Report8"},
+            {"Secret Ansem's Report 9", "Report9"},
+            {"Secret Ansem's Report 10", "Report10"},
+            {"Secret Ansem's Report 11", "Report11"},
+            {"Secret Ansem's Report 12", "Report12"},
+            {"Secret Ansem's Report 13", "Report13"},
             {"", "GoA"}
-            //{"Hades Cup", "HadesCup"}
         };
 
         private void OpenKHSeed(string filename)
@@ -1318,6 +1894,581 @@ namespace KhTracker
                                     ReportsToggle(true);
                                     data.hintsLoaded = true;
                                     //HintText.Content = "Hints Loaded";
+
+                                    break;
+
+                                case "Points":
+                                    ShouldResetHash = false;
+                                    SetMode(Mode.DAHints);
+                                    ShouldResetHash = true;
+
+                                    var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                                    var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                                    var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
+
+                                    List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
+                                    reportKeysP.Sort();
+
+                                    foreach (var point in points)
+                                    {
+                                        if (point.Key == "proof")
+                                            data.PointsData[0] = point.Value;
+                                        else if (point.Key == "form")
+                                            data.PointsData[1] = point.Value;
+                                        else if (point.Key == "magic")
+                                            data.PointsData[2] = point.Value;
+                                        else if (point.Key == "summon")
+                                            data.PointsData[3] = point.Value;
+                                        else if (point.Key == "ability")
+                                            data.PointsData[4] = point.Value;
+                                        else if (point.Key == "page")
+                                            data.PointsData[5] = point.Value;
+
+                                    }
+
+                                    foreach (var world in worldsP)
+                                    {
+                                        if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                                        {
+                                            continue;
+                                        }
+                                        foreach (var item in world.Value)
+                                        {
+                                            data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                                            //check worlds and add points
+                                            {
+                                                if (convertOpenKH[world.Key] == "SimulatedTwilightTown")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        STTPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        STTPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        STTPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        STTPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        STTPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    STTPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        STTPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "TwilightTown")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        TTPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        TTPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        TTPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        TTPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        TTPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    TTPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        TTPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "HollowBastion")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        HBPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        HBPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        HBPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        HBPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        HBPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    HBPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        HBPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "LandofDragons")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        LoDPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        LoDPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        LoDPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        LoDPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        LoDPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    LoDPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        LoDPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "BeastsCastle")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        BCPoints += data.PointsData[2];
+                                                    else if (data.SummonItems.Contains(item))
+                                                        BCPoints += data.PointsData[3];
+                                                    else if (data.FormItems.Contains(item))
+                                                        BCPoints += data.PointsData[1];
+                                                    else if (data.AbilityItems.Contains(item))
+                                                        BCPoints += data.PointsData[4];
+                                                    else if (data.ProofItems.Contains(item))
+                                                        BCPoints += data.PointsData[0];
+                                                    else if (data.PageItems.Contains(item))
+                                                        BCPoints += data.PointsData[5];
+                                                    //if (OtherItems.Contains(item))
+                                                    //    BCPoints += OtherScore;
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "OlympusColiseum")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        OCPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        OCPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        OCPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        OCPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        OCPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    OCPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        OCPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "DisneyCastle")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        DCPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        DCPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        DCPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        DCPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        DCPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    DCPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        DCPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "PortRoyal")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        PRPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        PRPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        PRPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        PRPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        PRPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    PRPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        PRPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "Agrabah")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        AGPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        AGPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        AGPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        AGPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        AGPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    AGPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        AGPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "HalloweenTown")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        HTPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        HTPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        HTPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        HTPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        HTPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    HTPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        HTPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "PrideLands")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        PLPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        PLPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        PLPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        PLPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        PLPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    PLPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        PLPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "Atlantica")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        ATPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        ATPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        ATPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        ATPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        ATPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    ATPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        ATPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "HundredAcreWood")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        HAWPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        HAWPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        HAWPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        HAWPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        HAWPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    HAWPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        HAWPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "SpaceParanoids")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        SPPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        SPPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        SPPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        SPPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        SPPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    SPPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        SPPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "TWTNW")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    TWTNWPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "DriveForms")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        DrivePoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        DrivePoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        DrivePoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        DrivePoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        DrivePoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    DrivePoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        DrivePoints += data.PointsData[5];
+                                                }
+
+                                                if (convertOpenKH[world.Key] == "SorasHeart")
+                                                {
+                                                    if (data.MagicItems.Contains(item))
+                                                        LevelPoints += data.PointsData[2];
+
+                                                    if (data.SummonItems.Contains(item))
+                                                        LevelPoints += data.PointsData[3];
+
+                                                    if (data.FormItems.Contains(item))
+                                                        LevelPoints += data.PointsData[1];
+
+                                                    if (data.AbilityItems.Contains(item))
+                                                        LevelPoints += data.PointsData[4];
+
+                                                    if (data.ProofItems.Contains(item))
+                                                        LevelPoints += data.PointsData[0];
+
+                                                    //if (OtherItems.Contains(item))
+                                                    //    LevelPoints += OtherScore;
+
+                                                    if (data.PageItems.Contains(item))
+                                                        LevelPoints += data.PointsData[5];
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    foreach (var key in data.WorldsData.Keys.ToList())
+                                    {
+                                        if (key == "GoA")
+                                            continue;
+
+                                        data.WorldsData[key].worldGrid.WorldPointsComplete();
+
+                                        if (key == "SimulatedTwilightTown")
+                                            SetReportValue(data.WorldsData[key].hint, STTPoints + 1);
+
+                                        if (key == "TwilightTown")
+                                            SetReportValue(data.WorldsData[key].hint, TTPoints + 1);
+
+                                        if (key == "HollowBastion")
+                                            SetReportValue(data.WorldsData[key].hint, HBPoints + 1);
+
+                                        if (key == "LandofDragons")
+                                            SetReportValue(data.WorldsData[key].hint, LoDPoints + 1);
+
+                                        if (key == "BeastsCastle")
+                                            SetReportValue(data.WorldsData[key].hint, BCPoints + 1);
+
+                                        if (key == "OlympusColiseum")
+                                            SetReportValue(data.WorldsData[key].hint, OCPoints + 1);
+
+                                        if (key == "DisneyCastle")
+                                            SetReportValue(data.WorldsData[key].hint, DCPoints + 1);
+
+                                        if (key == "PortRoyal")
+                                            SetReportValue(data.WorldsData[key].hint, PRPoints + 1);
+
+                                        if (key == "Agrabah")
+                                            SetReportValue(data.WorldsData[key].hint, AGPoints + 1);
+
+                                        if (key == "HalloweenTown")
+                                            SetReportValue(data.WorldsData[key].hint, HTPoints + 1);
+
+                                        if (key == "PrideLands")
+                                            SetReportValue(data.WorldsData[key].hint, PLPoints + 1);
+
+                                        if (key == "Atlantica")
+                                            SetReportValue(data.WorldsData[key].hint, ATPoints + 1);
+
+                                        if (key == "HundredAcreWood")
+                                            SetReportValue(data.WorldsData[key].hint, HAWPoints + 1);
+
+                                        if (key == "SpaceParanoids")
+                                            SetReportValue(data.WorldsData[key].hint, SPPoints + 1);
+
+                                        if (key == "TWTNW")
+                                            SetReportValue(data.WorldsData[key].hint, TWTNWPoints + 1);
+
+                                        if (key == "DriveForms")
+                                            SetReportValue(data.WorldsData[key].hint, DrivePoints + 1);
+
+                                        if (key == "SorasHeart")
+                                            SetReportValue(data.WorldsData[key].hint, LevelPoints + 1);
+                                    }
+
+                                    foreach (var reportP in reportKeysP)
+                                    {
+                                        var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
+                                        var checkP = reportsP[reportP.ToString()]["check"].ToString();
+                                        var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
+
+                                        data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
+                                        data.reportLocations.Add(locationP);
+                                    }
+                                    ReportsToggle(true);
+                                    data.hintsLoaded = true;
+                                    //HintText.Content = "Hints Loaded";
+
+                                    //Console.WriteLine("LVl Points = " + LevelPoints);
+                                    //Console.WriteLine("DRV Points = " + DrivePoints);
+                                    //Console.WriteLine("STT Points = " + STTPoints);
+                                    //Console.WriteLine("HB Points = " + HBPoints);
+                                    //Console.WriteLine("OC Points = " + OCPoints);
+                                    //Console.WriteLine("Lo Points = " + LoDPoints);
+                                    //Console.WriteLine("PL Points = " + PLPoints);
+                                    //Console.WriteLine("HT Points = " + HTPoints);
+                                    //Console.WriteLine("SP Points = " + SPPoints);
+                                    //Console.WriteLine("TT Points = " + TTPoints);
+                                    //Console.WriteLine("BC Points = " + BCPoints);
+                                    //Console.WriteLine("AG Points = " + AGPoints);
+                                    //Console.WriteLine("HAW Points = " + HAWPoints);
+                                    //Console.WriteLine("DC Points = " + DCPoints);
+                                    //Console.WriteLine("PR Points = " + PRPoints);
+                                    //Console.WriteLine("TWTNW Points = " + TWTNWPoints);
+                                    //Console.WriteLine("AT Points = " + ATPoints);
+                                    LevelPoints_c = LevelPoints;
+                                    DrivePoints_c = DrivePoints;
+                                    STTPoints_c = STTPoints;
+                                    HBPoints_c = HBPoints;
+                                    OCPoints_c = OCPoints;
+                                    LoDPoints_c = LoDPoints;
+                                    PLPoints_c = PLPoints;
+                                    HTPoints_c = HTPoints;
+                                    SPPoints_c = SPPoints;
+                                    TTPoints_c = TTPoints;
+                                    BCPoints_c = BCPoints;
+                                    AGPoints_c = AGPoints;
+                                    HAWPoints_c = HAWPoints;
+                                    DCPoints_c = DCPoints;
+                                    PRPoints_c = PRPoints;
+                                    TWTNWPoints_c = TWTNWPoints;
+                                    ATPoints_c = ATPoints;
+
+                                    ////set visibility stuff
+                                    //Collected.Visibility = Visibility.Hidden;
+                                    //CollectedBar.Visibility = Visibility.Hidden;
+                                    //CheckTotal.Visibility = Visibility.Hidden;
+                                    //Score100.Visibility = Visibility.Visible;
+                                    //Score10.Visibility = Visibility.Visible;
+                                    //Score1.Visibility = Visibility.Visible;
+                                    //
+                                    //broadcast.Collected.Visibility = Visibility.Hidden;
+                                    //broadcast.CollectedBar.Visibility = Visibility.Hidden;
+                                    //broadcast.CheckTotal.Visibility = Visibility.Hidden;
+                                    //broadcast.Score100.Visibility = Visibility.Visible;
+                                    //broadcast.Score10.Visibility = Visibility.Visible;
+                                    //broadcast.Score1.Visibility = Visibility.Visible;
+                                    //
+                                    ////Weapon.Visibility = Visibility.Hidden;
+                                    ////broadcast.Weapon.Visibility = Visibility.Hidden;
+                                    //
+                                    //broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
+                                    //broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
 
                                     break;
 
@@ -1460,84 +2611,75 @@ namespace KhTracker
             //}
         }
 
-        //point based hints test. almost fully working
+        //point based hints test. almost fully working (OLD TEST)
         public void ParseSeedPoints(string filename)
         {
             //FixDictionary();
 
-            SetMode(Mode.DAHints);
-
-
             //create lists
-
-            List<string> MagicItems = new List<string>();
-            List<string> SummonItems = new List<string>();
-            List<string> FormItems = new List<string>();
-            List<string> AbilityItems = new List<string>();
-            List<string> ProofItems = new List<string>();
-            List<string> OtherItems = new List<string>();
-            List<string> PageItems = new List<string>();
-
-            int MagicScore = 8;   //
-            int SummonScore = 6;  //
-            int FormScore = 10;   //
-            int AbilityScore = 4; //
-            int ProofScore = 14;  //
-            int OtherScore = 0;   //
-            int PageScore = 2;    //
-
             #region Lists
-            MagicItems.Clear();
-            SummonItems.Clear();
-            FormItems.Clear();
-            AbilityItems.Clear();
-            ProofItems.Clear();
-            OtherItems.Clear();
-            PageItems.Clear();
+            //List<string> MagicItems = new List<string>();
+            //List<string> SummonItems = new List<string>();
+            //List<string> FormItems = new List<string>();
+            //List<string> AbilityItems = new List<string>();
+            //List<string> ProofItems = new List<string>();
+            //List<string> OtherItems = new List<string>();
+            //List<string> PageItems = new List<string>();
 
-            MagicItems.Add("Fire Element");
-            MagicItems.Add("Blizzard Element");
-            MagicItems.Add("Thunder Element");
-            MagicItems.Add("Cure Element");
-            MagicItems.Add("Magnet Element");
-            MagicItems.Add("Reflect Element");
-            SummonItems.Add("Ukulele Charm (Stitch)");
-            SummonItems.Add("Lamp Charm (Genie)");
-            SummonItems.Add("Feather Charm (Peter Pan)");
-            SummonItems.Add("Baseball Charm (Chicken Little)");
-            FormItems.Add("Valor Form");
-            FormItems.Add("Wisdom Form");
-            FormItems.Add("Final Form");
-            FormItems.Add("Master Form");
-            FormItems.Add("Limit Form");
-            AbilityItems.Add("Second Chance");
-            AbilityItems.Add("Once More");
-            //AbilityItems.Add("ComboMaster");
-            ProofItems.Add("PromiseCharm");
-            ProofItems.Add("Proof of Connection");
-            ProofItems.Add("Proof of Nonexistence");
-            ProofItems.Add("Proof of Peace");
-            //OtherItems.Add("HadesCup");
-            //OtherItems.Add("OlympusStone");
-            //OtherItems.Add("Membership");
-            PageItems.Add("Torn Pages");
-            PageItems.Add("Secret Ansem's Report 1");
-            PageItems.Add("Secret Ansem's Report 2");
-            PageItems.Add("Secret Ansem's Report 3");
-            PageItems.Add("Secret Ansem's Report 4");
-            PageItems.Add("Secret Ansem's Report 5");
-            PageItems.Add("Secret Ansem's Report 6");
-            PageItems.Add("Secret Ansem's Report 7");
-            PageItems.Add("Secret Ansem's Report 8");
-            PageItems.Add("Secret Ansem's Report 9");
-            PageItems.Add("Secret Ansem's Report 10");
-            PageItems.Add("Secret Ansem's Report 11");
-            PageItems.Add("Secret Ansem's Report 12");
-            PageItems.Add("Secret Ansem's Report 13");
+            //old testing
+            //int MagicScore = 8;   //
+            //int SummonScore = 6;  //
+            //int FormScore = 10;   //
+            //int AbilityScore = 4; //
+            //int ProofScore = 14;  //
+            //int OtherScore = 0;   //
+            //int PageScore = 2;    //
+
+            //MagicItems.Clear();
+            //SummonItems.Clear();
+            //FormItems.Clear();
+            //AbilityItems.Clear();
+            //ProofItems.Clear();
+            //OtherItems.Clear();
+            //PageItems.Clear();
+
+            data.MagicItems.Add("Fire Element");
+            data.MagicItems.Add("Blizzard Element");
+            data.MagicItems.Add("Thunder Element");
+            data.MagicItems.Add("Cure Element");
+            data.MagicItems.Add("Magnet Element");
+            data.MagicItems.Add("Reflect Element");
+            data.SummonItems.Add("Ukulele Charm (Stitch)");
+            data.SummonItems.Add("Lamp Charm (Genie)");
+            data.SummonItems.Add("Feather Charm (Peter Pan)");
+            data.SummonItems.Add("Baseball Charm (Chicken Little)");
+            data.FormItems.Add("Valor Form");
+            data.FormItems.Add("Wisdom Form");
+            data.FormItems.Add("Final Form");
+            data.FormItems.Add("Master Form");
+            data.FormItems.Add("Limit Form");
+            data.AbilityItems.Add("Second Chance");
+            data.AbilityItems.Add("Once More");
+            data.ProofItems.Add("PromiseCharm");
+            data.ProofItems.Add("Proof of Connection");
+            data.ProofItems.Add("Proof of Nonexistence");
+            data.ProofItems.Add("Proof of Peace");
+            data.PageItems.Add("Torn Pages");
+            data.PageItems.Add("Secret Ansem's Report 1");
+            data.PageItems.Add("Secret Ansem's Report 2");
+            data.PageItems.Add("Secret Ansem's Report 3");
+            data.PageItems.Add("Secret Ansem's Report 4");
+            data.PageItems.Add("Secret Ansem's Report 5");
+            data.PageItems.Add("Secret Ansem's Report 6");
+            data.PageItems.Add("Secret Ansem's Report 7");
+            data.PageItems.Add("Secret Ansem's Report 8");
+            data.PageItems.Add("Secret Ansem's Report 9");
+            data.PageItems.Add("Secret Ansem's Report 10");
+            data.PageItems.Add("Secret Ansem's Report 11");
+            data.PageItems.Add("Secret Ansem's Report 12");
+            data.PageItems.Add("Secret Ansem's Report 13");
 
             #endregion
-
-            //clear worlds
 
             foreach (string world in data.WorldsData.Keys.ToList())
             {
@@ -1560,7 +2702,30 @@ namespace KhTracker
                             ShouldResetHash = false;
                             SetMode(Mode.DAHints);
                             ShouldResetHash = true;
+
                             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                            var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
+
+                            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                            reportKeys.Sort();
+
+                            foreach (var point in points)
+                            {
+                                if (point.Key == "proof")
+                                    data.PointsData[0] = point.Value;
+                                else if (point.Key == "form")
+                                    data.PointsData[1] = point.Value;
+                                else if (point.Key == "magic")
+                                    data.PointsData[2] = point.Value;
+                                else if (point.Key == "summon")
+                                    data.PointsData[3] = point.Value;
+                                else if (point.Key == "ability")
+                                    data.PointsData[4] = point.Value;
+                                else if (point.Key == "page")
+                                    data.PointsData[5] = point.Value;
+
+                            }
 
                             foreach (var world in worlds)
                             {
@@ -1575,421 +2740,415 @@ namespace KhTracker
                                     {
                                         if (convertOpenKH[world.Key] == "SimulatedTwilightTown")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                STTPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                STTPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                STTPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                STTPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                STTPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                STTPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                STTPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                STTPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                STTPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                STTPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                STTPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    STTPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                STTPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                STTPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "TwilightTown")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                TTPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                TTPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                TTPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                TTPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                TTPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                TTPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                TTPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                TTPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                TTPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                TTPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                TTPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    TTPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                TTPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                TTPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "HollowBastion")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                HBPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                HBPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                HBPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                HBPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                HBPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                HBPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                HBPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                HBPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                HBPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                HBPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                HBPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    HBPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                HBPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                HBPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "LandofDragons")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                LoDPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                LoDPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                LoDPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                LoDPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                LoDPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                LoDPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                LoDPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                LoDPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                LoDPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                LoDPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                LoDPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    LoDPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                LoDPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                LoDPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "BeastsCastle")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                BCPoints += MagicScore;
-
-                                            if (SummonItems.Contains(item))
-                                                BCPoints += SummonScore;
-
-                                            if (FormItems.Contains(item))
-                                                BCPoints += FormScore;
-
-                                            if (AbilityItems.Contains(item))
-                                                BCPoints += AbilityScore;
-
-                                            if (ProofItems.Contains(item))
-                                                BCPoints += ProofScore;
-
-                                            if (OtherItems.Contains(item))
-                                                BCPoints += OtherScore;
-
-                                            if (PageItems.Contains(item))
-                                                BCPoints += PageScore;
+                                            if (data.MagicItems.Contains(item))
+                                                BCPoints += data.PointsData[2];
+                                            else if (data.SummonItems.Contains(item))
+                                                BCPoints += data.PointsData[3];
+                                            else if (data.FormItems.Contains(item))
+                                                BCPoints += data.PointsData[1];
+                                            else if (data.AbilityItems.Contains(item))
+                                                BCPoints += data.PointsData[4];
+                                            else if (data.ProofItems.Contains(item))
+                                                BCPoints += data.PointsData[0];
+                                            else if (data.PageItems.Contains(item))
+                                                BCPoints += data.PointsData[5];
+                                            //if (OtherItems.Contains(item))
+                                            //    BCPoints += OtherScore;
                                         }
 
                                         if (convertOpenKH[world.Key] == "OlympusColiseum")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                OCPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                OCPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                OCPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                OCPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                OCPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                OCPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                OCPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                OCPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                OCPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                OCPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                OCPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    OCPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                OCPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                OCPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "DisneyCastle")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                DCPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                DCPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                DCPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                DCPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                DCPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                DCPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                DCPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                DCPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                DCPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                DCPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                DCPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    DCPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                DCPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                DCPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "PortRoyal")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                PRPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                PRPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                PRPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                PRPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                PRPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                PRPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                PRPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                PRPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                PRPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                PRPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                PRPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    PRPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                PRPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                PRPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "Agrabah")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                AGPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                AGPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                AGPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                AGPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                AGPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                AGPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                AGPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                AGPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                AGPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                AGPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                AGPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    AGPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                AGPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                AGPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "HalloweenTown")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                HTPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                HTPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                HTPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                HTPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                HTPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                HTPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                HTPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                HTPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                HTPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                HTPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                HTPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    HTPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                HTPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                HTPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "PrideLands")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                PLPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                PLPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                PLPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                PLPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                PLPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                PLPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                PLPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                PLPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                PLPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                PLPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                PLPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    PLPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                PLPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                PLPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "Atlantica")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                ATPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                ATPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                ATPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                ATPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                ATPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                ATPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                ATPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                ATPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                ATPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                ATPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                ATPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    ATPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                ATPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                ATPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "HundredAcreWood")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                HAWPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                HAWPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                HAWPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                HAWPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                HAWPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                HAWPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                HAWPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                HAWPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                HAWPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                HAWPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                HAWPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    HAWPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                HAWPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                HAWPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "SpaceParanoids")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                SPPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                SPPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                SPPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                SPPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                SPPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                SPPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                SPPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                SPPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                SPPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                SPPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                SPPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    SPPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                SPPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                SPPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "TWTNW")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                TWTNWPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                TWTNWPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                TWTNWPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                TWTNWPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                TWTNWPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                TWTNWPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    TWTNWPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                TWTNWPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                TWTNWPoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "DriveForms")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                DrivePoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                DrivePoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                DrivePoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                DrivePoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                DrivePoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                DrivePoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                DrivePoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                DrivePoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                DrivePoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                DrivePoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                DrivePoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    DrivePoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                DrivePoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                DrivePoints += data.PointsData[5];
                                         }
 
                                         if (convertOpenKH[world.Key] == "SorasHeart")
                                         {
-                                            if (MagicItems.Contains(item))
-                                                LevelPoints += MagicScore;
+                                            if (data.MagicItems.Contains(item))
+                                                LevelPoints += data.PointsData[2];
 
-                                            if (SummonItems.Contains(item))
-                                                LevelPoints += SummonScore;
+                                            if (data.SummonItems.Contains(item))
+                                                LevelPoints += data.PointsData[3];
 
-                                            if (FormItems.Contains(item))
-                                                LevelPoints += FormScore;
+                                            if (data.FormItems.Contains(item))
+                                                LevelPoints += data.PointsData[1];
 
-                                            if (AbilityItems.Contains(item))
-                                                LevelPoints += AbilityScore;
+                                            if (data.AbilityItems.Contains(item))
+                                                LevelPoints += data.PointsData[4];
 
-                                            if (ProofItems.Contains(item))
-                                                LevelPoints += ProofScore;
+                                            if (data.ProofItems.Contains(item))
+                                                LevelPoints += data.PointsData[0];
 
-                                            if (OtherItems.Contains(item))
-                                                LevelPoints += OtherScore;
+                                            //if (OtherItems.Contains(item))
+                                            //    LevelPoints += OtherScore;
 
-                                            if (PageItems.Contains(item))
-                                                LevelPoints += PageScore;
+                                            if (data.PageItems.Contains(item))
+                                                LevelPoints += data.PointsData[5];
                                         }
                                     }
                                 }
                             }
+                            
                             foreach (var key in data.WorldsData.Keys.ToList())
                             {
                                 if (key == "GoA")
                                     continue;
 
-                                //data.WorldsData[key].worldGrid.WorldComplete();
-                                //SetReportValue(data.WorldsData[key].hint, 1);
+                                data.WorldsData[key].worldGrid.WorldPointsComplete();
 
                                 if (key == "SimulatedTwilightTown")
                                     SetReportValue(data.WorldsData[key].hint, STTPoints + 1);
@@ -2043,39 +3202,52 @@ namespace KhTracker
                                     SetReportValue(data.WorldsData[key].hint, LevelPoints + 1);
                             }
 
-                            Console.WriteLine("LVl Points = " + LevelPoints);
+                            foreach (var report in reportKeys)
+                            {
+                                var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                                var check = reports[report.ToString()]["check"].ToString();
+                                var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+
+                                data.pointreportInformation.Add(new Tuple<string, string>(world, check));
+                                data.reportLocations.Add(location);
+                            }
+                            ReportsToggle(true);
+                            data.hintsLoaded = true;
+                            //HintText.Content = "Hints Loaded";
+
+                            //Console.WriteLine("LVl Points = " + LevelPoints);
+                            //Console.WriteLine("DRV Points = " + DrivePoints);
+                            //Console.WriteLine("STT Points = " + STTPoints);
+                            //Console.WriteLine("HB Points = " + HBPoints);
+                            //Console.WriteLine("OC Points = " + OCPoints);
+                            //Console.WriteLine("Lo Points = " + LoDPoints);
+                            //Console.WriteLine("PL Points = " + PLPoints);
+                            //Console.WriteLine("HT Points = " + HTPoints);
+                            //Console.WriteLine("SP Points = " + SPPoints);
+                            //Console.WriteLine("TT Points = " + TTPoints);
+                            //Console.WriteLine("BC Points = " + BCPoints);
+                            //Console.WriteLine("AG Points = " + AGPoints);
+                            //Console.WriteLine("HAW Points = " + HAWPoints);
+                            //Console.WriteLine("DC Points = " + DCPoints);
+                            //Console.WriteLine("PR Points = " + PRPoints);
+                            //Console.WriteLine("TWTNW Points = " + TWTNWPoints);
+                            //Console.WriteLine("AT Points = " + ATPoints);
                             LevelPoints_c = LevelPoints;
-                            Console.WriteLine("DRV Points = " + DrivePoints);
                             DrivePoints_c = DrivePoints;
-                            Console.WriteLine("STT Points = " + STTPoints);
                             STTPoints_c = STTPoints;
-                            Console.WriteLine("HB Points = " + HBPoints);
                             HBPoints_c = HBPoints;
-                            Console.WriteLine("OC Points = " + OCPoints);
                             OCPoints_c = OCPoints;
-                            Console.WriteLine("Lo Points = " + LoDPoints);
                             LoDPoints_c = LoDPoints;
-                            Console.WriteLine("PL Points = " + PLPoints);
                             PLPoints_c = PLPoints;
-                            Console.WriteLine("HT Points = " + HTPoints);
                             HTPoints_c = HTPoints;
-                            Console.WriteLine("SP Points = " + SPPoints);
                             SPPoints_c = SPPoints;
-                            Console.WriteLine("TT Points = " + TTPoints);
                             TTPoints_c = TTPoints;
-                            Console.WriteLine("BC Points = " + BCPoints);
                             BCPoints_c = BCPoints;
-                            Console.WriteLine("AG Points = " + AGPoints);
                             AGPoints_c = AGPoints;
-                            Console.WriteLine("HAW Points = " + HAWPoints);
                             HAWPoints_c = HAWPoints;
-                            Console.WriteLine("DC Points = " + DCPoints);
                             DCPoints_c = DCPoints;
-                            Console.WriteLine("PR Points = " + PRPoints);
                             PRPoints_c = PRPoints;
-                            Console.WriteLine("TWTNW Points = " + TWTNWPoints);
                             TWTNWPoints_c = TWTNWPoints;
-                            Console.WriteLine("AT Points = " + ATPoints);
                             ATPoints_c = ATPoints;
                         }
                     }
@@ -2129,7 +3301,7 @@ namespace KhTracker
 
             broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
             broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
-            
+
         }
 
         public int GetPoints(string worldName)
@@ -2137,10 +3309,7 @@ namespace KhTracker
             if (worldName == "SimulatedTwilightTown")
                 return STTPoints_c;
             else if (worldName == "TwilightTown")
-            {
-                Console.WriteLine("GET TTPoints = " + TTPoints_c);
                 return TTPoints_c;
-            }
             else if (worldName == "HollowBastion")
                 return HBPoints_c;
             else if (worldName == "LandofDragons")
@@ -2180,10 +3349,7 @@ namespace KhTracker
             if (name == "SimulatedTwilightTown")
                 STTPoints_c = value;
             else if (name == "TwilightTown")
-            {
                 TTPoints_c = value;
-                Console.WriteLine("SET TTPoints = " + TTPoints_c);
-            }
             else if (name == "HollowBastion")
                 HBPoints_c = value;
             else if (name == "LandofDragons")

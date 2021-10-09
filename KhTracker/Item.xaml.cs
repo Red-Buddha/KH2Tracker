@@ -101,9 +101,19 @@ namespace KhTracker
 
             if (data.selected != null)
             {
-                if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
+                if (data.mode == Mode.DAHints)
                 {
-                    data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PointReport(this, window, data))
+                    {
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
+                    }
+                }
+                else
+                {
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
+                    {
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
+                    }
                 }
             }
         }
@@ -115,7 +125,10 @@ namespace KhTracker
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             int index = (int)GetValue(Grid.ColumnProperty);
 
-            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+            if (data.mode == Mode.DAHints)
+                window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+            else
+                window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
         }
 
         public void DragDropEventFire(string item, string world, bool add)
