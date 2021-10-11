@@ -20,6 +20,8 @@ namespace KhTracker
     /// </summary>
     public partial class WorldGrid : UniformGrid
     {
+        public int localLevelCount = 0;
+
         public WorldGrid()
         {
             InitializeComponent();
@@ -27,6 +29,8 @@ namespace KhTracker
 
         public void Handle_WorldGrid(Item button, bool add)
         {
+            int addRemove = 1;
+
             if (add)
             {
                 try
@@ -39,7 +43,11 @@ namespace KhTracker
                 }
             }
             else
+            {
+                //Console.WriteLine("Removing " + button.Name);
                 Children.Remove(button);
+                addRemove = -1;
+            }
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)
@@ -65,6 +73,23 @@ namespace KhTracker
                     Image hint = MainWindow.data.WorldsData[worldName].hint;
                     ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
                 }
+            }
+
+            if (MainWindow.data.mode == Mode.DAHints)
+            {
+                string worldName = Name.Substring(0, Name.Length - 4);
+
+                WorldPointsComplete();
+
+                Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
+
+                Image hint = MainWindow.data.WorldsData[worldName].hint;
+
+                ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
+
+                ((MainWindow)App.Current.MainWindow).UpdatePointScore(TableReturn(button.Name) * addRemove);
+
             }
         }
 
@@ -179,6 +204,69 @@ namespace KhTracker
             return true;
         }
 
+        public bool Handle_PointReport(Item item, MainWindow window, Data data)
+        {
+            bool isreport = false;
+
+            // item is a report
+            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            {
+                int index = (int)item.GetValue(Grid.ColumnProperty);
+
+                // out of report attempts
+                if (data.reportAttempts[index] == 0)
+                    return false;
+
+                // check for correct report location
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
+                {
+                    // hint text and resetting fail icons
+                    window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                    data.reportAttempts[index] = 3;
+                    isreport = true;
+                    //item.DragDropEventFire(data.pointreportInformation[index].Item1, data.pointreportInformation[index].Item2);
+
+                    // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
+                    //data.WorldsData[data.reportInformation[index].Item1].hinted = true;
+                    //if (data.WorldsData[data.reportLocations[index]].hinted == true)
+                    //{
+                    //    data.WorldsData[data.reportInformation[index].Item1].hintedHint = true;
+                    //}
+
+                    // loop through hinted world for reports to set their info as hinted hints
+                    //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children.Count; ++i)
+                    //{
+                    //    Item gridItem = data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children[i] as Item;
+                    //    if (gridItem.Name.Contains("Report"))
+                    //    {
+                    //        int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
+                    //        data.WorldsData[data.reportInformation[reportIndex].Item1].hintedHint = true;
+                    //        window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2 + 1);
+                    //    }
+                    //}
+
+                    // auto update world important check number
+                    //window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2);
+                }
+                else
+                {
+                    // update fail icons when location is report location is wrong
+                    AddFailIcon(index);
+                    return false;
+                }
+            }
+
+            if (isreport)
+            {
+                item.MouseEnter -= item.Report_Hover;
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
+        }
+
+
         private void AddFailIcon(int index)
         {
             Data data = MainWindow.data;
@@ -216,5 +304,54 @@ namespace KhTracker
                 MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
             }
         }
+
+        public void WorldPointsComplete()
+        {
+            string worldName = Name.Substring(0, Name.Length - 4);
+            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
+                return;
+
+            List<string> items = new List<string>();
+            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
+
+            foreach (var child in Children)
+            {
+                Item item = child as Item;
+                char[] numbers = { '1', '2', '3', '4', '5' };
+                Console.WriteLine(item.Name);
+
+                if (item.Name.Contains("Report"))
+                    items.Remove(item.Name);
+                else if (items.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    items.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            if (items.Count == 0)
+            {
+                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
+            }
+        }
+
+        public int TableReturn(string nameButton)
+        {
+            if (nameButton.Contains("Peace") || nameButton.Contains("Nonexistence") || nameButton.Contains("Connection") || nameButton.Contains("PromiseCharm"))
+                return MainWindow.data.PointsData[0];
+            else if (nameButton.Contains("Valor") || nameButton.Contains("Wisdom") || nameButton.Contains("Limit") || nameButton.Contains("Master") || nameButton.Contains("Final"))
+                return MainWindow.data.PointsData[1];
+            else if (nameButton.Contains("Fire") || nameButton.Contains("Blizzard") || nameButton.Contains("Thunder") ||
+                nameButton.Contains("Cure") || nameButton.Contains("Reflect") || nameButton.Contains("Magnet"))
+                return MainWindow.data.PointsData[2];
+            else if (nameButton.Contains("Baseball") || nameButton.Contains("Ukulele") || nameButton.Contains("Lamp") || nameButton.Contains("Feather"))
+                return MainWindow.data.PointsData[3];
+            else if (nameButton.Contains("OnceMore") || nameButton.Contains("SecondChance"))
+                return MainWindow.data.PointsData[4];
+            else if (nameButton.Contains("Page") || nameButton.Contains("Report"))
+                return MainWindow.data.PointsData[5];
+            else
+                return 0;
+        }
+
     }
 }

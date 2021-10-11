@@ -24,6 +24,7 @@ namespace KhTracker
         private BroadcastWindow broadcast;
         public int collected;
         private int total = 51;
+        public static int PointTotal = 0;
 
         //dumb stuff to help figure out what to do about custom images
         public static bool CustomNumbersFound = false;
@@ -42,8 +43,8 @@ namespace KhTracker
         public static bool CustomVBarYFound = false;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
-        //this is stupid. Hash kept auto reseting because of SetMode
-        //during hint loading. this is here as a toggle to only reset the hash when i want it to
+        //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
+        //this is here as a toggle to only reset the hash when i want it to
         public static bool ShouldResetHash = true;
 
         public MainWindow()
@@ -96,6 +97,42 @@ namespace KhTracker
             data.TornPages.Add(TornPage3);
             data.TornPages.Add(TornPage4);
             data.TornPages.Add(TornPage5);
+
+            data.MagicItems.Add("Fire Element");
+            data.MagicItems.Add("Blizzard Element");
+            data.MagicItems.Add("Thunder Element");
+            data.MagicItems.Add("Cure Element");
+            data.MagicItems.Add("Magnet Element");
+            data.MagicItems.Add("Reflect Element");
+            data.SummonItems.Add("Ukulele Charm (Stitch)");
+            data.SummonItems.Add("Lamp Charm (Genie)");
+            data.SummonItems.Add("Feather Charm (Peter Pan)");
+            data.SummonItems.Add("Baseball Charm (Chicken Little)");
+            data.FormItems.Add("Valor Form");
+            data.FormItems.Add("Wisdom Form");
+            data.FormItems.Add("Final Form");
+            data.FormItems.Add("Master Form");
+            data.FormItems.Add("Limit Form");
+            data.AbilityItems.Add("Second Chance");
+            data.AbilityItems.Add("Once More");
+            data.ProofItems.Add("PromiseCharm");
+            data.ProofItems.Add("Proof of Connection");
+            data.ProofItems.Add("Proof of Nonexistence");
+            data.ProofItems.Add("Proof of Peace");
+            data.PageItems.Add("Torn Pages");
+            data.PageItems.Add("Secret Ansem's Report 1");
+            data.PageItems.Add("Secret Ansem's Report 2");
+            data.PageItems.Add("Secret Ansem's Report 3");
+            data.PageItems.Add("Secret Ansem's Report 4");
+            data.PageItems.Add("Secret Ansem's Report 5");
+            data.PageItems.Add("Secret Ansem's Report 6");
+            data.PageItems.Add("Secret Ansem's Report 7");
+            data.PageItems.Add("Secret Ansem's Report 8");
+            data.PageItems.Add("Secret Ansem's Report 9");
+            data.PageItems.Add("Secret Ansem's Report 10");
+            data.PageItems.Add("Secret Ansem's Report 11");
+            data.PageItems.Add("Secret Ansem's Report 12");
+            data.PageItems.Add("Secret Ansem's Report 13");
 
             #region Numbers
 
@@ -285,6 +322,35 @@ namespace KhTracker
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/68.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/69.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/70.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/71.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/72.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/73.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/74.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/75.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/76.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/77.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/78.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/79.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/80.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/81.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/82.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/83.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/84.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/85.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/86.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/87.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/88.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/89.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/90.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/91.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/92.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/93.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/94.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/95.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/96.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/97.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/98.png", UriKind.Relative)));
+            data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/99.png", UriKind.Relative)));
 
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/QuestionMark.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/0.png", UriKind.Relative)));
@@ -485,6 +551,35 @@ namespace KhTracker
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/68.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/69.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/70.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/71.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/72.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/73.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/74.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/75.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/76.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/77.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/78.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/79.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/80.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/81.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/82.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/83.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/84.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/85.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/86.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/87.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/88.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/89.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/90.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/91.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/92.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/93.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/94.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/95.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/96.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/97.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/98.png", UriKind.Relative)));
+            data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/99.png", UriKind.Relative)));
 
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/QuestionMark.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/0.png", UriKind.Relative)));
@@ -712,6 +807,35 @@ namespace KhTracker
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/68.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/69.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/70.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/71.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/72.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/73.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/74.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/75.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/76.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/77.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/78.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/79.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/80.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/81.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/82.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/83.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/84.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/85.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/86.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/87.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/88.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/89.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/90.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/91.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/92.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/93.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/94.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/95.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/96.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/97.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/98.png", urikindvarblue)));
+            data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/99.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/QuestionMark.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/0.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/1.png", urikindvarblue)));
@@ -724,7 +848,6 @@ namespace KhTracker
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/8.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
             #endregion
-
 
             data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
             data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));
@@ -1036,26 +1159,17 @@ namespace KhTracker
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
             BitmapImage BarW = data.VerticalBarW;
             BitmapImage BarY = data.VerticalBarY;
+            if (CustomMode)
             {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (CustomVBarWFound)
-                        BarW = data.CustomVerticalBarW;
-                    if (CustomVBarYFound)
-                        BarY = data.CustomVerticalBarY;
-                }
+                if (CustomVBarWFound)
+                    BarW = data.CustomVerticalBarW;
+                if (CustomVBarYFound)
+                    BarY = data.CustomVerticalBarY;
             }
+
 
             Button button = sender as Button;
 
@@ -1073,7 +1187,7 @@ namespace KhTracker
             {
                 if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
-                    data.WorldsData[button.Name].hint.Source = NormalNum[0];
+                    data.WorldsData[button.Name].hint.Source = GetDataNumber("Y")[0];
                 }
             }
         }
@@ -1148,23 +1262,11 @@ namespace KhTracker
             if (data.mode != Mode.None)
                 return;
 
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             int num = 0;
 
             for (int i = 0; i < data.Numbers.Count; ++i)
             {
-                if (Hint.Source == NormalNum[i])
+                if (Hint.Source == GetDataNumber("Y")[i])
                 {
                     num = i;
                 }
@@ -1180,144 +1282,88 @@ namespace KhTracker
                 num = 52;
 
             if (num < 0)
-                Hint.Source = NormalNum[0];
+                Hint.Source = GetDataNumber("Y")[0];
             else
-                Hint.Source = NormalNum[num];
+                Hint.Source = GetDataNumber("Y")[num];
 
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
 
         public void SetReportValue(Image Hint, int value)
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
-            {
-                //check numbers
-                if (OldMode)
-                {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                }
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (CustomBlueNumbersFound)
-                        BlueNum = data.CustomBlueNumbers;
-                }
-            }
+            if (data.mode == Mode.DAHints && Hint == null)
+                return;
 
+            string Color = "Y";
             string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
             if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete)
-                NormalNum = BlueNum;
+                Color = "B";
 
-            if (value > 52)
-                value = 52;
+            if (data.mode == Mode.DAHints)
+            {
+                if (value > 100)
+                {
+                    //for testing. basically if a number is blue then i either need to
+                    //lower values or find a way to add triple digets
+                    Color = "B";
+                    value = 100;
+                }
+            }
+            else
+            {
+                if (value > 52)
+                    value = 52;
+            }
+
 
             if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
-                Hint.Source = NormalNum[1];
+                Hint.Source = GetDataNumber(Color)[1];
             else if (value < 0)
-                Hint.Source = NormalNum[0];
+                Hint.Source = GetDataNumber(Color)[0];
             else
-                Hint.Source = NormalNum[value];
+                Hint.Source = GetDataNumber(Color)[value];
             
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
 
         public void IncrementCollected()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             ++collected;
             if (collected > 51)
                 collected = 51;
 
-            Collected.Source = NormalNum[collected + 1];
-            broadcast.Collected.Source = NormalNum[collected + 1];
-
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
         }
 
         public void DecrementCollected()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             --collected;
             if (collected < 0)
                 collected = 0;
 
-            Collected.Source = NormalNum[collected + 1];
-            broadcast.Collected.Source = NormalNum[collected + 1];
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
         }
 
         public void IncrementTotal()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             ++total;
             if (total > 51)
                 total = 51;
 
-            CheckTotal.Source = NormalNum[total + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
 
         public void DecrementTotal()
         {
-            //this chunk of garbage for using the correct vertical images
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            {
-                //check numbers
-                if (OldMode)
-                    NormalNum = data.OldNumbers;
-
-                if (CustomMode && CustomNumbersFound)
-                    NormalNum = data.CustomNumbers;
-            }
-
             --total;
             if (total < 0)
                 total = 0;
 
-            CheckTotal.Source = NormalNum[total + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
 
         public void SetHintText(string text)
@@ -1525,6 +1571,62 @@ namespace KhTracker
                 else
                     broadcast.Background = Application.Current.Resources["BG-BImageDef3"] as ImageBrush;
             }
+        }
+
+        //stuff to call the right number image
+        public List<BitmapImage> GetDataNumber(string type)
+        {
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            var NormalNum = data.Numbers;
+            var BlueNum = data.BlueNumbers;
+            var SingleNum = data.SingleNumbers;
+            var SingleBlueNum = data.BlueSingleNumbers;
+
+            //Get correct numbers
+            {
+                if (OldMode)
+                {
+                    NormalNum = data.OldNumbers;
+                    BlueNum = data.OldBlueNumbers;
+                    SingleNum = data.OldSingleNumbers;
+                    SingleBlueNum = data.OldBlueSingleNumbers;
+                }
+
+                if (CustomMode)
+                {
+                    if (CustomNumbersFound)
+                    {
+                        NormalNum = data.CustomNumbers;
+                        SingleNum = data.OldSingleNumbers;
+                    }
+                    if (CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.CustomBlueNumbers;
+                        SingleBlueNum = data.OldBlueSingleNumbers;
+                    }
+                }
+            }
+
+            //return correct number list
+            if (type == "Y")
+            {
+                return NormalNum;
+            }
+            else if (type == "B")
+            {
+                return BlueNum;
+            }
+            else if (type == "S")
+            {
+                return SingleNum;
+            }
+            else if (type == "SB")
+            {
+                return SingleBlueNum;
+            }
+            else
+                return NormalNum;
         }
     }
 }

@@ -33,6 +33,7 @@
                     <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
                     <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
                 </MenuItem>
+                <!--MenuItem Name="PointsTestOption" Header="Points Mode Test" IsCheckable="True" IsChecked="False"/-->
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <Separator/>
@@ -102,7 +103,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="v2.7 -DA v1.2-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="v2.7 -DA 1.3-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -845,15 +846,45 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15"/>
-                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16"/>
-                <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17"/>
+                <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Visible"/>
+                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16" Visibility="Visible"/>
+                <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17" Visibility="Visible"/>
+
+                <!--Image Name="BattleLevelIcon" Source="Images/Other/sora_heart.png" Grid.Row="3" Grid.Column="15" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="BattleLevel"  Source="Images/Numbers/Kh2/Yellow/99.png" Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="2" Visibility="Hidden"/-->
+
+            </Grid>
+
+            <!-- Score grid -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.25*"/>
+                    <RowDefinition Name="PointsRow" Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*"/>
+                    
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Name="BattleLevelIcon2" Source="Images/Other/sora_heart.png" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Visibility="Hidden"/>
+
+                <Image Name="Score100"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Visibility="Hidden"/>
+                <Image Name="Score1"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" Visibility="Hidden"/>
+
             </Grid>
 
             <!-- Testing hash placement -->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Name="HashRow" Height="0*"/>
+                    <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -881,7 +912,6 @@
                 <local:Item x:Name="HashIcon5" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="5"/>
                 <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="6"/>
                 <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="7"/>
-
             </Grid>
 
             <!-- Drive Forms & Growth Abilities-->

@@ -99,6 +99,7 @@ namespace KhTracker
         private CheckEveryCheck checkEveryCheck;
 
         public static bool pcsx2tracking = false;
+        //public static bool StartTracking = false;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -269,6 +270,9 @@ namespace KhTracker
             Magic.Visibility = Visibility.Visible;
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
+
+            //TEMP EDIT CORRECTLY LATER
+           // if (data.mode != Mode.DAHints)
             Weapon.Visibility = Visibility.Visible;
 
             broadcast.LevelIcon.Visibility = Visibility.Visible;
@@ -408,6 +412,10 @@ namespace KhTracker
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
+
+           // Console.WriteLine("World Num = " + world.worldNum);
+            //Console.WriteLine("World Room = " + world.roomNumber);
+
             previousChecks.Clear();
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
@@ -434,21 +442,38 @@ namespace KhTracker
 
             UpdateCollectedItems();
             DetermineItemLocations();
+
         }
 
         private void TrackItem(string itemName, WorldGrid world)
         {
             foreach (ContentControl item in ItemPool.Children)
             {
-                if (item.Name == itemName && item.IsVisible)
+                if (data.mode == Mode.DAHints)
                 {
-                    if (world.Handle_Report(item as Item, this, data))
+                    if (item.Name == itemName && item.IsVisible)
                     {
-                        world.Add_Item(item as Item, this);
-                        if (App.logger != null)
-                            App.logger.Record(item.Name + " tracked");
+                        if (world.Handle_PointReport(item as Item, this, data))
+                        {
+                            world.Add_Item(item as Item, this);
+                            if (App.logger != null)
+                                App.logger.Record(item.Name + " tracked");
+                        }
+                        break;
                     }
-                    break;
+                }
+                else
+                {
+                    if (item.Name == itemName && item.IsVisible)
+                    {
+                        if (world.Handle_Report(item as Item, this, data))
+                        {
+                            world.Add_Item(item as Item, this);
+                            if (App.logger != null)
+                                App.logger.Record(item.Name + " tracked");
+                        }
+                        break;
+                    }
                 }
             }
         }
@@ -1384,8 +1409,7 @@ namespace KhTracker
                 }
                 
             }
-            //Console.WriteLine("World Name = " + world.worldName);
-            //Console.WriteLine("World Room = " + world.roomNumber);
+
             //Console.WriteLine("Seed hash visible? = " + SeedHashVisible);
 
         }
@@ -1514,33 +1538,18 @@ namespace KhTracker
             Updatenumbers();
             broadcast.UpdateNumbers();
             //broadcast.UpdateTotal();
+
+            UpdatePointScore(0);
         }
 
         private void Updatenumbers()
         {
-            //all this garbage to get the correct number images when changing visual styles
-            bool OldMode = Properties.Settings.Default.OldNum;
+            //get correct bar image
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
             BitmapImage NumberBarY = data.SlashBarY;
+            if (CustomMode && CustomBarYFound)
             {
-                //check numbers
-                if (OldMode)
-                {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                }
-
-                if (CustomMode)
-                {
-                    if (MainWindow.CustomNumbersFound)
-                        NormalNum = data.CustomNumbers;
-                    if (MainWindow.CustomBlueNumbersFound)
-                        BlueNum = data.CustomBlueNumbers;
-                    if (MainWindow.CustomBarYFound)
-                        NumberBarY = data.CustomSlashBarY;
-                }
+                NumberBarY = data.CustomSlashBarY;
             }
 
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
@@ -1589,7 +1598,7 @@ namespace KhTracker
                                 WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
 
                             if (worldData.hint != null)
-                                worldData.hint.Source = NormalNum[WorldNumber];
+                                worldData.hint.Source = GetDataNumber("Y")[WorldNumber];
                         }
                         else
                         {
@@ -1620,7 +1629,7 @@ namespace KhTracker
                                 WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
 
                             if (worldData.hint != null)
-                                worldData.hint.Source = BlueNum[WorldNumber];
+                                worldData.hint.Source = GetDataNumber("B")[WorldNumber];
                         }
                     }
                 }
@@ -1644,12 +1653,14 @@ namespace KhTracker
                 }
             }
 
-            Collected.Source = NormalNum[collected + 1];
-            CheckTotal.Source = NormalNum[total + 1];
+            Collected.Source = GetDataNumber("Y")[collected + 1];
+            CheckTotal.Source = GetDataNumber("Y")[total + 1];
             CollectedBar.Source = NumberBarY;
 
-            broadcast.Collected.Source = NormalNum[collected + 1];
-            broadcast.CheckTotal.Source = NormalNum[total + 1];
+            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
+
+
     }
 }
