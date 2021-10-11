@@ -99,11 +99,21 @@ namespace KhTracker
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             if (e.Data.GetDataPresent(typeof(Item)))
             {
+                if (data.mode == Mode.DAHints)
+                {
+                    Item item = e.Data.GetData(typeof(Item)) as Item;
 
-                Item item = e.Data.GetData(typeof(Item)) as Item;
+                    if (Handle_PointReport(item, window, data))
+                        Add_Item(item, window);
 
-                if (Handle_Report(item, window, data))
-                    Add_Item(item, window);
+                }
+                else
+                {
+                    Item item = e.Data.GetData(typeof(Item)) as Item;
+
+                    if (Handle_Report(item, window, data))
+                        Add_Item(item, window);
+                }
             }
             else if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
