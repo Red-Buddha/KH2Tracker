@@ -60,24 +60,36 @@ namespace KhTracker
                 OnPropertyChanged("Defense");
             }
         }
+        private int bonuslevel;
+        public int BonusLevel
+        {
+            get { return bonuslevel; }
+            set
+            {
+                bonuslevel = value;
+                OnPropertyChanged("BonusLevel");
+            }
+        }
 
         public int form;
 
         private int levelAddress;
         private int statsAddress;
         private int formAddress;
+        private int bonusAddress;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr)
+        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr, int bonusLvl)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             levelAddress = lvlAddress;
             statsAddress = statsAddr;
             formAddress = formAddr;
+            bonusAddress = bonusLvl;
         }
 
         // this is not working
@@ -120,6 +132,10 @@ namespace KhTracker
 
             byte[] modelData = memory.ReadMemory(formAddress + ADDRESS_OFFSET, 1);
             form = modelData[0];
+
+            byte[] BonusData = memory.ReadMemory(bonusAddress + ADDRESS_OFFSET, 1);
+            BonusLevel = BonusData[0];
+
         }
     }
 }

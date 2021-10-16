@@ -462,12 +462,12 @@ namespace KhTracker
                     if (MainWindow.CustomNumbersFound)
                     {
                         NormalNum = data.CustomNumbers;
-                        SingleNum = data.OldSingleNumbers;
+                        SingleNum = data.CustomSingleNumbers;
                     }
                     if (MainWindow.CustomBlueNumbersFound)
                     {
                         BlueNum = data.CustomBlueNumbers;
-                        SingleBlueNum = data.OldBlueSingleNumbers;
+                        SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
                 }
             }

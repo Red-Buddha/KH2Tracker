@@ -88,7 +88,10 @@ namespace KhTracker
                 ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
                 ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
 
-                ((MainWindow)App.Current.MainWindow).UpdatePointScore(TableReturn(button.Name) * addRemove);
+                if (worldName == "GoA")
+                    return;
+                else
+                    ((MainWindow)App.Current.MainWindow).UpdatePointScore(TableReturn(button.Name) * addRemove);
 
             }
         }

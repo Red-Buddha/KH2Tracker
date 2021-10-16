@@ -3386,7 +3386,43 @@ namespace KhTracker
         {
             int[] FinalNum = new int[] {1, 1, 1}; //Default 000
             int num = PointTotal + points; //get new point total
+            int BonusTotal = 0;
+            int Valorlv = 0;
+            int Wisdomlv = 0;
+            int Limitlv = 0;
+            int Masterlv = 0;
+            int Finallv = 0;
+            int WorldBlue = 0;
+
             PointTotal = num; //set new point total
+
+            //adjust point score based on bonus and form levels
+            //do this after setting new PointTotal value to avoid score
+            //increasing forever when adding/removing items
+            if (aTimer != null)
+            {
+                BonusTotal = stats.BonusLevel * 8;
+                Valorlv = (valor.Level - 1) * 3;
+                Wisdomlv = (wisdom.Level - 1) * 3;
+                Limitlv = (limit.Level - 1) * 3;
+                Masterlv = (master.Level - 1) * 3;
+                Finallv = (final.Level - 1) * 3;
+                Console.WriteLine("Bonus lv points = " + BonusTotal);
+                Console.WriteLine("Form lv points = " + (Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv));
+                num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv;
+            }
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                if (data.WorldsData[key].complete == true && data.WorldsData[key].checkCount.Count != 0)
+                    WorldBlue += 10;
+
+            }
+
+            num += WorldBlue;
 
             //split point total into separate digits
             List<int> listOfInts = new List<int>();

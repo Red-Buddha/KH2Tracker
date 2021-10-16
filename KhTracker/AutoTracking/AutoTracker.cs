@@ -256,7 +256,7 @@ namespace KhTracker
             else
                 world = new World(memory, ADDRESS_OFFSET, Now, BtlEnd + 0x820, Save + 0x1CFF);
 
-            stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524);
+            stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
 
             forcedFinal = false;
@@ -427,6 +427,11 @@ namespace KhTracker
                 UpdateMagicAddresses();
                 UpdateWorldProgress(world);
 
+                Console.WriteLine("room num = " + world.roomNumber);
+                Console.WriteLine("world num = " + world.worldNum);
+                Console.WriteLine("event id1 = " + world.eventID1);
+                Console.WriteLine("event id2 = " + world.eventID2);
+                Console.WriteLine("event id3 = " + world.eventID3);
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {

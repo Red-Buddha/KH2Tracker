@@ -25,6 +25,7 @@ namespace KhTracker
         public int collected;
         private int total = 51;
         public static int PointTotal = 0;
+        //public static int World = 0;
 
         //dumb stuff to help figure out what to do about custom images
         public static bool CustomNumbersFound = false;
@@ -1598,12 +1599,12 @@ namespace KhTracker
                     if (CustomNumbersFound)
                     {
                         NormalNum = data.CustomNumbers;
-                        SingleNum = data.OldSingleNumbers;
+                        SingleNum = data.CustomSingleNumbers;
                     }
                     if (CustomBlueNumbersFound)
                     {
                         BlueNum = data.CustomBlueNumbers;
-                        SingleBlueNum = data.OldBlueSingleNumbers;
+                        SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
                 }
             }
