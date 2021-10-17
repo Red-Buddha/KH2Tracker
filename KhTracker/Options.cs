@@ -1843,6 +1843,69 @@ namespace KhTracker
                             data.openKHHintText = reader.ReadToEnd();
                             var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string,object>>(hintText);
+                            var settings = new List<string>();
+
+                            if (hintObject.ContainsKey("settings"))
+                                settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
+
+                            
+                            //set all settings to false
+                            {
+                                PromiseCharmToggle(false);
+                                //AbilitiesToggle(false);
+                                //TornPagesToggle(false);
+                                //CureToggle(false);
+                                //FinalFormToggle(false);
+                                SoraHeartToggle(true);
+                                SimulatedToggle(false);
+                                HundredAcreWoodToggle(false);
+                                AtlanticaToggle(false);
+                                CavernToggle(false);
+                                //TimelessToggle(false);
+                                OCCupsToggle(false);
+                            }
+                            //load settings from hints
+                            foreach (var setting in settings)
+                            {
+                                Console.WriteLine("setting found = " + setting);
+
+                                if (setting == "PromiseCharm")
+                                    PromiseCharmToggle(true);
+
+                                //if (setting.Key == "Second Chance & Once More ")
+                                //    AbilitiesToggle(true);
+
+                                //if (setting.Key == "Torn Pages")
+                                //    TornPagesToggle(true);
+
+                                //if (setting.Key == "Cure")
+                                //    CureToggle(true);
+
+                                //if (setting.Key == "Final Form")
+                                //    FinalFormToggle(true);
+
+                                if (setting == "Level")
+                                    SoraHeartToggle(false);
+
+                                if (setting == "Simulated Twilight Town")
+                                    SimulatedToggle(true);
+
+                                if (setting == "Hundred Acre Wood")
+                                    HundredAcreWoodToggle(true);
+
+                                if (setting == "Atlantica")
+                                    AtlanticaToggle(true);
+
+                                if (setting == "Cavern of Remembrance")
+                                    CavernToggle(true);
+
+                                //if (setting.Key == "Timeless River")
+                                //    TimelessToggle(true);
+
+                                if (setting == "Olympus Cups")
+                                    OCCupsToggle(true);
+                            }
+
                             switch (hintObject["hintsType"].ToString())
                             {
                                 case "Shananas":
@@ -2410,27 +2473,9 @@ namespace KhTracker
                                         data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
                                         data.reportLocations.Add(locationP);
                                     }
+
                                     ReportsToggle(true);
                                     data.hintsLoaded = true;
-                                    //HintText.Content = "Hints Loaded";
-
-                                    //Console.WriteLine("LVl Points = " + LevelPoints);
-                                    //Console.WriteLine("DRV Points = " + DrivePoints);
-                                    //Console.WriteLine("STT Points = " + STTPoints);
-                                    //Console.WriteLine("HB Points = " + HBPoints);
-                                    //Console.WriteLine("OC Points = " + OCPoints);
-                                    //Console.WriteLine("Lo Points = " + LoDPoints);
-                                    //Console.WriteLine("PL Points = " + PLPoints);
-                                    //Console.WriteLine("HT Points = " + HTPoints);
-                                    //Console.WriteLine("SP Points = " + SPPoints);
-                                    //Console.WriteLine("TT Points = " + TTPoints);
-                                    //Console.WriteLine("BC Points = " + BCPoints);
-                                    //Console.WriteLine("AG Points = " + AGPoints);
-                                    //Console.WriteLine("HAW Points = " + HAWPoints);
-                                    //Console.WriteLine("DC Points = " + DCPoints);
-                                    //Console.WriteLine("PR Points = " + PRPoints);
-                                    //Console.WriteLine("TWTNW Points = " + TWTNWPoints);
-                                    //Console.WriteLine("AT Points = " + ATPoints);
                                     LevelPoints_c = LevelPoints;
                                     DrivePoints_c = DrivePoints;
                                     STTPoints_c = STTPoints;
@@ -2448,28 +2493,6 @@ namespace KhTracker
                                     PRPoints_c = PRPoints;
                                     TWTNWPoints_c = TWTNWPoints;
                                     ATPoints_c = ATPoints;
-
-                                    ////set visibility stuff
-                                    //Collected.Visibility = Visibility.Hidden;
-                                    //CollectedBar.Visibility = Visibility.Hidden;
-                                    //CheckTotal.Visibility = Visibility.Hidden;
-                                    //Score100.Visibility = Visibility.Visible;
-                                    //Score10.Visibility = Visibility.Visible;
-                                    //Score1.Visibility = Visibility.Visible;
-                                    //
-                                    //broadcast.Collected.Visibility = Visibility.Hidden;
-                                    //broadcast.CollectedBar.Visibility = Visibility.Hidden;
-                                    //broadcast.CheckTotal.Visibility = Visibility.Hidden;
-                                    //broadcast.Score100.Visibility = Visibility.Visible;
-                                    //broadcast.Score10.Visibility = Visibility.Visible;
-                                    //broadcast.Score1.Visibility = Visibility.Visible;
-                                    //
-                                    ////Weapon.Visibility = Visibility.Hidden;
-                                    ////broadcast.Weapon.Visibility = Visibility.Hidden;
-                                    //
-                                    //broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
-                                    //broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
-
                                     break;
 
                                 default:
@@ -2478,7 +2501,7 @@ namespace KhTracker
                             //Console.WriteLine();
                         }
                     }
-                
+
                     if (entry.FullName.Equals("sys.yml"))
                     {
                         using (var reader2 = new StreamReader(entry.Open()))
@@ -3407,8 +3430,8 @@ namespace KhTracker
                 Limitlv = (limit.Level - 1) * 3;
                 Masterlv = (master.Level - 1) * 3;
                 Finallv = (final.Level - 1) * 3;
-                Console.WriteLine("Bonus lv points = " + BonusTotal);
-                Console.WriteLine("Form lv points = " + (Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv));
+                //Console.WriteLine("Bonus lv points = " + BonusTotal);
+                //Console.WriteLine("Form lv points = " + (Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv));
                 num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv;
             }
 
