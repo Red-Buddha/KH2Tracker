@@ -426,6 +426,7 @@ namespace KhTracker
                 world.UpdateMemory();
                 UpdateMagicAddresses();
                 UpdateWorldProgress(world);
+                UpdatePointScore(0);
 
                 Console.WriteLine("room num = " + world.roomNumber);
                 Console.WriteLine("world num = " + world.worldNum);
