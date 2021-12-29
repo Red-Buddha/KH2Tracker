@@ -482,7 +482,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x1564E, Save + 0x1D58, 4));   // Goddess of Fate Cup Fatal Crest (slightly early)
             checksList.Add(new Check(this, Sys3 + 0x1565A, Save + 0x1D58, 4));   // Goddess of Fate Cup Orichalcum+ (slightly early)
             checksList.Add(new Check(this, Sys3 + 0x15696, Save + 0x1D5A, 1));   // Hades Cup Trophy (slightly early)
-            checksList.Add(new Check(this, Sys3 + 0x15474, Save + 0x1E92, 4));   // Isla de Muerta Map
+            checksList.Add(new Check(this, Sys3 + 0x1547A, Save + 0x1E92, 4));   // Isla de Muerta Map
             checksList.Add(new Check(this, Sys3 + 0x15486, Save + 0x1E93, 6));   // Follow the Wind
             checksList.Add(new Check(this, Sys3 + 0x1556A, Save + 0x1E95, 2));   // Cursed Medallion
             checksList.Add(new Check(this, Sys3 + 0x15576, Save + 0x1E95, 2));   // Ship Graveyard Map
