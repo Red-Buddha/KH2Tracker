@@ -3537,7 +3537,7 @@ namespace KhTracker
             //increasing forever when adding/removing items
             if (aTimer != null)
             {
-                BonusTotal = stats.BonusLevel * 8;
+                BonusTotal = stats.BonusLevel * 10;
                 Valorlv = (valor.Level - 1) * 3;
                 Wisdomlv = (wisdom.Level - 1) * 3;
                 Limitlv = (limit.Level - 1) * 3;
