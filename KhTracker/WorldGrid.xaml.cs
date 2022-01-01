@@ -360,8 +360,10 @@ namespace KhTracker
                 return MainWindow.data.PointsData[3];
             else if (nameButton.Contains("OnceMore") || nameButton.Contains("SecondChance"))
                 return MainWindow.data.PointsData[4];
-            else if (nameButton.Contains("Page") || nameButton.Contains("Report"))
+            else if (nameButton.Contains("Page"))
                 return MainWindow.data.PointsData[5];
+            else if (nameButton.Contains("Report"))
+                return MainWindow.data.PointsData[6];
             else
                 return 0;
         }

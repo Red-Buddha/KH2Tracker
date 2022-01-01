@@ -31,7 +31,7 @@ namespace KhTracker
 
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
 
-        public List<int> PointsData = new List<int>() { 0, 0, 0, 0, 0, 0 };
+        public List<int> PointsData = new List<int>() { 0, 0, 0, 0, 0, 0, 0 };
 
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
@@ -84,6 +84,7 @@ namespace KhTracker
         public List<string> ProofItems = new List<string>();
         public List<string> OtherItems = new List<string>();
         public List<string> PageItems = new List<string>();
+        public List<string> ReportItems = new List<string>();
 
     }
 
@@ -126,8 +127,9 @@ namespace KhTracker
         public int summonValue;
         public int abilityValue;
         public int pageValue;
+        public int reportValue;
 
-        public PointsData(int ProofP, int FormP, int MagicP, int SummonP, int AbilityP, int PageP)
+        public PointsData(int ProofP, int FormP, int MagicP, int SummonP, int AbilityP, int PageP, int ReportP)
         {
             proofValue = ProofP;
             formValue = FormP;
@@ -135,6 +137,7 @@ namespace KhTracker
             summonValue = SummonP;
             abilityValue = AbilityP;
             pageValue = PageP;
+            reportValue = ReportP;
         }
     }
 

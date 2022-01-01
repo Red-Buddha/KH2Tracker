@@ -121,19 +121,19 @@ namespace KhTracker
             data.ProofItems.Add("Proof of Nonexistence");
             data.ProofItems.Add("Proof of Peace");
             data.PageItems.Add("Torn Pages");
-            data.PageItems.Add("Secret Ansem's Report 1");
-            data.PageItems.Add("Secret Ansem's Report 2");
-            data.PageItems.Add("Secret Ansem's Report 3");
-            data.PageItems.Add("Secret Ansem's Report 4");
-            data.PageItems.Add("Secret Ansem's Report 5");
-            data.PageItems.Add("Secret Ansem's Report 6");
-            data.PageItems.Add("Secret Ansem's Report 7");
-            data.PageItems.Add("Secret Ansem's Report 8");
-            data.PageItems.Add("Secret Ansem's Report 9");
-            data.PageItems.Add("Secret Ansem's Report 10");
-            data.PageItems.Add("Secret Ansem's Report 11");
-            data.PageItems.Add("Secret Ansem's Report 12");
-            data.PageItems.Add("Secret Ansem's Report 13");
+            data.ReportItems.Add("Secret Ansem's Report 1");
+            data.ReportItems.Add("Secret Ansem's Report 2");
+            data.ReportItems.Add("Secret Ansem's Report 3");
+            data.ReportItems.Add("Secret Ansem's Report 4");
+            data.ReportItems.Add("Secret Ansem's Report 5");
+            data.ReportItems.Add("Secret Ansem's Report 6");
+            data.ReportItems.Add("Secret Ansem's Report 7");
+            data.ReportItems.Add("Secret Ansem's Report 8");
+            data.ReportItems.Add("Secret Ansem's Report 9");
+            data.ReportItems.Add("Secret Ansem's Report 10");
+            data.ReportItems.Add("Secret Ansem's Report 11");
+            data.ReportItems.Add("Secret Ansem's Report 12");
+            data.ReportItems.Add("Secret Ansem's Report 13");
 
             #region Numbers
 

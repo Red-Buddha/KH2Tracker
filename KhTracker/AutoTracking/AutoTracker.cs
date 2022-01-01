@@ -428,11 +428,11 @@ namespace KhTracker
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
 
-                Console.WriteLine("room num = " + world.roomNumber);
-                Console.WriteLine("world num = " + world.worldNum);
-                Console.WriteLine("event id1 = " + world.eventID1);
-                Console.WriteLine("event id2 = " + world.eventID2);
-                Console.WriteLine("event id3 = " + world.eventID3);
+                //Console.WriteLine("room num = " + world.roomNumber);
+                //Console.WriteLine("world num = " + world.worldNum);
+                //Console.WriteLine("event id1 = " + world.eventID1);
+                //Console.WriteLine("event id2 = " + world.eventID2);
+                //Console.WriteLine("event id3 = " + world.eventID3);
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {

@@ -36,6 +36,7 @@ namespace KhTracker
         private int PRPoints = 0, PRPoints_c = 0;
         private int TWTNWPoints = 0, TWTNWPoints_c = 0;
         private int ATPoints = 0, ATPoints_c = 0;
+        private bool oldpoints = false;
 
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
@@ -470,6 +471,8 @@ namespace KhTracker
                         data.PointsData[4] = point.Value;
                     else if (point.Key == "page")
                         data.PointsData[5] = point.Value;
+                    else if (point.Key == "report")
+                        data.PointsData[6] = point.Value;
 
                 }
 
@@ -506,6 +509,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     STTPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    STTPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "TwilightTown")
@@ -530,6 +536,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     TTPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    TTPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "HollowBastion")
@@ -554,6 +563,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     HBPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    HBPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "LandofDragons")
@@ -578,6 +590,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     LoDPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    LoDPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "BeastsCastle")
@@ -596,6 +611,9 @@ namespace KhTracker
                                     BCPoints += data.PointsData[5];
                                 //if (OtherItems.Contains(item))
                                 //    BCPoints += OtherScore;
+
+                                if (data.ReportItems.Contains(item))
+                                    BCPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "OlympusColiseum")
@@ -620,6 +638,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     OCPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    OCPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "DisneyCastle")
@@ -644,6 +665,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     DCPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    DCPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "PortRoyal")
@@ -668,6 +692,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     PRPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    PRPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "Agrabah")
@@ -692,6 +719,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     AGPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    AGPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "HalloweenTown")
@@ -716,6 +746,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     HTPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    HTPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "PrideLands")
@@ -740,6 +773,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     PLPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    PLPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "Atlantica")
@@ -764,6 +800,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     ATPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    ATPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "HundredAcreWood")
@@ -788,6 +827,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     HAWPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    HAWPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "SpaceParanoids")
@@ -812,6 +854,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     SPPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    SPPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "TWTNW")
@@ -836,6 +881,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     TWTNWPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    TWTNWPoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "DriveForms")
@@ -860,6 +908,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     DrivePoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    DrivePoints += data.PointsData[6];
                             }
 
                             if (convertOpenKH[world.Key] == "SorasHeart")
@@ -884,6 +935,9 @@ namespace KhTracker
 
                                 if (data.PageItems.Contains(item))
                                     LevelPoints += data.PointsData[5];
+
+                                if (data.ReportItems.Contains(item))
+                                    LevelPoints += data.PointsData[6];
                             }
                         }
                     }
@@ -1545,7 +1599,7 @@ namespace KhTracker
                SeedHashVisible = false;
            }
 
-            data.PointsData = new List<int>() { 0, 0, 0, 0, 0, 0 };
+            data.PointsData = new List<int>() { 0, 0, 0, 0, 0, 0, 0 };
 
             LevelPoints = 0;
             LevelPoints_c = 0;
@@ -1848,7 +1902,7 @@ namespace KhTracker
                             if (hintObject.ContainsKey("settings"))
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
 
-                            
+                            //REENABLE FOR 1.5
                             //set all settings to false
                             {
                                 PromiseCharmToggle(false);
@@ -1868,40 +1922,40 @@ namespace KhTracker
                             foreach (var setting in settings)
                             {
                                 Console.WriteLine("setting found = " + setting);
-
+                            
                                 if (setting == "PromiseCharm")
                                     PromiseCharmToggle(true);
-
+                            
                                 //if (setting.Key == "Second Chance & Once More ")
                                 //    AbilitiesToggle(true);
-
+                            
                                 //if (setting.Key == "Torn Pages")
                                 //    TornPagesToggle(true);
-
+                            
                                 //if (setting.Key == "Cure")
                                 //    CureToggle(true);
-
+                            
                                 //if (setting.Key == "Final Form")
                                 //    FinalFormToggle(true);
-
+                            
                                 if (setting == "Level")
                                     SoraHeartToggle(false);
-
+                            
                                 if (setting == "Simulated Twilight Town")
                                     SimulatedToggle(true);
-
+                            
                                 if (setting == "Hundred Acre Wood")
                                     HundredAcreWoodToggle(true);
-
+                            
                                 if (setting == "Atlantica")
                                     AtlanticaToggle(true);
-
+                            
                                 if (setting == "Cavern of Remembrance")
                                     CavernToggle(true);
-
+                            
                                 //if (setting.Key == "Timeless River")
                                 //    TimelessToggle(true);
-
+                            
                                 if (setting == "Olympus Cups")
                                     OCCupsToggle(true);
                             }
@@ -1974,6 +2028,7 @@ namespace KhTracker
 
                                     foreach (var point in points)
                                     {
+
                                         if (point.Key == "proof")
                                             data.PointsData[0] = point.Value;
                                         else if (point.Key == "form")
@@ -1986,8 +2041,15 @@ namespace KhTracker
                                             data.PointsData[4] = point.Value;
                                         else if (point.Key == "page")
                                             data.PointsData[5] = point.Value;
+                                        else if (point.Key == "report")
+                                            data.PointsData[6] = point.Value;
 
                                     }
+
+                                    Console.WriteLine(points.Count);
+
+                                    if (points.Count == 6)
+                                        data.PointsData[6] = data.PointsData[5];
 
                                     foreach (var world in worldsP)
                                     {
@@ -2022,6 +2084,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         STTPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        STTPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "TwilightTown")
@@ -2046,6 +2111,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         TTPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        TTPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "HollowBastion")
@@ -2070,6 +2138,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         HBPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        HBPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "LandofDragons")
@@ -2094,6 +2165,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         LoDPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        LoDPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "BeastsCastle")
@@ -2112,6 +2186,9 @@ namespace KhTracker
                                                         BCPoints += data.PointsData[5];
                                                     //if (OtherItems.Contains(item))
                                                     //    BCPoints += OtherScore;
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        BCPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "OlympusColiseum")
@@ -2136,6 +2213,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         OCPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        OCPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "DisneyCastle")
@@ -2160,6 +2240,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         DCPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        DCPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "PortRoyal")
@@ -2184,6 +2267,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         PRPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        PRPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "Agrabah")
@@ -2208,6 +2294,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         AGPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        AGPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "HalloweenTown")
@@ -2232,6 +2321,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         HTPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        HTPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "PrideLands")
@@ -2256,6 +2348,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         PLPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        PLPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "Atlantica")
@@ -2280,6 +2375,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         ATPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        ATPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "HundredAcreWood")
@@ -2304,6 +2402,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         HAWPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        HAWPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "SpaceParanoids")
@@ -2328,6 +2429,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         SPPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        SPPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "TWTNW")
@@ -2352,6 +2456,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         TWTNWPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        TWTNWPoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "DriveForms")
@@ -2376,6 +2483,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         DrivePoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        DrivePoints += data.PointsData[6];
                                                 }
 
                                                 if (convertOpenKH[world.Key] == "SorasHeart")
@@ -2400,6 +2510,9 @@ namespace KhTracker
 
                                                     if (data.PageItems.Contains(item))
                                                         LevelPoints += data.PointsData[5];
+
+                                                    if (data.ReportItems.Contains(item))
+                                                        LevelPoints += data.PointsData[6];
                                                 }
                                             }
                                         }
