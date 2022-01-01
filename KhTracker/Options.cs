@@ -36,7 +36,6 @@ namespace KhTracker
         private int PRPoints = 0, PRPoints_c = 0;
         private int TWTNWPoints = 0, TWTNWPoints_c = 0;
         private int ATPoints = 0, ATPoints_c = 0;
-        private bool oldpoints = false;
 
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
