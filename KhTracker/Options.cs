@@ -1899,64 +1899,66 @@ namespace KhTracker
                             var settings = new List<string>();
 
                             if (hintObject.ContainsKey("settings"))
+                            {
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
 
-                            //REENABLE FOR 1.5
-                            //set all settings to false
-                            {
-                                PromiseCharmToggle(false);
-                                //AbilitiesToggle(false);
-                                //TornPagesToggle(false);
-                                //CureToggle(false);
-                                //FinalFormToggle(false);
-                                SoraHeartToggle(true);
-                                SimulatedToggle(false);
-                                HundredAcreWoodToggle(false);
-                                AtlanticaToggle(false);
-                                CavernToggle(false);
-                                //TimelessToggle(false);
-                                OCCupsToggle(false);
-                            }
-                            //load settings from hints
-                            foreach (var setting in settings)
-                            {
-                                Console.WriteLine("setting found = " + setting);
-                            
-                                if (setting == "PromiseCharm")
-                                    PromiseCharmToggle(true);
-                            
-                                //if (setting.Key == "Second Chance & Once More ")
-                                //    AbilitiesToggle(true);
-                            
-                                //if (setting.Key == "Torn Pages")
-                                //    TornPagesToggle(true);
-                            
-                                //if (setting.Key == "Cure")
-                                //    CureToggle(true);
-                            
-                                //if (setting.Key == "Final Form")
-                                //    FinalFormToggle(true);
-                            
-                                if (setting == "Level")
-                                    SoraHeartToggle(false);
-                            
-                                if (setting == "Simulated Twilight Town")
-                                    SimulatedToggle(true);
-                            
-                                if (setting == "Hundred Acre Wood")
-                                    HundredAcreWoodToggle(true);
-                            
-                                if (setting == "Atlantica")
-                                    AtlanticaToggle(true);
-                            
-                                if (setting == "Cavern of Remembrance")
-                                    CavernToggle(true);
-                            
-                                //if (setting.Key == "Timeless River")
-                                //    TimelessToggle(true);
-                            
-                                if (setting == "Olympus Cups")
-                                    OCCupsToggle(true);
+                                //REENABLE FOR 1.5
+                                //set all settings to false
+                                {
+                                    PromiseCharmToggle(false);
+                                    //AbilitiesToggle(false);
+                                    //TornPagesToggle(false);
+                                    //CureToggle(false);
+                                    //FinalFormToggle(false);
+                                    SoraHeartToggle(true);
+                                    SimulatedToggle(false);
+                                    HundredAcreWoodToggle(false);
+                                    AtlanticaToggle(false);
+                                    CavernToggle(false);
+                                    //TimelessToggle(false);
+                                    OCCupsToggle(false);
+                                }
+                                //load settings from hints
+                                foreach (var setting in settings)
+                                {
+                                    Console.WriteLine("setting found = " + setting);
+
+                                    if (setting == "PromiseCharm")
+                                        PromiseCharmToggle(true);
+
+                                    //if (setting.Key == "Second Chance & Once More ")
+                                    //    AbilitiesToggle(true);
+
+                                    //if (setting.Key == "Torn Pages")
+                                    //    TornPagesToggle(true);
+
+                                    //if (setting.Key == "Cure")
+                                    //    CureToggle(true);
+
+                                    //if (setting.Key == "Final Form")
+                                    //    FinalFormToggle(true);
+
+                                    if (setting == "Level")
+                                        SoraHeartToggle(false);
+
+                                    if (setting == "Simulated Twilight Town")
+                                        SimulatedToggle(true);
+
+                                    if (setting == "Hundred Acre Wood")
+                                        HundredAcreWoodToggle(true);
+
+                                    if (setting == "Atlantica")
+                                        AtlanticaToggle(true);
+
+                                    if (setting == "Cavern of Remembrance")
+                                        CavernToggle(true);
+
+                                    //if (setting.Key == "Timeless River")
+                                    //    TimelessToggle(true);
+
+                                    if (setting == "Olympus Cups")
+                                        OCCupsToggle(true);
+                                }
                             }
 
                             switch (hintObject["hintsType"].ToString())
