@@ -909,6 +909,34 @@ namespace KhTracker
                     }
                 }
             }
+
+            foreach (string item in Data.GhostItems.Keys.ToList())
+            {
+                if (Data.GhostItems[item].Parent == ItemPool)
+                {
+
+                    if (data.dragDrop == false)
+                    {
+                        Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
+
+                        Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseDown += Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseUp += Data.GhostItems[item].Item_Ghost;
+                    }
+                    else
+                    {
+                        Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseDoubleClick += Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseMove += Data.GhostItems[item].Item_Ghost;
+
+                        Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
+                        Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
+                    }
+                }
+            }
         }
 
         private void TopMostToggle(object sender, RoutedEventArgs e)

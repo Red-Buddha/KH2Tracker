@@ -148,6 +148,9 @@ namespace KhTracker
 
         public void HandleItemReturn()
         {
+            if (this.Name.StartsWith("Ghost_"))
+                return;
+
             Data data = MainWindow.data;
             if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
             {
@@ -178,6 +181,10 @@ namespace KhTracker
 
                 MouseEnter -= Report_Hover;
 
+                Console.WriteLine(this.Name);
+                Console.WriteLine(parent.Name);
+                Console.WriteLine();
+
                 UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
             }
         }
@@ -202,5 +209,9 @@ namespace KhTracker
             if (selected)
                 Item_Click(sender, e);
         }
+
+        //does absolutely nothing. needed for making the ghost items uniteractable
+        //if there's a better way to do this, i don't know it
+        public void Item_Ghost(object sender, RoutedEventArgs e) { }
     }
 }

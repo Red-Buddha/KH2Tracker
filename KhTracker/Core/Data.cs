@@ -31,7 +31,22 @@ namespace KhTracker
 
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
 
-        public List<int> PointsData = new List<int>() { 0, 0, 0, 0, 0, 0, 0 };
+        public Dictionary<string, int> PointsDatanew = new Dictionary<string, int>()
+        {
+            { "proof", 0 },
+            { "form", 0 },
+            { "magic", 0 },
+            { "summon", 0 },
+            { "ability", 0 },
+            { "page", 0 },
+            { "report", 0 },
+            { "complete", 0 },
+            { "bonus", 0 },
+            { "formlv", 0 },
+            { "other", 0}
+        };
+
+        public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
 
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
@@ -53,6 +68,7 @@ namespace KhTracker
         public List<BitmapImage> CustomBlueSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
+        public static Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();
 
         //stupid bar images
         public BitmapImage VerticalBarY;
@@ -66,26 +82,6 @@ namespace KhTracker
 
         public BitmapImage CustomSlashBarY;
         public BitmapImage CustomSlashBarB;
-
-        //public BitmapImage SecondChanceNormal;
-        //public BitmapImage SecondChanceKey;
-        //public BitmapImage SecondChanceCus;
-        //public BitmapImage SecondChanceCusKey;
-        //
-        //public BitmapImage OnceMoreNormal;
-        //public BitmapImage OnceMoreKey;
-        //public BitmapImage OnceMoreCus;
-        //public BitmapImage OnceMoreCusKey;
-
-        public List<string> MagicItems = new List<string>();
-        public List<string> SummonItems = new List<string>();
-        public List<string> FormItems = new List<string>();
-        public List<string> AbilityItems = new List<string>();
-        public List<string> ProofItems = new List<string>();
-        public List<string> OtherItems = new List<string>();
-        public List<string> PageItems = new List<string>();
-        public List<string> ReportItems = new List<string>();
-
     }
 
     public class WorldData

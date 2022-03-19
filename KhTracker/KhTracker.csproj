@@ -87,6 +87,7 @@
     <Compile Include="AutoTracking\Ability.cs" />
     <Compile Include="AutoTracking\AutoTracker.cs" />
     <Compile Include="AutoTracking\CheckEveryCheck.cs" />
+    <Compile Include="AutoTracking\HintModes.cs" />
     <Compile Include="AutoTracking\Magic.cs" />
     <Compile Include="AutoTracking\Proof.cs" />
     <Compile Include="AutoTracking\Report.cs" />
@@ -102,13 +103,14 @@
     <Compile Include="AutoTracking\DriveForm.cs" />
     <Compile Include="AutoTracking\ImportantCheck.cs" />
     <Compile Include="AutoTracking\MemoryReader.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="Options.cs" />
-    <Compile Include="Data.cs" />
+    <Compile Include="Core\Images.cs" />
+    <Compile Include="Core\Log.cs" />
+    <Compile Include="Core\Options.cs" />
+    <Compile Include="Core\Data.cs" />
     <Compile Include="Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Toggles.cs" />
+    <Compile Include="Core\Toggles.cs" />
     <Compile Include="WorldGrid.xaml.cs">
       <DependentUpon>WorldGrid.xaml</DependentUpon>
     </Compile>
@@ -128,7 +130,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Codes.cs" />
+    <Compile Include="Core\Codes.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -1450,6 +1452,7 @@
     <Resource Include="Images\Checks\Old\ansem_report09.png" />
     <Resource Include="Images\Checks\Old\ansem_report09_old.png" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
