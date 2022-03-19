@@ -611,11 +611,11 @@
 
     <!-- main window custom image-->
     <ImageBrush x:Key="BG-Image1" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" />
-    <ImageBrush x:Key="BG-ImageDef1" ImageSource="Images/dumb.png" TileMode="Tile"/>
+    <ImageBrush x:Key="BG-ImageDef1" ImageSource="Images/BG.png" TileMode="Tile"/>
     <ImageBrush x:Key="BG-Image2" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
-    <ImageBrush x:Key="BG-ImageDef2" ImageSource="Images/dumb.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-ImageDef2" ImageSource="Images/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
     <ImageBrush x:Key="BG-Image3" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="None"/>
-    <ImageBrush x:Key="BG-ImageDef3" ImageSource="Images/dumb.png" TileMode="Tile" Stretch="None"/>
+    <ImageBrush x:Key="BG-ImageDef3" ImageSource="Images/BG.png" TileMode="Tile" Stretch="None"/>
     <!-- broadcast window custom image-->
     <ImageBrush x:Key="BG-BImage1" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" />
     <ImageBrush x:Key="BG-BImageDef1" ImageSource="Images/BG_broadcast.png" TileMode="Tile"/>
