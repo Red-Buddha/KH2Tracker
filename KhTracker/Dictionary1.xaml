@@ -523,7 +523,41 @@
     <Image x:Key="Cus-B_ProofOfCon"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_connection.png" x:Shared="false"/>
     <Image x:Key="Cus-B_ProofOfPea"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-B_PromiseCharm"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/promise_charm.png" x:Shared="false"/>
-
+    <!--Custom Item Icons (Ghost)-->
+    <Image x:Key="Cus-G_AnsemReport01" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport02" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport03" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report03.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport04" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report04.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport05" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report05.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport06" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report06.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport07" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report07.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport08" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report08.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport09" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report09.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport10" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report10.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport11" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report11.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport12" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report12.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_AnsemReport13" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report13.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Fire"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Blizzard" 		Source="pack://application:,,,/CustomImages/Checks/Ghost/blizzard.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Thunder"		Source="pack://application:,,,/CustomImages/Checks/Ghost/thunder.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Cure"			Source="pack://application:,,,/CustomImages/Checks/Ghost/cure.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Reflect"		Source="pack://application:,,,/CustomImages/Checks/Ghost/reflect.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Magnet"			Source="pack://application:,,,/CustomImages/Checks/Ghost/magnet.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Valor"			Source="pack://application:,,,/CustomImages/Checks/Ghost/valor.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Wisdom"			Source="pack://application:,,,/CustomImages/Checks/Ghost/wisdom.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Limit"			Source="pack://application:,,,/CustomImages/Checks/Ghost/limit.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Master"			Source="pack://application:,,,/CustomImages/Checks/Ghost/master.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Final"			Source="pack://application:,,,/CustomImages/Checks/Ghost/final.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Genie"			Source="pack://application:,,,/CustomImages/Checks/Ghost/genie.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Stitch"			Source="pack://application:,,,/CustomImages/Checks/Ghost/stitch.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_ChickenLittle"	Source="pack://application:,,,/CustomImages/Checks/Ghost/chicken_little.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_PeterPan"		Source="pack://application:,,,/CustomImages/Checks/Ghost/peter_pan.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_ProofOfNon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_nonexistence.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_ProofOfCon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_ProofOfPea"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_PromiseCharm"	Source="pack://application:,,,/CustomImages/Checks/Ghost/promise_charm.png" x:Shared="false"/>
+    
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>
     <Image x:Key="Cus-SimulatedImage" 			Source="pack://application:,,,/CustomImages/Worlds/simulated_twilight_town.png" x:Shared="false"/>
