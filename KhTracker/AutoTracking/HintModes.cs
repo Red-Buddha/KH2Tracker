@@ -293,12 +293,7 @@ namespace KhTracker
 
             ReportsToggle(true);
             data.hintsLoaded = true;
-
-            //i forgor what this was for, but it seems important
-            //foreach (string world in WorldPoints_c.Keys)
-            //{
-                WorldPoints_c = WorldPoints;
-            //}
+            WorldPoints_c = WorldPoints;
         }
 
         public int GetPoints(string worldName)

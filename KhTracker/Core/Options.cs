@@ -69,6 +69,7 @@ namespace KhTracker
             //if (PuzzleOption.IsChecked)
             //    settings += "Puzzle Rewards - ";
 
+
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
             string hintValues = "";
@@ -97,116 +98,6 @@ namespace KhTracker
                     }
                     hintValues += " " + num.ToString();
                 }
-            }
-
-            // Save progress of worlds
-            string Progress = "Progress:";
-            Progress += " " + data.WorldsData["SimulatedTwilightTown"].progress.ToString();
-            Progress += " " + data.WorldsData["TwilightTown"].progress.ToString();
-            Progress += " " + data.WorldsData["HollowBastion"].progress.ToString();
-            Progress += " " + data.WorldsData["BeastsCastle"].progress.ToString();
-            Progress += " " + data.WorldsData["OlympusColiseum"].progress.ToString();
-            Progress += " " + data.WorldsData["Agrabah"].progress.ToString();
-            Progress += " " + data.WorldsData["LandofDragons"].progress.ToString();
-            Progress += " " + data.WorldsData["HundredAcreWood"].progress.ToString();
-            Progress += " " + data.WorldsData["PrideLands"].progress.ToString();
-            Progress += " " + data.WorldsData["DisneyCastle"].progress.ToString();
-            Progress += " " + data.WorldsData["HalloweenTown"].progress.ToString();
-            Progress += " " + data.WorldsData["PortRoyal"].progress.ToString();
-            Progress += " " + data.WorldsData["SpaceParanoids"].progress.ToString();
-            Progress += " " + data.WorldsData["TWTNW"].progress.ToString();
-            Progress += " " + data.WorldsData["Atlantica"].progress.ToString();
-
-            // save items in worlds
-            string soraHeart = "SorasHeart:";
-            foreach (Item item in data.WorldsData["SorasHeart"].worldGrid.Children)
-            {
-                soraHeart += " " + item.Name;
-            }
-            string driveForms = "DriveForms:";
-            foreach (Item item in data.WorldsData["DriveForms"].worldGrid.Children)
-            {
-                driveForms += " " + item.Name;
-            }
-            string simulated = "SimulatedTwilightTown:";
-            foreach (Item item in data.WorldsData["SimulatedTwilightTown"].worldGrid.Children)
-            {
-                simulated += " " + item.Name;
-            }
-            string twilightTown = "TwilightTown:";
-            foreach (Item item in data.WorldsData["TwilightTown"].worldGrid.Children)
-            {
-                twilightTown += " " + item.Name;
-            }
-            string hollowBastion = "HollowBastion:";
-            foreach (Item item in data.WorldsData["HollowBastion"].worldGrid.Children)
-            {
-                hollowBastion += " " + item.Name;
-            }
-            string beastCastle = "BeastsCastle:";
-            foreach (Item item in data.WorldsData["BeastsCastle"].worldGrid.Children)
-            {
-                beastCastle += " " + item.Name;
-            }
-            string olympusColiseum = "OlympusColiseum:";
-            foreach (Item item in data.WorldsData["OlympusColiseum"].worldGrid.Children)
-            {
-                olympusColiseum += " " + item.Name;
-            }
-            string agrabah = "Agrabah:";
-            foreach (Item item in data.WorldsData["Agrabah"].worldGrid.Children)
-            {
-                agrabah += " " + item.Name;
-            }
-            string landOfDragons = "LandofDragons:";
-            foreach (Item item in data.WorldsData["LandofDragons"].worldGrid.Children)
-            {
-                landOfDragons += " " + item.Name;
-            }
-            string hundredAcreWood = "HundredAcreWood:";
-            foreach (Item item in data.WorldsData["HundredAcreWood"].worldGrid.Children)
-            {
-                hundredAcreWood += " " + item.Name;
-            }
-            string prideLands = "PrideLands:";
-            foreach (Item item in data.WorldsData["PrideLands"].worldGrid.Children)
-            {
-                prideLands += " " + item.Name;
-            }
-            string disneyCastle = "DisneyCastle:";
-            foreach (Item item in data.WorldsData["DisneyCastle"].worldGrid.Children)
-            {
-                disneyCastle += " " + item.Name;
-            }
-            string halloweenTown = "HalloweenTown:";
-            foreach (Item item in data.WorldsData["HalloweenTown"].worldGrid.Children)
-            {
-                halloweenTown += " " + item.Name;
-            }
-            string portRoyal = "PortRoyal:";
-            foreach (Item item in data.WorldsData["PortRoyal"].worldGrid.Children)
-            {
-                portRoyal += " " + item.Name;
-            }
-            string spaceparanoids = "SpaceParanoids:";
-            foreach (Item item in data.WorldsData["SpaceParanoids"].worldGrid.Children)
-            {
-                spaceparanoids += " " + item.Name;
-            }
-            string TWTNW = "TWTNW:";
-            foreach (Item item in data.WorldsData["TWTNW"].worldGrid.Children)
-            {
-                TWTNW += " " + item.Name;
-            }
-            string atlantica = "Atlantica:";
-            foreach (Item item in data.WorldsData["Atlantica"].worldGrid.Children)
-            {
-                atlantica += " " + item.Name;
-            }
-            string GoA = "GoA:";
-            foreach (Item item in data.WorldsData["GoA"].worldGrid.Children)
-            {
-                GoA += " " + item.Name;
             }
 
             FileStream file = File.Create(filename);
@@ -246,27 +137,36 @@ namespace KhTracker
             {
                 writer.WriteLine(attempts);
                 writer.WriteLine(data.openKHHintText);
+                string worlditemlist = JsonSerializer.Serialize(Data.WorldItems);
+                string worlditemlist64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(worlditemlist));
+                writer.WriteLine(worlditemlist64);
+                string reportlist = JsonSerializer.Serialize(data.TrackedReports);
+                string reportlist64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(reportlist));
+                writer.WriteLine(reportlist64);
                 writer.WriteLine(hintValues);
             }
-            writer.WriteLine(Progress);
-            writer.WriteLine(soraHeart);
-            writer.WriteLine(driveForms);
-            writer.WriteLine(simulated);
-            writer.WriteLine(twilightTown);
-            writer.WriteLine(hollowBastion);
-            writer.WriteLine(beastCastle);
-            writer.WriteLine(olympusColiseum);
-            writer.WriteLine(agrabah);
-            writer.WriteLine(landOfDragons);
-            writer.WriteLine(hundredAcreWood);
-            writer.WriteLine(prideLands);
-            writer.WriteLine(disneyCastle);
-            writer.WriteLine(halloweenTown);
-            writer.WriteLine(portRoyal);
-            writer.WriteLine(spaceparanoids);
-            writer.WriteLine(TWTNW);
-            writer.WriteLine(atlantica);
-            writer.WriteLine(GoA);
+            else if (data.mode == Mode.TimeHints)
+            {
+                //nothing yet
+            }
+
+            string ProgressString = "Progress:";
+            foreach (string WorldName in data.WorldsData.Keys.ToList())
+            {
+                if (WorldName != "GoA" || WorldName != "SorasHeart" || WorldName != "DriveForms")
+                    ProgressString += " " + data.WorldsData[WorldName].progress.ToString();
+            }
+            writer.WriteLine(ProgressString);
+
+            foreach (string WorldName in data.WorldsData.Keys.ToList())
+            {
+                string ItemString = WorldName + ":";
+                foreach (Item item in data.WorldsData[WorldName].worldGrid.Children)
+                {
+                    ItemString += " " + item.Name;
+                }
+                writer.WriteLine(ItemString);
+            }
 
             writer.Close();
         }
@@ -475,7 +375,7 @@ namespace KhTracker
                         string itemType = CheckItemType(item);
                         if (data.PointsDatanew.Keys.Contains(itemType))
                         {
-                            WorldPoints[world.Key] += data.PointsDatanew[itemType];
+                            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
                         }
                         else
                         {
@@ -514,11 +414,15 @@ namespace KhTracker
 
                 ReportsToggle(true);
                 data.hintsLoaded = true;
+                WorldPoints_c = WorldPoints;
 
-                foreach (string world in WorldPoints_c.Keys)
-                {
-                    WorldPoints_c[world] = WorldPoints[world];
-                }
+                var witemlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                var witemlist = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(witemlist64);
+                Data.WorldItems = witemlist;
+
+                var reportlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
+                var reportlist = JsonSerializer.Deserialize<List<string>>(reportlist64);
+                data.TrackedReports = reportlist;
             }
 
             // set hint values (DUMB)
@@ -583,7 +487,12 @@ namespace KhTracker
                             Item importantCheck = FindName(item) as Item;
 
                             if (grid.Handle_PointReport(importantCheck, this, data))
-                                grid.Add_Item(importantCheck, this);
+                            {
+                                if (item.StartsWith("Ghost_"))
+                                    grid.Add_Ghost(importantCheck, this);
+                                else
+                                    grid.Add_Item(importantCheck, this);
+                            }
                         }
                     }
                     else
