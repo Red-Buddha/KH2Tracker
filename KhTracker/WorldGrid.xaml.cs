@@ -558,7 +558,7 @@ namespace KhTracker
             bool wasmulti = false;
             List<string> Multi = new List<string>();
 
-            if (!item.Name.Contains("Report"))
+            if (GetItemType[item.Name] == "magic" || GetItemType[item.Name] == "page")
             {
                 itemname = "Ghost_" + itemname.TrimEnd(numbers);
                 Multi.Add(itemname + "1");
@@ -581,8 +581,9 @@ namespace KhTracker
                     {
                         if (Data.WorldItems[world].Contains(multiname))
                         {
-                            itemname = multiname;
-                            break;
+
+                            Item Ghostitem = Data.GhostItems[multiname];
+                            Children.Remove(Ghostitem);
                         }
                     }
                 }
