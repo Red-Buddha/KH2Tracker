@@ -239,6 +239,66 @@ namespace KhTracker
             BroadcastStatsOption.IsChecked = Properties.Settings.Default.BroadcastStats;
             BroadcastStatsToggle(null, null);
 
+            GhostItemOption.IsChecked = Properties.Settings.Default.GhostItem;
+            {
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report4);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report5);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report6);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report7);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report8);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report9);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report10);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report11);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report12);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report13);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Valor);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Wisdom);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Limit);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Master);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Final);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_OnceMore);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_SecondChance);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage1);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage2);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage3);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage4);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage5);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Baseball);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Lamp);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Ukulele);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Feather);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Connection);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Nonexistence);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Peace);
+                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_PromiseCharm);
+                //HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_HadesCup);
+            }
+
+            HandleItemToggle(CureOption.IsChecked, Cure1, true);
+            HandleItemToggle(CureOption.IsChecked, Cure2, true);
+            HandleItemToggle(CureOption.IsChecked, Cure3, true);
+
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 
