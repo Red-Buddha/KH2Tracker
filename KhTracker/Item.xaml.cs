@@ -148,10 +148,24 @@ namespace KhTracker
 
         public void HandleItemReturn()
         {
-            if (this.Name.StartsWith("Ghost_"))
-                return;
-
             Data data = MainWindow.data;
+
+            if (this.Name.StartsWith("Ghost_") && ((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked == false)
+            {
+                if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
+                {
+                    WorldGrid parent = this.Parent as WorldGrid;
+            
+                    ((WorldGrid)Parent).Handle_WorldGrid(this, false);
+            
+                    ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Add(this);
+            
+                    parent.Children.Remove(this);
+                }
+                return;
+            }
+
+
             if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
             {
                 WorldGrid parent = this.Parent as WorldGrid;
@@ -163,22 +177,6 @@ namespace KhTracker
                 ((MainWindow)Application.Current.MainWindow).DecrementCollected();
 
                 MouseDown -= Item_Return;
-
-                if (data.dragDrop)
-                {
-                    MouseDoubleClick -= Item_Click;
-                    MouseDoubleClick += Item_Click;
-                    MouseMove -= Item_MouseMove;
-                    MouseMove += Item_MouseMove;
-                }
-                else
-                {
-                    MouseDown -= Item_MouseDown;
-                    MouseDown += Item_MouseDown;
-                    MouseUp -= Item_MouseUp;
-                    MouseUp += Item_MouseUp;
-                }
-
                 MouseEnter -= Report_Hover;
 
                 Console.WriteLine(this.Name);

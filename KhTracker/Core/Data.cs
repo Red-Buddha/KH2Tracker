@@ -31,23 +31,6 @@ namespace KhTracker
 
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
 
-        public Dictionary<string, int> PointsDatanew = new Dictionary<string, int>()
-        {
-            { "proof", 0 },
-            { "form", 0 },
-            { "magic", 0 },
-            { "summon", 0 },
-            { "ability", 0 },
-            { "page", 0 },
-            { "report", 0 },
-            { "complete", 0 },
-            { "bonus", 0 },
-            { "formlv", 0 },
-            { "other", 0}
-        };
-
-        public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
-
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
         public List<Item> TornPages = new List<Item>();
@@ -68,7 +51,6 @@ namespace KhTracker
         public List<BitmapImage> CustomBlueSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
-        public static Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();
 
         //stupid bar images
         public BitmapImage VerticalBarY;
@@ -82,6 +64,25 @@ namespace KhTracker
 
         public BitmapImage CustomSlashBarY;
         public BitmapImage CustomSlashBarB;
+
+        //for points hints
+        public static Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();
+        public Dictionary<string, int> PointsDatanew = new Dictionary<string, int>()
+        {
+            { "proof", 0 },
+            { "form", 0 },
+            { "magic", 0 },
+            { "summon", 0 },
+            { "ability", 0 },
+            { "page", 0 },
+            { "report", 0 },
+            { "complete", 0 },
+            { "bonus", 0 },
+            { "formlv", 0 },
+            { "other", 0}
+        };
+        public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
+
     }
 
     public class WorldData
@@ -115,28 +116,6 @@ namespace KhTracker
         }
     }
 
-    public class PointsData
-    {
-        public int proofValue;
-        public int formValue;
-        public int magicValue;
-        public int summonValue;
-        public int abilityValue;
-        public int pageValue;
-        public int reportValue;
-
-        public PointsData(int ProofP, int FormP, int MagicP, int SummonP, int AbilityP, int PageP, int ReportP)
-        {
-            proofValue = ProofP;
-            formValue = FormP;
-            magicValue = MagicP;
-            summonValue = SummonP;
-            abilityValue = AbilityP;
-            pageValue = PageP;
-            reportValue = ReportP;
-        }
-    }
-
     public enum Mode
     {
         Hints,
@@ -144,6 +123,7 @@ namespace KhTracker
         OpenKHHints,
         OpenKHAltHints,
         DAHints,
+        TimeHints,
         None
     }
 }

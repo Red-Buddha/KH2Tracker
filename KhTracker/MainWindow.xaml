@@ -59,6 +59,14 @@
                 <MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
                 <!--MenuItem Name="HadesCupOption"  Header="Hades Cup Trophy" IsCheckable="True" IsChecked="False" Click="HadesCupToggle"/-->
                 <Separator/>
+                <MenuItem Name="SeedHashOption"         Header="Show Zip Seed Hash" IsCheckable="True" IsChecked="True" Click="SeedHashToggle"/>
+                <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
+                <MenuItem Name="FormsGrowthOption"   	Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
+                <MenuItem Name="GhostItemOption"   	    Header="Track Ghost Items (Points)" IsCheckable="True" IsChecked="True" Click="GhostItemToggle"/>
+                <MenuItem Name="BroadcastGrowthOption"  Header="Broadcast Window Growth Abilities" IsCheckable="True" IsChecked="False" Click="BroadcastGrowthToggle"/>
+                <MenuItem Name="BroadcastStatsOption"   Header="Broadcast Window Player Stats" IsCheckable="True" IsChecked="False" Click="BroadcastStatsToggle"/>
+            </MenuItem>
+            <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Name="SoraHeartOption"        Header="Sora's Heart" IsCheckable="True" IsChecked="True" Click="SoraHeartToggle"/>
                 <MenuItem Name="SimulatedOption"        Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
                 <MenuItem Name="HundredAcreWoodOption"  Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
@@ -66,12 +74,6 @@
                 <MenuItem Name="CavernOption" 			Header="Cavern of Rememberance" IsCheckable="True" IsChecked="False" Click="CavernToggle"/>
                 <MenuItem Name="TimelessOption" 		Header="Timeless River" IsCheckable="True" IsChecked="False" Click="TimelessToggle"/>
                 <MenuItem Name="OCCupsOption" 		    Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/>
-                <Separator/>
-                <MenuItem Name="SeedHashOption"         Header="Show Zip Seed Hash" IsCheckable="True" IsChecked="True" Click="SeedHashToggle"/>
-                <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
-                <MenuItem Name="FormsGrowthOption"   	Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
-                <MenuItem Name="BroadcastGrowthOption"  Header="Broadcast Window Growth Abilities" IsCheckable="True" IsChecked="False" Click="BroadcastGrowthToggle"/>
-                <MenuItem Name="BroadcastStatsOption"   Header="Broadcast Window Player Stats" IsCheckable="True" IsChecked="False" Click="BroadcastStatsToggle"/>
             </MenuItem>
             <MenuItem Header="Visuals" Focusable="False">
                 <MenuItem Name="MinWorldOption" Header="Simple World Icons" IsCheckable="True" IsChecked="True"  Click="MinWorldToggle"/>
@@ -103,7 +105,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA 1.5-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA 1.6-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -978,10 +980,10 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition  Name="GhostItems1" Height="0"/>
-                    <RowDefinition  Name="GhostItems2" Height="0"/>
-                    <RowDefinition  Name="GhostItems3" Height="0"/>
-                    <RowDefinition  Name="GhostItems4" Height="0"/>
+                    <RowDefinition  Name="GhostItems1" Height="0*"/>
+                    <RowDefinition  Name="GhostItems2" Height="0*"/>
+                    <RowDefinition  Name="GhostItems3" Height="0*"/>
+                    <RowDefinition  Name="GhostItems4" Height="0*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

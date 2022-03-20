@@ -502,5 +502,17 @@ namespace KhTracker.Properties {
                 this["SeedHash"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GhostItem {
+            get {
+                return ((bool)(this["GhostItem"]));
+            }
+            set {
+                this["GhostItem"] = value;
+            }
+        }
     }
 }

@@ -67,6 +67,7 @@ namespace KhTracker
 
             checksList = new List<Check>();
 
+            #region Chest
             // Chest (317)
             checksList.Add(new Check(this, Sys3 + 0x1442A, Save + 0x23AC, 1));   // Bamboo Grove
             checksList.Add(new Check(this, Sys3 + 0x14436, Save + 0x23D9, 7));   // Bamboo Grove
@@ -385,6 +386,9 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x152E2, Save + 0x23DF, 1));   // Garden of Assemblage
             checksList.Add(new Check(this, Sys3 + 0x152EE, Save + 0x23DF, 2));   // Garden of Assemblage
             checksList.Add(new Check(this, Sys3 + 0x152FA, Save + 0x23DF, 3));   // Garden of Assemblage
+            #endregion
+
+            #region Bonus
 
             // Bonus (35)
             checksList.Add(new Check(this, Btl0 + 0x2A9D8, Save + 0x3704, 2));   // Thresholder
@@ -422,7 +426,9 @@ namespace KhTracker
             checksList.Add(new Check(this, Btl0 + 0x2B368, Save + 0x370B, 7));   // Betwixt and Between Nobodies
             checksList.Add(new Check(this, Btl0 + 0x2B468, Save + 0x370C, 5));   // Roxas
             checksList.Add(new Check(this, Btl0 + 0x2B4F8, Save + 0x370D, 1));   // Axel I
+            #endregion
 
+            #region popup
             // Popup (92, excluding AS and Data) (using corresponding progress flags)
             checksList.Add(new Check(this, Sys3 + 0x15606, Save + 0x1DB4, 6));   // Sweet Memories
             checksList.Add(new Check(this, Sys3 + 0x15612, Save + 0x1DB4, 6));   // Spooky Cave Map
@@ -516,6 +522,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x15726, Save + 0x1ED3, 2));   // Ansem Report 12 (early)
             checksList.Add(new Check(this, Sys3 + 0x1571A, Save + 0x1ED3, 6));   // Ansem Report 11
             checksList.Add(new Check(this, Sys3 + 0x15732, Save + 0x1ED4, 5));   // Ansem Report 13
+            #endregion
 
             // Popup for Absent Silhouette and Data (using defeat cutscene IDs) (18)
             checksList.Add(new Check(this, Sys3 + 0x1573E, World, "HalloweenTown",          0x20, 0x79));   // AS Vexen
@@ -700,8 +707,6 @@ namespace KhTracker
             }
             return targetObtained;
         }
-
-
 
         class Check
         {

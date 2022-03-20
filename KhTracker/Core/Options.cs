@@ -1080,12 +1080,12 @@ namespace KhTracker
                 glide.Level = 0;
 
             //hide & reset seed hash
-           if (ShouldResetHash)
-           {
-               HashRow.Height = new GridLength(0, GridUnitType.Star);
-               SeedHashLoaded = false;
-               SeedHashVisible = false;
-           }
+            if (ShouldResetHash)
+            {
+                HashRow.Height = new GridLength(0, GridUnitType.Star);
+                SeedHashLoaded = false;
+                SeedHashVisible = false;
+            }
 
             foreach (string value in data.PointsDatanew.Keys.ToList())
             {
@@ -1098,6 +1098,16 @@ namespace KhTracker
                 WorldPoints[world] = 0;
                 WorldPoints_c[world] = 0;
             }
+
+            WorldGrid.Ghost_Fire = 0;
+            WorldGrid.Ghost_Blizzard = 0;
+            WorldGrid.Ghost_Thunder = 0;
+            WorldGrid.Ghost_Cure = 0;
+            WorldGrid.Ghost_Reflect = 0;
+            WorldGrid.Ghost_Magnet = 0;
+            WorldGrid.Ghost_Pages = 0;
+
+            Data.WorldItems.Clear();
 
             PointTotal = 0;
 

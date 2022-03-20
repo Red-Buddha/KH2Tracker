@@ -32,6 +32,22 @@ namespace KhTracker
             }
         }
 
+        private void HandleGhostItemToggle(bool toggle, Item button)
+        {
+            if (toggle && button.IsEnabled == false)
+            {
+                button.IsEnabled = true;
+                button.Visibility = Visibility.Visible;
+            }
+            else if (toggle == false && button.IsEnabled)
+            {
+                button.IsEnabled = false;
+                button.Visibility = Visibility.Hidden;
+
+                button.HandleItemReturn();
+            }
+        }
+
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
             //this chunk of garbage for using the correct vertical image
@@ -836,6 +852,78 @@ namespace KhTracker
             //SeedHashVisibility(toggle);
         }
 
+        private void GhostItemToggle(object sender, RoutedEventArgs e)
+        {
+            GhostItemToggle(GhostItemOption.IsChecked);
+        }
+
+        private void GhostItemToggle(bool toggle)
+        {
+            Properties.Settings.Default.GhostItem = toggle;
+            GhostItemOption.IsChecked = toggle;
+
+            HandleGhostItemToggle(toggle, Ghost_Report1);
+            HandleGhostItemToggle(toggle, Ghost_Report2);
+            HandleGhostItemToggle(toggle, Ghost_Report3);
+            HandleGhostItemToggle(toggle, Ghost_Report4);
+            HandleGhostItemToggle(toggle, Ghost_Report5);
+            HandleGhostItemToggle(toggle, Ghost_Report6);
+            HandleGhostItemToggle(toggle, Ghost_Report7);
+            HandleGhostItemToggle(toggle, Ghost_Report8);
+            HandleGhostItemToggle(toggle, Ghost_Report9);
+            HandleGhostItemToggle(toggle, Ghost_Report10);
+            HandleGhostItemToggle(toggle, Ghost_Report11);
+            HandleGhostItemToggle(toggle, Ghost_Report12);
+            HandleGhostItemToggle(toggle, Ghost_Report13);
+            HandleGhostItemToggle(toggle, Ghost_Fire1);
+            HandleGhostItemToggle(toggle, Ghost_Fire2);
+            HandleGhostItemToggle(toggle, Ghost_Fire3);
+            HandleGhostItemToggle(toggle, Ghost_Blizzard1);
+            HandleGhostItemToggle(toggle, Ghost_Blizzard2);
+            HandleGhostItemToggle(toggle, Ghost_Blizzard3);
+            HandleGhostItemToggle(toggle, Ghost_Thunder1);
+            HandleGhostItemToggle(toggle, Ghost_Thunder2);
+            HandleGhostItemToggle(toggle, Ghost_Thunder3);
+            HandleGhostItemToggle(toggle, Ghost_Cure1);
+            HandleGhostItemToggle(toggle, Ghost_Cure2);
+            HandleGhostItemToggle(toggle, Ghost_Cure3);
+            HandleGhostItemToggle(toggle, Ghost_Reflect1);
+            HandleGhostItemToggle(toggle, Ghost_Reflect2);
+            HandleGhostItemToggle(toggle, Ghost_Reflect3);
+            HandleGhostItemToggle(toggle, Ghost_Magnet1);
+            HandleGhostItemToggle(toggle, Ghost_Magnet2);
+            HandleGhostItemToggle(toggle, Ghost_Magnet3);
+            HandleGhostItemToggle(toggle, Ghost_Valor);
+            HandleGhostItemToggle(toggle, Ghost_Wisdom);
+            HandleGhostItemToggle(toggle, Ghost_Limit);
+            HandleGhostItemToggle(toggle, Ghost_Master);
+            HandleGhostItemToggle(toggle, Ghost_Final);
+            HandleGhostItemToggle(toggle, Ghost_OnceMore);
+            HandleGhostItemToggle(toggle, Ghost_SecondChance);
+            HandleGhostItemToggle(toggle, Ghost_TornPage1);
+            HandleGhostItemToggle(toggle, Ghost_TornPage2);
+            HandleGhostItemToggle(toggle, Ghost_TornPage3);
+            HandleGhostItemToggle(toggle, Ghost_TornPage4);
+            HandleGhostItemToggle(toggle, Ghost_TornPage5);
+            HandleGhostItemToggle(toggle, Ghost_Baseball);
+            HandleGhostItemToggle(toggle, Ghost_Lamp);
+            HandleGhostItemToggle(toggle, Ghost_Ukulele);
+            HandleGhostItemToggle(toggle, Ghost_Feather);
+            HandleGhostItemToggle(toggle, Ghost_Connection);
+            HandleGhostItemToggle(toggle, Ghost_Nonexistence);
+            HandleGhostItemToggle(toggle, Ghost_Peace);
+            HandleGhostItemToggle(toggle, Ghost_PromiseCharm);
+            //HandleGhostItemToggle(toggle, Ghost_HadesCup);
+
+            WorldGrid.Ghost_Fire = 0;
+            WorldGrid.Ghost_Blizzard = 0;
+            WorldGrid.Ghost_Thunder = 0;
+            WorldGrid.Ghost_Cure = 0;
+            WorldGrid.Ghost_Reflect = 0;
+            WorldGrid.Ghost_Magnet = 0;
+            WorldGrid.Ghost_Pages = 0;
+        }
+
         private void WorldProgressToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.WorldProgress = WorldProgressOption.IsChecked;
@@ -883,6 +971,7 @@ namespace KhTracker
         {
             Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
             data.dragDrop = DragAndDropOption.IsChecked;
+
             foreach (Item item in data.Items)
             {
                 if (item.Parent == ItemPool)
@@ -910,33 +999,32 @@ namespace KhTracker
                 }
             }
 
-            foreach (string item in Data.GhostItems.Keys.ToList())
-            {
-                if (Data.GhostItems[item].Parent == ItemPool)
-                {
-
-                    if (data.dragDrop == false)
-                    {
-                        Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
-
-                        Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseDown += Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseUp += Data.GhostItems[item].Item_Ghost;
-                    }
-                    else
-                    {
-                        Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseDoubleClick += Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseMove += Data.GhostItems[item].Item_Ghost;
-
-                        Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
-                        Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
-                    }
-                }
-            }
+            //foreach (string item in Data.GhostItems.Keys.ToList())
+            //{
+            //    if (Data.GhostItems[item].Parent == ItemPool)
+            //    {
+            //        if (data.dragDrop == false)
+            //        {
+            //            Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
+            //
+            //            Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseDown += Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseUp += Data.GhostItems[item].Item_Ghost;
+            //        }
+            //        else
+            //        {
+            //            Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseDoubleClick += Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseMove += Data.GhostItems[item].Item_Ghost;
+            //
+            //            Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
+            //            Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
+            //        }
+            //    }
+            //}
         }
 
         private void TopMostToggle(object sender, RoutedEventArgs e)

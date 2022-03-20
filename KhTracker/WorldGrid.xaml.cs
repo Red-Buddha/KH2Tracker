@@ -20,14 +20,14 @@ namespace KhTracker
     /// </summary>
     public partial class WorldGrid : UniformGrid
     {
-        private static int localLevelCount = 0;
-        private static int Ghost_Fire = 0;
-        private static int Ghost_Blizzard = 0;
-        private static int Ghost_Thunder = 0;
-        private static int Ghost_Cure = 0;
-        private static int Ghost_Reflect = 0;
-        private static int Ghost_Magnet = 0;
-        private static int Ghost_Pages = 0;
+        //public static int localLevelCount = 0;
+        public static int Ghost_Fire = 0;
+        public static int Ghost_Blizzard = 0;
+        public static int Ghost_Thunder = 0;
+        public static int Ghost_Cure = 0;
+        public static int Ghost_Reflect = 0;
+        public static int Ghost_Magnet = 0;
+        public static int Ghost_Pages = 0;
 
         public WorldGrid()
         {
@@ -295,21 +295,13 @@ namespace KhTracker
 
         public int TableReturn(string nameButton)
         {
-            if (nameButton.Contains("Peace") || nameButton.Contains("Nonexistence") || nameButton.Contains("Connection") || nameButton.Contains("PromiseCharm"))
-                return MainWindow.data.PointsDatanew["proof"];
-            else if (nameButton.Contains("Valor") || nameButton.Contains("Wisdom") || nameButton.Contains("Limit") || nameButton.Contains("Master") || nameButton.Contains("Final"))
-                return MainWindow.data.PointsDatanew["form"];
-            else if (nameButton.Contains("Fire") || nameButton.Contains("Blizzard") || nameButton.Contains("Thunder") ||
-                nameButton.Contains("Cure") || nameButton.Contains("Reflect") || nameButton.Contains("Magnet"))
-                return MainWindow.data.PointsDatanew["magic"];
-            else if (nameButton.Contains("Baseball") || nameButton.Contains("Ukulele") || nameButton.Contains("Lamp") || nameButton.Contains("Feather"))
-                return MainWindow.data.PointsDatanew["summon"];
-            else if (nameButton.Contains("OnceMore") || nameButton.Contains("SecondChance"))
-                return MainWindow.data.PointsDatanew["ability"];
-            else if (nameButton.Contains("Page"))
-                return MainWindow.data.PointsDatanew["page"];
-            else if (nameButton.Contains("Report"))
-                return MainWindow.data.PointsDatanew["report"];
+            if (GetItemType.Keys.Contains(nameButton))
+            {
+                if (MainWindow.data.PointsDatanew.Keys.Contains(GetItemType[nameButton]))
+                    return MainWindow.data.PointsDatanew[GetItemType[nameButton]];
+                else
+                    return 0;
+            }
             else
                 return 0;
         }
@@ -386,6 +378,10 @@ namespace KhTracker
 
         public void checkGhost(string world, string itemname, MainWindow window, Data data)
         {
+            //don't bother checking if ghost tracking is off
+            if (((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked == false)
+                return;
+
             bool wasmulti = false;
             string NewName;
             string GhostName;
@@ -419,6 +415,53 @@ namespace KhTracker
             {
                 Multi.Add(convertItemNames[itemname]);
                 NewName = convertItemNames[itemname];
+            }
+
+            //this shouldn't ever happen, but return without doing anything else if the ghost values for magic/pages are higher than expected
+            switch (NewName)
+            {
+                case "Fire":
+                    if (Ghost_Fire >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "Blizzard":
+                    if (Ghost_Blizzard >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "Thunder":
+                    if (Ghost_Thunder >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "Cure":
+                    if (Ghost_Cure >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "Magnet":
+                    if (Ghost_Magnet >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "Reflect":
+                    if (Ghost_Reflect >= 3)
+                    {
+                        return;
+                    }
+                    break;
+                case "TornPage1":
+                    if (Ghost_Pages >= 5)
+                    {
+                        return;
+                    }
+                    break;
             }
 
             //first we need to check if the real item already exists in the world
@@ -491,8 +534,11 @@ namespace KhTracker
         public void Add_Ghost(Item item, MainWindow window)
         {
             // move item to world
-            window.ItemPool.Children.Remove(item);
-            Handle_WorldGrid(item, true);
+            if (((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked)
+            {
+                window.ItemPool.Children.Remove(item);
+                Handle_WorldGrid(item, true);
+            }
         }
 
         public void Remove_Ghost(string world, Item item)
@@ -595,6 +641,61 @@ namespace KhTracker
             {"Space Paranoids", "SpaceParanoids" },
             {"The World That Never Was", "TWTNW" },
             {"Atlantica", "Atlantica" }
+        };
+
+        private Dictionary<string, string> GetItemType = new Dictionary<string, string>()
+        {
+            {"Report1", "report"},
+            {"Report2", "report"},
+            {"Report3", "report"},
+            {"Report4", "report"},
+            {"Report5", "report"},
+            {"Report6", "report"},
+            {"Report7", "report"},
+            {"Report8", "report"},
+            {"Report9", "report"},
+            {"Report10", "report"},
+            {"Report11", "report"},
+            {"Report12", "report"},
+            {"Report13", "report"},
+            {"Fire1", "magic"},
+            {"Fire2", "magic"},
+            {"Fire3", "magic"},
+            {"Blizzard1", "magic"},
+            {"Blizzard2", "magic"},
+            {"Blizzard3", "magic"},
+            {"Thunder1", "magic"},
+            {"Thunder2", "magic"},
+            {"Thunder3", "magic"},
+            {"Cure1", "magic"},
+            {"Cure2", "magic"},
+            {"Cure3", "magic"},
+            {"Reflect1", "magic"},
+            {"Reflect2", "magic"},
+            {"Reflect3", "magic"},
+            {"Magnet1", "magic"},
+            {"Magnet2", "magic"},
+            {"Magnet3", "magic"},
+            {"Valor", "form"},
+            {"Wisdom", "form"},
+            {"Limit", "form"},
+            {"Master", "form"},
+            {"Final", "form"},
+            {"OnceMore", "ability"},
+            {"SecondChance", "ability"},
+            {"TornPage1", "page"},
+            {"TornPage2", "page"},
+            {"TornPage3", "page"},
+            {"TornPage4", "page"},
+            {"TornPage5", "page"},
+            {"Baseball", "summon"},
+            {"Lamp", "summon"},
+            {"Ukulele", "summon"},
+            {"Feather", "summon"},
+            {"Connection", "proof"},
+            {"Nonexistence", "proof"},
+            {"Peace", "proof"},
+            {"PromiseCharm", "proof"}
         };
     }
 }
