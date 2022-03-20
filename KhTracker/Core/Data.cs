@@ -82,6 +82,7 @@ namespace KhTracker
             { "other", 0}
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
+        public List<string> TrackedReports = new List<string>();
 
     }
 

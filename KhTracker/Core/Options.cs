@@ -1106,8 +1106,8 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect = 0;
             WorldGrid.Ghost_Magnet = 0;
             WorldGrid.Ghost_Pages = 0;
-
             Data.WorldItems.Clear();
+            data.TrackedReports.Clear();
 
             PointTotal = 0;
 
@@ -1133,7 +1133,7 @@ namespace KhTracker
             UpdatePointScore(0);
 
         }
-        
+
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
         {
             //ExtraItemToggleCheck();

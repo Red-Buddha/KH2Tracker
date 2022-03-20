@@ -325,7 +325,7 @@ namespace KhTracker
                 {
                     // hint text and resetting fail icons
                     window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
-                    checkGhost(data.pointreportInformation[index].Item1, data.pointreportInformation[index].Item2, window, data);
+                    checkGhost(data.pointreportInformation[index].Item1, data.pointreportInformation[index].Item2, window, data, "Report" + index);
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
@@ -376,11 +376,19 @@ namespace KhTracker
             }
         }
 
-        public void checkGhost(string world, string itemname, MainWindow window, Data data)
+        public void checkGhost(string world, string itemname, MainWindow window, Data data, string report)
         {
             //don't bother checking if ghost tracking is off
             if (((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked == false)
                 return;
+
+            //check if report was tracked before in this session to avoid tracking multiple ghosts for removing and placing the same report back
+            if (data.TrackedReports.Contains(report))
+                return;
+            else
+            {
+                data.TrackedReports.Add(report);
+            }
 
             bool wasmulti = false;
             string NewName;
@@ -494,7 +502,7 @@ namespace KhTracker
                         NewName += Ghost_Thunder;
                         break;
                     case "Cure":
-                        Ghost_Cure = +1;
+                        Ghost_Cure += 1;
                         NewName += Ghost_Cure;
                         break;
                     case "Reflect":
@@ -622,26 +630,26 @@ namespace KhTracker
             {"PromiseCharm", "PromiseCharm"}
         };
 
-        private Dictionary<string, string> convertWorldNames = new Dictionary<string, string>()
-        {
-            {"Level", "SorasHeart" },
-            {"Form Levels", "DriveForms" },
-            {"Simulated Twilight Town", "SimulatedTwilightTown" },
-            {"Twilight Town", "TwilightTown" },
-            {"Hollow Bastion", "HollowBastion" },
-            {"Beast's Castle", "BeastsCastle" },
-            {"Olympus Coliseum", "OlympusColiseum" },
-            {"Agrabah", "Agrabah" },
-            {"Land of Dragons", "LandofDragons" },
-            {"Hundred Acre Wood", "HundredAcreWood" },
-            {"Pride Lands", "PrideLands" },
-            {"Disney Castle / Timeless River", "DisneyCastle" },
-            {"Halloween Town", "HalloweenTown" },
-            {"Port Royal", "PortRoyal" },
-            {"Space Paranoids", "SpaceParanoids" },
-            {"The World That Never Was", "TWTNW" },
-            {"Atlantica", "Atlantica" }
-        };
+        //private Dictionary<string, string> convertWorldNames = new Dictionary<string, string>()
+        //{
+        //    {"Level", "SorasHeart" },
+        //    {"Form Levels", "DriveForms" },
+        //    {"Simulated Twilight Town", "SimulatedTwilightTown" },
+        //    {"Twilight Town", "TwilightTown" },
+        //    {"Hollow Bastion", "HollowBastion" },
+        //    {"Beast's Castle", "BeastsCastle" },
+        //    {"Olympus Coliseum", "OlympusColiseum" },
+        //    {"Agrabah", "Agrabah" },
+        //    {"Land of Dragons", "LandofDragons" },
+        //    {"Hundred Acre Wood", "HundredAcreWood" },
+        //    {"Pride Lands", "PrideLands" },
+        //    {"Disney Castle / Timeless River", "DisneyCastle" },
+        //    {"Halloween Town", "HalloweenTown" },
+        //    {"Port Royal", "PortRoyal" },
+        //    {"Space Paranoids", "SpaceParanoids" },
+        //    {"The World That Never Was", "TWTNW" },
+        //    {"Atlantica", "Atlantica" }
+        //};
 
         private Dictionary<string, string> GetItemType = new Dictionary<string, string>()
         {

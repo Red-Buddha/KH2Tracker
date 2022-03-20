@@ -177,6 +177,22 @@ namespace KhTracker
                 ((MainWindow)Application.Current.MainWindow).DecrementCollected();
 
                 MouseDown -= Item_Return;
+
+                if (data.dragDrop)
+                {
+                    MouseDoubleClick -= Item_Click;
+                    MouseDoubleClick += Item_Click;
+                    MouseMove -= Item_MouseMove;
+                    MouseMove += Item_MouseMove;
+                }
+                else
+                {
+                    MouseDown -= Item_MouseDown;
+                    MouseDown += Item_MouseDown;
+                    MouseUp -= Item_MouseUp;
+                    MouseUp += Item_MouseUp;
+                }
+
                 MouseEnter -= Report_Hover;
 
                 Console.WriteLine(this.Name);
@@ -210,6 +226,6 @@ namespace KhTracker
 
         //does absolutely nothing. needed for making the ghost items uniteractable
         //if there's a better way to do this, i don't know it
-        public void Item_Ghost(object sender, RoutedEventArgs e) { }
+        //public void Item_Ghost(object sender, RoutedEventArgs e) { }
     }
 }
