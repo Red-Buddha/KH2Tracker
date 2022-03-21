@@ -526,5 +526,41 @@ namespace KhTracker.Properties {
                 this["AutoDetect"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Level1 {
+            get {
+                return ((bool)(this["Level1"]));
+            }
+            set {
+                this["Level1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Level50 {
+            get {
+                return ((bool)(this["Level50"]));
+            }
+            set {
+                this["Level50"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Level99 {
+            get {
+                return ((bool)(this["Level99"]));
+            }
+            set {
+                this["Level99"] = value;
+            }
+        }
     }
 }

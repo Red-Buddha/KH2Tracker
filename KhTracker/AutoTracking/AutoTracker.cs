@@ -104,6 +104,7 @@ namespace KhTracker
         private int storedDetectedVersion = 0; //0 = nothing detected, 1 = PC, 2 = PCSX2
         private bool isWorking = false;
         private bool firstRun = true;
+        private bool titleloaded = false;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -154,7 +155,7 @@ namespace KhTracker
                 return;
             }
 
-            if (isWorking || data.mode == Mode.None)
+            if (isWorking)
                 return;
 
             Console.WriteLine("searchVersion called");
@@ -222,7 +223,7 @@ namespace KhTracker
             isWorking = state;
         }
 
-        public void InitAutoTracker(bool PCSX2)
+        public void InitAutoTrackerOld(bool PCSX2)
         {
             int tries = 0;
             do
@@ -414,6 +415,248 @@ namespace KhTracker
             OnTimedEvent(null, null);
         }
 
+        public void InitAutoTracker(bool PCSX2)
+        {
+            int tries = 0;
+            do
+            {
+                memory = new MemoryReader(PCSX2);
+                if (tries < 20)
+                {
+                    tries++;
+                }
+                else
+                {
+                    memory = null;
+                    MessageBox.Show("Please start KH2 before loading the Auto Tracker.");
+                    return;
+                }
+            } while (!memory.Hooked);
+
+            // PC Address anchors
+            int Now = 0x0714DB8;
+            int Save = 0x09A70B0;
+            int Sys3 = 0x2A59DF0;
+            int Bt10 = 0x2A74880;
+            int BtlEnd = 0x2A0D3E0;
+            int Slot1 = 0x2A20C98;
+
+            if (PCSX2 == false)
+            {
+                while (!titleloaded)
+                {
+                    titleloaded = CheckPCTitle();
+                }
+
+                if (titleloaded)
+                    FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+            }
+            else
+            {
+                try
+                {
+                    findAddressOffset();
+                }
+                catch (Win32Exception)
+                {
+                    memory = null;
+                    MessageBox.Show("Unable to access PCSX2 try running KHTracker as admin");
+                    isWorking = false;
+                    SetAutoDetectTimer();
+                    return;
+                }
+                catch
+                {
+                    memory = null;
+                    MessageBox.Show("Error connecting to PCSX2");
+                    isWorking = false;
+                    SetAutoDetectTimer();
+                    return;
+                }
+
+                // PCSX2 anchors 
+                Now = 0x032BAE0;
+                Save = 0x032BB30;
+                Sys3 = 0x1CCB300;
+                Bt10 = 0x1CE5D80;
+                BtlEnd = 0x1D490C0;
+                Slot1 = 0x1C6C750;
+
+                Console.WriteLine("PCSX2 Detected - Tracking");
+
+                FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+            }
+        }
+
+        private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
+        {
+            importantChecks = new List<ImportantCheck>();
+            importantChecks.Add(highJump = new Ability(memory, Save + 0x25CE, ADDRESS_OFFSET, 93, "HighJump"));
+            importantChecks.Add(quickRun = new Ability(memory, Save + 0x25D0, ADDRESS_OFFSET, 97, "QuickRun"));
+            importantChecks.Add(dodgeRoll = new Ability(memory, Save + 0x25D2, ADDRESS_OFFSET, 563, "DodgeRoll"));
+            importantChecks.Add(aerialDodge = new Ability(memory, Save + 0x25D4, ADDRESS_OFFSET, 101, "AerialDodge"));
+            importantChecks.Add(glide = new Ability(memory, Save + 0x25D6, ADDRESS_OFFSET, 105, "Glide"));
+
+            importantChecks.Add(secondChance = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "SecondChance", Save));
+            importantChecks.Add(onceMore = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "OnceMore", Save));
+
+            importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, Save + 0x06B2, "Valor"));
+            importantChecks.Add(wisdom = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 2, Save + 0x332E, "Wisdom"));
+            importantChecks.Add(limit = new DriveForm(memory, Save + 0x36CA, ADDRESS_OFFSET, 3, Save + 0x3366, "Limit"));
+            importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
+            importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
+
+            int fireCount = fire != null ? fire.Level : 0;
+            int blizzardCount = blizzard != null ? blizzard.Level : 0;
+            int thunderCount = thunder != null ? thunder.Level : 0;
+            int cureCount = cure != null ? cure.Level : 0;
+            int magnetCount = magnet != null ? magnet.Level : 0;
+            int reflectCount = reflect != null ? reflect.Level : 0;
+
+            importantChecks.Add(fire = new Magic(memory, Save + 0x3594, Save + 0x1CF2, ADDRESS_OFFSET, "Fire"));
+            importantChecks.Add(blizzard = new Magic(memory, Save + 0x3595, Save + 0x1CF3, ADDRESS_OFFSET, "Blizzard"));
+            importantChecks.Add(thunder = new Magic(memory, Save + 0x3596, Save + 0x1CF4, ADDRESS_OFFSET, "Thunder"));
+            importantChecks.Add(cure = new Magic(memory, Save + 0x3597, Save + 0x1CF5, ADDRESS_OFFSET, "Cure"));
+            importantChecks.Add(magnet = new Magic(memory, Save + 0x35CF, Save + 0x1CF6, ADDRESS_OFFSET, "Magnet"));
+            importantChecks.Add(reflect = new Magic(memory, Save + 0x35D0, Save + 0x1CF7, ADDRESS_OFFSET, "Reflect"));
+
+            fire.Level = fireCount;
+            blizzard.Level = blizzardCount;
+            thunder.Level = thunderCount;
+            cure.Level = cureCount;
+            magnet.Level = magnetCount;
+            reflect.Level = reflectCount;
+
+            importantChecks.Add(rep1 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 6, "Report1"));
+            importantChecks.Add(rep2 = new Report(memory, Save + 0x36C4, ADDRESS_OFFSET, 7, "Report2"));
+            importantChecks.Add(rep3 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 0, "Report3"));
+            importantChecks.Add(rep4 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 1, "Report4"));
+            importantChecks.Add(rep5 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 2, "Report5"));
+            importantChecks.Add(rep6 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 3, "Report6"));
+            importantChecks.Add(rep7 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 4, "Report7"));
+            importantChecks.Add(rep8 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 5, "Report8"));
+            importantChecks.Add(rep9 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 6, "Report9"));
+            importantChecks.Add(rep10 = new Report(memory, Save + 0x36C5, ADDRESS_OFFSET, 7, "Report10"));
+            importantChecks.Add(rep11 = new Report(memory, Save + 0x36C6, ADDRESS_OFFSET, 0, "Report11"));
+            importantChecks.Add(rep12 = new Report(memory, Save + 0x36C6, ADDRESS_OFFSET, 1, "Report12"));
+            importantChecks.Add(rep13 = new Report(memory, Save + 0x36C6, ADDRESS_OFFSET, 2, "Report13"));
+
+            importantChecks.Add(chickenLittle = new Summon(memory, Save + 0x36C0, ADDRESS_OFFSET, 3, "Baseball"));
+            importantChecks.Add(stitch = new Summon(memory, Save + 0x36C0, ADDRESS_OFFSET, 0, "Ukulele"));
+            importantChecks.Add(genie = new Summon(memory, Save + 0x36C4, ADDRESS_OFFSET, 4, "Lamp"));
+            importantChecks.Add(peterPan = new Summon(memory, Save + 0x36C4, ADDRESS_OFFSET, 5, "Feather"));
+
+            importantChecks.Add(promiseCharm = new Proof(memory, Save + 0x3694, ADDRESS_OFFSET, "PromiseCharm"));
+            importantChecks.Add(peace = new Proof(memory, Save + 0x36B4, ADDRESS_OFFSET, "Peace"));
+            importantChecks.Add(nonexist = new Proof(memory, Save + 0x36B3, ADDRESS_OFFSET, "Nonexistence"));
+            importantChecks.Add(connection = new Proof(memory, Save + 0x36B2, ADDRESS_OFFSET, "Connection"));
+
+            int count = pages != null ? pages.Quantity : 0;
+            importantChecks.Add(pages = new TornPage(memory, Save + 0x3598, ADDRESS_OFFSET, "TornPage"));
+            pages.Quantity = count;
+
+            if (PCSX2)
+                world = new World(memory, ADDRESS_OFFSET, Now, 0x00351EC8, Save + 0x1CFF);
+            else
+                world = new World(memory, ADDRESS_OFFSET, Now, BtlEnd + 0x820, Save + 0x1CFF);
+
+            stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700);
+            rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
+
+            forcedFinal = false;
+            checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
+
+            LevelIcon.Visibility = Visibility.Visible;
+            Level.Visibility = Visibility.Visible;
+            StrengthIcon.Visibility = Visibility.Visible;
+            Strength.Visibility = Visibility.Visible;
+            MagicIcon.Visibility = Visibility.Visible;
+            Magic.Visibility = Visibility.Visible;
+            DefenseIcon.Visibility = Visibility.Visible;
+            Defense.Visibility = Visibility.Visible;
+
+            //TEMP EDIT CORRECTLY LATER
+            // if (data.mode != Mode.DAHints)
+            Weapon.Visibility = Visibility.Visible;
+
+            broadcast.LevelIcon.Visibility = Visibility.Visible;
+            broadcast.Level.Visibility = Visibility.Visible;
+            broadcast.StrengthIcon.Visibility = Visibility.Visible;
+            broadcast.Strength.Visibility = Visibility.Visible;
+            broadcast.MagicIcon.Visibility = Visibility.Visible;
+            broadcast.Magic.Visibility = Visibility.Visible;
+            broadcast.DefenseIcon.Visibility = Visibility.Visible;
+            broadcast.Defense.Visibility = Visibility.Visible;
+            broadcast.Weapon.Visibility = Visibility.Visible;
+
+            broadcast.ValorLevel.Visibility = Visibility.Visible;
+            broadcast.WisdomLevel.Visibility = Visibility.Visible;
+            broadcast.LimitLevel.Visibility = Visibility.Visible;
+            broadcast.MasterLevel.Visibility = Visibility.Visible;
+            broadcast.FinalLevel.Visibility = Visibility.Visible;
+
+            if (BroadcastGrowthOption.IsChecked)
+                broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
+
+            if (BroadcastStatsOption.IsChecked)
+                broadcast.StatsRow.Height = new GridLength(1, GridUnitType.Star);
+
+            if (FormsGrowthOption.IsChecked)
+                FormRow.Height = new GridLength(0.65, GridUnitType.Star);
+
+            //levelcheck visibility
+            if (NextLevelCheckOption50.IsChecked || NextLevelCheckOption99.IsChecked)
+            {
+                LevelCheckIcon.Visibility = Visibility.Visible;
+                LevelCheck.Visibility = Visibility.Visible;
+            
+                if (NextLevelCheckOption50.IsChecked)
+                    stats.SetMaxLevelCheck(50);
+                else
+                    stats.SetMaxLevelCheck(99);
+            }
+            else
+                stats.SetMaxLevelCheck(1);
+
+            SetBindings();
+            SetTimer();
+            OnTimedEvent(null, null);
+        }
+
+        private async void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
+        {
+            int Delay = 3000;
+
+            //if (!AutoDetectOption.IsChecked)
+            //    Delay = 0;
+
+            await Task.Delay(Delay);
+            try
+            {
+                CheckPCOffset();
+            }
+            catch (Win32Exception)
+            {
+                memory = null;
+                MessageBox.Show("Unable to access KH2FM try running KHTracker as admin");
+                isWorking = false;
+                SetAutoDetectTimer();
+                return;
+            }
+            catch
+            {
+                memory = null;
+                MessageBox.Show("Error connecting to KH2FM");
+                isWorking = false;
+                SetAutoDetectTimer();
+                return;
+            }
+
+            Console.WriteLine("PC Detected - Tracking");
+
+            FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+        }
+
         private void CheckPCOffset()
         {
             Int32 testAddr = 0x009AA376 - 0x1000;
@@ -423,6 +666,21 @@ namespace KhTracker
             {
                 ADDRESS_OFFSET = -0x1000;
             }
+        }
+
+        private bool CheckPCTitle()
+        {
+            //checks if the title.2ld has been loaded into memeory
+
+            Int32 testAddr = 0x29F09E4;
+            string good = "6D656E75";
+            string tester = BytesToHex(memory.ReadMemory(testAddr, 4));
+            if (tester == good)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         private void findAddressOffset()
@@ -521,10 +779,6 @@ namespace KhTracker
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
-
-           // Console.WriteLine("World Num = " + world.worldNum);
-            //Console.WriteLine("World Room = " + world.roomNumber);
-
             previousChecks.Clear();
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
@@ -551,13 +805,22 @@ namespace KhTracker
             catch
             {
                 aTimer.Stop();
-                MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
+                //MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
+                Console.WriteLine("Connection Lost, Reconnecting..."); //change to icon
+                isWorking = false;
+                SetAutoDetectTimer();
                 return;
             }
 
             UpdateCollectedItems();
             DetermineItemLocations();
 
+            //TODO
+            stats.SetNextLevelCheck(stats.Level);
+            if (MinNumOption.IsChecked)
+                LevelCheck.Source = data.Numbers[stats.LevelCheck + 1];
+            else
+                LevelCheck.Source = data.OldNumbers[stats.LevelCheck + 1];
         }
 
         private void TrackItem(string itemName, WorldGrid world)

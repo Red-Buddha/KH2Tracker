@@ -786,15 +786,15 @@ namespace KhTracker
             //    timedHintsRealTimer.Stop();
             //
             //next level check stuff
-            //if (LevelCheckIcon.Visibility == Visibility.Visible || LevelCheck.Visibility == Visibility.Visible)
-            //{
-            //    NextLevelCheck1Option();
-            //
-            //    if (MinNumOption.IsChecked)
-            //        LevelCheck.Source = data.Numbers[0 + 1];
-            //    else
-            //        LevelCheck.Source = data.OldNumbers[0 + 1];
-            //}
+            if (LevelCheckIcon.Visibility == Visibility.Visible || LevelCheck.Visibility == Visibility.Visible)
+            {
+                NextLevelCheck1Option();
+            
+                if (MinNumOption.IsChecked)
+                    LevelCheck.Source = data.Numbers[0 + 1];
+                else
+                    LevelCheck.Source = data.OldNumbers[0 + 1];
+            }
 
             ModeDisplay.Header = " ";
             data.mode = Mode.None;
@@ -1047,6 +1047,10 @@ namespace KhTracker
             Score100.Visibility = Visibility.Hidden;
             Score10.Visibility = Visibility.Hidden;
             Score1.Visibility = Visibility.Hidden;
+
+            //hide next level check
+            LevelCheckIcon.Visibility = Visibility.Hidden;
+            LevelCheck.Visibility = Visibility.Hidden;
 
             broadcast.Collected.Visibility = Visibility.Visible;
             broadcast.CollectedBar.Visibility = Visibility.Visible;

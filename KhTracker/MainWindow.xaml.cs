@@ -44,6 +44,10 @@ namespace KhTracker
             previousChecks = new List<ImportantCheck>();
 
             InitOptions();
+
+            //Init auto-detect
+            if (AutoDetectOption.IsChecked)
+                SetAutoDetectTimer();
         }
 
         private void InitData()
@@ -297,6 +301,19 @@ namespace KhTracker
 
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
+
+            //Next Level Check
+            NextLevelCheckOption1.IsChecked = Properties.Settings.Default.Level1;
+            if (NextLevelCheckOption1.IsChecked)
+                NextLevelCheck1Option(null, null);
+
+            NextLevelCheckOption50.IsChecked = Properties.Settings.Default.Level50;
+            if (NextLevelCheckOption50.IsChecked)
+                NextLevelCheck50Option(null, null);
+
+            NextLevelCheckOption99.IsChecked = Properties.Settings.Default.Level99;
+            if (NextLevelCheckOption99.IsChecked)
+                NextLevelCheck99Option(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;

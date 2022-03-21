@@ -464,6 +464,113 @@ namespace KhTracker
             }
         }
 
+        //level check toggles
+        private void NextLevelCheck1Option(object sender, RoutedEventArgs e)
+        {
+            NextLevelCheck1Option();
+        }
+
+        private void NextLevelCheck1Option()
+        {
+            // mimic radio button
+            if (NextLevelCheckOption1.IsChecked == false)
+            {
+                NextLevelCheckOption1.IsChecked = true;
+                return;
+            }
+
+            NextLevelCheckOption50.IsChecked = false;
+            NextLevelCheckOption99.IsChecked = false;
+
+            Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
+            Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
+            Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
+
+            if (LevelCheckIcon.Visibility == Visibility.Visible && memory != null)
+            {
+                LevelCheckIcon.Visibility = Visibility.Hidden;
+                LevelCheck.Visibility = Visibility.Hidden;
+            }
+
+            //HintTextParent.Margin = new Thickness(10, 0, 10, 0);
+        }
+
+        private void NextLevelCheck50Option(object sender, RoutedEventArgs e)
+        {
+            //mimic radio button
+            if (NextLevelCheckOption50.IsChecked == false)
+            {
+                NextLevelCheckOption50.IsChecked = true;
+                return;
+            }
+
+            NextLevelCheckOption1.IsChecked = false;
+            NextLevelCheckOption99.IsChecked = false;
+
+            Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
+            Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
+            Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
+
+            if (LevelCheckIcon.Visibility == Visibility.Hidden && memory != null)
+            {
+                LevelCheckIcon.Visibility = Visibility.Visible;
+                LevelCheck.Visibility = Visibility.Visible;
+            }
+
+            if (memory != null && stats != null)
+            {
+                try
+                {
+                    stats.SetMaxLevelCheck(50);
+                    stats.SetNextLevelCheck(stats.Level);
+                }
+                catch
+                {
+                    Console.WriteLine("Tried to edit while loading");
+                }
+            }
+
+            //HintTextParent.Margin = new Thickness(33, 0, 10, 0);
+        }
+
+        private void NextLevelCheck99Option(object sender, RoutedEventArgs e)
+        {
+            //mimic radio button
+            if (NextLevelCheckOption99.IsChecked == false)
+            {
+                NextLevelCheckOption99.IsChecked = true;
+                return;
+            }
+
+            NextLevelCheckOption1.IsChecked = false;
+            NextLevelCheckOption50.IsChecked = false;
+
+            Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
+            Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
+            Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
+
+            if (LevelCheckIcon.Visibility == Visibility.Hidden && memory != null)
+            {
+                LevelCheckIcon.Visibility = Visibility.Visible;
+                LevelCheck.Visibility = Visibility.Visible;
+            }
+
+            if (memory != null && stats != null)
+            {
+                try
+                {
+                    stats.SetMaxLevelCheck(99);
+                    stats.SetNextLevelCheck(stats.Level);
+                }
+                catch
+                {
+                    Console.WriteLine("Tried to edit while loading");
+                }
+            }
+
+            //HintTextParent.Margin = new Thickness(33, 0, 10, 0);
+        }
+
         //World toggles
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {

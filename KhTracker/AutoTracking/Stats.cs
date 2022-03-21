@@ -9,6 +9,13 @@ namespace KhTracker
 {
     class Stats : INotifyPropertyChanged
     {
+        //next level check stuff
+        private int[] levelChecks1 = { 1, 1 };
+        private int[] levelChecks50 = { 0, 2, 4, 7, 9, 10, 12, 14, 15, 17, 20, 23, 25, 28, 30, 32, 34, 36, 39, 41, 44, 46, 48, 50 };
+        private int[] levelChecks99 = { 0, 7, 9, 12, 15, 17, 20, 23, 25, 28, 31, 33, 36, 39, 41, 44, 47, 49, 53, 59, 65, 73, 85, 99 };
+        private int[] currentCheckArray;
+        private int nextLevelCheck = 0;
+
         public int[] previousLevels = new int[3];
         private int level;
         public int Level
@@ -68,6 +75,18 @@ namespace KhTracker
             {
                 bonuslevel = value;
                 OnPropertyChanged("BonusLevel");
+            }
+        }
+
+        //show next level check
+        private int levelCheck;
+        public int LevelCheck
+        {
+            get { return levelCheck; }
+            set
+            {
+                levelCheck = value;
+                OnPropertyChanged("LevelCheck");
             }
         }
 
@@ -135,6 +154,46 @@ namespace KhTracker
 
             byte[] BonusData = memory.ReadMemory(bonusAddress + ADDRESS_OFFSET, 1);
             BonusLevel = BonusData[0];
+
+            //change levelreward number
+            if (level >= currentCheckArray[currentCheckArray.Length - 1])
+            {
+                LevelCheck = currentCheckArray[currentCheckArray.Length - 1];
+                return;
+            }
+
+            if (Level >= currentCheckArray[nextLevelCheck])
+            {
+                nextLevelCheck++;
+                LevelCheck = currentCheckArray[nextLevelCheck];
+            }
+        }
+
+        public void SetMaxLevelCheck(int lvl)
+        {
+            if (lvl == 1)
+                currentCheckArray = levelChecks1;
+
+            if (lvl == 50)
+                currentCheckArray = levelChecks50;
+
+            if (lvl == 99)
+                currentCheckArray = levelChecks99;
+        }
+
+        public void SetNextLevelCheck(int lvl)
+        {
+            for (int i = 0; i < currentCheckArray.Length; i++)
+            {
+                if (lvl < currentCheckArray[i])
+                {
+                    nextLevelCheck = i;
+                    LevelCheck = currentCheckArray[nextLevelCheck];
+                    break;
+                }
+            }
+
+            //Console.WriteLine("nextLevelCheck = " + LevelCheck);
 
         }
     }

@@ -66,6 +66,10 @@
                 <MenuItem Name="GhostItemOption"   	    Header="Track Ghost Items (Points)" IsCheckable="True" IsChecked="True" Click="GhostItemToggle"/>
                 <MenuItem Name="BroadcastGrowthOption"  Header="Broadcast Window Growth Abilities" IsCheckable="True" IsChecked="False" Click="BroadcastGrowthToggle"/>
                 <MenuItem Name="BroadcastStatsOption"   Header="Broadcast Window Player Stats" IsCheckable="True" IsChecked="False" Click="BroadcastStatsToggle"/>
+                <Separator/>
+                <MenuItem Name="NextLevelCheckOption1" Header="Disable Level Check" IsCheckable="True" IsChecked="True" Click="NextLevelCheck1Option"/>
+                <MenuItem Name="NextLevelCheckOption50" Header="Show Level Check (50)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck50Option"/>
+                <MenuItem Name="NextLevelCheckOption99" Header="Show Level Check (99)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck99Option"/>
             </MenuItem>
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Name="SoraHeartOption"        Header="Sora's Heart" IsCheckable="True" IsChecked="True" Click="SoraHeartToggle"/>
@@ -766,6 +770,16 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
+                <Image Name="LevelCheck" Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="1" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.65" ScaleY="0.65"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-5"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
                 <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -807,6 +821,16 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
+                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelCheckIcon"    Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                    <ContentControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="4" Y="-5"/>
+                        </TransformGroup>
+                    </ContentControl.RenderTransform>
+                </ContentControl>
                 <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
@@ -837,7 +861,7 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-
+            
                 <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
