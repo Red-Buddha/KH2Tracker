@@ -87,7 +87,7 @@
     <Compile Include="AutoTracking\Ability.cs" />
     <Compile Include="AutoTracking\AutoTracker.cs" />
     <Compile Include="AutoTracking\CheckEveryCheck.cs" />
-    <Compile Include="AutoTracking\HintModes.cs" />
+    <Compile Include="Core\HintModes.cs" />
     <Compile Include="AutoTracking\Magic.cs" />
     <Compile Include="AutoTracking\Proof.cs" />
     <Compile Include="AutoTracking\Report.cs" />

@@ -1190,6 +1190,12 @@ namespace KhTracker
                 broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
                 broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
             }
+            else if (mode == Mode.TimeHints)
+            {
+                ModeDisplay.Header = "Timed Hints";
+                data.mode = mode;
+                ReportRow.Height = new GridLength(1, GridUnitType.Star);
+            }
         }
 
         private void OpenKHSeed(object sender, RoutedEventArgs e)
@@ -1310,6 +1316,7 @@ namespace KhTracker
                                     break;
                                 case "Timed":
                                     {
+                                        //incomplete
                                         //SetMode(Mode.TimeHints);
                                         //TimeHints(hintObject);
                                     }

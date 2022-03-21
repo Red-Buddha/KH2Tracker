@@ -84,6 +84,54 @@ namespace KhTracker
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
         public List<string> TrackedReports = new List<string>();
 
+        //for timed hints
+        public int timedHintsTimer = 0;
+        public bool startedTimedHints = false;
+        public int currentHint = 0;
+        //                                    Sora   Drive   STT    TT     HB     BC     OC     AG     LoD   100AW   PL     DC     HT     PR     SP   TWTNW    GoA    AT
+        //                                      0      1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17
+        public int[] worldStoredHintCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        public int[] worldStoredOrigCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        public int[] worldHintNumber      = {  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1   };
+        public bool[] isHintedHint        = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+        public string[] isHintedBy        = {  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""   };
+        public int[] hintOrder = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        public int seedTimeLoaded = 0;
+        //public int lastStoredSeedHash = 0;
+        //public int lastStoredSeedHashTemp = 0;
+
+        public void ResetTimedHints()
+        {
+            worldStoredHintCount = new int[] {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+            worldStoredOrigCount = new int[] {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+            isHintedHint        = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+            isHintedBy        = new string[] {  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""  ,  ""   };
+        }
+
+        //public void ShuffleHintOrder(int seed)
+        //{
+        //    var rng = new Random(seed);
+        //    int n = hintOrder.Length;
+        //
+        //    while (n > 1)
+        //    {
+        //        n--;
+        //        int k = rng.Next(n + 1);
+        //        int value = hintOrder[k];
+        //        hintOrder[k] = hintOrder[n];
+        //        hintOrder[n] = value;
+        //    }
+        //}
+
+        //public string PrintHintOrder(int[] arr)
+        //{
+        //    string output = "";
+        //    for (int i = 0; i < arr.Length; i++)
+        //    {
+        //        output += arr[i] + " ";
+        //    }
+        //    return output;
+        //}
     }
 
     public class WorldData
