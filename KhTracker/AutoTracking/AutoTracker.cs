@@ -143,6 +143,7 @@ namespace KhTracker
 
         private bool alternateCheck = false; //true = PCSX2, false = PC
         private int alternateCheckInt = 1;
+
         public void searchVersion(object sender, EventArgs e)
         {
             if (!AutoDetectOption.IsChecked)
@@ -176,7 +177,7 @@ namespace KhTracker
                 if (storedDetectedVersion != alternateCheckInt && storedDetectedVersion != 0)
                 {
                     //Console.WriteLine("storedDetectedVerison = " + storedDetectedVersion + " || alternateCheck = " + alternateCheck);
-                    OnReset();
+                    OnReset(null, null);
                 }
                 storedDetectedVersion = alternateCheckInt;
 
@@ -188,10 +189,8 @@ namespace KhTracker
             }
 
             alternateCheck = !alternateCheck;
-            if (alternateCheckInt == 1)
-                alternateCheckInt = 2;
-            else
-                alternateCheckInt = 1;
+            alternateCheckInt = alternateCheckInt == 1 ? 2 : 1;
+
         }
 
         public bool CheckVersion(bool state)
