@@ -5,6 +5,11 @@
     <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>
+    
+    <!--auto-detect icons-->
+    <Image x:Key="Min-Connect"	 Source="Images\connect.png" x:Shared="false"/>
+    <Image x:Key="Min-PC"	 Source="Images\PC.png" x:Shared="false"/>
+    <Image x:Key="Min-PS2"	 Source="Images\ps2.png" x:Shared="false"/>
 
     <!--Importaant Checks-->
     <!--Simple Item Icons (Main Window)-->

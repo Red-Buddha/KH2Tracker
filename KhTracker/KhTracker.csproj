@@ -1375,6 +1375,7 @@
     <Content Include="CustomImages\Worlds\space_paranoids.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\PCred.png" />
     <Resource Include="Images\connect.png" />
     <Resource Include="Images\PC.png" />
     <Resource Include="Images\ps2.png" />

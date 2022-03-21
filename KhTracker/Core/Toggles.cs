@@ -460,8 +460,12 @@ namespace KhTracker
             if (AutoDetectOption.IsChecked)
             {
                 Console.WriteLine("Auto Detect enabled?");
+                Connect.Source = data.AD_Connect;
                 SetAutoDetectTimer();
+                Connect.Visibility = Visibility.Visible;
             }
+            else
+                Connect.Visibility = Visibility.Hidden;
         }
 
         //level check toggles

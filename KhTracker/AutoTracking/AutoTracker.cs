@@ -151,6 +151,7 @@ namespace KhTracker
             {
                 Console.WriteLine("disabling auto-detect");
                 //SetDetectionText(); //change with icons later
+                Connect.Visibility = Visibility.Hidden;
                 autoTimer.Stop();
                 return;
             }
@@ -168,11 +169,14 @@ namespace KhTracker
                 {
                     Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
                     //SetHintText("PCSX2 Detected - Tracking", 30000, ""); //change with icons later
+                    Connect.Source = data.AD_PS2;
+
                 }
                 else
                 {
                     Console.WriteLine("PC Found, starting Auto-Tracker");
                     //SetDetectionText("PC Detected - Connecting..."); //change with icons later
+                    Connect.Source = data.AD_PC;
                 }
 
                 if (storedDetectedVersion != alternateCheckInt && storedDetectedVersion != 0)
@@ -449,7 +453,10 @@ namespace KhTracker
                 }
 
                 if (titleloaded)
+                {
+                    Connect.Source = data.AD_PCred;
                     FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+                }
             }
             else
             {
@@ -483,7 +490,7 @@ namespace KhTracker
                 Slot1 = 0x1C6C750;
 
                 Console.WriteLine("PCSX2 Detected - Tracking");
-
+                Connect.Source = data.AD_PS2;
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
             }
         }
@@ -575,9 +582,9 @@ namespace KhTracker
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
 
-            //TEMP EDIT CORRECTLY LATER
-            // if (data.mode != Mode.DAHints)
-            Weapon.Visibility = Visibility.Visible;
+            //Weapon.Visibility = Visibility.Visible;
+            if (AutoDetectOption.IsChecked)
+                Connect.Visibility = Visibility.Visible;
 
             broadcast.LevelIcon.Visibility = Visibility.Visible;
             broadcast.Level.Visibility = Visibility.Visible;
@@ -621,6 +628,8 @@ namespace KhTracker
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
+
+            titleloaded = false;
         }
 
         private async void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
@@ -653,7 +662,7 @@ namespace KhTracker
             }
 
             Console.WriteLine("PC Detected - Tracking");
-
+            Connect.Source = data.AD_PC;
             FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
         }
 
@@ -671,11 +680,21 @@ namespace KhTracker
         private bool CheckPCTitle()
         {
             //checks if the title.2ld has been loaded into memeory
-
             Int32 testAddr = 0x29F09E4;
             string good = "6D656E75";
             string tester = BytesToHex(memory.ReadMemory(testAddr, 4));
+
+            //fallback to check if world loaded isn't the title screen/RoD
+            //needed if tracker was started after the title screen
+            Int32 testAddrw = 0x0714DB8;
+            string goodworld = "FFFF";
+            string testerw = BytesToHex(memory.ReadMemory(testAddrw, 2));
+
             if (tester == good)
+            {
+                return true;
+            }
+            else if (testerw != goodworld)
             {
                 return true;
             }
@@ -807,6 +826,7 @@ namespace KhTracker
                 aTimer.Stop();
                 //MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
                 Console.WriteLine("Connection Lost, Reconnecting..."); //change to icon
+                Connect.Source = data.AD_Connect;
                 isWorking = false;
                 SetAutoDetectTimer();
                 return;

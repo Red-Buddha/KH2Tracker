@@ -873,12 +873,20 @@
                     </Image.RenderTransform>
                 </Image>
 
+                <Image Name="Connect" Source="Images/connect.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="-2" X="5"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
                 <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Visible"/>
                 <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16" Visibility="Visible"/>
                 <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17" Visibility="Visible"/>
-
-                <!--Image Name="BattleLevelIcon" Source="Images/Other/sora_heart.png" Grid.Row="3" Grid.Column="15" Grid.ColumnSpan="1" Visibility="Hidden"/>
-                <Image Name="BattleLevel"  Source="Images/Numbers/Kh2/Yellow/99.png" Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="2" Visibility="Hidden"/-->
 
             </Grid>
 
@@ -891,7 +899,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="14*"/>
-                    
+
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -899,8 +907,6 @@
 
                     <ColumnDefinition Width="0.6*"/>
                 </Grid.ColumnDefinitions>
-
-                <Image Name="BattleLevelIcon2" Source="Images/Other/sora_heart.png" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Visibility="Hidden"/>
 
                 <Image Name="Score100"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden"/>
                 <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Visibility="Hidden"/>

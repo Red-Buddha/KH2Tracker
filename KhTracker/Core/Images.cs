@@ -752,7 +752,12 @@ namespace KhTracker
 
             //i really hate how i did some of this
 
-            //check for custom stat and weapon icons
+            data.AD_Connect = new BitmapImage(new Uri("Images/connect.png", UriKind.Relative));
+            data.AD_PC = new BitmapImage(new Uri("Images/PC.png", UriKind.Relative));
+            data.AD_PCred = new BitmapImage(new Uri("Images/PCred.png", UriKind.Relative));
+            data.AD_PS2 = new BitmapImage(new Uri("Images/ps2.png", UriKind.Relative));
+
+            //check for custom stat and weapon icons (OLD)
             {
                 if (File.Exists("CustomImages/Other/sword.png"))
                     CustomSwordFound = true;

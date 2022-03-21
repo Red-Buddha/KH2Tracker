@@ -65,6 +65,12 @@ namespace KhTracker
         public BitmapImage CustomSlashBarY;
         public BitmapImage CustomSlashBarB;
 
+        //auto-detect
+        public BitmapImage AD_Connect;
+        public BitmapImage AD_PC;
+        public BitmapImage AD_PCred;
+        public BitmapImage AD_PS2;
+
         //for points hints
         public static Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();
         public Dictionary<string, int> PointsDatanew = new Dictionary<string, int>()
