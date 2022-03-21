@@ -295,9 +295,8 @@ namespace KhTracker
                 //HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_HadesCup);
             }
 
-            HandleItemToggle(CureOption.IsChecked, Cure1, true);
-            HandleItemToggle(CureOption.IsChecked, Cure2, true);
-            HandleItemToggle(CureOption.IsChecked, Cure3, true);
+            AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
+            AutoDetectToggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;

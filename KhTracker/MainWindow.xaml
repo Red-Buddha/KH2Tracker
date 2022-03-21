@@ -40,6 +40,7 @@
                 <MenuItem Header="Auto Tracking">
                     <MenuItem Header="PCSX2" Click="InitPCSX2Tracker"/>
                     <MenuItem Header="PC" Click="InitPCTracker"/>
+                    <MenuItem Name="AutoDetectOption" Header="Auto-Detect" IsCheckable="True" IsChecked="False" Click="AutoDetectToggle"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Broadcast Window" HorizontalAlignment="Left" Click="BroadcastWindow_Open" Width="235"/>

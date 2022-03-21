@@ -514,5 +514,17 @@ namespace KhTracker.Properties {
                 this["GhostItem"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoDetect {
+            get {
+                return ((bool)(this["AutoDetect"]));
+            }
+            set {
+                this["AutoDetect"] = value;
+            }
+        }
     }
 }

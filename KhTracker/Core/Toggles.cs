@@ -453,6 +453,17 @@ namespace KhTracker
                 broadcast.StatsRow.Height = new GridLength(1, GridUnitType.Star);
         }
 
+        private void AutoDetectToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;
+
+            if (AutoDetectOption.IsChecked)
+            {
+                Console.WriteLine("Auto Detect enabled?");
+                SetAutoDetectTimer();
+            }
+        }
+
         //World toggles
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {

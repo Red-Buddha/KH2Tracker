@@ -25,10 +25,10 @@ namespace KhTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        MemoryReader memory;
+        MemoryReader memory, testMemory;
 
         private Int32 ADDRESS_OFFSET;
-        private static DispatcherTimer aTimer;
+        private static DispatcherTimer aTimer, autoTimer;
         private List<ImportantCheck> importantChecks;
         private Ability highJump;
         private Ability quickRun;
@@ -44,7 +44,7 @@ namespace KhTracker
         private DriveForm master;
         private DriveForm limit;
         private DriveForm final;
-        
+
         private Magic fire;
         private Magic blizzard;
         private Magic thunder;
@@ -99,7 +99,11 @@ namespace KhTracker
         private CheckEveryCheck checkEveryCheck;
 
         public static bool pcsx2tracking = false;
-        //public static bool StartTracking = false;
+
+        //Auto-Detect Control Stuff
+        private int storedDetectedVersion = 0; //0 = nothing detected, 1 = PC, 2 = PCSX2
+        private bool isWorking = false;
+        private bool firstRun = true;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -111,6 +115,112 @@ namespace KhTracker
         {
             pcsx2tracking = false;
             InitAutoTracker(false);
+        }
+
+        private void SetAutoDetectTimer()
+        {
+            //SetDetectionText();
+
+            if (isWorking)
+                return;
+
+            if (aTimer != null)
+                aTimer.Stop();
+
+            //autoTimer = new DispatcherTimer();
+            if (firstRun)
+            {
+                //Console.WriteLine("Started search");
+                autoTimer = new DispatcherTimer();
+                autoTimer.Tick += searchVersion;
+                firstRun = false;
+                autoTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            }
+            autoTimer.Start();
+
+            //Console.WriteLine("AutoDetect Started");
+        }
+
+        private bool alternateCheck = false; //true = PCSX2, false = PC
+        private int alternateCheckInt = 1;
+        public void searchVersion(object sender, EventArgs e)
+        {
+            if (!AutoDetectOption.IsChecked)
+            {
+                Console.WriteLine("disabling auto-detect");
+                //SetDetectionText(); //change with icons later
+                autoTimer.Stop();
+                return;
+            }
+
+            if (isWorking || data.mode == Mode.None)
+                return;
+
+            Console.WriteLine("searchVersion called");
+
+            if (CheckVersion(alternateCheck))
+            {
+                autoTimer.Stop();
+
+                if (alternateCheck)
+                {
+                    Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
+                    //SetHintText("PCSX2 Detected - Tracking", 30000, ""); //change with icons later
+                }
+                else
+                {
+                    Console.WriteLine("PC Found, starting Auto-Tracker");
+                    //SetDetectionText("PC Detected - Connecting..."); //change with icons later
+                }
+
+                if (storedDetectedVersion != alternateCheckInt && storedDetectedVersion != 0)
+                {
+                    //Console.WriteLine("storedDetectedVerison = " + storedDetectedVersion + " || alternateCheck = " + alternateCheck);
+                    OnReset();
+                }
+                storedDetectedVersion = alternateCheckInt;
+
+                InitAutoTracker(alternateCheck);
+
+                isWorking = true;
+
+                return;
+            }
+
+            alternateCheck = !alternateCheck;
+            if (alternateCheckInt == 1)
+                alternateCheckInt = 2;
+            else
+                alternateCheckInt = 1;
+        }
+
+        public bool CheckVersion(bool state)
+        {
+            if (isWorking)
+                return true;
+
+            int tries = 0;
+            do
+            {
+                testMemory = new MemoryReader(state);
+                if (tries < 20)
+                {
+                    tries++;
+                }
+                else
+                {
+                    testMemory = null;
+                    Console.WriteLine("No game running");
+                    return false;
+                }
+            } while (!testMemory.Hooked);
+
+            return true;
+        }
+
+        public void SetWorking(bool state)
+        {
+            isWorking = state;
         }
 
         public void InitAutoTracker(bool PCSX2)
@@ -1666,7 +1776,6 @@ namespace KhTracker
             broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
             broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
         }
-
 
     }
 }
