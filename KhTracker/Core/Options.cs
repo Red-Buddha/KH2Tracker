@@ -870,6 +870,7 @@ namespace KhTracker
                 data.WorldsData[key].hinted = false;
                 data.WorldsData[key].hintedHint = false;
                 data.WorldsData[key].complete = false;
+                data.WorldsData[key].containsGhost = false;
                 data.WorldsData[key].checkCount.Clear();
                 data.WorldsData[key].progress = 0;
             }

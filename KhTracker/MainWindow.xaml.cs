@@ -318,6 +318,10 @@ namespace KhTracker
             if (NextLevelCheckOption99.IsChecked)
                 NextLevelCheck99Option(null, null);
 
+            CheckCountOption.IsChecked = Properties.Settings.Default.CheckCount;
+            if (CheckCountOption.IsChecked)
+                ShowCheckCountToggle(null, null);
+
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 

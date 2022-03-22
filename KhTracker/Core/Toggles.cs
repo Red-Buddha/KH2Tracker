@@ -355,35 +355,15 @@ namespace KhTracker
                 broadcast.CollectedBar.Visibility = Visibility.Hidden;
                 broadcast.CheckTotal.Visibility = Visibility.Hidden;
             }
-            //if check count should be toggled when on non-points mode
-            else
+            //chek coun't should always be on in non points mode
+            else if (data.mode != Mode.DAHints)
             {
-                //hide check count
-                if (!toggle)
-                {
-                    Collected.Visibility = Visibility.Hidden;
-                    CollectedBar.Visibility = Visibility.Hidden;
-                    CheckTotal.Visibility = Visibility.Hidden;
-                    broadcast.Collected.Visibility = Visibility.Hidden;
-                    broadcast.CollectedBar.Visibility = Visibility.Hidden;
-                    broadcast.CheckTotal.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    Collected.Visibility = Visibility.Visible;
-                    CollectedBar.Visibility = Visibility.Visible;
-                    CheckTotal.Visibility = Visibility.Visible;
-                    broadcast.Collected.Visibility = Visibility.Visible;
-                    broadcast.CollectedBar.Visibility = Visibility.Visible;
-                    broadcast.CheckTotal.Visibility = Visibility.Visible;
-                }
-
-                Score1.Visibility = Visibility.Hidden;
-                Score10.Visibility = Visibility.Hidden;
-                Score100.Visibility = Visibility.Hidden;
-                broadcast.Score1.Visibility = Visibility.Hidden;
-                broadcast.Score10.Visibility = Visibility.Hidden;
-                broadcast.Score100.Visibility = Visibility.Hidden;
+                Collected.Visibility = Visibility.Visible;
+                CollectedBar.Visibility = Visibility.Visible;
+                CheckTotal.Visibility = Visibility.Visible;
+                broadcast.Collected.Visibility = Visibility.Visible;
+                broadcast.CollectedBar.Visibility = Visibility.Visible;
+                broadcast.CheckTotal.Visibility = Visibility.Visible;
             }
         }
 
