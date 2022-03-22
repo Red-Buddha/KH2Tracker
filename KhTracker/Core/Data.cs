@@ -39,16 +39,22 @@ namespace KhTracker
         public List<BitmapImage> SingleNumbers = new List<BitmapImage>();
         public List<BitmapImage> BlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> BlueSingleNumbers = new List<BitmapImage>();
+        public List<BitmapImage> GreenNumbers = new List<BitmapImage>();
+        public List<BitmapImage> GreenSingleNumbers = new List<BitmapImage>();
 
         public List<BitmapImage> OldNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldSingleNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldBlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldBlueSingleNumbers = new List<BitmapImage>();
+        public List<BitmapImage> OldGreenNumbers = new List<BitmapImage>();
+        public List<BitmapImage> OldGreenSingleNumbers = new List<BitmapImage>();
 
         public List<BitmapImage> CustomNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomSingleNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomBlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomBlueSingleNumbers = new List<BitmapImage>();
+        public List<BitmapImage> CustomGreenNumbers = new List<BitmapImage>();
+        public List<BitmapImage> CustomGreenSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
 
@@ -146,6 +152,7 @@ namespace KhTracker
         public bool hintedHint;
         public bool complete;
         public int progress;
+        public bool containsGhost;
 
         public List<string> checkCount = new List<string>();
 
@@ -168,6 +175,7 @@ namespace KhTracker
             hintedHint = false;
             complete = false;
             progress = 0;
+            containsGhost = false;
         }
     }
 

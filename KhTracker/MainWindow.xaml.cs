@@ -550,6 +550,11 @@ namespace KhTracker
                     Color = "B";
                     value = 100;
                 }
+
+                if (data.WorldsData[location].containsGhost)
+                {
+                    Color = "G";
+                }
             }
             else
             {

@@ -562,7 +562,9 @@
     <Image x:Key="Cus-G_ProofOfCon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
     <Image x:Key="Cus-G_ProofOfPea"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-G_PromiseCharm"	Source="pack://application:,,,/CustomImages/Checks/Ghost/promise_charm.png" x:Shared="false"/>
-    
+    <Image x:Key="Cus-G_OnceMore"			Source="pack://application:,,,/CustomImages/Checks/Ghost/once_more.png"/>
+    <Image x:Key="Cus-G_SecondChance"		Source="pack://application:,,,/CustomImages/Checks/Ghost/second_chance.png"/>
+
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>
     <Image x:Key="Cus-SimulatedImage" 			Source="pack://application:,,,/CustomImages/Worlds/simulated_twilight_town.png" x:Shared="false"/>

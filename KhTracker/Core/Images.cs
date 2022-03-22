@@ -36,7 +36,7 @@ namespace KhTracker
         //handle adding all custom images and such
         public void InitImages()
         {
-            #region Numbers
+            #region KH2 Yellow Numbers
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/_QuestionMark.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/_0.png", UriKind.Relative)));
             data.Numbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/_1.png", UriKind.Relative)));
@@ -150,7 +150,9 @@ namespace KhTracker
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/7.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/8.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/9.png", UriKind.Relative)));
+            #endregion
 
+            #region KH2 Blue Numbers
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/_QuestionMark.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/_0.png", UriKind.Relative)));
             data.BlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/_1.png", UriKind.Relative)));
@@ -264,8 +266,125 @@ namespace KhTracker
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/7.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/8.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/9.png", UriKind.Relative)));
+            #endregion
 
-            //Old numbers
+            #region KH2 Green Numbers
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_QuestionMark.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_0.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_1.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_2.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_3.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_4.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_5.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_6.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_7.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_8.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/_9.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/10.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/11.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/12.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/13.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/14.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/15.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/16.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/17.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/18.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/19.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/20.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/21.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/22.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/23.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/24.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/25.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/26.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/27.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/28.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/29.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/30.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/31.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/32.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/33.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/34.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/35.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/36.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/37.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/38.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/39.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/40.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/41.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/42.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/43.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/44.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/45.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/46.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/47.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/48.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/49.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/50.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/51.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/52.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/53.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/54.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/55.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/56.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/57.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/58.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/59.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/60.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/61.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/62.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/63.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/64.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/65.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/66.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/67.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/68.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/69.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/70.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/71.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/72.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/73.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/74.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/75.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/76.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/77.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/78.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/79.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/80.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/81.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/82.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/83.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/84.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/85.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/86.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/87.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/88.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/89.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/90.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/91.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/92.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/93.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/94.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/95.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/96.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/97.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/98.png", UriKind.Relative)));
+            data.GreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/99.png", UriKind.Relative)));
+
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/QuestionMark.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/0.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/1.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/2.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/3.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/4.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/5.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/6.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/7.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/8.png", UriKind.Relative)));
+            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/9.png", UriKind.Relative)));
+            #endregion
+
+            #region Old Yellow
             data.OldNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/_QuestionMark.png", UriKind.Relative)));
             data.OldNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/_0.png", UriKind.Relative)));
             data.OldNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/_1.png", UriKind.Relative)));
@@ -379,7 +498,9 @@ namespace KhTracker
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/7.png", UriKind.Relative)));
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/8.png", UriKind.Relative)));
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/9.png", UriKind.Relative)));
+            #endregion
 
+            #region Old Blue
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/_QuestionMark.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/_0.png", UriKind.Relative)));
             data.OldBlueNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/_1.png", UriKind.Relative)));
@@ -493,8 +614,125 @@ namespace KhTracker
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/7.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/8.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/9.png", UriKind.Relative)));
+            #endregion
 
+            #region Old Green
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_QuestionMark.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_0.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_1.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_2.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_3.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_4.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_5.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_6.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_7.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_8.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/_9.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/10.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/11.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/12.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/13.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/14.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/15.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/16.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/17.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/18.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/19.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/20.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/21.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/22.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/23.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/24.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/25.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/26.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/27.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/28.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/29.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/30.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/31.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/32.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/33.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/34.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/35.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/36.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/37.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/38.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/39.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/40.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/41.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/42.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/43.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/44.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/45.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/46.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/47.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/48.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/49.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/50.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/51.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/52.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/53.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/54.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/55.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/56.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/57.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/58.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/59.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/60.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/61.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/62.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/63.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/64.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/65.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/66.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/67.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/68.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/69.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/70.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/71.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/72.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/73.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/74.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/75.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/76.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/77.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/78.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/79.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/80.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/81.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/82.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/83.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/84.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/85.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/86.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/87.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/88.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/89.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/90.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/91.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/92.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/93.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/94.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/95.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/96.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/97.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/98.png", UriKind.Relative)));
+            data.OldGreenNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/99.png", UriKind.Relative)));
 
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/QuestionMark.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/0.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/1.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/2.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/3.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/4.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/5.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/6.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/7.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/8.png", UriKind.Relative)));
+            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/9.png", UriKind.Relative)));
+            #endregion
+
+            #region Custom
             //Custom numbers
             //Default are the KH2 numbers
             string OldPath = "Images/Numbers/Old/";
@@ -750,8 +988,14 @@ namespace KhTracker
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
             #endregion
 
+
+            //temp. fix later after number refatcoring
+            data.CustomGreenNumbers = data.GreenNumbers;
+            data.CustomGreenSingleNumbers = data.GreenSingleNumbers;
+
             //i really hate how i did some of this
 
+            //for autodetect
             data.AD_Connect = new BitmapImage(new Uri("Images/connect.png", UriKind.Relative));
             data.AD_PC = new BitmapImage(new Uri("Images/PC.png", UriKind.Relative));
             data.AD_PCred = new BitmapImage(new Uri("Images/PCred.png", UriKind.Relative));
@@ -1021,8 +1265,10 @@ namespace KhTracker
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             var NormalNum = data.Numbers;
             var BlueNum = data.BlueNumbers;
+            var GreenNum = data.GreenNumbers;
             var SingleNum = data.SingleNumbers;
             var SingleBlueNum = data.BlueSingleNumbers;
+            var SingleGreenNum = data.GreenSingleNumbers;
 
             //Get correct numbers
             {
@@ -1030,8 +1276,10 @@ namespace KhTracker
                 {
                     NormalNum = data.OldNumbers;
                     BlueNum = data.OldBlueNumbers;
+                    GreenNum = data.OldGreenNumbers;
                     SingleNum = data.OldSingleNumbers;
                     SingleBlueNum = data.OldBlueSingleNumbers;
+                    SingleGreenNum = data.OldGreenSingleNumbers;
                 }
 
                 if (CustomMode)
@@ -1046,28 +1294,32 @@ namespace KhTracker
                         BlueNum = data.CustomBlueNumbers;
                         SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
+                    //if (CustomGreenNumbersFound)
+                    //{
+                    //    GreenNum = data.CustomGreenNumbers;
+                    //    SingleGreenNum = data.CustomGreenSingleNumbers;
+                    //}
                 }
             }
 
             //return correct number list
-            if (type == "Y")
+            switch(type)
             {
-                return NormalNum;
+                case "Y":
+                    return NormalNum;
+                case "B":
+                    return BlueNum;
+                case "S":
+                    return SingleNum;
+                case "SB":
+                    return SingleBlueNum;
+                case "G":
+                    return GreenNum;
+                case "SG":
+                    return SingleGreenNum;
+                default:
+                    return NormalNum;
             }
-            else if (type == "B")
-            {
-                return BlueNum;
-            }
-            else if (type == "S")
-            {
-                return SingleNum;
-            }
-            else if (type == "SB")
-            {
-                return SingleBlueNum;
-            }
-            else
-                return NormalNum;
         }
 
         //get cutom images for toggles. i'll recode this to be better later i swear
