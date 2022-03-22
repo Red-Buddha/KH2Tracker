@@ -917,7 +917,7 @@ namespace KhTracker
             Defense.Visibility = Visibility.Hidden;
             //Weapon.Visibility = Visibility.Hidden;
 
-            Connect.Visibility = Visibility.Hidden;
+            Connect.Visibility = (AutoDetectOption.IsChecked) ? Visibility.Visible : Visibility.Hidden;
 
             broadcast.LevelIcon.Visibility = Visibility.Hidden;
             broadcast.Level.Visibility = Visibility.Hidden;
@@ -1201,18 +1201,19 @@ namespace KhTracker
                 ReportRow.Height = new GridLength(1, GridUnitType.Star);
 
                 //set visibility stuff
-                Collected.Visibility = Visibility.Hidden;
-                CollectedBar.Visibility = Visibility.Hidden;
-                CheckTotal.Visibility = Visibility.Hidden;
-                Score100.Visibility = Visibility.Visible;
-                Score10.Visibility = Visibility.Visible;
-                Score1.Visibility = Visibility.Visible;
-                broadcast.Collected.Visibility = Visibility.Hidden;
-                broadcast.CollectedBar.Visibility = Visibility.Hidden;
-                broadcast.CheckTotal.Visibility = Visibility.Hidden;
-                broadcast.Score100.Visibility = Visibility.Visible;
-                broadcast.Score10.Visibility = Visibility.Visible;
-                broadcast.Score1.Visibility = Visibility.Visible;
+                //Collected.Visibility = Visibility.Hidden;
+                //CollectedBar.Visibility = Visibility.Hidden;
+                //CheckTotal.Visibility = Visibility.Hidden;
+                //Score100.Visibility = Visibility.Visible;
+                //Score10.Visibility = Visibility.Visible;
+                //Score1.Visibility = Visibility.Visible;
+                //broadcast.Collected.Visibility = Visibility.Hidden;
+                //broadcast.CollectedBar.Visibility = Visibility.Hidden;
+                //broadcast.CheckTotal.Visibility = Visibility.Hidden;
+                //broadcast.Score100.Visibility = Visibility.Visible;
+                //broadcast.Score10.Visibility = Visibility.Visible;
+                //broadcast.Score1.Visibility = Visibility.Visible;
+                ShowCheckCountToggle(null, null);
 
                 broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
                 broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);

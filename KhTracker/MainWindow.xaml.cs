@@ -47,7 +47,10 @@ namespace KhTracker
 
             //Init auto-detect
             if (AutoDetectOption.IsChecked)
-                SetAutoDetectTimer();
+            {
+                AutoDetectToggle(null, null);
+                //SetAutoDetectTimer();
+            }
         }
 
         private void InitData()
