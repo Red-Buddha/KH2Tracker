@@ -64,6 +64,7 @@
                 <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
                 <MenuItem Name="FormsGrowthOption"   	Header="Forms and Growth Abilities" IsCheckable="True" IsChecked="True" Click="FormsGrowthToggle"/>
                 <MenuItem Name="GhostItemOption"   	    Header="Track Ghost Items (Points)" IsCheckable="True" IsChecked="True" Click="GhostItemToggle"/>
+                <MenuItem Name="CheckCountOption"  	    Header="Show Check Count" IsCheckable="True" IsChecked="True" Click="ShowCheckCountToggle"/>
                 <MenuItem Name="BroadcastGrowthOption"  Header="Broadcast Window Growth Abilities" IsCheckable="True" IsChecked="False" Click="BroadcastGrowthToggle"/>
                 <MenuItem Name="BroadcastStatsOption"   Header="Broadcast Window Player Stats" IsCheckable="True" IsChecked="False" Click="BroadcastStatsToggle"/>
                 <Separator/>
@@ -879,7 +880,7 @@
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform Y="-2" X="5"/>
+                            <TranslateTransform Y="-2"/>
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
