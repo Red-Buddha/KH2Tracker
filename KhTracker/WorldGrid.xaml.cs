@@ -29,6 +29,9 @@ namespace KhTracker
         public static int Ghost_Magnet = 0;
         public static int Ghost_Pages = 0;
 
+        //A single spot to have referenced for the opacity of the ghost checks idk where to put this
+        public static double universalOpacity = 0.5;
+
         public WorldGrid()
         {
             InitializeComponent();
@@ -183,6 +186,9 @@ namespace KhTracker
             window.ItemPool.Children.Remove(item);
             Handle_WorldGrid(item, true);
 
+            //Reset any obtained item to be normal transparency
+            item.Opacity = 1.0;
+
             // update collection count
             window.IncrementCollected();
 
@@ -201,6 +207,8 @@ namespace KhTracker
             item.MouseDown += item.Item_Return;
 
             item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
+
+            SetItemPoolGhosts(window);
         }
 
         public bool Handle_Report(Item item, MainWindow window, Data data)
@@ -548,6 +556,96 @@ namespace KhTracker
             else
             {
                 Data.WorldItems[world].Add(GhostName);
+            }
+
+            //don't bother messing with magic or pages
+            if (!itemname.Contains("Fire") && !itemname.Contains("Blizzard") && !itemname.Contains("Thunder")
+                && !itemname.Contains("Cure") && !itemname.Contains("Reflect") && !itemname.Contains("Magnet")
+                && !itemname.Contains("Page"))
+                window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(convertItemNames[itemname]))].Opacity = universalOpacity;
+        }
+
+        public void SetItemPoolGhosts(MainWindow window)
+        {
+            string checkName = "";
+            //Magic
+            //fires
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Fire; i++)
+            {
+                checkName = "Fire" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+            //blizzards
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Blizzard; i++)
+            {
+                checkName = "Blizzard" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+            //thunders
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Thunder; i++)
+            {
+                checkName = "Thunder" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+            //cures
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Cure; i++)
+            {
+                checkName = "Cure" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+            //reflects
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Reflect; i++)
+            {
+                checkName = "Reflect" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+            //magnets
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Magnet; i++)
+            {
+                checkName = "Magnet" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
+            }
+
+            //Pages
+            for (int i = 0, j = 0; i < 5 && j < Ghost_Pages; i++)
+            {
+                checkName = "TornPage" + (i + 1).ToString();
+                //if the item is not in the bottom item pool, skip changing it's opacity
+                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                {
+                    j++;
+                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                }
             }
         }
 
