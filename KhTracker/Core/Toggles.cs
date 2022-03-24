@@ -316,6 +316,11 @@ namespace KhTracker
             WorldGrid.Ghost_Pages_obtained = 0;
         }
 
+        private void GhostMathToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.GhostMath = GhostMathOption.IsChecked;
+        }
+
         private void ShowCheckCountToggle(object sender, RoutedEventArgs e)
         {
             ShowCheckCountToggle(CheckCountOption.IsChecked);
@@ -448,33 +453,6 @@ namespace KhTracker
                     }
                 }
             }
-
-            //foreach (string item in Data.GhostItems.Keys.ToList())
-            //{
-            //    if (Data.GhostItems[item].Parent == ItemPool)
-            //    {
-            //        if (data.dragDrop == false)
-            //        {
-            //            Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
-            //
-            //            Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseDown += Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseUp += Data.GhostItems[item].Item_Ghost;
-            //        }
-            //        else
-            //        {
-            //            Data.GhostItems[item].MouseDoubleClick -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseDoubleClick += Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseMove -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseMove += Data.GhostItems[item].Item_Ghost;
-            //
-            //            Data.GhostItems[item].MouseDown -= Data.GhostItems[item].Item_Ghost;
-            //            Data.GhostItems[item].MouseUp -= Data.GhostItems[item].Item_Ghost;
-            //        }
-            //    }
-            //}
         }
 
         private void TopMostToggle(object sender, RoutedEventArgs e)

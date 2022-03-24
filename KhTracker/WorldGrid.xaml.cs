@@ -322,7 +322,7 @@ namespace KhTracker
 
         public int TableReturn(string nameButton)
         {
-            if (GetItemType.Keys.Contains(nameButton))
+            if (GetItemType.Keys.Contains(nameButton) && ((MainWindow)App.Current.MainWindow).GhostMathOption.IsChecked)
             {
                 if (MainWindow.data.PointsDatanew.Keys.Contains(GetItemType[nameButton]))
                     return MainWindow.data.PointsDatanew[GetItemType[nameButton]];

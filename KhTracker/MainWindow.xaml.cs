@@ -302,6 +302,9 @@ namespace KhTracker
                 //HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_HadesCup);
             }
 
+            GhostMathOption.IsChecked = Properties.Settings.Default.GhostMath;
+            GhostMathToggle(null, null);
+
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
 
@@ -327,6 +330,7 @@ namespace KhTracker
 
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
+
 
             //testing background settings stuff (i thought this would be simplier than the above methods)
             //maybe i was wrong. (at least everything is done by 2 settings instead of 8)

@@ -20,6 +20,7 @@ namespace KhTracker
         //dumb stuff to help figure out what to do about custom images
         public static bool CustomNumbersFound = false;
         public static bool CustomBlueNumbersFound = false;
+        public static bool CustomGreenNumbersFound = false;
         public static bool CustomSwordFound = false;
         public static bool CustomStaffFound = false;
         public static bool CustomShieldFound = false;
@@ -738,14 +739,17 @@ namespace KhTracker
             string OldPath = "Images/Numbers/Old/";
             string GoodPath = "Images/Numbers/Kh2/";
             string GoodPathBlue = "Images/Numbers/Kh2/";
+            string GoodPathGreen = "Images/Numbers/Kh2/";
             //Separete variable for if the user wanted to customize one set of numbers
             var urikindvar = UriKind.Relative;
             var urikindvarblue = UriKind.Relative;
+            var urikindvargreen = UriKind.Relative;
             //Fix paths if Old Numbers toggle is on
             if (OldNumOption.IsChecked == true)
             {
                 GoodPath = OldPath;
                 GoodPathBlue = OldPath;
+                GoodPathGreen = OldPath;
             }
             //very lazy method here. i don't feel like setting it up to check if each and every number image exists cause there are literally over 200
             //so i just check 4 images in each folder to decide if custom numbers should be used.
@@ -760,6 +764,12 @@ namespace KhTracker
                 GoodPathBlue = "pack://application:,,,/CustomImages/Numbers/";
                 urikindvarblue = UriKind.Absolute;
                 CustomBlueNumbersFound = true;
+            }
+            if (File.Exists("CustomImages/Numbers/Green/_5.png") && File.Exists("CustomImages/Numbers/Green/48.png") && File.Exists("CustomImages/Numbers/Green/_QuestionMark.png") && File.Exists("CustomImages/Numbers/Green/QuestionMark.png"))
+            {
+                GoodPathGreen = "pack://application:,,,/CustomImages/Numbers/";
+                urikindvargreen = UriKind.Absolute;
+                CustomGreenNumbersFound = true;
             }
 
             data.CustomNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/_QuestionMark.png", urikindvar)));
@@ -874,6 +884,7 @@ namespace KhTracker
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/7.png", urikindvar)));
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/8.png", urikindvar)));
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/9.png", urikindvar)));
+
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/_QuestionMark.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/_0.png", urikindvarblue)));
             data.CustomBlueNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/_1.png", urikindvarblue)));
@@ -986,12 +997,124 @@ namespace KhTracker
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/7.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/8.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
+
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_QuestionMark.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_0.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_1.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_2.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_3.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_4.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_5.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_6.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_7.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_8.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/_9.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/10.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/11.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/12.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/13.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/14.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/15.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/16.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/17.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/18.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/19.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/20.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/21.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/22.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/23.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/24.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/25.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/26.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/27.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/28.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/29.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/30.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/31.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/32.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/33.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/34.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/35.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/36.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/37.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/38.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/39.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/40.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/41.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/42.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/43.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/44.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/45.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/46.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/47.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/48.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/49.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/50.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/51.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/52.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/53.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/54.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/55.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/56.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/57.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/58.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/59.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/60.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/61.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/62.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/63.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/64.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/65.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/66.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/67.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/68.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/69.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/70.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/71.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/72.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/73.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/74.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/75.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/76.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/77.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/78.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/79.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/80.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/81.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/82.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/83.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/84.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/85.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/86.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/87.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/88.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/89.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/90.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/91.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/92.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/93.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/94.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/95.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/96.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/97.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/98.png", urikindvargreen)));
+            data.CustomGreenNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/99.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/QuestionMark.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/0.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/1.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/2.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/3.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/4.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/5.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/6.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/7.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/8.png", urikindvargreen)));
+            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/9.png", urikindvargreen)));
             #endregion
 
-
             //temp. fix later after number refatcoring
-            data.CustomGreenNumbers = data.GreenNumbers;
-            data.CustomGreenSingleNumbers = data.GreenSingleNumbers;
+            //data.CustomGreenNumbers = data.GreenNumbers;
+            //data.CustomGreenSingleNumbers = data.GreenSingleNumbers;
 
             //i really hate how i did some of this
 
@@ -1294,11 +1417,11 @@ namespace KhTracker
                         BlueNum = data.CustomBlueNumbers;
                         SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
-                    //if (CustomGreenNumbersFound)
-                    //{
-                    //    GreenNum = data.CustomGreenNumbers;
-                    //    SingleGreenNum = data.CustomGreenSingleNumbers;
-                    //}
+                    if (CustomGreenNumbersFound)
+                    {
+                        GreenNum = data.CustomGreenNumbers;
+                        SingleGreenNum = data.CustomGreenSingleNumbers;
+                    }
                 }
             }
 

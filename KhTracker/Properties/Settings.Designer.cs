@@ -574,5 +574,17 @@ namespace KhTracker.Properties {
                 this["CheckCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GhostMath {
+            get {
+                return ((bool)(this["GhostMath"]));
+            }
+            set {
+                this["GhostMath"] = value;
+            }
+        }
     }
 }

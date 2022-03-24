@@ -209,6 +209,12 @@ namespace KhTracker
                         bar.Source = NumberBarY;
                     }
 
+                    if (data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].containsGhost)
+                    {
+                        number = GetDataNumber("G")[world.Value + 1];
+
+                    }
+
                     if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint) 
                         || (data.WorldsData.ContainsKey(world.Key) &&  world.Key != "GoA" && data.WorldsData[world.Key].complete))
                     {
@@ -243,6 +249,13 @@ namespace KhTracker
                 if (total.Value <= -1)
                 {
                     worldTotal.Source = GetDataNumber("S")[0];
+                }
+                else if (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].containsGhost)
+                {
+                    if (total.Value <= 10)
+                        worldTotal.Source = GetDataNumber("SG")[total.Value];
+                    else
+                        worldTotal.Source = GetDataNumber("G")[total.Value];
                 }
                 else if ((data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].hintedHint)
                     || (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].complete))
@@ -298,7 +311,6 @@ namespace KhTracker
 
             UpdateNumbers();
         }
-
 
         void BroadcastWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -444,8 +456,10 @@ namespace KhTracker
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             var NormalNum = data.Numbers;
             var BlueNum = data.BlueNumbers;
+            var GreenNum = data.GreenNumbers;
             var SingleNum = data.SingleNumbers;
             var SingleBlueNum = data.BlueSingleNumbers;
+            var SingleGreenNum = data.GreenSingleNumbers;
 
             //Get correct numbers
             {
@@ -453,8 +467,10 @@ namespace KhTracker
                 {
                     NormalNum = data.OldNumbers;
                     BlueNum = data.OldBlueNumbers;
+                    GreenNum = data.OldGreenNumbers;
                     SingleNum = data.OldSingleNumbers;
                     SingleBlueNum = data.OldBlueSingleNumbers;
+                    SingleGreenNum = data.OldGreenSingleNumbers;
                 }
 
                 if (CustomMode)
@@ -469,28 +485,32 @@ namespace KhTracker
                         BlueNum = data.CustomBlueNumbers;
                         SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
+                    if (MainWindow.CustomGreenNumbersFound)
+                    {
+                        GreenNum = data.CustomGreenNumbers;
+                        SingleGreenNum = data.CustomGreenSingleNumbers;
+                    }
                 }
             }
 
             //return correct number list
-            if (type == "Y")
+            switch(type)
             {
-                return NormalNum;
+                case "Y":
+                    return NormalNum;
+                case "B":
+                    return BlueNum;
+                case "S":
+                    return SingleNum;
+                case "SB":
+                    return SingleBlueNum;
+                case "G":
+                    return GreenNum;
+                case "SG":
+                    return SingleGreenNum;
+                default:
+                    return NormalNum;
             }
-            else if (type == "B")
-            {
-                return BlueNum;
-            }
-            else if (type == "S")
-            {
-                return SingleNum;
-            }
-            else if (type == "SB")
-            {
-                return SingleBlueNum;
-            }
-            else
-                return NormalNum;
         }
     }
 }

@@ -195,11 +195,12 @@ namespace KhTracker
 
                 MouseEnter -= Report_Hover;
 
-                Console.WriteLine(this.Name);
-                Console.WriteLine(parent.Name);
-                Console.WriteLine();
+                //Console.WriteLine(this.Name);
+                //Console.WriteLine(parent.Name);
+                //Console.WriteLine();
 
-                UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
+                if (!this.Name.StartsWith("Ghost_"))
+                    UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
             }
         }
 
