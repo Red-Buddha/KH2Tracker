@@ -29,6 +29,15 @@ namespace KhTracker
         public static int Ghost_Magnet = 0;
         public static int Ghost_Pages = 0;
 
+        //amount of obtained ghost magic/pages
+        public static int Ghost_Fire_obtained = 0;
+        public static int Ghost_Blizzard_obtained = 0;
+        public static int Ghost_Thunder_obtained = 0;
+        public static int Ghost_Cure_obtained = 0;
+        public static int Ghost_Reflect_obtained = 0;
+        public static int Ghost_Magnet_obtained = 0;
+        public static int Ghost_Pages_obtained = 0;
+
         //A single spot to have referenced for the opacity of the ghost checks idk where to put this
         public static double universalOpacity = 0.5;
 
@@ -570,7 +579,7 @@ namespace KhTracker
             string checkName = "";
             //Magic
             //fires
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Fire; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Fire - Ghost_Fire_obtained; i++)
             {
                 checkName = "Fire" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -581,7 +590,7 @@ namespace KhTracker
                 }
             }
             //blizzards
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Blizzard; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Blizzard - Ghost_Blizzard_obtained; i++)
             {
                 checkName = "Blizzard" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -592,7 +601,7 @@ namespace KhTracker
                 }
             }
             //thunders
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Thunder; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Thunder - Ghost_Thunder_obtained; i++)
             {
                 checkName = "Thunder" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -603,7 +612,7 @@ namespace KhTracker
                 }
             }
             //cures
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Cure; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Cure - Ghost_Cure_obtained; i++)
             {
                 checkName = "Cure" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -614,7 +623,7 @@ namespace KhTracker
                 }
             }
             //reflects
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Reflect; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Reflect - Ghost_Reflect_obtained; i++)
             {
                 checkName = "Reflect" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -625,7 +634,7 @@ namespace KhTracker
                 }
             }
             //magnets
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Magnet; i++)
+            for (int i = 0, j = 0; i < 3 && j < Ghost_Magnet - Ghost_Magnet_obtained; i++)
             {
                 checkName = "Magnet" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -637,7 +646,7 @@ namespace KhTracker
             }
 
             //Pages
-            for (int i = 0, j = 0; i < 5 && j < Ghost_Pages; i++)
+            for (int i = 0, j = 0; i < 5 && j < Ghost_Pages - Ghost_Pages_obtained; i++)
             {
                 checkName = "TornPage" + (i + 1).ToString();
                 //if the item is not in the bottom item pool, skip changing it's opacity
@@ -693,7 +702,20 @@ namespace KhTracker
                     {
                         if (Data.WorldItems[world].Contains(multiname))
                         {
-
+                            if (itemname.Contains("Fire"))
+                                Ghost_Fire_obtained++;
+                            if (itemname.Contains("Blizzard"))
+                                Ghost_Blizzard_obtained++;
+                            if (itemname.Contains("Thunder"))
+                                Ghost_Thunder_obtained++;
+                            if (itemname.Contains("Cure"))
+                                Ghost_Cure_obtained++;
+                            if (itemname.Contains("Reflect"))
+                                Ghost_Reflect_obtained++;
+                            if (itemname.Contains("Magnet"))
+                                Ghost_Magnet_obtained++;
+                            if (itemname.Contains("Page"))
+                                Ghost_Pages_obtained++;
                             Item Ghostitem = Data.GhostItems[multiname];
                             Handle_WorldGrid(Ghostitem, false);
                             return;

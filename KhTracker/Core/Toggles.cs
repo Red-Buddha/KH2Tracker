@@ -307,6 +307,13 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect = 0;
             WorldGrid.Ghost_Magnet = 0;
             WorldGrid.Ghost_Pages = 0;
+            WorldGrid.Ghost_Fire_obtained = 0;
+            WorldGrid.Ghost_Blizzard_obtained = 0;
+            WorldGrid.Ghost_Thunder_obtained = 0;
+            WorldGrid.Ghost_Cure_obtained = 0;
+            WorldGrid.Ghost_Reflect_obtained = 0;
+            WorldGrid.Ghost_Magnet_obtained = 0;
+            WorldGrid.Ghost_Pages_obtained = 0;
         }
 
         private void ShowCheckCountToggle(object sender, RoutedEventArgs e)

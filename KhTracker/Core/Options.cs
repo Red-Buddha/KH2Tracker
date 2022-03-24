@@ -1039,6 +1039,13 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect = 0;
             WorldGrid.Ghost_Magnet = 0;
             WorldGrid.Ghost_Pages = 0;
+            WorldGrid.Ghost_Fire_obtained = 0;
+            WorldGrid.Ghost_Blizzard_obtained = 0;
+            WorldGrid.Ghost_Thunder_obtained = 0;
+            WorldGrid.Ghost_Cure_obtained = 0;
+            WorldGrid.Ghost_Reflect_obtained = 0;
+            WorldGrid.Ghost_Magnet_obtained = 0;
+            WorldGrid.Ghost_Pages_obtained = 0;
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
 
@@ -1069,6 +1076,9 @@ namespace KhTracker
             broadcast.UpdateNumbers();
             UpdatePointScore(0);
 
+            foreach (ContentControl item in ItemPool.Children)
+                if (!item.Name.Contains("Ghost"))
+                    item.Opacity = 1.0;
         }
 
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
