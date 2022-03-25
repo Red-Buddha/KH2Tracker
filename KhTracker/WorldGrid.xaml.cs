@@ -322,7 +322,24 @@ namespace KhTracker
 
         public int TableReturn(string nameButton)
         {
-            if (!nameButton.StartsWith("Ghost_") && !((MainWindow)App.Current.MainWindow).GhostMathOption.IsChecked)
+            if (nameButton.StartsWith("Ghost_"))
+            {
+                if (((MainWindow)App.Current.MainWindow).GhostMathOption.IsChecked)
+                {
+                    if (GetItemType.Keys.Contains(nameButton))
+                    {
+                        if (MainWindow.data.PointsDatanew.Keys.Contains(GetItemType[nameButton]))
+                            return MainWindow.data.PointsDatanew[GetItemType[nameButton]];
+                        else
+                            return 0;
+                    }
+                    else
+                        return 0;
+                }
+                else
+                    return 0;
+            }
+            else
             {
                 if (GetItemType.Keys.Contains(nameButton))
                 {
@@ -334,8 +351,6 @@ namespace KhTracker
                 else
                     return 0;
             }
-            else
-                return 0;
         }
 
         //points hints stuff
