@@ -70,15 +70,21 @@
                 <MenuItem Name="GhostMathOption"   	    Header="Ghost Item Auto-Math (Points Mode)" IsCheckable="True" IsChecked="True" Click="GhostMathToggle"/>
                 <MenuItem Name="CheckCountOption"  	    Header="Show Check Count (Points Mode)" IsCheckable="True" IsChecked="False" Click="ShowCheckCountToggle"/>
                 <Separator/>
-                <MenuItem Name="NextLevelCheckOption1" Header="Disable Level Check" IsCheckable="True" IsChecked="True" Click="NextLevelCheck1Option"/>
-                <MenuItem Name="NextLevelCheckOption50" Header="Show Level Check (50)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck50Option"/>
-                <MenuItem Name="NextLevelCheckOption99" Header="Show Level Check (99)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck99Option"/>
+                <MenuItem Name="NextLevelCheckOption" Header="Show Next Level Check" IsCheckable="True" IsChecked="False" Click="NextLevelCheckToggle"/>
+                <!--MenuItem Name="NextLevelCheckOption1" Header="Disable Level Check" IsCheckable="True" IsChecked="True" Click="NextLevelCheck1Option"/-->
+                <!--MenuItem Name="NextLevelCheckOption50" Header="Show Level Check (50)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck50Option"/-->
+                <!--MenuItem Name="NextLevelCheckOption99" Header="Show Level Check (99)" IsCheckable="True" IsChecked="False" Click="NextLevelCheck99Option"/-->
             </MenuItem>
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Name="SoraHeartOption"        Header="Sora's Heart" IsCheckable="True" IsChecked="True" Click="SoraHeartToggle"/>
+                <MenuItem Name="SoraLevel01Option" 		Header="Level 1 Checks" IsCheckable="True" IsChecked="True" Click="SoraLevel01Toggle"/>
+                <MenuItem Name="SoraLevel50Option" 		Header="Level 50 Checks" IsCheckable="True" IsChecked="False" Click="SoraLevel50Toggle"/>
+                <MenuItem Name="SoraLevel99Option" 		Header="Level 99 Checks" IsCheckable="True" IsChecked="False" Click="SoraLevel99Toggle"/>
+                <Separator/>
                 <MenuItem Name="SimulatedOption"        Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
                 <MenuItem Name="HundredAcreWoodOption"  Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
                 <MenuItem Name="AtlanticaOption"        Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>
+                <Separator/>
                 <MenuItem Name="CavernOption" 			Header="Cavern of Rememberance" IsCheckable="True" IsChecked="False" Click="CavernToggle"/>
                 <MenuItem Name="TimelessOption" 		Header="Timeless River" IsCheckable="True" IsChecked="False" Click="TimelessToggle"/>
                 <MenuItem Name="OCCupsOption" 		    Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/>
@@ -113,7 +119,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA Pre-1.6.3-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA Pre-1.6.4-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>

@@ -1972,6 +1972,25 @@ namespace KhTracker
                         OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
                         broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
                     }
+
+                    if (SoraLevel01Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage");
+                    }
+
+                    if (SoraLevel50Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage50");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage50");
+                    }
+
+                    if (SoraLevel99Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage99");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage99");
+                    }
+
                 }
                 if (OldWorldOption.IsChecked)
                 {
@@ -2007,6 +2026,24 @@ namespace KhTracker
                         OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
                         broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
                     }
+
+                    if (SoraLevel01Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage");
+                    }
+
+                    if (SoraLevel50Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage50");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage50");
+                    }
+
+                    if (SoraLevel99Option.IsChecked)
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage99");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage99");
+                    }
                 }
             }
 
@@ -2018,11 +2055,6 @@ namespace KhTracker
                 //main window uses unless the specific broadacst window world folder is found
                 if (Directory.Exists("CustomImages/Worlds/"))
                 {
-                    if (File.Exists("CustomImages/Worlds/level.png"))
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
-                    }
                     if (File.Exists("CustomImages/Worlds/simulated_twilight_town.png"))
                     {
                         SimulatedTwilightTown.SetResourceReference(ContentProperty, "Cus-SimulatedImage");
@@ -2129,17 +2161,30 @@ namespace KhTracker
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                         }
-                    }
 
+                        if (File.Exists("CustomImages/Worlds/level.png") && SoraLevel01Option.IsChecked)
+                        {
+                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
+                        }
+
+                        if (File.Exists("CustomImages/Worlds/level_50.png") && SoraLevel50Option.IsChecked)
+                        {
+                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage50");
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage50");
+                        }
+
+                        if (File.Exists("CustomImages/Worlds/level_99.png") && SoraLevel99Option.IsChecked)
+                        {
+                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage99");
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage99");
+                        }
+                    }
                 }
 
                 //Broadcast Window
                 if (Directory.Exists("CustomImages/Broadcast/Worlds/"))
                 {
-                    if (File.Exists("CustomImages/Broadcast/Worlds/level.png"))
-                    {
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
-                    }
                     if (File.Exists("CustomImages/Broadcast/Worlds/simulated_twilight_town.png"))
                     {
                         broadcast.SimulatedTwilightTown.SetResourceReference(ContentProperty, "Cus-B_SimulatedImage");
@@ -2222,6 +2267,21 @@ namespace KhTracker
                         else if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum_cups.png") && OCCupsOption.IsChecked)
                         {
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusCupsImage");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/level.png") && SoraLevel01Option.IsChecked)
+                        {
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/level_50.png") && SoraLevel50Option.IsChecked)
+                        {
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage50");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/level_99.png") && SoraLevel99Option.IsChecked)
+                        {
+                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage99");
                         }
                     }
 

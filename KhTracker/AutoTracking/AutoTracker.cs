@@ -612,18 +612,33 @@ namespace KhTracker
                 FormRow.Height = new GridLength(0.65, GridUnitType.Star);
 
             //levelcheck visibility
-            if (NextLevelCheckOption50.IsChecked || NextLevelCheckOption99.IsChecked)
+            if (NextLevelCheckOption.IsChecked && (SoraLevel50Option.IsChecked || SoraLevel99Option.IsChecked))
             {
                 LevelCheckIcon.Visibility = Visibility.Visible;
                 LevelCheck.Visibility = Visibility.Visible;
             
-                if (NextLevelCheckOption50.IsChecked)
+                if (SoraLevel50Option.IsChecked)
                     stats.SetMaxLevelCheck(50);
                 else
                     stats.SetMaxLevelCheck(99);
             }
-            else
+            else if (NextLevelCheckOption.IsChecked && SoraLevel01Option.IsChecked)
+            {
                 stats.SetMaxLevelCheck(1);
+            }
+
+            //if (NextLevelCheckOption50.IsChecked || NextLevelCheckOption99.IsChecked)
+            //{
+            //    LevelCheckIcon.Visibility = Visibility.Visible;
+            //    LevelCheck.Visibility = Visibility.Visible;
+            //
+            //    if (NextLevelCheckOption50.IsChecked)
+            //        stats.SetMaxLevelCheck(50);
+            //    else
+            //        stats.SetMaxLevelCheck(99);
+            //}
+            //else
+            //    stats.SetMaxLevelCheck(1);
 
             SetBindings();
             SetTimer();
@@ -634,7 +649,7 @@ namespace KhTracker
 
         private async void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
         {
-            int Delay = 3000;
+            int Delay = 4000;
 
             //if (!AutoDetectOption.IsChecked)
             //    Delay = 0;

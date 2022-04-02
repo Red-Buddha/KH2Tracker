@@ -788,7 +788,8 @@ namespace KhTracker
             //next level check stuff
             if (LevelCheckIcon.Visibility == Visibility.Visible || LevelCheck.Visibility == Visibility.Visible)
             {
-                NextLevelCheck1Option();
+                //NextLevelCheck1Option();
+                NextLevelDisplay();
             
                 if (MinNumOption.IsChecked)
                     LevelCheck.Source = data.Numbers[0 + 1];
@@ -1273,7 +1274,6 @@ namespace KhTracker
                             {
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
 
-                                //REENABLE FOR 1.5
                                 //set all settings to false
                                 {
                                     PromiseCharmToggle(false);
@@ -1288,47 +1288,64 @@ namespace KhTracker
                                     CavernToggle(false);
                                     //TimelessToggle(false);
                                     OCCupsToggle(false);
+
+                                    //update with seedgen later
                                 }
+
                                 //load settings from hints
-                                foreach (var setting in settings)
+                                foreach (string setting in settings)
                                 {
                                     Console.WriteLine("setting found = " + setting);
 
-                                    if (setting == "PromiseCharm")
-                                        PromiseCharmToggle(true);
-
+                                    switch(setting)
+                                    {
+                                        case "PromiseCharm":
+                                            PromiseCharmToggle(true);
+                                            break;
+                                        case "Level":
+                                            {
+                                                SoraHeartToggle(false);
+                                                SoraLevel01Toggle(true);
+                                            }
+                                            break;
+                                        case "ExcludeFrom50":
+                                            {
+                                                SoraHeartToggle(true);
+                                                SoraLevel50Toggle(true);
+                                            }
+                                            break;
+                                        case "ExcludeFrom99":
+                                            {
+                                                SoraHeartToggle(true);
+                                                SoraLevel99Toggle(true);
+                                            }
+                                            break;
+                                        case "Simulated Twilight Town":
+                                            SimulatedToggle(true);
+                                            break;
+                                        case "Hundred Acre Wood":
+                                            HundredAcreWoodToggle(true);
+                                            break;
+                                        case "Atlantica":
+                                            AtlanticaToggle(true);
+                                            break;
+                                        case "Cavern of Remembrance":
+                                            CavernToggle(true);
+                                            break;
+                                        case "Olympus Cups":
+                                            OCCupsToggle(true);
+                                            break;
+                                    }
                                     //if (setting.Key == "Second Chance & Once More ")
                                     //    AbilitiesToggle(true);
-
                                     //if (setting.Key == "Torn Pages")
                                     //    TornPagesToggle(true);
-
                                     //if (setting.Key == "Cure")
                                     //    CureToggle(true);
-
                                     //if (setting.Key == "Final Form")
                                     //    FinalFormToggle(true);
-
-                                    if (setting == "Level")
-                                        SoraHeartToggle(false);
-
-                                    if (setting == "Simulated Twilight Town")
-                                        SimulatedToggle(true);
-
-                                    if (setting == "Hundred Acre Wood")
-                                        HundredAcreWoodToggle(true);
-
-                                    if (setting == "Atlantica")
-                                        AtlanticaToggle(true);
-
-                                    if (setting == "Cavern of Remembrance")
-                                        CavernToggle(true);
-
                                     //if (setting.Key == "Timeless River")
                                     //    TimelessToggle(true);
-
-                                    if (setting == "Olympus Cups")
-                                        OCCupsToggle(true);
                                 }
                             }
 

@@ -493,7 +493,7 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SeedHash {
             get {
                 return ((bool)(this["SeedHash"]));
@@ -584,6 +584,54 @@ namespace KhTracker.Properties {
             }
             set {
                 this["GhostMath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WorldLevel1 {
+            get {
+                return ((bool)(this["WorldLevel1"]));
+            }
+            set {
+                this["WorldLevel1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WorldLevel50 {
+            get {
+                return ((bool)(this["WorldLevel50"]));
+            }
+            set {
+                this["WorldLevel50"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WorldLevel99 {
+            get {
+                return ((bool)(this["WorldLevel99"]));
+            }
+            set {
+                this["WorldLevel99"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NextLevelCheck {
+            get {
+                return ((bool)(this["NextLevelCheck"]));
+            }
+            set {
+                this["NextLevelCheck"] = value;
             }
         }
     }

@@ -957,6 +957,9 @@
     <Content Include="CustomImages\Broadcast\Worlds\hollow_bastion.png" />
     <Content Include="CustomImages\Broadcast\Worlds\land_of_dragons.png" />
     <Content Include="CustomImages\Broadcast\Worlds\level.png" />
+    <Content Include="CustomImages\Broadcast\Worlds\level_1.png" />
+    <Content Include="CustomImages\Broadcast\Worlds\level_50.png" />
+    <Content Include="CustomImages\Broadcast\Worlds\level_99.png" />
     <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum.png" />
     <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum_cups.png" />
     <Content Include="CustomImages\Broadcast\Worlds\port_royal.png" />
@@ -1478,6 +1481,9 @@
     <Content Include="CustomImages\Worlds\hollow_bastion.png" />
     <Content Include="CustomImages\Worlds\land_of_dragons.png" />
     <Content Include="CustomImages\Worlds\level.png" />
+    <Content Include="CustomImages\Worlds\level_1.png" />
+    <Content Include="CustomImages\Worlds\level_50.png" />
+    <Content Include="CustomImages\Worlds\level_99.png" />
     <Content Include="CustomImages\Worlds\olympus_coliseum.png" />
     <Content Include="CustomImages\Worlds\olympus_coliseum_cups.png" />
     <Content Include="CustomImages\Worlds\port_royal.png" />
@@ -1487,6 +1493,12 @@
     <Content Include="CustomImages\Worlds\space_paranoids.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\Worlds\Old\level_1.png" />
+    <Resource Include="Images\Worlds\Old\level_50.png" />
+    <Resource Include="Images\Worlds\Old\level_99.png" />
+    <Resource Include="Images\Worlds\Simple\level_1.png" />
+    <Resource Include="Images\Worlds\Simple\level_50.png" />
+    <Resource Include="Images\Worlds\Simple\level_99.png" />
     <Resource Include="Images\Numbers\Kh2\Green\0.png" />
     <Resource Include="Images\Numbers\Kh2\Green\1.png" />
     <Resource Include="Images\Numbers\Kh2\Green\10.png" />

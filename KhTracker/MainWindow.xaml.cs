@@ -309,21 +309,37 @@ namespace KhTracker
             AutoDetectToggle(null, null);
 
             //Next Level Check
-            NextLevelCheckOption1.IsChecked = Properties.Settings.Default.Level1;
-            if (NextLevelCheckOption1.IsChecked)
-                NextLevelCheck1Option(null, null);
-
-            NextLevelCheckOption50.IsChecked = Properties.Settings.Default.Level50;
-            if (NextLevelCheckOption50.IsChecked)
-                NextLevelCheck50Option(null, null);
-
-            NextLevelCheckOption99.IsChecked = Properties.Settings.Default.Level99;
-            if (NextLevelCheckOption99.IsChecked)
-                NextLevelCheck99Option(null, null);
+            //NextLevelCheckOption1.IsChecked = Properties.Settings.Default.Level1;
+            //if (NextLevelCheckOption1.IsChecked)
+            //    NextLevelCheck1Option(null, null);
+            //
+            //NextLevelCheckOption50.IsChecked = Properties.Settings.Default.Level50;
+            //if (NextLevelCheckOption50.IsChecked)
+            //    NextLevelCheck50Option(null, null);
+            //
+            //NextLevelCheckOption99.IsChecked = Properties.Settings.Default.Level99;
+            //if (NextLevelCheckOption99.IsChecked)
+            //    NextLevelCheck99Option(null, null);
 
             CheckCountOption.IsChecked = Properties.Settings.Default.CheckCount;
             if (CheckCountOption.IsChecked)
                 ShowCheckCountToggle(null, null);
+
+            NextLevelCheckOption.IsChecked = Properties.Settings.Default.NextLevelCheck;
+            if (NextLevelCheckOption.IsChecked)
+                NextLevelCheckToggle(null, null);
+
+            SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
+            if (SoraLevel01Option.IsChecked)
+                SoraLevel01Toggle(null, null);
+
+            SoraLevel50Option.IsChecked = Properties.Settings.Default.WorldLevel50;
+            if (SoraLevel50Option.IsChecked)
+                SoraLevel50Toggle(null, null);
+
+            SoraLevel99Option.IsChecked = Properties.Settings.Default.WorldLevel99;
+            if (SoraLevel99Option.IsChecked)
+                SoraLevel99Toggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
