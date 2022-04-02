@@ -529,17 +529,17 @@ namespace KhTracker
 
         private void NextLevelDisplay()
         {
-            if (NextLevelCheckOption.IsChecked && memory != null)
+            if (NextLevelCheckOption.IsChecked)
             {
                 if (SoraLevel50Option.IsChecked || SoraLevel99Option.IsChecked)
                 {
-                    LevelCheckIcon.Visibility = Visibility.Visible;
-                    LevelCheck.Visibility = Visibility.Visible;
-
                     if (SoraLevel50Option.IsChecked)
                     {
                         if (memory != null && stats != null)
                         {
+                            LevelCheckIcon.Visibility = Visibility.Visible;
+                            LevelCheck.Visibility = Visibility.Visible;
+
                             try
                             {
                                 stats.SetMaxLevelCheck(50);
@@ -556,6 +556,9 @@ namespace KhTracker
                     {
                         if (memory != null && stats != null)
                         {
+                            LevelCheckIcon.Visibility = Visibility.Visible;
+                            LevelCheck.Visibility = Visibility.Visible;
+
                             try
                             {
                                 stats.SetMaxLevelCheck(99);
@@ -826,6 +829,7 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel1 = toggle;
 
             CustomWorldCheck();
+            NextLevelDisplay();
         }
 
         private void SoraLevel50Toggle(object sender, RoutedEventArgs e)
@@ -848,6 +852,7 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel50 = toggle;
 
             CustomWorldCheck();
+            NextLevelDisplay();
         }
 
         private void SoraLevel99Toggle(object sender, RoutedEventArgs e)
@@ -870,6 +875,7 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = toggle;
 
             CustomWorldCheck();
+            NextLevelDisplay();
         }
 
         //icon toggles
