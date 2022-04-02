@@ -612,20 +612,7 @@ namespace KhTracker
                 FormRow.Height = new GridLength(0.65, GridUnitType.Star);
 
             //levelcheck visibility
-            if (NextLevelCheckOption.IsChecked && (SoraLevel50Option.IsChecked || SoraLevel99Option.IsChecked))
-            {
-                LevelCheckIcon.Visibility = Visibility.Visible;
-                LevelCheck.Visibility = Visibility.Visible;
-            
-                if (SoraLevel50Option.IsChecked)
-                    stats.SetMaxLevelCheck(50);
-                else
-                    stats.SetMaxLevelCheck(99);
-            }
-            else if (NextLevelCheckOption.IsChecked && SoraLevel01Option.IsChecked)
-            {
-                stats.SetMaxLevelCheck(1);
-            }
+            NextLevelDisplay();
 
             //if (NextLevelCheckOption50.IsChecked || NextLevelCheckOption99.IsChecked)
             //{

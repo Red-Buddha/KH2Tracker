@@ -529,53 +529,65 @@ namespace KhTracker
 
         private void NextLevelDisplay()
         {
+            bool Visible = false;
+
             if (NextLevelCheckOption.IsChecked)
             {
-                if (SoraLevel50Option.IsChecked || SoraLevel99Option.IsChecked)
+                Visible = true;
+            }
+
+            if (SoraLevel01Option.IsChecked)
+            {
+                if (memory != null && stats != null)
                 {
-                    if (SoraLevel50Option.IsChecked)
+                    try
                     {
-                        if (memory != null && stats != null)
-                        {
-                            LevelCheckIcon.Visibility = Visibility.Visible;
-                            LevelCheck.Visibility = Visibility.Visible;
-
-                            try
-                            {
-                                stats.SetMaxLevelCheck(50);
-                                stats.SetNextLevelCheck(stats.Level);
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Tried to edit while loading");
-                            }
-                        }
+                        stats.SetMaxLevelCheck(1);
+                        stats.SetNextLevelCheck(stats.Level);
                     }
-
-                    if (SoraLevel99Option.IsChecked)
+                    catch
                     {
-                        if (memory != null && stats != null)
-                        {
-                            LevelCheckIcon.Visibility = Visibility.Visible;
-                            LevelCheck.Visibility = Visibility.Visible;
-
-                            try
-                            {
-                                stats.SetMaxLevelCheck(99);
-                                stats.SetNextLevelCheck(stats.Level);
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Tried to edit while loading");
-                            }
-                        }
+                        Console.WriteLine("Tried to edit while loading");
                     }
                 }
-                else
+            }
+
+            if (SoraLevel50Option.IsChecked)
+            {
+                if (memory != null && stats != null)
                 {
-                    LevelCheckIcon.Visibility = Visibility.Hidden;
-                    LevelCheck.Visibility = Visibility.Hidden;
+                    try
+                    {
+                        stats.SetMaxLevelCheck(50);
+                        stats.SetNextLevelCheck(stats.Level);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Tried to edit while loading");
+                    }
                 }
+            }
+
+            if (SoraLevel99Option.IsChecked)
+            {
+                if (memory != null && stats != null)
+                {
+                    try
+                    {
+                        stats.SetMaxLevelCheck(99);
+                        stats.SetNextLevelCheck(stats.Level);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Tried to edit while loading");
+                    }
+                }
+            }
+
+            if (Visible && memory != null)
+            {
+                LevelCheckIcon.Visibility = Visibility.Visible;
+                LevelCheck.Visibility = Visibility.Visible;
             }
             else
             {
