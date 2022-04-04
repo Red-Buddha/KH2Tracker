@@ -832,7 +832,7 @@ namespace KhTracker
             if (SoraLevel01Option.IsChecked == false)
             {
                 SoraLevel01Option.IsChecked = true;
-                return;
+                //return;
             }
             SoraLevel50Option.IsChecked = false;
             SoraLevel99Option.IsChecked = false;
@@ -855,7 +855,7 @@ namespace KhTracker
             if (SoraLevel50Option.IsChecked == false)
             {
                 SoraLevel50Option.IsChecked = true;
-                return;
+                //return;
             }
             SoraLevel01Option.IsChecked = false;
             SoraLevel99Option.IsChecked = false;
@@ -878,7 +878,7 @@ namespace KhTracker
             if (SoraLevel99Option.IsChecked == false)
             {
                 SoraLevel99Option.IsChecked = true;
-                return;
+                //return;
             }
             SoraLevel50Option.IsChecked = false;
             SoraLevel01Option.IsChecked = false;

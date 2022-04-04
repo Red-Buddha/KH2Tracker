@@ -1281,7 +1281,7 @@ namespace KhTracker
                                     //TornPagesToggle(false);
                                     //CureToggle(false);
                                     //FinalFormToggle(false);
-                                    SoraHeartToggle(true);
+                                    SoraHeartToggle(false);
                                     SimulatedToggle(false);
                                     HundredAcreWoodToggle(false);
                                     AtlanticaToggle(false);
@@ -1290,6 +1290,7 @@ namespace KhTracker
                                     OCCupsToggle(false);
 
                                     //update with seedgen later
+                                    SoraLevel01Toggle(true);
                                 }
 
                                 //load settings from hints
@@ -1304,8 +1305,8 @@ namespace KhTracker
                                             break;
                                         case "Level":
                                             {
-                                                SoraHeartToggle(false);
-                                                SoraLevel01Toggle(true);
+                                                //SoraHeartToggle(false);
+                                                //SoraLevel01Toggle(true);
                                             }
                                             break;
                                         case "ExcludeFrom50":
