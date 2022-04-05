@@ -534,6 +534,14 @@ namespace KhTracker
             if (NextLevelCheckOption.IsChecked)
             {
                 Visible = true;
+
+                HintTextParent.Margin = new Thickness(45, 0, 0, 0);
+                HintText.Margin = new Thickness(30, 0, 0, 0);
+            }
+            else
+            {
+                HintTextParent.Margin = new Thickness(0, 0, 0, 0);
+                HintText.Margin = new Thickness(0, 0, 0, 0);
             }
 
             if (SoraLevel01Option.IsChecked)

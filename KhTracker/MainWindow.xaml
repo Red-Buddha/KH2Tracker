@@ -755,8 +755,12 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15">
+                <!--Viewbox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15">
                     <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0"/>
+                </Viewbox-->
+
+                <Viewbox Name="HintTextParent" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="17" Margin="0,0,0,0">
+                    <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0" Margin="00,0,0,0"/>
                 </Viewbox>
 
                 <!--Image Name="LevelIcon" Source="Images/Other/level.png" Grid.Row="3" Grid.Column="1" Visibility="Visible"/>
