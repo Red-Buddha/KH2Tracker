@@ -90,13 +90,13 @@ namespace KhTracker
                     if (worldData.hint == null)
                         continue;
 
-                    int num = 0;
-                    for (int i = 0; i < data.Numbers.Count; ++i)
-                    {
-                        if (worldData.hint.Source == data.Numbers[i])
-                            num = i;
-                    }
-                    hintValues += " " + num.ToString();
+                    //int num = 0;
+                    //for (int i = 0; i < data.Numbers.Count; ++i)
+                    //{
+                    //    if (worldData.hint.Source == data.Numbers[i])
+                    //        num = i;
+                    //}
+                    //hintValues += " " + num.ToString();
                 }
             }
 
@@ -260,7 +260,7 @@ namespace KhTracker
                         continue;
 
                     data.WorldsData[key].worldGrid.WorldComplete();
-                    SetReportValue(data.WorldsData[key].hint, 1);
+                    SetReportValue(data.WorldsData[key].hint, 0);
                 }
             }
             else if (mode == "OpenKHHints")
@@ -317,7 +317,7 @@ namespace KhTracker
                         continue;
 
                     data.WorldsData[key].worldGrid.WorldComplete();
-                    SetReportValue(data.WorldsData[key].hint, 1);
+                    SetReportValue(data.WorldsData[key].hint, 0);
                 }
             }
             else if (mode == "DAHints")
@@ -394,7 +394,7 @@ namespace KhTracker
 
                     if (WorldPoints.Keys.Contains(key))
                     {
-                        SetReportValue(data.WorldsData[key].hint, WorldPoints[key] + 1);
+                        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
                     }
                     else
                     {
@@ -670,13 +670,9 @@ namespace KhTracker
             foreach (var key in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[key].hinted = false;
-            }
-            data.WorldsData["GoA"].hinted = true;
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
                 data.WorldsData[key].hintedHint = false;
             }
+            data.WorldsData["GoA"].hinted = true;
 
             foreach (ContentControl report in data.ReportAttemptVisual)
             {
@@ -686,7 +682,7 @@ namespace KhTracker
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
                 if (worldData.hint != null)
-                    worldData.hint.Source = GetDataNumber("Y")[0];
+                    SetWorldNumber(worldData.hint, -1, "Y");
             }
 
             for (int i = 0; i < data.Reports.Count; ++i)
@@ -784,29 +780,30 @@ namespace KhTracker
             //    timedHintsText.Stop();
             //if (timedHintsRealTimer != null)
             //    timedHintsRealTimer.Stop();
-            //
+
             //next level check stuff
-            if (LevelCheckIcon.Visibility == Visibility.Visible || LevelCheck.Visibility == Visibility.Visible)
+            NextLevelDisplay();
             {
-                //NextLevelCheck1Option();
-                NextLevelDisplay();
-            
-                if (MinNumOption.IsChecked)
-                    LevelCheck.Source = data.Numbers[0 + 1];
-                else
-                    LevelCheck.Source = data.OldNumbers[0 + 1];
+                List<BitmapImage> LevelCheckNum = UpdateNumber(1, "Y");
+                LevelCheck_01.Source = LevelCheckNum[0];
+                LevelCheck_10.Source = LevelCheckNum[1];
             }
 
             ModeDisplay.Header = " ";
             data.mode = Mode.None;
 
-            collected = 0;            
+            collected = 0;
             HintText.Content = "";
 
             //all this garbage to get the correct number images when changing visual styles
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage BarW = data.VerticalBarW;
-            Collected.Source = GetDataNumber("Y")[1];
+            //Collected.Source = GetDataNumber("Y")[1];
+            {
+                List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
+                Collected_01.Source = CollectedNum[0];
+                Collected_10.Source = CollectedNum[1];
+            }
             if (CustomMode && CustomVBarWFound)
                 BarW = data.CustomVerticalBarW;
 
@@ -874,6 +871,17 @@ namespace KhTracker
                 data.WorldsData[key].containsGhost = false;
                 data.WorldsData[key].checkCount.Clear();
                 data.WorldsData[key].progress = 0;
+
+                //reset world locks to correct state based on toggle
+                if (VisitLockOption.IsChecked)
+                {
+                    if (key == "TwilightTown") //TT has 2 locks
+                        data.WorldsData[key].visitLocks = 2;
+                    else
+                        data.WorldsData[key].visitLocks = 1;
+                }
+                else
+                    data.WorldsData[key].visitLocks = 0;
             }
             data.WorldsData["GoA"].hinted = true; //goa needs to stay hinted
 
@@ -918,8 +926,7 @@ namespace KhTracker
             DefenseIcon.Visibility = Visibility.Hidden;
             Defense.Visibility = Visibility.Hidden;
             //Weapon.Visibility = Visibility.Hidden;
-
-            Connect.Visibility = (AutoDetectOption.IsChecked) ? Visibility.Visible : Visibility.Hidden;
+            Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
 
             broadcast.LevelIcon.Visibility = Visibility.Hidden;
             broadcast.Level.Visibility = Visibility.Hidden;
@@ -1060,8 +1067,8 @@ namespace KhTracker
             Score1.Visibility = Visibility.Hidden;
 
             //hide next level check
-            LevelCheckIcon.Visibility = Visibility.Hidden;
-            LevelCheck.Visibility = Visibility.Hidden;
+            //LevelCheckIcon.Visibility = Visibility.Hidden;
+            //LevelCheck.Visibility = Visibility.Hidden;
 
             broadcast.Collected.Visibility = Visibility.Visible;
             broadcast.CollectedBar.Visibility = Visibility.Visible;
@@ -1076,6 +1083,7 @@ namespace KhTracker
             broadcast.OnReset();
             broadcast.UpdateNumbers();
             UpdatePointScore(0);
+            VisitLockCheck();
 
             foreach (ContentControl item in ItemPool.Children)
                 if (!item.Name.Contains("Ghost"))
@@ -1176,7 +1184,7 @@ namespace KhTracker
                     continue;
 
                 data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 1);
+                SetReportValue(data.WorldsData[key].hint, 0);
             }
 
             if (autotrackeron)
@@ -1229,6 +1237,8 @@ namespace KhTracker
 
                 broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
                 broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
+
+                UpdatePointScore(0);
             }
             else if (mode == Mode.TimeHints)
             {
@@ -1281,15 +1291,12 @@ namespace KhTracker
                                     //TornPagesToggle(false);
                                     //CureToggle(false);
                                     //FinalFormToggle(false);
-                                    SoraHeartToggle(false);
                                     SimulatedToggle(false);
                                     HundredAcreWoodToggle(false);
                                     AtlanticaToggle(false);
                                     CavernToggle(false);
-                                    //TimelessToggle(false);
                                     OCCupsToggle(false);
-
-                                    //update with seedgen later
+                                    SoraHeartToggle(true);
                                     SoraLevel01Toggle(true);
                                 }
 
@@ -1305,8 +1312,7 @@ namespace KhTracker
                                             break;
                                         case "Level":
                                             {
-                                                //SoraHeartToggle(false);
-                                                //SoraLevel01Toggle(true);
+                                                SoraHeartToggle(false);
                                             }
                                             break;
                                         case "ExcludeFrom50":
@@ -1335,6 +1341,19 @@ namespace KhTracker
                                             break;
                                         case "Olympus Cups":
                                             OCCupsToggle(true);
+                                            break;
+                                        case "visit_locking":
+                                            data.WorldsData["TwilightTown"].visitLocks = 2;
+                                            data.WorldsData["HollowBastion"].visitLocks = 1;
+                                            data.WorldsData["BeastsCastle"].visitLocks = 1;
+                                            data.WorldsData["OlympusColiseum"].visitLocks = 1;
+                                            data.WorldsData["Agrabah"].visitLocks = 1;
+                                            data.WorldsData["LandofDragons"].visitLocks = 1;
+                                            data.WorldsData["PrideLands"].visitLocks = 1;
+                                            data.WorldsData["HalloweenTown"].visitLocks = 1;
+                                            data.WorldsData["PortRoyal"].visitLocks = 1;
+                                            data.WorldsData["SpaceParanoids"].visitLocks = 1;
+                                            VisitLockCheck();
                                             break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")

@@ -634,5 +634,17 @@ namespace KhTracker.Properties {
                 this["NextLevelCheck"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WorldVisitLock {
+            get {
+                return ((bool)(this["WorldVisitLock"]));
+            }
+            set {
+                this["WorldVisitLock"] = value;
+            }
+        }
     }
 }

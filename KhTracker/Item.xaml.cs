@@ -126,9 +126,18 @@ namespace KhTracker
             int index = (int)GetValue(Grid.ColumnProperty);
 
             if (data.mode == Mode.DAHints)
-                window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+            {
+                if (shortenNames.ContainsKey(data.pointreportInformation[index].Item2))
+                {
+                    window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + shortenNames[data.pointreportInformation[index].Item2]);
+                }
+                else
+                    window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+            }
             else
+            {
                 window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+            }
         }
 
         public void DragDropEventFire(string item, string world, bool add)
@@ -225,8 +234,22 @@ namespace KhTracker
                 Item_Click(sender, e);
         }
 
-        //does absolutely nothing. needed for making the ghost items uniteractable
-        //if there's a better way to do this, i don't know it
-        //public void Item_Ghost(object sender, RoutedEventArgs e) { }
+        private Dictionary<string, string> shortenNames = new Dictionary<string, string>()
+        {
+            {"Baseball Charm (Chicken Little)", "Baseball Charm"},
+            {"Lamp Charm (Genie)", "Lamp Charm"},
+            {"Ukulele Charm (Stitch)", "Ukulele Charm"},
+            {"Feather Charm (Peter Pan)", "Feather Charm"},
+            {"PromiseCharm", "Promise Charm"},
+            {"Battlefields of War (Auron)", "Battlefields of War"},
+            {"Sword of the Ancestor (Mulan)", "Sword of the Ancestor"},
+            {"Beast's Claw (Beast)", "Beast's Claw"},
+            {"Bone Fist (Jack Skellington)", "Bone Fist"},
+            {"Proud Fang (Simba)", "Proud Fang"},
+            {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
+            {"Scimitar (Aladdin)", "Scimitar"},
+            {"Identity Disk (Tron)", "Identity Disk"}
+        };
+
     }
 }

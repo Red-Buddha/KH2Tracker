@@ -343,4 +343,173 @@ namespace KhTracker
             }
         }
     }
+
+    public class NumberConverter100 : IValueConverter
+    {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/Yellow/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/Yellow/";
+        private string CurrentPath = "Images/Numbers/Kh2/Yellow/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
+            if ((int)value >= 100)
+            {
+                int num = (int)value;
+                //split number into separate digits
+                List<int> listOfInts = new List<int>();
+                while (num > 0)
+                {
+                    listOfInts.Add(num % 10);
+                    num /= 10;
+                }
+
+                value = listOfInts[2];
+
+                return CurrentPath + value.ToString() + ".png";
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((string)value != null)
+            {
+                string val = (string)value;
+                val = val.Substring(val.LastIndexOf('/'));
+                return int.Parse(val.Substring(0, val.IndexOf('.')));
+            }
+            else
+            {
+                return 1;
+            }
+        }
+    }
+
+    public class NumberConverter010 : IValueConverter
+    {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/Yellow/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/Yellow/";
+        private string CurrentPath = "Images/Numbers/Kh2/Yellow/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
+            if ((int)value >= 10)
+            {
+                int num = (int)value;
+                //split number into separate digits
+                List<int> listOfInts = new List<int>();
+                while (num > 0)
+                {
+                    listOfInts.Add(num % 10);
+                    num /= 10;
+                }
+
+                value = listOfInts[1];
+
+                return CurrentPath + value.ToString() + ".png";
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((string)value != null)
+            {
+                string val = (string)value;
+                val = val.Substring(val.LastIndexOf('/'));
+                return int.Parse(val.Substring(0, val.IndexOf('.')));
+            }
+            else
+            {
+                return 1;
+            }
+        }
+    }
+
+    public class NumberConverter001 : IValueConverter
+    {
+        //Find current number image setting
+        private string OldPath = "Images/Numbers/Old/Yellow/";
+        private string CusPath = "pack://application:,,,/CustomImages/Numbers/Yellow/";
+        private string CurrentPath = "Images/Numbers/Kh2/Yellow/"; //Default
+        private bool OldNums = Properties.Settings.Default.OldNum;
+        private bool CusNums = Properties.Settings.Default.CustomIcons;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            {
+                if (OldNums)
+                    CurrentPath = OldPath;
+                if (CusNums && MainWindow.CustomNumbersFound)
+                    CurrentPath = CusPath;
+            }
+
+            if ((int)value >= 0)
+            {
+                int num = (int)value;
+                //split number into separate digits
+                List<int> listOfInts = new List<int>();
+
+                if (num > 0)
+                {
+                    while (num > 0)
+                    {
+                        listOfInts.Add(num % 10);
+                        num /= 10;
+                    }
+                    value = listOfInts[0];
+                }
+                else
+                    value = 0;
+
+                return CurrentPath + value.ToString() + ".png";
+            }
+            else
+            {
+                return CurrentPath + "QuestionMark.png";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((string)value != null)
+            {
+                string val = (string)value;
+                val = val.Substring(val.LastIndexOf('/'));
+                return int.Parse(val.Substring(0, val.IndexOf('.')));
+            }
+            else
+            {
+                return 1;
+            }
+        }
+    }
+
+
 }

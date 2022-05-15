@@ -34,26 +34,27 @@ namespace KhTracker
         public List<Item> Reports = new List<Item>();
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
         public List<Item> TornPages = new List<Item>();
+        public List<Item> VisitLocks = new List<Item>();
 
-        public List<BitmapImage> Numbers = new List<BitmapImage>();
+        //public List<BitmapImage> Numbers = new List<BitmapImage>();
         public List<BitmapImage> SingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> BlueNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> BlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> BlueSingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> GreenNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> GreenNumbers = new List<BitmapImage>();
         public List<BitmapImage> GreenSingleNumbers = new List<BitmapImage>();
 
-        public List<BitmapImage> OldNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> OldNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldSingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> OldBlueNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> OldBlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldBlueSingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> OldGreenNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> OldGreenNumbers = new List<BitmapImage>();
         public List<BitmapImage> OldGreenSingleNumbers = new List<BitmapImage>();
 
-        public List<BitmapImage> CustomNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> CustomNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomSingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> CustomBlueNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> CustomBlueNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomBlueSingleNumbers = new List<BitmapImage>();
-        public List<BitmapImage> CustomGreenNumbers = new List<BitmapImage>();
+        //public List<BitmapImage> CustomGreenNumbers = new List<BitmapImage>();
         public List<BitmapImage> CustomGreenSingleNumbers = new List<BitmapImage>();
 
         public List<Item> Items = new List<Item>();
@@ -91,7 +92,8 @@ namespace KhTracker
             { "complete", 0 },
             { "bonus", 0 },
             { "formlv", 0 },
-            { "other", 0}
+            { "other", 0},
+            { "visit", 0}
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
         public List<string> TrackedReports = new List<string>();
@@ -153,17 +155,18 @@ namespace KhTracker
         public bool complete;
         public int progress;
         public bool containsGhost;
+        public int visitLocks;
 
         public List<string> checkCount = new List<string>();
 
         public Grid top;
         public Button world;
         public ContentControl progression;
-        public Image hint;
+        public Grid hint;
         public WorldGrid worldGrid;
         public Image selectedBar;
 
-        public WorldData(Grid Top, Button World, ContentControl Progression, Image Hint, WorldGrid grid, Image SelectedBar, bool Hinted)
+        public WorldData(Grid Top, Button World, ContentControl Progression, Grid Hint, WorldGrid grid, Image SelectedBar, bool Hinted, int VisitLock)
         {
             top = Top;
             world = World;
@@ -176,6 +179,7 @@ namespace KhTracker
             complete = false;
             progress = 0;
             containsGhost = false;
+            visitLocks = VisitLock;
         }
     }
 

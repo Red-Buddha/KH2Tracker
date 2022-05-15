@@ -82,6 +82,11 @@ namespace KhTracker
             int row = (int)Parent.GetValue(Grid.RowProperty);
             outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
 
+            if (((MainWindow)App.Current.MainWindow).VisitLockOption.IsChecked)
+            {
+                VisitLock(button, add);
+            }
+
             if (MainWindow.data.mode == Mode.AltHints || MainWindow.data.mode == Mode.OpenKHAltHints)
             {
                 WorldComplete();
@@ -89,8 +94,9 @@ namespace KhTracker
                 string worldName = Name.Substring(0, Name.Length - 4);
                 if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
-                    Image hint = MainWindow.data.WorldsData[worldName].hint;
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
+                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
+                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
+                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
                 }
             }
 
@@ -104,9 +110,13 @@ namespace KhTracker
 
                     Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
-                    Image hint = MainWindow.data.WorldsData[worldName].hint;
+                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
+                    //((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
+
+                    Grid hint = MainWindow.data.WorldsData[worldName].hint;
                     ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
+                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
 
                 }
                 else
@@ -116,10 +126,15 @@ namespace KhTracker
 
                     Console.WriteLine("real " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
-                    Image hint = MainWindow.data.WorldsData[worldName].hint;
+                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
+                    //
+                    //((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
 
+                    Grid hint = MainWindow.data.WorldsData[worldName].hint;
+                    
                     ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
+                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
 
                     //this creates a dictionary of items each world has tracked.
                     if (worldName != "GoA")
@@ -353,6 +368,55 @@ namespace KhTracker
             }
         }
 
+        //visit locking stuff
+        public void VisitLock(Item item, bool add)
+        {
+            string ItemName = item.Name;
+            int addRemove = -1;
+
+            if (!add)
+                addRemove = 1;
+
+            switch (ItemName)
+            {
+                case "AuronWep":
+                    MainWindow.data.WorldsData["OlympusColiseum"].visitLocks += addRemove;
+                    break;
+                case "MulanWep":
+                    MainWindow.data.WorldsData["LandofDragons"].visitLocks += addRemove;
+                    break;
+                case "BeastWep":
+                    MainWindow.data.WorldsData["BeastsCastle"].visitLocks += addRemove;
+                    break;
+                case "JackWep":
+                    MainWindow.data.WorldsData["HalloweenTown"].visitLocks += addRemove;
+                    break;
+                case "SimbaWep":
+                    MainWindow.data.WorldsData["PrideLands"].visitLocks += addRemove;
+                    break;
+                case "SparrowWep":
+                    MainWindow.data.WorldsData["PortRoyal"].visitLocks += addRemove;
+                    break;
+                case "AladdinWep":
+                    MainWindow.data.WorldsData["Agrabah"].visitLocks += addRemove;
+                    break;
+                case "TronWep":
+                    MainWindow.data.WorldsData["SpaceParanoids"].visitLocks += addRemove;
+                    break;
+                case "Poster":
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    break;
+                case "Picture":
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    break;
+                case "IceCream":
+                    MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;
+                    break;
+            }
+
+             ((MainWindow)App.Current.MainWindow).VisitLockCheck();
+        }
+        
         //points hints stuff
         public bool Handle_PointReport(Item item, MainWindow window, Data data)
         {
@@ -371,7 +435,14 @@ namespace KhTracker
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
                     // hint text and resetting fail icons
-                    window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+                    if (shortenNames.ContainsKey(data.pointreportInformation[index].Item2))
+                    {
+                        window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + shortenNames[data.pointreportInformation[index].Item2]);
+                    }
+                    else
+                    {
+                        window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+                    }
                     CheckGhost(data.pointreportInformation[index].Item1, data.pointreportInformation[index].Item2, window, data, "Report" + index);
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
@@ -590,7 +661,7 @@ namespace KhTracker
             //don't bother messing with magic or pages
             if (!itemname.Contains("Fire") && !itemname.Contains("Blizzard") && !itemname.Contains("Thunder")
                 && !itemname.Contains("Cure") && !itemname.Contains("Reflect") && !itemname.Contains("Magnet")
-                && !itemname.Contains("Page"))
+                && !itemname.Contains("Page") && !itemname.Contains("Report"))
                 window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(convertItemNames[itemname]))].Opacity = universalOpacity;
         }
 
@@ -802,7 +873,18 @@ namespace KhTracker
             {"Proof of Connection", "Connection"},
             {"Proof of Nonexistence", "Nonexistence"},
             {"Proof of Peace", "Peace"},
-            {"PromiseCharm", "PromiseCharm"}
+            {"PromiseCharm", "PromiseCharm"},
+            {"Battlefields of War (Auron)", "AuronWep"},
+            {"Sword of the Ancestor (Mulan)", "MulanWep"},
+            {"Beast's Claw (Beast)", "BeastWep"},
+            {"Bone Fist (Jack Skellington)", "JackWep"},
+            {"Proud Fang (Simba)", "SimbaWep"},
+            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
+            {"Scimitar (Aladdin)", "AladdinWep"},
+            {"Identity Disk (Tron)", "TronWep"},
+            {"Poster", "Poster"},
+            {"Ice Cream", "IceCream"},
+            {"Picture", "Picture"}
         };
 
         //private Dictionary<string, string> convertWorldNames = new Dictionary<string, string>()
@@ -879,6 +961,17 @@ namespace KhTracker
             {"Nonexistence", "proof"},
             {"Peace", "proof"},
             {"PromiseCharm", "proof"},
+            {"AuronWep", "visit"},
+            {"MulanWep", "visit"},
+            {"BeastWep", "visit"},
+            {"JackWep", "visit"},
+            {"SimbaWep", "visit"},
+            {"SparrowWep", "visit"},
+            {"AladdinWep", "visit"},
+            {"TronWep", "visit"},
+            {"Poster", "visit"},
+            {"IceCream", "visit"},
+            {"Picture", "visit"},
             //ghost versions
             {"Ghost_Report1", "report"},
             {"Ghost_Report2", "report"},
@@ -930,7 +1023,35 @@ namespace KhTracker
             {"Ghost_Connection", "proof"},
             {"Ghost_Nonexistence", "proof"},
             {"Ghost_Peace", "proof"},
-            {"Ghost_PromiseCharm", "proof"}
+            {"Ghost_PromiseCharm", "proof"},
+            {"Ghost_AuronWep", "visit"},
+            {"Ghost_MulanWep", "visit"},
+            {"Ghost_BeastWep", "visit"},
+            {"Ghost_JackWep", "visit"},
+            {"Ghost_SimbaWep", "visit"},
+            {"Ghost_SparrowWep", "visit"},
+            {"Ghost_AladdinWep", "visit"},
+            {"Ghost_TronWep", "visit"},
+            {"Ghost_Poster", "visit"},
+            {"Ghost_IceCream", "visit"},
+            {"Ghost_Picture", "visit"}
+        };
+
+        private Dictionary<string, string> shortenNames = new Dictionary<string, string>()
+        {
+            {"Baseball Charm (Chicken Little)", "Baseball Charm"},
+            {"Lamp Charm (Genie)", "Lamp Charm"},
+            {"Ukulele Charm (Stitch)", "Ukulele Charm"},
+            {"Feather Charm (Peter Pan)", "Feather Charm"},
+            {"PromiseCharm", "Promise Charm"},
+            {"Battlefields of War (Auron)", "Battlefields of War"},
+            {"Sword of the Ancestor (Mulan)", "Sword of the Ancestor"},
+            {"Beast's Claw (Beast)", "Beast's Claw"},
+            {"Bone Fist (Jack Skellington)", "Bone Fist"},
+            {"Proud Fang (Simba)", "Proud Fang"},
+            {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
+            {"Scimitar (Aladdin)", "Scimitar"},
+            {"Identity Disk (Tron)", "Identity Disk"}
         };
     }
 }

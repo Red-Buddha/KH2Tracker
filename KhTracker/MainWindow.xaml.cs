@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Linq;
 using System.IO;
 using Microsoft.Win32;
 using System.Drawing;
@@ -23,7 +24,7 @@ namespace KhTracker
         public static Data data;
         private BroadcastWindow broadcast;
         public int collected;
-        private int total = 51;
+        private int total = 62;
         public static int PointTotal = 0;
         //public static int World = 0;
         public static bool SeedHashLoaded = false;
@@ -44,6 +45,7 @@ namespace KhTracker
             previousChecks = new List<ImportantCheck>();
 
             InitOptions();
+            VisitLockCheck();
 
             //Init auto-detect
             if (AutoDetectOption.IsChecked)
@@ -91,24 +93,36 @@ namespace KhTracker
             data.TornPages.Add(TornPage4);
             data.TornPages.Add(TornPage5);
 
-            data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false));
-            data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false));
-            data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false));
-            data.WorldsData.Add("TwilightTown", new WorldData(TwilightTownTop, TwilightTown, TwilightTownProgression, TwilightTownHint, TwilightTownGrid, TwilightTownBar, false));
-            data.WorldsData.Add("HollowBastion", new WorldData(HollowBastionTop, HollowBastion, HollowBastionProgression, HollowBastionHint, HollowBastionGrid, HollowBastionBar, false));
-            data.WorldsData.Add("BeastsCastle", new WorldData(BeastsCastleTop, BeastsCastle, BeastsCastleProgression, BeastsCastleHint, BeastsCastleGrid, BeastsCastleBar, false));
-            data.WorldsData.Add("OlympusColiseum", new WorldData(OlympusColiseumTop, OlympusColiseum, OlympusColiseumProgression, OlympusColiseumHint, OlympusColiseumGrid, OlympusBar, false));
-            data.WorldsData.Add("Agrabah", new WorldData(AgrabahTop, Agrabah, AgrabahProgression, AgrabahHint, AgrabahGrid, AgrabahBar, false));
-            data.WorldsData.Add("LandofDragons", new WorldData(LandofDragonsTop, LandofDragons, LandofDragonsProgression, LandofDragonsHint, LandofDragonsGrid, LandofDragonsBar, false));
-            data.WorldsData.Add("HundredAcreWood", new WorldData(HundredAcreWoodTop, HundredAcreWood, HundredAcreWoodProgression, HundredAcreWoodHint, HundredAcreWoodGrid, HundredAcreWoodBar, false));
-            data.WorldsData.Add("PrideLands", new WorldData(PrideLandsTop, PrideLands, PrideLandsProgression, PrideLandsHint, PrideLandsGrid, PrideLandsBar, false));
-            data.WorldsData.Add("DisneyCastle", new WorldData(DisneyCastleTop, DisneyCastle, DisneyCastleProgression, DisneyCastleHint, DisneyCastleGrid, DisneyCastleBar, false));
-            data.WorldsData.Add("HalloweenTown", new WorldData(HalloweenTownTop, HalloweenTown, HalloweenTownProgression, HalloweenTownHint, HalloweenTownGrid, HalloweenTownBar, false));
-            data.WorldsData.Add("PortRoyal", new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, PortRoyalBar, false));
-            data.WorldsData.Add("SpaceParanoids", new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, SpaceParanoidsBar, false));
-            data.WorldsData.Add("TWTNW", new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, TWTNWBar, false));
-            data.WorldsData.Add("GoA", new WorldData(GoATop, GoA, null, null, GoAGrid, GoABar, true));
-            data.WorldsData.Add("Atlantica", new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, AtlanticaBar, false));
+            data.VisitLocks.Add(AuronWep);
+            data.VisitLocks.Add(MulanWep);
+            data.VisitLocks.Add(BeastWep);
+            data.VisitLocks.Add(JackWep);
+            data.VisitLocks.Add(SimbaWep);
+            data.VisitLocks.Add(SparrowWep);
+            data.VisitLocks.Add(AladdinWep);
+            data.VisitLocks.Add(TronWep);
+            data.VisitLocks.Add(Poster);
+            data.VisitLocks.Add(IceCream);
+            data.VisitLocks.Add(Picture);
+
+            data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false, 0));
+            data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false, 0));
+            data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false, 0));
+            data.WorldsData.Add("TwilightTown", new WorldData(TwilightTownTop, TwilightTown, TwilightTownProgression, TwilightTownHint, TwilightTownGrid, TwilightTownBar, false, 0));
+            data.WorldsData.Add("HollowBastion", new WorldData(HollowBastionTop, HollowBastion, HollowBastionProgression, HollowBastionHint, HollowBastionGrid, HollowBastionBar, false, 0));
+            data.WorldsData.Add("BeastsCastle", new WorldData(BeastsCastleTop, BeastsCastle, BeastsCastleProgression, BeastsCastleHint, BeastsCastleGrid, BeastsCastleBar, false, 0));
+            data.WorldsData.Add("OlympusColiseum", new WorldData(OlympusColiseumTop, OlympusColiseum, OlympusColiseumProgression, OlympusColiseumHint, OlympusColiseumGrid, OlympusBar, false, 0));
+            data.WorldsData.Add("Agrabah", new WorldData(AgrabahTop, Agrabah, AgrabahProgression, AgrabahHint, AgrabahGrid, AgrabahBar, false, 0));
+            data.WorldsData.Add("LandofDragons", new WorldData(LandofDragonsTop, LandofDragons, LandofDragonsProgression, LandofDragonsHint, LandofDragonsGrid, LandofDragonsBar, false, 0));
+            data.WorldsData.Add("HundredAcreWood", new WorldData(HundredAcreWoodTop, HundredAcreWood, HundredAcreWoodProgression, HundredAcreWoodHint, HundredAcreWoodGrid, HundredAcreWoodBar, false, 0));
+            data.WorldsData.Add("PrideLands", new WorldData(PrideLandsTop, PrideLands, PrideLandsProgression, PrideLandsHint, PrideLandsGrid, PrideLandsBar, false, 0));
+            data.WorldsData.Add("DisneyCastle", new WorldData(DisneyCastleTop, DisneyCastle, DisneyCastleProgression, DisneyCastleHint, DisneyCastleGrid, DisneyCastleBar, false, 0));
+            data.WorldsData.Add("HalloweenTown", new WorldData(HalloweenTownTop, HalloweenTown, HalloweenTownProgression, HalloweenTownHint, HalloweenTownGrid, HalloweenTownBar, false, 0));
+            data.WorldsData.Add("PortRoyal", new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, PortRoyalBar, false, 0));
+            data.WorldsData.Add("SpaceParanoids", new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, SpaceParanoidsBar, false, 0));
+            data.WorldsData.Add("TWTNW", new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, TWTNWBar, false, 0));
+            data.WorldsData.Add("GoA", new WorldData(GoATop, GoA, null, null, GoAGrid, GoABar, true, 0));
+            data.WorldsData.Add("Atlantica", new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, AtlanticaBar, false, 0));
 
             data.ProgressKeys.Add("SimulatedTwilightTown", new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
             data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
@@ -138,6 +152,7 @@ namespace KhTracker
             }
 
             broadcast = new BroadcastWindow(data);
+
         }
 
         private void InitOptions()
@@ -146,10 +161,10 @@ namespace KhTracker
             HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
 
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
-            for (int i = 0; i < data.Reports.Count; ++i)
-            {
-                HandleItemToggle(ReportsOption.IsChecked, data.Reports[i], true);
-            }
+            ReportsToggle(ReportsOption.IsChecked);
+
+            VisitLockOption.IsChecked = Properties.Settings.Default.WorldVisitLock;
+            VisitLockToggle(VisitLockOption.IsChecked);
 
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
             HandleItemToggle(AbilitiesOption.IsChecked, OnceMore, true);
@@ -456,7 +471,7 @@ namespace KhTracker
             {
                 if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
-                    data.WorldsData[button.Name].hint.Source = GetDataNumber("Y")[0];
+                    SetWorldNumber(data.WorldsData[button.Name].hint, 0, "Y");
                 }
             }
         }
@@ -471,19 +486,20 @@ namespace KhTracker
             }
         }
 
-        private void OnMouseRightClick(object sender, MouseWheelEventArgs e)
-        {
-            Button button = sender as Button;
-            //BitmapImage Normal = 
-            string test = SecondChance.ContentStringFormat;
-            Console.WriteLine(test);
-            //SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
-
-            //if (e.ChangedButton == MouseButton.Right)
-            //{
-            //    HandleReportValue(data.WorldsData[button.Name].hint, e.Delta);
-            //}
-        }
+        //for changing an icon's appearance on right click. i need to revisit this soon
+        //private void OnMouseRightClick(object sender, MouseWheelEventArgs e)
+        //{
+        //    Button button = sender as Button;
+        //    //BitmapImage Normal = 
+        //    string test = SecondChance.ContentStringFormat;
+        //    Console.WriteLine(test);
+        //    //SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
+        //
+        //    //if (e.ChangedButton == MouseButton.Right)
+        //    //{
+        //    //    HandleReportValue(data.WorldsData[button.Name].hint, e.Delta);
+        //    //}
+        //}
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -526,20 +542,47 @@ namespace KhTracker
         /// 
         /// Handle UI Changes
         /// 
-        private void HandleReportValue(Image Hint, int delta)
+
+        //OLD
+        //private void HandleReportValue(Image Hint, int delta)
+        //{
+        //    if (data.mode != Mode.None)
+        //        return;
+        //
+        //    int num = 0;
+        //
+        //    for (int i = 0; i < data.Numbers.Count; ++i)
+        //    {
+        //        if (Hint.Source == GetDataNumber("Y")[i])
+        //        {
+        //            num = i;
+        //        }
+        //    }
+        //
+        //    if (delta > 0)
+        //        ++num;
+        //    else
+        //        --num;
+        //
+        //    // cap hint value to 51
+        //    if (num > 52)
+        //        num = 52;
+        //
+        //    if (num < 0)
+        //        Hint.Source = GetDataNumber("Y")[0];
+        //    else
+        //        Hint.Source = GetDataNumber("Y")[num];
+        //
+        //    broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
+        //}
+
+        private void HandleReportValue(Grid Hint, int delta)
         {
+            //return if the a hint mode is loaded
             if (data.mode != Mode.None)
                 return;
 
-            int num = 0;
-
-            for (int i = 0; i < data.Numbers.Count; ++i)
-            {
-                if (Hint.Source == GetDataNumber("Y")[i])
-                {
-                    num = i;
-                }
-            }
+            int num = GetWorldNumber(Hint);
 
             if (delta > 0)
                 ++num;
@@ -547,15 +590,13 @@ namespace KhTracker
                 --num;
 
             // cap hint value to 51
-            if (num > 52)
-                num = 52;
+            if (num > 999)
+                num = 999;
 
-            if (num < 0)
-                Hint.Source = GetDataNumber("Y")[0];
-            else
-                Hint.Source = GetDataNumber("Y")[num];
+            SetWorldNumber(Hint, num, "Y");
 
-            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
+            //get to later
+            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
 
         public void SetReportValue(Image Hint, int value)
@@ -600,14 +641,40 @@ namespace KhTracker
             broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
 
+        public void SetReportValue(Grid Hint, int value)
+        {
+            if (data.mode == Mode.DAHints && Hint == null)
+                return;
+
+            string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
+            string Color = "Y"; //default
+
+            if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
+                Color = "G";
+
+            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
+                Color = "B";
+
+            SetWorldNumber(Hint, value, Color);
+
+            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
+        }
+
         public void IncrementCollected()
         {
             ++collected;
-            if (collected > 51)
-                collected = 51;
+            //i don't want to update this code every time a new IC is added.
+            //just setting it to the max of 99 for now. if it breaks i know where to look
+            if (collected > 99)
+                collected = 99;
 
-            Collected.Source = GetDataNumber("Y")[collected + 1];
-            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
+            //Collected.Source = GetDataNumber("Y")[collected + 1];
+            Collected_01.Source = CollectedNum[0];
+            Collected_10.Source = CollectedNum[1];
+            //broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected_01.Source = CollectedNum[0];
+            broadcast.Collected_10.Source = CollectedNum[1];
         }
 
         public void DecrementCollected()
@@ -616,18 +683,29 @@ namespace KhTracker
             if (collected < 0)
                 collected = 0;
 
-            Collected.Source = GetDataNumber("Y")[collected + 1];
-            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
+            //Collected.Source = GetDataNumber("Y")[collected + 1];
+            Collected_01.Source = CollectedNum[0];
+            Collected_10.Source = CollectedNum[1];
+            //broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
+            broadcast.Collected_01.Source = CollectedNum[0];
+            broadcast.Collected_10.Source = CollectedNum[1];
         }
 
         public void IncrementTotal()
         {
             ++total;
-            if (total > 51)
-                total = 51;
+            if (total > 99)
+                total = 99;
 
-            CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
+
+            //CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            CheckTotal_01.Source = TotalNum[0];
+            CheckTotal_10.Source = TotalNum[1];
+            //broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal_01.Source = TotalNum[0];
+            broadcast.CheckTotal_10.Source = TotalNum[1];
         }
 
         public void DecrementTotal()
@@ -636,8 +714,13 @@ namespace KhTracker
             if (total < 0)
                 total = 0;
 
-            CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
+            //CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            CheckTotal_01.Source = TotalNum[0];
+            CheckTotal_10.Source = TotalNum[1];
+            //broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            broadcast.CheckTotal_01.Source = TotalNum[0];
+            broadcast.CheckTotal_10.Source = TotalNum[1];
         }
 
         public void SetHintText(string text)
@@ -659,5 +742,464 @@ namespace KhTracker
             broadcast.Width = 500;
             broadcast.Height = 680;
         }
+
+        //might not use???
+        //public List<BitmapImage> UpdateNumber(int num, string color)
+        //{
+        //    int[] FinalNum = new int[] { 1, 1, 1 }; //Default 000
+        //    bool OldMode = Properties.Settings.Default.OldNum;
+        //    bool CustomMode = Properties.Settings.Default.CustomIcons;
+        //    List<BitmapImage> NormalNum = data.SingleNumbers;
+        //    List<BitmapImage> BlueNum = data.BlueSingleNumbers;
+        //    List<BitmapImage> GreenNum = data.GreenSingleNumbers;
+        //    List<BitmapImage> NumColor;
+        //
+        //    //Get correct number visuals
+        //    {
+        //        if (OldMode)
+        //        {
+        //            NormalNum = data.OldSingleNumbers;
+        //            BlueNum = data.OldBlueSingleNumbers;
+        //            GreenNum = data.OldGreenSingleNumbers;
+        //        }
+        //
+        //        if (CustomMode)
+        //        {
+        //            if (CustomNumbersFound)
+        //            {
+        //                NormalNum = data.CustomSingleNumbers;
+        //            }
+        //            if (CustomBlueNumbersFound)
+        //            {
+        //                BlueNum = data.CustomBlueSingleNumbers;
+        //            }
+        //            if (CustomGreenNumbersFound)
+        //            {
+        //                GreenNum = data.CustomGreenSingleNumbers;
+        //            }
+        //        }
+        //    }
+        //
+        //    //split number into separate digits
+        //    List<int> listOfInts = new List<int>();
+        //    while (num > 0)
+        //    {
+        //        listOfInts.Add(num % 10);
+        //        num /= 10;
+        //    }
+        //
+        //    //Set number images depending on number of digits
+        //    if (listOfInts.Count == 3)
+        //    {
+        //        FinalNum[0] = listOfInts[0];
+        //        FinalNum[1] = listOfInts[1];
+        //        FinalNum[2] = listOfInts[2];
+        //    }
+        //    else if (listOfInts.Count == 2)
+        //    {
+        //        FinalNum[0] = listOfInts[0];
+        //        FinalNum[1] = listOfInts[1];
+        //    }
+        //    else if (listOfInts.Count == 1)
+        //    {
+        //        FinalNum[0] = listOfInts[0];
+        //    }
+        //
+        //    //Get color
+        //    switch (color)
+        //    {
+        //        case "Y":
+        //            NumColor = NormalNum;
+        //            break;
+        //        case "B":
+        //            NumColor = BlueNum;
+        //            break;
+        //        case "G":
+        //            NumColor = GreenNum;
+        //            break;
+        //        default:
+        //            NumColor = NormalNum;
+        //            break;
+        //    }
+        //
+        //
+        //    List<BitmapImage> Numberlist = new List<BitmapImage>
+        //    {
+        //        NumColor[FinalNum[0]],
+        //        NumColor[FinalNum[1]],
+        //        NumColor[FinalNum[2]]
+        //    };
+        //
+        //    return Numberlist;
+        //}
+
+        public List<BitmapImage> UpdateNumber(int num, string color)
+        {
+            //we need to get all 3 sources from the grid
+            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
+            bool OldMode = Properties.Settings.Default.OldNum;
+            bool CustomMode = Properties.Settings.Default.CustomIcons;
+            List<BitmapImage> NormalNum = data.SingleNumbers;
+            List<BitmapImage> BlueNum = data.BlueSingleNumbers;
+            List<BitmapImage> GreenNum = data.GreenSingleNumbers;
+            List<BitmapImage> NumColor;
+            List<BitmapImage> Numberlist = new List<BitmapImage>();
+
+            //Get correct number visuals
+            {
+                if (OldMode)
+                {
+                    NormalNum = data.OldSingleNumbers;
+                    BlueNum = data.OldBlueSingleNumbers;
+                    GreenNum = data.OldGreenSingleNumbers;
+                }
+
+                if (CustomMode)
+                {
+                    if (CustomNumbersFound)
+                    {
+                        NormalNum = data.CustomSingleNumbers;
+                    }
+                    if (CustomBlueNumbersFound)
+                    {
+                        BlueNum = data.CustomBlueSingleNumbers;
+                    }
+                    if (CustomGreenNumbersFound)
+                    {
+                        GreenNum = data.CustomGreenSingleNumbers;
+                    }
+                }
+            }
+            //Get color
+            switch (color)
+            {
+                case "Y":
+                    NumColor = NormalNum;
+                    break;
+                case "B":
+                    NumColor = BlueNum;
+                    break;
+                case "G":
+                    NumColor = GreenNum;
+                    break;
+                default:
+                    NumColor = NormalNum;
+                    break;
+            }
+
+            //if int is below 0 then we use the question mark and return
+            if (num < 0)
+            {
+                Numberlist.Add(NumColor[10]);
+                Numberlist.Add(NumColor[10]);
+                Numberlist.Add(NumColor[10]);
+
+                return Numberlist;
+            }
+
+            //split number into separate digits
+            List<int> listOfInts = new List<int>();
+            while (num > 0)
+            {
+                listOfInts.Add(num % 10);
+                num /= 10;
+            }
+
+            //Set number images depending on number of digits
+            if (listOfInts.Count == 3)
+            {
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+                FinalNum[2] = listOfInts[2];
+            }
+            else if (listOfInts.Count == 2)
+            {
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+            }
+            else if (listOfInts.Count == 1)
+            {
+                FinalNum[0] = listOfInts[0];
+            }
+
+            Numberlist.Add(NumColor[FinalNum[0]]);
+            Numberlist.Add(NumColor[FinalNum[1]]);
+            Numberlist.Add(NumColor[FinalNum[2]]);
+
+            return Numberlist;
+        }
+
+        public void SetWorldNumber(Grid hintgrid, int worldnum, string color)
+        {
+            string worldname = hintgrid.Name;
+            List<BitmapImage> WorldNumImage = UpdateNumber(worldnum, color);
+            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
+            bool number10s = false;
+            bool number100s = false;
+
+            if (worldnum > 99)
+                number100s = true;
+            if (worldnum > 9)
+                number10s = true;
+
+            for (int i = 0; i < ChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+
+                if (child == null)
+                    continue;
+                if (child is Image && child.Name.Equals(worldname + "_001"))
+                {
+                    child.Source = WorldNumImage[0];
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "_010"))
+                {
+                    child.Source = WorldNumImage[1];
+
+                    string name = WorldNumImage[1].ToString();
+                    if (!name.Contains("Question_Mark") && number10s)
+                        child.Visibility = Visibility.Visible;
+                    else if (!number10s)
+                        child.Visibility = Visibility.Hidden;
+
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "_100"))
+                {
+                    child.Source = WorldNumImage[2];
+
+                    string name = WorldNumImage[2].ToString();
+                    if (!name.Contains("Question_Mark") && number100s)
+                        child.Visibility = Visibility.Visible;
+                    else if (!number100s)
+                        child.Visibility = Visibility.Hidden;
+
+                    continue;
+                }
+            }
+
+        }
+
+        public int GetWorldNumber(Grid hintgrid)
+        {
+            int Num100 = 0;
+            int Num010 = 0;
+            int Num001 = 0;
+            string worldname = hintgrid.Name;
+
+            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
+
+            for (int i = 0; i < ChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+
+                if (child == null)
+                    continue;
+
+                if (child is Image && child.Name.Equals(worldname + "_001"))
+                {
+                    Num001 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+
+                if (child is Image && child.Name.Equals(worldname + "_010"))
+                {
+                    Num010 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+
+                if (child is Image && child.Name.Equals(worldname + "_100"))
+                {
+                    Num100 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+            }
+
+            int Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+            return Finalnum;
+        }
+
+        public int GetImageNumber(string ImagePath)
+        {
+            int number = 10;
+
+            if (!ImagePath.EndsWith("QuestionMark.png") && ImagePath != null)
+            {
+                string val = ImagePath;
+                val = val.Substring(val.LastIndexOf('/') + 1);
+                number = int.Parse(val.Substring(0, val.IndexOf('.')));
+                Console.WriteLine();
+
+                if (number > 9 || number < 0)
+                    number = 10;
+            }
+
+            return number;
+        }
+
+        public void VisitLockCheck()
+        {
+            foreach (string World in data.WorldsData.Keys.ToList())
+            {
+                //could probably be handled better. oh well
+                switch(World)
+                {
+                    case "GoA":
+                    case "Atlantica":
+                    case "HundredAcreWood":
+                    case "SimulatedTwilightTown":
+                    case "DisneyCastle":
+                    case "TWTNW":
+                    case "SorasHeart":
+                    case "DriveForms":
+                        break;
+                    case "TwilightTown":
+                        switch (data.WorldsData["TwilightTown"].visitLocks)
+                        {
+                            case 1:
+                                TwilightTownLock_1.Visibility = Visibility.Visible;
+                                TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                broadcast.TwilightTownLock_1.Visibility = Visibility.Visible;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                break;
+                            case 0:
+                                TwilightTownLock_1.Visibility = Visibility.Hidden;
+                                TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                broadcast.TwilightTownLock_1.Visibility = Visibility.Hidden;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                TwilightTownLock_1.Visibility = Visibility.Visible;
+                                TwilightTownLock_2.Visibility = Visibility.Visible;
+                                broadcast.TwilightTownLock_1.Visibility = Visibility.Visible;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "HollowBastion":
+                        switch (data.WorldsData["HollowBastion"].visitLocks)
+                        {
+                            case 0:
+                                HollowBastionLock.Visibility = Visibility.Hidden;
+                                broadcast.HollowBastionLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                HollowBastionLock.Visibility = Visibility.Visible;
+                                broadcast.HollowBastionLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "BeastsCastle":
+                        switch (data.WorldsData["BeastsCastle"].visitLocks)
+                        {
+                            case 0:
+                                BeastsCastleLock.Visibility = Visibility.Hidden;
+                                broadcast.BeastsCastleLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                BeastsCastleLock.Visibility = Visibility.Visible;
+                                broadcast.BeastsCastleLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "OlympusColiseum":
+                        switch (data.WorldsData["OlympusColiseum"].visitLocks)
+                        {
+                            case 0:
+                                OlympusColiseumLock.Visibility = Visibility.Hidden;
+                                broadcast.OlympusColiseumLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                OlympusColiseumLock.Visibility = Visibility.Visible;
+                                broadcast.OlympusColiseumLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "Agrabah":
+                        switch (data.WorldsData["Agrabah"].visitLocks)
+                        {
+                            case 0:
+                                AgrabahLock.Visibility = Visibility.Hidden;
+                                broadcast.AgrabahLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                AgrabahLock.Visibility = Visibility.Visible;
+                                broadcast.AgrabahLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "LandofDragons":
+                        switch (data.WorldsData["LandofDragons"].visitLocks)
+                        {
+                            case 0:
+                                LandofDragonsLock.Visibility = Visibility.Hidden;
+                                broadcast.LandofDragonsLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                LandofDragonsLock.Visibility = Visibility.Visible;
+                                broadcast.LandofDragonsLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "PrideLands":
+                        switch (data.WorldsData["PrideLands"].visitLocks)
+                        {
+                            case 0:
+                                PrideLandsLock.Visibility = Visibility.Hidden;
+                                broadcast.PrideLandsLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                PrideLandsLock.Visibility = Visibility.Visible;
+                                broadcast.PrideLandsLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "HalloweenTown":
+                        switch (data.WorldsData["HalloweenTown"].visitLocks)
+                        {
+                            case 0:
+                                HalloweenTownLock.Visibility = Visibility.Hidden;
+                                broadcast.HalloweenTownLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                HalloweenTownLock.Visibility = Visibility.Visible;
+                                broadcast.HalloweenTownLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "PortRoyal":
+                        switch (data.WorldsData["PortRoyal"].visitLocks)
+                        {
+                            case 0:
+                                PortRoyalLock.Visibility = Visibility.Hidden;
+                                broadcast.PortRoyalLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                PortRoyalLock.Visibility = Visibility.Visible;
+                                broadcast.PortRoyalLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    case "SpaceParanoids":
+                        switch (data.WorldsData["SpaceParanoids"].visitLocks)
+                        {
+                            case 0:
+                                SpaceParanoidsLock.Visibility = Visibility.Hidden;
+                                broadcast.SpaceParanoidsLock.Visibility = Visibility.Hidden;
+                                break;
+                            default:
+                                SpaceParanoidsLock.Visibility = Visibility.Visible;
+                                broadcast.SpaceParanoidsLock.Visibility = Visibility.Visible;
+                                break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
     }
+
 }

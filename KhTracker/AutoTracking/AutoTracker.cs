@@ -76,6 +76,18 @@ namespace KhTracker
         private ImportantCheck nonexist;
         private ImportantCheck connection;
 
+        private ImportantCheck auronWep;
+        private ImportantCheck mulanWep;
+        private ImportantCheck beastWep;
+        private ImportantCheck jackWep;
+        private ImportantCheck simbaWep;
+        private ImportantCheck sparrowWep;
+        private ImportantCheck aladdinWep;
+        private ImportantCheck tronWep;
+        private ImportantCheck poster;
+        private ImportantCheck iceCream;
+        private ImportantCheck picture;
+
         //private ImportantCheck hadescup;
 
         private TornPage pages;
@@ -377,7 +389,7 @@ namespace KhTracker
             checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
 
             LevelIcon.Visibility = Visibility.Visible;
-            Level.Visibility = Visibility.Visible;
+            //Level.Visibility = Visibility.Visible;
             StrengthIcon.Visibility = Visibility.Visible;
             Strength.Visibility = Visibility.Visible;
             MagicIcon.Visibility = Visibility.Visible;
@@ -558,6 +570,18 @@ namespace KhTracker
             importantChecks.Add(nonexist = new Proof(memory, Save + 0x36B3, ADDRESS_OFFSET, "Nonexistence"));
             importantChecks.Add(connection = new Proof(memory, Save + 0x36B2, ADDRESS_OFFSET, "Connection"));
 
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35AE, ADDRESS_OFFSET, "AuronWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35AF, ADDRESS_OFFSET, "MulanWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35B3, ADDRESS_OFFSET, "BeastWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35B4, ADDRESS_OFFSET, "JackWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35B5, ADDRESS_OFFSET, "SimbaWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35B6, ADDRESS_OFFSET, "SparrowWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35C0, ADDRESS_OFFSET, "AladdinWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x35C2, ADDRESS_OFFSET, "TronWep"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x3640, ADDRESS_OFFSET, "Poster"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x3649, ADDRESS_OFFSET, "IceCream"));
+            importantChecks.Add(connection = new Visit(memory, Save + 0x364A, ADDRESS_OFFSET, "Picture"));
+
             int count = pages != null ? pages.Quantity : 0;
             importantChecks.Add(pages = new TornPage(memory, Save + 0x3598, ADDRESS_OFFSET, "TornPage"));
             pages.Quantity = count;
@@ -638,8 +662,8 @@ namespace KhTracker
         {
             int Delay = 4000;
 
-            //if (!AutoDetectOption.IsChecked)
-            //    Delay = 0;
+            if (!AutoDetectOption.IsChecked)
+                Delay = 0;
 
             await Task.Delay(Delay);
             try
@@ -731,11 +755,12 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            BindStats(Level, "Level", stats);
-            BindWeapon(Weapon, "Weapon", stats);
-            BindStats(Strength, "Strength", stats);
-            BindStats(Magic, "Magic", stats);
-            BindStats(Defense, "Defense", stats);
+            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
+            BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
+            BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
+
+            //BindWeapon(Weapon, "Weapon", stats);
 
             BindStats(broadcast.Level, "Level", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
@@ -779,7 +804,7 @@ namespace KhTracker
             BindLevel(LimitLevel, "Level", limit);
             BindLevel(MasterLevel, "Level", master);
             BindLevel(FinalLevel, "Level", final);
-            
+
             BindForm(ValorM, "Obtained", valor);
             BindForm(WisdomM, "Obtained", wisdom);
             BindForm(LimitM, "Obtained", limit);
@@ -808,7 +833,7 @@ namespace KhTracker
             {
                 stats.UpdateMemory();
                 world.UpdateMemory();
-                UpdateMagicAddresses();
+                //UpdateMagicAddresses();
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
 
@@ -837,12 +862,17 @@ namespace KhTracker
             UpdateCollectedItems();
             DetermineItemLocations();
 
-            //TODO
+            //next level check
             stats.SetNextLevelCheck(stats.Level);
-            if (MinNumOption.IsChecked)
-                LevelCheck.Source = data.Numbers[stats.LevelCheck + 1];
-            else
-                LevelCheck.Source = data.OldNumbers[stats.LevelCheck + 1];
+            //if (MinNumOption.IsChecked)
+            //    LevelCheck.Source = data.Numbers[stats.LevelCheck + 1];
+            //else
+            //    LevelCheck.Source = data.OldNumbers[stats.LevelCheck + 1];
+            {
+                List<BitmapImage> LevelCheckNum = UpdateNumber(stats.LevelCheck, "G");
+                LevelCheck_01.Source = LevelCheckNum[0];
+                LevelCheck_10.Source = LevelCheckNum[1];
+            }
         }
 
         private void TrackItem(string itemName, WorldGrid world)
@@ -931,28 +961,29 @@ namespace KhTracker
             }
         }
 
-        private void UpdateMagicAddresses()
-        {
-            if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
-                && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
-            {
-                fire.UseSTTAddress(true);
-                blizzard.UseSTTAddress(true);
-                thunder.UseSTTAddress(true);
-                cure.UseSTTAddress(true);
-                reflect.UseSTTAddress(true);
-                magnet.UseSTTAddress(true);
-            }
-            else
-            {
-                fire.UseSTTAddress(false);
-                blizzard.UseSTTAddress(false);
-                thunder.UseSTTAddress(false);
-                cure.UseSTTAddress(false);
-                reflect.UseSTTAddress(false);
-                magnet.UseSTTAddress(false);
-            }
-        }
+        //private void UpdateMagicAddresses()
+        //{
+        //    //no loner need this i think.
+        //    if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
+        //        && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
+        //    {
+        //        fire.UseSTTAddress(true);
+        //        blizzard.UseSTTAddress(true);
+        //        thunder.UseSTTAddress(true);
+        //        cure.UseSTTAddress(true);
+        //        reflect.UseSTTAddress(true);
+        //        magnet.UseSTTAddress(true);
+        //    }
+        //    else
+        //    {
+        //        fire.UseSTTAddress(false);
+        //        blizzard.UseSTTAddress(false);
+        //        thunder.UseSTTAddress(false);
+        //        cure.UseSTTAddress(false);
+        //        reflect.UseSTTAddress(false);
+        //        magnet.UseSTTAddress(false);
+        //    }
+        //}
 
         private void UpdateCollectedItems()
         {
@@ -1887,11 +1918,11 @@ namespace KhTracker
         //used to get the numbers for everything to change color corectly when changing icon modes
         private void ReloadBindings()
         {
-            BindStats(Level, "Level", stats);
-            BindWeapon(Weapon, "Weapon", stats);
-            BindStats(Strength, "Strength", stats);
-            BindStats(Magic, "Magic", stats);
-            BindStats(Defense, "Defense", stats);
+            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
+            BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
+            BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
+            //BindWeapon(Weapon, "Weapon", stats);
 
             BindStats(broadcast.Level, "Level", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
@@ -1944,7 +1975,7 @@ namespace KhTracker
 
         private void Updatenumbers()
         {
-            //get correct bar image
+            //get correct slash image
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage NumberBarY = data.SlashBarY;
             if (CustomMode && CustomBarYFound)
@@ -1952,113 +1983,118 @@ namespace KhTracker
                 NumberBarY = data.CustomSlashBarY;
             }
 
+            //Get and set world values
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
-                string numblue = "/Blue/";
-                bool containsblue = false;
+                bool isBlue = false;
+                bool isGreen = false;
 
-                bool isNormal = false;
-                string NormalBar = "White.png";
-                string CurrentPath = (worldData.selectedBar.Source).ToString();
-                isNormal = CurrentPath.Contains(NormalBar);
+                if (worldData.complete || worldData.hintedHint)
+                    isBlue = true;
+                if (worldData.containsGhost && data.mode == Mode.DAHints)
+                    isGreen = true;
 
+                if (worldData.hint != null)
                 {
-                    if (worldData.hint != null)
+                    int WorldNumber = GetWorldNumber(worldData.hint);
+
+                    if (isGreen)
                     {
-                        int WorldNumber;
-                        string val = (worldData.hint.Source).ToString();
-                        containsblue = val.Contains(numblue);
-
-                        if (containsblue == false)
-                        {
-                            val = val.Substring(val.LastIndexOf('/'));
-                            if (val == "/_QuestionMark.png" || val == "/QuestionMark.png")
-                                WorldNumber = 0;
-                            else if (val == "/_0.png")
-                                WorldNumber = 1;
-                            else if (val == "/_1.png")
-                                WorldNumber = 2;
-                            else if (val == "/_2.png")
-                                WorldNumber = 3;
-                            else if (val == "/_3.png")
-                                WorldNumber = 4;
-                            else if (val == "/_4.png")
-                                WorldNumber = 5;
-                            else if (val == "/_5.png")
-                                WorldNumber = 6;
-                            else if (val == "/_6.png")
-                                WorldNumber = 7;
-                            else if (val == "/_7.png")
-                                WorldNumber = 8;
-                            else if (val == "/_8.png")
-                                WorldNumber = 9;
-                            else if (val == "/_9.png")
-                                WorldNumber = 10;
-                            else
-                                WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
-
-                            if (worldData.hint != null)
-                                worldData.hint.Source = GetDataNumber("Y")[WorldNumber];
-                        }
-                        else
-                        {
-                            val = val.Substring(val.LastIndexOf('/'));
-                            if (val == "/_QuestionMark.png" || val == "/QuestionMark.png")
-                                WorldNumber = 0;
-                            else if (val == "/_0.png")
-                                WorldNumber = 1;
-                            else if (val == "/_1.png")
-                                WorldNumber = 2;
-                            else if (val == "/_2.png")
-                                WorldNumber = 3;
-                            else if (val == "/_3.png")
-                                WorldNumber = 4;
-                            else if (val == "/_4.png")
-                                WorldNumber = 5;
-                            else if (val == "/_5.png")
-                                WorldNumber = 6;
-                            else if (val == "/_6.png")
-                                WorldNumber = 7;
-                            else if (val == "/_7.png")
-                                WorldNumber = 8;
-                            else if (val == "/_8.png")
-                                WorldNumber = 9;
-                            else if (val == "/_9.png")
-                                WorldNumber = 10;
-                            else
-                                WorldNumber = int.Parse(val.Substring(1, val.IndexOf('.') - 1)) + 1;
-
-                            if (worldData.hint != null)
-                                worldData.hint.Source = GetDataNumber("B")[WorldNumber];
-                        }
+                        SetWorldNumber(worldData.hint, WorldNumber, "G");
+                    }
+                    else if (isBlue)
+                    {
+                        SetWorldNumber(worldData.hint, WorldNumber, "B");
+                    }
+                    else
+                    {
+                        SetWorldNumber(worldData.hint, WorldNumber, "Y");
                     }
                 }
 
                 //might as well get and set the correct vertical bar image here while we have this data loop
+                if (worldData.world.IsPressed)
                 {
-                    if (isNormal)
-                    {
-                        if (CustomMode)
-                            worldData.selectedBar.Source = data.CustomVerticalBarW;
-                        else
-                            worldData.selectedBar.Source = data.VerticalBarW;
-                    }
+                    if (CustomMode)
+                        worldData.selectedBar.Source = data.CustomVerticalBarY;
                     else
-                    {
-                        if (CustomMode)
-                            worldData.selectedBar.Source = data.CustomVerticalBarY;
-                        else
-                            worldData.selectedBar.Source = data.VerticalBarY;
-                    }
+                        worldData.selectedBar.Source = data.VerticalBarY;
+                }
+                else
+                {
+                    if (CustomMode)
+                        worldData.selectedBar.Source = data.CustomVerticalBarW;
+                    else
+                        worldData.selectedBar.Source = data.VerticalBarW;
                 }
             }
 
-            Collected.Source = GetDataNumber("Y")[collected + 1];
-            CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            CollectedBar.Source = NumberBarY;
 
-            broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
-            broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
+            //update collected count numbers
+            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
+            Collected_01.Source = CollectedNum[0];
+            Collected_10.Source = CollectedNum[1];
+            broadcast.Collected_01.Source = CollectedNum[0];
+            broadcast.Collected_10.Source = CollectedNum[1];
+
+            //update total count numbers
+            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
+            CheckTotal_01.Source = TotalNum[0];
+            CheckTotal_10.Source = TotalNum[1];
+            broadcast.CheckTotal_01.Source = TotalNum[0];
+            broadcast.CheckTotal_10.Source = TotalNum[1];
+
+            CollectedBar.Source = NumberBarY;
+        }
+
+        private void BindNumberHundred(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new NumberConverter100();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindNumberTen(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new NumberConverter010();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindNumberOne(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new NumberConverter001();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
+
+        private void BindNumberFull(Image img1, Image img2, Image img3, string property, object source)
+        {
+            if (source != null)
+            {
+                Binding binding1 = new Binding(property);
+                Binding binding2 = new Binding(property);
+                Binding binding3 = new Binding(property);
+                binding1.Source = source;
+                binding2.Source = source;
+                binding3.Source = source;
+                binding1.Converter = new NumberConverter001();
+                binding2.Converter = new NumberConverter010();
+                binding3.Converter = new NumberConverter100();
+
+                if (img1 != null)
+                    img1.SetBinding(Image.SourceProperty, binding1);
+
+                if (img2 != null)
+                    img2.SetBinding(Image.SourceProperty, binding2);
+
+                if (img3 != null)
+                    img3.SetBinding(Image.SourceProperty, binding3);
+            }
+
         }
 
     }

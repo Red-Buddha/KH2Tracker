@@ -139,6 +139,56 @@ namespace KhTracker
             }
         }
 
+        private void VisitLockToggle(object sender, RoutedEventArgs e)
+        {
+            VisitLockToggle(VisitLockOption.IsChecked);
+        }
+
+        private void VisitLockToggle(bool toggle)
+        {
+            Properties.Settings.Default.WorldVisitLock = toggle;
+            VisitLockOption.IsChecked = toggle;
+
+            if (toggle)
+            {
+                VisitChecks.Height = new GridLength(1.0, GridUnitType.Star);
+                //broadcast.AnsemReport.Width = new GridLength(1.0, GridUnitType.Star);
+
+                data.WorldsData["TwilightTown"].visitLocks = 2;
+                data.WorldsData["HollowBastion"].visitLocks = 1;
+                data.WorldsData["BeastsCastle"].visitLocks = 1;
+                data.WorldsData["OlympusColiseum"].visitLocks = 1;
+                data.WorldsData["Agrabah"].visitLocks = 1;
+                data.WorldsData["LandofDragons"].visitLocks = 1;
+                data.WorldsData["PrideLands"].visitLocks = 1;
+                data.WorldsData["HalloweenTown"].visitLocks = 1;
+                data.WorldsData["PortRoyal"].visitLocks = 1;
+                data.WorldsData["SpaceParanoids"].visitLocks = 1;
+            }
+            else
+            {
+                VisitChecks.Height = new GridLength(0, GridUnitType.Star);
+                //broadcast.AnsemReport.Width = new GridLength(0, GridUnitType.Star);
+
+                data.WorldsData["TwilightTown"].visitLocks = 0;
+                data.WorldsData["HollowBastion"].visitLocks = 0;
+                data.WorldsData["BeastsCastle"].visitLocks = 0;
+                data.WorldsData["OlympusColiseum"].visitLocks = 0;
+                data.WorldsData["Agrabah"].visitLocks = 0;
+                data.WorldsData["LandofDragons"].visitLocks = 0;
+                data.WorldsData["PrideLands"].visitLocks = 0;
+                data.WorldsData["HalloweenTown"].visitLocks = 0;
+                data.WorldsData["PortRoyal"].visitLocks = 0;
+                data.WorldsData["SpaceParanoids"].visitLocks = 0;
+            }
+            for (int i = 0; i < data.VisitLocks.Count; ++i)
+            {
+                HandleItemToggle(toggle, data.VisitLocks[i], false);
+            }
+
+            VisitLockCheck();
+        }
+
         private void AbilitiesToggle(object sender, RoutedEventArgs e)
         {
             AbilitiesToggle(AbilitiesOption.IsChecked);
@@ -535,8 +585,8 @@ namespace KhTracker
             {
                 Visible = true;
 
-                HintTextParent.Margin = new Thickness(45, 0, 0, 0);
-                HintText.Margin = new Thickness(30, 0, 0, 0);
+                //HintTextParent.Margin = new Thickness(45, 0, 0, 0);
+                //HintText.Margin = new Thickness(30, 0, 0, 0);
             }
             else
             {
@@ -594,142 +644,19 @@ namespace KhTracker
 
             if (Visible && memory != null)
             {
-                LevelCheckIcon.Visibility = Visibility.Visible;
-                LevelCheck.Visibility = Visibility.Visible;
+                NextlevelValue.Width = new GridLength(2.5, GridUnitType.Star);
             }
             else
             {
-                LevelCheckIcon.Visibility = Visibility.Hidden;
-                LevelCheck.Visibility = Visibility.Hidden;
+                NextlevelValue.Width = new GridLength(0, GridUnitType.Star);
             }
         }
-
-        //private void NextLevelCheck1Option(object sender, RoutedEventArgs e)
-        //{
-        //    NextLevelCheck1Option();
-        //}
-        //
-        //private void NextLevelCheck1Option()
-        //{
-        //    // mimic radio button
-        //    if (NextLevelCheckOption1.IsChecked == false)
-        //    {
-        //        NextLevelCheckOption1.IsChecked = true;
-        //        return;
-        //    }
-        //
-        //    NextLevelCheckOption50.IsChecked = false;
-        //    NextLevelCheckOption99.IsChecked = false;
-        //
-        //    Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
-        //    Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
-        //    Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
-        //
-        //    if (LevelCheckIcon.Visibility == Visibility.Visible && memory != null)
-        //    {
-        //        LevelCheckIcon.Visibility = Visibility.Hidden;
-        //        LevelCheck.Visibility = Visibility.Hidden;
-        //    }
-        //
-        //    //HintTextParent.Margin = new Thickness(10, 0, 10, 0);
-        //}
-        //
-        //private void NextLevelCheck50Option(object sender, RoutedEventArgs e)
-        //{
-        //    //mimic radio button
-        //    if (NextLevelCheckOption50.IsChecked == false)
-        //    {
-        //        NextLevelCheckOption50.IsChecked = true;
-        //        return;
-        //    }
-        //
-        //    NextLevelCheckOption1.IsChecked = false;
-        //    NextLevelCheckOption99.IsChecked = false;
-        //
-        //    Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
-        //    Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
-        //    Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
-        //
-        //    if (LevelCheckIcon.Visibility == Visibility.Hidden && memory != null)
-        //    {
-        //        LevelCheckIcon.Visibility = Visibility.Visible;
-        //        LevelCheck.Visibility = Visibility.Visible;
-        //    }
-        //
-        //    if (memory != null && stats != null)
-        //    {
-        //        try
-        //        {
-        //            stats.SetMaxLevelCheck(50);
-        //            stats.SetNextLevelCheck(stats.Level);
-        //        }
-        //        catch
-        //        {
-        //            Console.WriteLine("Tried to edit while loading");
-        //        }
-        //    }
-        //
-        //    //HintTextParent.Margin = new Thickness(33, 0, 10, 0);
-        //}
-        //
-        //private void NextLevelCheck99Option(object sender, RoutedEventArgs e)
-        //{
-        //    //mimic radio button
-        //    if (NextLevelCheckOption99.IsChecked == false)
-        //    {
-        //        NextLevelCheckOption99.IsChecked = true;
-        //        return;
-        //    }
-        //
-        //    NextLevelCheckOption1.IsChecked = false;
-        //    NextLevelCheckOption50.IsChecked = false;
-        //
-        //    Properties.Settings.Default.Level1 = NextLevelCheckOption1.IsChecked;
-        //    Properties.Settings.Default.Level50 = NextLevelCheckOption50.IsChecked;
-        //    Properties.Settings.Default.Level99 = NextLevelCheckOption99.IsChecked;
-        //
-        //    if (LevelCheckIcon.Visibility == Visibility.Hidden && memory != null)
-        //    {
-        //        LevelCheckIcon.Visibility = Visibility.Visible;
-        //        LevelCheck.Visibility = Visibility.Visible;
-        //    }
-        //
-        //    if (memory != null && stats != null)
-        //    {
-        //        try
-        //        {
-        //            stats.SetMaxLevelCheck(99);
-        //            stats.SetNextLevelCheck(stats.Level);
-        //        }
-        //        catch
-        //        {
-        //            Console.WriteLine("Tried to edit while loading");
-        //        }
-        //    }
-        //
-        //    //HintTextParent.Margin = new Thickness(33, 0, 10, 0);
-        //}
 
         //World toggles
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {
             SoraHeartToggle(SoraHeartOption.IsChecked);
         }
-        
-        //private void SoraHeartToggle(string type, bool toggle)
-        //{
-        //    switch(type)
-        //    {
-        //        case "Level":
-        //            break;
-        //        case "ExcludeFrom50":
-        //            break;
-        //        case "ExcludeFrom99":
-        //            break;
-        //    }
-        //
-        //    SoraHeartToggle(toggle);
-        //}
 
         private void SoraHeartToggle(bool toggle)
         {

@@ -62,7 +62,19 @@
     <Image x:Key="Min-ProofOfPea"		Source="Images\Checks\Simple\proof_of_tranquility.png"/>
     <Image x:Key="Min-PromiseCharm"		Source="Images\Checks\Simple\promise_charm.png"/>
     <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Simple\hades_cup.png"/>
-    
+
+    <Image x:Key="Min-AuronWep"		Source="Images\Checks\Simple\BattlefieldsofWar.png"/>
+    <Image x:Key="Min-MulanWep"		Source="Images\Checks\Simple\AncestorSword.png"/>
+    <Image x:Key="Min-BeastWep"		Source="Images\Checks\Simple\BeastClaw.png"/>
+    <Image x:Key="Min-JackWep"		Source="Images\Checks\Simple\BoneFist.png"/>
+    <Image x:Key="Min-SimbaWep"		Source="Images\Checks\Simple\ProudFang.png"/>
+    <Image x:Key="Min-SparrowWep"	Source="Images\Checks\Simple\SkillCrossbones.png"/>
+    <Image x:Key="Min-AladdinWep"	Source="Images\Checks\Simple\Scimitar.png"/>
+    <Image x:Key="Min-TronWep"		Source="Images\Checks\Simple\IdentityDisk.png"/>
+    <Image x:Key="Min-Poster"		Source="Images\Checks\Simple\Poster.png"/>
+    <Image x:Key="Min-IceCream"		Source="Images\Checks\Simple\IceCream.png"/>
+    <Image x:Key="Min-Picture"		Source="Images\Checks\Simple\Picture.png"/>
+
     <!--Old Item Icons (Main Window)-->
     <Image x:Key="Old-AnsemReport"	 Source="Images\Other\ansem_report_old.png" x:Shared="false"/>
     <Image x:Key="Old-AnsemReport01" Source="Images\Checks\Old\ansem_report01.png" x:Shared="false"/>
@@ -113,6 +125,18 @@
     <Image x:Key="Old-ProofOfPea"		Source="Images\Checks\Old\proof_of_tranquility.png"/>
     <Image x:Key="Old-PromiseCharm"		Source="Images\Checks\Old\promise_charm.png"/>
     <Image x:Key="Old-HadesCup"		    Source="Images\Checks\Old\hades_cup.png"/>
+
+    <Image x:Key="Old-AuronWep"		Source="Images\Checks\Old\BattlefieldsofWar.png"/>
+    <Image x:Key="Old-MulanWep"		Source="Images\Checks\Old\AncestorSword.png"/>
+    <Image x:Key="Old-BeastWep"		Source="Images\Checks\Old\BeastClaw.png"/>
+    <Image x:Key="Old-JackWep"		Source="Images\Checks\Old\BoneFist.png"/>
+    <Image x:Key="Old-SimbaWep"		Source="Images\Checks\Old\ProudFang.png"/>
+    <Image x:Key="Old-SparrowWep"	Source="Images\Checks\Old\SkillCrossbones.png"/>
+    <Image x:Key="Old-AladdinWep"	Source="Images\Checks\Old\Scimitar.png"/>
+    <Image x:Key="Old-TronWep"		Source="Images\Checks\Old\IdentityDisk.png"/>
+    <Image x:Key="Old-Poster"		Source="Images\Checks\Old\Poster.png"/>
+    <Image x:Key="Old-IceCream"		Source="Images\Checks\Old\IceCream.png"/>
+    <Image x:Key="Old-Picture"		Source="Images\Checks\Old\Picture.png"/>
 
     <!--World Icons-->
     <!--Simple World Icons-->

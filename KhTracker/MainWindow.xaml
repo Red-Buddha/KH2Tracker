@@ -59,6 +59,7 @@
                 <MenuItem Name="CureOption"         Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/>
                 <MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
                 <!--MenuItem Name="HadesCupOption"  Header="Hades Cup Trophy" IsCheckable="True" IsChecked="False" Click="HadesCupToggle"/-->
+                <MenuItem Name="VisitLockOption"    Header="World Visit Items" IsCheckable="True" IsChecked="False" Click="VisitLockToggle"/>
                 <Separator/>
                 <MenuItem Name="SeedHashOption"         Header="Show Zip Seed Hash" IsCheckable="True" IsChecked="True" Click="SeedHashToggle"/>
                 <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
@@ -172,9 +173,23 @@
                             <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SoraHeartImage"/>
                             </Button>
-                            <Image Name="SorasHeartHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="SorasHeartHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="SorasHeartHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="SorasHeartHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="SorasHeartHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="SorasHeartHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="SorasHeartReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
-                            <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
+                            <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="5"/>
                         </Grid>
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
                     </Grid>
@@ -202,8 +217,22 @@
                             <Button Name="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SimulatedImage"/>
                             </Button>
-                            
-                            <Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+
+                            <!--Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="SimulatedTwilightTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="SimulatedTwilightTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="SimulatedTwilightTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="SimulatedTwilightTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="SimulatedTwilightTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="SimulatedTwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="SimulatedTwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -231,10 +260,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="HollowBastionLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-HollowBastionImage"/>
                             </Button>
-                            <Image Name="HollowBastionHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="HollowBastionHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="HollowBastionHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="HollowBastionHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="HollowBastionHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="HollowBastionHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="HollowBastionReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HollowBastionProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HollowBastionBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -262,10 +316,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="OlympusColiseumLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-OlympusImage"/>
                             </Button>
-                            <Image Name="OlympusColiseumHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="OlympusColiseumHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="OlympusColiseumHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="OlympusColiseumHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="OlympusColiseumHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="OlympusColiseumHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="OlympusColiseumReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="OlympusColiseumProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="OlympusBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -293,10 +372,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="LandofDragonsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" Margin="0" >
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-LandofDragonsImage"/>
                             </Button>
-                            <Image Name="LandofDragonsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="LandofDragonsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="LandofDragonsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="LandofDragonsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="LandofDragonsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="LandofDragonsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="LandofDragonsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="LandofDragonsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="LandofDragonsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -324,10 +428,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="PrideLandsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-PrideLandsImage"/>
                             </Button>
-                            <Image Name="PrideLandsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="PrideLandsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="PrideLandsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="PrideLandsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="PrideLandsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="PrideLandsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="PrideLandsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="PrideLandsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="PrideLandsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -355,10 +484,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="HalloweenTownLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-HalloweenTownImage"/>
                             </Button>
-                            <Image Name="HalloweenTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="HalloweenTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="HalloweenTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="HalloweenTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="HalloweenTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="HalloweenTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="HalloweenTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HalloweenTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HalloweenTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -386,11 +540,36 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="SpaceParanoidsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-SpaceParanoidsImage"/>
                             </Button>
-                            <Image Name="SpaceParanoidsHint"    Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png"   IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
-                            <!-- <Image Name="SpaceParanoidsReport"  Source="Images\ReportTest3.png"             IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Opacity="0.9" Grid.ColumnSpan="2" Stretch="Uniform" /> -->
+                            <!--Image Name="SpaceParanoidsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png"   IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="SpaceParanoidsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="SpaceParanoidsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="SpaceParanoidsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="SpaceParanoidsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
+                            <!-- <Image Name="SpaceParanoidsReport"  Source="Images\ReportTest3.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Opacity="0.9" Grid.ColumnSpan="2" Stretch="Uniform" /> -->
                             <ContentControl Name="SpaceParanoidsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="SpaceParanoidsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -462,7 +641,21 @@
                             <Button Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-DriveFormsImage"/>
                             </Button>
-                            <Image Name="DriveFormsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="DriveFormsHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="DriveFormsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="DriveFormsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="DriveFormsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="DriveFormsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="DriveFormsReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <Image Name="DriveFormsBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
                         </Grid>
@@ -489,10 +682,54 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Grid Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="TwilightTownLock_1" Source="Images/Other/visitlock.png" Grid.Column="0" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                                <Image Name="TwilightTownLock_2" Source="Images/Other/visitlock.png" Grid.Column="1" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Grid>
+
                             <Button Name="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-TwilightTownImage"/>
                             </Button>
-                            <Image Name="TwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="TwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="TwilightTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="TwilightTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="TwilightTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="TwilightTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="TwilightTownReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="TwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="TwilightTownBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -520,10 +757,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="BeastsCastleLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-BeastCastleImage"/>
                             </Button>
-                            <Image Name="BeastsCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="BeastsCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="BeastsCastleHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="BeastsCastleHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="BeastsCastleHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="BeastsCastleHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="BeastsCastleReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="BeastsCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="BeastsCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -551,10 +813,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="AgrabahLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-AgrabahImage"/>
                             </Button>
-                            <Image Name="AgrabahHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="AgrabahHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="AgrabahHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="AgrabahHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="AgrabahHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="AgrabahHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="AgrabahReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="AgrabahProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="AgrabahBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -585,7 +872,21 @@
                             <Button Name="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-HundredAcreImage"/>
                             </Button>
-                            <Image Name="HundredAcreWoodHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="HundredAcreWoodHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="HundredAcreWoodHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="HundredAcreWoodHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="HundredAcreWoodHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="HundredAcreWoodHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="HundredAcreWoodReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="HundredAcreWoodProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="HundredAcreWoodBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -616,7 +917,21 @@
                             <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-DisneyCastleImage"/>
                             </Button>
-                            <Image Name="DisneyCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="DisneyCastleHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="DisneyCastleHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="DisneyCastleHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="DisneyCastleHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="DisneyCastleHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="DisneyCastleReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="DisneyCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="DisneyCastleBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -644,10 +959,35 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="PortRoyalLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-PortRoyalImage"/>
                             </Button>
-                            <Image Name="PortRoyalHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="PortRoyalHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="PortRoyalHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="PortRoyalHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="PortRoyalHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="PortRoyalHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="PortRoyalReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="PortRoyalProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="PortRoyalBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -678,7 +1018,21 @@
                             <Button Name="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-TWTNWImage"/>
                             </Button>
-                            <Image Name="TWTNWHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="TWTNWHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="TWTNWHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="TWTNWHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="TWTNWHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="TWTNWHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="TWTNWReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="TWTNWProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="TWTNWBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -709,7 +1063,21 @@
                             <Button Name="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-AtlanticaImage"/>
                             </Button>
-                            <Image Name="AtlanticaHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                            <!--Image Name="AtlanticaHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
+                            <Grid Name="AtlanticaHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="AtlanticaHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="AtlanticaHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="AtlanticaHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
                             <!-- <Image Name="AtlanticaReport" Source="Images\ReportTest1.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/> -->
                             <ContentControl Name="AtlanticaProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Name="AtlanticaBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
@@ -720,7 +1088,7 @@
             </Grid>
 
             <!-- Hints and Collection Count -->
-            <Grid Grid.Row="1">
+            <Grid x:Name="Statsgrid" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="5*"/>
@@ -729,61 +1097,48 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <!--LVL icon-->
+                    <ColumnDefinition Width="3*"/> 
                     <!--LVL-->
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3.5*"/>
+                    <ColumnDefinition Width="3.5*"/>
+                    <ColumnDefinition Name="NextLevelSpace" Width="3.5*"/>
+                    <!--STR Icon-->
+                    <ColumnDefinition Width="2.75*"/>
                     <!--STR-->
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <!--MAG Icon-->
+                    <ColumnDefinition Width="2.75*"/>
                     <!--MAG-->
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <!--DEF icon-->
+                    <ColumnDefinition Width="2.75*"/>
                     <!--DEF-->
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <!--WEP-->
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <!--Connection icon-->
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
 
-                <!--Viewbox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="15">
-                    <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0"/>
-                </Viewbox-->
-
-                <Viewbox Name="HintTextParent" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="17" Margin="0,0,0,0">
+                <Viewbox Name="HintTextParent" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="21" Margin="0,0,0,0">
                     <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0" Margin="00,0,0,0"/>
                 </Viewbox>
 
-                <!--Image Name="LevelIcon" Source="Images/Other/level.png" Grid.Row="3" Grid.Column="1" Visibility="Visible"/>
-                <Image Name="Level" Source="Images/Numbers/Kh2/Yellow/1.png" Grid.Row="3" Grid.Column="2" Visibility="Visible"/>
-                <Image Name="StrengthIcon" Source="Images/Other/strength.png" Grid.Row="3" Grid.Column="4" Visibility="Visible"/>
-                <Image Name="Strength" Source="Images/Numbers/Kh2/Yellow/2.png" Grid.Row="3" Grid.Column="5" Visibility="Visible"/>
-                <Image Name="MagicIcon" Source="Images/Other/magic.png" Grid.Row="3" Grid.Column="7" Visibility="Visible"/>
-                <Image Name="Magic" Source="Images/Numbers/Kh2/Yellow/6.png" Grid.Row="3" Grid.Column="8" Visibility="Visible"/>
-                <Image Name="DefenseIcon" Source="Images/Other/defence.png" Grid.Row="3" Grid.Column="10" Visibility="Visible"/>
-                <Image Name="Defense" Source="Images/Numbers/Kh2/Yellow/2.png" Grid.Row="3" Grid.Column="11" Visibility="Visible"/>
-                <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Visible"/-->
-
-                <Image Name="Level"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-                <Image Name="LevelCheck" Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="1" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <!-- Numbers -->
+                <!--Image Name="LevelCheck" Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="1" Grid.RowSpan="1" Grid.Column="2"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="0.65" ScaleY="0.65"/>
@@ -792,8 +1147,161 @@
                             <TranslateTransform X="-5"/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                </Image>
-                <Image Name="Strength"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                </Image-->
+
+                <!--Grid Name="LevelCheck" Grid.Row="1" Grid.Column="2" Margin="-2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="LevelCheck_10" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="LevelCheck_01" Source="Images/Numbers/kh2/Yellow/2.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Left" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid-->
+
+                <!--Grid Name="Level" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="-2,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Name="NextLevelBar" Width="0*"/>
+                        <ColumnDefinition Name="NextLevel_10" Width="0*"/>
+                        <ColumnDefinition Name="NextLevel_01" Width="0*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Level_10" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Level_01" Source="Images/Numbers/kh2/Yellow/0.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Left" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="CollectedBarn"  Source="Images/Numbers/Bar.png" Grid.Row="0" Grid.Column="2"/>
+                    <Image Name="LevelCheck_10" Source="Images/Numbers/kh2/Green/1.png" Visibility="Visible" Grid.Column="3" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="LevelCheck_01" Source="Images/Numbers/kh2/Green/2.png" Visibility="Visible" Grid.Column="4" Margin="0" HorizontalAlignment="Left" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid-->
+
+                <Grid Name="Level" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="-2,0,0,0" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Name="NextlevelValue" Width="2.5*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Level_10" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Level_01" Source="Images/Numbers/kh2/Yellow/0.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Left" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+
+                    <Grid Name="NextLevel" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Name="CollectedBarn"  Source="Images/Numbers/Bar.png" Grid.Row="0" Grid.Column="0"/>
+                        <Image Name="LevelCheck_10" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="1">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Image Name="LevelCheck_01" Source="Images/Numbers/kh2/Yellow/0.png" Visibility="Visible" Grid.Column="2">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
+
+                </Grid>
+                
+                <!--Image Name="Strengthold"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -802,8 +1310,51 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                </Image>
-                <Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                </Image-->
+
+                <Grid Name="Strength" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Margin="-4,0,0,0" HorizontalAlignment="Left" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Strength_100" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Center">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Strength_010" Source="Images/Numbers/kh2/Yellow/2.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Strength_001" Source="Images/Numbers/kh2/Yellow/3.png" Visibility="Visible" Grid.Column="2" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+                
+                <!--Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -812,8 +1363,51 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                </Image>
-                <Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                </Image-->
+
+                <Grid Name="Magic" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="3" Margin="-4,0,0,0" HorizontalAlignment="Left" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Magic_100" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Center">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Magic_010" Source="Images/Numbers/kh2/Yellow/2.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Magic_001" Source="Images/Numbers/kh2/Yellow/3.png" Visibility="Visible" Grid.Column="2" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+
+                <!--Image Name="Defense"   Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="11" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -822,7 +1416,61 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                </Image>
+                </Image-->
+
+                <Grid Name="Defense" Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="3" Margin="-4,0,0,0" HorizontalAlignment="Left" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Defense_100" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0" Margin="0" RenderTransformOrigin="1,0.5" HorizontalAlignment="Center">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Defense_010" Source="Images/Numbers/kh2/Yellow/2.png" Visibility="Visible" Grid.Column="1" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Defense_001" Source="Images/Numbers/kh2/Yellow/3.png" Visibility="Visible" Grid.Column="2" Margin="0" HorizontalAlignment="Center" RenderTransformOrigin="0,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+
+                <!-- Icons -->
+                <!--ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelCheckIcon"    Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                    <ContentControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="4" Y="-5"/>
+                        </TransformGroup>
+                    </ContentControl.RenderTransform>
+                </ContentControl-->
 
                 <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
@@ -834,47 +1482,37 @@
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource LevelIcon}"    Name="LevelCheckIcon"    Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
-                    <ContentControl.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="4" Y="-5"/>
-                        </TransformGroup>
-                    </ContentControl.RenderTransform>
-                </ContentControl>
-                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource StrengthIcon}" Name="StrengthIcon" Grid.Row="3" Grid.RowSpan="2" Grid.Column="5"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform Y="-5"/>
+                            <TranslateTransform Y="-5" X="-3"/>
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="7"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource MagicIcon}"    Name="MagicIcon"    Grid.Row="3" Grid.RowSpan="2" Grid.Column="9"  Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform Y="-5"/>
+                            <TranslateTransform Y="-5" X="-1"/>
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <ContentControl Content="{DynamicResource DefenseIcon}"  Name="DefenseIcon"  Grid.Row="3" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="1" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform Y="-5"/>
+                            <TranslateTransform Y="-5" X="-1"/>
                         </TransformGroup>
                     </ContentControl.RenderTransform>
                 </ContentControl>
-            
+
                 <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -886,10 +1524,10 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <Image Name="Connect" Source="Images/connect.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image Name="Connect" Source="Images/connect.png" Grid.Row="3" Grid.Column="17" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
                     <Image.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
                             <SkewTransform/>
                             <RotateTransform/>
                             <TranslateTransform Y="-2"/>
@@ -897,9 +1535,71 @@
                     </Image.RenderTransform>
                 </Image>
 
-                <Image Name="Collected" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Visible"/>
-                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="16" Visibility="Visible"/>
-                <Image Name="CheckTotal" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17" Visibility="Visible"/>
+                <!--Image Name="Collectedold" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Hidden"/-->
+
+                <Grid Name="Collected" Grid.Row="3" Grid.Column="19" Grid.ColumnSpan="2" Margin="0,0,0,0"  HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Collected_10" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="0">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="Collected_01" Source="Images/Numbers/kh2/Yellow/2.png" Visibility="Visible" Grid.Column="1">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+
+                <Image Name="CollectedBar"  Source="Images/Numbers/Bar.png" Grid.Row="3" Grid.Column="21"/>
+                
+                <!--Image Name="CheckTotalold" Source="Images/Numbers/Kh2/Yellow/51.png" Grid.Row="3" Grid.Column="17" Visibility="Visible"/-->
+
+                <Grid Name="CheckTotal" Grid.Row="3" Grid.Column="22" Grid.ColumnSpan="2" Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="CheckTotal_10" Source="Images/Numbers/kh2/Yellow/5.png" Visibility="Visible" Grid.Column="0" HorizontalAlignment="Left">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Name="CheckTotal_01" Source="Images/Numbers/kh2/Yellow/1.png" Visibility="Visible" Grid.Column="1" HorizontalAlignment="Left">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
 
             </Grid>
 
@@ -911,14 +1611,14 @@
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition Width="15*"/>
 
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
 
-                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.25*"/>
                 </Grid.ColumnDefinitions>
 
                 <Image Name="Score100"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden"/>
@@ -928,14 +1628,14 @@
             </Grid>
 
             <!-- Testing hash placement -->
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3.*"/>
-                    
+
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -943,7 +1643,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
-                     
+
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
@@ -1024,10 +1724,12 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition  Name="VisitChecks"/>
                     <RowDefinition  Name="GhostItems1" Height="0*"/>
                     <RowDefinition  Name="GhostItems2" Height="0*"/>
                     <RowDefinition  Name="GhostItems3" Height="0*"/>
                     <RowDefinition  Name="GhostItems4" Height="0*"/>
+                    <RowDefinition  Name="GhostItems5" Height="0*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -1087,7 +1789,7 @@
                 <local:Item x:Name="Cure2" Content="{DynamicResource Min-Cure}" Grid.Row="1" Grid.Column="10"/>
                 <local:Item x:Name="Cure3" Content="{DynamicResource Min-Cure}" Grid.Row="1" Grid.Column="11"/>
                 <!--local:Item x:Name="HadesCup" Content="{DynamicResource Min-HadesCup}" Grid.Row="1" Grid.Column="12"/-->
-                
+
                 <!-- Row 3 -->
                 <local:Item x:Name="Reflect1" Content="{DynamicResource Min-Reflect}" Grid.Row="2" Grid.Column="0"/>
                 <local:Item x:Name="Reflect2" Content="{DynamicResource Min-Reflect}" Grid.Row="2" Grid.Column="1"/>
@@ -1118,66 +1820,93 @@
                 <local:Item x:Name="Peace" Content="{DynamicResource Min-ProofOfPea}" Grid.Row="3" Grid.Column="11"/>
                 <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}" Grid.Row="3" Grid.Column="12"/>
 
+                <!-- Row 5 -->
+                <local:Item x:Name="BeastWep" 	Content="{DynamicResource Min-BeastWep}" Grid.Row="4" Grid.Column="1"/>
+                <local:Item x:Name="JackWep" 	Content="{DynamicResource Min-JackWep}" Grid.Row="4" Grid.Column="2"/>
+                <local:Item x:Name="SimbaWep" 	Content="{DynamicResource Min-SimbaWep}" Grid.Row="4" Grid.Column="3"/>
+                <local:Item x:Name="AuronWep" 	Content="{DynamicResource Min-AuronWep}" Grid.Row="4" Grid.Column="4"/>
+                <local:Item x:Name="MulanWep" 	Content="{DynamicResource Min-MulanWep}" Grid.Row="4" Grid.Column="5"/>
+                <local:Item x:Name="SparrowWep" Content="{DynamicResource Min-SparrowWep}" Grid.Row="4" Grid.Column="6"/>
+                <local:Item x:Name="AladdinWep" Content="{DynamicResource Min-AladdinWep}" Grid.Row="4" Grid.Column="7"/>
+                <local:Item x:Name="TronWep" 	Content="{DynamicResource Min-TronWep}" Grid.Row="4" Grid.Column="8"/>
+                <local:Item x:Name="Poster" 	Content="{DynamicResource Min-Poster}" Grid.Row="4" Grid.Column="9"/>
+                <local:Item x:Name="Picture" 	Content="{DynamicResource Min-Picture}" Grid.Row="4" Grid.Column="10"/>
+                <local:Item x:Name="IceCream" 	Content="{DynamicResource Min-IceCream}" Grid.Row="4" Grid.Column="11"/>
+
 
                 <!-- Ghost Row 1 -->
-                <local:Item x:Name="Ghost_Report1" Content="{DynamicResource Min-AnsemReport01}" Grid.Row="4" Grid.Column="0" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report2" Content="{DynamicResource Min-AnsemReport02}" Grid.Row="4" Grid.Column="1" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report3" Content="{DynamicResource Min-AnsemReport03}" Grid.Row="4" Grid.Column="2" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report4" Content="{DynamicResource Min-AnsemReport04}" Grid.Row="4" Grid.Column="3" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report5" Content="{DynamicResource Min-AnsemReport05}" Grid.Row="4" Grid.Column="4" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report6" Content="{DynamicResource Min-AnsemReport06}" Grid.Row="4" Grid.Column="5" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report7" Content="{DynamicResource Min-AnsemReport07}" Grid.Row="4" Grid.Column="6" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report8" Content="{DynamicResource Min-AnsemReport08}" Grid.Row="4" Grid.Column="7" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report9" Content="{DynamicResource Min-AnsemReport09}" Grid.Row="4" Grid.Column="8" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report10" Content="{DynamicResource Min-AnsemReport10}" Grid.Row="4" Grid.Column="9" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report11" Content="{DynamicResource Min-AnsemReport11}" Grid.Row="4" Grid.Column="10" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report12" Content="{DynamicResource Min-AnsemReport12}" Grid.Row="4" Grid.Column="11" Panel.ZIndex="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Report13" Content="{DynamicResource Min-AnsemReport13}" Grid.Row="4" Grid.Column="12" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report1" Content="{DynamicResource Min-AnsemReport01}" Grid.Row="5" Grid.Column="0" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report2" Content="{DynamicResource Min-AnsemReport02}" Grid.Row="5" Grid.Column="1" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report3" Content="{DynamicResource Min-AnsemReport03}" Grid.Row="5" Grid.Column="2" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report4" Content="{DynamicResource Min-AnsemReport04}" Grid.Row="5" Grid.Column="3" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report5" Content="{DynamicResource Min-AnsemReport05}" Grid.Row="5" Grid.Column="4" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report6" Content="{DynamicResource Min-AnsemReport06}" Grid.Row="5" Grid.Column="5" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report7" Content="{DynamicResource Min-AnsemReport07}" Grid.Row="5" Grid.Column="6" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report8" Content="{DynamicResource Min-AnsemReport08}" Grid.Row="5" Grid.Column="7" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report9" Content="{DynamicResource Min-AnsemReport09}" Grid.Row="5" Grid.Column="8" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report10" Content="{DynamicResource Min-AnsemReport10}" Grid.Row="5" Grid.Column="9" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report11" Content="{DynamicResource Min-AnsemReport11}" Grid.Row="5" Grid.Column="10" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report12" Content="{DynamicResource Min-AnsemReport12}" Grid.Row="5" Grid.Column="11" Panel.ZIndex="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Report13" Content="{DynamicResource Min-AnsemReport13}" Grid.Row="5" Grid.Column="12" Panel.ZIndex="0" Opacity="0.5"/>
 
                 <!-- Ghost Row 2 -->
-                <local:Item x:Name="Ghost_Fire1" Content="{DynamicResource Min-Fire}" Grid.Row="5" Grid.Column="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Fire2" Content="{DynamicResource Min-Fire}" Grid.Row="5" Grid.Column="1" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Fire3" Content="{DynamicResource Min-Fire}" Grid.Row="5" Grid.Column="2" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Blizzard1" Content="{DynamicResource Min-Blizzard}" Grid.Row="5" Grid.Column="3" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Blizzard2" Content="{DynamicResource Min-Blizzard}" Grid.Row="5" Grid.Column="4" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Blizzard3" Content="{DynamicResource Min-Blizzard}" Grid.Row="5" Grid.Column="5" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Thunder1" Content="{DynamicResource Min-Thunder}" Grid.Row="5" Grid.Column="6" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Thunder2" Content="{DynamicResource Min-Thunder}" Grid.Row="5" Grid.Column="7" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Thunder3" Content="{DynamicResource Min-Thunder}" Grid.Row="5" Grid.Column="8" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Cure1" Content="{DynamicResource Min-Cure}" Grid.Row="5" Grid.Column="9" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Cure2" Content="{DynamicResource Min-Cure}" Grid.Row="5" Grid.Column="10" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Cure3" Content="{DynamicResource Min-Cure}" Grid.Row="5" Grid.Column="11" Opacity="0.5"/>
-                <!--local:Item x:Name="Ghost_HadesCup" Content="{DynamicResource Min-HadesCup}" Grid.Row="5" Grid.Column="12" Opacity="0.5"/-->
+                <local:Item x:Name="Ghost_Fire1" Content="{DynamicResource Min-Fire}" Grid.Row="6" Grid.Column="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Fire2" Content="{DynamicResource Min-Fire}" Grid.Row="6" Grid.Column="1" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Fire3" Content="{DynamicResource Min-Fire}" Grid.Row="6" Grid.Column="2" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Blizzard1" Content="{DynamicResource Min-Blizzard}" Grid.Row="6" Grid.Column="3" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Blizzard2" Content="{DynamicResource Min-Blizzard}" Grid.Row="6" Grid.Column="4" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Blizzard3" Content="{DynamicResource Min-Blizzard}" Grid.Row="6" Grid.Column="5" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Thunder1" Content="{DynamicResource Min-Thunder}" Grid.Row="6" Grid.Column="6" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Thunder2" Content="{DynamicResource Min-Thunder}" Grid.Row="6" Grid.Column="7" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Thunder3" Content="{DynamicResource Min-Thunder}" Grid.Row="6" Grid.Column="8" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Cure1" Content="{DynamicResource Min-Cure}" Grid.Row="6" Grid.Column="9" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Cure2" Content="{DynamicResource Min-Cure}" Grid.Row="6" Grid.Column="10" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Cure3" Content="{DynamicResource Min-Cure}" Grid.Row="6" Grid.Column="11" Opacity="0.5"/>
+                <!--local:Item x:Name="Ghost_HadesCup" Content="{DynamicResource Min-HadesCup}" Grid.Row="6" Grid.Column="12" Opacity="0.5"/-->
 
                 <!-- Ghost Row 3 -->
-                <local:Item x:Name="Ghost_Reflect1" Content="{DynamicResource Min-Reflect}" Grid.Row="6" Grid.Column="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Reflect2" Content="{DynamicResource Min-Reflect}" Grid.Row="6" Grid.Column="1" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Reflect3" Content="{DynamicResource Min-Reflect}" Grid.Row="6" Grid.Column="2" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Magnet1" Content="{DynamicResource Min-Magnet}" Grid.Row="6" Grid.Column="3" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Magnet2" Content="{DynamicResource Min-Magnet}" Grid.Row="6" Grid.Column="4" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Magnet3" Content="{DynamicResource Min-Magnet}" Grid.Row="6" Grid.Column="5" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Valor" Content="{DynamicResource Min-Valor}" Grid.Row="6" Grid.Column="6" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Wisdom" Content="{DynamicResource Min-Wisdom}" Grid.Row="6" Grid.Column="7" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Limit" Content="{DynamicResource Min-Limit}" Grid.Row="6" Grid.Column="8" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Master" Content="{DynamicResource Min-Master}" Grid.Row="6" Grid.Column="9" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Final" Content="{DynamicResource Min-Final}" Grid.Row="6" Grid.Column="10" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_OnceMore" Content="{DynamicResource Min-OnceMore}" Grid.Row="6" Grid.Column="11" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_SecondChance" Content="{DynamicResource Min-SecondChance}" Grid.Row="6" Grid.Column="12" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Reflect1" Content="{DynamicResource Min-Reflect}" Grid.Row="7" Grid.Column="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Reflect2" Content="{DynamicResource Min-Reflect}" Grid.Row="7" Grid.Column="1" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Reflect3" Content="{DynamicResource Min-Reflect}" Grid.Row="7" Grid.Column="2" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Magnet1" Content="{DynamicResource Min-Magnet}" Grid.Row="7" Grid.Column="3" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Magnet2" Content="{DynamicResource Min-Magnet}" Grid.Row="7" Grid.Column="4" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Magnet3" Content="{DynamicResource Min-Magnet}" Grid.Row="7" Grid.Column="5" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Valor" Content="{DynamicResource Min-Valor}" Grid.Row="7" Grid.Column="6" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Wisdom" Content="{DynamicResource Min-Wisdom}" Grid.Row="7" Grid.Column="7" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Limit" Content="{DynamicResource Min-Limit}" Grid.Row="7" Grid.Column="8" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Master" Content="{DynamicResource Min-Master}" Grid.Row="7" Grid.Column="9" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Final" Content="{DynamicResource Min-Final}" Grid.Row="7" Grid.Column="10" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_OnceMore" Content="{DynamicResource Min-OnceMore}" Grid.Row="7" Grid.Column="11" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_SecondChance" Content="{DynamicResource Min-SecondChance}" Grid.Row="7" Grid.Column="12" Opacity="0.5"/>
 
                 <!-- Ghost Row 4 -->
-                <local:Item x:Name="Ghost_TornPage1" Content="{DynamicResource Min-TornPage}" Grid.Row="7" Grid.Column="0" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_TornPage2" Content="{DynamicResource Min-TornPage}" Grid.Row="7" Grid.Column="1" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_TornPage3" Content="{DynamicResource Min-TornPage}" Grid.Row="7" Grid.Column="2" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_TornPage4" Content="{DynamicResource Min-TornPage}" Grid.Row="7" Grid.Column="3" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_TornPage5" Content="{DynamicResource Min-TornPage}" Grid.Row="7" Grid.Column="4" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Baseball" Content="{DynamicResource Min-ChickenLittle}" Grid.Row="7" Grid.Column="5" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Lamp" Content="{DynamicResource Min-Genie}" Grid.Row="7" Grid.Column="6" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Ukulele" Content="{DynamicResource Min-Stitch}" Grid.Row="7" Grid.Column="7" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Feather" Content="{DynamicResource Min-PeterPan}" Grid.Row="7" Grid.Column="8" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Connection" Content="{DynamicResource Min-ProofOfCon}" Grid.Row="7" Grid.Column="9" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Nonexistence" Content="{DynamicResource Min-ProofOfNon}" Grid.Row="7" Grid.Column="10" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_Peace" Content="{DynamicResource Min-ProofOfPea}" Grid.Row="7" Grid.Column="11" Opacity="0.5"/>
-                <local:Item x:Name="Ghost_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}" Grid.Row="7" Grid.Column="12" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_TornPage1" Content="{DynamicResource Min-TornPage}" Grid.Row="8" Grid.Column="0" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_TornPage2" Content="{DynamicResource Min-TornPage}" Grid.Row="8" Grid.Column="1" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_TornPage3" Content="{DynamicResource Min-TornPage}" Grid.Row="8" Grid.Column="2" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_TornPage4" Content="{DynamicResource Min-TornPage}" Grid.Row="8" Grid.Column="3" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_TornPage5" Content="{DynamicResource Min-TornPage}" Grid.Row="8" Grid.Column="4" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Baseball" Content="{DynamicResource Min-ChickenLittle}" Grid.Row="8" Grid.Column="5" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Lamp" Content="{DynamicResource Min-Genie}" Grid.Row="8" Grid.Column="6" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Ukulele" Content="{DynamicResource Min-Stitch}" Grid.Row="8" Grid.Column="7" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Feather" Content="{DynamicResource Min-PeterPan}" Grid.Row="8" Grid.Column="8" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Connection" Content="{DynamicResource Min-ProofOfCon}" Grid.Row="8" Grid.Column="9" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Nonexistence" Content="{DynamicResource Min-ProofOfNon}" Grid.Row="8" Grid.Column="10" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_Peace" Content="{DynamicResource Min-ProofOfPea}" Grid.Row="8" Grid.Column="11" Opacity="0.5"/>
+                <local:Item x:Name="Ghost_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}" Grid.Row="8" Grid.Column="12" Opacity="0.5"/>
+
+                <!-- Ghost Row 5 -->
+                <local:Item x:Name="Ghost_BeastWep" 	Content="{DynamicResource Min-BeastWep}"    Grid.Row="9" Grid.Column="1"/>
+                <local:Item x:Name="Ghost_JackWep" 	    Content="{DynamicResource Min-JackWep}"     Grid.Row="9" Grid.Column="2"/>
+                <local:Item x:Name="Ghost_SimbaWep" 	Content="{DynamicResource Min-SimbaWep}"    Grid.Row="9" Grid.Column="3"/>
+                <local:Item x:Name="Ghost_AuronWep" 	Content="{DynamicResource Min-AuronWep}"    Grid.Row="9" Grid.Column="4"/>
+                <local:Item x:Name="Ghost_MulanWep" 	Content="{DynamicResource Min-MulanWep}"    Grid.Row="9" Grid.Column="5"/>
+                <local:Item x:Name="Ghost_SparrowWep"   Content="{DynamicResource Min-SparrowWep}"  Grid.Row="9" Grid.Column="6"/>
+                <local:Item x:Name="Ghost_AladdinWep"   Content="{DynamicResource Min-AladdinWep}"  Grid.Row="9" Grid.Column="7"/>
+                <local:Item x:Name="Ghost_TronWep" 	    Content="{DynamicResource Min-TronWep}"     Grid.Row="9" Grid.Column="8"/>
+                <local:Item x:Name="Ghost_Poster" 	    Content="{DynamicResource Min-Poster}"      Grid.Row="9" Grid.Column="9"/>
+                <local:Item x:Name="Ghost_Picture" 	    Content="{DynamicResource Min-Picture}"     Grid.Row="9" Grid.Column="10"/>
+                <local:Item x:Name="Ghost_IceCream" 	Content="{DynamicResource Min-IceCream}"    Grid.Row="9" Grid.Column="11"/>
+                
             </Grid>
 
         </Grid>

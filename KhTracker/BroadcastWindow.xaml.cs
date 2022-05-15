@@ -22,6 +22,7 @@ namespace KhTracker
     {
         public bool canClose = false;
         Dictionary<string, int> worlds = new Dictionary<string, int>();
+        Dictionary<string, int> others = new Dictionary<string, int>();
         Dictionary<string, int> totals = new Dictionary<string, int>();
         Dictionary<string, int> important = new Dictionary<string, int>();
         Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
@@ -49,15 +50,16 @@ namespace KhTracker
             worlds.Add("SpaceParanoids",0);
             worlds.Add("TWTNW",0);
             worlds.Add("GoA", 0);
-            worlds.Add("Report", 0);
-            worlds.Add("TornPage", 0);
-            worlds.Add("Fire", 0);
-            worlds.Add("Blizzard", 0);
-            worlds.Add("Thunder", 0);
-            worlds.Add("Cure", 0);
-            worlds.Add("Reflect", 0);
-            worlds.Add("Magnet", 0);
             worlds.Add("Atlantica", 0);
+
+            others.Add("Report", 0);
+            others.Add("TornPage", 0);
+            others.Add("Fire", 0);
+            others.Add("Blizzard", 0);
+            others.Add("Thunder", 0);
+            others.Add("Cure", 0);
+            others.Add("Reflect", 0);
+            others.Add("Magnet", 0);
 
             totals.Add("SorasHeart", -1);
             totals.Add("DriveForms", -1);
@@ -101,6 +103,17 @@ namespace KhTracker
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
             //important.Add("HadesCup", 0);
+            important.Add("BeastWep", 0);
+            important.Add("JackWep", 0);
+            important.Add("SimbaWep", 0);
+            important.Add("AuronWep", 0);
+            important.Add("MulanWep", 0);
+            important.Add("SparrowWep", 0);
+            important.Add("AladdinWep", 0);
+            important.Add("TronWep", 0);
+            important.Add("Poster", 0);
+            important.Add("Picture", 0);
+            important.Add("IceCream", 0);
 
             Progression.Add("SimulatedTwilightTown", SimulatedTwilightTownProgression);
             Progression.Add("TwilightTown", TwilightTownProgression);
@@ -147,149 +160,106 @@ namespace KhTracker
 
         public void UpdateFound(string item, string world, bool add)
         {
-            string worldName = world;
-            if (add) worlds[worldName]++; else worlds[worldName]--;
-            //Console.WriteLine(worlds[worldName]);
-
             while (item.Any(char.IsDigit))
             {
                 item = item.Remove(item.Length - 1, 1);
             }
 
             if (add) important[item]++; else important[item]--;
-            worlds["Report"] = important["Report"];
-            worlds["TornPage"] = important["TornPage"];
-            worlds["Fire"] = important["Fire"];
-            worlds["Blizzard"] = important["Blizzard"];
-            worlds["Thunder"] = important["Thunder"];
-            worlds["Cure"] = important["Cure"];
-            worlds["Reflect"] = important["Reflect"];
-            worlds["Magnet"] = important["Magnet"];
-            //Console.WriteLine(item);
+
+            if (others.ContainsKey(item))
+            {
+                others["Report"] = important["Report"];
+                others["TornPage"] = important["TornPage"];
+                others["Fire"] = important["Fire"];
+                others["Blizzard"] = important["Blizzard"];
+                others["Thunder"] = important["Thunder"];
+                others["Cure"] = important["Cure"];
+                others["Reflect"] = important["Reflect"];
+                others["Magnet"] = important["Magnet"];
+            }
 
             UpdateNumbers();
-            
         }
 
         public void UpdateNumbers()
         {
             //Get correct bar images
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage NumberBarB = data.SlashBarB;
+            BitmapImage NumberBartotals = data.SlashBarY;
+            //BitmapImage NumberBarG = data.SlashBarG;
+            //BitmapImage NumberBarB = data.SlashBarB;
             BitmapImage NumberBarY = data.SlashBarY;
             if (CustomMode)
             {
-                if (MainWindow.CustomBarBFound)
-                    NumberBarB = data.CustomSlashBarB;
+                //if (MainWindow.CustomBarGFound)
+                //    NumberBarB = data.CustomSlashBarG;
+                //if (MainWindow.CustomBarBFound)
+                //    NumberBarB = data.CustomSlashBarB;
                 if (MainWindow.CustomBarYFound)
                     NumberBarY = data.CustomSlashBarY;
             }
-
             //Fix Broadcast window report and torn page numbers
+            ReportFoundBar.Source = NumberBarY;
+            TornPageBar.Source = NumberBarY;
+            CollectedBar.Source = NumberBarY;
+            ReportTotal_01.Source = UpdateNumber(1, "Y")[0];
+            ReportTotal_10.Source = UpdateNumber(3, "Y")[0];
+            TornPageTotal.Source = UpdateNumber(5, "S")[0];
+
+            foreach (KeyValuePair<string, int> world in worlds)
             {
-                ReportFoundBar.Source = NumberBarY;
-                TornPageBar.Source = NumberBarY;
-                CollectedBar.Source = NumberBarY;
-                ReportFoundTotal.Source = GetDataNumber("Y")[14];
-                TornPageTotal.Source = GetDataNumber("S")[6];
+                //update numbers
+                if (world.Key != "GoA")
+                {
+                    Grid broadcasthintgrid = this.FindName(world.Key + "Hint") as Grid;
+                    SetFoundNumber(data.WorldsData[world.Key].hint, broadcasthintgrid);
+                }
             }
 
-            foreach (KeyValuePair<string,int> world in worlds)
+            foreach (KeyValuePair<string, int> other in others)
             {
-                if (world.Value < 52)
+                //single digit counts
+                if (other.Key != "Report")
                 {
-                    //Correctly set yellow num and bar
-                    BitmapImage number = GetDataNumber("Y")[world.Value + 1];
+                    Image otherImage = this.FindName(other.Key + "Found") as Image;
 
-                    if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint == false)
-                        || (data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].complete == false))
+                    if (other.Value == 0 && other.Key != "TornPage")
                     {
-                        number = GetDataNumber("Y")[world.Value + 1];
-                        Image bar = FindName(world.Key + "Bar") as Image;
-                        bar.Source = NumberBarY;
+                        otherImage.Source = null;
                     }
-
-                    if (data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].containsGhost)
-                    {
-                        number = GetDataNumber("G")[world.Value + 1];
-
-                    }
-
-                    if ((data.WorldsData.ContainsKey(world.Key) && world.Key != "GoA" && data.WorldsData[world.Key].hintedHint) 
-                        || (data.WorldsData.ContainsKey(world.Key) &&  world.Key != "GoA" && data.WorldsData[world.Key].complete))
-                    {
-                        number = GetDataNumber("B")[world.Value + 1];
-                        Image bar = FindName(world.Key + "Bar") as Image;
-                        bar.Source = NumberBarB;
-                    }
-
-                    if (world.Key == "TornPage" || world.Key == "Fire" || world.Key == "Blizzard"
-                        || world.Key == "Thunder" || world.Key == "Cure" || world.Key == "Reflect" || world.Key == "Magnet")
-                    {
-                        number = GetDataNumber("S")[world.Value + 1];
-                    }
-
-                    Image worldFound = this.FindName(world.Key + "Found") as Image;
-                    worldFound.Source = number;
-
-                    if (world.Key == "Fire" || world.Key == "Blizzard" || world.Key == "Thunder" 
-                        || world.Key == "Cure" || world.Key == "Reflect" || world.Key == "Magnet")
-                    {
-                        if (world.Value == 0)
-                        {
-                            worldFound.Source = null;
-                        }
-                    }
+                    else
+                        otherImage.Source = UpdateNumber(other.Value, "Y")[0];
+                }
+                else
+                {
+                    Image otherImage01 = this.FindName(other.Key + "Found_01") as Image;
+                    Image otherImage10 = this.FindName(other.Key + "Found_10") as Image;
+                    otherImage01.Source = UpdateNumber(other.Value, "Y")[0];
+                    
+                    if (other.Value < 10)
+                        otherImage10.Source = null; //hide 10s place number
+                    else
+                        otherImage10.Source = UpdateNumber(other.Value, "Y")[1];
                 }
             }
 
             foreach (KeyValuePair<string, int> total in totals)
             {
-                Image worldTotal = this.FindName(total.Key + "Total") as Image;
-                if (total.Value <= -1)
-                {
-                    worldTotal.Source = GetDataNumber("S")[0];
-                }
-                else if (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].containsGhost)
-                {
-                    if (total.Value <= 10)
-                        worldTotal.Source = GetDataNumber("SG")[total.Value];
-                    else
-                        worldTotal.Source = GetDataNumber("G")[total.Value];
-                }
-                else if ((data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].hintedHint)
-                    || (data.WorldsData.ContainsKey(total.Key) && total.Key != "GoA" && data.WorldsData[total.Key].complete))
-                {
-                    if (total.Value <= 10)
-                        worldTotal.Source = GetDataNumber("SB")[total.Value];
-                    else
-                        worldTotal.Source = GetDataNumber("B")[total.Value];
-                }
-                else
-                {
-                    if (total.Value <= 10)
-                        worldTotal.Source = GetDataNumber("S")[total.Value];
-                    else
-                        worldTotal.Source = GetDataNumber("Y")[total.Value];
-                }
+                //check current color
+                string mainColor = "Y"; //default
+                if (data.WorldsData[total.Key].containsGhost) mainColor = "G";
+                if (data.WorldsData[total.Key].hintedHint || data.WorldsData[total.Key].complete) mainColor = "B";
 
-                // Format fixing for double digit numbers
-                if (total.Key != "GoA" && total.Key != "Atlantica")
+                //update numbers
+                if (total.Key != "GoA")
                 {
-                    if (total.Value >= 11)
-                    {
-                        (worldTotal.Parent as Grid).ColumnDefinitions[3].Width = new GridLength(2, GridUnitType.Star);
-                        (worldTotal.Parent as Grid).ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
-                    }
-                    else
-                    {
-                        (worldTotal.Parent as Grid).ColumnDefinitions[3].Width = new GridLength(1, GridUnitType.Star);
-                        (worldTotal.Parent as Grid).ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                    }
+                    Grid broadcasthintgrid = this.FindName(total.Key + "Hint") as Grid;
+                    SetTotalNumber(broadcasthintgrid, mainColor, total.Value);
                 }
             }
 
-            foreach(KeyValuePair<string,int> impCheck in important)
+            foreach (KeyValuePair<string, int> impCheck in important)
             {
                 ContentControl imp = this.FindName(impCheck.Key) as ContentControl;
                 if (impCheck.Value > 0)
@@ -299,7 +269,7 @@ namespace KhTracker
                 else
                 {
                     if (impCheck.Key != "Report" && impCheck.Key != "TornPage")
-                    imp.Opacity = 0.45;
+                        imp.Opacity = 0.45;
                 }
             }
         }
@@ -307,7 +277,7 @@ namespace KhTracker
         public void UpdateTotal(string world, int checks)
         {
             string worldName = world;
-            totals[worldName] = checks+1;
+            totals[worldName] = checks;// +1;
 
             UpdateNumbers();
         }
@@ -371,15 +341,17 @@ namespace KhTracker
             worlds.Add("SpaceParanoids", 0);
             worlds.Add("TWTNW", 0);
             worlds.Add("GoA", 0);
-            worlds.Add("Report", 0);
-            worlds.Add("TornPage", 0);
-            worlds.Add("Fire", 0);
-            worlds.Add("Blizzard", 0);
-            worlds.Add("Thunder", 0);
-            worlds.Add("Cure", 0);
-            worlds.Add("Reflect", 0);
-            worlds.Add("Magnet", 0);
             worlds.Add("Atlantica", 0);
+
+            others.Clear();
+            others.Add("Report", 0);
+            others.Add("TornPage", 0);
+            others.Add("Fire", 0);
+            others.Add("Blizzard", 0);
+            others.Add("Thunder", 0);
+            others.Add("Cure", 0);
+            others.Add("Reflect", 0);
+            others.Add("Magnet", 0);
 
             totals.Clear();
             totals.Add("SorasHeart", -1);
@@ -425,10 +397,25 @@ namespace KhTracker
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
             //important.Add("HadesCup", 0);
+            important.Add("BeastWep", 0);
+            important.Add("JackWep", 0);
+            important.Add("SimbaWep", 0);
+            important.Add("AuronWep", 0);
+            important.Add("MulanWep", 0);
+            important.Add("SparrowWep", 0);
+            important.Add("AladdinWep", 0);
+            important.Add("TronWep", 0);
+            important.Add("Poster", 0);
+            important.Add("Picture", 0);
+            important.Add("IceCream", 0);
 
             OnResetHints();
 
-            Collected.Source = GetDataNumber("Y")[1];
+            //Collected.Source = GetDataNumber("Y")[1];
+            List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
+            //Collected.Source = GetDataNumber("Y")[collected + 1];
+            Collected_01.Source = CollectedNum[0];
+            Collected_10.Source = CollectedNum[1];
         }
 
         public void ToggleProgression(bool toggle)
@@ -449,68 +436,288 @@ namespace KhTracker
             }
         }
 
-        //stuff to call the right number image
-        public List<BitmapImage> GetDataNumber(string type)
+        public List<BitmapImage> UpdateNumber(int num, string color)
         {
+            //we need to get all 3 sources from the grid
+            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
             bool OldMode = Properties.Settings.Default.OldNum;
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            var NormalNum = data.Numbers;
-            var BlueNum = data.BlueNumbers;
-            var GreenNum = data.GreenNumbers;
-            var SingleNum = data.SingleNumbers;
-            var SingleBlueNum = data.BlueSingleNumbers;
-            var SingleGreenNum = data.GreenSingleNumbers;
+            List<BitmapImage> NormalNum = data.SingleNumbers;
+            List<BitmapImage> BlueNum = data.BlueSingleNumbers;
+            List<BitmapImage> GreenNum = data.GreenSingleNumbers;
+            List<BitmapImage> NumColor;
+            List<BitmapImage> Numberlist = new List<BitmapImage>();
 
-            //Get correct numbers
+            //Get correct number visuals
             {
                 if (OldMode)
                 {
-                    NormalNum = data.OldNumbers;
-                    BlueNum = data.OldBlueNumbers;
-                    GreenNum = data.OldGreenNumbers;
-                    SingleNum = data.OldSingleNumbers;
-                    SingleBlueNum = data.OldBlueSingleNumbers;
-                    SingleGreenNum = data.OldGreenSingleNumbers;
+                    NormalNum = data.OldSingleNumbers;
+                    BlueNum = data.OldBlueSingleNumbers;
+                    GreenNum = data.OldGreenSingleNumbers;
                 }
 
                 if (CustomMode)
                 {
                     if (MainWindow.CustomNumbersFound)
                     {
-                        NormalNum = data.CustomNumbers;
-                        SingleNum = data.CustomSingleNumbers;
+                        NormalNum = data.CustomSingleNumbers;
                     }
                     if (MainWindow.CustomBlueNumbersFound)
                     {
-                        BlueNum = data.CustomBlueNumbers;
-                        SingleBlueNum = data.CustomBlueSingleNumbers;
+                        BlueNum = data.CustomBlueSingleNumbers;
                     }
                     if (MainWindow.CustomGreenNumbersFound)
                     {
-                        GreenNum = data.CustomGreenNumbers;
-                        SingleGreenNum = data.CustomGreenSingleNumbers;
+                        GreenNum = data.CustomGreenSingleNumbers;
                     }
                 }
             }
-
-            //return correct number list
-            switch(type)
+            //Get color
+            switch (color)
             {
                 case "Y":
-                    return NormalNum;
+                    NumColor = NormalNum;
+                    break;
                 case "B":
-                    return BlueNum;
-                case "S":
-                    return SingleNum;
-                case "SB":
-                    return SingleBlueNum;
+                    NumColor = BlueNum;
+                    break;
                 case "G":
-                    return GreenNum;
-                case "SG":
-                    return SingleGreenNum;
+                    NumColor = GreenNum;
+                    break;
                 default:
-                    return NormalNum;
+                    NumColor = NormalNum;
+                    break;
             }
+
+            //if int is below 0 then we use the question mark and return
+            if (num < 0)
+            {
+                Numberlist.Add(NumColor[10]);
+                Numberlist.Add(NumColor[10]);
+                Numberlist.Add(NumColor[10]);
+
+                return Numberlist;
+            }
+
+            //split number into separate digits
+            List<int> listOfInts = new List<int>();
+            while (num > 0)
+            {
+                listOfInts.Add(num % 10);
+                num /= 10;
+            }
+
+            //Set number images depending on number of digits
+            if (listOfInts.Count == 3)
+            {
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+                FinalNum[2] = listOfInts[2];
+            }
+            else if (listOfInts.Count == 2)
+            {
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+            }
+            else if (listOfInts.Count == 1)
+            {
+                FinalNum[0] = listOfInts[0];
+            }
+
+            Numberlist.Add(NumColor[FinalNum[0]]);
+            Numberlist.Add(NumColor[FinalNum[1]]);
+            Numberlist.Add(NumColor[FinalNum[2]]);
+
+            return Numberlist;
+        }
+
+        public void SetFoundNumber(Grid mainhint, Grid bhint)
+        {
+            int worldvalue = GetWorldNumber(mainhint);
+            bool number10s = false;
+            bool number100s = false;
+            if (worldvalue > 99) number100s = true;
+            if (worldvalue > 9) number10s = true;
+
+            //get would numbers from main window
+            int mainChildCount = VisualTreeHelper.GetChildrenCount(mainhint);
+            ImageSource Num100 = null; ImageSource Num010 = null; ImageSource Num001 = null;
+            for (int i = 0; i < mainChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(mainhint, i) as Image;
+
+                if (child == null)
+                    continue;
+
+                if (child is Image && child.Name.Equals(mainhint.Name + "_001"))
+                {
+                    Num001 = child.Source;
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(mainhint.Name + "_010"))
+                {
+                    Num010 = child.Source;
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(mainhint.Name + "_100"))
+                {
+                    Num100 = child.Source;
+                    continue;
+                }
+            }
+
+            //set broadcast found numbers
+            string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
+            int ChildCount = VisualTreeHelper.GetChildrenCount(bhint);
+            for (int i = 0; i < ChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(bhint, i) as Image;
+
+                if (child == null)
+                    continue;
+
+                if (child is Image && child.Name.Equals(worldname + "Found_001"))
+                {
+                    child.Source = Num001;
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "Found_010"))
+                {
+                    child.Source = Num010;
+
+                    if (!number10s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                        bhint.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
+                    else
+                        bhint.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
+
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "Found_100"))
+                {
+                    child.Source = Num100;
+
+                    if (!number100s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                        bhint.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
+                    else
+                        bhint.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+
+                    continue;
+                }
+            }
+        }
+
+        public void SetTotalNumber(Grid hintgrid, string color, int value)
+        {
+            List<BitmapImage> numbers = UpdateNumber(value, color);
+            bool number10s = false;
+            bool number100s = false;
+            if (value > 99)
+                number100s = true;
+            if (value > 9) 
+                number10s = true;
+
+            if (!number100s && !number10s) //adjust spacer width
+                hintgrid.ColumnDefinitions[0].Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                hintgrid.ColumnDefinitions[5].Width = new GridLength(0.0, GridUnitType.Star);
+
+            //set broadcast found numbers
+            string worldname = hintgrid.Name.Substring(0, hintgrid.Name.Length - 4);
+            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
+
+            for (int i = 0; i < ChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+
+                if (child == null)
+                    continue;
+
+                if (child is Image && child.Name.Equals(worldname + "Total_001"))
+                {
+                    child.Source = numbers[0];
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "Total_010"))
+                {
+                    child.Source = numbers[1];
+
+                    if (!number10s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                        hintgrid.ColumnDefinitions[6].Width = new GridLength(0.0, GridUnitType.Star);
+                    else
+                        hintgrid.ColumnDefinitions[6].Width = new GridLength(1.0, GridUnitType.Star);
+
+                    continue;
+                }
+                if (child is Image && child.Name.Equals(worldname + "Total_100"))
+                {
+                    child.Source = numbers[2];
+
+                    if (!number100s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                        hintgrid.ColumnDefinitions[5].Width = new GridLength(0.0, GridUnitType.Star);
+                    else
+                        hintgrid.ColumnDefinitions[5].Width = new GridLength(1.0, GridUnitType.Star);
+
+                    continue;
+                }
+            }
+        }
+
+        public int GetWorldNumber(Grid hintgrid)
+        {
+            int Num100 = 0;
+            int Num010 = 0;
+            int Num001 = 0;
+            string worldname = hintgrid.Name;
+
+            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
+
+            for (int i = 0; i < ChildCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+
+                if (child == null)
+                    continue;
+
+                if (child is Image && child.Name.Equals(worldname + "_001"))
+                {
+                    Num001 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+
+                if (child is Image && child.Name.Equals(worldname + "_010"))
+                {
+                    Num010 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+
+                if (child is Image && child.Name.Equals(worldname + "_100"))
+                {
+                    Num100 = GetImageNumber(child.Source.ToString());
+                    continue;
+                }
+            }
+
+            int Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+            return Finalnum;
+        }
+
+        public int GetImageNumber(string ImagePath)
+        {
+            int number = 10;
+
+            if (!ImagePath.EndsWith("QuestionMark.png") && ImagePath != null)
+            {
+                string val = ImagePath;
+                val = val.Substring(val.LastIndexOf('/') + 1);
+                number = int.Parse(val.Substring(0, val.IndexOf('.')));
+                Console.WriteLine();
+
+                if (number > 9 || number < 0)
+                    number = 10;
+            }
+
+            return number;
         }
     }
 }

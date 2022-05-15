@@ -67,6 +67,17 @@ namespace KhTracker
             {"Secret Ansem's Report 11", "Report11"},
             {"Secret Ansem's Report 12", "Report12"},
             {"Secret Ansem's Report 13", "Report13"},
+            {"Battlefields of War (Auron)", "AuronWep"},
+            {"Sword of the Ancestor (Mulan)", "MulanWep"},
+            {"Beast's Claw (Beast)", "BeastWep"},
+            {"Bone Fist (Jack Skellington)", "JackWep"},
+            {"Proud Fang (Simba)", "SimbaWep"},
+            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
+            {"Scimitar (Aladdin)", "AladdinWep"},
+            {"Identity Disk (Tron)", "TronWep"},
+            {"Poster", "Poster"},
+            {"Ice Cream", "IceCream"},
+            {"Picture", "Picture"},
             {"", "GoA"}
         };
 
@@ -159,7 +170,18 @@ namespace KhTracker
             {"Secret Ansem's Report 10", "report"},
             {"Secret Ansem's Report 11", "report"},
             {"Secret Ansem's Report 12", "report"},
-            {"Secret Ansem's Report 13", "report"}
+            {"Secret Ansem's Report 13", "report"},
+            {"Battlefields of War (Auron)", "visit"},
+            {"Sword of the Ancestor (Mulan)", "visit"},
+            {"Beast's Claw (Beast)", "visit"},
+            {"Bone Fist (Jack Skellington)", "visit"},
+            {"Proud Fang (Simba)", "visit"},
+            {"Skill and Crossbones (Jack Sparrow)", "visit"},
+            {"Scimitar (Aladdin)", "visit"},
+            {"Identity Disk (Tron)", "visit"},
+            {"Poster", "visit"},
+            {"Ice Cream", "visit"},
+            {"Picture", "visit"}
         };
  
         //used to be a ton of ints
@@ -238,6 +260,8 @@ namespace KhTracker
                 data.PointsDatanew["complete"] = 10;
             if (!points.Keys.Contains("formlv"))
                 data.PointsDatanew["formlv"] = 3;
+            if (!points.Keys.Contains("visit"))
+                data.PointsDatanew["visit"] = 1;
 
             //get point totals for each world
             foreach (var world in worldsP)
@@ -272,7 +296,7 @@ namespace KhTracker
 
                 if (WorldPoints.Keys.Contains(key))
                 {
-                    SetReportValue(data.WorldsData[key].hint, WorldPoints[key] + 1);
+                    SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
                 }
                 else
                 {
@@ -318,7 +342,21 @@ namespace KhTracker
 
         public void UpdatePointScore(int points)
         {
-            int[] FinalNum = new int[] { 1, 1, 1 }; //Default 000
+            if (data.mode != Mode.DAHints)
+                return;
+
+            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
+
+            if (!CheckCountOption.IsChecked)
+            {
+                Score100.Visibility = Visibility.Hidden;
+                Score10.Visibility = Visibility.Hidden;
+                Score1.Visibility = Visibility.Visible;
+                broadcast.Score100.Visibility = Visibility.Hidden;
+                broadcast.Score10.Visibility = Visibility.Hidden;
+                broadcast.Score1.Visibility = Visibility.Visible;
+            }
+
             int num = PointTotal + points; //get new point total
             int BonusTotal = 0;
             int Valorlv = 0;
@@ -370,18 +408,51 @@ namespace KhTracker
             //Set number images depending on number of digits in point total
             if (listOfInts.Count == 3)
             {
-                FinalNum[0] = listOfInts[0] + 1;
-                FinalNum[1] = listOfInts[1] + 1;
-                FinalNum[2] = listOfInts[2] + 1;
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+                FinalNum[2] = listOfInts[2];
+
+                if (!CheckCountOption.IsChecked)
+                {
+                    Score100.Visibility = Visibility.Visible;
+                    Score10.Visibility = Visibility.Visible;
+                    Score1.Visibility = Visibility.Visible;
+                    broadcast.Score100.Visibility = Visibility.Visible;
+                    broadcast.Score10.Visibility = Visibility.Visible;
+                    broadcast.Score1.Visibility = Visibility.Visible;
+                }
+
             }
             else if (listOfInts.Count == 2)
             {
-                FinalNum[0] = listOfInts[0] + 1;
-                FinalNum[1] = listOfInts[1] + 1;
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+
+                if (!CheckCountOption.IsChecked)
+                {
+                    Score100.Visibility = Visibility.Hidden;
+                    Score10.Visibility = Visibility.Visible;
+                    Score1.Visibility = Visibility.Visible;
+                    broadcast.Score100.Visibility = Visibility.Hidden;
+                    broadcast.Score10.Visibility = Visibility.Visible;
+                    broadcast.Score1.Visibility = Visibility.Visible;
+                }
+
             }
             else if (listOfInts.Count == 1)
             {
-                FinalNum[0] = listOfInts[0] + 1;
+                FinalNum[0] = listOfInts[0];
+
+                if (!CheckCountOption.IsChecked)
+                {
+                    Score100.Visibility = Visibility.Hidden;
+                    Score10.Visibility = Visibility.Hidden;
+                    Score1.Visibility = Visibility.Visible;
+                    broadcast.Score100.Visibility = Visibility.Hidden;
+                    broadcast.Score10.Visibility = Visibility.Hidden;
+                    broadcast.Score1.Visibility = Visibility.Visible;
+                }
+
             }
 
 
