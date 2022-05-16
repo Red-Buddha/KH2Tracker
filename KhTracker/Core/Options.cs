@@ -36,6 +36,7 @@ namespace KhTracker
         public void Save(string filename)
         {
             string mode = "Mode: " + data.mode.ToString();
+
             // save settings
             string settings = "Settings: ";
             if (PromiseCharmOption.IsChecked)
@@ -50,10 +51,18 @@ namespace KhTracker
                 settings += "Cure - ";
             if (FinalFormOption.IsChecked)
                 settings += "Final Form - ";
+            if (VisitLockOption.IsChecked)
+                settings += "Visit Locks - ";
             //if (HadesCupOption.IsChecked)
             //    settings += "Hades Cup - ";
             if (SoraHeartOption.IsChecked)
                 settings += "Sora's Heart - ";
+            if (SoraLevel01Option.IsChecked)
+                settings += "Level01 - ";
+            if (SoraLevel50Option.IsChecked)
+                settings += "Level50 - ";
+            if (SoraLevel99Option.IsChecked)
+                settings += "Level99 - ";
             if (SimulatedOption.IsChecked)
                 settings += "Simulated Twilight Town - ";
             if (HundredAcreWoodOption.IsChecked)
@@ -83,20 +92,20 @@ namespace KhTracker
                         attempts += " - " + num.ToString();
                     }
                 }
+
                 // store hint values
-                hintValues = "HintValues:";
+                hintValues = "HintValues: ";
                 foreach (WorldData worldData in data.WorldsData.Values.ToList())
                 {
                     if (worldData.hint == null)
                         continue;
 
-                    //int num = 0;
-                    //for (int i = 0; i < data.Numbers.Count; ++i)
-                    //{
-                    //    if (worldData.hint.Source == data.Numbers[i])
-                    //        num = i;
-                    //}
-                    //hintValues += " " + num.ToString();
+                    int num = GetWorldNumber(worldData.hint);
+                    if (worldData.containsGhost && GhostMathOption.IsChecked) //need to recaculate correct values if ghost items and automath are toggled
+                    {
+                        num += GetGhostPoints(worldData.worldGrid);
+                    }
+                    hintValues += num.ToString() + " ";
                 }
             }
 
@@ -153,7 +162,7 @@ namespace KhTracker
             string ProgressString = "Progress:";
             foreach (string WorldName in data.WorldsData.Keys.ToList())
             {
-                if (WorldName != "GoA" || WorldName != "SorasHeart" || WorldName != "DriveForms")
+                if (WorldName != "GoA" && WorldName != "SorasHeart" && WorldName != "DriveForms" && WorldName != "SynthPuzzles")
                     ProgressString += " " + data.WorldsData[WorldName].progress.ToString();
             }
             writer.WriteLine(ProgressString);
@@ -370,6 +379,9 @@ namespace KhTracker
                     }
                     foreach (var item in world.Value)
                     {
+                        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
+                            continue;
+
                         data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
 
                         string itemType = CheckItemType(item);
@@ -671,6 +683,7 @@ namespace KhTracker
             {
                 data.WorldsData[key].hinted = false;
                 data.WorldsData[key].hintedHint = false;
+                data.WorldsData[key].containsGhost = false;
             }
             data.WorldsData["GoA"].hinted = true;
 
@@ -695,52 +708,63 @@ namespace KhTracker
 
         private void LoadSettings(string settings)
         {
-            bool[] newsettings = new bool[13];
-
             string[] settinglist = settings.Split('-');
+
             foreach (string setting in settinglist)
             {
                 string trimmed = setting.Trim();
                 switch (trimmed)
                 {
                     case "Promise Charm":
-                        newsettings[0] = true;
+                        PromiseCharmToggle(true);
                         break;
                     case "Secret Ansem Reports":
-                        newsettings[1] = true;
+                        ReportsToggle(true);
                         break;
                     case "Second Chance & Once More":
-                        newsettings[2] = true;
+                        AbilitiesToggle(true);
                         break;
                     case "Torn Pages":
-                        newsettings[3] = true;
+                        TornPagesToggle(true);
                         break;
                     case "Cure":
-                        newsettings[4] = true;
+                        CureToggle(true);
                         break;
                     case "Final Form":
-                        newsettings[5] = true;
+                        FinalFormToggle(true);
+                        break;
+                    case "Visit Locks":
+                        VisitLockToggle(true);
                         break;
                     case "Sora's Heart":
-                        newsettings[6] = true;
+                        SoraHeartToggle(true);
+                        break;
+                    case "Level01":
+                        SoraLevel01Toggle(true);
+                        break;
+                    case "Level50":
+                        SoraLevel50Toggle(true);
+                        break;
+                    case "Level99":
+                        SoraLevel99Toggle(true);
                         break;
                     case "Simulated Twilight Town":
-                        newsettings[7] = true;
+                        SimulatedToggle(true);
                         break;
                     case "100 Acre Wood":
-                        newsettings[8] = true;
+                        HundredAcreWoodToggle(true);
                         break;
                     case "Atlantica":
-                        newsettings[9] = true;
+                        AtlanticaToggle(true);
                         break;
                     case "Cavern of Remembrance":
-                        newsettings[10] = true;
+                        CavernToggle(true);
                         break;
                     case "Timeless River":
-                        newsettings[11] = true;
+                        TimelessToggle(true);
                         break;
                     case "Olympus Cups":
-                        newsettings[12] = true;
+                        OCCupsToggle(true);
                         break;
                     //case "Hades Cup":
                     //    newsettings[13] = true;
@@ -750,60 +774,37 @@ namespace KhTracker
                     //    break;
                 }
             }
-
-            PromiseCharmToggle(newsettings[0]);
-            ReportsToggle(newsettings[1]);
-            AbilitiesToggle(newsettings[2]);
-            TornPagesToggle(newsettings[3]);
-            CureToggle(newsettings[4]);
-            FinalFormToggle(newsettings[5]);
-            SoraHeartToggle(newsettings[6]);
-            SimulatedToggle(newsettings[7]);
-            HundredAcreWoodToggle(newsettings[8]);
-            AtlanticaToggle(newsettings[9]);
-            CavernToggle(newsettings[10]);
-            TimelessToggle(newsettings[11]);
-            OCCupsToggle(newsettings[12]);
-            //HadesCupToggle(newsettings[13]);
-            //PuzzleToggle(newsettings[14]);
-
         }
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            //auto detect stuff
+            if (aTimer != null)
+                aTimer.Stop();
+
             SetWorking(false);
-            SetAutoDetectTimer();
 
-            //OnTimedEvent hints
-            //if (timedHintsText != null)
-            //    timedHintsText.Stop();
-            //if (timedHintsRealTimer != null)
-            //    timedHintsRealTimer.Stop();
+            collectedChecks.Clear();
+            newChecks.Clear();
 
-            //next level check stuff
-            NextLevelDisplay();
-            {
-                List<BitmapImage> LevelCheckNum = UpdateNumber(1, "Y");
-                LevelCheck_01.Source = LevelCheckNum[0];
-                LevelCheck_10.Source = LevelCheckNum[1];
-            }
+            //{
+            //    List<BitmapImage> LevelCheckNum = UpdateNumber(1, "Y");
+            //    LevelCheck_01.Source = LevelCheckNum[0];
+            //    LevelCheck_10.Source = LevelCheckNum[1];
+            //}
 
-            ModeDisplay.Header = " ";
-            data.mode = Mode.None;
-
-            collected = 0;
+            ModeDisplay.Header = "";
             HintText.Content = "";
+            data.mode = Mode.None;
+            collected = 0;
+            PointTotal = 0;
 
-            //all this garbage to get the correct number images when changing visual styles
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage BarW = data.VerticalBarW;
-            //Collected.Source = GetDataNumber("Y")[1];
-            {
-                List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
-                Collected_01.Source = CollectedNum[0];
-                Collected_10.Source = CollectedNum[1];
-            }
+
+            List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
+            Collected_01.Source = CollectedNum[0];
+            Collected_10.Source = null;
+
             if (CustomMode && CustomVBarWFound)
                 BarW = data.CustomVerticalBarW;
 
@@ -858,32 +859,12 @@ namespace KhTracker
                     row.Height = new GridLength(1, GridUnitType.Star);
             }
 
-            ReportsToggle(true);
-            ReportRow.Height = new GridLength(1, GridUnitType.Star);
-
-            ResetHints();
-
             foreach (var key in data.WorldsData.Keys.ToList())
             {
-                data.WorldsData[key].hinted = false;
-                data.WorldsData[key].hintedHint = false;
                 data.WorldsData[key].complete = false;
-                data.WorldsData[key].containsGhost = false;
                 data.WorldsData[key].checkCount.Clear();
                 data.WorldsData[key].progress = 0;
-
-                //reset world locks to correct state based on toggle
-                if (VisitLockOption.IsChecked)
-                {
-                    if (key == "TwilightTown") //TT has 2 locks
-                        data.WorldsData[key].visitLocks = 2;
-                    else
-                        data.WorldsData[key].visitLocks = 1;
-                }
-                else
-                    data.WorldsData[key].visitLocks = 0;
             }
-            data.WorldsData["GoA"].hinted = true; //goa needs to stay hinted
 
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
             broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
@@ -942,13 +923,11 @@ namespace KhTracker
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
             broadcast.StatsRow.Height = new GridLength(0, GridUnitType.Star);
 
-
             ValorM.Opacity = .45;
             WisdomM.Opacity = .45;
             LimitM.Opacity = .45;
             MasterM.Opacity = .45;
             FinalM.Opacity = .45;
-
             HighJump.Opacity = .45;
             QuickRun.Opacity = .45;
             DodgeRoll.Opacity = .45;
@@ -976,15 +955,6 @@ namespace KhTracker
             broadcast.DodgeRollLevel.Source = null;
             broadcast.AerialDodgeLevel.Source = null;
             broadcast.GlideLevel.Source = null;
-
-            // Reset / Turn off auto tracking
-            collectedChecks.Clear();
-            newChecks.Clear();
-
-            if (aTimer != null)
-                aTimer.Stop();
-
-            //StartTracking = false;
 
             fireLevel = 0;
             blizzardLevel = 0;
@@ -1035,7 +1005,6 @@ namespace KhTracker
 
             foreach (string world in WorldPoints.Keys.ToList())
             {
-                //both of these lists have the same exact keys so just do both in this one loop
                 WorldPoints[world] = 0;
                 WorldPoints_c[world] = 0;
             }
@@ -1057,18 +1026,12 @@ namespace KhTracker
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
 
-            PointTotal = 0;
-
             Collected.Visibility = Visibility.Visible;
             CollectedBar.Visibility = Visibility.Visible;
             CheckTotal.Visibility = Visibility.Visible;
             Score100.Visibility = Visibility.Hidden;
             Score10.Visibility = Visibility.Hidden;
             Score1.Visibility = Visibility.Hidden;
-
-            //hide next level check
-            //LevelCheckIcon.Visibility = Visibility.Hidden;
-            //LevelCheck.Visibility = Visibility.Hidden;
 
             broadcast.Collected.Visibility = Visibility.Visible;
             broadcast.CollectedBar.Visibility = Visibility.Visible;
@@ -1080,14 +1043,19 @@ namespace KhTracker
             broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
             broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
+            ReportsToggle(true);
+            ResetHints();
+            VisitLockToggle(VisitLockOption.IsChecked);
+
             broadcast.OnReset();
             broadcast.UpdateNumbers();
-            UpdatePointScore(0);
-            VisitLockCheck();
 
             foreach (ContentControl item in ItemPool.Children)
                 if (!item.Name.Contains("Ghost"))
                     item.Opacity = 1.0;
+
+            SetAutoDetectTimer();
+            NextLevelDisplay();
         }
 
         private void BroadcastWindow_Open(object sender, RoutedEventArgs e)

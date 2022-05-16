@@ -884,6 +884,7 @@ namespace KhTracker
             }
             else
                 Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+
             return Finalnum;
         }
 
@@ -1071,6 +1072,87 @@ namespace KhTracker
                 }
             }
         }
+
+        public int GetGhostPoints(WorldGrid worlditems)
+        {
+            int points = 0;
+
+            foreach (Item ghost in Data.GhostItems.Values.ToList())
+            {
+                if (worlditems.Children.Contains(ghost))
+                {
+                    points += data.PointsDatanew[GetGhostType[ghost.Name]];
+                }
+            }
+
+            return points;
+        }
+
+        private Dictionary<string, string> GetGhostType = new Dictionary<string, string>()
+        {
+            {"Ghost_Report1", "report"},
+            {"Ghost_Report2", "report"},
+            {"Ghost_Report3", "report"},
+            {"Ghost_Report4", "report"},
+            {"Ghost_Report5", "report"},
+            {"Ghost_Report6", "report"},
+            {"Ghost_Report7", "report"},
+            {"Ghost_Report8", "report"},
+            {"Ghost_Report9", "report"},
+            {"Ghost_Report10", "report"},
+            {"Ghost_Report11", "report"},
+            {"Ghost_Report12", "report"},
+            {"Ghost_Report13", "report"},
+            {"Ghost_Fire1", "magic"},
+            {"Ghost_Fire2", "magic"},
+            {"Ghost_Fire3", "magic"},
+            {"Ghost_Blizzard1", "magic"},
+            {"Ghost_Blizzard2", "magic"},
+            {"Ghost_Blizzard3", "magic"},
+            {"Ghost_Thunder1", "magic"},
+            {"Ghost_Thunder2", "magic"},
+            {"Ghost_Thunder3", "magic"},
+            {"Ghost_Cure1", "magic"},
+            {"Ghost_Cure2", "magic"},
+            {"Ghost_Cure3", "magic"},
+            {"Ghost_Reflect1", "magic"},
+            {"Ghost_Reflect2", "magic"},
+            {"Ghost_Reflect3", "magic"},
+            {"Ghost_Magnet1", "magic"},
+            {"Ghost_Magnet2", "magic"},
+            {"Ghost_Magnet3", "magic"},
+            {"Ghost_Valor", "form"},
+            {"Ghost_Wisdom", "form"},
+            {"Ghost_Limit", "form"},
+            {"Ghost_Master", "form"},
+            {"Ghost_Final", "form"},
+            {"Ghost_OnceMore", "ability"},
+            {"Ghost_SecondChance", "ability"},
+            {"Ghost_TornPage1", "page"},
+            {"Ghost_TornPage2", "page"},
+            {"Ghost_TornPage3", "page"},
+            {"Ghost_TornPage4", "page"},
+            {"Ghost_TornPage5", "page"},
+            {"Ghost_Baseball", "summon"},
+            {"Ghost_Lamp", "summon"},
+            {"Ghost_Ukulele", "summon"},
+            {"Ghost_Feather", "summon"},
+            {"Ghost_Connection", "proof"},
+            {"Ghost_Nonexistence", "proof"},
+            {"Ghost_Peace", "proof"},
+            {"Ghost_PromiseCharm", "proof"},
+            {"Ghost_AuronWep", "visit"},
+            {"Ghost_MulanWep", "visit"},
+            {"Ghost_BeastWep", "visit"},
+            {"Ghost_JackWep", "visit"},
+            {"Ghost_SimbaWep", "visit"},
+            {"Ghost_SparrowWep", "visit"},
+            {"Ghost_AladdinWep", "visit"},
+            {"Ghost_TronWep", "visit"},
+            {"Ghost_Poster", "visit"},
+            {"Ghost_IceCream", "visit"},
+            {"Ghost_Picture", "visit"}
+        };
 
     }
 

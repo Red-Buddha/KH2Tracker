@@ -323,99 +323,31 @@ namespace KhTracker
 
         public void OnReset()
         {
-            worlds.Clear();
-            worlds.Add("SorasHeart", 0);
-            worlds.Add("DriveForms", 0);
-            worlds.Add("SimulatedTwilightTown", 0);
-            worlds.Add("TwilightTown", 0);
-            worlds.Add("HollowBastion", 0);
-            worlds.Add("BeastsCastle", 0);
-            worlds.Add("OlympusColiseum", 0);
-            worlds.Add("Agrabah", 0);
-            worlds.Add("LandofDragons", 0);
-            worlds.Add("HundredAcreWood", 0);
-            worlds.Add("PrideLands", 0);
-            worlds.Add("DisneyCastle", 0);
-            worlds.Add("HalloweenTown", 0);
-            worlds.Add("PortRoyal", 0);
-            worlds.Add("SpaceParanoids", 0);
-            worlds.Add("TWTNW", 0);
-            worlds.Add("GoA", 0);
-            worlds.Add("Atlantica", 0);
+            foreach (string key in worlds.Keys.ToList())
+            {
+                worlds[key] = 0;
+            }
 
-            others.Clear();
-            others.Add("Report", 0);
-            others.Add("TornPage", 0);
-            others.Add("Fire", 0);
-            others.Add("Blizzard", 0);
-            others.Add("Thunder", 0);
-            others.Add("Cure", 0);
-            others.Add("Reflect", 0);
-            others.Add("Magnet", 0);
+            foreach (string key in others.Keys.ToList())
+            {
+                others[key] = 0;
+            }
 
-            totals.Clear();
-            totals.Add("SorasHeart", -1);
-            totals.Add("DriveForms", -1);
-            totals.Add("SimulatedTwilightTown", -1);
-            totals.Add("TwilightTown", -1);
-            totals.Add("HollowBastion", -1);
-            totals.Add("BeastsCastle", -1);
-            totals.Add("OlympusColiseum", -1);
-            totals.Add("Agrabah", -1);
-            totals.Add("LandofDragons", -1);
-            totals.Add("HundredAcreWood", -1);
-            totals.Add("PrideLands", -1);
-            totals.Add("DisneyCastle", -1);
-            totals.Add("HalloweenTown", -1);
-            totals.Add("PortRoyal", -1);
-            totals.Add("SpaceParanoids", -1);
-            totals.Add("TWTNW", -1);
-            totals.Add("Atlantica", -1);
+            foreach (string key in totals.Keys.ToList())
+            {
+                totals[key] = -1;
+            }
 
-            important.Clear();
-            important.Add("Fire", 0);
-            important.Add("Blizzard", 0);
-            important.Add("Thunder", 0);
-            important.Add("Cure", 0);
-            important.Add("Reflect", 0);
-            important.Add("Magnet", 0);
-            important.Add("Valor", 0);
-            important.Add("Wisdom", 0);
-            important.Add("Limit", 0);
-            important.Add("Master", 0);
-            important.Add("Final", 0);
-            important.Add("Nonexistence", 0);
-            important.Add("Connection", 0);
-            important.Add("Peace", 0);
-            important.Add("PromiseCharm", 0);
-            important.Add("Feather", 0);
-            important.Add("Ukulele", 0);
-            important.Add("Baseball", 0);
-            important.Add("Lamp", 0);
-            important.Add("Report", 0);
-            important.Add("TornPage", 0);
-            important.Add("SecondChance", 0);
-            important.Add("OnceMore", 0);
-            //important.Add("HadesCup", 0);
-            important.Add("BeastWep", 0);
-            important.Add("JackWep", 0);
-            important.Add("SimbaWep", 0);
-            important.Add("AuronWep", 0);
-            important.Add("MulanWep", 0);
-            important.Add("SparrowWep", 0);
-            important.Add("AladdinWep", 0);
-            important.Add("TronWep", 0);
-            important.Add("Poster", 0);
-            important.Add("Picture", 0);
-            important.Add("IceCream", 0);
+            foreach (string key in important.Keys.ToList())
+            {
+                important[key] = 0;
+            }
 
             OnResetHints();
 
-            //Collected.Source = GetDataNumber("Y")[1];
             List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
-            //Collected.Source = GetDataNumber("Y")[collected + 1];
             Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = CollectedNum[1];
+            Collected_10.Source = null;
         }
 
         public void ToggleProgression(bool toggle)

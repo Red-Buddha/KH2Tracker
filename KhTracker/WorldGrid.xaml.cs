@@ -110,10 +110,6 @@ namespace KhTracker
 
                     Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
-                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
-                    //((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
-
                     Grid hint = MainWindow.data.WorldsData[worldName].hint;
                     ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
                     ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
@@ -125,11 +121,6 @@ namespace KhTracker
                     WorldPointsComplete();
 
                     Console.WriteLine("real " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
-
-                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
-                    //
-                    //((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) + 1);
 
                     Grid hint = MainWindow.data.WorldsData[worldName].hint;
                     
