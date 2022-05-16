@@ -203,8 +203,8 @@ namespace KhTracker
             ReportFoundBar.Source = NumberBarY;
             TornPageBar.Source = NumberBarY;
             CollectedBar.Source = NumberBarY;
-            ReportTotal_01.Source = UpdateNumber(1, "Y")[0];
-            ReportTotal_10.Source = UpdateNumber(3, "Y")[0];
+            ReportTotal_10.Source = UpdateNumber(1, "Y")[0];
+            ReportTotal_01.Source = UpdateNumber(3, "Y")[0];
             TornPageTotal.Source = UpdateNumber(5, "S")[0];
 
             foreach (KeyValuePair<string, int> world in worlds)
@@ -568,41 +568,85 @@ namespace KhTracker
             }
 
             //set broadcast found numbers
-            string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
-            int ChildCount = VisualTreeHelper.GetChildrenCount(bhint);
-            for (int i = 0; i < ChildCount; i++)
+            if (bhint != null)
             {
-                var child = VisualTreeHelper.GetChild(bhint, i) as Image;
-
-                if (child == null)
-                    continue;
-
-                if (child is Image && child.Name.Equals(worldname + "Found_001"))
+                string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
+                int ChildCount = VisualTreeHelper.GetChildrenCount(bhint);
+                for (int i = 0; i < ChildCount; i++)
                 {
-                    child.Source = Num001;
-                    continue;
+                    var child = VisualTreeHelper.GetChild(bhint, i) as Image;
+
+                    if (child == null)
+                        continue;
+
+                    if (child is Image && child.Name.Equals(worldname + "Found_001"))
+                    {
+                        child.Source = Num001;
+                        continue;
+                    }
+                    if (child is Image && child.Name.Equals(worldname + "Found_010"))
+                    {
+                        child.Source = Num010;
+
+                        if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+                            bhint.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
+                        else
+                            bhint.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
+
+                        continue;
+                    }
+                    if (child is Image && child.Name.Equals(worldname + "Found_100"))
+                    {
+                        child.Source = Num100;
+
+                        if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+                            bhint.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
+                        else
+                            bhint.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+
+                        continue;
+                    }
                 }
-                if (child is Image && child.Name.Equals(worldname + "Found_010"))
+            }
+            else
+            {
+                Grid broadcastG = this.FindName(mainhint.Name) as Grid;
+                string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
+                int ChildCount = VisualTreeHelper.GetChildrenCount(broadcastG);
+                for (int i = 0; i < ChildCount; i++)
                 {
-                    child.Source = Num010;
+                    var child = VisualTreeHelper.GetChild(broadcastG, i) as Image;
 
-                    if (!number10s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
-                        bhint.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
-                    else
-                        bhint.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
+                    if (child == null)
+                        continue;
 
-                    continue;
-                }
-                if (child is Image && child.Name.Equals(worldname + "Found_100"))
-                {
-                    child.Source = Num100;
+                    if (child is Image && child.Name.Equals(worldname + "Found_001"))
+                    {
+                        child.Source = Num001;
+                        continue;
+                    }
+                    if (child is Image && child.Name.Equals(worldname + "Found_010"))
+                    {
+                        child.Source = Num010;
 
-                    if (!number100s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
-                        bhint.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
-                    else
-                        bhint.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+                        if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+                            broadcastG.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
+                        else
+                            broadcastG.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
 
-                    continue;
+                        continue;
+                    }
+                    if (child is Image && child.Name.Equals(worldname + "Found_100"))
+                    {
+                        child.Source = Num100;
+
+                        if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+                            broadcastG.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
+                        else
+                            broadcastG.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+
+                        continue;
+                    }
                 }
             }
         }
@@ -642,7 +686,7 @@ namespace KhTracker
                 {
                     child.Source = numbers[1];
 
-                    if (!number10s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                    if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
                         hintgrid.ColumnDefinitions[6].Width = new GridLength(0.0, GridUnitType.Star);
                     else
                         hintgrid.ColumnDefinitions[6].Width = new GridLength(1.0, GridUnitType.Star);
@@ -653,7 +697,7 @@ namespace KhTracker
                 {
                     child.Source = numbers[2];
 
-                    if (!number100s || child.Source.ToString().ToLower().EndsWith("question_mark.png"))
+                    if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
                         hintgrid.ColumnDefinitions[5].Width = new GridLength(0.0, GridUnitType.Star);
                     else
                         hintgrid.ColumnDefinitions[5].Width = new GridLength(1.0, GridUnitType.Star);
@@ -711,7 +755,6 @@ namespace KhTracker
                 string val = ImagePath;
                 val = val.Substring(val.LastIndexOf('/') + 1);
                 number = int.Parse(val.Substring(0, val.IndexOf('.')));
-                Console.WriteLine();
 
                 if (number > 9 || number < 0)
                     number = 10;

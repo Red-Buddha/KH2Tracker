@@ -936,7 +936,7 @@ namespace KhTracker
             broadcast.Magic.Visibility = Visibility.Hidden;
             broadcast.DefenseIcon.Visibility = Visibility.Hidden;
             broadcast.Defense.Visibility = Visibility.Hidden;
-            broadcast.Weapon.Visibility = Visibility.Hidden;
+            //broadcast.Weapon.Visibility = Visibility.Hidden;
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);

@@ -471,7 +471,7 @@ namespace KhTracker
             {
                 if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
-                    SetWorldNumber(data.WorldsData[button.Name].hint, 0, "Y");
+                    SetWorldNumber(data.WorldsData[button.Name].hint, -1, "Y");
                 }
             }
         }
@@ -594,51 +594,10 @@ namespace KhTracker
                 num = 999;
 
             SetWorldNumber(Hint, num, "Y");
+            broadcast.SetFoundNumber(Hint, null);
 
             //get to later
             //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
-        }
-
-        public void SetReportValue(Image Hint, int value)
-        {
-            if (data.mode == Mode.DAHints && Hint == null)
-                return;
-
-            string Color = "Y";
-            string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
-            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete)
-                Color = "B";
-
-            if (data.mode == Mode.DAHints)
-            {
-                if (value > 100)
-                {
-                    //for testing. basically if a number is blue then i either need to
-                    //lower values or find a way to add triple digets
-                    Color = "B";
-                    value = 100;
-                }
-
-                if (data.WorldsData[location].containsGhost)
-                {
-                    Color = "G";
-                }
-            }
-            else
-            {
-                if (value > 52)
-                    value = 52;
-            }
-
-
-            if (value < 1 && (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints))
-                Hint.Source = GetDataNumber(Color)[1];
-            else if (value < 0)
-                Hint.Source = GetDataNumber(Color)[0];
-            else
-                Hint.Source = GetDataNumber(Color)[value];
-            
-            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value - 1);
         }
 
         public void SetReportValue(Grid Hint, int value)
@@ -1016,7 +975,15 @@ namespace KhTracker
                 }
             }
 
-            int Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+            int Finalnum;
+
+            //check for question marks
+            if (Num001 == 10 && Num010 == 10 && Num100 == 10)
+            {
+                Finalnum = -1;
+            }
+            else
+                Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
             return Finalnum;
         }
 
@@ -1029,7 +996,6 @@ namespace KhTracker
                 string val = ImagePath;
                 val = val.Substring(val.LastIndexOf('/') + 1);
                 number = int.Parse(val.Substring(0, val.IndexOf('.')));
-                Console.WriteLine();
 
                 if (number > 9 || number < 0)
                     number = 10;
