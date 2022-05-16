@@ -223,7 +223,10 @@
     <Image x:Key="CollectedBarBlue"     Source="pack://application:,,,/CustomImages/Numbers/BarBlue.png" x:Shared="false"/>
     <Image x:Key="VerticalBar" 		    Source="pack://application:,,,/CustomImages/VerticalBar.png" x:Shared="false"/>
     <Image x:Key="VerticalBarWhite"     Source="pack://application:,,,/CustomImages/VerticalBarWhite.png" x:Shared="false"/>
-    
+
+    <Image x:Key="VisitLockG"  	        Source="Images\Other\visitlock.png" x:Shared="false"/>
+    <Image x:Key="VisitLockS"  	        Source="Images\Other\visitlocksilver.png" x:Shared="false"/>
+
     <!--Hash Icons-->
     <Image x:Key="ability-unequip" Source="Images\Icons\ability-unequip.png"/>
     <Image x:Key="accessory" Source="Images\Icons\accessory.png"/>
@@ -539,6 +542,17 @@
     <Image x:Key="Cus-ProofOfCon"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_connection.png" x:Shared="false"/>
     <Image x:Key="Cus-ProofOfPea"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-PromiseCharm"		 Source="pack://application:,,,/CustomImages/Checks/promise_charm.png" x:Shared="false"/>
+    <Image x:Key="Cus-AuronWep"		     Source="pack://application:,,,/CustomImages/Checks/BattlefieldsofWar.png"/>
+    <Image x:Key="Cus-MulanWep"		     Source="pack://application:,,,/CustomImages/Checks/AncestorSword.png"/>
+    <Image x:Key="Cus-BeastWep"		     Source="pack://application:,,,/CustomImages/Checks/BeastClaw.png"/>
+    <Image x:Key="Cus-JackWep"		     Source="pack://application:,,,/CustomImages/Checks/BoneFist.png"/>
+    <Image x:Key="Cus-SimbaWep"		     Source="pack://application:,,,/CustomImages/Checks/ProudFang.png"/>
+    <Image x:Key="Cus-SparrowWep"	     Source="pack://application:,,,/CustomImages/Checks/SkillCrossbones.png"/>
+    <Image x:Key="Cus-AladdinWep"	     Source="pack://application:,,,/CustomImages/Checks/Scimitar.png"/>
+    <Image x:Key="Cus-TronWep"		     Source="pack://application:,,,/CustomImages/Checks/IdentityDisk.png"/>
+    <Image x:Key="Cus-Poster"		     Source="pack://application:,,,/CustomImages/Checks/Poster.png"/>
+    <Image x:Key="Cus-IceCream"		     Source="pack://application:,,,/CustomImages/Checks/IceCream.png"/>
+    <Image x:Key="Cus-Picture"		     Source="pack://application:,,,/CustomImages/Checks/Picture.png"/>
     <!--Custom Item Icons (Broadcast)-->
     <Image x:Key="Cus-B_AnsemReport"	Source="pack://application:,,,/CustomImages/Broadcast/Other/ansem_report.png" x:Shared="false"/>
     <Image x:Key="Cus-B_TornPage" 		Source="pack://application:,,,/CustomImages/Broadcast/Other/torn_pages.png" x:Shared="false"/>
@@ -561,6 +575,17 @@
     <Image x:Key="Cus-B_ProofOfCon"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_connection.png" x:Shared="false"/>
     <Image x:Key="Cus-B_ProofOfPea"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-B_PromiseCharm"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/promise_charm.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_AuronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BattlefieldsofWar.png"/>
+    <Image x:Key="Cus-B_MulanWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/AncestorSword.png"/>
+    <Image x:Key="Cus-B_BeastWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BeastClaw.png"/>
+    <Image x:Key="Cus-B_JackWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BoneFist.png"/>
+    <Image x:Key="Cus-B_SimbaWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/ProudFang.png"/>
+    <Image x:Key="Cus-B_SparrowWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/SkillCrossbones.png"/>
+    <Image x:Key="Cus-B_AladdinWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Scimitar.png"/>
+    <Image x:Key="Cus-B_TronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IdentityDisk.png"/>
+    <Image x:Key="Cus-B_Poster"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Poster.png"/>
+    <Image x:Key="Cus-B_IceCream"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IceCream.png"/>
+    <Image x:Key="Cus-B_Picture"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/Picture.png"/>
     <!--Custom Item Icons (Ghost)-->
     <Image x:Key="Cus-G_AnsemReport01" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
     <Image x:Key="Cus-G_AnsemReport02" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
@@ -595,8 +620,19 @@
     <Image x:Key="Cus-G_ProofOfCon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
     <Image x:Key="Cus-G_ProofOfPea"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-G_PromiseCharm"	Source="pack://application:,,,/CustomImages/Checks/Ghost/promise_charm.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_OnceMore"			Source="pack://application:,,,/CustomImages/Checks/Ghost/once_more.png"/>
-    <Image x:Key="Cus-G_SecondChance"		Source="pack://application:,,,/CustomImages/Checks/Ghost/second_chance.png"/>
+    <Image x:Key="Cus-G_OnceMore"		Source="pack://application:,,,/CustomImages/Checks/Ghost/once_more.png"/>
+    <Image x:Key="Cus-G_SecondChance"	Source="pack://application:,,,/CustomImages/Checks/Ghost/second_chance.png"/>
+    <Image x:Key="Cus-G_AuronWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BattlefieldsofWar.png"/>
+    <Image x:Key="Cus-G_MulanWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/AncestorSword.png"/>
+    <Image x:Key="Cus-G_BeastWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BeastClaw.png"/>
+    <Image x:Key="Cus-G_JackWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BoneFist.png"/>
+    <Image x:Key="Cus-G_SimbaWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/ProudFang.png"/>
+    <Image x:Key="Cus-G_SparrowWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/SkillCrossbones.png"/>
+    <Image x:Key="Cus-G_AladdinWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/Scimitar.png"/>
+    <Image x:Key="Cus-G_TronWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IdentityDisk.png"/>
+    <Image x:Key="Cus-G_Poster"		    Source="pack://application:,,,/CustomImages/Checks/Ghost/Poster.png"/>
+    <Image x:Key="Cus-G_IceCream"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IceCream.png"/>
+    <Image x:Key="Cus-G_Picture"		Source="pack://application:,,,/CustomImages/Checks/Ghost/Picture.png"/>
 
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>
@@ -674,6 +710,9 @@
     <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/Other/sword.png" x:Shared="false"/>
     <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/Other/shield.png" x:Shared="false"/>
     <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/Other/staff.png" x:Shared="false"/>
+    <Image x:Key="Cus-VisitLockG"  	    Source="pack://application:,,,/CustomImages/Other/visitlock.png" x:Shared="false"/>
+    <Image x:Key="Cus-VisitLockS"  	    Source="pack://application:,,,/CustomImages/Other/visitlocksilver.png" x:Shared="false"/>
+    
     <!--Custom Other (Broadcast)-->
     <Image x:Key="Cus-B_OnceMore"			Source="pack://application:,,,/CustomImages/Broadcast/Checks/once_more.png"/>
     <Image x:Key="Cus-B_OnceMore_key"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/once_more_key.png"/>
@@ -685,7 +724,7 @@
     <Image x:Key="Cus-B_AerialDodge" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/aerial.png"/>
     <Image x:Key="Cus-B_Glide" 				Source="pack://application:,,,/CustomImages/Broadcast/Checks/glide.png"/>
     <Image x:Key="Cus-B_Chest" 		        Source="pack://application:,,,/CustomImages/Broadcast/Other/chest.png"/>
-    
+
     <Image x:Key="Cus-CollectedBarYellow" Source="pack://application:,,,/CustomImages/Numbers/Bar.png" x:Shared="false"/>
     <Image x:Key="Cus-CollectedBarBlue"   Source="pack://application:,,,/CustomImages/Numbers/BarBlue.png" x:Shared="false"/>
     <Image x:Key="Cus-VerticalBar" 		  Source="pack://application:,,,/CustomImages/VerticalBar.png" x:Shared="false"/>

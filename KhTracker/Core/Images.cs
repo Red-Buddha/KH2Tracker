@@ -37,8 +37,7 @@ namespace KhTracker
         //handle adding all custom images and such
         public void InitImages()
         {
-            #region KH2 Yellow Numbers
-            
+            #region Numbers
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/0.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/1.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/2.png", UriKind.Relative)));
@@ -50,9 +49,6 @@ namespace KhTracker
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/8.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/9.png", UriKind.Relative)));
             data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region KH2 Blue Numbers
 
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/0.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/1.png", UriKind.Relative)));
@@ -65,9 +61,6 @@ namespace KhTracker
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/8.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/9.png", UriKind.Relative)));
             data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region KH2 Green Numbers
 
             data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/0.png", UriKind.Relative)));
             data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/1.png", UriKind.Relative)));
@@ -80,9 +73,6 @@ namespace KhTracker
             data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/8.png", UriKind.Relative)));
             data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/9.png", UriKind.Relative)));
             data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region Old Yellow
 
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/0.png", UriKind.Relative)));
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/1.png", UriKind.Relative)));
@@ -95,9 +85,6 @@ namespace KhTracker
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/8.png", UriKind.Relative)));
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/9.png", UriKind.Relative)));
             data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region Old Blue
 
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/0.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/1.png", UriKind.Relative)));
@@ -110,9 +97,6 @@ namespace KhTracker
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/8.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/9.png", UriKind.Relative)));
             data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region Old Green
 
             data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/0.png", UriKind.Relative)));
             data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/1.png", UriKind.Relative)));
@@ -127,46 +111,51 @@ namespace KhTracker
             data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/QuestionMark.png", UriKind.Relative)));
             #endregion
 
-            #region Custom
-            //Custom numbers
+            #region Custom Numbers
             //Default are the KH2 numbers
-            string OldPath = "Images/Numbers/Old/";
             string GoodPath = "Images/Numbers/Kh2/";
             string GoodPathBlue = "Images/Numbers/Kh2/";
             string GoodPathGreen = "Images/Numbers/Kh2/";
+
             //Separete variable for if the user wanted to customize one set of numbers
-            var urikindvar = UriKind.Relative;
-            var urikindvarblue = UriKind.Relative;
-            var urikindvargreen = UriKind.Relative;
+            UriKind urikindvar = UriKind.Relative;
+            UriKind urikindvarblue = UriKind.Relative;
+            UriKind urikindvargreen = UriKind.Relative;
+
             //Fix paths if Old Numbers toggle is on
-            if (OldNumOption.IsChecked == true)
+            if (OldNumOption.IsChecked)
             {
-                GoodPath = OldPath;
-                GoodPathBlue = OldPath;
-                GoodPathGreen = OldPath;
+                GoodPath = "Images/Numbers/Old/";
+                GoodPathBlue = "Images/Numbers/Old/";
+                GoodPathGreen = "Images/Numbers/Old/";
             }
-            //very lazy method here. i don't feel like setting it up to check if each and every number image exists cause there are literally over 200
-            //so i just check 4 images in each folder to decide if custom numbers should be used.
-            if (File.Exists("CustomImages/Numbers/Yellow/_5.png") && File.Exists("CustomImages/Numbers/Yellow/48.png") && File.Exists("CustomImages/Numbers/Yellow/_QuestionMark.png") && File.Exists("CustomImages/Numbers/Yellow/QuestionMark.png"))
+
+            //I don't want to set up the ability to replace just single images so all number images need to be included to customize them
+            if (File.Exists("CustomImages/Numbers/Yellow/0.png") && File.Exists("CustomImages/Numbers/Yellow/1.png") && File.Exists("CustomImages/Numbers/Yellow/2.png") && File.Exists("CustomImages/Numbers/Yellow/3.png") &&
+                File.Exists("CustomImages/Numbers/Yellow/4.png") && File.Exists("CustomImages/Numbers/Yellow/5.png") && File.Exists("CustomImages/Numbers/Yellow/6.png") && File.Exists("CustomImages/Numbers/Yellow/7.png") &&
+                File.Exists("CustomImages/Numbers/Yellow/8.png") && File.Exists("CustomImages/Numbers/Yellow/9.png") && File.Exists("CustomImages/Numbers/Yellow/QuestionMark.png"))
             {
                 GoodPath = "pack://application:,,,/CustomImages/Numbers/";
                 urikindvar = UriKind.Absolute;
                 CustomNumbersFound = true;
             }
-            if (File.Exists("CustomImages/Numbers/Blue/_5.png") && File.Exists("CustomImages/Numbers/Blue/48.png") && File.Exists("CustomImages/Numbers/Blue/_QuestionMark.png") && File.Exists("CustomImages/Numbers/Blue/QuestionMark.png"))
+            if (File.Exists("CustomImages/Numbers/Blue/0.png") && File.Exists("CustomImages/Numbers/Blue/1.png") && File.Exists("CustomImages/Numbers/Blue/2.png") && File.Exists("CustomImages/Numbers/Blue/3.png") &&
+                File.Exists("CustomImages/Numbers/Blue/4.png") && File.Exists("CustomImages/Numbers/Blue/5.png") && File.Exists("CustomImages/Numbers/Blue/6.png") && File.Exists("CustomImages/Numbers/Blue/7.png") &&
+                File.Exists("CustomImages/Numbers/Blue/8.png") && File.Exists("CustomImages/Numbers/Blue/9.png") && File.Exists("CustomImages/Numbers/Blue/QuestionMark.png"))
             {
                 GoodPathBlue = "pack://application:,,,/CustomImages/Numbers/";
                 urikindvarblue = UriKind.Absolute;
                 CustomBlueNumbersFound = true;
             }
-            if (File.Exists("CustomImages/Numbers/Green/_5.png") && File.Exists("CustomImages/Numbers/Green/48.png") && File.Exists("CustomImages/Numbers/Green/_QuestionMark.png") && File.Exists("CustomImages/Numbers/Green/QuestionMark.png"))
+            if (File.Exists("CustomImages/Numbers/Green/0.png") && File.Exists("CustomImages/Numbers/Green/1.png") && File.Exists("CustomImages/Numbers/Green/2.png") && File.Exists("CustomImages/Numbers/Green/3.png") &&
+                File.Exists("CustomImages/Numbers/Green/4.png") && File.Exists("CustomImages/Numbers/Green/5.png") && File.Exists("CustomImages/Numbers/Green/6.png") && File.Exists("CustomImages/Numbers/Green/7.png") &&
+                File.Exists("CustomImages/Numbers/Green/8.png") && File.Exists("CustomImages/Numbers/Green/9.png") && File.Exists("CustomImages/Numbers/Green/QuestionMark.png"))
             {
                 GoodPathGreen = "pack://application:,,,/CustomImages/Numbers/";
                 urikindvargreen = UriKind.Absolute;
                 CustomGreenNumbersFound = true;
             }
 
-            
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/0.png", urikindvar)));
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/1.png", urikindvar)));
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/2.png", urikindvar)));
@@ -179,7 +168,6 @@ namespace KhTracker
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/9.png", urikindvar)));
             data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/QuestionMark.png", urikindvar)));
 
-            
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/0.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/1.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/2.png", urikindvarblue)));
@@ -192,7 +180,6 @@ namespace KhTracker
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
             data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/QuestionMark.png", urikindvarblue)));
 
-            
             data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/0.png", urikindvargreen)));
             data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/1.png", urikindvargreen)));
             data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/2.png", urikindvargreen)));
@@ -206,86 +193,75 @@ namespace KhTracker
             data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/QuestionMark.png", urikindvargreen)));
             #endregion
 
-            //temp. fix later after number refatcoring
-            //data.CustomGreenNumbers = data.GreenNumbers;
-            //data.CustomGreenSingleNumbers = data.GreenSingleNumbers;
-
             //i really hate how i did some of this
 
-            //for autodetect
+            //for autodetect (won't bother making this customizable for now)
             data.AD_Connect = new BitmapImage(new Uri("Images/connect.png", UriKind.Relative));
             data.AD_PC = new BitmapImage(new Uri("Images/PC.png", UriKind.Relative));
             data.AD_PCred = new BitmapImage(new Uri("Images/PCred.png", UriKind.Relative));
             data.AD_PS2 = new BitmapImage(new Uri("Images/ps2.png", UriKind.Relative));
 
             //check for custom stat and weapon icons (OLD)
-            {
-                if (File.Exists("CustomImages/Other/sword.png"))
-                    CustomSwordFound = true;
-                if (File.Exists("CustomImages/Other/staff.png"))
-                    CustomStaffFound = true;
-                if (File.Exists("CustomImages/Other/shield.png"))
-                    CustomShieldFound = true;
+            if (File.Exists("CustomImages/Other/sword.png"))
+                CustomSwordFound = true;
+            if (File.Exists("CustomImages/Other/staff.png"))
+                CustomStaffFound = true;
+            if (File.Exists("CustomImages/Other/shield.png"))
+                CustomShieldFound = true;
+            if (File.Exists("CustomImages/Other/level.png"))
+                CustomLevelFound = true;
+            if (File.Exists("CustomImages/Other/strength.png"))
+                CustomStrengthFound = true;
+            if (File.Exists("CustomImages/Other/magic.png"))
+                CustomMagicFound = true;
+            if (File.Exists("CustomImages/Other/defence.png"))
+                CustomDefenseFound = true;
 
-                if (File.Exists("CustomImages/Other/level.png"))
-                    CustomLevelFound = true;
-                if (File.Exists("CustomImages/Other/strength.png"))
-                    CustomStrengthFound = true;
-                if (File.Exists("CustomImages/Other/magic.png"))
-                    CustomMagicFound = true;
-                if (File.Exists("CustomImages/Other/defence.png"))
-                    CustomDefenseFound = true;
-            }
 
             //set stuff for the vertical images
+            data.VerticalBarW = new BitmapImage(new Uri("Images/VerticalBarWhite.png", UriKind.Relative));
+            data.VerticalBarY = new BitmapImage(new Uri("Images/VerticalBar.png", UriKind.Relative));
+
+            if (File.Exists("CustomImages/VerticalBarWhite.png"))
             {
-                data.VerticalBarW = new BitmapImage(new Uri("Images/VerticalBarWhite.png", UriKind.Relative));
-                data.VerticalBarY = new BitmapImage(new Uri("Images/VerticalBar.png", UriKind.Relative));
-
-                if (File.Exists("CustomImages/VerticalBarWhite.png"))
-                {
-                    data.CustomVerticalBarW = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBarWhite.png", UriKind.Absolute));
-                    CustomVBarWFound = true;
-                }
-                else
-                    data.CustomVerticalBarW = data.VerticalBarW;
-
-                if (File.Exists("CustomImages/VerticalBar.png"))
-                {
-                    data.CustomVerticalBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBar.png", UriKind.Absolute));
-                    CustomVBarYFound = true;
-                }
-                else
-                    data.CustomVerticalBarY = data.VerticalBarY;
+                data.CustomVerticalBarW = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBarWhite.png", UriKind.Absolute));
+                CustomVBarWFound = true;
             }
+            else
+                data.CustomVerticalBarW = data.VerticalBarW;
+
+            if (File.Exists("CustomImages/VerticalBar.png"))
+            {
+                data.CustomVerticalBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBar.png", UriKind.Absolute));
+                CustomVBarYFound = true;
+            }
+            else
+                data.CustomVerticalBarY = data.VerticalBarY;
 
             //set stuff for the slash bar images
+            data.SlashBarB = new BitmapImage(new Uri("Images/Numbers/BarBlue.png", UriKind.Relative));
+            data.SlashBarY = new BitmapImage(new Uri("Images/Numbers/Bar.png", UriKind.Relative));
+
+            if (File.Exists("CustomImages/Numbers/BarBlue.png"))
             {
-                data.SlashBarB = new BitmapImage(new Uri("Images/Numbers/BarBlue.png", UriKind.Relative));
-                data.SlashBarY = new BitmapImage(new Uri("Images/Numbers/Bar.png", UriKind.Relative));
-
-                if (File.Exists("CustomImages/Numbers/BarBlue.png"))
-                {
-                    data.CustomSlashBarB = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/BarBlue.png", UriKind.Absolute));
-                    CustomBarBFound = true;
-                }
-                else
-                    data.CustomSlashBarB = data.SlashBarB;
-
-                if (File.Exists("CustomImages/Numbers/Bar.png"))
-                {
-                    data.CustomSlashBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/Bar.png", UriKind.Absolute));
-                    CustomBarYFound = true;
-                }
-                else
-                    data.CustomSlashBarY = data.SlashBarY;
+                data.CustomSlashBarB = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/BarBlue.png", UriKind.Absolute));
+                CustomBarBFound = true;
             }
+            else
+                data.CustomSlashBarB = data.SlashBarB;
+
+            if (File.Exists("CustomImages/Numbers/Bar.png"))
+            {
+                data.CustomSlashBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/Bar.png", UriKind.Absolute));
+                CustomBarYFound = true;
+            }
+            else
+                data.CustomSlashBarY = data.SlashBarY;
 
             //check for custom progression icons
-            {
-                if (File.Exists("CustomImages/Progression/1k.png") && File.Exists("CustomImages/Progression/carpet.png") && File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
-                    CustomProgFound = true;
-            }
+            if (File.Exists("CustomImages/Progression/1k.png") && File.Exists("CustomImages/Progression/carpet.png") && File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
+                CustomProgFound = true;
+
         }
 
         //dumb window backgound stuff
@@ -478,42 +454,32 @@ namespace KhTracker
         //stuff to call the right number image
         public List<BitmapImage> GetDataNumber(string type)
         {
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            //var NormalNum = data.Numbers;
-            //var BlueNum = data.BlueNumbers;
-            //var GreenNum = data.GreenNumbers;
-            var SingleNum = data.SingleNumbers;
-            var SingleBlueNum = data.BlueSingleNumbers;
-            var SingleGreenNum = data.GreenSingleNumbers;
+            //defaults
+            List<BitmapImage> SingleNum = data.SingleNumbers;
+            List<BitmapImage> SingleBlueNum = data.BlueSingleNumbers;
+            List<BitmapImage> SingleGreenNum = data.GreenSingleNumbers;
 
             //Get correct numbers
             {
-                if (OldMode)
+                if (Properties.Settings.Default.OldNum)
                 {
-                    //NormalNum = data.OldNumbers;
-                    //BlueNum = data.OldBlueNumbers;
-                    //GreenNum = data.OldGreenNumbers;
                     SingleNum = data.OldSingleNumbers;
                     SingleBlueNum = data.OldBlueSingleNumbers;
                     SingleGreenNum = data.OldGreenSingleNumbers;
                 }
 
-                if (CustomMode)
+                if (Properties.Settings.Default.CustomIcons)
                 {
                     if (CustomNumbersFound)
                     {
-                        //NormalNum = data.CustomNumbers;
                         SingleNum = data.CustomSingleNumbers;
                     }
                     if (CustomBlueNumbersFound)
                     {
-                        //BlueNum = data.CustomBlueNumbers;
                         SingleBlueNum = data.CustomBlueSingleNumbers;
                     }
                     if (CustomGreenNumbersFound)
                     {
-                        //GreenNum = data.CustomGreenNumbers;
                         SingleGreenNum = data.CustomGreenSingleNumbers;
                     }
                 }
@@ -522,15 +488,14 @@ namespace KhTracker
             //return correct number list
             switch(type)
             {
-                case "Y":
-                case "S":
-                    return SingleNum;
                 case "B":
                 case "SB":
                     return SingleBlueNum;
                 case "G":
                 case "SG":
                     return SingleGreenNum;
+                case "Y":
+                case "S":
                 default:
                     return SingleNum;
             }
@@ -732,6 +697,63 @@ namespace KhTracker
                         SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
                         broadcast.SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
                     }
+
+                    if (File.Exists("CustomImages/Checks/AncestorSword.png"))
+                    {
+                        MulanWep.SetResourceReference(ContentProperty, "Cus-MulanWep");
+                        broadcast.MulanWep.SetResourceReference(ContentProperty, "Cus-MulanWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/BattlefieldsofWar.png"))
+                    {
+                        AuronWep.SetResourceReference(ContentProperty, "Cus-AuronWep");
+                        broadcast.AuronWep.SetResourceReference(ContentProperty, "Cus-AuronWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/BeastClaw.png"))
+                    {
+                        BeastWep.SetResourceReference(ContentProperty, "Cus-BeastWep");
+                        broadcast.BeastWep.SetResourceReference(ContentProperty, "Cus-BeastWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/BoneFist.png"))
+                    {
+                        JackWep.SetResourceReference(ContentProperty, "Cus-JackWep");
+                        broadcast.JackWep.SetResourceReference(ContentProperty, "Cus-JackWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/IceCream.png"))
+                    {
+                        IceCream.SetResourceReference(ContentProperty, "Cus-IceCream");
+                        broadcast.IceCream.SetResourceReference(ContentProperty, "Cus-IceCream");
+                    }
+                    if (File.Exists("CustomImages/Checks/IdentityDisk.png"))
+                    {
+                        TronWep.SetResourceReference(ContentProperty, "Cus-TronWep");
+                        broadcast.TronWep.SetResourceReference(ContentProperty, "Cus-TronWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Picture.png"))
+                    {
+                        Picture.SetResourceReference(ContentProperty, "Cus-Picture");
+                        broadcast.Picture.SetResourceReference(ContentProperty, "Cus-Picture");
+                    }
+                    if (File.Exists("CustomImages/Checks/Poster.png"))
+                    {
+                        Poster.SetResourceReference(ContentProperty, "Cus-Poster");
+                        broadcast.Poster.SetResourceReference(ContentProperty, "Cus-Poster");
+                    }
+                    if (File.Exists("CustomImages/Checks/ProudFang.png"))
+                    {
+                        SimbaWep.SetResourceReference(ContentProperty, "Cus-SimbaWep");
+                        broadcast.SimbaWep.SetResourceReference(ContentProperty, "Cus-SimbaWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Scimitar.png"))
+                    {
+                        AladdinWep.SetResourceReference(ContentProperty, "Cus-AladdinWep");
+                        broadcast.AladdinWep.SetResourceReference(ContentProperty, "Cus-AladdinWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/SkillCrossbones.png"))
+                    {
+                        SparrowWep.SetResourceReference(ContentProperty, "Cus-SparrowWep");
+                        broadcast.SparrowWep.SetResourceReference(ContentProperty, "Cus-SparrowWep");
+                    }
+
                 }
 
                 //for ghost items
@@ -873,6 +895,52 @@ namespace KhTracker
                     {
                         Ghost_SecondChance.SetResourceReference(ContentProperty, "Cus-G_SecondChance");
                     }
+
+                    if (File.Exists("CustomImages/Checks/Ghost/AncestorSword.png"))
+                    {
+                        Ghost_MulanWep.SetResourceReference(ContentProperty, "Cus-G_MulanWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/BattlefieldsofWar.png"))
+                    {
+                        Ghost_AuronWep.SetResourceReference(ContentProperty, "Cus-G_AuronWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/BeastClaw.png"))
+                    {
+                        Ghost_BeastWep.SetResourceReference(ContentProperty, "Cus-G_BeastWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/BoneFist.png"))
+                    {
+                        Ghost_JackWep.SetResourceReference(ContentProperty, "Cus-G_JackWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/IceCream.png"))
+                    {
+                        Ghost_IceCream.SetResourceReference(ContentProperty, "Cus-G_IceCream");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/IdentityDisk.png"))
+                    {
+                        Ghost_TronWep.SetResourceReference(ContentProperty, "Cus-G_TronWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/Picture.png"))
+                    {
+                        Ghost_Picture.SetResourceReference(ContentProperty, "Cus-G_Picture");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/Poster.png"))
+                    {
+                        Ghost_Poster.SetResourceReference(ContentProperty, "Cus-G_Poster");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/ProudFang.png"))
+                    {
+                        Ghost_SimbaWep.SetResourceReference(ContentProperty, "Cus-G_SimbaWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/Scimitar.png"))
+                    {
+                        Ghost_AladdinWep.SetResourceReference(ContentProperty, "Cus-G_AladdinWep");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/SkillCrossbones.png"))
+                    {
+                        Ghost_SparrowWep.SetResourceReference(ContentProperty, "Cus-G_SparrowWep");
+                    }
+
                 }
 
                 if (CustomLevelFound)
@@ -1022,6 +1090,53 @@ namespace KhTracker
                     {
                         broadcast.SecondChance.SetResourceReference(ContentProperty, "Cus-B_SecondChance");
                     }
+
+
+                    if (File.Exists("CustomImages/Broadcast/Checks/AncestorSword.png"))
+                    {
+                        broadcast.MulanWep.SetResourceReference(ContentProperty, "Cus-B_MulanWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/BattlefieldsofWar.png"))
+                    {
+                        broadcast.AuronWep.SetResourceReference(ContentProperty, "Cus-B_AuronWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/BeastClaw.png"))
+                    {
+                        broadcast.BeastWep.SetResourceReference(ContentProperty, "Cus-B_BeastWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/BoneFist.png"))
+                    {
+                        broadcast.JackWep.SetResourceReference(ContentProperty, "Cus-B_JackWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/IceCream.png"))
+                    {
+                        broadcast.IceCream.SetResourceReference(ContentProperty, "Cus-B_IceCream");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/IdentityDisk.png"))
+                    {
+                        broadcast.TronWep.SetResourceReference(ContentProperty, "Cus-B_TronWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/Picture.png"))
+                    {
+                        broadcast.Picture.SetResourceReference(ContentProperty, "Cus-B_Picture");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/Poster.png"))
+                    {
+                        broadcast.Poster.SetResourceReference(ContentProperty, "Cus-B_Poster");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/ProudFang.png"))
+                    {
+                        broadcast.SimbaWep.SetResourceReference(ContentProperty, "Cus-B_SimbaWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/Scimitar.png"))
+                    {
+                        broadcast.AladdinWep.SetResourceReference(ContentProperty, "Cus-B_AladdinWep");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/SkillCrossbones.png"))
+                    {
+                        broadcast.SparrowWep.SetResourceReference(ContentProperty, "Cus-B_SparrowWep");
+                    }
+
                 }
             }
         }

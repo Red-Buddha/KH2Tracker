@@ -914,6 +914,18 @@ namespace KhTracker
                 MagicIcon.SetResourceReference(ContentProperty, "MagicIcon");
                 DefenseIcon.SetResourceReference(ContentProperty, "DefenseIcon");
 
+                MulanWep.SetResourceReference(ContentProperty, "Min-MulanWep");
+                AuronWep.SetResourceReference(ContentProperty, "Min-AuronWep");
+                BeastWep.SetResourceReference(ContentProperty, "Min-BeastWep");
+                JackWep.SetResourceReference(ContentProperty, "Min-JackWep");
+                IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
+                TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
+                Picture.SetResourceReference(ContentProperty, "Min-Picture");
+                Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
+                AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
+                SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
+
                 broadcast.Report.SetResourceReference(ContentProperty, "Min-AnsemReport");
                 broadcast.TornPage.SetResourceReference(ContentProperty, "Min-TornPages");
                 broadcast.Chest.SetResourceReference(ContentProperty, "Min-Chest");
@@ -947,6 +959,18 @@ namespace KhTracker
                 broadcast.Lamp.SetResourceReference(ContentProperty, "Min-Genie");
                 broadcast.Ukulele.SetResourceReference(ContentProperty, "Min-Stitch");
                 broadcast.Feather.SetResourceReference(ContentProperty, "Min-PeterPan");
+
+                broadcast.MulanWep.SetResourceReference(ContentProperty, "Min-MulanWep");
+                broadcast.AuronWep.SetResourceReference(ContentProperty, "Min-AuronWep");
+                broadcast.BeastWep.SetResourceReference(ContentProperty, "Min-BeastWep");
+                broadcast.JackWep.SetResourceReference(ContentProperty, "Min-JackWep");
+                broadcast.IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
+                broadcast.TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
+                broadcast.Picture.SetResourceReference(ContentProperty, "Min-Picture");
+                broadcast.Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                broadcast.SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
+                broadcast.AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
+                broadcast.SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
 
                 //ghost icons
                 Ghost_Fire1.SetResourceReference(ContentProperty, "Min-Fire");
@@ -988,6 +1012,17 @@ namespace KhTracker
                 Ghost_Peace.SetResourceReference(ContentProperty, "Min-ProofOfPea");
                 Ghost_PromiseCharm.SetResourceReference(ContentProperty, "Min-PromiseCharm");
 
+                Ghost_MulanWep.SetResourceReference(ContentProperty, "Min-MulanWep");
+                Ghost_AuronWep.SetResourceReference(ContentProperty, "Min-AuronWep");
+                Ghost_BeastWep.SetResourceReference(ContentProperty, "Min-BeastWep");
+                Ghost_JackWep.SetResourceReference(ContentProperty, "Min-JackWep");
+                Ghost_IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
+                Ghost_TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
+                Ghost_Picture.SetResourceReference(ContentProperty, "Min-Picture");
+                Ghost_Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                Ghost_SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
+                Ghost_AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
+                Ghost_SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
 
                 ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
                 ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[2].Height = new GridLength(1, GridUnitType.Star);
@@ -1070,6 +1105,18 @@ namespace KhTracker
                 MagicIcon.SetResourceReference(ContentProperty, "MagicIcon");
                 DefenseIcon.SetResourceReference(ContentProperty, "DefenseIcon");
 
+                MulanWep.SetResourceReference(ContentProperty, "Old-MulanWep");
+                AuronWep.SetResourceReference(ContentProperty, "Old-AuronWep");
+                BeastWep.SetResourceReference(ContentProperty, "Old-BeastWep");
+                JackWep.SetResourceReference(ContentProperty, "Old-JackWep");
+                IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
+                TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
+                Picture.SetResourceReference(ContentProperty, "Old-Picture");
+                Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
+                AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
+                SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");
+
                 broadcast.Report.SetResourceReference(ContentProperty, "Old-AnsemReport");
                 broadcast.TornPage.SetResourceReference(ContentProperty, "Old-TornPages");
                 broadcast.Chest.SetResourceReference(ContentProperty, "Old-Chest");
@@ -1103,6 +1150,18 @@ namespace KhTracker
                 broadcast.Lamp.SetResourceReference(ContentProperty, "Old-Genie");
                 broadcast.Ukulele.SetResourceReference(ContentProperty, "Old-Stitch");
                 broadcast.Feather.SetResourceReference(ContentProperty, "Old-PeterPan");
+
+                broadcast.MulanWep.SetResourceReference(ContentProperty, "Old-MulanWep");
+                broadcast.AuronWep.SetResourceReference(ContentProperty, "Old-AuronWep");
+                broadcast.BeastWep.SetResourceReference(ContentProperty, "Old-BeastWep");
+                broadcast.JackWep.SetResourceReference(ContentProperty, "Old-JackWep");
+                broadcast.IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
+                broadcast.TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
+                broadcast.Picture.SetResourceReference(ContentProperty, "Old-Picture");
+                broadcast.Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                broadcast.SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
+                broadcast.AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
+                broadcast.SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");
 
                 Ghost_Fire1.SetResourceReference(ContentProperty, "Old-Fire");
                 Ghost_Fire2.SetResourceReference(ContentProperty, "Old-Fire");
@@ -1142,6 +1201,18 @@ namespace KhTracker
                 Ghost_Connection.SetResourceReference(ContentProperty, "Old-ProofOfCon");
                 Ghost_Peace.SetResourceReference(ContentProperty, "Old-ProofOfPea");
                 Ghost_PromiseCharm.SetResourceReference(ContentProperty, "Old-PromiseCharm");
+
+                Ghost_MulanWep.SetResourceReference(ContentProperty, "Old-MulanWep");
+                Ghost_AuronWep.SetResourceReference(ContentProperty, "Old-AuronWep");
+                Ghost_BeastWep.SetResourceReference(ContentProperty, "Old-BeastWep");
+                Ghost_JackWep.SetResourceReference(ContentProperty, "Old-JackWep");
+                Ghost_IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
+                Ghost_TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
+                Ghost_Picture.SetResourceReference(ContentProperty, "Old-Picture");
+                Ghost_Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                Ghost_SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
+                Ghost_AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
+                Ghost_SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");
 
                 ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
                 ((Grid)((Grid)broadcast.Fire.Parent).Parent).RowDefinitions[2].Height = new GridLength(1, GridUnitType.Star);
