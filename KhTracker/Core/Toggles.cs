@@ -152,7 +152,7 @@ namespace KhTracker
             if (toggle)
             {
                 VisitChecks.Height = new GridLength(1.0, GridUnitType.Star);
-                //broadcast.AnsemReport.Width = new GridLength(1.0, GridUnitType.Star);
+                broadcast.VisitsRow.Height = new GridLength(1.75, GridUnitType.Star);
 
                 data.WorldsData["TwilightTown"].visitLocks = 2;
                 data.WorldsData["HollowBastion"].visitLocks = 1;
@@ -168,7 +168,7 @@ namespace KhTracker
             else
             {
                 VisitChecks.Height = new GridLength(0, GridUnitType.Star);
-                //broadcast.AnsemReport.Width = new GridLength(0, GridUnitType.Star);
+                broadcast.VisitsRow.Height = new GridLength(0, GridUnitType.Star);
 
                 data.WorldsData["TwilightTown"].visitLocks = 0;
                 data.WorldsData["HollowBastion"].visitLocks = 0;
@@ -284,8 +284,6 @@ namespace KhTracker
                 HashRow.Height = new GridLength(0, GridUnitType.Star);
                 SeedHashVisible = false;
             }
-
-            //SeedHashVisibility(toggle);
         }
 
         private void GhostItemToggle(object sender, RoutedEventArgs e)

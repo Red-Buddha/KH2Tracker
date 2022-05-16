@@ -158,7 +158,8 @@ namespace KhTracker
         private void InitOptions()
         {
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
-            HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
+            PromiseCharmToggle(PromiseCharmOption.IsChecked);
+            //HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
 
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
             ReportsToggle(ReportsOption.IsChecked);
@@ -322,19 +323,6 @@ namespace KhTracker
 
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
-
-            //Next Level Check
-            //NextLevelCheckOption1.IsChecked = Properties.Settings.Default.Level1;
-            //if (NextLevelCheckOption1.IsChecked)
-            //    NextLevelCheck1Option(null, null);
-            //
-            //NextLevelCheckOption50.IsChecked = Properties.Settings.Default.Level50;
-            //if (NextLevelCheckOption50.IsChecked)
-            //    NextLevelCheck50Option(null, null);
-            //
-            //NextLevelCheckOption99.IsChecked = Properties.Settings.Default.Level99;
-            //if (NextLevelCheckOption99.IsChecked)
-            //    NextLevelCheck99Option(null, null);
 
             CheckCountOption.IsChecked = Properties.Settings.Default.CheckCount;
             if (CheckCountOption.IsChecked)
