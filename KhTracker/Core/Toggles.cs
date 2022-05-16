@@ -49,6 +49,26 @@ namespace KhTracker
             }
         }
 
+        private void HandleGhostItemToggle(bool toggle)
+        {
+            foreach (Item GhostItem in Data.GhostItems.Values.ToList())
+            {
+
+                if (toggle && GhostItem.IsEnabled == false)
+                {
+                    GhostItem.IsEnabled = true;
+                    GhostItem.Visibility = Visibility.Visible;
+                }
+                else if (toggle == false && GhostItem.IsEnabled)
+                {
+                    GhostItem.IsEnabled = false;
+                    GhostItem.Visibility = Visibility.Hidden;
+
+                    GhostItem.HandleItemReturn();
+                }
+            }
+        }
+
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
             //this chunk of garbage for using the correct vertical image

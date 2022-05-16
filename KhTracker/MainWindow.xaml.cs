@@ -157,9 +157,9 @@ namespace KhTracker
 
         private void InitOptions()
         {
+            //Item toggles
             PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
             PromiseCharmToggle(PromiseCharmOption.IsChecked);
-            //HandleItemToggle(PromiseCharmOption.IsChecked, PromiseCharm, true);
 
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
             ReportsToggle(ReportsOption.IsChecked);
@@ -168,23 +168,40 @@ namespace KhTracker
             VisitLockToggle(VisitLockOption.IsChecked);
 
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
-            HandleItemToggle(AbilitiesOption.IsChecked, OnceMore, true);
-            HandleItemToggle(AbilitiesOption.IsChecked, SecondChance, true);
+            AbilitiesToggle(AbilitiesOption.IsChecked);
 
             TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            for (int i = 0; i < data.TornPages.Count; ++i)
-            {
-                HandleItemToggle(TornPagesOption.IsChecked, data.TornPages[i], true);
-            }
+            TornPagesToggle(TornPagesOption.IsChecked);
 
             CureOption.IsChecked = Properties.Settings.Default.Cure;
-            HandleItemToggle(CureOption.IsChecked, Cure1, true);
-            HandleItemToggle(CureOption.IsChecked, Cure2, true);
-            HandleItemToggle(CureOption.IsChecked, Cure3, true);
+            CureToggle(CureOption.IsChecked);
 
             FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            HandleItemToggle(FinalFormOption.IsChecked, Final, true);
+            FinalFormToggle(FinalFormOption.IsChecked);
 
+            //World Toggles
+            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
+            SoraHeartToggle(SoraHeartOption.IsChecked);
+
+            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
+            SimulatedToggle(SimulatedOption.IsChecked);
+
+            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
+            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
+
+            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
+            AtlanticaToggle(AtlanticaOption.IsChecked);
+
+            CavernOption.IsChecked = Properties.Settings.Default.Cavern;
+            CavernToggle(CureOption.IsChecked);
+
+            TimelessOption.IsChecked = Properties.Settings.Default.Timeless;
+            TimelessToggle(TimelessOption.IsChecked);
+
+            OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
+            OCCupsToggle(OCCupsOption.IsChecked);
+
+            //Visial Toggles
             MinWorldOption.IsChecked = Properties.Settings.Default.MinWorld;
             if (MinWorldOption.IsChecked)
                 MinWorldToggle(null, null);
@@ -217,15 +234,6 @@ namespace KhTracker
             if (OldNumOption.IsChecked)
                 OldNumToggle(null, null);
 
-            CavernOption.IsChecked = Properties.Settings.Default.Cavern;
-            CavernToggle(null, null);
-
-            TimelessOption.IsChecked = Properties.Settings.Default.Timeless;
-            TimelessToggle(null, null);
-
-            OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
-            OCCupsToggle(null, null);
-
             WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
             WorldProgressToggle(null, null);
 
@@ -234,15 +242,6 @@ namespace KhTracker
 
             SeedHashOption.IsChecked = Properties.Settings.Default.SeedHash;
             SeedHashToggle(null, null);
-
-            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
-            SoraHeartToggle(SoraHeartOption.IsChecked);
-            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
-            SimulatedToggle(SimulatedOption.IsChecked);
-            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
-            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
-            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
-            AtlanticaToggle(AtlanticaOption.IsChecked);
 
             DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
             DragDropToggle(null, null);
@@ -263,60 +262,7 @@ namespace KhTracker
             BroadcastStatsToggle(null, null);
 
             GhostItemOption.IsChecked = Properties.Settings.Default.GhostItem;
-            {
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report4);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report5);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report6);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report7);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report8);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report9);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report10);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report11);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report12);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Report13);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Fire3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Blizzard3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Thunder3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Cure3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Reflect3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Magnet3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Valor);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Wisdom);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Limit);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Master);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Final);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_OnceMore);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_SecondChance);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage1);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage2);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage3);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage4);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_TornPage5);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Baseball);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Lamp);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Ukulele);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Feather);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Connection);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Nonexistence);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_Peace);
-                HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_PromiseCharm);
-                //HandleGhostItemToggle(GhostItemOption.IsChecked, Ghost_HadesCup);
-            }
+            GhostItemToggle(GhostItemOption.IsChecked);
 
             GhostMathOption.IsChecked = Properties.Settings.Default.GhostMath;
             GhostMathToggle(null, null);
@@ -531,39 +477,6 @@ namespace KhTracker
         /// Handle UI Changes
         /// 
 
-        //OLD
-        //private void HandleReportValue(Image Hint, int delta)
-        //{
-        //    if (data.mode != Mode.None)
-        //        return;
-        //
-        //    int num = 0;
-        //
-        //    for (int i = 0; i < data.Numbers.Count; ++i)
-        //    {
-        //        if (Hint.Source == GetDataNumber("Y")[i])
-        //        {
-        //            num = i;
-        //        }
-        //    }
-        //
-        //    if (delta > 0)
-        //        ++num;
-        //    else
-        //        --num;
-        //
-        //    // cap hint value to 51
-        //    if (num > 52)
-        //        num = 52;
-        //
-        //    if (num < 0)
-        //        Hint.Source = GetDataNumber("Y")[0];
-        //    else
-        //        Hint.Source = GetDataNumber("Y")[num];
-        //
-        //    broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
-        //}
-
         private void HandleReportValue(Grid Hint, int delta)
         {
             //return if the a hint mode is loaded
@@ -583,9 +496,6 @@ namespace KhTracker
 
             SetWorldNumber(Hint, num, "Y");
             broadcast.SetFoundNumber(Hint, null);
-
-            //get to later
-            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), num - 1);
         }
 
         public void SetReportValue(Grid Hint, int value)

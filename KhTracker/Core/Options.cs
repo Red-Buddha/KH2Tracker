@@ -1298,6 +1298,7 @@ namespace KhTracker
                                     OCCupsToggle(false);
                                     SoraHeartToggle(true);
                                     SoraLevel01Toggle(true);
+                                    VisitLockToggle(false);
                                 }
 
                                 //load settings from hints
@@ -1343,17 +1344,7 @@ namespace KhTracker
                                             OCCupsToggle(true);
                                             break;
                                         case "visit_locking":
-                                            data.WorldsData["TwilightTown"].visitLocks = 2;
-                                            data.WorldsData["HollowBastion"].visitLocks = 1;
-                                            data.WorldsData["BeastsCastle"].visitLocks = 1;
-                                            data.WorldsData["OlympusColiseum"].visitLocks = 1;
-                                            data.WorldsData["Agrabah"].visitLocks = 1;
-                                            data.WorldsData["LandofDragons"].visitLocks = 1;
-                                            data.WorldsData["PrideLands"].visitLocks = 1;
-                                            data.WorldsData["HalloweenTown"].visitLocks = 1;
-                                            data.WorldsData["PortRoyal"].visitLocks = 1;
-                                            data.WorldsData["SpaceParanoids"].visitLocks = 1;
-                                            VisitLockCheck();
+                                            VisitLockToggle(true);
                                             break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")
