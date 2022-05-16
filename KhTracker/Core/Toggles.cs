@@ -174,7 +174,7 @@ namespace KhTracker
                 VisitChecks.Height = new GridLength(1.0, GridUnitType.Star);
                 broadcast.VisitsRow.Height = new GridLength(1.75, GridUnitType.Star);
 
-                data.WorldsData["TwilightTown"].visitLocks = 2;
+                data.WorldsData["TwilightTown"].visitLocks = 11;
                 data.WorldsData["HollowBastion"].visitLocks = 1;
                 data.WorldsData["BeastsCastle"].visitLocks = 1;
                 data.WorldsData["OlympusColiseum"].visitLocks = 1;

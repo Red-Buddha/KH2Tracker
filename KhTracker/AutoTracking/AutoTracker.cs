@@ -1829,6 +1829,9 @@ namespace KhTracker
 
             //update collected count numbers
             List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
+            if (collected < 10)
+                CollectedNum[1] = null;
+
             Collected_01.Source = CollectedNum[0];
             Collected_10.Source = CollectedNum[1];
             broadcast.Collected_01.Source = CollectedNum[0];

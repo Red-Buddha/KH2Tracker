@@ -407,7 +407,7 @@ namespace KhTracker
                     MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
                     break;
                 case "Picture":
-                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += (addRemove * 10);
                     break;
                 case "IceCream":
                     MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;

@@ -526,10 +526,11 @@ namespace KhTracker
                 collected = 99;
 
             List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
-            //Collected.Source = GetDataNumber("Y")[collected + 1];
+            if (collected < 10)
+                CollectedNum[1] = null;
+
             Collected_01.Source = CollectedNum[0];
             Collected_10.Source = CollectedNum[1];
-            //broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
             broadcast.Collected_01.Source = CollectedNum[0];
             broadcast.Collected_10.Source = CollectedNum[1];
         }
@@ -541,10 +542,11 @@ namespace KhTracker
                 collected = 0;
 
             List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
-            //Collected.Source = GetDataNumber("Y")[collected + 1];
+            if (collected < 10)
+                CollectedNum[1] = null;
+
             Collected_01.Source = CollectedNum[0];
             Collected_10.Source = CollectedNum[1];
-            //broadcast.Collected.Source = GetDataNumber("Y")[collected + 1];
             broadcast.Collected_01.Source = CollectedNum[0];
             broadcast.Collected_10.Source = CollectedNum[1];
         }
@@ -921,17 +923,23 @@ namespace KhTracker
                     case "TwilightTown":
                         switch (data.WorldsData["TwilightTown"].visitLocks)
                         {
+                            case 0:
+                                TwilightTownLock_1.Visibility = Visibility.Collapsed;
+                                TwilightTownLock_2.Visibility = Visibility.Collapsed;
+                                broadcast.TwilightTownLock_1.Visibility = Visibility.Collapsed;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Collapsed;
+                                break;
                             case 1:
                                 TwilightTownLock_1.Visibility = Visibility.Visible;
-                                TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                TwilightTownLock_2.Visibility = Visibility.Collapsed;
                                 broadcast.TwilightTownLock_1.Visibility = Visibility.Visible;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Hidden;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Collapsed;
                                 break;
-                            case 0:
-                                TwilightTownLock_1.Visibility = Visibility.Hidden;
-                                TwilightTownLock_2.Visibility = Visibility.Hidden;
-                                broadcast.TwilightTownLock_1.Visibility = Visibility.Hidden;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Hidden;
+                            case 10:
+                                TwilightTownLock_1.Visibility = Visibility.Collapsed;
+                                TwilightTownLock_2.Visibility = Visibility.Visible;
+                                broadcast.TwilightTownLock_1.Visibility = Visibility.Collapsed;
+                                broadcast.TwilightTownLock_2.Visibility = Visibility.Visible;
                                 break;
                             default:
                                 TwilightTownLock_1.Visibility = Visibility.Visible;
