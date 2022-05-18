@@ -1271,6 +1271,11 @@ namespace KhTracker
                     {
                         GoA.SetResourceReference(ContentProperty, "Cus-GardenofAssemblageImage");
                     }
+                    if (File.Exists("CustomImages/Worlds/level.png"))
+                    {
+                        SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
+                    }
 
                     //check for custom cavern, timeless, and cups toggles
                     {
@@ -1378,6 +1383,10 @@ namespace KhTracker
                     if (File.Exists("CustomImages/Broadcast/Worlds/atlantica.png"))
                     {
                         broadcast.Atlantica.SetResourceReference(ContentProperty, "Cus-B_AtlanticaImage");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Worlds/level.png"))
+                    {
+                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
                     }
 
                     //check for custom cavern, timeless, and cups toggles
