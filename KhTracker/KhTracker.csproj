@@ -597,9 +597,6 @@
     <Content Include="CustomImages\Broadcast\Worlds\Level01.png" />
     <Content Include="CustomImages\Broadcast\Worlds\Level50.png" />
     <Content Include="CustomImages\Broadcast\Worlds\Level99.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\level_1.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\level_50.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\level_99.png" />
     <Content Include="CustomImages\Broadcast\Worlds\lingering_will.png" />
     <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum.png" />
     <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum_cups.png" />
@@ -846,9 +843,6 @@
     <Content Include="CustomImages\Worlds\Level01.png" />
     <Content Include="CustomImages\Worlds\Level50.png" />
     <Content Include="CustomImages\Worlds\Level99.png" />
-    <Content Include="CustomImages\Worlds\level_1.png" />
-    <Content Include="CustomImages\Worlds\level_50.png" />
-    <Content Include="CustomImages\Worlds\level_99.png" />
     <Content Include="CustomImages\Worlds\lingering_will.png" />
     <Content Include="CustomImages\Worlds\olympus_coliseum.png" />
     <Content Include="CustomImages\Worlds\olympus_coliseum_cups.png" />
@@ -887,12 +881,6 @@
     <Resource Include="Images\Checks\Old\Scimitar.png" />
     <Resource Include="Images\Checks\Old\SkillCrossbones.png" />
     <Resource Include="Images\Other\visitlock.png" />
-    <Resource Include="Images\Worlds\Old\level_1.png" />
-    <Resource Include="Images\Worlds\Old\level_50.png" />
-    <Resource Include="Images\Worlds\Old\level_99.png" />
-    <Resource Include="Images\Worlds\Simple\level_1.png" />
-    <Resource Include="Images\Worlds\Simple\level_50.png" />
-    <Resource Include="Images\Worlds\Simple\level_99.png" />
     <Resource Include="Images\Numbers\Kh2\Green\0.png" />
     <Resource Include="Images\Numbers\Kh2\Green\1.png" />
     <Resource Include="Images\Numbers\Kh2\Green\2.png" />
@@ -922,10 +910,8 @@
     <Resource Include="Images\Other\sora_heart.png" />
     <Resource Include="Images\Worlds\Simple\olympus_coliseum_cups.png" />
     <Resource Include="Images\Worlds\Old\cavern_of_remembrance.png" />
-    <Resource Include="Images\Worlds\Old\disney_castle_tr.png" />
     <Resource Include="Images\Worlds\Old\hollow_bastion_cor.png" />
     <Resource Include="Images\Worlds\Old\olympus_coliseum_cups.png" />
-    <Resource Include="Images\Worlds\Old\timeless_river.png" />
     <Resource Include="Images\Checks\Simple\ansem_report01.png" />
     <Resource Include="Images\Checks\Simple\ansem_report01_old.png" />
     <Resource Include="Images\Checks\Simple\ansem_report02.png" />
@@ -993,21 +979,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Worlds\Simple\cavern_of_remembrance.png" />
-    <Resource Include="Images\Worlds\Simple\disney_castle_tr.png" />
     <Resource Include="Images\Worlds\Simple\hollow_bastion_cor.png" />
-    <Resource Include="Images\Worlds\Simple\timeless_river.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomImages\Worlds\cavern_of_remembrance.png" />
-    <Content Include="CustomImages\Worlds\disney_castle_tr.png" />
     <Content Include="CustomImages\Worlds\hollow_bastion_cor.png" />
-    <Content Include="CustomImages\Worlds\timeless_river.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomImages\Broadcast\Worlds\cavern_of_remembrance.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\disney_castle_tr.png" />
     <Content Include="CustomImages\Broadcast\Worlds\hollow_bastion_cor.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\timeless_river.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Other\chest_old.png" />
