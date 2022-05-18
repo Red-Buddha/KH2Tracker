@@ -58,6 +58,18 @@
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-SoraHeartImage}" Name="SorasHeart" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
 
+                    <ContentControl Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <ContentControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.4" ScaleY="1.4"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="0" X="-10"/>
+                            </TransformGroup>
+                        </ContentControl.RenderTransform>
+                    </ContentControl>
+
+
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="SorasHeartHint" VerticalAlignment="Bottom">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
@@ -173,7 +185,31 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1">
+
+                    <Image Name="TwilightTownLock_1" Source="Images\Other\visitlocksilver.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="0,0.6">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+
+                    <Image Name="TwilightTownLock_2" Source="Images\Other\visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1" RenderTransformOrigin="1,0.6">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+
+
+                    <!--Grid Grid.RowSpan="2" Grid.ColumnSpan="2" Panel.ZIndex="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.1*"/>
                             <RowDefinition/>
@@ -186,7 +222,9 @@
                         </Grid.ColumnDefinitions>
                         <Image Name="TwilightTownLock_1" Source="Images\Other\visitlocksilver.png" Grid.Row="1" Grid.Column="1" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.6"/>
                         <Image Name="TwilightTownLock_2" Source="Images\Other\visitlock.png" Grid.Row="1" Grid.Column="2" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.6"/>
-                    </Grid>
+                    </Grid-->
+                    
+                    
                     <ContentControl Content="{DynamicResource Min-TwilightTownImage}" Name="TwilightTown" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
                     <ContentControl Name="TwilightTownProgression" Grid.Row="0" Grid.Column="2"/>
 
@@ -625,6 +663,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+
+                    <!--Image Name="DisneyCastleLW" Source="Images/Worlds/lingering_will.png" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,4,0"/-->
+                    <ContentControl Name="DisneyCastleLW" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,4,0"/>
+
                     <ContentControl Content="{DynamicResource Min-DisneyCastleImage}" Name="DisneyCastle" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
                     <ContentControl Name="DisneyCastleProgression" Grid.Row="0" Grid.Column="2"/>
 

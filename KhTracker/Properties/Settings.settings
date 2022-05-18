@@ -98,9 +98,6 @@
     <Setting Name="Cavern" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Timeless" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="MainBG" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -144,10 +141,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="WorldLevel1" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="WorldLevel50" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="WorldLevel99" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -156,6 +153,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="WorldVisitLock" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Terra" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

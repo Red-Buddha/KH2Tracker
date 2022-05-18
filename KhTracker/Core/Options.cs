@@ -71,13 +71,14 @@ namespace KhTracker
                 settings += "Atlantica - ";
             if (CavernOption.IsChecked)
                 settings += "Cavern of Remembrance - ";
-            if (TimelessOption.IsChecked)
-                settings += "Timeless River - ";
             if (OCCupsOption.IsChecked)
                 settings += "Olympus Cups - ";
+            if (TerraOption.IsChecked)
+                settings += "Lingering Will (Terra) - ";
             //if (PuzzleOption.IsChecked)
             //    settings += "Puzzle Rewards - ";
-
+            //if (TimelessOption.IsChecked)
+            //    settings += "Timeless River - ";
 
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
@@ -760,18 +761,21 @@ namespace KhTracker
                     case "Cavern of Remembrance":
                         CavernToggle(true);
                         break;
-                    case "Timeless River":
-                        TimelessToggle(true);
-                        break;
                     case "Olympus Cups":
                         OCCupsToggle(true);
                         break;
-                    //case "Hades Cup":
-                    //    newsettings[13] = true;
-                    //    break;
-                    //case "Puzzle Rewards":
-                    //    newsettings[14] = true;
-                    //    break;
+                    case "Lingering Will (Terra)":
+                        TerraToggle(true);
+                        break;
+                        //case "Timeless River":
+                        //    TimelessToggle(true);
+                        //    break;
+                        //case "Hades Cup":
+                        //    newsettings[13] = true;
+                        //    break;
+                        //case "Puzzle Rewards":
+                        //    newsettings[14] = true;
+                        //    break;
                 }
             }
         }
@@ -1267,6 +1271,8 @@ namespace KhTracker
                                     SoraHeartToggle(true);
                                     SoraLevel01Toggle(true);
                                     VisitLockToggle(false);
+
+                                    TerraToggle(false);
                                 }
 
                                 //load settings from hints
@@ -1313,6 +1319,9 @@ namespace KhTracker
                                             break;
                                         case "visit_locking":
                                             VisitLockToggle(true);
+                                            break;
+                                        case "Lingering Will (Terra)":
+                                            TerraToggle(true);
                                             break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")

@@ -388,6 +388,30 @@ namespace KhTracker
         private void GhostMathToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.GhostMath = GhostMathOption.IsChecked;
+
+            if (GhostItemOption.IsChecked && data.mode == Mode.DAHints)
+            {
+                int add = -1;
+
+                //subtract points (math on)
+                if (!GhostMathOption.IsChecked)
+                {
+                    add = 1;
+                }
+
+                foreach (WorldData worldData in data.WorldsData.Values.ToList())
+                {
+                    if (worldData.hint == null)
+                        continue;
+
+                    if (worldData.containsGhost)
+                    {
+                        int ghostnum = GetGhostPoints(worldData.worldGrid) * add;
+                        int worldnum = GetWorldNumber(worldData.hint);
+                        SetReportValue(worldData.hint, worldnum + ghostnum);
+                    }
+                }
+            }
         }
 
         private void ShowCheckCountToggle(object sender, RoutedEventArgs e)
@@ -745,15 +769,39 @@ namespace KhTracker
             CustomWorldCheck();
         }
 
-        private void TimelessToggle(object sender, RoutedEventArgs e)
+        //private void TimelessToggle(object sender, RoutedEventArgs e)
+        //{
+        //    TimelessToggle(TimelessOption.IsChecked);
+        //}
+        //
+        //private void TimelessToggle(bool toggle)
+        //{
+        //    Properties.Settings.Default.Timeless = toggle;
+        //    TimelessOption.IsChecked = toggle;
+        //
+        //    CustomWorldCheck();
+        //}
+
+        private void TerraToggle(object sender, RoutedEventArgs e)
         {
-            TimelessToggle(TimelessOption.IsChecked);
+            TerraToggle(TerraOption.IsChecked);
         }
 
-        private void TimelessToggle(bool toggle)
+        private void TerraToggle(bool toggle)
         {
-            Properties.Settings.Default.Timeless = toggle;
-            TimelessOption.IsChecked = toggle;
+            Properties.Settings.Default.Terra = toggle;
+            TerraOption.IsChecked = toggle;
+
+            if (toggle)
+            {
+                DisneyCastleLW.Visibility = Visibility.Visible;
+                broadcast.DisneyCastleLW.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DisneyCastleLW.Visibility = Visibility.Collapsed;
+                broadcast.DisneyCastleLW.Visibility = Visibility.Collapsed;
+            }
 
             CustomWorldCheck();
         }
@@ -790,6 +838,9 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
             Properties.Settings.Default.WorldLevel1 = toggle;
 
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+
             CustomWorldCheck();
             NextLevelDisplay();
         }
@@ -813,6 +864,9 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
             Properties.Settings.Default.WorldLevel50 = toggle;
 
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+
             CustomWorldCheck();
             NextLevelDisplay();
         }
@@ -835,6 +889,9 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel50 = SoraLevel50Option.IsChecked;
             Properties.Settings.Default.WorldLevel1 = SoraLevel01Option.IsChecked;
             Properties.Settings.Default.WorldLevel99 = toggle;
+
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
 
             CustomWorldCheck();
             NextLevelDisplay();
@@ -1272,6 +1329,24 @@ namespace KhTracker
                 broadcast.TWTNW.SetResourceReference(ContentProperty, "Min-TWTNWImage");
                 broadcast.Atlantica.SetResourceReference(ContentProperty, "Min-AtlanticaImage");
 
+                //alt icons
+                DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+                broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+
+                //level type icons
+                if (SoraLevel99Option.IsChecked)
+                {
+                    SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+                    broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+                }
+                if (SoraLevel50Option.IsChecked)
+                {
+                    SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+                    broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+                }
+
                 if (CavernOption.IsChecked)
                 {
                     HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
@@ -1283,16 +1358,16 @@ namespace KhTracker
                     broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
                 }
 
-                if (TimelessOption.IsChecked)
-                {
-                    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                }
-                else
-                {
-                    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                }
+                //if (TimelessOption.IsChecked)
+                //{
+                //    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
+                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
+                //}
+                //else
+                //{
+                //    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
+                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
+                //}
             }
 
             CustomWorldCheck();
@@ -1348,6 +1423,24 @@ namespace KhTracker
                 broadcast.TWTNW.SetResourceReference(ContentProperty, "Old-TWTNWImage");
                 broadcast.Atlantica.SetResourceReference(ContentProperty, "Old-AtlanticaImage");
 
+                //alt icons
+                DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+                broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+
+                //level type icons
+                if (SoraLevel99Option.IsChecked)
+                {
+                    SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+                    broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+                }
+                if (SoraLevel50Option.IsChecked)
+                {
+                    SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+                    broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+                }
+
                 if (CavernOption.IsChecked)
                 {
                     HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
@@ -1359,16 +1452,16 @@ namespace KhTracker
                     broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
                 }
 
-                if (TimelessOption.IsChecked)
-                {
-                    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                }
-                else
-                {
-                    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                }
+                //if (TimelessOption.IsChecked)
+                //{
+                //    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
+                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
+                //}
+                //else
+                //{
+                //    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
+                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
+                //}
             }
 
             CustomWorldCheck();

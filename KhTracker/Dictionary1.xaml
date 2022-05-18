@@ -158,16 +158,22 @@
     <Image x:Key="Min-PortRoyalImage" 			Source="Images\Worlds\Simple\port_royal.png" x:Shared="false"/>
     <Image x:Key="Min-TWTNWImage" 				Source="Images\Worlds\Simple\the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Min-AtlanticaImage" 			Source="Images\Worlds\Simple\atlantica.png" x:Shared="false"/>
+
+    <Image x:Key="Min-DisneyCastleLW"       Source="Images\Worlds\lingering_will.png" x:Shared="false"/>
+    <Image x:Key="Min-SoraLevel01" 		    Source="Images\Worlds\Level01.png" x:Shared="false"/>
+    <Image x:Key="Min-SoraLevel50" 		    Source="Images\Worlds\Level50.png" x:Shared="false"/>
+    <Image x:Key="Min-SoraLevel99" 		    Source="Images\Worlds\Level99.png" x:Shared="false"/>
     
+
     <Image x:Key="Min-HollowBastionCorImage" 	 Source="Images\Worlds\Simple\hollow_bastion_cor.png" x:Shared="false"/>
     <Image x:Key="Min-CavernofRememberanceImage" Source="Images\Worlds\Simple\cavern_of_remembrance.png" x:Shared="false"/>
-    <Image x:Key="Min-DisneyCastleTrImage" 		 Source="Images\Worlds\Simple\disney_castle_tr.png" x:Shared="false"/>
-    <Image x:Key="Min-TimelessRiverImage" 		 Source="Images\Worlds\Simple\timeless_river.png" x:Shared="false"/>
+    <!--Image x:Key="Min-DisneyCastleTrImage" 		 Source="Images\Worlds\Simple\disney_castle_tr.png" x:Shared="false"/-->
+    <!--Image x:Key="Min-TimelessRiverImage" 		 Source="Images\Worlds\Simple\timeless_river.png" x:Shared="false"/-->
     <Image x:Key="Min-OlympusCupsImage" 		 Source="Images\Worlds\Simple\olympus_coliseum_cups.png" x:Shared="false"/>
 
-    <Image x:Key="Min-SoraHeartImage01" 			Source="Images\Worlds\Simple\level_1.png" x:Shared="false"/>
+    <!--Image x:Key="Min-SoraHeartImage01" 			Source="Images\Worlds\Simple\level_1.png" x:Shared="false"/>
     <Image x:Key="Min-SoraHeartImage50" 			Source="Images\Worlds\Simple\level_50.png" x:Shared="false"/>
-    <Image x:Key="Min-SoraHeartImage99" 			Source="Images\Worlds\Simple\level_99.png" x:Shared="false"/>
+    <Image x:Key="Min-SoraHeartImage99" 			Source="Images\Worlds\Simple\level_99.png" x:Shared="false"/-->
     
     
     <!--Old World Icons-->
@@ -192,13 +198,13 @@
     <!--alt-->
     <Image x:Key="Old-HollowBastionCorImage" 	 Source="Images\Worlds\Old\hollow_bastion_cor.png" x:Shared="false"/>
     <Image x:Key="Old-CavernofRememberanceImage" Source="Images\Worlds\Old\cavern_of_remembrance.png" x:Shared="false"/>
-    <Image x:Key="Old-DisneyCastleTrImage" 		 Source="Images\Worlds\Old\disney_castle_tr.png" x:Shared="false"/>
-    <Image x:Key="Old-TimelessRiverImage" 		 Source="Images\Worlds\Old\timeless_river.png" x:Shared="false"/>
+    <!--Image x:Key="Old-DisneyCastleTrImage" 		 Source="Images\Worlds\Old\disney_castle_tr.png" x:Shared="false"/-->
+    <!--Image x:Key="Old-TimelessRiverImage" 		 Source="Images\Worlds\Old\timeless_river.png" x:Shared="false"/-->
     <Image x:Key="Old-OlympusCupsImage" 	     Source="Images\Worlds\Old\olympus_coliseum_cups.png" x:Shared="false"/>
 
-    <Image x:Key="Old-SoraHeartImage01" 			Source="Images\Worlds\Old\level_1.png" x:Shared="false"/>
+    <!--Image x:Key="Old-SoraHeartImage01" 			Source="Images\Worlds\Old\level_1.png" x:Shared="false"/>
     <Image x:Key="Old-SoraHeartImage50" 			Source="Images\Worlds\Old\level_50.png" x:Shared="false"/>
-    <Image x:Key="Old-SoraHeartImage99" 			Source="Images\Worlds\Old\level_99.png" x:Shared="false"/>
+    <Image x:Key="Old-SoraHeartImage99" 			Source="Images\Worlds\Old\level_99.png" x:Shared="false"/-->
 
     <!--Other (Simple)-->
     <Image x:Key="Min-OnceMore"			Source="Images\Checks\once_more.png" x:Shared="false"/>
@@ -673,25 +679,37 @@
     <Image x:Key="Cus-B_TWTNWImage" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Cus-B_AtlanticaImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/atlantica.png" x:Shared="false"/>
 
+    <Image x:Key="Cus-DisneyCastleLW" 		Source="pack://application:,,,/CustomImages/Worlds/lingering_will.png" x:Shared="false"/>
+    <Image x:Key="Cus-SoraLevel01" 		    Source="pack://application:,,,/CustomImages/Worlds/Level01.png" x:Shared="false"/>
+    <Image x:Key="Cus-SoraLevel50" 		    Source="pack://application:,,,/CustomImages/Worlds/Level50.png" x:Shared="false"/>
+    <Image x:Key="Cus-SoraLevel99" 		    Source="pack://application:,,,/CustomImages/Worlds/Level99.png" x:Shared="false"/>
+
     <Image x:Key="Cus-HollowBastionCorImage" 	 Source="pack://application:,,,/CustomImages/Worlds/hollow_bastion_cor.png" x:Shared="false"/>
     <Image x:Key="Cus-CavernofRememberanceImage" Source="pack://application:,,,/CustomImages/Worlds/cavern_of_remembrance.png" x:Shared="false"/>
-    <Image x:Key="Cus-DisneyCastleTrImage" 		 Source="pack://application:,,,/CustomImages/Worlds/disney_castle_tr.png" x:Shared="false"/>
-    <Image x:Key="Cus-TimelessRiverImage" 		 Source="pack://application:,,,/CustomImages/Worlds/timeless_river.png" x:Shared="false"/>
+    <!--Image x:Key="Cus-DisneyCastleTrImage" 		 Source="pack://application:,,,/CustomImages/Worlds/disney_castle_tr.png" x:Shared="false"/-->
+    <!--Image x:Key="Cus-TimelessRiverImage" 		 Source="pack://application:,,,/CustomImages/Worlds/timeless_river.png" x:Shared="false"/-->
     <Image x:Key="Cus-OlympusCupsImage" 		     Source="pack://application:,,,/CustomImages/Worlds/olympus_coliseum_cups.png" x:Shared="false"/>
 
-    <Image x:Key="Cus-SoraHeartImage01" 			Source="pack://application:,,,/CustomImages/Worlds/level_1.png" x:Shared="false"/>
+    <!--Image x:Key="Cus-SoraHeartImage01" 			Source="pack://application:,,,/CustomImages/Worlds/level_1.png" x:Shared="false"/>
     <Image x:Key="Cus-SoraHeartImage50" 			Source="pack://application:,,,/CustomImages/Worlds/level_50.png" x:Shared="false"/>
-    <Image x:Key="Cus-SoraHeartImage99" 			Source="pack://application:,,,/CustomImages/Worlds/level_99.png" x:Shared="false"/>
+    <Image x:Key="Cus-SoraHeartImage99" 			Source="pack://application:,,,/CustomImages/Worlds/level_99.png" x:Shared="false"/-->
 
+
+    <Image x:Key="Cus-B_DisneyCastleLW" 		Source="pack://application:,,,/CustomImages/Broadcast/Worlds/lingering_will.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_SoraLevel01" 		    Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Level01.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_SoraLevel50" 		    Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Level50.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_SoraLevel99" 		    Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Level99.png" x:Shared="false"/>
+    
+    
     <Image x:Key="Cus-B_HollowBastionCorImage" 	    Source="pack://application:,,,/CustomImages/Broadcast/Worlds/hollow_bastion_cor.png" x:Shared="false"/>
     <Image x:Key="Cus-B_CavernofRememberanceImage"  Source="pack://application:,,,/CustomImages/Broadcast/Worlds/cavern_of_remembrance.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_DisneyCastleTrImage" 		Source="pack://application:,,,/CustomImages/Broadcast/Worlds/disney_castle_tr.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_TimelessRiverImage" 		Source="pack://application:,,,/CustomImages/Broadcast/Worlds/timeless_river.png" x:Shared="false"/>
+    <!--Image x:Key="Cus-B_DisneyCastleTrImage" 		Source="pack://application:,,,/CustomImages/Broadcast/Worlds/disney_castle_tr.png" x:Shared="false"/-->
+    <!--Image x:Key="Cus-B_TimelessRiverImage" 		Source="pack://application:,,,/CustomImages/Broadcast/Worlds/timeless_river.png" x:Shared="false"/-->
     <Image x:Key="Cus-B_OlympusCupsImage" 		        Source="pack://application:,,,/CustomImages/Broadcast/Worlds/olympus_coliseum_cups.png" x:Shared="false"/>
 
-    <Image x:Key="Cus-B_SoraHeartImage01" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level_1.png" x:Shared="false"/>
+    <!--Image x:Key="Cus-B_SoraHeartImage01" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level_1.png" x:Shared="false"/>
     <Image x:Key="Cus-B_SoraHeartImage50" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level_50.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_SoraHeartImage99" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level_99.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_SoraHeartImage99" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level_99.png" x:Shared="false"/-->
 
     <!--Custom Other (Main)-->
     <Image x:Key="Cus-OnceMore"			Source="pack://application:,,,/CustomImages/Checks/once_more.png" x:Shared="false"/>

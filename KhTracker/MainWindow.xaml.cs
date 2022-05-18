@@ -195,8 +195,11 @@ namespace KhTracker
             CavernOption.IsChecked = Properties.Settings.Default.Cavern;
             CavernToggle(CureOption.IsChecked);
 
-            TimelessOption.IsChecked = Properties.Settings.Default.Timeless;
-            TimelessToggle(TimelessOption.IsChecked);
+            //TimelessOption.IsChecked = Properties.Settings.Default.Timeless;
+            //TimelessToggle(TimelessOption.IsChecked);
+
+            TerraOption.IsChecked = Properties.Settings.Default.Terra;
+            TerraToggle(TerraOption.IsChecked);
 
             OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
             OCCupsToggle(OCCupsOption.IsChecked);

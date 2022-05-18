@@ -1157,17 +1157,6 @@ namespace KhTracker
                         broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
                     }
 
-                    if (TimelessOption.IsChecked)
-                    {
-                        DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                    }
-                    else
-                    {
-                        DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                    }
-
                     if (OCCupsOption.IsChecked)
                     {
                         OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
@@ -1178,25 +1167,6 @@ namespace KhTracker
                         OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
                         broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
                     }
-
-                    if (SoraLevel01Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage");
-                    }
-
-                    if (SoraLevel50Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage50");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage50");
-                    }
-
-                    if (SoraLevel99Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage99");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage99");
-                    }
-
                 }
                 if (OldWorldOption.IsChecked)
                 {
@@ -1211,17 +1181,6 @@ namespace KhTracker
                         broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
                     }
 
-                    if (TimelessOption.IsChecked)
-                    {
-                        DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                    }
-                    else
-                    {
-                        DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                    }
-
                     if (OCCupsOption.IsChecked)
                     {
                         OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
@@ -1231,24 +1190,6 @@ namespace KhTracker
                     {
                         OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
                         broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                    }
-
-                    if (SoraLevel01Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage");
-                    }
-
-                    if (SoraLevel50Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage50");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage50");
-                    }
-
-                    if (SoraLevel99Option.IsChecked)
-                    {
-                        SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage99");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage99");
                     }
                 }
             }
@@ -1333,6 +1274,30 @@ namespace KhTracker
 
                     //check for custom cavern, timeless, and cups toggles
                     {
+                        if (File.Exists("CustomImages/Worlds/lingering_will.png"))
+                        {
+                            DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
+                            broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
+                        }
+
+                        if (File.Exists("CustomImages/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
+                        {
+                            SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
+                        }
+
+                        if (File.Exists("CustomImages/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
+                        {
+                            SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
+                        }
+
+                        if (File.Exists("CustomImages/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
+                        {
+                            SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
+                        }
+
                         //basically we only want to set the custom images if they exist and if the toggle is on/off
                         //otherwise they just use the defaults that were defined in the beggining of this function
                         if (File.Exists("CustomImages/Worlds/hollow_bastion.png") && !CavernOption.IsChecked)
@@ -1346,17 +1311,6 @@ namespace KhTracker
                             broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionCorImage");
                         }
 
-                        if (File.Exists("CustomImages/Worlds/disney_castle.png") && !TimelessOption.IsChecked)
-                        {
-                            DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
-                            broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
-                        }
-                        else if (File.Exists("CustomImages/Worlds/disney_castle_tr.png") && TimelessOption.IsChecked)
-                        {
-                            DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleTrImage");
-                            broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleTrImage");
-                        }
-
                         if (File.Exists("CustomImages/Worlds/olympus_coliseum.png") && !OCCupsOption.IsChecked)
                         {
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusImage");
@@ -1366,24 +1320,6 @@ namespace KhTracker
                         {
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
-                        }
-
-                        if (File.Exists("CustomImages/Worlds/level.png") && SoraLevel01Option.IsChecked)
-                        {
-                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
-                        }
-
-                        if (File.Exists("CustomImages/Worlds/level_50.png") && SoraLevel50Option.IsChecked)
-                        {
-                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage50");
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage50");
-                        }
-
-                        if (File.Exists("CustomImages/Worlds/level_99.png") && SoraLevel99Option.IsChecked)
-                        {
-                            SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage99");
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage99");
                         }
                     }
                 }
@@ -1446,6 +1382,26 @@ namespace KhTracker
 
                     //check for custom cavern, timeless, and cups toggles
                     {
+                        if (File.Exists("CustomImages/Broadcast/Worlds/lingering_will.png"))
+                        {
+                            broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleLW");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
+                        {
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel01");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
+                        {
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel50");
+                        }
+
+                        if (File.Exists("CustomImages/Broadcast/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
+                        {
+                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel99");
+                        }
+
                         //basically we only want to set the custom images if they exist and if the toggle is on/off
                         //otherwise they just use the defaults that were defined in the beggining of this function
                         if (File.Exists("CustomImages/Broadcast/Worlds/hollow_bastion.png") && !CavernOption.IsChecked)
@@ -1457,15 +1413,6 @@ namespace KhTracker
                             broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-B_HollowBastionCorImage");
                         }
 
-                        if (File.Exists("CustomImages/Broadcast/Worlds/disney_castle.png") && !TimelessOption.IsChecked)
-                        {
-                            broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleImage");
-                        }
-                        else if (File.Exists("CustomImages/Broadcast/Worlds/disney_castle_tr.png") && TimelessOption.IsChecked)
-                        {
-                            broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleTrImage");
-                        }
-
                         if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum.png") && !OCCupsOption.IsChecked)
                         {
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusImage");
@@ -1473,21 +1420,6 @@ namespace KhTracker
                         else if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum_cups.png") && OCCupsOption.IsChecked)
                         {
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusCupsImage");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/level.png") && SoraLevel01Option.IsChecked)
-                        {
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/level_50.png") && SoraLevel50Option.IsChecked)
-                        {
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage50");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/level_99.png") && SoraLevel99Option.IsChecked)
-                        {
-                            broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage99");
                         }
                     }
 
