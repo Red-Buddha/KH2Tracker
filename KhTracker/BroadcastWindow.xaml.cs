@@ -51,6 +51,7 @@ namespace KhTracker
             worlds.Add("TWTNW",0);
             worlds.Add("GoA", 0);
             worlds.Add("Atlantica", 0);
+            worlds.Add("PuzzSynth", 0);
 
             others.Add("Report", 0);
             others.Add("TornPage", 0);
@@ -78,6 +79,7 @@ namespace KhTracker
             totals.Add("SpaceParanoids", -1);
             totals.Add("TWTNW", -1);
             totals.Add("Atlantica", -1);
+            totals.Add("PuzzSynth", -1);
 
             important.Add("Fire", 0);
             important.Add("Blizzard", 0);
@@ -319,6 +321,7 @@ namespace KhTracker
             SimulatedTwilightTownBar.Source = NumberBar;
             TWTNWBar.Source = NumberBar;
             AtlanticaBar.Source = NumberBar;
+            PuzzSynthBar.Source = NumberBar;
         }
 
         public void OnReset()

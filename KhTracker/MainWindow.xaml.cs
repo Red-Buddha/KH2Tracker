@@ -123,6 +123,7 @@ namespace KhTracker
             data.WorldsData.Add("TWTNW", new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, TWTNWBar, false, 0));
             data.WorldsData.Add("GoA", new WorldData(GoATop, GoA, null, null, GoAGrid, GoABar, true, 0));
             data.WorldsData.Add("Atlantica", new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, AtlanticaBar, false, 0));
+            data.WorldsData.Add("PuzzSynth", new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, PuzzSynthBar, false, 0));
 
             data.ProgressKeys.Add("SimulatedTwilightTown", new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
             data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
@@ -192,11 +193,14 @@ namespace KhTracker
             AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
             AtlanticaToggle(AtlanticaOption.IsChecked);
 
+            PuzzleOption.IsChecked = Properties.Settings.Default.Puzzle;
+            PuzzleToggle(PuzzleOption.IsChecked);
+
+            SynthOption.IsChecked = Properties.Settings.Default.Synth;
+            SynthToggle(SynthOption.IsChecked);
+
             CavernOption.IsChecked = Properties.Settings.Default.Cavern;
             CavernToggle(CureOption.IsChecked);
-
-            //TimelessOption.IsChecked = Properties.Settings.Default.Timeless;
-            //TimelessToggle(TimelessOption.IsChecked);
 
             TerraOption.IsChecked = Properties.Settings.Default.Terra;
             TerraToggle(TerraOption.IsChecked);
@@ -915,15 +919,6 @@ namespace KhTracker
                 //could probably be handled better. oh well
                 switch(World)
                 {
-                    case "GoA":
-                    case "Atlantica":
-                    case "HundredAcreWood":
-                    case "SimulatedTwilightTown":
-                    case "DisneyCastle":
-                    case "TWTNW":
-                    case "SorasHeart":
-                    case "DriveForms":
-                        break;
                     case "TwilightTown":
                         switch (data.WorldsData["TwilightTown"].visitLocks)
                         {

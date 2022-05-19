@@ -898,10 +898,17 @@ namespace KhTracker
                 }
                 else
                 {
-                    if (data.WorldsData.ContainsKey(world.previousworldName))
+                    if(CheckSynthPuzzle(pcsx2tracking))
                     {
-                        // add check to current world
-                        TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);
+                        TrackItem(check.Name + count, data.WorldsData["PuzzSynth"].worldGrid);
+                    }
+                    else
+                    {
+                        if (data.WorldsData.ContainsKey(world.previousworldName))
+                        {
+                            // add check to current world
+                            TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);
+                        }
                     }
                 }
             }
@@ -1897,5 +1904,26 @@ namespace KhTracker
 
         }
 
+        private bool CheckSynthPuzzle(bool ps2)
+        {
+            if (ps2)
+            {
+                //code for autotracking on ps2
+                return false;
+            }
+            else
+            {
+                string menu1 = BytesToHex(memory.ReadMemory(0xBEBD28, 2)); //in a menu
+                string menu2 = BytesToHex(memory.ReadMemory(0x741230, 2)); //in journal
+                string menu3 = BytesToHex(memory.ReadMemory(0x8A41CA, 2)); //in synth
+
+                if ((menu2 == "FFFF" && menu1 == "0300" && menu3 == "0100") || (menu2 == "0000" && menu1 == "0300" && menu3 == "0000")) // in moogle shop / in puzzle mode
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
 }

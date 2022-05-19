@@ -75,10 +75,10 @@ namespace KhTracker
                 settings += "Olympus Cups - ";
             if (TerraOption.IsChecked)
                 settings += "Lingering Will (Terra) - ";
-            //if (PuzzleOption.IsChecked)
-            //    settings += "Puzzle Rewards - ";
-            //if (TimelessOption.IsChecked)
-            //    settings += "Timeless River - ";
+            if (PuzzleOption.IsChecked)
+                settings += "Puzzles - ";
+            if (SynthOption.IsChecked)
+                settings += "Synthesis - ";
 
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
@@ -163,7 +163,7 @@ namespace KhTracker
             string ProgressString = "Progress:";
             foreach (string WorldName in data.WorldsData.Keys.ToList())
             {
-                if (WorldName != "GoA" && WorldName != "SorasHeart" && WorldName != "DriveForms" && WorldName != "SynthPuzzles")
+                if (WorldName != "GoA" && WorldName != "SorasHeart" && WorldName != "DriveForms" && WorldName != "PuzzSynth")
                     ProgressString += " " + data.WorldsData[WorldName].progress.ToString();
             }
             writer.WriteLine(ProgressString);
@@ -370,6 +370,8 @@ namespace KhTracker
                     data.PointsDatanew["complete"] = 10;
                 if (!points.Keys.Contains("formlv"))
                     data.PointsDatanew["formlv"] = 3;
+                if (!points.Keys.Contains("visit"))
+                    data.PointsDatanew["visit"] = 1;
 
                 //get point totals for each world
                 foreach (var world in worldsP)
@@ -459,6 +461,7 @@ namespace KhTracker
                 SetReportValue(data.WorldsData["SpaceParanoids"].hint, int.Parse(hintValues[14]));
                 SetReportValue(data.WorldsData["TWTNW"].hint, int.Parse(hintValues[15]));
                 SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
+                SetReportValue(data.WorldsData["PuzzSynth"].hint, int.Parse(hintValues[17]));
             }
 
             string[] progress = reader.ReadLine().Substring(10).Split(' ');
@@ -476,11 +479,7 @@ namespace KhTracker
             data.WorldsData["PortRoyal"].progress = int.Parse(progress[11]);
             data.WorldsData["SpaceParanoids"].progress = int.Parse(progress[12]);
             data.WorldsData["TWTNW"].progress = int.Parse(progress[13]);
-            //backward compatability with old progress saves
-            if (progress.Length == 15)
-                data.WorldsData["Atlantica"].progress = int.Parse(progress[14]);
-            else
-                data.WorldsData["Atlantica"].progress = 0;
+            data.WorldsData["Atlantica"].progress = int.Parse(progress[14]);
 
             SetProgressIcons();
 
@@ -767,15 +766,15 @@ namespace KhTracker
                     case "Lingering Will (Terra)":
                         TerraToggle(true);
                         break;
-                        //case "Timeless River":
-                        //    TimelessToggle(true);
-                        //    break;
-                        //case "Hades Cup":
-                        //    newsettings[13] = true;
-                        //    break;
-                        //case "Puzzle Rewards":
-                        //    newsettings[14] = true;
-                        //    break;
+                    //case "Hades Cup":
+                    //    newsettings[13] = true;
+                    //    break;
+                    case "Puzzles":
+                        PuzzleToggle(true);
+                        break;
+                    case "Synthesis":
+                        SynthToggle(true);
+                        break;
                 }
             }
         }
@@ -1259,10 +1258,6 @@ namespace KhTracker
                                 //set all settings to false
                                 {
                                     PromiseCharmToggle(false);
-                                    //AbilitiesToggle(false);
-                                    //TornPagesToggle(false);
-                                    //CureToggle(false);
-                                    //FinalFormToggle(false);
                                     SimulatedToggle(false);
                                     HundredAcreWoodToggle(false);
                                     AtlanticaToggle(false);
@@ -1271,8 +1266,14 @@ namespace KhTracker
                                     SoraHeartToggle(true);
                                     SoraLevel01Toggle(true);
                                     VisitLockToggle(false);
-
                                     TerraToggle(false);
+                                    PuzzleToggle(false);
+                                    SynthToggle(false);
+
+                                    AbilitiesToggle(true);
+                                    TornPagesToggle(true);
+                                    CureToggle(true);
+                                    FinalFormToggle(true);
                                 }
 
                                 //load settings from hints
@@ -1323,6 +1324,12 @@ namespace KhTracker
                                         case "Lingering Will (Terra)":
                                             TerraToggle(true);
                                             break;
+                                        case "Puzzle":
+                                            PuzzleToggle(true);
+                                            break;
+                                        case "Synthesis":
+                                            SynthToggle(true);
+                                            break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")
                                     //    AbilitiesToggle(true);
@@ -1332,8 +1339,6 @@ namespace KhTracker
                                     //    CureToggle(true);
                                     //if (setting.Key == "Final Form")
                                     //    FinalFormToggle(true);
-                                    //if (setting.Key == "Timeless River")
-                                    //    TimelessToggle(true);
                                 }
                             }
 

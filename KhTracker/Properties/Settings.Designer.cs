@@ -646,5 +646,29 @@ namespace KhTracker.Properties {
                 this["Terra"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Puzzle {
+            get {
+                return ((bool)(this["Puzzle"]));
+            }
+            set {
+                this["Puzzle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Synth {
+            get {
+                return ((bool)(this["Synth"]));
+            }
+            set {
+                this["Synth"] = value;
+            }
+        }
     }
 }

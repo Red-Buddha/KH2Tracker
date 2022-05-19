@@ -159,6 +159,11 @@
     <Image x:Key="Min-TWTNWImage" 				Source="Images\Worlds\Simple\the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Min-AtlanticaImage" 			Source="Images\Worlds\Simple\atlantica.png" x:Shared="false"/>
 
+    <Image x:Key="Min-PuzzSynth" 			    Source="Images\Worlds\Simple\PuzzSynth.png" x:Shared="false"/>
+    <Image x:Key="Min-PuzzSynth_P" 			    Source="Images\Worlds\Simple\Puzzle.png" x:Shared="false"/>
+    <Image x:Key="Min-PuzzSynth_S" 			    Source="Images\Worlds\Simple\Synth.png" x:Shared="false"/>
+    
+    
     <Image x:Key="Min-DisneyCastleLW"       Source="Images\Worlds\lingering_will.png" x:Shared="false"/>
     <Image x:Key="Min-SoraLevel01" 		    Source="Images\Worlds\Level01.png" x:Shared="false"/>
     <Image x:Key="Min-SoraLevel50" 		    Source="Images\Worlds\Level50.png" x:Shared="false"/>
@@ -195,6 +200,11 @@
     <Image x:Key="Old-PortRoyalImage" 			Source="Images\Worlds\Old\port_royal.png" x:Shared="false"/>
     <Image x:Key="Old-TWTNWImage" 				Source="Images\Worlds\Old\the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Old-AtlanticaImage" 			Source="Images\Worlds\Old\atlantica.png" x:Shared="false"/>
+    <Image x:Key="Old-PuzzSynth" 			    Source="Images\Worlds\Old\PuzzSynth.png" x:Shared="false"/>
+    <Image x:Key="Old-PuzzSynth_P" 			    Source="Images\Worlds\Old\Puzzle.png" x:Shared="false"/>
+    <Image x:Key="Old-PuzzSynth_S" 			    Source="Images\Worlds\Old\Synth.png" x:Shared="false"/>
+
+
     <!--alt-->
     <Image x:Key="Old-HollowBastionCorImage" 	 Source="Images\Worlds\Old\hollow_bastion_cor.png" x:Shared="false"/>
     <Image x:Key="Old-CavernofRememberanceImage" Source="Images\Worlds\Old\cavern_of_remembrance.png" x:Shared="false"/>
@@ -659,6 +669,9 @@
     <Image x:Key="Cus-PortRoyalImage" 			Source="pack://application:,,,/CustomImages/Worlds/port_royal.png" x:Shared="false"/>
     <Image x:Key="Cus-TWTNWImage" 				Source="pack://application:,,,/CustomImages/Worlds/the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Cus-AtlanticaImage" 			Source="pack://application:,,,/CustomImages/Worlds/atlantica.png" x:Shared="false"/>
+    <Image x:Key="Cus-PuzzSynth" 			    Source="pack://application:,,,/CustomImages/Worlds/PuzzSynth.png" x:Shared="false"/>
+    <Image x:Key="Cus-PuzzSynth_P" 			    Source="pack://application:,,,/CustomImages/Worlds/Puzzle.png" x:Shared="false"/>
+    <Image x:Key="Cus-PuzzSynth_S" 			    Source="pack://application:,,,/CustomImages/Worlds/Synth.png" x:Shared="false"/>
     <!--Custom World Icons (Broadcast)-->
     <Image x:Key="Cus-B_SoraHeartImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level.png" x:Shared="false"/>
     <Image x:Key="Cus-B_SimulatedImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/simulated_twilight_town.png" x:Shared="false"/>
@@ -678,7 +691,10 @@
     <Image x:Key="Cus-B_PortRoyalImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/port_royal.png" x:Shared="false"/>
     <Image x:Key="Cus-B_TWTNWImage" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/the_world_that_never_was.png" x:Shared="false"/>
     <Image x:Key="Cus-B_AtlanticaImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/atlantica.png" x:Shared="false"/>
-
+    <Image x:Key="Cus-B_PuzzSynth" 			     Source="pack://application:,,,/CustomImages/Broadcast/Worlds/PuzzSynth.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_PuzzSynth_P" 			     Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Puzzle.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_PuzzSynth_S" 			     Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Synth.png" x:Shared="false"/>
+    
     <Image x:Key="Cus-DisneyCastleLW" 		Source="pack://application:,,,/CustomImages/Worlds/lingering_will.png" x:Shared="false"/>
     <Image x:Key="Cus-SoraLevel01" 		    Source="pack://application:,,,/CustomImages/Worlds/Level01.png" x:Shared="false"/>
     <Image x:Key="Cus-SoraLevel50" 		    Source="pack://application:,,,/CustomImages/Worlds/Level50.png" x:Shared="false"/>

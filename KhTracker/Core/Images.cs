@@ -1143,54 +1143,86 @@ namespace KhTracker
 
         private void CustomWorldCheck()
         {
+            if (MinWorldOption.IsChecked)
             {
-                if (MinWorldOption.IsChecked)
+                if (CavernOption.IsChecked)
                 {
-                    if (CavernOption.IsChecked)
-                    {
-                        HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
-                        broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
-                    }
-                    else
-                    {
-                        HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                        broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                    }
-
-                    if (OCCupsOption.IsChecked)
-                    {
-                        OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
-                        broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
-                    }
-                    else
-                    {
-                        OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
-                        broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
-                    }
+                    HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
+                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
                 }
-                if (OldWorldOption.IsChecked)
+                else
                 {
-                    if (CavernOption.IsChecked)
-                    {
-                        HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
-                        broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
-                    }
-                    else
-                    {
-                        HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-                        broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-                    }
+                    HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
+                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
+                }
 
-                    if (OCCupsOption.IsChecked)
-                    {
-                        OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
-                        broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
-                    }
-                    else
-                    {
-                        OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                        broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                    }
+                if (OCCupsOption.IsChecked)
+                {
+                    OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
+                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
+                }
+                else
+                {
+                    OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
+                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
+                }
+
+                //puzzle/synth display
+                if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
+                }
+                if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
+                }
+                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
+                }
+            }
+            if (OldWorldOption.IsChecked)
+            {
+                if (CavernOption.IsChecked)
+                {
+                    HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
+                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
+                }
+                else
+                {
+                    HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
+                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
+                }
+
+                if (OCCupsOption.IsChecked)
+                {
+                    OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
+                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
+                }
+                else
+                {
+                    OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
+                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
+                }
+
+                //puzzle/synth display
+                if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
+                }
+                if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
+                }
+                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
                 }
             }
 
@@ -1276,6 +1308,11 @@ namespace KhTracker
                         SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
                         broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
                     }
+                    if (File.Exists("CustomImages/Worlds/disney_castle.png"))
+                    {
+                        DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
+                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
+                    }
 
                     //check for custom cavern, timeless, and cups toggles
                     {
@@ -1290,13 +1327,11 @@ namespace KhTracker
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
                             broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
                         }
-
                         if (File.Exists("CustomImages/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
                         {
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
                             broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
                         }
-
                         if (File.Exists("CustomImages/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
                         {
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
@@ -1326,6 +1361,24 @@ namespace KhTracker
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                         }
+
+                        //puzzle/synth display
+                        if (File.Exists("CustomImages/Worlds/PuzzSynth.png") && PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                        {
+                            PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth");
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth");
+                        }
+                        if (File.Exists("CustomImages/Worlds/Synth.png") && !PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                        {
+                            PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_S");
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_S");
+                        }
+                        else if (File.Exists("CustomImages/Worlds/Puzzle.png") && PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                        {
+                            PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_P");
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_P");
+                        }
+
                     }
                 }
 
@@ -1388,6 +1441,10 @@ namespace KhTracker
                     {
                         broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
                     }
+                    if (File.Exists("CustomImages/Broadcast/Worlds/disney_castle.png"))
+                    {
+                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleImage");
+                    }
 
                     //check for custom cavern, timeless, and cups toggles
                     {
@@ -1429,6 +1486,20 @@ namespace KhTracker
                         else if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum_cups.png") && OCCupsOption.IsChecked)
                         {
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusCupsImage");
+                        }
+
+                        //puzzle/synth display
+                        if (File.Exists("CustomImages/Broadcast/Worlds/PuzzSynth.png") && PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                        {
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth");
+                        }
+                        if (File.Exists("CustomImages/Broadcast/Worlds/Synth.png") && !PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                        {
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth_S");
+                        }
+                        else if (File.Exists("CustomImages/Broadcast/Worlds/Puzzle.png") && PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                        {
+                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth_P");
                         }
                     }
 

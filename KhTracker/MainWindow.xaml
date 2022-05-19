@@ -82,6 +82,8 @@
                 <MenuItem Name="SimulatedOption"        Header="Simulated Twilight Town" IsCheckable="True" IsChecked="True" Click="SimulatedToggle"/>
                 <MenuItem Name="HundredAcreWoodOption"  Header="100 Acre Wood" IsCheckable="True" IsChecked="True" Click="HundredAcreWoodToggle"/>
                 <MenuItem Name="AtlanticaOption"        Header="Atlantica" IsCheckable="True" IsChecked="False" Click="AtlanticaToggle"/>
+                <MenuItem Name="SynthOption"            Header="Synthesis" IsCheckable="True" IsChecked="False" Click="SynthToggle"/>
+                <MenuItem Name="PuzzleOption"           Header="Puzzles" IsCheckable="True" IsChecked="False" Click="PuzzleToggle"/>
                 <Separator/>
                 <MenuItem Name="TerraOption" 		    Header="Lingering Will" IsCheckable="True" IsChecked="False" Click="TerraToggle"/>
                 
@@ -119,7 +121,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA Pre-1.6.4b-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA Pre-1.6.5-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -616,6 +618,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <!-- Drive Forms -->
@@ -1078,6 +1081,50 @@
                         </Grid>
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="1"/>
                     </Grid>
+
+                    <!-- Puzzle/Synth -->
+                    <Grid Name="PuzzSynthTop" Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="3.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Name ="PuzzSynth" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
+                                <DynamicResource ResourceKey="Min-PuzzSynth"/>
+                            </Button>
+
+                            <Grid Name="PuzzSynthHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Name="PuzzSynthHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
+                                <Image Name="PuzzSynthHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
+                                <Image Name="PuzzSynthHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
+                            </Grid>
+                            <Image Name="PuzzSynthBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="4"/>
+                        </Grid>
+                        <local:WorldGrid x:Name="PuzzSynthGrid" Grid.Column="1"/>
+                    </Grid>
+
                 </Grid>
             </Grid>
 

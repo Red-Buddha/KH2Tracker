@@ -78,7 +78,8 @@ namespace KhTracker
             {"Poster", "Poster"},
             {"Ice Cream", "IceCream"},
             {"Picture", "Picture"},
-            {"", "GoA"}
+            {"", "GoA"},
+            {"Creations", "PuzzSynth"}
         };
 
         private void ShanHints(Dictionary<string, object> hintObject)
@@ -204,7 +205,8 @@ namespace KhTracker
             {"SpaceParanoids", 0},
             {"TWTNW", 0},
             {"DriveForms", 0},
-            {"SorasHeart", 0}
+            {"SorasHeart", 0},
+            {"PuzzSynth", 0}
         };
         private Dictionary<string, int> WorldPoints_c = new Dictionary<string, int>()
         {
@@ -224,7 +226,8 @@ namespace KhTracker
             {"SpaceParanoids", 0},
             {"TWTNW", 0},
             {"DriveForms", 0},
-            {"SorasHeart", 0}
+            {"SorasHeart", 0},
+            {"PuzzSynth", 0}
         };
 
         private void PointsHints(Dictionary<string, object> hintObject)
@@ -528,77 +531,47 @@ namespace KhTracker
 
         static public int WorldNameToIndex(string worldName)
         {
-            if (worldName == "SorasHeart")
+            switch (worldName)
             {
-                return 0;
+                case "SorasHeart":
+                    return 0;
+                case "DriveForms":
+                    return 1;
+                case "SimulatedTwilightTown":
+                    return 2;
+                case "TwilightTown":
+                    return 3;
+                case "HollowBastion":
+                    return 4;
+                case "BeastsCastle":
+                    return 5;
+                case "OlympusColiseum":
+                    return 6;
+                case "Agrabah":
+                    return 7;
+                case "LandofDragons":
+                    return 8;
+                case "HundredAcreWood":
+                    return 9;
+                case "PrideLands":
+                    return 10;
+                case "DisneyCastle":
+                    return 11;
+                case "HalloweenTown":
+                    return 12;
+                case "PortRoyal":
+                    return 13;
+                case "SpaceParanoids":
+                    return 14;
+                case "TWTNW":
+                    return 15;
+                case "Atlantica":
+                    return 17;
+                case "PuzzSynth":
+                    return 18;
+                default: //GoA
+                    return 16;
             }
-            else if (worldName == "DriveForms")
-            {
-                return 1;
-            }
-            else if (worldName == "SimulatedTwilightTown")
-            {
-                return 2;
-            }
-            else if (worldName == "TwilightTown")
-            {
-                return 3;
-            }
-            else if (worldName == "HollowBastion")
-            {
-                return 4;
-            }
-            else if (worldName == "BeastsCastle")
-            {
-                return 5;
-            }
-            else if (worldName == "OlympusColiseum")
-            {
-                return 6;
-            }
-            else if (worldName == "Agrabah")
-            {
-                return 7;
-            }
-            else if (worldName == "LandofDragons")
-            {
-                return 8;
-            }
-            else if (worldName == "HundredAcreWood")
-            {
-                return 9;
-            }
-            else if (worldName == "PrideLands")
-            {
-                return 10;
-            }
-            else if (worldName == "DisneyCastle")
-            {
-                return 11;
-            }
-            else if (worldName == "HalloweenTown")
-            {
-                return 12;
-            }
-            else if (worldName == "PortRoyal")
-            {
-                return 13;
-            }
-            else if (worldName == "SpaceParanoids")
-            {
-                return 14;
-            }
-            else if (worldName == "TWTNW")
-            {
-                return 15;
-            }
-            else if (worldName == "GoA")
-            {
-                return 16;
-            }
-
-            return 17;
         }
-
     }
 }

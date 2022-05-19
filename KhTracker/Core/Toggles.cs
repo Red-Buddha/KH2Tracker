@@ -756,6 +756,66 @@ namespace KhTracker
                 broadcast.ATColumn.Width = new GridLength(0, GridUnitType.Star);
         }
 
+        private void SynthToggle(object sender, RoutedEventArgs e)
+        {
+            SynthToggle(SynthOption.IsChecked);
+        }
+
+        private void SynthToggle(bool toggle)
+        {
+            Properties.Settings.Default.Synth = toggle;
+            SynthOption.IsChecked = toggle;
+
+            //Check puzzle state
+            bool PuzzleOn = PuzzleOption.IsChecked;
+
+            //hide if both off
+            if (!toggle && !PuzzleOn)
+            {
+                HandleWorldToggle(false, PuzzSynth, PuzzSynthGrid);
+                broadcast.PuzzSynthCol.Width = new GridLength(0, GridUnitType.Star);
+            }
+            else //check and change display
+            {
+                if (!PuzzleOn) //puzzles wasn't on before so show world
+                {
+                    HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
+                    broadcast.PuzzSynthCol.Width = new GridLength(1.0, GridUnitType.Star);
+                }
+                CustomWorldCheck();
+            }
+        }
+
+        private void PuzzleToggle(object sender, RoutedEventArgs e)
+        {
+            PuzzleToggle(PuzzleOption.IsChecked);
+        }
+
+        private void PuzzleToggle(bool toggle)
+        {
+            Properties.Settings.Default.Puzzle = toggle;
+            PuzzleOption.IsChecked = toggle;
+
+            //Check synth state
+            bool SynthOn = SynthOption.IsChecked;
+
+            if (!toggle && !SynthOn) //hide if both off
+            {
+                HandleWorldToggle(false, PuzzSynth, PuzzSynthGrid);
+                broadcast.PuzzSynthCol.Width = new GridLength(0, GridUnitType.Star);
+            }
+            else //check and change display
+            {
+                if (!SynthOn) //synth wasn't on before so show world
+                {
+                    HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
+                    broadcast.PuzzSynthCol.Width = new GridLength(1.0, GridUnitType.Star);
+                }
+                CustomWorldCheck();
+            }
+        }
+
+        //Alt World Toggles
         private void CavernToggle(object sender, RoutedEventArgs e)
         {
             CavernToggle(CavernOption.IsChecked);
@@ -1311,6 +1371,7 @@ namespace KhTracker
                 PortRoyal.SetResourceReference(ContentProperty, "Min-PortRoyalImage");
                 TWTNW.SetResourceReference(ContentProperty, "Min-TWTNWImage");
                 Atlantica.SetResourceReference(ContentProperty, "Min-AtlanticaImage");
+                DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
 
                 //broadcast window worlds
                 broadcast.SorasHeart.SetResourceReference(ContentProperty, "Min-SoraHeartImage");
@@ -1328,6 +1389,7 @@ namespace KhTracker
                 broadcast.PortRoyal.SetResourceReference(ContentProperty, "Min-PortRoyalImage");
                 broadcast.TWTNW.SetResourceReference(ContentProperty, "Min-TWTNWImage");
                 broadcast.Atlantica.SetResourceReference(ContentProperty, "Min-AtlanticaImage");
+                broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
 
                 //alt icons
                 DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
@@ -1358,16 +1420,22 @@ namespace KhTracker
                     broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
                 }
 
-                //if (TimelessOption.IsChecked)
-                //{
-                //    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleTrImage");
-                //}
-                //else
-                //{
-                //    DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
-                //}
+                //puzzle/synth display
+                if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
+                }
+                if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
+                }
+                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
+                }
             }
 
             CustomWorldCheck();
@@ -1405,6 +1473,7 @@ namespace KhTracker
                 PortRoyal.SetResourceReference(ContentProperty, "Old-PortRoyalImage");
                 TWTNW.SetResourceReference(ContentProperty, "Old-TWTNWImage");
                 Atlantica.SetResourceReference(ContentProperty, "Old-AtlanticaImage");
+                DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
 
                 //broadcast window worlds
                 broadcast.SorasHeart.SetResourceReference(ContentProperty, "Old-SoraHeartImage");
@@ -1422,6 +1491,7 @@ namespace KhTracker
                 broadcast.PortRoyal.SetResourceReference(ContentProperty, "Old-PortRoyalImage");
                 broadcast.TWTNW.SetResourceReference(ContentProperty, "Old-TWTNWImage");
                 broadcast.Atlantica.SetResourceReference(ContentProperty, "Old-AtlanticaImage");
+                broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
 
                 //alt icons
                 DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
@@ -1452,16 +1522,22 @@ namespace KhTracker
                     broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
                 }
 
-                //if (TimelessOption.IsChecked)
-                //{
-                //    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleTrImage");
-                //}
-                //else
-                //{
-                //    DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                //    broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
-                //}
+                //puzzle/synth display
+                if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
+                }
+                if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
+                }
+                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+                {
+                    PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
+                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
+                }
             }
 
             CustomWorldCheck();
