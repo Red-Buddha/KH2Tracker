@@ -144,7 +144,10 @@ namespace KhTracker
             {
                 return "Soras Heart";
             }
-
+            else if (worldName == "PuzzSynth")
+            {
+                return "Puzzle/Synthesis";
+            }
             return worldName;
         }
 
@@ -190,6 +193,19 @@ namespace KhTracker
             {593, "Connection"},
             {594, "Nonexistence"},
             {595, "Peace"},
+
+            {54, "AuronWep"},
+            {55, "MulanWep"},
+            {59, "BeastWep"},
+            {60, "JackWep"},
+            {61, "SimbaWep"},
+            {62, "SparrowWep"},
+            {72, "AladdinWep"},
+            {74, "TronWep"},
+            {369, "MembershipCard"},
+            {375, "IceCream"},
+            {376, "Picture"},
+
         };
 
         string[] Default = new string[]

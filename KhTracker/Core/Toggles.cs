@@ -1035,7 +1035,7 @@ namespace KhTracker
                 IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
                 TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
                 Picture.SetResourceReference(ContentProperty, "Min-Picture");
-                Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                MembershipCard.SetResourceReference(ContentProperty, "Min-MembershipCard");
                 SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
                 AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
                 SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
@@ -1081,7 +1081,7 @@ namespace KhTracker
                 broadcast.IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
                 broadcast.TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
                 broadcast.Picture.SetResourceReference(ContentProperty, "Min-Picture");
-                broadcast.Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                broadcast.MembershipCard.SetResourceReference(ContentProperty, "Min-MembershipCard");
                 broadcast.SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
                 broadcast.AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
                 broadcast.SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
@@ -1133,7 +1133,7 @@ namespace KhTracker
                 Ghost_IceCream.SetResourceReference(ContentProperty, "Min-IceCream");
                 Ghost_TronWep.SetResourceReference(ContentProperty, "Min-TronWep");
                 Ghost_Picture.SetResourceReference(ContentProperty, "Min-Picture");
-                Ghost_Poster.SetResourceReference(ContentProperty, "Min-Poster");
+                Ghost_MembershipCard.SetResourceReference(ContentProperty, "Min-MembershipCard");
                 Ghost_SimbaWep.SetResourceReference(ContentProperty, "Min-SimbaWep");
                 Ghost_AladdinWep.SetResourceReference(ContentProperty, "Min-AladdinWep");
                 Ghost_SparrowWep.SetResourceReference(ContentProperty, "Min-SparrowWep");
@@ -1226,7 +1226,7 @@ namespace KhTracker
                 IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
                 TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
                 Picture.SetResourceReference(ContentProperty, "Old-Picture");
-                Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                MembershipCard.SetResourceReference(ContentProperty, "Old-MembershipCard");
                 SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
                 AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
                 SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");
@@ -1272,7 +1272,7 @@ namespace KhTracker
                 broadcast.IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
                 broadcast.TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
                 broadcast.Picture.SetResourceReference(ContentProperty, "Old-Picture");
-                broadcast.Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                broadcast.MembershipCard.SetResourceReference(ContentProperty, "Old-MembershipCard");
                 broadcast.SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
                 broadcast.AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
                 broadcast.SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");
@@ -1323,7 +1323,7 @@ namespace KhTracker
                 Ghost_IceCream.SetResourceReference(ContentProperty, "Old-IceCream");
                 Ghost_TronWep.SetResourceReference(ContentProperty, "Old-TronWep");
                 Ghost_Picture.SetResourceReference(ContentProperty, "Old-Picture");
-                Ghost_Poster.SetResourceReference(ContentProperty, "Old-Poster");
+                Ghost_MembershipCard.SetResourceReference(ContentProperty, "Old-MembershipCard");
                 Ghost_SimbaWep.SetResourceReference(ContentProperty, "Old-SimbaWep");
                 Ghost_AladdinWep.SetResourceReference(ContentProperty, "Old-AladdinWep");
                 Ghost_SparrowWep.SetResourceReference(ContentProperty, "Old-SparrowWep");

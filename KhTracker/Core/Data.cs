@@ -190,6 +190,7 @@ namespace KhTracker
         OpenKHHints,
         OpenKHAltHints,
         DAHints,
+        PathHints,
         TimeHints,
         None
     }

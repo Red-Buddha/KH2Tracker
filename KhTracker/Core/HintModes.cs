@@ -75,7 +75,7 @@ namespace KhTracker
             {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
             {"Scimitar (Aladdin)", "AladdinWep"},
             {"Identity Disk (Tron)", "TronWep"},
-            {"Poster", "Poster"},
+            {"Membership Card", "MembershipCard"},
             {"Ice Cream", "IceCream"},
             {"Picture", "Picture"},
             {"", "GoA"},
@@ -105,7 +105,7 @@ namespace KhTracker
                     continue;
 
                 data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 1);
+                SetReportValue(data.WorldsData[key].hint, 0);
             }
         }
 
@@ -113,7 +113,6 @@ namespace KhTracker
         {
             ShouldResetHash = true;
             var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-
             List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
             reportKeys.Sort();
 
@@ -123,6 +122,48 @@ namespace KhTracker
                 var count = reports[report.ToString()]["Count"].ToString();
                 var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
                 data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                data.reportLocations.Add(location);
+            }
+            ReportsToggle(true);
+            data.hintsLoaded = true;
+        }
+
+
+        private void PathHints(Dictionary<string, object> hintObject)
+        {
+            ShouldResetHash = true;
+            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+            reportKeys.Sort();
+
+            foreach (var world in worlds)
+            {
+                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                {
+                    continue;
+                }
+                foreach (var item in world.Value)
+                {
+                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                }
+
+            }
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                data.WorldsData[key].worldGrid.WorldComplete();
+                SetReportValue(data.WorldsData[key].hint, 0);
+            }
+
+            foreach (var report in reportKeys)
+            {
+                var hinttext = reports[report.ToString()]["Text"].ToString();
+                var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+
+                data.reportInformation.Add(new Tuple<string, int>(hinttext, 0));
                 data.reportLocations.Add(location);
             }
             ReportsToggle(true);
@@ -180,7 +221,7 @@ namespace KhTracker
             {"Skill and Crossbones (Jack Sparrow)", "visit"},
             {"Scimitar (Aladdin)", "visit"},
             {"Identity Disk (Tron)", "visit"},
-            {"Poster", "visit"},
+            {"Membership Card", "visit"},
             {"Ice Cream", "visit"},
             {"Picture", "visit"}
         };

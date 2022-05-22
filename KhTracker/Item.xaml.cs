@@ -108,6 +108,13 @@ namespace KhTracker
                         data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                     }
                 }
+                else if (data.mode == Mode.PathHints)
+                {
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PathReport(this, window, data))
+                    {
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
+                    }
+                }
                 else
                 {
                     if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
@@ -133,6 +140,10 @@ namespace KhTracker
                 }
                 else
                     window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+            }
+            else if (data.mode == Mode.PathHints)
+            {
+                window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             }
             else
             {

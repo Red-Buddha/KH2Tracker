@@ -1860,17 +1860,17 @@
                 <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}" Grid.Row="3" Grid.Column="12"/>
 
                 <!-- Row 5 -->
-                <local:Item x:Name="BeastWep" 	Content="{DynamicResource Min-BeastWep}" Grid.Row="4" Grid.Column="1"/>
-                <local:Item x:Name="JackWep" 	Content="{DynamicResource Min-JackWep}" Grid.Row="4" Grid.Column="2"/>
-                <local:Item x:Name="SimbaWep" 	Content="{DynamicResource Min-SimbaWep}" Grid.Row="4" Grid.Column="3"/>
-                <local:Item x:Name="AuronWep" 	Content="{DynamicResource Min-AuronWep}" Grid.Row="4" Grid.Column="4"/>
-                <local:Item x:Name="MulanWep" 	Content="{DynamicResource Min-MulanWep}" Grid.Row="4" Grid.Column="5"/>
-                <local:Item x:Name="SparrowWep" Content="{DynamicResource Min-SparrowWep}" Grid.Row="4" Grid.Column="6"/>
-                <local:Item x:Name="AladdinWep" Content="{DynamicResource Min-AladdinWep}" Grid.Row="4" Grid.Column="7"/>
-                <local:Item x:Name="TronWep" 	Content="{DynamicResource Min-TronWep}" Grid.Row="4" Grid.Column="8"/>
-                <local:Item x:Name="Poster" 	Content="{DynamicResource Min-Poster}" Grid.Row="4" Grid.Column="9"/>
-                <local:Item x:Name="Picture" 	Content="{DynamicResource Min-Picture}" Grid.Row="4" Grid.Column="10"/>
-                <local:Item x:Name="IceCream" 	Content="{DynamicResource Min-IceCream}" Grid.Row="4" Grid.Column="11"/>
+                <local:Item x:Name="BeastWep" 	    Content="{DynamicResource Min-BeastWep}" Grid.Row="4" Grid.Column="1"/>
+                <local:Item x:Name="JackWep" 	    Content="{DynamicResource Min-JackWep}" Grid.Row="4" Grid.Column="2"/>
+                <local:Item x:Name="SimbaWep" 	    Content="{DynamicResource Min-SimbaWep}" Grid.Row="4" Grid.Column="3"/>
+                <local:Item x:Name="AuronWep" 	    Content="{DynamicResource Min-AuronWep}" Grid.Row="4" Grid.Column="4"/>
+                <local:Item x:Name="MulanWep" 	    Content="{DynamicResource Min-MulanWep}" Grid.Row="4" Grid.Column="5"/>
+                <local:Item x:Name="SparrowWep"     Content="{DynamicResource Min-SparrowWep}" Grid.Row="4" Grid.Column="6"/>
+                <local:Item x:Name="AladdinWep"     Content="{DynamicResource Min-AladdinWep}" Grid.Row="4" Grid.Column="7"/>
+                <local:Item x:Name="TronWep" 	    Content="{DynamicResource Min-TronWep}" Grid.Row="4" Grid.Column="8"/>
+                <local:Item x:Name="MembershipCard" Content="{DynamicResource Min-MembershipCard}" Grid.Row="4" Grid.Column="9"/>
+                <local:Item x:Name="Picture" 	    Content="{DynamicResource Min-Picture}" Grid.Row="4" Grid.Column="10"/>
+                <local:Item x:Name="IceCream" 	    Content="{DynamicResource Min-IceCream}" Grid.Row="4" Grid.Column="11"/>
 
 
                 <!-- Ghost Row 1 -->
@@ -1942,7 +1942,7 @@
                 <local:Item x:Name="Ghost_SparrowWep"   Content="{DynamicResource Min-SparrowWep}"  Grid.Row="9" Grid.Column="6"/>
                 <local:Item x:Name="Ghost_AladdinWep"   Content="{DynamicResource Min-AladdinWep}"  Grid.Row="9" Grid.Column="7"/>
                 <local:Item x:Name="Ghost_TronWep" 	    Content="{DynamicResource Min-TronWep}"     Grid.Row="9" Grid.Column="8"/>
-                <local:Item x:Name="Ghost_Poster" 	    Content="{DynamicResource Min-Poster}"      Grid.Row="9" Grid.Column="9"/>
+                <local:Item x:Name="Ghost_MembershipCard" 	    Content="{DynamicResource Min-MembershipCard}"      Grid.Row="9" Grid.Column="9"/>
                 <local:Item x:Name="Ghost_Picture" 	    Content="{DynamicResource Min-Picture}"     Grid.Row="9" Grid.Column="10"/>
                 <local:Item x:Name="Ghost_IceCream" 	Content="{DynamicResource Min-IceCream}"    Grid.Row="9" Grid.Column="11"/>
                 

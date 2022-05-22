@@ -1339,7 +1339,7 @@
 
                         <ContentControl Content="{DynamicResource Min-AladdinWep}"  Opacity="0.5" Name="AladdinWep" Grid.Column="0"/>
                         <ContentControl Content="{DynamicResource Min-TronWep}"     Opacity="0.5" Name="TronWep"    Grid.Column="1"/>
-                        <ContentControl Content="{DynamicResource Min-Poster}"      Opacity="0.5" Name="Poster"     Grid.Column="2"/>
+                        <ContentControl Content="{DynamicResource Min-MembershipCard}"      Opacity="0.5" Name="MembershipCard"     Grid.Column="2"/>
                         <ContentControl Content="{DynamicResource Min-Picture}"     Opacity="0.5" Name="Picture"    Grid.Column="3"/>
                         <ContentControl Content="{DynamicResource Min-IceCream}"    Opacity="0.5" Name="IceCream"   Grid.Column="4"/>
 

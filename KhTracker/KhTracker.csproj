@@ -565,7 +565,6 @@
     <Content Include="CustomImages\Broadcast\Checks\once_more_key.png" />
     <Content Include="CustomImages\Broadcast\Checks\peter_pan.png" />
     <Content Include="CustomImages\Broadcast\Checks\Picture.png" />
-    <Content Include="CustomImages\Broadcast\Checks\Poster.png" />
     <Content Include="CustomImages\Broadcast\Checks\promise_charm.png" />
     <Content Include="CustomImages\Broadcast\Checks\proof_of_connection.png" />
     <Content Include="CustomImages\Broadcast\Checks\proof_of_nonexistence.png" />
@@ -579,6 +578,7 @@
     <Content Include="CustomImages\Broadcast\Checks\SkillCrossbones.png" />
     <Content Include="CustomImages\Broadcast\Checks\stitch.png" />
     <Content Include="CustomImages\Broadcast\Checks\thunder.png" />
+    <Content Include="CustomImages\Broadcast\Checks\UnknownDisk.png" />
     <Content Include="CustomImages\Broadcast\Checks\valor.png" />
     <Content Include="CustomImages\Broadcast\Checks\wisdom.png" />
     <Content Include="CustomImages\Broadcast\Other\ansem_report.png" />
@@ -664,10 +664,10 @@
     <Content Include="CustomImages\Checks\Ghost\limit.png" />
     <Content Include="CustomImages\Checks\Ghost\magnet.png" />
     <Content Include="CustomImages\Checks\Ghost\master.png" />
+    <Content Include="CustomImages\Checks\Ghost\membership_card.png" />
     <Content Include="CustomImages\Checks\Ghost\once_more.png" />
     <Content Include="CustomImages\Checks\Ghost\peter_pan.png" />
     <Content Include="CustomImages\Checks\Ghost\Picture.png" />
-    <Content Include="CustomImages\Checks\Ghost\Poster.png" />
     <Content Include="CustomImages\Checks\Ghost\promise_charm.png" />
     <Content Include="CustomImages\Checks\Ghost\proof_of_connection.png" />
     <Content Include="CustomImages\Checks\Ghost\proof_of_nonexistence.png" />
@@ -680,6 +680,7 @@
     <Content Include="CustomImages\Checks\Ghost\stitch.png" />
     <Content Include="CustomImages\Checks\Ghost\thunder.png" />
     <Content Include="CustomImages\Checks\Ghost\torn_pages.png" />
+    <Content Include="CustomImages\Checks\Ghost\UnknownDisk.png" />
     <Content Include="CustomImages\Checks\Ghost\valor.png" />
     <Content Include="CustomImages\Checks\Ghost\wisdom.png" />
     <Content Include="CustomImages\Checks\glide.png" />
@@ -696,7 +697,6 @@
     <Content Include="CustomImages\Checks\once_more_key.png" />
     <Content Include="CustomImages\Checks\peter_pan.png" />
     <Content Include="CustomImages\Checks\Picture.png" />
-    <Content Include="CustomImages\Checks\Poster.png" />
     <Content Include="CustomImages\Checks\promise_charm.png" />
     <Content Include="CustomImages\Checks\proof_of_connection.png" />
     <Content Include="CustomImages\Checks\proof_of_nonexistence.png" />
@@ -711,6 +711,7 @@
     <Content Include="CustomImages\Checks\stitch.png" />
     <Content Include="CustomImages\Checks\thunder.png" />
     <Content Include="CustomImages\Checks\torn_pages.png" />
+    <Content Include="CustomImages\Checks\UnknownDisk.png" />
     <Content Include="CustomImages\Checks\valor.png" />
     <Content Include="CustomImages\Checks\wisdom.png" />
     <Content Include="CustomImages\Numbers\Bar.png" />
@@ -877,7 +878,6 @@
     <Resource Include="Images\Checks\Simple\IceCream.png" />
     <Resource Include="Images\Checks\Simple\IdentityDisk.png" />
     <Resource Include="Images\Checks\Simple\Picture.png" />
-    <Resource Include="Images\Checks\Simple\Poster.png" />
     <Resource Include="Images\Checks\Simple\ProudFang.png" />
     <Resource Include="Images\Checks\Simple\Scimitar.png" />
     <Resource Include="Images\Checks\Simple\SkillCrossbones.png" />
@@ -888,7 +888,6 @@
     <Resource Include="Images\Checks\Old\IceCream.png" />
     <Resource Include="Images\Checks\Old\IdentityDisk.png" />
     <Resource Include="Images\Checks\Old\Picture.png" />
-    <Resource Include="Images\Checks\Old\Poster.png" />
     <Resource Include="Images\Checks\Old\ProudFang.png" />
     <Resource Include="Images\Checks\Old\Scimitar.png" />
     <Resource Include="Images\Checks\Old\SkillCrossbones.png" />

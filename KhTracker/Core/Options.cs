@@ -83,7 +83,7 @@ namespace KhTracker
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
             string hintValues = "";
-            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints || data.mode == Mode.DAHints)
+            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints || data.mode == Mode.DAHints || data.mode == Mode.PathHints)
             {
                 attempts = "Attempts: ";
                 if (data.hintsLoaded)
@@ -142,6 +142,12 @@ namespace KhTracker
             else if (data.mode == Mode.OpenKHAltHints)
             {
                 writer.WriteLine(data.openKHHintText);
+            }
+            else if (data.mode == Mode.PathHints)
+            {
+                writer.WriteLine(attempts);
+                writer.WriteLine(data.openKHHintText);
+                writer.WriteLine(hintValues);
             }
             else if (data.mode == Mode.DAHints)
             {
@@ -212,6 +218,8 @@ namespace KhTracker
                 SetMode(Mode.OpenKHAltHints);
             else if (mode == "DAHints")
                 SetMode(Mode.DAHints);
+            else if (mode == "PathHints")
+                SetMode(Mode.PathHints);
 
             // set settings
             string settings = reader.ReadLine();
@@ -439,6 +447,36 @@ namespace KhTracker
                 var reportlist = JsonSerializer.Deserialize<List<string>>(reportlist64);
                 data.TrackedReports = reportlist;
             }
+            else if (mode == "PathHints")
+            {
+                string attempts = reader.ReadLine();
+                attempts = attempts.Substring(13);
+                string[] attemptsArray = attempts.Split('-');
+                for (int i = 0; i < attemptsArray.Length; ++i)
+                {
+                    data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                }
+                data.openKHHintText = reader.ReadLine();
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
+                var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                PathHints(hintObject);
+                //var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                //
+                //List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                //reportKeys.Sort();
+                //
+                //foreach (var report in reportKeys)
+                //{
+                //    var hinttext = reports[report.ToString()]["Text"].ToString();
+                //    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                //
+                //    data.reportInformation.Add(new Tuple<string, int>(hinttext, 0));
+                //    data.reportLocations.Add(location);
+                //}
+                //
+                //data.hintsLoaded = true;
+                //HintText.Content = "Hints Loaded";
+            }
 
             // set hint values (DUMB)
             if (data.hintsLoaded)
@@ -489,6 +527,7 @@ namespace KhTracker
                 string world = reader.ReadLine();
                 string worldName = world.Substring(0, world.IndexOf(':'));
                 string items = world.Substring(world.IndexOf(':') + 1).Trim();
+
                 if (items != string.Empty)
                 {
                     if (data.mode == Mode.DAHints)
@@ -505,6 +544,19 @@ namespace KhTracker
                                 else
                                     grid.Add_Item(importantCheck, this);
                             }
+                        }
+                    }
+                    else if (data.mode == Mode.PathHints)
+                    {
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
+
+                            if (grid.Handle_PathReport(importantCheck, this, data))
+                                grid.Add_Item(importantCheck, this);
+
+                            //grid.WorldComplete();
                         }
                     }
                     else
@@ -1166,7 +1218,7 @@ namespace KhTracker
 
         private void SetMode(Mode mode)
         {
-            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints)
+            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints || mode == Mode.PathHints)
             {
                 OnReset(null, null);
             }
@@ -1191,25 +1243,19 @@ namespace KhTracker
                 ReportsToggle(true);
                 ReportRow.Height = new GridLength(1, GridUnitType.Star);
 
-                //set visibility stuff
-                //Collected.Visibility = Visibility.Hidden;
-                //CollectedBar.Visibility = Visibility.Hidden;
-                //CheckTotal.Visibility = Visibility.Hidden;
-                //Score100.Visibility = Visibility.Visible;
-                //Score10.Visibility = Visibility.Visible;
-                //Score1.Visibility = Visibility.Visible;
-                //broadcast.Collected.Visibility = Visibility.Hidden;
-                //broadcast.CollectedBar.Visibility = Visibility.Hidden;
-                //broadcast.CheckTotal.Visibility = Visibility.Hidden;
-                //broadcast.Score100.Visibility = Visibility.Visible;
-                //broadcast.Score10.Visibility = Visibility.Visible;
-                //broadcast.Score1.Visibility = Visibility.Visible;
                 ShowCheckCountToggle(null, null);
 
                 broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
                 broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
 
                 UpdatePointScore(0);
+            }
+            else if (mode == Mode.PathHints)
+            {
+                ModeDisplay.Header = "Path Hints";
+                data.mode = mode;
+                ReportsToggle(true);
+                ReportRow.Height = new GridLength(1, GridUnitType.Star);
             }
             else if (mode == Mode.TimeHints)
             {
@@ -1361,6 +1407,12 @@ namespace KhTracker
                                     {
                                         SetMode(Mode.DAHints);
                                         PointsHints(hintObject);
+                                    }
+                                    break;
+                                case "Path":
+                                    {
+                                        SetMode(Mode.PathHints);
+                                        PathHints(hintObject);
                                     }
                                     break;
                                 case "Timed":

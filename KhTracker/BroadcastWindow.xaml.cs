@@ -113,7 +113,7 @@ namespace KhTracker
             important.Add("SparrowWep", 0);
             important.Add("AladdinWep", 0);
             important.Add("TronWep", 0);
-            important.Add("Poster", 0);
+            important.Add("MembershipCard", 0);
             important.Add("Picture", 0);
             important.Add("IceCream", 0);
 

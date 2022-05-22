@@ -101,7 +101,7 @@ namespace KhTracker
             data.VisitLocks.Add(SparrowWep);
             data.VisitLocks.Add(AladdinWep);
             data.VisitLocks.Add(TronWep);
-            data.VisitLocks.Add(Poster);
+            data.VisitLocks.Add(MembershipCard);
             data.VisitLocks.Add(IceCream);
             data.VisitLocks.Add(Picture);
 
@@ -1147,7 +1147,7 @@ namespace KhTracker
             {"Ghost_SparrowWep", "visit"},
             {"Ghost_AladdinWep", "visit"},
             {"Ghost_TronWep", "visit"},
-            {"Ghost_Poster", "visit"},
+            {"Ghost_MembershipCard", "visit"},
             {"Ghost_IceCream", "visit"},
             {"Ghost_Picture", "visit"}
         };

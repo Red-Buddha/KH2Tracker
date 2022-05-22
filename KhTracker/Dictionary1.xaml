@@ -63,17 +63,17 @@
     <Image x:Key="Min-PromiseCharm"		Source="Images\Checks\Simple\promise_charm.png"/>
     <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Simple\hades_cup.png"/>
 
-    <Image x:Key="Min-AuronWep"		Source="Images\Checks\Simple\BattlefieldsofWar.png"/>
-    <Image x:Key="Min-MulanWep"		Source="Images\Checks\Simple\AncestorSword.png"/>
-    <Image x:Key="Min-BeastWep"		Source="Images\Checks\Simple\BeastClaw.png"/>
-    <Image x:Key="Min-JackWep"		Source="Images\Checks\Simple\BoneFist.png"/>
-    <Image x:Key="Min-SimbaWep"		Source="Images\Checks\Simple\ProudFang.png"/>
-    <Image x:Key="Min-SparrowWep"	Source="Images\Checks\Simple\SkillCrossbones.png"/>
-    <Image x:Key="Min-AladdinWep"	Source="Images\Checks\Simple\Scimitar.png"/>
-    <Image x:Key="Min-TronWep"		Source="Images\Checks\Simple\IdentityDisk.png"/>
-    <Image x:Key="Min-Poster"		Source="Images\Checks\Simple\Poster.png"/>
-    <Image x:Key="Min-IceCream"		Source="Images\Checks\Simple\IceCream.png"/>
-    <Image x:Key="Min-Picture"		Source="Images\Checks\Simple\Picture.png"/>
+    <Image x:Key="Min-AuronWep"		    Source="Images\Checks\Simple\BattlefieldsofWar.png"/>
+    <Image x:Key="Min-MulanWep"		    Source="Images\Checks\Simple\AncestorSword.png"/>
+    <Image x:Key="Min-BeastWep"		    Source="Images\Checks\Simple\BeastClaw.png"/>
+    <Image x:Key="Min-JackWep"		    Source="Images\Checks\Simple\BoneFist.png"/>
+    <Image x:Key="Min-SimbaWep"		    Source="Images\Checks\Simple\ProudFang.png"/>
+    <Image x:Key="Min-SparrowWep"	    Source="Images\Checks\Simple\SkillCrossbones.png"/>
+    <Image x:Key="Min-AladdinWep"	    Source="Images\Checks\Simple\Scimitar.png"/>
+    <Image x:Key="Min-TronWep"		    Source="Images\Checks\Simple\IdentityDisk.png"/>
+    <Image x:Key="Min-MembershipCard"   Source="Images\Checks\Simple\membership_card.png"/>
+    <Image x:Key="Min-IceCream"		    Source="Images\Checks\Simple\IceCream.png"/>
+    <Image x:Key="Min-Picture"		    Source="Images\Checks\Simple\Picture.png"/>
 
     <!--Old Item Icons (Main Window)-->
     <Image x:Key="Old-AnsemReport"	 Source="Images\Other\ansem_report_old.png" x:Shared="false"/>
@@ -126,17 +126,17 @@
     <Image x:Key="Old-PromiseCharm"		Source="Images\Checks\Old\promise_charm.png"/>
     <Image x:Key="Old-HadesCup"		    Source="Images\Checks\Old\hades_cup.png"/>
 
-    <Image x:Key="Old-AuronWep"		Source="Images\Checks\Old\BattlefieldsofWar.png"/>
-    <Image x:Key="Old-MulanWep"		Source="Images\Checks\Old\AncestorSword.png"/>
-    <Image x:Key="Old-BeastWep"		Source="Images\Checks\Old\BeastClaw.png"/>
-    <Image x:Key="Old-JackWep"		Source="Images\Checks\Old\BoneFist.png"/>
-    <Image x:Key="Old-SimbaWep"		Source="Images\Checks\Old\ProudFang.png"/>
-    <Image x:Key="Old-SparrowWep"	Source="Images\Checks\Old\SkillCrossbones.png"/>
-    <Image x:Key="Old-AladdinWep"	Source="Images\Checks\Old\Scimitar.png"/>
-    <Image x:Key="Old-TronWep"		Source="Images\Checks\Old\IdentityDisk.png"/>
-    <Image x:Key="Old-Poster"		Source="Images\Checks\Old\Poster.png"/>
-    <Image x:Key="Old-IceCream"		Source="Images\Checks\Old\IceCream.png"/>
-    <Image x:Key="Old-Picture"		Source="Images\Checks\Old\Picture.png"/>
+    <Image x:Key="Old-AuronWep"		    Source="Images\Checks\Old\BattlefieldsofWar.png"/>
+    <Image x:Key="Old-MulanWep"		    Source="Images\Checks\Old\AncestorSword.png"/>
+    <Image x:Key="Old-BeastWep"		    Source="Images\Checks\Old\BeastClaw.png"/>
+    <Image x:Key="Old-JackWep"		    Source="Images\Checks\Old\BoneFist.png"/>
+    <Image x:Key="Old-SimbaWep"		    Source="Images\Checks\Old\ProudFang.png"/>
+    <Image x:Key="Old-SparrowWep"	    Source="Images\Checks\Old\SkillCrossbones.png"/>
+    <Image x:Key="Old-AladdinWep"	    Source="Images\Checks\Old\Scimitar.png"/>
+    <Image x:Key="Old-TronWep"		    Source="Images\Checks\Old\IdentityDisk.png"/>
+    <Image x:Key="Old-MembershipCard"   Source="Images\Checks\Old\membership_card.png"/>
+    <Image x:Key="Old-IceCream"		    Source="Images\Checks\Old\IceCream.png"/>
+    <Image x:Key="Old-Picture"		    Source="Images\Checks\Old\Picture.png"/>
 
     <!--World Icons-->
     <!--Simple World Icons-->
@@ -566,9 +566,9 @@
     <Image x:Key="Cus-SparrowWep"	     Source="pack://application:,,,/CustomImages/Checks/SkillCrossbones.png"/>
     <Image x:Key="Cus-AladdinWep"	     Source="pack://application:,,,/CustomImages/Checks/Scimitar.png"/>
     <Image x:Key="Cus-TronWep"		     Source="pack://application:,,,/CustomImages/Checks/IdentityDisk.png"/>
-    <Image x:Key="Cus-Poster"		     Source="pack://application:,,,/CustomImages/Checks/Poster.png"/>
-    <Image x:Key="Cus-IceCream"		     Source="pack://application:,,,/CustomImages/Checks/IceCream.png"/>
     <Image x:Key="Cus-Picture"		     Source="pack://application:,,,/CustomImages/Checks/Picture.png"/>
+    <Image x:Key="Cus-IceCream"		     Source="pack://application:,,,/CustomImages/Checks/IceCream.png"/>
+    <Image x:Key="Cus-MembershipCard"		     Source="pack://application:,,,/CustomImages/Checks/membership_card.png"/>
     <!--Custom Item Icons (Broadcast)-->
     <Image x:Key="Cus-B_AnsemReport"	Source="pack://application:,,,/CustomImages/Broadcast/Other/ansem_report.png" x:Shared="false"/>
     <Image x:Key="Cus-B_TornPage" 		Source="pack://application:,,,/CustomImages/Broadcast/Other/torn_pages.png" x:Shared="false"/>
@@ -599,9 +599,9 @@
     <Image x:Key="Cus-B_SparrowWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/SkillCrossbones.png"/>
     <Image x:Key="Cus-B_AladdinWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Scimitar.png"/>
     <Image x:Key="Cus-B_TronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IdentityDisk.png"/>
-    <Image x:Key="Cus-B_Poster"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Poster.png"/>
+    <Image x:Key="Cus-B_Picture"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Picture.png"/>
     <Image x:Key="Cus-B_IceCream"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IceCream.png"/>
-    <Image x:Key="Cus-B_Picture"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/Picture.png"/>
+    <Image x:Key="Cus-B_MembershipCard"   Source="pack://application:,,,/CustomImages/Broadcast/Checks/membership_card.png"/>
     <!--Custom Item Icons (Ghost)-->
     <Image x:Key="Cus-G_AnsemReport01" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
     <Image x:Key="Cus-G_AnsemReport02" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
@@ -646,9 +646,9 @@
     <Image x:Key="Cus-G_SparrowWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/SkillCrossbones.png"/>
     <Image x:Key="Cus-G_AladdinWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/Scimitar.png"/>
     <Image x:Key="Cus-G_TronWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IdentityDisk.png"/>
-    <Image x:Key="Cus-G_Poster"		    Source="pack://application:,,,/CustomImages/Checks/Ghost/Poster.png"/>
     <Image x:Key="Cus-G_IceCream"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IceCream.png"/>
     <Image x:Key="Cus-G_Picture"		Source="pack://application:,,,/CustomImages/Checks/Ghost/Picture.png"/>
+    <Image x:Key="Cus-G_MembershipCard"   Source="pack://application:,,,/CustomImages/Checks/Ghost/membership_card.png"/>
 
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>

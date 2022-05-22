@@ -387,7 +387,7 @@ namespace KhTracker
             importantChecks.Add(visitItem = new Visit(memory, Save + 0x35B6, ADDRESS_OFFSET, "SparrowWep"));
             importantChecks.Add(visitItem = new Visit(memory, Save + 0x35C0, ADDRESS_OFFSET, "AladdinWep"));
             importantChecks.Add(visitItem = new Visit(memory, Save + 0x35C2, ADDRESS_OFFSET, "TronWep"));
-            importantChecks.Add(visitItem = new Visit(memory, Save + 0x3640, ADDRESS_OFFSET, "Poster"));
+            importantChecks.Add(visitItem = new Visit(memory, Save + 0x3643, ADDRESS_OFFSET, "MembershipCard"));
             importantChecks.Add(visitItem = new Visit(memory, Save + 0x3649, ADDRESS_OFFSET, "IceCream"));
             importantChecks.Add(visitItem = new Visit(memory, Save + 0x364A, ADDRESS_OFFSET, "Picture"));
 
@@ -680,6 +680,19 @@ namespace KhTracker
                     if (item.Name == itemName && item.IsVisible)
                     {
                         if (world.Handle_PointReport(item as Item, this, data))
+                        {
+                            world.Add_Item(item as Item, this);
+                            if (App.logger != null)
+                                App.logger.Record(item.Name + " tracked");
+                        }
+                        break;
+                    }
+                }
+                else if (data.mode == Mode.PathHints)
+                {
+                    if (item.Name == itemName && item.IsVisible)
+                    {
+                        if (world.Handle_PathReport(item as Item, this, data))
                         {
                             world.Add_Item(item as Item, this);
                             if (App.logger != null)

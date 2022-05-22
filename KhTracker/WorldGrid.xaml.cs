@@ -87,6 +87,17 @@ namespace KhTracker
                 VisitLock(button, add);
             }
 
+            if (MainWindow.data.mode == Mode.PathHints)
+            {
+                WorldComplete();
+
+                string worldName = Name.Substring(0, Name.Length - 4);
+                if (MainWindow.data.WorldsData[worldName].hint != null)
+                {
+                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
+                }
+            }
+
             if (MainWindow.data.mode == Mode.AltHints || MainWindow.data.mode == Mode.OpenKHAltHints)
             {
                 WorldComplete();
@@ -173,6 +184,14 @@ namespace KhTracker
                     Item item = e.Data.GetData(typeof(Item)) as Item;
 
                     if (Handle_PointReport(item, window, data))
+                        Add_Item(item, window);
+
+                }
+                else if (data.mode == Mode.PathHints)
+                {
+                    Item item = e.Data.GetData(typeof(Item)) as Item;
+
+                    if (Handle_PathReport(item, window, data))
                         Add_Item(item, window);
 
                 }
@@ -288,6 +307,69 @@ namespace KhTracker
             return true;
         }
 
+        public bool Handle_PathReport(Item item, MainWindow window, Data data)
+        {
+            bool isreport = false;
+
+            // item is a report
+            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            {
+                int index = (int)item.GetValue(Grid.ColumnProperty);
+
+                // out of report attempts
+                if (data.reportAttempts[index] == 0)
+                    return false;
+
+                // check for correct report location
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
+                {
+                    // hint text and resetting fail icons
+                    //window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
+                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                    data.reportAttempts[index] = 3;
+                    isreport = true;
+                    //item.DragDropEventFire(data.reportInformation[index].Item1, data.reportInformation[index].Item2);
+
+                    // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
+                    //data.WorldsData[data.reportInformation[index].Item1].hinted = true;
+                    //if (data.WorldsData[data.reportLocations[index]].hinted == true)
+                    //{
+                    //    data.WorldsData[data.reportInformation[index].Item1].hintedHint = true;
+                    //}
+
+                    // loop through hinted world for reports to set their info as hinted hints
+                    //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children.Count; ++i)
+                    //{
+                    //    Item gridItem = data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children[i] as Item;
+                    //    if (gridItem.Name.Contains("Report"))
+                    //    {
+                    //        int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
+                    //        data.WorldsData[data.reportInformation[reportIndex].Item1].hintedHint = true;
+                    //        window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2 + 1);
+                    //    }
+                    //}
+
+                    // auto update world important check number
+                    //window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2 + 1);
+                }
+                else
+                {
+                    // update fail icons when location is report location is wrong
+                    AddFailIcon(index);
+                    return false;
+                }
+            }
+
+            if (isreport)
+            {
+                item.MouseEnter -= item.Report_Hover;
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
+        }
+
         private void AddFailIcon(int index)
         {
             Data data = MainWindow.data;
@@ -314,7 +396,10 @@ namespace KhTracker
             {
                 Item item = child as Item;
                 char[] numbers = { '1', '2', '3', '4', '5' };
-                if (items.Contains(item.Name.TrimEnd(numbers)))
+
+                if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
+                    items.Remove(item.Name);
+                else if (items.Contains(item.Name.TrimEnd(numbers)))
                 {
                     items.Remove(item.Name.TrimEnd(numbers));
                 }
@@ -394,13 +479,13 @@ namespace KhTracker
                 case "TronWep":
                     MainWindow.data.WorldsData["SpaceParanoids"].visitLocks += addRemove;
                     break;
-                case "Poster":
-                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
-                    break;
-                case "Picture":
+                case "IceCream":
                     MainWindow.data.WorldsData["TwilightTown"].visitLocks += (addRemove * 10);
                     break;
-                case "IceCream":
+                case "Picture":
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    break;
+                case "MembershipCard":
                     MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;
                     break;
             }
@@ -873,7 +958,7 @@ namespace KhTracker
             {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
             {"Scimitar (Aladdin)", "AladdinWep"},
             {"Identity Disk (Tron)", "TronWep"},
-            {"Poster", "Poster"},
+            {"Membership Card", "MembershipCard"},
             {"Ice Cream", "IceCream"},
             {"Picture", "Picture"}
         };
@@ -960,7 +1045,7 @@ namespace KhTracker
             {"SparrowWep", "visit"},
             {"AladdinWep", "visit"},
             {"TronWep", "visit"},
-            {"Poster", "visit"},
+            {"MembershipCard", "visit"},
             {"IceCream", "visit"},
             {"Picture", "visit"},
             //ghost versions
@@ -1023,7 +1108,7 @@ namespace KhTracker
             {"Ghost_SparrowWep", "visit"},
             {"Ghost_AladdinWep", "visit"},
             {"Ghost_TronWep", "visit"},
-            {"Ghost_Poster", "visit"},
+            {"Ghost_MembershipCard", "visit"},
             {"Ghost_IceCream", "visit"},
             {"Ghost_Picture", "visit"}
         };

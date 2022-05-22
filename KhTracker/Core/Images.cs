@@ -733,10 +733,10 @@ namespace KhTracker
                         Picture.SetResourceReference(ContentProperty, "Cus-Picture");
                         broadcast.Picture.SetResourceReference(ContentProperty, "Cus-Picture");
                     }
-                    if (File.Exists("CustomImages/Checks/Poster.png"))
+                    if (File.Exists("CustomImages/Checks/membership_card.png"))
                     {
-                        Poster.SetResourceReference(ContentProperty, "Cus-Poster");
-                        broadcast.Poster.SetResourceReference(ContentProperty, "Cus-Poster");
+                        MembershipCard.SetResourceReference(ContentProperty, "Cus-MembershipCard");
+                        broadcast.MembershipCard.SetResourceReference(ContentProperty, "Cus-MembershipCard");
                     }
                     if (File.Exists("CustomImages/Checks/ProudFang.png"))
                     {
@@ -924,9 +924,9 @@ namespace KhTracker
                     {
                         Ghost_Picture.SetResourceReference(ContentProperty, "Cus-G_Picture");
                     }
-                    if (File.Exists("CustomImages/Checks/Ghost/Poster.png"))
+                    if (File.Exists("CustomImages/Checks/Ghost/membership_card.png"))
                     {
-                        Ghost_Poster.SetResourceReference(ContentProperty, "Cus-G_Poster");
+                        Ghost_MembershipCard.SetResourceReference(ContentProperty, "Cus-G_MembershipCard");
                     }
                     if (File.Exists("CustomImages/Checks/Ghost/ProudFang.png"))
                     {
@@ -1120,9 +1120,9 @@ namespace KhTracker
                     {
                         broadcast.Picture.SetResourceReference(ContentProperty, "Cus-B_Picture");
                     }
-                    if (File.Exists("CustomImages/Broadcast/Checks/Poster.png"))
+                    if (File.Exists("CustomImages/Broadcast/Checks/membership_card.png"))
                     {
-                        broadcast.Poster.SetResourceReference(ContentProperty, "Cus-B_Poster");
+                        broadcast.MembershipCard.SetResourceReference(ContentProperty, "Cus-B_MembershipCard");
                     }
                     if (File.Exists("CustomImages/Broadcast/Checks/ProudFang.png"))
                     {
