@@ -1084,6 +1084,7 @@ namespace KhTracker
             Collected.Visibility = Visibility.Visible;
             CollectedBar.Visibility = Visibility.Visible;
             CheckTotal.Visibility = Visibility.Visible;
+            Score1000.Visibility = Visibility.Hidden;
             Score100.Visibility = Visibility.Hidden;
             Score10.Visibility = Visibility.Hidden;
             Score1.Visibility = Visibility.Hidden;
@@ -1091,13 +1092,19 @@ namespace KhTracker
             broadcast.Collected.Visibility = Visibility.Visible;
             broadcast.CollectedBar.Visibility = Visibility.Visible;
             broadcast.CheckTotal.Visibility = Visibility.Visible;
+            broadcast.Score1000.Visibility = Visibility.Hidden;
             broadcast.Score100.Visibility = Visibility.Hidden;
             broadcast.Score10.Visibility = Visibility.Hidden;
             broadcast.Score1.Visibility = Visibility.Hidden;
 
+            score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+            ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+            broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+            broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
             broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
             broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
+            UpdatePointScore(0);
             ReportsToggle(true);
             ResetHints();
             VisitLockToggle(VisitLockOption.IsChecked);

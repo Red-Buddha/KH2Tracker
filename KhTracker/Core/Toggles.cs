@@ -427,11 +427,12 @@ namespace KhTracker
             CheckCountOption.IsChecked = toggle;
 
             //if check count should be shown and replace the score IN POINTS MODE
-            if (toggle && (Score1.IsVisible || Score10.IsVisible || Score100.IsVisible) && data.mode == Mode.DAHints)
+            if (toggle && data.mode == Mode.DAHints)
             {
                 Score1.Visibility = Visibility.Hidden;
                 Score10.Visibility = Visibility.Hidden;
                 Score100.Visibility = Visibility.Hidden;
+                Score1000.Visibility = Visibility.Hidden;
                 Collected.Visibility = Visibility.Visible;
                 CollectedBar.Visibility = Visibility.Visible;
                 CheckTotal.Visibility = Visibility.Visible;
@@ -439,16 +440,18 @@ namespace KhTracker
                 broadcast.Score1.Visibility = Visibility.Hidden;
                 broadcast.Score10.Visibility = Visibility.Hidden;
                 broadcast.Score100.Visibility = Visibility.Hidden;
+                broadcast.Score1000.Visibility = Visibility.Hidden;
                 broadcast.Collected.Visibility = Visibility.Visible;
                 broadcast.CollectedBar.Visibility = Visibility.Visible;
                 broadcast.CheckTotal.Visibility = Visibility.Visible;
             }
             //if points should show and replace check count IN POINTS MODE
-            else if (!toggle && (Collected.IsVisible || CollectedBar.IsVisible || CheckTotal.IsVisible) && data.mode == Mode.DAHints)
+            else if (!toggle && data.mode == Mode.DAHints)
             {
                 Score1.Visibility = Visibility.Visible;
                 Score10.Visibility = Visibility.Visible;
                 Score100.Visibility = Visibility.Visible;
+                Score1000.Visibility = Visibility.Visible;
                 Collected.Visibility = Visibility.Hidden;
                 CollectedBar.Visibility = Visibility.Hidden;
                 CheckTotal.Visibility = Visibility.Hidden;
@@ -456,6 +459,7 @@ namespace KhTracker
                 broadcast.Score1.Visibility = Visibility.Visible;
                 broadcast.Score10.Visibility = Visibility.Visible;
                 broadcast.Score100.Visibility = Visibility.Visible;
+                broadcast.Score1000.Visibility = Visibility.Visible;
                 broadcast.Collected.Visibility = Visibility.Hidden;
                 broadcast.CollectedBar.Visibility = Visibility.Hidden;
                 broadcast.CheckTotal.Visibility = Visibility.Hidden;

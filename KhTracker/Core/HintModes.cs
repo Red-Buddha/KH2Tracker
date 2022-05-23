@@ -389,13 +389,20 @@ namespace KhTracker
             if (data.mode != Mode.DAHints)
                 return;
 
-            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
+            int[] FinalNum = new int[] { 0, 0, 0, 0 }; //Default 0000
 
             if (!CheckCountOption.IsChecked)
             {
+                score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+                broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
+
+                Score1000.Visibility = Visibility.Hidden;
                 Score100.Visibility = Visibility.Hidden;
                 Score10.Visibility = Visibility.Hidden;
                 Score1.Visibility = Visibility.Visible;
+                broadcast.Score1000.Visibility = Visibility.Hidden;
                 broadcast.Score100.Visibility = Visibility.Hidden;
                 broadcast.Score10.Visibility = Visibility.Hidden;
                 broadcast.Score1.Visibility = Visibility.Visible;
@@ -450,6 +457,31 @@ namespace KhTracker
             }
 
             //Set number images depending on number of digits in point total
+            if (listOfInts.Count == 4)
+            {
+                FinalNum[0] = listOfInts[0];
+                FinalNum[1] = listOfInts[1];
+                FinalNum[2] = listOfInts[2];
+                FinalNum[3] = listOfInts[3];
+
+                if (!CheckCountOption.IsChecked)
+                {
+                    score1000col.Width = new GridLength(1.0, GridUnitType.Star);
+                    ScoreSpacer.Width = new GridLength(18.0, GridUnitType.Star);
+                    broadcast.score1000col.Width = new GridLength(1.0, GridUnitType.Star);
+                    broadcast.scorespacer.Width = new GridLength(2.0, GridUnitType.Star);
+
+                    Score1000.Visibility = Visibility.Visible;
+                    Score100.Visibility = Visibility.Visible;
+                    Score10.Visibility = Visibility.Visible;
+                    Score1.Visibility = Visibility.Visible;
+                    broadcast.Score1000.Visibility = Visibility.Visible;
+                    broadcast.Score100.Visibility = Visibility.Visible;
+                    broadcast.Score10.Visibility = Visibility.Visible;
+                    broadcast.Score1.Visibility = Visibility.Visible;
+                }
+
+            }
             if (listOfInts.Count == 3)
             {
                 FinalNum[0] = listOfInts[0];
@@ -458,9 +490,16 @@ namespace KhTracker
 
                 if (!CheckCountOption.IsChecked)
                 {
+                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
+
+                    Score1000.Visibility = Visibility.Hidden;
                     Score100.Visibility = Visibility.Visible;
                     Score10.Visibility = Visibility.Visible;
                     Score1.Visibility = Visibility.Visible;
+                    broadcast.Score1000.Visibility = Visibility.Hidden;
                     broadcast.Score100.Visibility = Visibility.Visible;
                     broadcast.Score10.Visibility = Visibility.Visible;
                     broadcast.Score1.Visibility = Visibility.Visible;
@@ -474,9 +513,16 @@ namespace KhTracker
 
                 if (!CheckCountOption.IsChecked)
                 {
+                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
+
+                    Score1000.Visibility = Visibility.Hidden;
                     Score100.Visibility = Visibility.Hidden;
                     Score10.Visibility = Visibility.Visible;
                     Score1.Visibility = Visibility.Visible;
+                    broadcast.Score1000.Visibility = Visibility.Hidden;
                     broadcast.Score100.Visibility = Visibility.Hidden;
                     broadcast.Score10.Visibility = Visibility.Visible;
                     broadcast.Score1.Visibility = Visibility.Visible;
@@ -489,9 +535,16 @@ namespace KhTracker
 
                 if (!CheckCountOption.IsChecked)
                 {
+                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
+
+                    Score1000.Visibility = Visibility.Hidden;
                     Score100.Visibility = Visibility.Hidden;
                     Score10.Visibility = Visibility.Hidden;
                     Score1.Visibility = Visibility.Visible;
+                    broadcast.Score1000.Visibility = Visibility.Hidden;
                     broadcast.Score100.Visibility = Visibility.Hidden;
                     broadcast.Score10.Visibility = Visibility.Hidden;
                     broadcast.Score1.Visibility = Visibility.Visible;
@@ -499,11 +552,12 @@ namespace KhTracker
 
             }
 
-
+            Score1000.Source = GetDataNumber("S")[FinalNum[3]];
             Score100.Source = GetDataNumber("S")[FinalNum[2]];
             Score10.Source = GetDataNumber("S")[FinalNum[1]];
             Score1.Source = GetDataNumber("S")[FinalNum[0]];
 
+            broadcast.Score1000.Source = GetDataNumber("S")[FinalNum[3]];
             broadcast.Score100.Source = GetDataNumber("S")[FinalNum[2]];
             broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
             broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];

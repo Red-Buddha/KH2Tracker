@@ -1650,16 +1650,15 @@
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15*"/>
-
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="15*" Name="ScoreSpacer"/>
+                    <ColumnDefinition Width="0*" Name="score1000col"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
 
                     <ColumnDefinition Width="0.25*"/>
                 </Grid.ColumnDefinitions>
-
+                <Image Name="Score1000"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Visibility="Hidden"/>
                 <Image Name="Score100"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden"/>
                 <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Visibility="Hidden"/>
                 <Image Name="Score1"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" Visibility="Hidden"/>

@@ -1055,6 +1055,25 @@
                         </Image>
                     </Grid>
 
+                    <!--Image Name="Score100" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="2" Visibility="Visible"/>
+                    <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="3" Visibility="Visible"/>
+                    <Image Name="Score1"   Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="4" Visibility="Visible"/-->
+                </Grid>
+
+                <!-- Score Count -->
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.6*" Name="scorespacer"/>
+                        <ColumnDefinition Width="0*" Name="score1000col"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width=".15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Score1000" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="1" Visibility="Hidden"/>
                     <Image Name="Score100" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="2" Visibility="Hidden"/>
                     <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="3" Visibility="Hidden"/>
                     <Image Name="Score1"   Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="4" Visibility="Hidden"/>
