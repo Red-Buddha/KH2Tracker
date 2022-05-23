@@ -67,11 +67,16 @@ namespace KhTracker
             worldCodes.Add(17, "SpaceParanoids");
             worldCodes.Add(18, "TWTNW");
             worldCodes.Add(255, "GoA");
+            worldCodes.Add(01, "GoA"); // Title Demo
         }
 
         public void UpdateMemory()
         {
             previousworldName = worldName;
+
+            //this shouldn't happen, but use goa as the world in case it ever does
+            if (worldName == null)
+                worldName = "GOA";
 
             byte[] worldData = memory.ReadMemory(worldAddress + ADDRESS_OFFSET, 9);
             worldNum = worldData[0];
