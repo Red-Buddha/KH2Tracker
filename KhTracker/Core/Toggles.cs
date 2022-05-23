@@ -1662,6 +1662,32 @@ namespace KhTracker
                         OldWorldToggle(sender, e);
                     }
                 }
+                //reload visit locks
+                {
+                    HollowBastionLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    LandofDragonsLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    PrideLandsLock.Source =      new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    HalloweenTownLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    SpaceParanoidsLock.Source =  new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    BeastsCastleLock.Source =    new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    AgrabahLock.Source =         new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    PortRoyalLock.Source =       new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    TwilightTownLock_2.Source =  new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    TwilightTownLock_1.Source =  new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+
+                    broadcast.HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                    broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+                }
                 //reload prog icons (do i need this? only if i want switching to be dynamic i guess)
                 //{
                 //    if (MinProgOption.IsChecked)
