@@ -50,6 +50,7 @@ namespace KhTracker
             SttAddress = sttAddress;
 
             worldCodes = new Dictionary<int, string>();
+            worldCodes.Add(01, "GoA"); // Title Demo
             worldCodes.Add(02, "TwilightTown");
             worldCodes.Add(03, "DestinyIsland");
             worldCodes.Add(04, "HollowBastion");
@@ -67,7 +68,6 @@ namespace KhTracker
             worldCodes.Add(17, "SpaceParanoids");
             worldCodes.Add(18, "TWTNW");
             worldCodes.Add(255, "GoA");
-            worldCodes.Add(01, "GoA"); // Title Demo
         }
 
         public void UpdateMemory()
