@@ -660,7 +660,7 @@ namespace KhTracker
                         return;
                     }
                     break;
-                case "TornPage1":
+                case "TornPage":
                     if (Ghost_Pages >= 5)
                     {
                         return;
