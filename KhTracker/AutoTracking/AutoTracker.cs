@@ -414,7 +414,7 @@ namespace KhTracker
             Magic.Visibility = Visibility.Visible;
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
-            //Weapon.Visibility = Visibility.Visible;
+            Weapon.Visibility = Visibility.Visible;
 
             if (AutoDetectOption.IsChecked)
                 Connect.Visibility = Visibility.Visible;
@@ -427,7 +427,7 @@ namespace KhTracker
             broadcast.Magic.Visibility = Visibility.Visible;
             broadcast.DefenseIcon.Visibility = Visibility.Visible;
             broadcast.Defense.Visibility = Visibility.Visible;
-            //broadcast.Weapon.Visibility = Visibility.Visible;
+            broadcast.Weapon.Visibility = Visibility.Visible;
 
             broadcast.ValorLevel.Visibility = Visibility.Visible;
             broadcast.WisdomLevel.Visibility = Visibility.Visible;
@@ -555,18 +555,13 @@ namespace KhTracker
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
 
-            //BindWeapon(Weapon, "Weapon", stats);
-            //BindWeapon(broadcast.Weapon, "Weapon", stats);
+            BindWeapon(Weapon, "Weapon", stats);
+            BindWeapon(broadcast.Weapon, "Weapon", stats);
 
             BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
             BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
             BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
-
-            //BindStats(broadcast.Level, "Level", stats);
-            //BindStats(broadcast.Strength, "Strength", stats);
-            //BindStats(broadcast.Magic, "Magic", stats);
-            //BindStats(broadcast.Defense, "Defense", stats);
 
             BindLevel(broadcast.ValorLevel, "Level", valor);
             BindLevel(broadcast.WisdomLevel, "Level", wisdom);
@@ -1670,14 +1665,6 @@ namespace KhTracker
             return BitConverter.ToString(bytes).Replace("-", "");
         }
 
-        //private void BindStats(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
         private void BindLevel(Image img, string property, object source)
         {
             Binding binding = new Binding(property);
@@ -1694,21 +1681,13 @@ namespace KhTracker
             img.SetBinding(OpacityProperty, binding);
         }
 
-        //private void BindFormLevel(Image img, string property, object source, IValueConverter convertor)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new LevelConverter();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindWeapon(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new WeaponConverter();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
+        private void BindWeapon(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new WeaponConverter();
+            img.SetBinding(Image.SourceProperty, binding);
+        }
 
         private void BindAbilityLevel(Image img, string property, object source, IValueConverter convertor)
         {
@@ -1739,8 +1718,8 @@ namespace KhTracker
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
 
-            //BindWeapon(Weapon, "Weapon", stats);
-            //BindWeapon(broadcast.Weapon, "Weapon", stats);
+            BindWeapon(Weapon, "Weapon", stats);
+            BindWeapon(broadcast.Weapon, "Weapon", stats);
 
             BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);

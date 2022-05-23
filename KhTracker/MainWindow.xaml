@@ -86,7 +86,7 @@
                 <MenuItem Name="PuzzleOption"           Header="Puzzles" IsCheckable="True" IsChecked="False" Click="PuzzleToggle"/>
                 <Separator/>
                 <MenuItem Name="TerraOption" 		    Header="Lingering Will" IsCheckable="True" IsChecked="False" Click="TerraToggle"/>
-                
+
                 <MenuItem Name="CavernOption" 			Header="Cavern of Rememberance" IsCheckable="True" IsChecked="False" Click="CavernToggle"/>
                 <!--MenuItem Name="TimelessOption" 		Header="Timeless River" IsCheckable="True" IsChecked="False" Click="TimelessToggle"/-->
                 <MenuItem Name="OCCupsOption" 		    Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/>
@@ -173,7 +173,18 @@
 
                             <ContentControl Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
 
-                                <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                            <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,15,-6" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SoraHeartImage"/>
                             </Button>
                             <Grid Name="SorasHeartHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
@@ -910,7 +921,7 @@
 
                             <!--Image Name="DisneyCastleLW" Source="Images/Worlds/lingering_will.png" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,15,-6"/-->
                             <ContentControl Name="DisneyCastleLW" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,15,-6"></ContentControl>
-                            
+
                             <Button Name="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" Grid.RowSpan="2" Grid.ColumnSpan="2" FocusVisualStyle="{x:Null}">
                                 <DynamicResource ResourceKey="Min-DisneyCastleImage"/>
                             </Button>
@@ -1140,7 +1151,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"/>
                     <!--LVL icon-->
-                    <ColumnDefinition Width="3*"/> 
+                    <ColumnDefinition Width="3*"/>
                     <!--LVL-->
                     <ColumnDefinition Width="3.5*"/>
                     <ColumnDefinition Width="3.5*"/>
@@ -1341,7 +1352,7 @@
                     </Grid>
 
                 </Grid>
-                
+
                 <!--Image Name="Strengthold"  Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="5"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -1394,7 +1405,7 @@
                         </Image.RenderTransform>
                     </Image>
                 </Grid>
-                
+
                 <!--Image Name="Magic"     Source="Images/Numbers/Kh2/Yellow/_QuestionMark.png" Grid.Row="3" Grid.RowSpan="1" Grid.Column="8"  Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -1554,7 +1565,7 @@
                     </ContentControl.RenderTransform>
                 </ContentControl>
 
-                <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <!--Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="3" Grid.Column="13" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
@@ -1563,7 +1574,7 @@
                             <TranslateTransform Y="-2" X="5"/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                </Image>
+                </Image-->
 
                 <Image Name="Connect" Source="Images/connect.png" Grid.Row="3" Grid.Column="17" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
                     <Image.RenderTransform>
@@ -1575,8 +1586,6 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-
-                <!--Image Name="Collectedold" Source="Images/Numbers/Kh2/Yellow/_0.png" Grid.Row="3" Grid.Column="15" Visibility="Hidden"/-->
 
                 <Grid Name="Collected" Grid.Row="3" Grid.Column="19" Grid.ColumnSpan="2" Margin="0,0,0,0"  HorizontalAlignment="Right">
                     <Grid.RowDefinitions>
@@ -1944,7 +1953,7 @@
                 <local:Item x:Name="Ghost_MembershipCard" 	Content="{DynamicResource Min-MembershipCard}"  Grid.Row="9" Grid.Column="9"  Opacity="0.5"/>
                 <local:Item x:Name="Ghost_Picture" 	        Content="{DynamicResource Min-Picture}"         Grid.Row="9" Grid.Column="10" Opacity="0.5"/>
                 <local:Item x:Name="Ghost_IceCream" 	    Content="{DynamicResource Min-IceCream}"        Grid.Row="9" Grid.Column="11" Opacity="0.5"/>
-                
+
             </Grid>
 
         </Grid>

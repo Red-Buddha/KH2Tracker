@@ -961,7 +961,7 @@ namespace KhTracker
             Magic.Visibility = Visibility.Hidden;
             DefenseIcon.Visibility = Visibility.Hidden;
             Defense.Visibility = Visibility.Hidden;
-            //Weapon.Visibility = Visibility.Hidden;
+            Weapon.Visibility = Visibility.Hidden;
             Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
 
             broadcast.LevelIcon.Visibility = Visibility.Hidden;
@@ -972,7 +972,7 @@ namespace KhTracker
             broadcast.Magic.Visibility = Visibility.Hidden;
             broadcast.DefenseIcon.Visibility = Visibility.Hidden;
             broadcast.Defense.Visibility = Visibility.Hidden;
-            //broadcast.Weapon.Visibility = Visibility.Hidden;
+            broadcast.Weapon.Visibility = Visibility.Hidden;
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
