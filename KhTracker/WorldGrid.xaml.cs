@@ -283,12 +283,12 @@ namespace KhTracker
                         {
                             int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
                             data.WorldsData[data.reportInformation[reportIndex].Item1].hintedHint = true;
-                            window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2 + 1);
+                            window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2);
                         }
                     }
 
                     // auto update world important check number
-                    window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2 + 1);
+                    window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2);
                 }
                 else
                 {
@@ -324,34 +324,10 @@ namespace KhTracker
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
                     // hint text and resetting fail icons
-                    //window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
                     window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
-                    //item.DragDropEventFire(data.reportInformation[index].Item1, data.reportInformation[index].Item2);
-
-                    // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
-                    //data.WorldsData[data.reportInformation[index].Item1].hinted = true;
-                    //if (data.WorldsData[data.reportLocations[index]].hinted == true)
-                    //{
-                    //    data.WorldsData[data.reportInformation[index].Item1].hintedHint = true;
-                    //}
-
-                    // loop through hinted world for reports to set their info as hinted hints
-                    //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children.Count; ++i)
-                    //{
-                    //    Item gridItem = data.WorldsData[data.reportInformation[index].Item1].worldGrid.Children[i] as Item;
-                    //    if (gridItem.Name.Contains("Report"))
-                    //    {
-                    //        int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
-                    //        data.WorldsData[data.reportInformation[reportIndex].Item1].hintedHint = true;
-                    //        window.SetReportValue(data.WorldsData[data.reportInformation[reportIndex].Item1].hint, data.reportInformation[reportIndex].Item2 + 1);
-                    //    }
-                    //}
-
-                    // auto update world important check number
-                    //window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2 + 1);
                 }
                 else
                 {
