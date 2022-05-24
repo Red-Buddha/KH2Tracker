@@ -762,6 +762,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+
+                    <Image Name="SimulatedTwilightTownPlus" Source="Images/Other/plus.png" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,4,0" Visibility="Hidden"/>
+
+
                     <ContentControl Content="{DynamicResource Min-SimulatedImage}" Name="SimulatedTwilightTown" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
                     <ContentControl Name="SimulatedTwilightTownProgression" Grid.Row="0" Grid.Column="2"/>
 

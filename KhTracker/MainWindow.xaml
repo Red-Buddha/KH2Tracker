@@ -227,11 +227,21 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Image Name="SimulatedTwilightTownPlus" Source="Images/Other/plus.png" Grid.Row="1" Panel.ZIndex="1" IsHitTestVisible="False" VerticalAlignment="Top" Margin="0,5,20,0" Visibility="Hidden">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
                             <Button Name="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SimulatedImage"/>
                             </Button>
 
-                            <!--Image Name="SimulatedTwilightTownHint" Source="Images\Numbers\Kh2\Yellow\_QuestionMark.png" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1"/-->
                             <Grid Name="SimulatedTwilightTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>

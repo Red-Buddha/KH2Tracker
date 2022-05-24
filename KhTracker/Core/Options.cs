@@ -963,6 +963,7 @@ namespace KhTracker
             Defense.Visibility = Visibility.Hidden;
             Weapon.Visibility = Visibility.Hidden;
             Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
+            SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
 
             broadcast.LevelIcon.Visibility = Visibility.Hidden;
             broadcast.Level.Visibility = Visibility.Hidden;
@@ -973,6 +974,7 @@ namespace KhTracker
             broadcast.DefenseIcon.Visibility = Visibility.Hidden;
             broadcast.Defense.Visibility = Visibility.Hidden;
             broadcast.Weapon.Visibility = Visibility.Hidden;
+            broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
             broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
@@ -1304,6 +1306,46 @@ namespace KhTracker
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                             var settings = new List<string>();
 
+
+
+                            ShouldResetHash = false;
+                            switch (hintObject["hintsType"].ToString())
+                            {
+                                case "Shananas":
+                                    {
+                                        SetMode(Mode.OpenKHAltHints);
+                                        ShanHints(hintObject);
+                                    }
+                                    break;
+                                case "JSmartee":
+                                    {
+                                        SetMode(Mode.OpenKHHints);
+                                        JsmarteeHints(hintObject);
+                                    }
+                                    break;
+                                case "Points":
+                                    {
+                                        SetMode(Mode.DAHints);
+                                        PointsHints(hintObject);
+                                    }
+                                    break;
+                                case "Path":
+                                    {
+                                        SetMode(Mode.PathHints);
+                                        PathHints(hintObject);
+                                    }
+                                    break;
+                                case "Timed":
+                                    {
+                                        //incomplete
+                                        //SetMode(Mode.TimeHints);
+                                        //TimeHints(hintObject);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+
                             if (hintObject.ContainsKey("settings"))
                             {
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
@@ -1327,6 +1369,9 @@ namespace KhTracker
                                     TornPagesToggle(true);
                                     CureToggle(true);
                                     FinalFormToggle(true);
+
+                                    SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
+                                    broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                 }
 
                                 //load settings from hints
@@ -1334,7 +1379,7 @@ namespace KhTracker
                                 {
                                     Console.WriteLine("setting found = " + setting);
 
-                                    switch(setting)
+                                    switch (setting)
                                     {
                                         case "PromiseCharm":
                                             PromiseCharmToggle(true);
@@ -1383,6 +1428,10 @@ namespace KhTracker
                                         case "Synthesis":
                                             SynthToggle(true);
                                             break;
+                                        case "better_stt":
+                                            SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
+                                            broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
+                                            break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")
                                     //    AbilitiesToggle(true);
@@ -1395,43 +1444,6 @@ namespace KhTracker
                                 }
                             }
 
-                            ShouldResetHash = false;
-                            switch (hintObject["hintsType"].ToString())
-                            {
-                                case "Shananas":
-                                    {
-                                        SetMode(Mode.OpenKHAltHints);
-                                        ShanHints(hintObject);
-                                    }
-                                    break;
-                                case "JSmartee":
-                                    {
-                                        SetMode(Mode.OpenKHHints);
-                                        JsmarteeHints(hintObject);
-                                    }
-                                    break;
-                                case "Points":
-                                    {
-                                        SetMode(Mode.DAHints);
-                                        PointsHints(hintObject);
-                                    }
-                                    break;
-                                case "Path":
-                                    {
-                                        SetMode(Mode.PathHints);
-                                        PathHints(hintObject);
-                                    }
-                                    break;
-                                case "Timed":
-                                    {
-                                        //incomplete
-                                        //SetMode(Mode.TimeHints);
-                                        //TimeHints(hintObject);
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
                         }
                     }
 
