@@ -637,6 +637,8 @@ namespace KhTracker
                 //Console.WriteLine("event id1 = " + world.eventID1);
                 //Console.WriteLine("event id2 = " + world.eventID2);
                 //Console.WriteLine("event id3 = " + world.eventID3);
+                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                Console.WriteLine(cntrl);
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {
@@ -1908,8 +1910,9 @@ namespace KhTracker
                 string menu1 = BytesToHex(memory.ReadMemory(0xBEBD28, 2)); //in a menu
                 string menu2 = BytesToHex(memory.ReadMemory(0x741230, 2)); //in journal
                 string menu3 = BytesToHex(memory.ReadMemory(0x8A41CA, 2)); //in synth
+                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
 
-                if ((menu2 == "FFFF" && menu1 == "0300" && menu3 == "0100") || (menu2 == "0000" && menu1 == "0300" && menu3 == "0000")) // in moogle shop / in puzzle mode
+                if ((menu2 == "FFFF" && menu1 == "0300" && menu3 == "0100" && cntrl == "00") || (menu2 == "0000" && menu1 == "0300" && menu3 == "0000")) // in moogle shop / in puzzle mode
                 {
                     return true;
                 }
