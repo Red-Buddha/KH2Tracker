@@ -78,7 +78,7 @@ namespace KhTracker
             {"Membership Card", "MembershipCard"},
             {"Ice Cream", "IceCream"},
             {"Picture", "Picture"},
-            {"Garden of Assemblage", "GOA"},
+            {"Garden of Assemblage", "GoA"},
             {"", "GoA"},
             {"Critical Bonuses", "GoA"},
             {"Creations", "PuzzSynth"}
