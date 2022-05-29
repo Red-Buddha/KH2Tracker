@@ -1118,7 +1118,7 @@ namespace KhTracker
                 pathgrid.Visibility = Visibility.Hidden;
                 foreach (Image child in pathgrid.Children)
                 {
-                    if (child.Name.Contains(key + "Path_Non"))
+                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
                         child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
                     child.Visibility = Visibility.Hidden;
                 }

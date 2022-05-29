@@ -192,22 +192,17 @@ namespace KhTracker
             //set pathproof defaults
             foreach (string key in data.WorldsData.Keys.ToList())
             {
-                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(2.2, GridUnitType.Star);
+                //adjust grid sizes for path proof icons
+                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(2.25, GridUnitType.Star);
                 Grid grid = data.WorldsData[key].world.Parent as Grid;
-                grid.ColumnDefinitions[3].Width = new GridLength(2, GridUnitType.Star);
+                grid.ColumnDefinitions[3].Width = new GridLength(2.2, GridUnitType.Star);
 
-                //IEnumerable<Grid> pathgrid = data.WorldsData[key].top.Children
-                //                 .OfType<Grid>()
-                //                 .Where(x => x.Name == key + "Path");
-
+                //get grid for path proof collumn and set visibility
                 Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
-                pathgrid.Visibility = Visibility.Visible;
+                pathgrid.Visibility = Visibility.Visible; //main grid
                 foreach (Image child in pathgrid.Children)
                 {
-                    //if (child.Name.Contains(key + "Path_Cross"))
-                    //    child.Visibility = Visibility.Visible;
-                    //else
-                    child.Visibility = Visibility.Hidden;
+                    child.Visibility = Visibility.Hidden; //each icon hidden by default
                 }
             }
 
