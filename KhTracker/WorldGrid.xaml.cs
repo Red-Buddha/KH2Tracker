@@ -324,6 +324,85 @@ namespace KhTracker
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
                     // hint text and resetting fail icons
+                    window.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
+                    PathProofToggle(data.pathreportInformation[index].Item2, data.pathreportInformation[index].Item3);
+                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                    data.reportAttempts[index] = 3;
+                    isreport = true;
+                }
+                else
+                {
+                    // update fail icons when location is report location is wrong
+                    AddFailIcon(index);
+                    return false;
+                }
+            }
+
+            if (isreport)
+            {
+                item.MouseEnter -= item.Report_Hover;
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
+        }
+
+        public void PathProofToggle(string location, int proofs)
+        {
+            //reminder: location is what report is for, not from
+            //reminder: con = 1 | non = 10 | peace = 100
+            string world = location + "Path";
+            bool conProof = false;
+            bool nonProof = false;
+            bool peaProof = false;
+
+            Grid pathgrid = MainWindow.data.WorldsData[location].top.FindName(world) as Grid;
+            Image top = pathgrid.FindName(world + "_Con") as Image;
+            Image middle = pathgrid.FindName(world + "_Non") as Image;
+            Image bottom = pathgrid.FindName(world + "_Pea") as Image;
+
+            if (proofs >= 100)
+            {
+                bottom.Visibility = Visibility.Visible;
+                peaProof = true;
+                proofs -= 100;
+            }
+            if (proofs >= 10)
+            {
+                middle.Visibility = Visibility.Visible;
+                nonProof = true;
+                proofs -= 10;
+            }
+            if (proofs == 1)
+            {
+                top.Visibility = Visibility.Visible;
+                conProof = true;
+            }
+
+            if (proofs == 0 && !conProof && !nonProof && !peaProof)
+            {
+                middle.Source = new BitmapImage(new Uri("Images/Other/cross.png", UriKind.Relative));
+                middle.Visibility = Visibility.Visible;
+            }
+        }
+
+        public bool Handle_PathReportOLD(Item item, MainWindow window, Data data)
+        {
+            bool isreport = false;
+
+            // item is a report
+            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            {
+                int index = (int)item.GetValue(Grid.ColumnProperty);
+
+                // out of report attempts
+                if (data.reportAttempts[index] == 0)
+                    return false;
+
+                // check for correct report location
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
+                {
+                    // hint text and resetting fail icons
                     window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;

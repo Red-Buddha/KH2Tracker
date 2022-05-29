@@ -488,14 +488,14 @@ namespace KhTracker
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Visible;
 
-                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
 
-                    Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
-                    grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                    grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.WorldsData[key].world, 2);
+                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
+                    //grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
+                    //grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                    //grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
+                    //Grid.SetColumnSpan(data.WorldsData[key].world, 2);
                 }
             }
             else
@@ -507,14 +507,14 @@ namespace KhTracker
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Hidden;
 
-                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
 
-                    Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
-                    grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
-                    grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.WorldsData[key].world, 3);
+                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
+                    //grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
+                    //grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
+                    //grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
+                    //Grid.SetColumnSpan(data.WorldsData[key].world, 3);
                 }
             }
         }

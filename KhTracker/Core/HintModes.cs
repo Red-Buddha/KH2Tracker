@@ -130,7 +130,6 @@ namespace KhTracker
             data.hintsLoaded = true;
         }
 
-
         private void PathHints(Dictionary<string, object> hintObject)
         {
             ShouldResetHash = true;
@@ -151,6 +150,7 @@ namespace KhTracker
                 }
 
             }
+
             foreach (var key in data.WorldsData.Keys.ToList())
             {
                 if (key == "GoA")
@@ -160,14 +160,57 @@ namespace KhTracker
                 SetReportValue(data.WorldsData[key].hint, 0);
             }
 
-            foreach (var report in reportKeys)
+            foreach (int report in reportKeys)
             {
                 var hinttext = reports[report.ToString()]["Text"].ToString();
+                int hintproofs = 0;
+                var hintworld = convertOpenKH[reports[report.ToString()]["HintedWorld"].ToString()];
                 var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
 
-                data.reportInformation.Add(new Tuple<string, int>(hinttext, 0));
+                //turn proof names to value. con = 1 | non = 10 | peace = 100
+                List<string> hintprooflist = new List<string>(JsonSerializer.Deserialize<List<string>>(reports[report.ToString()]["ProofPath"].ToString()));
+                foreach (string proof in hintprooflist)
+                {
+                    switch (proof)
+                    {
+                        case "Connection":
+                            hintproofs += 1;
+                            break;
+                        case "Nonexistence":
+                            hintproofs += 10;
+                            break;
+                        case "Peace":
+                            hintproofs += 100;
+                            break;
+                    }
+                }
+
+                data.pathreportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
                 data.reportLocations.Add(location);
             }
+
+            //set pathproof defaults
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(2.2, GridUnitType.Star);
+                Grid grid = data.WorldsData[key].world.Parent as Grid;
+                grid.ColumnDefinitions[3].Width = new GridLength(2, GridUnitType.Star);
+
+                //IEnumerable<Grid> pathgrid = data.WorldsData[key].top.Children
+                //                 .OfType<Grid>()
+                //                 .Where(x => x.Name == key + "Path");
+
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Visible;
+                foreach (Image child in pathgrid.Children)
+                {
+                    //if (child.Name.Contains(key + "Path_Cross"))
+                    //    child.Visibility = Visibility.Visible;
+                    //else
+                    child.Visibility = Visibility.Hidden;
+                }
+            }
+
             ReportsToggle(true);
             data.hintsLoaded = true;
         }

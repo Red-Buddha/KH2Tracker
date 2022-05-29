@@ -22,6 +22,7 @@ namespace KhTracker
 
         public List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
         public List<Tuple<string, string>> pointreportInformation = new List<Tuple<string, string>>();
+        public List<Tuple<string, string, int>> pathreportInformation = new List<Tuple<string, string, int>>();
         public List<string> reportLocations = new List<string>();
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 

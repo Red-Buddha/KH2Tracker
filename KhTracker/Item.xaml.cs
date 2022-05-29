@@ -143,7 +143,7 @@ namespace KhTracker
             }
             else if (data.mode == Mode.PathHints)
             {
-                window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
+                window.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
             }
             else
             {

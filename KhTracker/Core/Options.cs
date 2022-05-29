@@ -729,6 +729,7 @@ namespace KhTracker
             data.reportLocations.Clear();
             data.reportInformation.Clear();
             data.pointreportInformation.Clear();
+            data.pathreportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -1106,6 +1107,23 @@ namespace KhTracker
             broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
             broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
+            //reset pathhints edits
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                Grid grid = data.WorldsData[key].world.Parent as Grid;
+                grid.ColumnDefinitions[3].Width = new GridLength(0.1, GridUnitType.Star);
+
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Hidden;
+                foreach (Image child in pathgrid.Children)
+                {
+                    if (child.Name.Contains(key + "Path_Non"))
+                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
+                    child.Visibility = Visibility.Hidden;
+                }
+            }
+
             UpdatePointScore(0);
             ReportsToggle(true);
             ResetHints();
@@ -1305,8 +1323,6 @@ namespace KhTracker
                             var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                             var settings = new List<string>();
-
-
 
                             ShouldResetHash = false;
                             switch (hintObject["hintsType"].ToString())
