@@ -637,8 +637,8 @@ namespace KhTracker
                 //Console.WriteLine("event id1 = " + world.eventID1);
                 //Console.WriteLine("event id2 = " + world.eventID2);
                 //Console.WriteLine("event id3 = " + world.eventID3);
-                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
-                Console.WriteLine(cntrl);
+                //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                //Console.WriteLine(cntrl);
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {

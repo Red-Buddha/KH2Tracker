@@ -41,6 +41,8 @@ namespace KhTracker
         //A single spot to have referenced for the opacity of the ghost checks idk where to put this
         public static double universalOpacity = 0.5;
 
+        public MainWindow MainW = (MainWindow)App.Current.MainWindow;
+
         public WorldGrid()
         {
             InitializeComponent();
@@ -81,8 +83,10 @@ namespace KhTracker
             var outerGrid = ((Parent as Grid).Parent as Grid);
             int row = (int)Parent.GetValue(Grid.RowProperty);
             outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
+            string worldName = Name.Substring(0, Name.Length - 4);
 
-            if (((MainWindow)App.Current.MainWindow).VisitLockOption.IsChecked)
+            //visit lock check first
+            if (MainW.VisitLockOption.IsChecked)
             {
                 VisitLock(button, add);
             }
@@ -90,11 +94,10 @@ namespace KhTracker
             if (MainWindow.data.mode == Mode.PathHints)
             {
                 WorldComplete();
-
-                string worldName = Name.Substring(0, Name.Length - 4);
+                
                 if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
+                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
                 }
             }
 
@@ -102,12 +105,9 @@ namespace KhTracker
             {
                 WorldComplete();
 
-                string worldName = Name.Substring(0, Name.Length - 4);
                 if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
-                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
-                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
+                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
                 }
             }
 
@@ -116,27 +116,25 @@ namespace KhTracker
                 if (button.Name.StartsWith("Ghost_"))
                 {
                     //we use this modified code to set world point values
-                    string worldName = Name.Substring(0, Name.Length - 4);
                     CheckWorldGhost(worldName);
 
                     Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
                     Grid hint = MainWindow.data.WorldsData[worldName].hint;
-                    ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
+                    MainW.SetPoints(worldName, MainW.GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                    MainW.SetReportValue(hint, MainW.GetPoints(worldName));
 
                 }
                 else
                 {
-                    string worldName = Name.Substring(0, Name.Length - 4);
                     WorldPointsComplete();
 
                     Console.WriteLine("real " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
                     Grid hint = MainWindow.data.WorldsData[worldName].hint;
                     
-                    ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
+                    MainW.SetPoints(worldName, MainW.GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                    MainW.SetReportValue(hint, MainW.GetPoints(worldName));
 
                     //this creates a dictionary of items each world has tracked.
                     if (worldName != "GoA")
@@ -168,7 +166,7 @@ namespace KhTracker
                     if (worldName == "GoA")
                         return;
                     else
-                        ((MainWindow)App.Current.MainWindow).UpdatePointScore(TableReturn(button.Name) * addRemove);
+                        MainW.UpdatePointScore(TableReturn(button.Name) * addRemove);
                 }
             }
         }
@@ -307,6 +305,97 @@ namespace KhTracker
             return true;
         }
 
+        private void AddFailIcon(int index)
+        {
+            Data data = MainWindow.data;
+
+            data.reportAttempts[index]--;
+            if (data.reportAttempts[index] == 0)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail3");
+            else if (data.reportAttempts[index] == 1)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail2");
+            else if (data.reportAttempts[index] == 2)
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
+        }
+
+        public void WorldComplete()
+        {
+            string worldName = Name.Substring(0, Name.Length - 4);
+            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
+                return;
+
+            List<string> items = new List<string>();
+            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
+
+            foreach (var child in Children)
+            {
+                Item item = child as Item;
+                char[] numbers = { '1', '2', '3', '4', '5' };
+
+                if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
+                    items.Remove(item.Name);
+                else if (items.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    items.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            if (items.Count == 0)
+            {
+                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
+            }
+        }
+
+        //visit locking stuff
+        public void VisitLock(Item item, bool add)
+        {
+            string ItemName = item.Name;
+            int addRemove = -1;
+
+            if (!add)
+                addRemove = 1;
+
+            switch (ItemName)
+            {
+                case "AuronWep":
+                    MainWindow.data.WorldsData["OlympusColiseum"].visitLocks += addRemove;
+                    break;
+                case "MulanWep":
+                    MainWindow.data.WorldsData["LandofDragons"].visitLocks += addRemove;
+                    break;
+                case "BeastWep":
+                    MainWindow.data.WorldsData["BeastsCastle"].visitLocks += addRemove;
+                    break;
+                case "JackWep":
+                    MainWindow.data.WorldsData["HalloweenTown"].visitLocks += addRemove;
+                    break;
+                case "SimbaWep":
+                    MainWindow.data.WorldsData["PrideLands"].visitLocks += addRemove;
+                    break;
+                case "SparrowWep":
+                    MainWindow.data.WorldsData["PortRoyal"].visitLocks += addRemove;
+                    break;
+                case "AladdinWep":
+                    MainWindow.data.WorldsData["Agrabah"].visitLocks += addRemove;
+                    break;
+                case "TronWep":
+                    MainWindow.data.WorldsData["SpaceParanoids"].visitLocks += addRemove;
+                    break;
+                case "IceCream":
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += (addRemove * 10);
+                    break;
+                case "Picture":
+                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    break;
+                case "MembershipCard":
+                    MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;
+                    break;
+            }
+
+             MainW.VisitLockCheck();
+        }
+
+        //Path hints stuff
         public bool Handle_PathReport(Item item, MainWindow window, Data data)
         {
             bool isreport = false;
@@ -386,91 +475,13 @@ namespace KhTracker
             }
         }
 
-        public bool Handle_PathReportOLD(Item item, MainWindow window, Data data)
-        {
-            bool isreport = false;
-
-            // item is a report
-            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
-            {
-                int index = (int)item.GetValue(Grid.ColumnProperty);
-
-                // out of report attempts
-                if (data.reportAttempts[index] == 0)
-                    return false;
-
-                // check for correct report location
-                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
-                {
-                    // hint text and resetting fail icons
-                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
-                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
-                    data.reportAttempts[index] = 3;
-                    isreport = true;
-                }
-                else
-                {
-                    // update fail icons when location is report location is wrong
-                    AddFailIcon(index);
-                    return false;
-                }
-            }
-
-            if (isreport)
-            {
-                item.MouseEnter -= item.Report_Hover;
-                item.MouseEnter += item.Report_Hover;
-            }
-
-            return true;
-        }
-
-        private void AddFailIcon(int index)
-        {
-            Data data = MainWindow.data;
-
-            data.reportAttempts[index]--;
-            if (data.reportAttempts[index] == 0)
-                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail3");
-            else if (data.reportAttempts[index] == 1)
-                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail2");
-            else if (data.reportAttempts[index] == 2)
-                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail1");
-        }
-
-        public void WorldComplete()
-        {
-            string worldName = Name.Substring(0, Name.Length - 4);
-            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
-                return;
-
-            List<string> items = new List<string>();
-            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
-
-            foreach (var child in Children)
-            {
-                Item item = child as Item;
-                char[] numbers = { '1', '2', '3', '4', '5' };
-
-                if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
-                    items.Remove(item.Name);
-                else if (items.Contains(item.Name.TrimEnd(numbers)))
-                {
-                    items.Remove(item.Name.TrimEnd(numbers));
-                }
-            }
-
-            if (items.Count == 0)
-            {
-                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
-            }
-        }
+        //points hints stuff
 
         public int TableReturn(string nameButton)
         {
             if (nameButton.StartsWith("Ghost_"))
             {
-                if (((MainWindow)App.Current.MainWindow).GhostMathOption.IsChecked)
+                if (MainW.GhostMathOption.IsChecked)
                 {
                     if (GetItemType.Keys.Contains(nameButton))
                     {
@@ -499,56 +510,6 @@ namespace KhTracker
             }
         }
 
-        //visit locking stuff
-        public void VisitLock(Item item, bool add)
-        {
-            string ItemName = item.Name;
-            int addRemove = -1;
-
-            if (!add)
-                addRemove = 1;
-
-            switch (ItemName)
-            {
-                case "AuronWep":
-                    MainWindow.data.WorldsData["OlympusColiseum"].visitLocks += addRemove;
-                    break;
-                case "MulanWep":
-                    MainWindow.data.WorldsData["LandofDragons"].visitLocks += addRemove;
-                    break;
-                case "BeastWep":
-                    MainWindow.data.WorldsData["BeastsCastle"].visitLocks += addRemove;
-                    break;
-                case "JackWep":
-                    MainWindow.data.WorldsData["HalloweenTown"].visitLocks += addRemove;
-                    break;
-                case "SimbaWep":
-                    MainWindow.data.WorldsData["PrideLands"].visitLocks += addRemove;
-                    break;
-                case "SparrowWep":
-                    MainWindow.data.WorldsData["PortRoyal"].visitLocks += addRemove;
-                    break;
-                case "AladdinWep":
-                    MainWindow.data.WorldsData["Agrabah"].visitLocks += addRemove;
-                    break;
-                case "TronWep":
-                    MainWindow.data.WorldsData["SpaceParanoids"].visitLocks += addRemove;
-                    break;
-                case "IceCream":
-                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += (addRemove * 10);
-                    break;
-                case "Picture":
-                    MainWindow.data.WorldsData["TwilightTown"].visitLocks += addRemove;
-                    break;
-                case "MembershipCard":
-                    MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;
-                    break;
-            }
-
-             ((MainWindow)App.Current.MainWindow).VisitLockCheck();
-        }
-        
-        //points hints stuff
         public bool Handle_PointReport(Item item, MainWindow window, Data data)
         {
             bool isreport = false;
