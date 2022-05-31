@@ -1293,10 +1293,10 @@ namespace KhTracker
             }
             else if (world.worldName == "HundredAcreWood")
             {
-                if (world.roomNumber == 2 && (world.eventID3 == 1 || world.eventID3 == 22)) // Pooh's house (eventID3 == 1 is when not skipping AW0)
+                if (world.roomNumber == 2 && (world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22)) // Pooh's house (eventID3 == 1 is when not skipping AW0)
                 {
-                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, (Prog + "Pooh"));
-                    HundredAcreWoodProgression.SetResourceReference(ContentProperty, (Prog + "Pooh"));
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, Prog + "Pooh");
+                    HundredAcreWoodProgression.SetResourceReference(ContentProperty, Prog + "Pooh");
                     data.WorldsData[world.worldName].progress = 1;
                 }
                 else if (world.roomNumber == 4 && world.eventID3 == 1) // Piglet's house

@@ -421,7 +421,7 @@ namespace KhTracker
 
         private void ShowCheckCountToggle(bool toggle)
         {
-            Console.WriteLine("ShowCheckCountToggle pressed");
+            //Console.WriteLine("ShowCheckCountToggle pressed");
 
             Properties.Settings.Default.CheckCount = toggle;
             CheckCountOption.IsChecked = toggle;
