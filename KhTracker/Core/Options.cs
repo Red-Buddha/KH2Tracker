@@ -293,50 +293,52 @@ namespace KhTracker
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-
-                List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-                reportKeys.Sort();
-
-                foreach (var report in reportKeys)
-                {
-                    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
-                    var count = reports[report.ToString()]["Count"].ToString();
-                    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
-                    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
-                    data.reportLocations.Add(location);
-                }
-
-                data.hintsLoaded = true;
-                HintText.Content = "Hints Loaded";
+                JsmarteeHints(hintObject);
+                //var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                //
+                //List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                //reportKeys.Sort();
+                //
+                //foreach (var report in reportKeys)
+                //{
+                //    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                //    var count = reports[report.ToString()]["Count"].ToString();
+                //    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                //    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                //    data.reportLocations.Add(location);
+                //}
+                //
+                //data.hintsLoaded = true;
+                //HintText.Content = "Hints Loaded";
             }
             else if (mode == "OpenKHAltHints")
             {
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-
-                foreach (var world in worlds)
-                {
-                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                    {
-                        continue;
-                    }
-                    foreach (var item in world.Value)
-                    {
-                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-                    }
-
-                }
-                foreach (var key in data.WorldsData.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-
-                    data.WorldsData[key].worldGrid.WorldComplete();
-                    SetReportValue(data.WorldsData[key].hint, 0);
-                }
+                ShanHints(hintObject);
+                //var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                //
+                //foreach (var world in worlds)
+                //{
+                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                //    {
+                //        continue;
+                //    }
+                //    foreach (var item in world.Value)
+                //    {
+                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                //    }
+                //
+                //}
+                //foreach (var key in data.WorldsData.Keys.ToList())
+                //{
+                //    if (key == "GoA")
+                //        continue;
+                //
+                //    data.WorldsData[key].worldGrid.WorldComplete();
+                //    SetReportValue(data.WorldsData[key].hint, 0);
+                //}
             }
             else if (mode == "DAHints")
             {
@@ -350,94 +352,95 @@ namespace KhTracker
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-                var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-                var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
-
-                List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
-                reportKeysP.Sort();
-
-                foreach (var point in points)
-                {
-                    if (data.PointsDatanew.Keys.Contains(point.Key))
-                    {
-                        data.PointsDatanew[point.Key] = point.Value;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Something went wrong in setting point values. error: {point.Key}");
-                    }
-                }
-
-                //Fallback values for older seeds
-                if (!points.Keys.Contains("report"))
-                    data.PointsDatanew["report"] = data.PointsDatanew["page"];
-                if (!points.Keys.Contains("bonus"))
-                    data.PointsDatanew["bonus"] = 10;
-                if (!points.Keys.Contains("complete"))
-                    data.PointsDatanew["complete"] = 10;
-                if (!points.Keys.Contains("formlv"))
-                    data.PointsDatanew["formlv"] = 3;
-                if (!points.Keys.Contains("visit"))
-                    data.PointsDatanew["visit"] = 1;
-
-                //get point totals for each world
-                foreach (var world in worldsP)
-                {
-                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                    {
-                        continue;
-                    }
-                    foreach (var item in world.Value)
-                    {
-                        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
-                            continue;
-
-                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-
-                        string itemType = CheckItemType(item);
-                        if (data.PointsDatanew.Keys.Contains(itemType))
-                        {
-                            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Something went wrong in getting world points. error: {itemType}");
-                        }
-                    }
-                }
-
-                //set points for each world
-                foreach (var key in data.WorldsData.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-
-                    data.WorldsData[key].worldGrid.WorldPointsComplete();
-
-                    if (WorldPoints.Keys.Contains(key))
-                    {
-                        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Something went wrong in setting world point numbers. error: {key}");
-                    }
-                }
-
-                foreach (var reportP in reportKeysP)
-                {
-                    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
-                    var checkP = reportsP[reportP.ToString()]["check"].ToString();
-                    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
-
-                    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
-                    data.reportLocations.Add(locationP);
-                }
-
-                ReportsToggle(true);
-                data.hintsLoaded = true;
-                WorldPoints_c = WorldPoints;
+                PointsHints(hintObject);
+                //var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                //var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                //var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
+                //
+                //List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
+                //reportKeysP.Sort();
+                //
+                //foreach (var point in points)
+                //{
+                //    if (data.PointsDatanew.Keys.Contains(point.Key))
+                //    {
+                //        data.PointsDatanew[point.Key] = point.Value;
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine($"Something went wrong in setting point values. error: {point.Key}");
+                //    }
+                //}
+                //
+                ////Fallback values for older seeds
+                //if (!points.Keys.Contains("report"))
+                //    data.PointsDatanew["report"] = data.PointsDatanew["page"];
+                //if (!points.Keys.Contains("bonus"))
+                //    data.PointsDatanew["bonus"] = 10;
+                //if (!points.Keys.Contains("complete"))
+                //    data.PointsDatanew["complete"] = 10;
+                //if (!points.Keys.Contains("formlv"))
+                //    data.PointsDatanew["formlv"] = 3;
+                //if (!points.Keys.Contains("visit"))
+                //    data.PointsDatanew["visit"] = 1;
+                //
+                ////get point totals for each world
+                //foreach (var world in worldsP)
+                //{
+                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                //    {
+                //        continue;
+                //    }
+                //    foreach (var item in world.Value)
+                //    {
+                //        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
+                //            continue;
+                //
+                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                //
+                //        string itemType = CheckItemType(item);
+                //        if (data.PointsDatanew.Keys.Contains(itemType))
+                //        {
+                //            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
+                //        }
+                //        else
+                //        {
+                //            Console.WriteLine($"Something went wrong in getting world points. error: {itemType}");
+                //        }
+                //    }
+                //}
+                //
+                ////set points for each world
+                //foreach (var key in data.WorldsData.Keys.ToList())
+                //{
+                //    if (key == "GoA")
+                //        continue;
+                //
+                //    data.WorldsData[key].worldGrid.WorldPointsComplete();
+                //
+                //    if (WorldPoints.Keys.Contains(key))
+                //    {
+                //        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine($"Something went wrong in setting world point numbers. error: {key}");
+                //    }
+                //}
+                //
+                //foreach (var reportP in reportKeysP)
+                //{
+                //    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
+                //    var checkP = reportsP[reportP.ToString()]["check"].ToString();
+                //    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
+                //
+                //    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
+                //    data.reportLocations.Add(locationP);
+                //}
+                //
+                //ReportsToggle(true);
+                //data.hintsLoaded = true;
+                //WorldPoints_c = WorldPoints;
 
                 var witemlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
                 var witemlist = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(witemlist64);

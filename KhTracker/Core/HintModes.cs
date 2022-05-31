@@ -13,77 +13,6 @@ namespace KhTracker
 {
     public partial class MainWindow
     {
-        private Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
-        {
-            {"Level", "SorasHeart" },
-            {"Form Levels", "DriveForms" },
-            {"Simulated Twilight Town", "SimulatedTwilightTown" },
-            {"Twilight Town", "TwilightTown" },
-            {"Hollow Bastion", "HollowBastion" },
-            {"Beast's Castle", "BeastsCastle" },
-            {"Olympus Coliseum", "OlympusColiseum" },
-            {"Agrabah", "Agrabah" },
-            {"Land of Dragons", "LandofDragons" },
-            {"Hundred Acre Wood", "HundredAcreWood" },
-            {"Pride Lands", "PrideLands" },
-            {"Disney Castle / Timeless River", "DisneyCastle" },
-            {"Halloween Town", "HalloweenTown" },
-            {"Port Royal", "PortRoyal" },
-            {"Space Paranoids", "SpaceParanoids" },
-            {"The World That Never Was", "TWTNW" },
-            {"Atlantica", "Atlantica" },
-            {"Proof of Connection", "Connection" },
-            {"Proof of Nonexistence", "Nonexistence" },
-            {"Proof of Peace", "Peace" },
-            {"PromiseCharm", "PromiseCharm" },
-            {"Valor Form", "Valor" },
-            {"Wisdom Form", "Wisdom" },
-            {"Limit Form", "Limit" },
-            {"Master Form", "Master" },
-            {"Final Form", "Final" },
-            {"Fire Element", "Fire" },
-            {"Blizzard Element", "Blizzard" },
-            {"Thunder Element", "Thunder" },
-            {"Cure Element", "Cure" },
-            {"Magnet Element", "Magnet" },
-            {"Reflect Element", "Reflect" },
-            {"Ukulele Charm (Stitch)", "Ukulele" },
-            {"Baseball Charm (Chicken Little)", "Baseball" },
-            {"Lamp Charm (Genie)", "Lamp" },
-            {"Feather Charm (Peter Pan)", "Feather" },
-            {"Torn Pages", "TornPage" },
-            {"Second Chance", "SecondChance" },
-            {"Once More", "OnceMore" },
-            {"Secret Ansem's Report 1", "Report1"},
-            {"Secret Ansem's Report 2", "Report2"},
-            {"Secret Ansem's Report 3", "Report3"},
-            {"Secret Ansem's Report 4", "Report4"},
-            {"Secret Ansem's Report 5", "Report5"},
-            {"Secret Ansem's Report 6", "Report6"},
-            {"Secret Ansem's Report 7", "Report7"},
-            {"Secret Ansem's Report 8", "Report8"},
-            {"Secret Ansem's Report 9", "Report9"},
-            {"Secret Ansem's Report 10", "Report10"},
-            {"Secret Ansem's Report 11", "Report11"},
-            {"Secret Ansem's Report 12", "Report12"},
-            {"Secret Ansem's Report 13", "Report13"},
-            {"Battlefields of War (Auron)", "AuronWep"},
-            {"Sword of the Ancestor (Mulan)", "MulanWep"},
-            {"Beast's Claw (Beast)", "BeastWep"},
-            {"Bone Fist (Jack Skellington)", "JackWep"},
-            {"Proud Fang (Simba)", "SimbaWep"},
-            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
-            {"Scimitar (Aladdin)", "AladdinWep"},
-            {"Identity Disk (Tron)", "TronWep"},
-            {"Membership Card", "MembershipCard"},
-            {"Ice Cream", "IceCream"},
-            {"Picture", "Picture"},
-            {"Garden of Assemblage", "GoA"},
-            {"", "GoA"},
-            {"Critical Bonuses", "GoA"},
-            {"Creations", "PuzzSynth"}
-        };
-
         private void ShanHints(Dictionary<string, object> hintObject)
         {
             ShouldResetHash = true;
@@ -97,7 +26,7 @@ namespace KhTracker
                 }
                 foreach (var item in world.Value)
                 {
-                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                    data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
                 }
 
             }
@@ -120,9 +49,9 @@ namespace KhTracker
 
             foreach (var report in reportKeys)
             {
-                var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
                 var count = reports[report.ToString()]["Count"].ToString();
-                var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
                 data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
                 data.reportLocations.Add(location);
             }
@@ -146,7 +75,7 @@ namespace KhTracker
                 }
                 foreach (var item in world.Value)
                 {
-                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                    data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
                 }
 
             }
@@ -164,8 +93,8 @@ namespace KhTracker
             {
                 var hinttext = reports[report.ToString()]["Text"].ToString();
                 int hintproofs = 0;
-                var hintworld = convertOpenKH[reports[report.ToString()]["HintedWorld"].ToString()];
-                var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                var hintworld = Codes.ConvertSeedGenName(reports[report.ToString()]["HintedWorld"].ToString());
+                var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
 
                 //turn proof names to value. con = 1 | non = 10 | peace = 100
                 List<string> hintprooflist = new List<string>(JsonSerializer.Deserialize<List<string>>(reports[report.ToString()]["ProofPath"].ToString()));
@@ -213,58 +142,6 @@ namespace KhTracker
         /// <summary>
         /// points hints and logic
         /// </summary>
-
-        //this used to be a bunch of different lists for each type in the data class that were built on init
-        //that was kinda dumb so i removed all of that and instead have a single list here. far easier to update now
-        private Dictionary<string, string> GetItemType = new Dictionary<string, string>()
-        {
-            {"Fire Element", "magic"},
-            {"Blizzard Element", "magic"},
-            {"Thunder Element", "magic"},
-            {"Cure Element", "magic"},
-            {"Magnet Element", "magic"},
-            {"Reflect Element", "magic"},
-            {"Ukulele Charm (Stitch)", "summon"},
-            {"Lamp Charm (Genie)", "summon"},
-            {"Feather Charm (Peter Pan)", "summon"},
-            {"Baseball Charm (Chicken Little)", "summon"},
-            {"Valor Form", "form"},
-            {"Wisdom Form", "form"},
-            {"Final Form", "form"},
-            {"Master Form", "form"},
-            {"Limit Form", "form"},
-            {"Second Chance", "ability"},
-            {"Once More", "ability"},
-            {"PromiseCharm", "proof"},
-            {"Proof of Connection", "proof"},
-            {"Proof of Nonexistence", "proof"},
-            {"Proof of Peace", "proof"},
-            {"Torn Pages", "page"},
-            {"Secret Ansem's Report 1", "report"},
-            {"Secret Ansem's Report 2", "report"},
-            {"Secret Ansem's Report 3", "report"},
-            {"Secret Ansem's Report 4", "report"},
-            {"Secret Ansem's Report 5", "report"},
-            {"Secret Ansem's Report 6", "report"},
-            {"Secret Ansem's Report 7", "report"},
-            {"Secret Ansem's Report 8", "report"},
-            {"Secret Ansem's Report 9", "report"},
-            {"Secret Ansem's Report 10", "report"},
-            {"Secret Ansem's Report 11", "report"},
-            {"Secret Ansem's Report 12", "report"},
-            {"Secret Ansem's Report 13", "report"},
-            {"Battlefields of War (Auron)", "visit"},
-            {"Sword of the Ancestor (Mulan)", "visit"},
-            {"Beast's Claw (Beast)", "visit"},
-            {"Bone Fist (Jack Skellington)", "visit"},
-            {"Proud Fang (Simba)", "visit"},
-            {"Skill and Crossbones (Jack Sparrow)", "visit"},
-            {"Scimitar (Aladdin)", "visit"},
-            {"Identity Disk (Tron)", "visit"},
-            {"Membership Card", "visit"},
-            {"Ice Cream", "visit"},
-            {"Picture", "visit"}
-        };
  
         //used to be a ton of ints
         //split into two dictionarys now as it's much easier to handle and uses far less if statements.
@@ -356,12 +233,12 @@ namespace KhTracker
                 }
                 foreach (var item in world.Value)
                 {
-                    data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                    data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
 
-                    string itemType = CheckItemType(item);
+                    string itemType = Codes.FindItemType(item);
                     if (data.PointsDatanew.Keys.Contains(itemType))
                     {
-                        WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
+                        WorldPoints[Codes.ConvertSeedGenName(world.Key)] += data.PointsDatanew[itemType];
                     }
                     else
                     {
@@ -376,7 +253,7 @@ namespace KhTracker
                 if (key == "GoA")
                     continue;
 
-                data.WorldsData[key].worldGrid.WorldPointsComplete();
+                data.WorldsData[key].worldGrid.WorldComplete();
 
                 if (WorldPoints.Keys.Contains(key))
                 {
@@ -391,9 +268,9 @@ namespace KhTracker
             //set hints for each report
             foreach (var reportP in reportKeysP)
             {
-                var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
+                var worldP = Codes.ConvertSeedGenName(reportsP[reportP.ToString()]["World"].ToString());
                 var checkP = reportsP[reportP.ToString()]["check"].ToString();
-                var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
+                var locationP = Codes.ConvertSeedGenName(reportsP[reportP.ToString()]["Location"].ToString());
 
                 data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
                 data.reportLocations.Add(locationP);
@@ -603,15 +480,6 @@ namespace KhTracker
             broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
         }
 
-        private string CheckItemType(string item)
-        {
-            //need to retur some kinda value just in case
-            if (GetItemType.Keys.Contains(item))
-                return GetItemType[item];
-            else
-                return "Unknown";
-        }
-
         ///
         /// Timed hints stuff
         /// 
@@ -635,9 +503,9 @@ namespace KhTracker
             int i = 0;
             foreach (var report in reportKeys)
             {
-                var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
                 var count = reports[report.ToString()]["Count"].ToString();
-                var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
                 data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
                 data.reportLocations.Add(location);
 

@@ -632,11 +632,11 @@ namespace KhTracker
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
 
-                //Console.WriteLine("room num = " + world.roomNumber);
-                //Console.WriteLine("world num = " + world.worldNum);
-                //Console.WriteLine("event id1 = " + world.eventID1);
-                //Console.WriteLine("event id2 = " + world.eventID2);
-                //Console.WriteLine("event id3 = " + world.eventID3);
+                Console.WriteLine("room num = " + world.roomNumber);
+                Console.WriteLine("world num = " + world.worldNum);
+                Console.WriteLine("event id1 = " + world.eventID1);
+                Console.WriteLine("event id2 = " + world.eventID2);
+                Console.WriteLine("event id3 = " + world.eventID3);
                 //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
                 //Console.WriteLine(cntrl);
 
@@ -975,29 +975,35 @@ namespace KhTracker
             }
             else if (world.worldName == "TwilightTown")
             {
+                if (world.roomNumber == 9 && world.eventID3 == 117 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "TTChests");
+                    TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "TTChests");
+                    data.WorldsData[world.worldName].progress = 1;
+                }
                 if (world.roomNumber == 27 && world.eventID3 == 4) // Yen Sid after new clothes
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "MysteriousTower");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "MysteriousTower");
-                    data.WorldsData[world.worldName].progress = 1;
+                    data.WorldsData[world.worldName].progress = 2;
                 }
                 else if (world.roomNumber == 4 && world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Sandlot");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Sandlot");
-                    data.WorldsData[world.worldName].progress = 2;
+                    data.WorldsData[world.worldName].progress = 3;
                 }
                 else if (world.roomNumber == 41 && world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Mansion");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Mansion");
-                    data.WorldsData[world.worldName].progress = 3;
+                    data.WorldsData[world.worldName].progress = 4;
                 }
                 else if (world.roomNumber == 40 && world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "BetwixtandBetween");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "BetwixtandBetween");
-                    data.WorldsData[world.worldName].progress = 4;
+                    data.WorldsData[world.worldName].progress = 5;
                 }
                 else if (world.roomNumber == 20 && world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
                 {
@@ -1847,30 +1853,6 @@ namespace KhTracker
 
             CollectedBar.Source = NumberBarY;
         }
-
-        //private void BindNumberHundred(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter100();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindNumberTen(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter010();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindNumberOne(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter001();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
 
         private void BindNumberFull(Image img1, Image img2, Image img3, string property, object source)
         {
