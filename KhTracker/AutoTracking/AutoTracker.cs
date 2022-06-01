@@ -550,7 +550,7 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberTens(Level_01, Level_10, "Level", stats);
             BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
@@ -558,7 +558,7 @@ namespace KhTracker
             BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
-            BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
+            BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
             BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
             BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
@@ -628,15 +628,15 @@ namespace KhTracker
             {
                 stats.UpdateMemory();
                 world.UpdateMemory();
-                //UpdateMagicAddresses();
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
+                StatResize();
 
-                Console.WriteLine("room num = " + world.roomNumber);
-                Console.WriteLine("world num = " + world.worldNum);
-                Console.WriteLine("event id1 = " + world.eventID1);
-                Console.WriteLine("event id2 = " + world.eventID2);
-                Console.WriteLine("event id3 = " + world.eventID3);
+                //Console.WriteLine("room num = " + world.roomNumber);
+                //Console.WriteLine("world num = " + world.worldNum);
+                //Console.WriteLine("event id1 = " + world.eventID1);
+                //Console.WriteLine("event id2 = " + world.eventID2);
+                //Console.WriteLine("event id3 = " + world.eventID3);
                 //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
                 //Console.WriteLine(cntrl);
 
@@ -662,10 +662,20 @@ namespace KhTracker
             //next level check
             stats.SetNextLevelCheck(stats.Level);
             List<BitmapImage> LevelCheckNum = UpdateNumber(stats.LevelCheck, "G");
-            LevelCheck_01.Source = LevelCheckNum[0];
-            LevelCheck_10.Source = LevelCheckNum[1];
-            broadcast.LevelCheck_01.Source = LevelCheckNum[0];
-            broadcast.LevelCheck_10.Source = LevelCheckNum[1];
+            if (stats.LevelCheck < 9)
+            {
+                LevelCheck_01.Source = null;
+                LevelCheck_10.Source = LevelCheckNum[0];
+                broadcast.LevelCheck_01.Source = null;
+                broadcast.LevelCheck_10.Source = LevelCheckNum[0];
+            }
+            else
+            {
+                LevelCheck_01.Source = LevelCheckNum[0];
+                LevelCheck_10.Source = LevelCheckNum[1];
+                broadcast.LevelCheck_01.Source = LevelCheckNum[0];
+                broadcast.LevelCheck_10.Source = LevelCheckNum[1];
+            }
         }
 
         private void TrackItem(string itemName, WorldGrid world)
@@ -1721,7 +1731,7 @@ namespace KhTracker
         //used to get the numbers for everything to change color corectly when changing icon modes
         private void ReloadBindings()
         {
-            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberTens(Level_01, Level_10, "Level", stats);
             BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
@@ -1729,7 +1739,7 @@ namespace KhTracker
             BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
-            BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
+            BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
             BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
             BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
@@ -1772,7 +1782,6 @@ namespace KhTracker
 
             Updatenumbers();
             broadcast.UpdateNumbers();
-            //broadcast.UpdateTotal();
 
             UpdatePointScore(0);
         }
@@ -1877,7 +1886,25 @@ namespace KhTracker
                 if (img3 != null)
                     img3.SetBinding(Image.SourceProperty, binding3);
             }
+        }
 
+        private void BindNumberTens(Image img1, Image img2, string property, object source)
+        {
+            if (source != null)
+            {
+                Binding binding1 = new Binding(property);
+                Binding binding2 = new Binding(property);
+                binding1.Source = source;
+                binding2.Source = source;
+                binding1.Converter = new NumberConverter001();
+                binding2.Converter = new NumberConverter010();
+
+                if (img1 != null)
+                    img1.SetBinding(Image.SourceProperty, binding1);
+
+                if (img2 != null)
+                    img2.SetBinding(Image.SourceProperty, binding2);
+            }
         }
 
         private bool CheckSynthPuzzle(bool ps2)
@@ -1901,6 +1928,38 @@ namespace KhTracker
 
                 return false;
             }
+        }
+
+        private void StatResize()
+        {
+            if (stats.Strength < 100)
+            {
+                Strength.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Strength.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+            if (stats.Magic < 100)
+            {
+                Magic.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Magic.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+            if (stats.Defense < 100)
+            {
+                Defense.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Defense.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+
         }
     }
 }

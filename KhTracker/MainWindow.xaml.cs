@@ -415,6 +415,30 @@ namespace KhTracker
                     SetWorldNumber(data.WorldsData[button.Name].hint, -1, "Y");
                 }
             }
+            else if (e.ChangedButton == MouseButton.Right)
+            {
+                if (data.WorldsData.ContainsKey(button.Name))
+                {
+                    string crossname = button.Name + "Cross";
+                    Image Cross = data.WorldsData[button.Name].top.FindName(crossname) as Image;
+                    Image CrossB = broadcast.FindName(crossname) as Image;
+
+                    if (Cross != null)
+                    {
+                        if (Cross.Visibility == Visibility.Collapsed)
+                            Cross.Visibility = Visibility.Visible;
+                        else
+                            Cross.Visibility = Visibility.Collapsed;
+                    }
+                    if (CrossB != null)
+                    {
+                        if (CrossB.Visibility == Visibility.Collapsed)
+                            CrossB.Visibility = Visibility.Visible;
+                        else
+                            CrossB.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }
 
         private void OnMouseWheel(object sender, MouseWheelEventArgs e)

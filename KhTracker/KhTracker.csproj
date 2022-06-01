@@ -860,6 +860,7 @@
     <Content Include="CustomImages\Worlds\Synth.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\Other\crossworld.png" />
     <Resource Include="Images\Other\cross.png" />
     <Resource Include="Images\Other\plus.png" />
     <Resource Include="Images\Worlds\Old\Puzzle.png" />

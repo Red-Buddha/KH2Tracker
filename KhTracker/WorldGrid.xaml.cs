@@ -631,18 +631,20 @@ namespace KhTracker
             //simplier icon opacity change for non pages/magic
             if (type != "magic" && type != "page")
             {
+                //check if a ghost item was tracked
                 if (item.StartsWith("Ghost_"))
                 {
-                    item = item.Remove(0, 6);
-                    Item Check = ItemPool.FindName(item) as Item;
-                    if (Check != null && Check.Parent == ItemPool)
+                    item = item.Remove(0, 6);                       //remove "Ghost_" from name
+                    Item Check = ItemPool.FindName(item) as Item;   //check to see if item exists in ItemPool
+                    if (Check != null && Check.Parent == ItemPool)  //check to see if item is *in* in ItemPool (don't want the ones tracked to the world changed)
                     {
-                        Check.Opacity = universalOpacity;
+                        Check.Opacity = universalOpacity; //change opacity
                     }
                 }
                 return;
             }
 
+            //figure out what kinda item we are working with
             switch (item)
             {
                 case "Ghost_Fire":
@@ -685,14 +687,15 @@ namespace KhTracker
                     return;
             }
 
+            //return and do nothing if the actual obtained number of items is maxed
             if ((type == "page" && ObtainedIC == 5) || (type == "magic" && ObtainedIC == 3))
             {
                 GhostIC = 0;
                 return;
             }
 
-            //there shouldn't be any more than 3 (magic) or 5 (pages) visible
-            //on the tracker with real and ghost combined
+            //there shouldn't be any more than 3 (magic) or 5 (pages) of a
+            //single type visible on worlds at once
             if (type == "magic" && (GhostIC + ObtainedIC) > 3)
             {
                 Console.WriteLine("more than 3 of this item visible? Item: " + item);
@@ -703,8 +706,6 @@ namespace KhTracker
                 Console.WriteLine("more than 5 of this item visible? Item: " + item);
                 return;
             }
-
-            string checkName = "";
 
             if (item.StartsWith("Ghost_"))
                 item = item.Remove(0, 6);
@@ -717,7 +718,7 @@ namespace KhTracker
             List<string> foundChecks = new List<string>();
             for (int i = 1; i <= Count; i++)
             {
-                checkName = item + i.ToString();
+                string checkName = item + i.ToString();
                 Item Check = ItemPool.FindName(checkName) as Item;
                 if (Check != null && Check.Parent == ItemPool)
                 {
@@ -726,13 +727,13 @@ namespace KhTracker
                 }
             }
 
-            //calculate opacity again (for dynamic change on adding removing checks
             if (GhostIC > foundChecks.Count)
             {
                 Console.WriteLine("Ghost Count is greater than number of items left in itempool! How did this happen?");
                 return;
             }
 
+            //calculate opacity again (for dynamic change on adding removing checks
             for (int i = 1; i <= GhostIC; i++)
             {
                 Item Check = ItemPool.FindName(foundChecks[i-1]) as Item;
@@ -812,7 +813,6 @@ namespace KhTracker
             if (MainWindow.data.mode != Mode.DAHints)
                 return;
 
-            //increase obtained number for magics/pages
             char[] numbers = { '1', '2', '3', '4', '5' };
             string itemname = item.Name.TrimEnd(numbers);
             string itemntype = Codes.FindItemType(item.Name);

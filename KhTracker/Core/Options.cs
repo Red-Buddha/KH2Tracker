@@ -845,12 +845,6 @@ namespace KhTracker
             collectedChecks.Clear();
             newChecks.Clear();
 
-            //{
-            //    List<BitmapImage> LevelCheckNum = UpdateNumber(1, "Y");
-            //    LevelCheck_01.Source = LevelCheckNum[0];
-            //    LevelCheck_10.Source = LevelCheckNum[1];
-            //}
-
             ModeDisplay.Header = "";
             HintText.Content = "";
             data.mode = Mode.None;
