@@ -33,7 +33,6 @@
                     <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
                     <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
                 </MenuItem>
-                <!--MenuItem Name="PointsTestOption" Header="Points Mode Test" IsCheckable="True" IsChecked="False"/-->
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <Separator/>
@@ -86,9 +85,7 @@
                 <MenuItem Name="PuzzleOption"           Header="Puzzles" IsCheckable="True" IsChecked="False" Click="PuzzleToggle"/>
                 <Separator/>
                 <MenuItem Name="TerraOption" 		    Header="Lingering Will" IsCheckable="True" IsChecked="False" Click="TerraToggle"/>
-
                 <MenuItem Name="CavernOption" 			Header="Cavern of Rememberance" IsCheckable="True" IsChecked="False" Click="CavernToggle"/>
-                <!--MenuItem Name="TimelessOption" 		Header="Timeless River" IsCheckable="True" IsChecked="False" Click="TimelessToggle"/-->
                 <MenuItem Name="OCCupsOption" 		    Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/>
             </MenuItem>
             <MenuItem Header="Visuals" Focusable="False">
