@@ -29,9 +29,9 @@
             </Menu.ItemsPanel>
             <MenuItem Header="Options" Focusable="False">
                 <MenuItem Header="Hint Mode">
-                    <MenuItem Header="Load JSmartee Hints" Click="LoadHints"/>
-                    <MenuItem Header="Load Shananas Hintless Seed" Click="ParseSeed"/>
-                    <MenuItem Header="Load OpenKH Seed" Click="OpenKHSeed"/>
+                    <MenuItem Header="Load JSmartee Hints File" Click="LoadHints"/>
+                    <MenuItem Header="Load Pnach Seed (PCSX2 Shan Hints)" Click="ParseSeed"/>
+                    <MenuItem Header="Load KH2Randomizer Zip Seed" Click="OpenKHSeed"/>
                 </MenuItem>
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>

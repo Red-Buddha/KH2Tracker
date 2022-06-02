@@ -542,7 +542,7 @@ namespace KhTracker
                 }
                 else
                 {
-                    offset = offset + 0x10000000;
+                    offset += 0x10000000;
                 }
             }
             ADDRESS_OFFSET = offset;
@@ -1932,7 +1932,6 @@ namespace KhTracker
                 {
                     return true;
                 }
-
                 return false;
             }
         }

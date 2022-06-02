@@ -326,12 +326,6 @@ namespace KhTracker
             }
 
             int num = PointTotal + points; //get new point total
-            int BonusTotal = 0;
-            int Valorlv = 0;
-            int Wisdomlv = 0;
-            int Limitlv = 0;
-            int Masterlv = 0;
-            int Finallv = 0;
             int WorldBlue = 0;
             int BonusPoints = data.PointsDatanew["bonus"];
             int FormPoints = data.PointsDatanew["formlv"];
@@ -344,12 +338,12 @@ namespace KhTracker
             //increasing forever when adding/removing items
             if (aTimer != null)
             {
-                BonusTotal = stats.BonusLevel * BonusPoints;
-                Valorlv = (valor.Level - 1) * FormPoints;
-                Wisdomlv = (wisdom.Level - 1) * FormPoints;
-                Limitlv = (limit.Level - 1) * FormPoints;
-                Masterlv = (master.Level - 1) * FormPoints;
-                Finallv = (final.Level - 1) * FormPoints;
+                int BonusTotal = stats.BonusLevel * BonusPoints;
+                int Valorlv = (valor.Level - 1) * FormPoints;
+                int Wisdomlv = (wisdom.Level - 1) * FormPoints;
+                int Limitlv = (limit.Level - 1) * FormPoints;
+                int Masterlv = (master.Level - 1) * FormPoints;
+                int Finallv = (final.Level - 1) * FormPoints;
                 num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv;
             }
 

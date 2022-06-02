@@ -420,17 +420,15 @@ namespace KhTracker
                 if (data.WorldsData.ContainsKey(button.Name))
                 {
                     string crossname = button.Name + "Cross";
-                    Image Cross = data.WorldsData[button.Name].top.FindName(crossname) as Image;
-                    Image CrossB = broadcast.FindName(crossname) as Image;
 
-                    if (Cross != null)
+                    if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
                     {
                         if (Cross.Visibility == Visibility.Collapsed)
                             Cross.Visibility = Visibility.Visible;
                         else
                             Cross.Visibility = Visibility.Collapsed;
                     }
-                    if (CrossB != null)
+                    if (broadcast.FindName(crossname) is Image CrossB)
                     {
                         if (CrossB.Visibility == Visibility.Collapsed)
                             CrossB.Visibility = Visibility.Visible;
@@ -834,10 +832,11 @@ namespace KhTracker
 
             for (int i = 0; i < ChildCount; i++)
             {
-                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+                Image child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
 
                 if (child == null)
                     continue;
+
                 if (child is Image && child.Name.Equals(worldname + "_001"))
                 {
                     child.Source = WorldNumImage[0];

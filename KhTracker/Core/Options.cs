@@ -22,11 +22,13 @@ namespace KhTracker
 
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.DefaultExt = ".txt";
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
-            saveFileDialog.FileName = "kh2fm-tracker-save";
-            saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "txt files (*.txt)|*.txt",
+                FileName = "kh2fm-tracker-save",
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
+            };
             if (saveFileDialog.ShowDialog() == true)
             {
                 Save(saveFileDialog.FileName);
@@ -189,11 +191,13 @@ namespace KhTracker
 
         private void LoadProgress(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".txt";
-            openFileDialog.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog.FileName = "kh2fm-tracker-save";
-            openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "txt files (*.txt)|*.txt",
+                FileName = "kh2fm-tracker-save",
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 Load(openFileDialog.FileName);
@@ -667,10 +671,12 @@ namespace KhTracker
 
         private void LoadHints(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".hint";
-            openFileDialog.Filter = "hint files (*.hint)|*.hint";
-            openFileDialog.Title = "Select Hints File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".hint",
+                Filter = "hint files (*.hint)|*.hint",
+                Title = "Select Hints File"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadHints(openFileDialog.FileName);
@@ -1145,10 +1151,12 @@ namespace KhTracker
 
         private void ParseSeed(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".pnach";
-            openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
-            openFileDialog.Title = "Select Seed File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".pnach",
+                Filter = "pnach files (*.pnach)|*.pnach",
+                Title = "Select Seed File"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 ParseSeed(openFileDialog.FileName);
@@ -1291,10 +1299,12 @@ namespace KhTracker
 
         private void OpenKHSeed(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".zip";
-            openFileDialog.Filter = "OpenKH Seeds (*.zip)|*.zip";
-            openFileDialog.Title = "Select Seed File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".zip",
+                Filter = "OpenKH Seeds (*.zip)|*.zip",
+                Title = "Select Seed File"
+            };
             if (openFileDialog.ShowDialog() == true)
                 OpenKHSeed(openFileDialog.FileName);
         }
