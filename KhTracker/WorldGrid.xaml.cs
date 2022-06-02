@@ -711,7 +711,7 @@ namespace KhTracker
                 item = item.Remove(0, 6);
 
             int Count = 3;
-            if (type == "pages")
+            if (type == "page")
                 Count = 5;
 
             //reset opacity and add items to a temp list
