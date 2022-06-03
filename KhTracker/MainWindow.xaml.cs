@@ -171,14 +171,14 @@ namespace KhTracker
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
             AbilitiesToggle(AbilitiesOption.IsChecked);
 
-            TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            TornPagesToggle(TornPagesOption.IsChecked);
-
-            CureOption.IsChecked = Properties.Settings.Default.Cure;
-            CureToggle(CureOption.IsChecked);
-
-            FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            FinalFormToggle(FinalFormOption.IsChecked);
+            //TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
+            //TornPagesToggle(TornPagesOption.IsChecked);
+            //
+            //CureOption.IsChecked = Properties.Settings.Default.Cure;
+            //CureToggle(CureOption.IsChecked);
+            //
+            //FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
+            //FinalFormToggle(FinalFormOption.IsChecked);
 
             //World Toggles
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
@@ -200,7 +200,7 @@ namespace KhTracker
             SynthToggle(SynthOption.IsChecked);
 
             CavernOption.IsChecked = Properties.Settings.Default.Cavern;
-            CavernToggle(CureOption.IsChecked);
+            CavernToggle(CavernOption.IsChecked);
 
             TerraOption.IsChecked = Properties.Settings.Default.Terra;
             TerraToggle(TerraOption.IsChecked);
@@ -288,6 +288,10 @@ namespace KhTracker
             DeathCounterOption.IsChecked = Properties.Settings.Default.DeathCounter;
             if (DeathCounterOption.IsChecked)
                 DeathCounterToggle(null, null);
+
+            LegacyOption.IsChecked = Properties.Settings.Default.Legacy;
+            if (LegacyOption.IsChecked)
+                LegacyToggle(null, null);
 
             SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
             if (SoraLevel01Option.IsChecked)

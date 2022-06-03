@@ -749,6 +749,8 @@
     <Content Include="CustomImages\Numbers\Yellow\8.png" />
     <Content Include="CustomImages\Numbers\Yellow\9.png" />
     <Content Include="CustomImages\Numbers\Yellow\QuestionMark.png" />
+    <Content Include="CustomImages\Other\crossworld.png" />
+    <Content Include="CustomImages\Other\death.png" />
     <Content Include="CustomImages\Other\defence.png" />
     <Content Include="CustomImages\Other\level.png" />
     <Content Include="CustomImages\Other\magic.png" />

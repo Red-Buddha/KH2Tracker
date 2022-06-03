@@ -630,6 +630,7 @@ namespace KhTracker
             {
                 stats.UpdateMemory();
                 world.UpdateMemory();
+                UpdateMagicAddresses();
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
                 StatResize();
@@ -780,29 +781,28 @@ namespace KhTracker
             }
         }
 
-        //private void UpdateMagicAddresses()
-        //{
-        //    //no loner need this i think.
-        //    if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
-        //        && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
-        //    {
-        //        fire.UseSTTAddress(true);
-        //        blizzard.UseSTTAddress(true);
-        //        thunder.UseSTTAddress(true);
-        //        cure.UseSTTAddress(true);
-        //        reflect.UseSTTAddress(true);
-        //        magnet.UseSTTAddress(true);
-        //    }
-        //    else
-        //    {
-        //        fire.UseSTTAddress(false);
-        //        blizzard.UseSTTAddress(false);
-        //        thunder.UseSTTAddress(false);
-        //        cure.UseSTTAddress(false);
-        //        reflect.UseSTTAddress(false);
-        //        magnet.UseSTTAddress(false);
-        //    }
-        //}
+        private void UpdateMagicAddresses()
+        {
+            if (LegacyOption.IsChecked && world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
+                && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
+            {
+                fire.UseSTTAddress(true);
+                blizzard.UseSTTAddress(true);
+                thunder.UseSTTAddress(true);
+                cure.UseSTTAddress(true);
+                reflect.UseSTTAddress(true);
+                magnet.UseSTTAddress(true);
+            }
+            else
+            {
+                fire.UseSTTAddress(false);
+                blizzard.UseSTTAddress(false);
+                thunder.UseSTTAddress(false);
+                cure.UseSTTAddress(false);
+                reflect.UseSTTAddress(false);
+                magnet.UseSTTAddress(false);
+            }
+        }
 
         private void UpdateCollectedItems()
         {
@@ -1967,10 +1967,17 @@ namespace KhTracker
 
             List<BitmapImage> DeathNum = UpdateNumber(DeathCounter, "Y");
             Death_01.Source = DeathNum[0];
+            broadcast.Death_01.Source = DeathNum[0];
             if (DeathCounter < 10)
+            {
                 Death_10.Source = null;
+                broadcast.Death_10.Source = null;
+            }
             else
+            {
                 Death_10.Source = DeathNum[1];
+                broadcast.Death_10.Source = DeathNum[1];
+            }
         }
 
         private void StatResize()

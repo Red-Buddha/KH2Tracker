@@ -47,12 +47,12 @@ namespace KhTracker
                 settings += "Secret Ansem Reports - ";
             if (AbilitiesOption.IsChecked)
                 settings += "Second Chance & Once More - ";
-            if (TornPagesOption.IsChecked)
-                settings += "Torn Pages - ";
-            if (CureOption.IsChecked)
-                settings += "Cure - ";
-            if (FinalFormOption.IsChecked)
-                settings += "Final Form - ";
+            //if (TornPagesOption.IsChecked)
+            //    settings += "Torn Pages - ";
+            //if (CureOption.IsChecked)
+            //    settings += "Cure - ";
+            //if (FinalFormOption.IsChecked)
+            //    settings += "Final Form - ";
             if (VisitLockOption.IsChecked)
                 settings += "Visit Locks - ";
             //if (HadesCupOption.IsChecked)
@@ -786,15 +786,15 @@ namespace KhTracker
                     case "Second Chance & Once More":
                         AbilitiesToggle(true);
                         break;
-                    case "Torn Pages":
-                        TornPagesToggle(true);
-                        break;
-                    case "Cure":
-                        CureToggle(true);
-                        break;
-                    case "Final Form":
-                        FinalFormToggle(true);
-                        break;
+                    //case "Torn Pages":
+                    //    TornPagesToggle(true);
+                    //    break;
+                    //case "Cure":
+                    //    CureToggle(true);
+                    //    break;
+                    //case "Final Form":
+                    //    FinalFormToggle(true);
+                    //    break;
                     case "Visit Locks":
                         VisitLockToggle(true);
                         break;
@@ -1389,9 +1389,9 @@ namespace KhTracker
                                     SynthToggle(false);
 
                                     AbilitiesToggle(true);
-                                    TornPagesToggle(true);
-                                    CureToggle(true);
-                                    FinalFormToggle(true);
+                                    //TornPagesToggle(true);
+                                    //CureToggle(true);
+                                    //FinalFormToggle(true);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;

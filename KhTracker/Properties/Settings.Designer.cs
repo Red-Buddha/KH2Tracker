@@ -682,5 +682,17 @@ namespace KhTracker.Properties {
                 this["DeathCounter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Legacy {
+            get {
+                return ((bool)(this["Legacy"]));
+            }
+            set {
+                this["Legacy"] = value;
+            }
+        }
     }
 }

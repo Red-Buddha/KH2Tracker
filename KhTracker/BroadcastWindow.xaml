@@ -923,6 +923,7 @@
                     <ColumnDefinition Name="AnsemReport" Width="1*"/>
                     <ColumnDefinition Name="PoohPage" Width="1*"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Name="DeathCounter" Width="0.6*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -1134,6 +1135,19 @@
                     <Image Name="Score100" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="2" Visibility="Hidden"/>
                     <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="3" Visibility="Hidden"/>
                     <Image Name="Score1"   Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="4" Visibility="Hidden"/>
+                </Grid>
+
+                <!-- Death Count -->
+                <Grid Name="DeathCounterGrid" Grid.Column="3" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Skull"  Source="Images/Other/generic skull.png"/>
+                    <Image Name="Death_10" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="1"/>
+                    <Image Name="Death_01" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="2"/>
                 </Grid>
             </Grid>
 

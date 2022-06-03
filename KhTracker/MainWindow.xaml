@@ -49,14 +49,15 @@
                 <MenuItem Header="Reset Tracker" Click="OnReset"/>
                 <MenuItem Name="TopMostOption" Header="Always on Top" IsCheckable="True" IsChecked="False" Click="TopMostToggle"/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
+                <MenuItem Name="LegacyOption" Header="Legacy STT Magic Tracking" IsCheckable="False" IsChecked="False" Click="LegacyToggle"/>
             </MenuItem>
             <MenuItem Header="Toggles" Focusable="False">
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
                 <MenuItem Name="ReportsOption"      Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption"    Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
-                <MenuItem Name="TornPagesOption"    Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/>
-                <MenuItem Name="CureOption"         Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/>
-                <MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
+                <!--MenuItem Name="TornPagesOption"    Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/-->
+                <!--MenuItem Name="CureOption"         Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/-->
+                <!--MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/-->
                 <!--MenuItem Name="HadesCupOption"  Header="Hades Cup Trophy" IsCheckable="True" IsChecked="False" Click="HadesCupToggle"/-->
                 <MenuItem Name="VisitLockOption"    Header="World Progression Items" IsCheckable="True" IsChecked="False" Click="VisitLockToggle"/>
                 <Separator/>
@@ -1556,8 +1557,8 @@
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Name="HintTextParent" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="21" Margin="0,0,0,0">
-                    <Label Name="HintText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="0" Margin="00,0,0,0"/>
+                <Viewbox Name="HintTextParent" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="21">
+                    <Label Name="HintText" Foreground="White" Padding="2" FontSize="16" FontWeight="Medium" />
                 </Viewbox>
 
                 <Grid Name="Level" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="-2,0,0,0" Visibility="Hidden">
@@ -1872,10 +1873,10 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
 
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                <Viewbox Grid.Row="0" Grid.Column="0">
                     <Label Name="HashText" Foreground="White" HorizontalAlignment="Center" FontSize="16" Padding="2" Content="Seed Hash:"/>
                 </Viewbox>
 
