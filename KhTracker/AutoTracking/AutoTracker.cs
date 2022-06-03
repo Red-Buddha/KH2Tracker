@@ -118,6 +118,7 @@ namespace KhTracker
         private bool isWorking = false;
         private bool firstRun = true;
         private bool titleloaded = false;
+        private bool onContinue = false;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -446,6 +447,7 @@ namespace KhTracker
 
             //levelcheck visibility
             NextLevelDisplay();
+            DeathCounterDisplay();
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -631,6 +633,7 @@ namespace KhTracker
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
                 StatResize();
+                DeathCheck(pcsx2tracking);
 
                 //Console.WriteLine("room num = " + world.roomNumber);
                 //Console.WriteLine("world num = " + world.worldNum);
@@ -1934,6 +1937,40 @@ namespace KhTracker
                 }
                 return false;
             }
+        }
+
+        private void DeathCheck(bool ps2)
+        {
+            string PauseCheck;
+            if (ps2)
+            {
+                PauseCheck = BytesToHex(memory.ReadMemory(0x347E08, 2));
+            }
+            else
+            {
+                PauseCheck = BytesToHex(memory.ReadMemory(0xAB9078, 2));
+            }
+
+            if (onContinue)
+            {
+                if (PauseCheck == "0500")
+                    return;
+                else
+                    onContinue = false;
+            }
+
+            if (PauseCheck == "0500")
+            {
+                DeathCounter += 1;
+                onContinue = true;
+            }
+
+            List<BitmapImage> DeathNum = UpdateNumber(DeathCounter, "Y");
+            Death_01.Source = DeathNum[0];
+            if (DeathCounter < 10)
+                Death_10.Source = null;
+            else
+                Death_10.Source = DeathNum[1];
         }
 
         private void StatResize()

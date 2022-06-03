@@ -588,6 +588,38 @@ namespace KhTracker
                 Connect.Visibility = Visibility.Hidden;
         }
 
+        private void DeathCounterToggle(object sender, RoutedEventArgs e)
+        {
+            DeathCounterToggle(DeathCounterOption.IsChecked);
+        }
+
+        private void DeathCounterToggle(bool toggle)
+        {
+            Properties.Settings.Default.DeathCounter = toggle;
+            NextLevelCheckOption.IsChecked = toggle;
+
+            DeathCounterDisplay();
+        }
+
+        private void DeathCounterDisplay()
+        {
+            if (NextLevelCheckOption.IsChecked && memory != null)
+            {
+                if (DeathCounterGrid.Visibility == Visibility.Collapsed)
+                {
+                    DeathCounterGrid.Visibility = Visibility.Visible;
+                    HintTextParent.SetValue(Grid.ColumnProperty, 0);
+                    HintTextParent.SetValue(Grid.ColumnSpanProperty, 19);
+                }
+            }
+            else
+            {
+                DeathCounterGrid.Visibility = Visibility.Collapsed;
+                HintTextParent.SetValue(Grid.ColumnProperty, 2);
+                HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
+            }
+        }
+
         //level check toggles
 
         private void NextLevelCheckToggle(object sender, RoutedEventArgs e)
@@ -605,17 +637,7 @@ namespace KhTracker
 
         private void NextLevelDisplay()
         {
-            bool Visible = false;
-
-            if (NextLevelCheckOption.IsChecked)
-            {
-                Visible = true;
-            }
-            else
-            {
-                HintTextParent.Margin = new Thickness(0, 0, 0, 0);
-                HintText.Margin = new Thickness(0, 0, 0, 0);
-            }
+            bool Visible = NextLevelCheckOption.IsChecked;
 
             if (SoraLevel01Option.IsChecked)
             {

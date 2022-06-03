@@ -670,5 +670,17 @@ namespace KhTracker.Properties {
                 this["Synth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DeathCounter {
+            get {
+                return ((bool)(this["DeathCounter"]));
+            }
+            set {
+                this["DeathCounter"] = value;
+            }
+        }
     }
 }

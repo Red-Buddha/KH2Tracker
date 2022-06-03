@@ -26,7 +26,7 @@ namespace KhTracker
         public int collected;
         private int total = 62;
         public static int PointTotal = 0;
-        //public static int World = 0;
+        public int DeathCounter = 0;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
 
@@ -284,6 +284,10 @@ namespace KhTracker
             NextLevelCheckOption.IsChecked = Properties.Settings.Default.NextLevelCheck;
             if (NextLevelCheckOption.IsChecked)
                 NextLevelCheckToggle(null, null);
+
+            DeathCounterOption.IsChecked = Properties.Settings.Default.DeathCounter;
+            if (DeathCounterOption.IsChecked)
+                DeathCounterToggle(null, null);
 
             SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
             if (SoraLevel01Option.IsChecked)

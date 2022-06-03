@@ -58,7 +58,7 @@
                 <MenuItem Name="CureOption"         Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/>
                 <MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/>
                 <!--MenuItem Name="HadesCupOption"  Header="Hades Cup Trophy" IsCheckable="True" IsChecked="False" Click="HadesCupToggle"/-->
-                <MenuItem Name="VisitLockOption"    Header="World Visit Items" IsCheckable="True" IsChecked="False" Click="VisitLockToggle"/>
+                <MenuItem Name="VisitLockOption"    Header="World Progression Items" IsCheckable="True" IsChecked="False" Click="VisitLockToggle"/>
                 <Separator/>
                 <MenuItem Name="SeedHashOption"         Header="Show Zip Seed Hash" IsCheckable="True" IsChecked="True" Click="SeedHashToggle"/>
                 <MenuItem Name="WorldProgressOption" 	Header="World Progression Icons" IsCheckable="True" IsChecked="True" Click="WorldProgressToggle"/>
@@ -71,6 +71,7 @@
                 <MenuItem Name="CheckCountOption"  	    Header="Show Check Count (Points Mode)" IsCheckable="True" IsChecked="False" Click="ShowCheckCountToggle"/>
                 <Separator/>
                 <MenuItem Name="NextLevelCheckOption" Header="Show Next Level Check" IsCheckable="True" IsChecked="False" Click="NextLevelCheckToggle"/>
+                <MenuItem Name="DeathCounterOption"   Header="Show Death Counter" IsCheckable="True" IsChecked="False" Click="DeathCounterToggle"/>
             </MenuItem>
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Name="SoraHeartOption"        Header="Sora's Heart" IsCheckable="True" IsChecked="True" Click="SoraHeartToggle"/>
@@ -1817,6 +1818,18 @@
                     </Image>
                 </Grid>
 
+                <Grid Name="DeathCounterGrid" Grid.Row="1" Grid.Column="20" Grid.ColumnSpan="5" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Skull"  Source="Images/Other/generic skull.png"/>
+                    <Image Name="Death_10" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="1"/>
+                    <Image Name="Death_01" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="2"/>
+                </Grid>
+
             </Grid>
 
             <!-- Score grid -->
@@ -1843,7 +1856,7 @@
             </Grid>
 
             <!-- Testing hash placement -->
-            <Grid Grid.Row="1" Visibility="Visible">
+            <Grid Grid.Row="1" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>
