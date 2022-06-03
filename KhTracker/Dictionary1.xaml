@@ -304,7 +304,8 @@
 	<Image x:Key="Min-Sephiroth" Source="Images\Progression\Simple\sephiroth.png" x:Shared="False"/>
 	<Image x:Key="Min-DataDemyx" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
 	<!--Twilight Town-->
-	<Image x:Key="Min-MysteriousTower" Source="Images\Progression\Simple\yen_sid.png" x:Shared="False"/>
+    <Image x:Key="Min-TTChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
+    <Image x:Key="Min-MysteriousTower" Source="Images\Progression\Simple\yen_sid.png" x:Shared="False"/>
 	<Image x:Key="Min-Sandlot" Source="Images\Progression\Simple\berserker.png" x:Shared="False"/>
 	<Image x:Key="Min-Mansion" Source="Images\Progression\Simple\mickey.png" x:Shared="False"/>
 	<Image x:Key="Min-BetwixtandBetween" Source="Images\Progression\Simple\axel.png" x:Shared="False"/>
@@ -794,6 +795,7 @@
     <Image x:Key="Cus-Sephiroth" Source="pack://application:,,,/CustomImages/Progression/sephiroth.png" x:Shared="False"/>
     <Image x:Key="Cus-DataDemyx" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
     <!--Twilight Town-->
+    <Image x:Key="Cus-TTChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
     <Image x:Key="Cus-MysteriousTower" Source="pack://application:,,,/CustomImages/Progression/yen_sid.png" x:Shared="False"/>
     <Image x:Key="Cus-Sandlot" Source="pack://application:,,,/CustomImages/Progression/berserker.png" x:Shared="False"/>
     <Image x:Key="Cus-Mansion" Source="pack://application:,,,/CustomImages/Progression/mickey.png" x:Shared="False"/>

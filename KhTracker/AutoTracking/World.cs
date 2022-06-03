@@ -49,25 +49,27 @@ namespace KhTracker
             eventCompleteAddress = completeAddress;
             SttAddress = sttAddress;
 
-            worldCodes = new Dictionary<int, string>();
-            worldCodes.Add(01, "GoA"); // Title Demo
-            worldCodes.Add(02, "TwilightTown");
-            worldCodes.Add(03, "DestinyIsland");
-            worldCodes.Add(04, "HollowBastion");
-            worldCodes.Add(05, "BeastsCastle");
-            worldCodes.Add(06, "OlympusColiseum");
-            worldCodes.Add(07, "Agrabah");
-            worldCodes.Add(08, "LandofDragons");
-            worldCodes.Add(09, "HundredAcreWood");
-            worldCodes.Add(10, "PrideLands");
-            worldCodes.Add(11, "Atlantica");
-            worldCodes.Add(12, "DisneyCastle");
-            worldCodes.Add(13, "DisneyCastle"); // Timeless River
-            worldCodes.Add(14, "HalloweenTown");
-            worldCodes.Add(16, "PortRoyal");
-            worldCodes.Add(17, "SpaceParanoids");
-            worldCodes.Add(18, "TWTNW");
-            worldCodes.Add(255, "GoA");
+            worldCodes = new Dictionary<int, string>
+            {
+                { 01, "GoA" }, // Title Demo
+                { 02, "TwilightTown" },
+                { 03, "DestinyIsland" },
+                { 04, "HollowBastion" },
+                { 05, "BeastsCastle" },
+                { 06, "OlympusColiseum" },
+                { 07, "Agrabah" },
+                { 08, "LandofDragons" },
+                { 09, "HundredAcreWood" },
+                { 10, "PrideLands" },
+                { 11, "Atlantica" },
+                { 12, "DisneyCastle" },
+                { 13, "DisneyCastle" }, // Timeless River
+                { 14, "HalloweenTown" },
+                { 16, "PortRoyal" },
+                { 17, "SpaceParanoids" },
+                { 18, "TWTNW" },
+                { 255, "GoA" }
+            };
         }
 
         public void UpdateMemory()

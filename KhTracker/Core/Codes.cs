@@ -86,7 +86,7 @@ namespace KhTracker
             return "";
         }
 
-        static public string GetHintTextName(string worldName)
+        public static string GetHintTextName(string worldName)
         {
             if (worldName == "SimulatedTwilightTown")
             {
@@ -146,7 +146,7 @@ namespace KhTracker
             }
             else if (worldName == "PuzzSynth")
             {
-                return "Puzzle/Synthesis";
+                return "Creations";
             }
             return worldName;
         }
@@ -156,6 +156,39 @@ namespace KhTracker
             return Default[index];
         }
 
+        public static string FindShortName(string name)
+        {
+            if (shortNames.ContainsKey(name))
+                return shortNames[name];
+            else
+                return name;
+        }
+
+        public static string FindItemType(string name)
+        {
+            if (itemTypes.Keys.Contains(name))
+                return itemTypes[name];
+            else
+                return "Unknown";
+        }
+
+        public static string FindItemName(string name)
+        {
+            if (convertItemNames.ContainsKey(name))
+                return convertItemNames[name];
+            else
+                return name;
+        }
+
+        public static string ConvertSeedGenName(string name)
+        {
+            if (convertOpenKH.ContainsKey(name))
+                return convertOpenKH[name];
+            else
+                return "Unknown";
+        }
+
+        //Dictionaries
         public Dictionary<int, string> itemCodes = new Dictionary<int, string>
         {
             {21, "Fire"},
@@ -208,6 +241,314 @@ namespace KhTracker
 
         };
 
+        public static Dictionary<string, string> shortNames = new Dictionary<string, string>()
+        {
+            {"Baseball Charm (Chicken Little)", "Baseball Charm"},
+            {"Lamp Charm (Genie)", "Lamp Charm"},
+            {"Ukulele Charm (Stitch)", "Ukulele Charm"},
+            {"Feather Charm (Peter Pan)", "Feather Charm"},
+            {"PromiseCharm", "Promise Charm"},
+            {"Battlefields of War (Auron)", "Battlefields of War"},
+            {"Sword of the Ancestor (Mulan)", "Sword of the Ancestor"},
+            {"Beast's Claw (Beast)", "Beast's Claw"},
+            {"Bone Fist (Jack Skellington)", "Bone Fist"},
+            {"Proud Fang (Simba)", "Proud Fang"},
+            {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
+            {"Scimitar (Aladdin)", "Scimitar"},
+            {"Identity Disk (Tron)", "Identity Disk"}
+        };
+
+        public static Dictionary<string, string> itemTypes = new Dictionary<string, string>()
+        {
+            {"Report1", "report"},
+            {"Report2", "report"},
+            {"Report3", "report"},
+            {"Report4", "report"},
+            {"Report5", "report"},
+            {"Report6", "report"},
+            {"Report7", "report"},
+            {"Report8", "report"},
+            {"Report9", "report"},
+            {"Report10", "report"},
+            {"Report11", "report"},
+            {"Report12", "report"},
+            {"Report13", "report"},
+            {"Fire1", "magic"},
+            {"Fire2", "magic"},
+            {"Fire3", "magic"},
+            {"Blizzard1", "magic"},
+            {"Blizzard2", "magic"},
+            {"Blizzard3", "magic"},
+            {"Thunder1", "magic"},
+            {"Thunder2", "magic"},
+            {"Thunder3", "magic"},
+            {"Cure1", "magic"},
+            {"Cure2", "magic"},
+            {"Cure3", "magic"},
+            {"Reflect1", "magic"},
+            {"Reflect2", "magic"},
+            {"Reflect3", "magic"},
+            {"Magnet1", "magic"},
+            {"Magnet2", "magic"},
+            {"Magnet3", "magic"},
+            {"Valor", "form"},
+            {"Wisdom", "form"},
+            {"Limit", "form"},
+            {"Master", "form"},
+            {"Final", "form"},
+            {"OnceMore", "ability"},
+            {"SecondChance", "ability"},
+            {"TornPage1", "page"},
+            {"TornPage2", "page"},
+            {"TornPage3", "page"},
+            {"TornPage4", "page"},
+            {"TornPage5", "page"},
+            {"Baseball", "summon"},
+            {"Lamp", "summon"},
+            {"Ukulele", "summon"},
+            {"Feather", "summon"},
+            {"Connection", "proof"},
+            {"Nonexistence", "proof"},
+            {"Peace", "proof"},
+            {"PromiseCharm", "proof"},
+            {"AuronWep", "visit"},
+            {"MulanWep", "visit"},
+            {"BeastWep", "visit"},
+            {"JackWep", "visit"},
+            {"SimbaWep", "visit"},
+            {"SparrowWep", "visit"},
+            {"AladdinWep", "visit"},
+            {"TronWep", "visit"},
+            {"MembershipCard", "visit"},
+            {"IceCream", "visit"},
+            {"Picture", "visit"},
+            //ghost versions
+            {"Ghost_Report1", "report"},
+            {"Ghost_Report2", "report"},
+            {"Ghost_Report3", "report"},
+            {"Ghost_Report4", "report"},
+            {"Ghost_Report5", "report"},
+            {"Ghost_Report6", "report"},
+            {"Ghost_Report7", "report"},
+            {"Ghost_Report8", "report"},
+            {"Ghost_Report9", "report"},
+            {"Ghost_Report10", "report"},
+            {"Ghost_Report11", "report"},
+            {"Ghost_Report12", "report"},
+            {"Ghost_Report13", "report"},
+            {"Ghost_Fire1", "magic"},
+            {"Ghost_Fire2", "magic"},
+            {"Ghost_Fire3", "magic"},
+            {"Ghost_Blizzard1", "magic"},
+            {"Ghost_Blizzard2", "magic"},
+            {"Ghost_Blizzard3", "magic"},
+            {"Ghost_Thunder1", "magic"},
+            {"Ghost_Thunder2", "magic"},
+            {"Ghost_Thunder3", "magic"},
+            {"Ghost_Cure1", "magic"},
+            {"Ghost_Cure2", "magic"},
+            {"Ghost_Cure3", "magic"},
+            {"Ghost_Reflect1", "magic"},
+            {"Ghost_Reflect2", "magic"},
+            {"Ghost_Reflect3", "magic"},
+            {"Ghost_Magnet1", "magic"},
+            {"Ghost_Magnet2", "magic"},
+            {"Ghost_Magnet3", "magic"},
+            {"Ghost_Valor", "form"},
+            {"Ghost_Wisdom", "form"},
+            {"Ghost_Limit", "form"},
+            {"Ghost_Master", "form"},
+            {"Ghost_Final", "form"},
+            {"Ghost_OnceMore", "ability"},
+            {"Ghost_SecondChance", "ability"},
+            {"Ghost_TornPage1", "page"},
+            {"Ghost_TornPage2", "page"},
+            {"Ghost_TornPage3", "page"},
+            {"Ghost_TornPage4", "page"},
+            {"Ghost_TornPage5", "page"},
+            {"Ghost_Baseball", "summon"},
+            {"Ghost_Lamp", "summon"},
+            {"Ghost_Ukulele", "summon"},
+            {"Ghost_Feather", "summon"},
+            {"Ghost_Connection", "proof"},
+            {"Ghost_Nonexistence", "proof"},
+            {"Ghost_Peace", "proof"},
+            {"Ghost_PromiseCharm", "proof"},
+            {"Ghost_AuronWep", "visit"},
+            {"Ghost_MulanWep", "visit"},
+            {"Ghost_BeastWep", "visit"},
+            {"Ghost_JackWep", "visit"},
+            {"Ghost_SimbaWep", "visit"},
+            {"Ghost_SparrowWep", "visit"},
+            {"Ghost_AladdinWep", "visit"},
+            {"Ghost_TronWep", "visit"},
+            {"Ghost_MembershipCard", "visit"},
+            {"Ghost_IceCream", "visit"},
+            {"Ghost_Picture", "visit"},
+            //seedgen names
+            {"Fire Element", "magic"},
+            {"Blizzard Element", "magic"},
+            {"Thunder Element", "magic"},
+            {"Cure Element", "magic"},
+            {"Magnet Element", "magic"},
+            {"Reflect Element", "magic"},
+            {"Ukulele Charm (Stitch)", "summon"},
+            {"Lamp Charm (Genie)", "summon"},
+            {"Feather Charm (Peter Pan)", "summon"},
+            {"Baseball Charm (Chicken Little)", "summon"},
+            {"Valor Form", "form"},
+            {"Wisdom Form", "form"},
+            {"Final Form", "form"},
+            {"Master Form", "form"},
+            {"Limit Form", "form"},
+            {"Second Chance", "ability"},
+            {"Once More", "ability"},
+            {"Promise Charm", "proof"},
+            {"Proof of Connection", "proof"},
+            {"Proof of Nonexistence", "proof"},
+            {"Proof of Peace", "proof"},
+            {"Torn Pages", "page"},
+            {"Secret Ansem's Report 1", "report"},
+            {"Secret Ansem's Report 2", "report"},
+            {"Secret Ansem's Report 3", "report"},
+            {"Secret Ansem's Report 4", "report"},
+            {"Secret Ansem's Report 5", "report"},
+            {"Secret Ansem's Report 6", "report"},
+            {"Secret Ansem's Report 7", "report"},
+            {"Secret Ansem's Report 8", "report"},
+            {"Secret Ansem's Report 9", "report"},
+            {"Secret Ansem's Report 10", "report"},
+            {"Secret Ansem's Report 11", "report"},
+            {"Secret Ansem's Report 12", "report"},
+            {"Secret Ansem's Report 13", "report"},
+            {"Battlefields of War (Auron)", "visit"},
+            {"Sword of the Ancestor (Mulan)", "visit"},
+            {"Beast's Claw (Beast)", "visit"},
+            {"Bone Fist (Jack Skellington)", "visit"},
+            {"Proud Fang (Simba)", "visit"},
+            {"Skill and Crossbones (Jack Sparrow)", "visit"},
+            {"Scimitar (Aladdin)", "visit"},
+            {"Identity Disk (Tron)", "visit"},
+            {"Membership Card", "visit"},
+            {"Ice Cream", "visit"}
+        };
+
+        public static Dictionary<string, string> convertItemNames = new Dictionary<string, string>()
+        {
+            {"Secret Ansem's Report 1", "Report1"},
+            {"Secret Ansem's Report 2", "Report2"},
+            {"Secret Ansem's Report 3", "Report3"},
+            {"Secret Ansem's Report 4", "Report4"},
+            {"Secret Ansem's Report 5", "Report5"},
+            {"Secret Ansem's Report 6", "Report6"},
+            {"Secret Ansem's Report 7", "Report7"},
+            {"Secret Ansem's Report 8", "Report8"},
+            {"Secret Ansem's Report 9", "Report9"},
+            {"Secret Ansem's Report 10", "Report10"},
+            {"Secret Ansem's Report 11", "Report11"},
+            {"Secret Ansem's Report 12", "Report12"},
+            {"Secret Ansem's Report 13", "Report13"},
+            {"Hades Cup Trophy", "HadesCup"},
+            {"Valor Form", "Valor"},
+            {"Wisdom Form", "Wisdom"},
+            {"Limit Form", "Limit"},
+            {"Master Form", "Master"},
+            {"Final Form", "Final"},
+            {"Once More", "OnceMore"},
+            {"Second Chance", "SecondChance"},
+            {"Baseball Charm (Chicken Little)", "Baseball"},
+            {"Lamp Charm (Genie)", "Lamp"},
+            {"Ukulele Charm (Stitch)", "Ukulele"},
+            {"Feather Charm (Peter Pan)", "Feather"},
+            {"Proof of Connection", "Connection"},
+            {"Proof of Nonexistence", "Nonexistence"},
+            {"Proof of Peace", "Peace"},
+            {"PromiseCharm", "PromiseCharm"},
+            {"Battlefields of War (Auron)", "AuronWep"},
+            {"Sword of the Ancestor (Mulan)", "MulanWep"},
+            {"Beast's Claw (Beast)", "BeastWep"},
+            {"Bone Fist (Jack Skellington)", "JackWep"},
+            {"Proud Fang (Simba)", "SimbaWep"},
+            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
+            {"Scimitar (Aladdin)", "AladdinWep"},
+            {"Identity Disk (Tron)", "TronWep"},
+            {"Membership Card", "MembershipCard"},
+            {"Ice Cream", "IceCream"},
+            {"Picture", "Picture"}
+        };
+
+        public static Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
+        {
+            {"Level", "SorasHeart" },
+            {"Form Levels", "DriveForms" },
+            {"Simulated Twilight Town", "SimulatedTwilightTown" },
+            {"Twilight Town", "TwilightTown" },
+            {"Hollow Bastion", "HollowBastion" },
+            {"Beast's Castle", "BeastsCastle" },
+            {"Olympus Coliseum", "OlympusColiseum" },
+            {"Agrabah", "Agrabah" },
+            {"Land of Dragons", "LandofDragons" },
+            {"Hundred Acre Wood", "HundredAcreWood" },
+            {"Pride Lands", "PrideLands" },
+            {"Disney Castle / Timeless River", "DisneyCastle" },
+            {"Halloween Town", "HalloweenTown" },
+            {"Port Royal", "PortRoyal" },
+            {"Space Paranoids", "SpaceParanoids" },
+            {"The World That Never Was", "TWTNW" },
+            {"Atlantica", "Atlantica" },
+            {"Proof of Connection", "Connection" },
+            {"Proof of Nonexistence", "Nonexistence" },
+            {"Proof of Peace", "Peace" },
+            {"PromiseCharm", "PromiseCharm" },
+            {"Valor Form", "Valor" },
+            {"Wisdom Form", "Wisdom" },
+            {"Limit Form", "Limit" },
+            {"Master Form", "Master" },
+            {"Final Form", "Final" },
+            {"Fire Element", "Fire" },
+            {"Blizzard Element", "Blizzard" },
+            {"Thunder Element", "Thunder" },
+            {"Cure Element", "Cure" },
+            {"Magnet Element", "Magnet" },
+            {"Reflect Element", "Reflect" },
+            {"Ukulele Charm (Stitch)", "Ukulele" },
+            {"Baseball Charm (Chicken Little)", "Baseball" },
+            {"Lamp Charm (Genie)", "Lamp" },
+            {"Feather Charm (Peter Pan)", "Feather" },
+            {"Torn Pages", "TornPage" },
+            {"Second Chance", "SecondChance" },
+            {"Once More", "OnceMore" },
+            {"Secret Ansem's Report 1", "Report1"},
+            {"Secret Ansem's Report 2", "Report2"},
+            {"Secret Ansem's Report 3", "Report3"},
+            {"Secret Ansem's Report 4", "Report4"},
+            {"Secret Ansem's Report 5", "Report5"},
+            {"Secret Ansem's Report 6", "Report6"},
+            {"Secret Ansem's Report 7", "Report7"},
+            {"Secret Ansem's Report 8", "Report8"},
+            {"Secret Ansem's Report 9", "Report9"},
+            {"Secret Ansem's Report 10", "Report10"},
+            {"Secret Ansem's Report 11", "Report11"},
+            {"Secret Ansem's Report 12", "Report12"},
+            {"Secret Ansem's Report 13", "Report13"},
+            {"Battlefields of War (Auron)", "AuronWep"},
+            {"Sword of the Ancestor (Mulan)", "MulanWep"},
+            {"Beast's Claw (Beast)", "BeastWep"},
+            {"Bone Fist (Jack Skellington)", "JackWep"},
+            {"Proud Fang (Simba)", "SimbaWep"},
+            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
+            {"Scimitar (Aladdin)", "AladdinWep"},
+            {"Identity Disk (Tron)", "TronWep"},
+            {"Membership Card", "MembershipCard"},
+            {"Ice Cream", "IceCream"},
+            {"Picture", "Picture"},
+            {"Garden of Assemblage", "GoA"},
+            {"", "GoA"},
+            {"Critical Bonuses", "GoA"},
+            {"Creations", "PuzzSynth"}
+        };
+
+        //Code Lists
         string[] Default = new string[]
         {
             "HollowBastion",

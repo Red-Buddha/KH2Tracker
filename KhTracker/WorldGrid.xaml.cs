@@ -28,7 +28,7 @@ namespace KhTracker
         public static int Ghost_Reflect = 0;
         public static int Ghost_Magnet = 0;
         public static int Ghost_Pages = 0;
-
+        
         //amount of obtained ghost magic/pages
         public static int Ghost_Fire_obtained = 0;
         public static int Ghost_Blizzard_obtained = 0;
@@ -40,6 +40,8 @@ namespace KhTracker
 
         //A single spot to have referenced for the opacity of the ghost checks idk where to put this
         public static double universalOpacity = 0.5;
+
+        public MainWindow MainW = (MainWindow)App.Current.MainWindow;
 
         public WorldGrid()
         {
@@ -63,112 +65,64 @@ namespace KhTracker
             }
             else
             {
-                //Console.WriteLine("Removing " + button.Name);
                 Children.Remove(button);
                 addRemove = -1;
             }
+            UpdateGhostObtained(button, addRemove);
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)
                 gridremainder = 1;
 
             int gridnum = Math.Max((Children.Count / 5) + gridremainder, 1);
-
             Rows = gridnum;
 
             // default 1, add .5 for every row
             double length = 1 + ((Children.Count - 1) / 5) / 2.0;
-            var outerGrid = ((Parent as Grid).Parent as Grid);
+            Grid outerGrid = (Parent as Grid).Parent as Grid;
             int row = (int)Parent.GetValue(Grid.RowProperty);
             outerGrid.RowDefinitions[row].Height = new GridLength(length, GridUnitType.Star);
+            string worldName = Name.Substring(0, Name.Length - 4);
 
-            if (((MainWindow)App.Current.MainWindow).VisitLockOption.IsChecked)
+            //visit lock check first
+            if (MainW.VisitLockOption.IsChecked)
             {
-                VisitLock(button, add);
+                SetVisitLock(button, add);
             }
 
-            if (MainWindow.data.mode == Mode.PathHints)
+            if (MainWindow.data.mode == Mode.AltHints || MainWindow.data.mode == Mode.OpenKHAltHints || MainWindow.data.mode == Mode.PathHints)
             {
                 WorldComplete();
 
-                string worldName = Name.Substring(0, Name.Length - 4);
                 if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
-                }
-            }
-
-            if (MainWindow.data.mode == Mode.AltHints || MainWindow.data.mode == Mode.OpenKHAltHints)
-            {
-                WorldComplete();
-
-                string worldName = Name.Substring(0, Name.Length - 4);
-                if (MainWindow.data.WorldsData[worldName].hint != null)
-                {
-                    //Image hint = MainWindow.data.WorldsData[worldName].hint;
-                    //((MainWindow)App.Current.MainWindow).SetReportValue(hint, Children.Count + 1);
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
+                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, Children.Count);
                 }
             }
 
             if (MainWindow.data.mode == Mode.DAHints)
             {
                 if (button.Name.StartsWith("Ghost_"))
-                {
-                    //we use this modified code to set world point values
-                    string worldName = Name.Substring(0, Name.Length - 4);
-                    CheckWorldGhost(worldName);
-
-                    Console.WriteLine(worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
-
-                    Grid hint = MainWindow.data.WorldsData[worldName].hint;
-                    ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
-
-                }
+                    SetWorldGhost(worldName);
                 else
+                    WorldComplete();
+
+                Console.WriteLine(button.Name + ": " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
+
+                Grid hint = MainWindow.data.WorldsData[worldName].hint;
+
+                MainW.SetPoints(worldName, MainW.GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
+                MainW.SetReportValue(hint, MainW.GetPoints(worldName));
+
+                //remove ghost items as needed then update points score
+                if (worldName != "GoA" && !button.Name.StartsWith("Ghost_"))
                 {
-                    string worldName = Name.Substring(0, Name.Length - 4);
-                    WorldPointsComplete();
-
-                    Console.WriteLine("real " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
-
-                    Grid hint = MainWindow.data.WorldsData[worldName].hint;
-                    
-                    ((MainWindow)App.Current.MainWindow).SetPoints(worldName, ((MainWindow)App.Current.MainWindow).GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                    ((MainWindow)App.Current.MainWindow).SetReportValue(hint, ((MainWindow)App.Current.MainWindow).GetPoints(worldName));
-
-                    //this creates a dictionary of items each world has tracked.
-                    if (worldName != "GoA")
+                    if (add)
                     {
-                        var templist = new List<string>();
-                        templist.Add(button.Name);
-                        if (add)
-                        {
-                            if (!Data.WorldItems.Keys.Contains(worldName))
-                            {
-                                Data.WorldItems.Add(worldName, templist);
-                            }
-                            else
-                            {
-                                Data.WorldItems[worldName].Add(button.Name);
-                            }
-
-                            Remove_Ghost(worldName, button);
-                        }
-                        else
-                        {
-                            if (Data.WorldItems[worldName].Contains(button.Name))
-                                Data.WorldItems[worldName].Remove(button.Name);
-                            else
-                                Console.WriteLine("something went wrong removing item from list");
-                        }
+                        Remove_Ghost(worldName, button);
                     }
 
-                    if (worldName == "GoA")
-                        return;
-                    else
-                        ((MainWindow)App.Current.MainWindow).UpdatePointScore(TableReturn(button.Name) * addRemove);
+                    MainW.UpdatePointScore(TableReturn(button.Name) * addRemove);
                 }
             }
         }
@@ -179,26 +133,20 @@ namespace KhTracker
             MainWindow window = ((MainWindow)Application.Current.MainWindow);
             if (e.Data.GetDataPresent(typeof(Item)))
             {
+                Item item = e.Data.GetData(typeof(Item)) as Item;
                 if (data.mode == Mode.DAHints)
                 {
-                    Item item = e.Data.GetData(typeof(Item)) as Item;
-
                     if (Handle_PointReport(item, window, data))
                         Add_Item(item, window);
 
                 }
                 else if (data.mode == Mode.PathHints)
                 {
-                    Item item = e.Data.GetData(typeof(Item)) as Item;
-
                     if (Handle_PathReport(item, window, data))
                         Add_Item(item, window);
-
                 }
                 else
                 {
-                    Item item = e.Data.GetData(typeof(Item)) as Item;
-
                     if (Handle_Report(item, window, data))
                         Add_Item(item, window);
                 }
@@ -241,8 +189,6 @@ namespace KhTracker
             item.MouseDown += item.Item_Return;
 
             item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
-
-            SetItemPoolGhosts(window);
         }
 
         public bool Handle_Report(Item item, MainWindow window, Data data)
@@ -261,11 +207,14 @@ namespace KhTracker
                 // check for correct report location
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
-                    // hint text and resetting fail icons
+                    // hint text
                     window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+
+                    // resetting fail icons
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
+
                     item.DragDropEventFire(data.reportInformation[index].Item1, data.reportInformation[index].Item2);
 
                     // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
@@ -298,45 +247,7 @@ namespace KhTracker
                 }
             }
 
-            if (isreport)
-            {
-                item.MouseEnter -= item.Report_Hover;
-                item.MouseEnter += item.Report_Hover;
-            }
-
-            return true;
-        }
-
-        public bool Handle_PathReport(Item item, MainWindow window, Data data)
-        {
-            bool isreport = false;
-
-            // item is a report
-            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
-            {
-                int index = (int)item.GetValue(Grid.ColumnProperty);
-
-                // out of report attempts
-                if (data.reportAttempts[index] == 0)
-                    return false;
-
-                // check for correct report location
-                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
-                {
-                    // hint text and resetting fail icons
-                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
-                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
-                    data.reportAttempts[index] = 3;
-                    isreport = true;
-                }
-                else
-                {
-                    // update fail icons when location is report location is wrong
-                    AddFailIcon(index);
-                    return false;
-                }
-            }
-
+            // show hint text on report hover
             if (isreport)
             {
                 item.MouseEnter -= item.Report_Hover;
@@ -362,7 +273,7 @@ namespace KhTracker
         public void WorldComplete()
         {
             string worldName = Name.Substring(0, Name.Length - 4);
-            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
+            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete)
                 return;
 
             List<string> items = new List<string>();
@@ -387,42 +298,10 @@ namespace KhTracker
             }
         }
 
-        public int TableReturn(string nameButton)
+        public void SetVisitLock(Item item, bool add)
         {
-            if (nameButton.StartsWith("Ghost_"))
-            {
-                if (((MainWindow)App.Current.MainWindow).GhostMathOption.IsChecked)
-                {
-                    if (GetItemType.Keys.Contains(nameButton))
-                    {
-                        if (MainWindow.data.PointsDatanew.Keys.Contains(GetItemType[nameButton]))
-                            return MainWindow.data.PointsDatanew[GetItemType[nameButton]];
-                        else
-                            return 0;
-                    }
-                    else
-                        return 0;
-                }
-                else
-                    return 0;
-            }
-            else
-            {
-                if (GetItemType.Keys.Contains(nameButton))
-                {
-                    if (MainWindow.data.PointsDatanew.Keys.Contains(GetItemType[nameButton]))
-                        return MainWindow.data.PointsDatanew[GetItemType[nameButton]];
-                    else
-                        return 0;
-                }
-                else
-                    return 0;
-            }
-        }
-
-        //visit locking stuff
-        public void VisitLock(Item item, bool add)
-        {
+            //reminder: 1 = locked | 0 = unlocked
+            //reminder for TT: 10 = 3rd visit locked | 1 = 2nd visit locked | 11 = both locked | 0 = both unlocked
             string ItemName = item.Name;
             int addRemove = -1;
 
@@ -464,12 +343,115 @@ namespace KhTracker
                 case "MembershipCard":
                     MainWindow.data.WorldsData["HollowBastion"].visitLocks += addRemove;
                     break;
+                default:
+                    return;
             }
 
-             ((MainWindow)App.Current.MainWindow).VisitLockCheck();
+            MainW.VisitLockCheck();
         }
-        
+
+        //Path hints stuff
+        public bool Handle_PathReport(Item item, MainWindow window, Data data)
+        {
+            bool isreport = false;
+
+            // item is a report
+            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            {
+                int index = (int)item.GetValue(Grid.ColumnProperty);
+
+                // out of report attempts
+                if (data.reportAttempts[index] == 0)
+                    return false;
+
+                // check for correct report location
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
+                {
+                    // hint text and proof icon siplay
+                    window.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
+                    PathProofToggle(data.pathreportInformation[index].Item2, data.pathreportInformation[index].Item3);
+
+                    // resetting fail icons
+                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                    data.reportAttempts[index] = 3;
+                    isreport = true;
+                }
+                else
+                {
+                    // update fail icons when location is report location is wrong
+                    AddFailIcon(index);
+                    return false;
+                }
+            }
+
+            // show hint text on report hover
+            if (isreport)
+            {
+                item.MouseEnter -= item.Report_Hover;
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
+        }
+
+        public void PathProofToggle(string location, int proofs)
+        {
+            //reminder: location is what report is for, not from
+            //reminder: con = 1 | non = 10 | peace = 100
+            string world = location + "Path";
+            bool conProof = false;
+            bool nonProof = false;
+            bool peaProof = false;
+
+            Grid pathgrid = MainWindow.data.WorldsData[location].top.FindName(world) as Grid;
+            Image top = pathgrid.FindName(world + "_Con") as Image;
+            Image middle = pathgrid.FindName(world + "_Non") as Image;
+            Image bottom = pathgrid.FindName(world + "_Pea") as Image;
+
+            if (proofs >= 100) //peace
+            {
+                bottom.Visibility = Visibility.Visible;
+                peaProof = true;
+                proofs -= 100;
+            }
+            if (proofs >= 10) //nonexsitance
+            {
+                middle.Visibility = Visibility.Visible;
+                nonProof = true;
+                proofs -= 10;
+            }
+            if (proofs == 1) //connection
+            {
+                top.Visibility = Visibility.Visible;
+                conProof = true;
+            }
+
+            if (proofs == 0 && !conProof && !nonProof && !peaProof) //no path to light
+            {
+                middle.Source = new BitmapImage(new Uri("Images/Other/cross.png", UriKind.Relative));
+                middle.Visibility = Visibility.Visible;
+            }
+        }
+
         //points hints stuff
+        public int TableReturn(string nameButton)
+        {
+            string type = Codes.FindItemType(nameButton);
+
+            if (type == "Unknown" || (nameButton.StartsWith("Ghost_") && !MainW.GhostMathOption.IsChecked))
+            {
+                return 0;
+            }
+            else if (MainWindow.data.PointsDatanew.Keys.Contains(type))
+            {
+                return MainWindow.data.PointsDatanew[type];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public bool Handle_PointReport(Item item, MainWindow window, Data data)
         {
             bool isreport = false;
@@ -486,16 +468,11 @@ namespace KhTracker
                 // check for correct report location
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
-                    // hint text and resetting fail icons
-                    if (shortenNames.ContainsKey(data.pointreportInformation[index].Item2))
-                    {
-                        window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + shortenNames[data.pointreportInformation[index].Item2]);
-                    }
-                    else
-                    {
-                        window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
-                    }
+                    // hint text
+                    window.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + Codes.FindShortName(data.pointreportInformation[index].Item2));
                     CheckGhost(data.pointreportInformation[index].Item1, data.pointreportInformation[index].Item2, window, data, "Report" + index);
+
+                    //resetting fail icons
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
@@ -508,6 +485,7 @@ namespace KhTracker
                 }
             }
 
+            // show hint text on report hover
             if (isreport)
             {
                 item.MouseEnter -= item.Report_Hover;
@@ -517,88 +495,23 @@ namespace KhTracker
             return true;
         }
 
-        public void WorldPointsComplete()
-        {
-            string worldName = Name.Substring(0, Name.Length - 4);
-            if (worldName == "GoA" || MainWindow.data.WorldsData[worldName].complete == true)
-            {
-                return;
-            }
-
-            List<string> items = new List<string>();
-            items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
-
-            foreach (var child in Children)
-            {
-                Item item = child as Item;
-                char[] numbers = { '1', '2', '3', '4', '5' };
-                Console.WriteLine(item.Name);
-
-                if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
-                    items.Remove(item.Name);
-                else if (items.Contains(item.Name.TrimEnd(numbers)))
-                {
-                    items.Remove(item.Name.TrimEnd(numbers));
-                }
-            }
-
-            if (items.Count == 0)
-            {
-                MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].complete = true;
-            }
-        }
-
-        public void CheckGhost(string world, string itemname, MainWindow window, Data data, string report)
+        public void CheckGhost(string world, string item, MainWindow window, Data data, string report)
         {
             //don't bother checking if ghost tracking is off
-            if (((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked == false)
+            if (MainW.GhostItemOption.IsChecked == false)
                 return;
 
             //check if report was tracked before in this session to avoid tracking multiple ghosts for removing and placing the same report back
             if (data.TrackedReports.Contains(report))
                 return;
             else
-            {
                 data.TrackedReports.Add(report);
-            }
 
-            bool wasmulti = false;
-            string NewName;
-            string GhostName;
-            List<string> Multi = new List<string>();
-
-            //gotta be a better way
-            //if an elemt or tapge then add variations to a list
-            //we do this to check to see if any of the 3 levels of magic or any of
-            //the torn pages were previously tracked to the hinted world
-            if (itemname.Contains("Element"))
-            {
-                string[] itemnames;
-                itemnames = itemname.Split(' ');
-                Multi.Add(itemnames[0] + "1");
-                Multi.Add(itemnames[0] + "2");
-                Multi.Add(itemnames[0] + "3");
-                NewName = itemnames[0];
-                wasmulti = true;
-            }
-            else if (itemname.Contains("Torn"))
-            {
-                Multi.Add("TornPage1");
-                Multi.Add("TornPage2");
-                Multi.Add("TornPage3");
-                Multi.Add("TornPage4");
-                Multi.Add("TornPage5");
-                NewName = "TornPage";
-                wasmulti = true;
-            }
-            else
-            {
-                Multi.Add(convertItemNames[itemname]);
-                NewName = convertItemNames[itemname];
-            }
+            //parse item name
+            string itemname = Codes.ConvertSeedGenName(item);
 
             //this shouldn't ever happen, but return without doing anything else if the ghost values for magic/pages are higher than expected
-            switch (NewName)
+            switch (itemname)
             {
                 case "Fire":
                     if (Ghost_Fire >= 3)
@@ -642,161 +555,191 @@ namespace KhTracker
                         return;
                     }
                     break;
+                default:
+                    break;
             }
 
-            //first we need to check if the real item already exists in the world
-            if (Data.WorldItems.Keys.Contains(world))
+            //cycle through hinted world's checks for items
+            char[] numbers = { '1', '2', '3', '4', '5' };
+            List<string> CurrentGhosts = new List<string>();
+            List<string> CurrentItems = new List<string>();
+            foreach (var child in data.WorldsData[world].worldGrid.Children)
             {
-                foreach (string name in Multi)
+                Item ItemCheck = child as Item;
+                if (ItemCheck.Name.StartsWith("Ghost_"))
                 {
-                    if (Data.WorldItems[world].Contains(name))
-                        return;
+                    //parse ghost item name
+                    string itemnameGhost = ItemCheck.Name;
+
+                    //trim numbers if needed
+                    if (Codes.FindItemType(ItemCheck.Name) == "magic" || Codes.FindItemType(ItemCheck.Name) == "page")
+                    {
+                        itemnameGhost = itemnameGhost.TrimEnd(numbers);
+                    }
+
+                    //avoid adding a ghost entirely if a ghost of the same type is found
+                    if (CurrentGhosts.Contains(itemnameGhost))
+                        continue;
+                    else
+                        CurrentGhosts.Add(itemnameGhost);
+                }
+                else
+                {
+                    //parse ghost item name
+                    string itemstring = ItemCheck.Name;
+
+                    //trim numbers if needed
+                    if (Codes.FindItemType(ItemCheck.Name) == "magic" || Codes.FindItemType(ItemCheck.Name) == "page")
+                    {
+                        itemstring = itemstring.TrimEnd(numbers);
+                    }
+
+                    //avoid adding a ghost entirely if a ghost of the same type is found
+                    if (CurrentItems.Contains(itemstring))
+                        continue;
+                    else
+                        CurrentItems.Add(itemstring);
                 }
             }
 
-            //if it doesn't then we proceede to track the ghost item to the world
-            //Console.WriteLine("attempting track");
-            if (wasmulti)
+            //compare hinted item to current list of ghosts
+            if (CurrentGhosts.Contains("Ghost_" + itemname) || CurrentItems.Contains(itemname))
             {
-                //Console.WriteLine("was multi item");
-                switch (NewName)
+                return;
+            }
+
+            //look for avaiable ghost item in item pool to track
+            foreach (var child in MainW.ItemPool.Children)
+            {
+                Item Ghost = child as Item;
+
+                if (Ghost != null && Ghost.Name.Contains("Ghost_" + itemname))
                 {
-                    case "Fire":
-                        Ghost_Fire += 1;
-                        NewName += Ghost_Fire;
-                        break;
-                    case "Blizzard":
-                        Ghost_Blizzard += 1;
-                        NewName += Ghost_Blizzard;
-                        break;
-                    case "Thunder":
-                        Ghost_Thunder += 1;
-                        NewName += Ghost_Thunder;
-                        break;
-                    case "Cure":
-                        Ghost_Cure += 1;
-                        NewName += Ghost_Cure;
-                        break;
-                    case "Reflect":
-                        Ghost_Reflect += 1;
-                        NewName += Ghost_Reflect;
-                        break;
-                    case "Magnet":
-                        Ghost_Magnet += 1;
-                        NewName += Ghost_Magnet;
-                        break;
-                    case "TornPage":
-                        Ghost_Pages += 1;
-                        NewName += Ghost_Pages;
-                        break;
-                    default:
-                        Console.WriteLine("unknown multi item name! exiting ghost tracking");
-                        return;
+                    //found ghost item, let's track it and break
+                    data.WorldsData[world].worldGrid.Add_Ghost(Ghost, window);
+                    break;
                 }
             }
-
-            //get ghost item name then track it
-            GhostName = "Ghost_" + NewName;
-            Item Ghostimage = Data.GhostItems[GhostName];
-            data.WorldsData[world].worldGrid.Add_Ghost(Ghostimage, window);
-
-            var templist = new List<string>{GhostName};
-            if (!Data.WorldItems.Keys.Contains(world))
-            {
-                Data.WorldItems.Add(world, templist);
-            }
-            else
-            {
-                Data.WorldItems[world].Add(GhostName);
-            }
-
-            //don't bother messing with magic or pages
-            if (!itemname.Contains("Fire") && !itemname.Contains("Blizzard") && !itemname.Contains("Thunder")
-                && !itemname.Contains("Cure") && !itemname.Contains("Reflect") && !itemname.Contains("Magnet")
-                && !itemname.Contains("Page") && !itemname.Contains("Report"))
-                window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(convertItemNames[itemname]))].Opacity = universalOpacity;
         }
 
-        public void SetItemPoolGhosts(MainWindow window)
+        public void SetItemPoolGhosts(string item, string type)
         {
-            string checkName = "";
-            //Magic
-            //fires
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Fire - Ghost_Fire_obtained; i++)
+            int GhostIC = 0;
+            int ObtainedIC = 0;
+            Grid ItemPool = MainW.ItemPool;
+
+            //simplier icon opacity change for non pages/magic
+            if (type != "magic" && type != "page")
             {
-                checkName = "Fire" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                //check if a ghost item was tracked
+                if (item.StartsWith("Ghost_"))
                 {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                    item = item.Remove(0, 6);                       //remove "Ghost_" from name
+                    Item Check = ItemPool.FindName(item) as Item;   //check to see if item exists in ItemPool
+                    if (Check != null && Check.Parent == ItemPool)  //check to see if item is *in* in ItemPool (don't want the ones tracked to the world changed)
+                    {
+                        Check.Opacity = universalOpacity; //change opacity
+                    }
                 }
+                return;
             }
-            //blizzards
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Blizzard - Ghost_Blizzard_obtained; i++)
+
+            //figure out what kinda item we are working with
+            switch (item)
             {
-                checkName = "Blizzard" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
-                {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
-                }
+                case "Ghost_Fire":
+                case "Fire":
+                    GhostIC = Ghost_Fire;
+                    ObtainedIC = Ghost_Fire_obtained;
+                    break;
+                case "Ghost_Blizzard":
+                case "Blizzard":
+                    GhostIC = Ghost_Blizzard;
+                    ObtainedIC = Ghost_Blizzard_obtained;
+                    break;
+                case "Ghost_Thunder":
+                case "Thunder":
+                    GhostIC = Ghost_Thunder;
+                    ObtainedIC = Ghost_Thunder_obtained;
+                    break;
+                case "Ghost_Cure":
+                case "Cure":
+                    GhostIC = Ghost_Cure;
+                    ObtainedIC = Ghost_Cure_obtained;
+                    break;
+                case "Ghost_Reflect":
+                case "Reflect":
+                    GhostIC = Ghost_Reflect;
+                    ObtainedIC = Ghost_Reflect_obtained;
+                    break;
+                case "Ghost_Magnet":
+                case "Magnet":
+                    GhostIC = Ghost_Magnet;
+                    ObtainedIC = Ghost_Magnet_obtained;
+                    break;
+                case "Ghost_TornPage":
+                case "TornPage":
+                    GhostIC = Ghost_Pages;
+                    ObtainedIC = Ghost_Pages_obtained;
+                    break;
+                default:
+                    Console.WriteLine("Something went wrong? item wasn't expected. Item: " + item);
+                    return;
             }
-            //thunders
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Thunder - Ghost_Thunder_obtained; i++)
+
+            //return and do nothing if the actual obtained number of items is maxed
+            if ((type == "page" && ObtainedIC == 5) || (type == "magic" && ObtainedIC == 3))
             {
-                checkName = "Thunder" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
-                {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
-                }
+                GhostIC = 0;
+                return;
             }
-            //cures
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Cure - Ghost_Cure_obtained; i++)
+
+            //there shouldn't be any more than 3 (magic) or 5 (pages) of a
+            //single type visible on worlds at once
+            if (type == "magic" && (GhostIC + ObtainedIC) > 3)
             {
-                checkName = "Cure" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
-                {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
-                }
+                Console.WriteLine("more than 3 of this item visible? Item: " + item);
+                return;
             }
-            //reflects
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Reflect - Ghost_Reflect_obtained; i++)
+            if (type == "page" && (GhostIC + ObtainedIC) > 5)
             {
-                checkName = "Reflect" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
-                {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
-                }
+                Console.WriteLine("more than 5 of this item visible? Item: " + item);
+                return;
             }
-            //magnets
-            for (int i = 0, j = 0; i < 3 && j < Ghost_Magnet - Ghost_Magnet_obtained; i++)
+
+            if (item.StartsWith("Ghost_"))
+                item = item.Remove(0, 6);
+
+            int Count = 3;
+            if (type == "page")
+                Count = 5;
+
+            //reset opacity and add items to a temp list
+            List<string> foundChecks = new List<string>();
+            for (int i = 1; i <= Count; i++)
             {
-                checkName = "Magnet" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                string checkName = item + i.ToString();
+                Item Check = ItemPool.FindName(checkName) as Item;
+                if (Check != null && Check.Parent == ItemPool)
                 {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                    Check.Opacity = 1.0;
+                    foundChecks.Add(Check.Name);
                 }
             }
 
-            //Pages
-            for (int i = 0, j = 0; i < 5 && j < Ghost_Pages - Ghost_Pages_obtained; i++)
+            if (GhostIC > foundChecks.Count)
             {
-                checkName = "TornPage" + (i + 1).ToString();
-                //if the item is not in the bottom item pool, skip changing it's opacity
-                if (window.ItemPool.Children.Contains((Item)window.ItemPool.FindName(checkName)))
+                Console.WriteLine("Ghost Count is greater than number of items left in itempool! How did this happen?");
+                return;
+            }
+
+            //calculate opacity again (for dynamic change on adding removing checks
+            for (int i = 1; i <= GhostIC; i++)
+            {
+                Item Check = ItemPool.FindName(foundChecks[i-1]) as Item;
+                if (Check != null)
                 {
-                    j++;
-                    window.ItemPool.Children[window.ItemPool.Children.IndexOf((Item)window.ItemPool.FindName(checkName))].Opacity = universalOpacity;
+                    Check.Opacity = universalOpacity;
                 }
             }
         }
@@ -804,7 +747,7 @@ namespace KhTracker
         public void Add_Ghost(Item item, MainWindow window)
         {
             // move item to world
-            if (((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked)
+            if (MainW.GhostItemOption.IsChecked)
             {
                 window.ItemPool.Children.Remove(item);
                 Handle_WorldGrid(item, true);
@@ -813,73 +756,43 @@ namespace KhTracker
 
         public void Remove_Ghost(string world, Item item)
         {
-            //check to see if ghost of item exists
+            //check to see if world currently contains a ghost
             if (!MainWindow.data.WorldsData[world].containsGhost)
                 return;
 
-            string itemname = item.Name;
+            //get correct item name
             char[] numbers = { '1', '2', '3', '4', '5' };
-            bool wasmulti = false;
-            List<string> Multi = new List<string>();
-
-            if (GetItemType[item.Name] == "magic" || GetItemType[item.Name] == "page")
+            string itemname = item.Name;
+            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page")
             {
-                itemname = "Ghost_" + itemname.TrimEnd(numbers);
-                Multi.Add(itemname + "1");
-                Multi.Add(itemname + "2");
-                Multi.Add(itemname + "3");
-                Multi.Add(itemname + "4");
-                Multi.Add(itemname + "5");
-                wasmulti = true;
-            }
-            else
-            {
-                itemname = "Ghost_" + itemname;
+                itemname = itemname.TrimEnd(numbers);
             }
 
-            if (Data.WorldItems.Keys.Contains(world))
+            foreach (var child in Children)
             {
-                if (wasmulti)
+                Item ghostItem = child as Item;
+                string itemnameGhost;
+                if (ghostItem != null && ghostItem.Name.StartsWith("Ghost_"))
                 {
-                    foreach (string multiname in Multi)
+                    itemnameGhost = ghostItem.Name;
+
+                    //trim numbers
+                    if (Codes.FindItemType(ghostItem.Name) == "magic" || Codes.FindItemType(ghostItem.Name) == "page")
                     {
-                        if (Data.WorldItems[world].Contains(multiname))
-                        {
-                            if (itemname.Contains("Fire"))
-                                Ghost_Fire_obtained++;
-                            if (itemname.Contains("Blizzard"))
-                                Ghost_Blizzard_obtained++;
-                            if (itemname.Contains("Thunder"))
-                                Ghost_Thunder_obtained++;
-                            if (itemname.Contains("Cure"))
-                                Ghost_Cure_obtained++;
-                            if (itemname.Contains("Reflect"))
-                                Ghost_Reflect_obtained++;
-                            if (itemname.Contains("Magnet"))
-                                Ghost_Magnet_obtained++;
-                            if (itemname.Contains("Page"))
-                                Ghost_Pages_obtained++;
-                            Item Ghostitem = Data.GhostItems[multiname];
-                            Handle_WorldGrid(Ghostitem, false);
-                            return;
-                        }
+                        itemnameGhost = itemnameGhost.TrimEnd(numbers);
                     }
-                }
-                else
-                {
-                    if (Data.WorldItems[world].Contains(itemname))
+
+                    //compare and remove if same
+                    if (itemname == itemnameGhost.Remove(0, 6))
                     {
-                        Item Ghostitem = Data.GhostItems[itemname];
-                        Handle_WorldGrid(Ghostitem, false);
+                        Handle_WorldGrid(ghostItem, false);
                         return;
                     }
                 }
             }
-
-
         }
 
-        public void CheckWorldGhost(string worldName)
+        public void SetWorldGhost(string worldName)
         {
             foreach (Item ghost in Data.GhostItems.Values.ToList())
             {
@@ -895,215 +808,75 @@ namespace KhTracker
             }
         }
 
-        private Dictionary<string, string> convertItemNames = new Dictionary<string, string>()
+        public void UpdateGhostObtained(Item item, int addremove)
         {
-            {"Secret Ansem's Report 1", "Report1"},
-            {"Secret Ansem's Report 2", "Report2"},
-            {"Secret Ansem's Report 3", "Report3"},
-            {"Secret Ansem's Report 4", "Report4"},
-            {"Secret Ansem's Report 5", "Report5"},
-            {"Secret Ansem's Report 6", "Report6"},
-            {"Secret Ansem's Report 7", "Report7"},
-            {"Secret Ansem's Report 8", "Report8"},
-            {"Secret Ansem's Report 9", "Report9"},
-            {"Secret Ansem's Report 10", "Report10"},
-            {"Secret Ansem's Report 11", "Report11"},
-            {"Secret Ansem's Report 12", "Report12"},
-            {"Secret Ansem's Report 13", "Report13"},
-            {"Hades Cup Trophy", "HadesCup"},
-            {"Valor Form", "Valor"},
-            {"Wisdom Form", "Wisdom"},
-            {"Limit Form", "Limit"},
-            {"Master Form", "Master"},
-            {"Final Form", "Final"},
-            {"Once More", "OnceMore"},
-            {"Second Chance", "SecondChance"},
-            {"Baseball Charm (Chicken Little)", "Baseball"},
-            {"Lamp Charm (Genie)", "Lamp"},
-            {"Ukulele Charm (Stitch)", "Ukulele"},
-            {"Feather Charm (Peter Pan)", "Feather"},
-            {"Proof of Connection", "Connection"},
-            {"Proof of Nonexistence", "Nonexistence"},
-            {"Proof of Peace", "Peace"},
-            {"PromiseCharm", "PromiseCharm"},
-            {"Battlefields of War (Auron)", "AuronWep"},
-            {"Sword of the Ancestor (Mulan)", "MulanWep"},
-            {"Beast's Claw (Beast)", "BeastWep"},
-            {"Bone Fist (Jack Skellington)", "JackWep"},
-            {"Proud Fang (Simba)", "SimbaWep"},
-            {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
-            {"Scimitar (Aladdin)", "AladdinWep"},
-            {"Identity Disk (Tron)", "TronWep"},
-            {"Membership Card", "MembershipCard"},
-            {"Ice Cream", "IceCream"},
-            {"Picture", "Picture"}
-        };
+            if (MainWindow.data.mode != Mode.DAHints)
+                return;
 
-        //private Dictionary<string, string> convertWorldNames = new Dictionary<string, string>()
-        //{
-        //    {"Level", "SorasHeart" },
-        //    {"Form Levels", "DriveForms" },
-        //    {"Simulated Twilight Town", "SimulatedTwilightTown" },
-        //    {"Twilight Town", "TwilightTown" },
-        //    {"Hollow Bastion", "HollowBastion" },
-        //    {"Beast's Castle", "BeastsCastle" },
-        //    {"Olympus Coliseum", "OlympusColiseum" },
-        //    {"Agrabah", "Agrabah" },
-        //    {"Land of Dragons", "LandofDragons" },
-        //    {"Hundred Acre Wood", "HundredAcreWood" },
-        //    {"Pride Lands", "PrideLands" },
-        //    {"Disney Castle / Timeless River", "DisneyCastle" },
-        //    {"Halloween Town", "HalloweenTown" },
-        //    {"Port Royal", "PortRoyal" },
-        //    {"Space Paranoids", "SpaceParanoids" },
-        //    {"The World That Never Was", "TWTNW" },
-        //    {"Atlantica", "Atlantica" }
-        //};
+            char[] numbers = { '1', '2', '3', '4', '5' };
+            string itemname = item.Name.TrimEnd(numbers);
+            string itemntype = Codes.FindItemType(item.Name);
 
-        private Dictionary<string, string> GetItemType = new Dictionary<string, string>()
-        {
-            {"Report1", "report"},
-            {"Report2", "report"},
-            {"Report3", "report"},
-            {"Report4", "report"},
-            {"Report5", "report"},
-            {"Report6", "report"},
-            {"Report7", "report"},
-            {"Report8", "report"},
-            {"Report9", "report"},
-            {"Report10", "report"},
-            {"Report11", "report"},
-            {"Report12", "report"},
-            {"Report13", "report"},
-            {"Fire1", "magic"},
-            {"Fire2", "magic"},
-            {"Fire3", "magic"},
-            {"Blizzard1", "magic"},
-            {"Blizzard2", "magic"},
-            {"Blizzard3", "magic"},
-            {"Thunder1", "magic"},
-            {"Thunder2", "magic"},
-            {"Thunder3", "magic"},
-            {"Cure1", "magic"},
-            {"Cure2", "magic"},
-            {"Cure3", "magic"},
-            {"Reflect1", "magic"},
-            {"Reflect2", "magic"},
-            {"Reflect3", "magic"},
-            {"Magnet1", "magic"},
-            {"Magnet2", "magic"},
-            {"Magnet3", "magic"},
-            {"Valor", "form"},
-            {"Wisdom", "form"},
-            {"Limit", "form"},
-            {"Master", "form"},
-            {"Final", "form"},
-            {"OnceMore", "ability"},
-            {"SecondChance", "ability"},
-            {"TornPage1", "page"},
-            {"TornPage2", "page"},
-            {"TornPage3", "page"},
-            {"TornPage4", "page"},
-            {"TornPage5", "page"},
-            {"Baseball", "summon"},
-            {"Lamp", "summon"},
-            {"Ukulele", "summon"},
-            {"Feather", "summon"},
-            {"Connection", "proof"},
-            {"Nonexistence", "proof"},
-            {"Peace", "proof"},
-            {"PromiseCharm", "proof"},
-            {"AuronWep", "visit"},
-            {"MulanWep", "visit"},
-            {"BeastWep", "visit"},
-            {"JackWep", "visit"},
-            {"SimbaWep", "visit"},
-            {"SparrowWep", "visit"},
-            {"AladdinWep", "visit"},
-            {"TronWep", "visit"},
-            {"MembershipCard", "visit"},
-            {"IceCream", "visit"},
-            {"Picture", "visit"},
-            //ghost versions
-            {"Ghost_Report1", "report"},
-            {"Ghost_Report2", "report"},
-            {"Ghost_Report3", "report"},
-            {"Ghost_Report4", "report"},
-            {"Ghost_Report5", "report"},
-            {"Ghost_Report6", "report"},
-            {"Ghost_Report7", "report"},
-            {"Ghost_Report8", "report"},
-            {"Ghost_Report9", "report"},
-            {"Ghost_Report10", "report"},
-            {"Ghost_Report11", "report"},
-            {"Ghost_Report12", "report"},
-            {"Ghost_Report13", "report"},
-            {"Ghost_Fire1", "magic"},
-            {"Ghost_Fire2", "magic"},
-            {"Ghost_Fire3", "magic"},
-            {"Ghost_Blizzard1", "magic"},
-            {"Ghost_Blizzard2", "magic"},
-            {"Ghost_Blizzard3", "magic"},
-            {"Ghost_Thunder1", "magic"},
-            {"Ghost_Thunder2", "magic"},
-            {"Ghost_Thunder3", "magic"},
-            {"Ghost_Cure1", "magic"},
-            {"Ghost_Cure2", "magic"},
-            {"Ghost_Cure3", "magic"},
-            {"Ghost_Reflect1", "magic"},
-            {"Ghost_Reflect2", "magic"},
-            {"Ghost_Reflect3", "magic"},
-            {"Ghost_Magnet1", "magic"},
-            {"Ghost_Magnet2", "magic"},
-            {"Ghost_Magnet3", "magic"},
-            {"Ghost_Valor", "form"},
-            {"Ghost_Wisdom", "form"},
-            {"Ghost_Limit", "form"},
-            {"Ghost_Master", "form"},
-            {"Ghost_Final", "form"},
-            {"Ghost_OnceMore", "ability"},
-            {"Ghost_SecondChance", "ability"},
-            {"Ghost_TornPage1", "page"},
-            {"Ghost_TornPage2", "page"},
-            {"Ghost_TornPage3", "page"},
-            {"Ghost_TornPage4", "page"},
-            {"Ghost_TornPage5", "page"},
-            {"Ghost_Baseball", "summon"},
-            {"Ghost_Lamp", "summon"},
-            {"Ghost_Ukulele", "summon"},
-            {"Ghost_Feather", "summon"},
-            {"Ghost_Connection", "proof"},
-            {"Ghost_Nonexistence", "proof"},
-            {"Ghost_Peace", "proof"},
-            {"Ghost_PromiseCharm", "proof"},
-            {"Ghost_AuronWep", "visit"},
-            {"Ghost_MulanWep", "visit"},
-            {"Ghost_BeastWep", "visit"},
-            {"Ghost_JackWep", "visit"},
-            {"Ghost_SimbaWep", "visit"},
-            {"Ghost_SparrowWep", "visit"},
-            {"Ghost_AladdinWep", "visit"},
-            {"Ghost_TronWep", "visit"},
-            {"Ghost_MembershipCard", "visit"},
-            {"Ghost_IceCream", "visit"},
-            {"Ghost_Picture", "visit"}
-        };
+            //update normal items obtained
+            if ((itemntype == "magic" || itemntype == "page") && !itemname.StartsWith("Ghost_"))
+            {
+                switch (itemname)
+                {
+                    case "Fire":
+                        Ghost_Fire_obtained += addremove;
+                        break;
+                    case "Blizzard":
+                        Ghost_Blizzard_obtained += addremove;
+                        break;
+                    case "Thunder":
+                        Ghost_Thunder_obtained += addremove;
+                        break;
+                    case "Cure":
+                        Ghost_Cure_obtained += addremove;
+                        break;
+                    case "Reflect":
+                        Ghost_Reflect_obtained += addremove;
+                        break;
+                    case "Magnet":
+                        Ghost_Magnet_obtained += addremove;
+                        break;
+                    case "TornPage":
+                        Ghost_Pages_obtained += addremove;
+                        break;
+                }
+            }
 
-        private Dictionary<string, string> shortenNames = new Dictionary<string, string>()
-        {
-            {"Baseball Charm (Chicken Little)", "Baseball Charm"},
-            {"Lamp Charm (Genie)", "Lamp Charm"},
-            {"Ukulele Charm (Stitch)", "Ukulele Charm"},
-            {"Feather Charm (Peter Pan)", "Feather Charm"},
-            {"PromiseCharm", "Promise Charm"},
-            {"Battlefields of War (Auron)", "Battlefields of War"},
-            {"Sword of the Ancestor (Mulan)", "Sword of the Ancestor"},
-            {"Beast's Claw (Beast)", "Beast's Claw"},
-            {"Bone Fist (Jack Skellington)", "Bone Fist"},
-            {"Proud Fang (Simba)", "Proud Fang"},
-            {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
-            {"Scimitar (Aladdin)", "Scimitar"},
-            {"Identity Disk (Tron)", "Identity Disk"}
-        };
+            //update ghost items hinted
+            if ((itemntype == "magic" || itemntype == "page") && itemname.StartsWith("Ghost_"))
+            {
+                switch (itemname)
+                {
+                    case "Ghost_Fire":
+                        Ghost_Fire += addremove;
+                        break;
+                    case "Ghost_Blizzard":
+                        Ghost_Blizzard += addremove;
+                        break;
+                    case "Ghost_Thunder":
+                        Ghost_Thunder += addremove;
+                        break;
+                    case "Ghost_Cure":
+                        Ghost_Cure += addremove;
+                        break;
+                    case "Ghost_Reflect":
+                        Ghost_Reflect += addremove;
+                        break;
+                    case "Ghost_Magnet":
+                        Ghost_Magnet += addremove;
+                        break;
+                    case "Ghost_TornPage":
+                        Ghost_Pages += addremove;
+                        break;
+                }
+            }
+
+            SetItemPoolGhosts(itemname, itemntype);
+        }
+
     }
 }

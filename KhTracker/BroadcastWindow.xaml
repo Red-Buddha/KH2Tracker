@@ -59,6 +59,8 @@
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-SoraHeartImage}" Name="SorasHeart" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
 
+                    <Image Name="SorasHeartCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,4,0" Visibility="Hidden"/>
 
                     <ContentControl Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
@@ -108,6 +110,8 @@
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-DriveFormsImage}" Name="DriveForms" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
 
+                    <Image Name="DriveFormsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+                    
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="DriveFormsHint" VerticalAlignment="Bottom">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
@@ -152,6 +156,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-HollowBastionImage}" Name="HollowBastion" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="HollowBastionCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="HollowBastionProgression" Grid.Row="0" Grid.Column="2" />
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="HollowBastionHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -212,6 +219,9 @@
                     </Image>
 
                     <ContentControl Content="{DynamicResource Min-TwilightTownImage}" Name="TwilightTown" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="TwilightTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="TwilightTownProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="TwilightTownHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -249,6 +259,8 @@
                     </Grid.ColumnDefinitions>
 
                     <ContentControl Content="{DynamicResource Min-PuzzSynth}" Name="PuzzSynth" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="PuzzSynthCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PuzzSynthHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
                         <Grid.ColumnDefinitions>
@@ -311,6 +323,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-LandofDragonsImage}" Name="LandofDragons" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="LandofDragonsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="LandofDragonsProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="LandofDragonsHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -357,6 +372,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-BeastCastleImage}" Name="BeastsCastle" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="BeastsCastleCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="BeastsCastleProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="BeastsCastleHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -404,6 +422,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-OlympusImage}" Name="OlympusColiseum" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="OlympusColiseumCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="OlympusColiseumProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="OlympusColiseumHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -450,6 +471,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-SpaceParanoidsImage}" Name="SpaceParanoids" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="SpaceParanoidsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="SpaceParanoidsProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="SpaceParanoidsHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -496,6 +520,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-HalloweenTownImage}" Name="HalloweenTown" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="HalloweenTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="HalloweenTownProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="HalloweenTownHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -542,6 +569,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-PortRoyalImage}" Name="PortRoyal" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="PortRoyalCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="PortRoyalProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PortRoyalHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -588,6 +618,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-AgrabahImage}" Name="Agrabah" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="AgrabahCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="AgrabahProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="AgrabahHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -634,6 +667,9 @@
                         </Image.RenderTransform>
                     </Image>
                     <ContentControl Content="{DynamicResource Min-PrideLandsImage}" Name="PrideLands" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="PrideLandsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="PrideLandsProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PrideLandsHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -690,6 +726,9 @@
                     <ContentControl Name="DisneyCastleLW" Grid.Row="1" Grid.Column="0" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,4,0"/>
 
                     <ContentControl Content="{DynamicResource Min-DisneyCastleImage}" Name="DisneyCastle" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="DisneyCastleCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="DisneyCastleProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="DisneyCastleHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -727,6 +766,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-HundredAcreImage}" Name="HundredAcreWood" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="HundredAcreWoodCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="HundredAcreWoodProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="HundredAcreWoodHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -767,6 +809,9 @@
 
 
                     <ContentControl Content="{DynamicResource Min-SimulatedImage}" Name="SimulatedTwilightTown" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="SimulatedTwilightTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="SimulatedTwilightTownProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="SimulatedTwilightTownHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -803,6 +848,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-TWTNWImage}" Name="TWTNW" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="TWTNWCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="TWTNWProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="TWTNWHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -839,6 +887,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{DynamicResource Min-AtlanticaImage}" Name="Atlantica" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+
+                    <Image Name="AtlanticaCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
+
                     <ContentControl Name="AtlanticaProgression" Grid.Row="0" Grid.Column="2"/>
 
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="AtlanticaHint" Panel.ZIndex="2" VerticalAlignment="Bottom">
@@ -872,6 +923,7 @@
                     <ColumnDefinition Name="AnsemReport" Width="1*"/>
                     <ColumnDefinition Name="PoohPage" Width="1*"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Name="DeathCounter" Width="0.6*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -1083,6 +1135,19 @@
                     <Image Name="Score100" Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="2" Visibility="Hidden"/>
                     <Image Name="Score10"  Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="3" Visibility="Hidden"/>
                     <Image Name="Score1"   Source="Images/Numbers/Kh2/Yellow/9.png" Grid.Column="4" Visibility="Hidden"/>
+                </Grid>
+
+                <!-- Death Count -->
+                <Grid Name="DeathCounterGrid" Grid.Column="3" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="Skull"  Source="Images/Other/generic skull.png"/>
+                    <Image Name="Death_10" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="1"/>
+                    <Image Name="Death_01" Source="Images/Numbers/kh2/Yellow/0.png" Grid.Column="2"/>
                 </Grid>
             </Grid>
 

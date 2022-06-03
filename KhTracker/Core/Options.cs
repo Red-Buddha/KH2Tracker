@@ -22,11 +22,13 @@ namespace KhTracker
 
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.DefaultExt = ".txt";
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
-            saveFileDialog.FileName = "kh2fm-tracker-save";
-            saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "txt files (*.txt)|*.txt",
+                FileName = "kh2fm-tracker-save",
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
+            };
             if (saveFileDialog.ShowDialog() == true)
             {
                 Save(saveFileDialog.FileName);
@@ -45,12 +47,12 @@ namespace KhTracker
                 settings += "Secret Ansem Reports - ";
             if (AbilitiesOption.IsChecked)
                 settings += "Second Chance & Once More - ";
-            if (TornPagesOption.IsChecked)
-                settings += "Torn Pages - ";
-            if (CureOption.IsChecked)
-                settings += "Cure - ";
-            if (FinalFormOption.IsChecked)
-                settings += "Final Form - ";
+            //if (TornPagesOption.IsChecked)
+            //    settings += "Torn Pages - ";
+            //if (CureOption.IsChecked)
+            //    settings += "Cure - ";
+            //if (FinalFormOption.IsChecked)
+            //    settings += "Final Form - ";
             if (VisitLockOption.IsChecked)
                 settings += "Visit Locks - ";
             //if (HadesCupOption.IsChecked)
@@ -189,11 +191,13 @@ namespace KhTracker
 
         private void LoadProgress(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".txt";
-            openFileDialog.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog.FileName = "kh2fm-tracker-save";
-            openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "txt files (*.txt)|*.txt",
+                FileName = "kh2fm-tracker-save",
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 Load(openFileDialog.FileName);
@@ -293,50 +297,52 @@ namespace KhTracker
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-
-                List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-                reportKeys.Sort();
-
-                foreach (var report in reportKeys)
-                {
-                    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
-                    var count = reports[report.ToString()]["Count"].ToString();
-                    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
-                    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
-                    data.reportLocations.Add(location);
-                }
-
-                data.hintsLoaded = true;
-                HintText.Content = "Hints Loaded";
+                JsmarteeHints(hintObject);
+                //var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                //
+                //List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+                //reportKeys.Sort();
+                //
+                //foreach (var report in reportKeys)
+                //{
+                //    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
+                //    var count = reports[report.ToString()]["Count"].ToString();
+                //    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
+                //    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                //    data.reportLocations.Add(location);
+                //}
+                //
+                //data.hintsLoaded = true;
+                //HintText.Content = "Hints Loaded";
             }
             else if (mode == "OpenKHAltHints")
             {
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-
-                foreach (var world in worlds)
-                {
-                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                    {
-                        continue;
-                    }
-                    foreach (var item in world.Value)
-                    {
-                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-                    }
-
-                }
-                foreach (var key in data.WorldsData.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-
-                    data.WorldsData[key].worldGrid.WorldComplete();
-                    SetReportValue(data.WorldsData[key].hint, 0);
-                }
+                ShanHints(hintObject);
+                //var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                //
+                //foreach (var world in worlds)
+                //{
+                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                //    {
+                //        continue;
+                //    }
+                //    foreach (var item in world.Value)
+                //    {
+                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                //    }
+                //
+                //}
+                //foreach (var key in data.WorldsData.Keys.ToList())
+                //{
+                //    if (key == "GoA")
+                //        continue;
+                //
+                //    data.WorldsData[key].worldGrid.WorldComplete();
+                //    SetReportValue(data.WorldsData[key].hint, 0);
+                //}
             }
             else if (mode == "DAHints")
             {
@@ -350,94 +356,95 @@ namespace KhTracker
                 data.openKHHintText = reader.ReadLine();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-                var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-                var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
-
-                List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
-                reportKeysP.Sort();
-
-                foreach (var point in points)
-                {
-                    if (data.PointsDatanew.Keys.Contains(point.Key))
-                    {
-                        data.PointsDatanew[point.Key] = point.Value;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Something went wrong in setting point values. error: {point.Key}");
-                    }
-                }
-
-                //Fallback values for older seeds
-                if (!points.Keys.Contains("report"))
-                    data.PointsDatanew["report"] = data.PointsDatanew["page"];
-                if (!points.Keys.Contains("bonus"))
-                    data.PointsDatanew["bonus"] = 10;
-                if (!points.Keys.Contains("complete"))
-                    data.PointsDatanew["complete"] = 10;
-                if (!points.Keys.Contains("formlv"))
-                    data.PointsDatanew["formlv"] = 3;
-                if (!points.Keys.Contains("visit"))
-                    data.PointsDatanew["visit"] = 1;
-
-                //get point totals for each world
-                foreach (var world in worldsP)
-                {
-                    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                    {
-                        continue;
-                    }
-                    foreach (var item in world.Value)
-                    {
-                        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
-                            continue;
-
-                        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-
-                        string itemType = CheckItemType(item);
-                        if (data.PointsDatanew.Keys.Contains(itemType))
-                        {
-                            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Something went wrong in getting world points. error: {itemType}");
-                        }
-                    }
-                }
-
-                //set points for each world
-                foreach (var key in data.WorldsData.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-
-                    data.WorldsData[key].worldGrid.WorldPointsComplete();
-
-                    if (WorldPoints.Keys.Contains(key))
-                    {
-                        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Something went wrong in setting world point numbers. error: {key}");
-                    }
-                }
-
-                foreach (var reportP in reportKeysP)
-                {
-                    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
-                    var checkP = reportsP[reportP.ToString()]["check"].ToString();
-                    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
-
-                    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
-                    data.reportLocations.Add(locationP);
-                }
-
-                ReportsToggle(true);
-                data.hintsLoaded = true;
-                WorldPoints_c = WorldPoints;
+                PointsHints(hintObject);
+                //var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+                //var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+                //var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
+                //
+                //List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
+                //reportKeysP.Sort();
+                //
+                //foreach (var point in points)
+                //{
+                //    if (data.PointsDatanew.Keys.Contains(point.Key))
+                //    {
+                //        data.PointsDatanew[point.Key] = point.Value;
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine($"Something went wrong in setting point values. error: {point.Key}");
+                //    }
+                //}
+                //
+                ////Fallback values for older seeds
+                //if (!points.Keys.Contains("report"))
+                //    data.PointsDatanew["report"] = data.PointsDatanew["page"];
+                //if (!points.Keys.Contains("bonus"))
+                //    data.PointsDatanew["bonus"] = 10;
+                //if (!points.Keys.Contains("complete"))
+                //    data.PointsDatanew["complete"] = 10;
+                //if (!points.Keys.Contains("formlv"))
+                //    data.PointsDatanew["formlv"] = 3;
+                //if (!points.Keys.Contains("visit"))
+                //    data.PointsDatanew["visit"] = 1;
+                //
+                ////get point totals for each world
+                //foreach (var world in worldsP)
+                //{
+                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                //    {
+                //        continue;
+                //    }
+                //    foreach (var item in world.Value)
+                //    {
+                //        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
+                //            continue;
+                //
+                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
+                //
+                //        string itemType = CheckItemType(item);
+                //        if (data.PointsDatanew.Keys.Contains(itemType))
+                //        {
+                //            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
+                //        }
+                //        else
+                //        {
+                //            Console.WriteLine($"Something went wrong in getting world points. error: {itemType}");
+                //        }
+                //    }
+                //}
+                //
+                ////set points for each world
+                //foreach (var key in data.WorldsData.Keys.ToList())
+                //{
+                //    if (key == "GoA")
+                //        continue;
+                //
+                //    data.WorldsData[key].worldGrid.WorldPointsComplete();
+                //
+                //    if (WorldPoints.Keys.Contains(key))
+                //    {
+                //        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine($"Something went wrong in setting world point numbers. error: {key}");
+                //    }
+                //}
+                //
+                //foreach (var reportP in reportKeysP)
+                //{
+                //    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
+                //    var checkP = reportsP[reportP.ToString()]["check"].ToString();
+                //    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
+                //
+                //    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
+                //    data.reportLocations.Add(locationP);
+                //}
+                //
+                //ReportsToggle(true);
+                //data.hintsLoaded = true;
+                //WorldPoints_c = WorldPoints;
 
                 var witemlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
                 var witemlist = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(witemlist64);
@@ -664,10 +671,12 @@ namespace KhTracker
 
         private void LoadHints(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".hint";
-            openFileDialog.Filter = "hint files (*.hint)|*.hint";
-            openFileDialog.Title = "Select Hints File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".hint",
+                Filter = "hint files (*.hint)|*.hint",
+                Title = "Select Hints File"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadHints(openFileDialog.FileName);
@@ -729,6 +738,7 @@ namespace KhTracker
             data.reportLocations.Clear();
             data.reportInformation.Clear();
             data.pointreportInformation.Clear();
+            data.pathreportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -776,15 +786,15 @@ namespace KhTracker
                     case "Second Chance & Once More":
                         AbilitiesToggle(true);
                         break;
-                    case "Torn Pages":
-                        TornPagesToggle(true);
-                        break;
-                    case "Cure":
-                        CureToggle(true);
-                        break;
-                    case "Final Form":
-                        FinalFormToggle(true);
-                        break;
+                    //case "Torn Pages":
+                    //    TornPagesToggle(true);
+                    //    break;
+                    //case "Cure":
+                    //    CureToggle(true);
+                    //    break;
+                    //case "Final Form":
+                    //    FinalFormToggle(true);
+                    //    break;
                     case "Visit Locks":
                         VisitLockToggle(true);
                         break;
@@ -840,12 +850,6 @@ namespace KhTracker
 
             collectedChecks.Clear();
             newChecks.Clear();
-
-            //{
-            //    List<BitmapImage> LevelCheckNum = UpdateNumber(1, "Y");
-            //    LevelCheck_01.Source = LevelCheckNum[0];
-            //    LevelCheck_10.Source = LevelCheckNum[1];
-            //}
 
             ModeDisplay.Header = "";
             HintText.Content = "";
@@ -1106,6 +1110,23 @@ namespace KhTracker
             broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
             broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
+            //reset pathhints edits
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                Grid grid = data.WorldsData[key].world.Parent as Grid;
+                grid.ColumnDefinitions[3].Width = new GridLength(0.1, GridUnitType.Star);
+
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Hidden;
+                foreach (Image child in pathgrid.Children)
+                {
+                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
+                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
+                    child.Visibility = Visibility.Hidden;
+                }
+            }
+
             UpdatePointScore(0);
             ReportsToggle(true);
             ResetHints();
@@ -1130,10 +1151,12 @@ namespace KhTracker
 
         private void ParseSeed(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".pnach";
-            openFileDialog.Filter = "pnach files (*.pnach)|*.pnach";
-            openFileDialog.Title = "Select Seed File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".pnach",
+                Filter = "pnach files (*.pnach)|*.pnach",
+                Title = "Select Seed File"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 ParseSeed(openFileDialog.FileName);
@@ -1276,10 +1299,12 @@ namespace KhTracker
 
         private void OpenKHSeed(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".zip";
-            openFileDialog.Filter = "OpenKH Seeds (*.zip)|*.zip";
-            openFileDialog.Title = "Select Seed File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".zip",
+                Filter = "OpenKH Seeds (*.zip)|*.zip",
+                Title = "Select Seed File"
+            };
             if (openFileDialog.ShowDialog() == true)
                 OpenKHSeed(openFileDialog.FileName);
         }
@@ -1305,8 +1330,6 @@ namespace KhTracker
                             var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                             var settings = new List<string>();
-
-
 
                             ShouldResetHash = false;
                             switch (hintObject["hintsType"].ToString())
@@ -1366,9 +1389,9 @@ namespace KhTracker
                                     SynthToggle(false);
 
                                     AbilitiesToggle(true);
-                                    TornPagesToggle(true);
-                                    CureToggle(true);
-                                    FinalFormToggle(true);
+                                    //TornPagesToggle(true);
+                                    //CureToggle(true);
+                                    //FinalFormToggle(true);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;

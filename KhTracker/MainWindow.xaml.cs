@@ -26,7 +26,7 @@ namespace KhTracker
         public int collected;
         private int total = 62;
         public static int PointTotal = 0;
-        //public static int World = 0;
+        public int DeathCounter = 0;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
 
@@ -126,7 +126,7 @@ namespace KhTracker
             data.WorldsData.Add("PuzzSynth", new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, PuzzSynthBar, false, 0));
 
             data.ProgressKeys.Add("SimulatedTwilightTown", new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
-            data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
+            data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "TTChests", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
             data.ProgressKeys.Add("HollowBastion", new List<string>() { "", "HBChests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx" });
             data.ProgressKeys.Add("BeastsCastle", new List<string>() { "", "BCChests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
             data.ProgressKeys.Add("OlympusColiseum", new List<string>() { "", "OCChests", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
@@ -171,14 +171,14 @@ namespace KhTracker
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
             AbilitiesToggle(AbilitiesOption.IsChecked);
 
-            TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            TornPagesToggle(TornPagesOption.IsChecked);
-
-            CureOption.IsChecked = Properties.Settings.Default.Cure;
-            CureToggle(CureOption.IsChecked);
-
-            FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            FinalFormToggle(FinalFormOption.IsChecked);
+            //TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
+            //TornPagesToggle(TornPagesOption.IsChecked);
+            //
+            //CureOption.IsChecked = Properties.Settings.Default.Cure;
+            //CureToggle(CureOption.IsChecked);
+            //
+            //FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
+            //FinalFormToggle(FinalFormOption.IsChecked);
 
             //World Toggles
             SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
@@ -200,7 +200,7 @@ namespace KhTracker
             SynthToggle(SynthOption.IsChecked);
 
             CavernOption.IsChecked = Properties.Settings.Default.Cavern;
-            CavernToggle(CureOption.IsChecked);
+            CavernToggle(CavernOption.IsChecked);
 
             TerraOption.IsChecked = Properties.Settings.Default.Terra;
             TerraToggle(TerraOption.IsChecked);
@@ -284,6 +284,14 @@ namespace KhTracker
             NextLevelCheckOption.IsChecked = Properties.Settings.Default.NextLevelCheck;
             if (NextLevelCheckOption.IsChecked)
                 NextLevelCheckToggle(null, null);
+
+            DeathCounterOption.IsChecked = Properties.Settings.Default.DeathCounter;
+            if (DeathCounterOption.IsChecked)
+                DeathCounterToggle(null, null);
+
+            LegacyOption.IsChecked = Properties.Settings.Default.Legacy;
+            if (LegacyOption.IsChecked)
+                LegacyToggle(null, null);
 
             SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
             if (SoraLevel01Option.IsChecked)
@@ -413,6 +421,28 @@ namespace KhTracker
                 if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
                 {
                     SetWorldNumber(data.WorldsData[button.Name].hint, -1, "Y");
+                }
+            }
+            else if (e.ChangedButton == MouseButton.Right)
+            {
+                if (data.WorldsData.ContainsKey(button.Name))
+                {
+                    string crossname = button.Name + "Cross";
+
+                    if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
+                    {
+                        if (Cross.Visibility == Visibility.Collapsed)
+                            Cross.Visibility = Visibility.Visible;
+                        else
+                            Cross.Visibility = Visibility.Collapsed;
+                    }
+                    if (broadcast.FindName(crossname) is Image CrossB)
+                    {
+                        if (CrossB.Visibility == Visibility.Collapsed)
+                            CrossB.Visibility = Visibility.Visible;
+                        else
+                            CrossB.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
@@ -810,10 +840,11 @@ namespace KhTracker
 
             for (int i = 0; i < ChildCount; i++)
             {
-                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+                Image child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
 
                 if (child == null)
                     continue;
+
                 if (child is Image && child.Name.Equals(worldname + "_001"))
                 {
                     child.Source = WorldNumImage[0];

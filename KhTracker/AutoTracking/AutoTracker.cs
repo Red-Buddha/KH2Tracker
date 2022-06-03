@@ -118,6 +118,7 @@ namespace KhTracker
         private bool isWorking = false;
         private bool firstRun = true;
         private bool titleloaded = false;
+        private bool onContinue = false;
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -446,6 +447,7 @@ namespace KhTracker
 
             //levelcheck visibility
             NextLevelDisplay();
+            DeathCounterDisplay();
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
@@ -542,7 +544,7 @@ namespace KhTracker
                 }
                 else
                 {
-                    offset = offset + 0x10000000;
+                    offset += 0x10000000;
                 }
             }
             ADDRESS_OFFSET = offset;
@@ -550,7 +552,7 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberTens(Level_01, Level_10, "Level", stats);
             BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
@@ -558,7 +560,7 @@ namespace KhTracker
             BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
-            BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
+            BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
             BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
             BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
@@ -628,17 +630,19 @@ namespace KhTracker
             {
                 stats.UpdateMemory();
                 world.UpdateMemory();
-                //UpdateMagicAddresses();
+                UpdateMagicAddresses();
                 UpdateWorldProgress(world);
                 UpdatePointScore(0);
+                StatResize();
+                DeathCheck(pcsx2tracking);
 
                 //Console.WriteLine("room num = " + world.roomNumber);
                 //Console.WriteLine("world num = " + world.worldNum);
                 //Console.WriteLine("event id1 = " + world.eventID1);
                 //Console.WriteLine("event id2 = " + world.eventID2);
                 //Console.WriteLine("event id3 = " + world.eventID3);
-                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
-                Console.WriteLine(cntrl);
+                //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                //Console.WriteLine(cntrl);
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {
@@ -662,10 +666,20 @@ namespace KhTracker
             //next level check
             stats.SetNextLevelCheck(stats.Level);
             List<BitmapImage> LevelCheckNum = UpdateNumber(stats.LevelCheck, "G");
-            LevelCheck_01.Source = LevelCheckNum[0];
-            LevelCheck_10.Source = LevelCheckNum[1];
-            broadcast.LevelCheck_01.Source = LevelCheckNum[0];
-            broadcast.LevelCheck_10.Source = LevelCheckNum[1];
+            if (stats.LevelCheck < 9)
+            {
+                LevelCheck_01.Source = null;
+                LevelCheck_10.Source = LevelCheckNum[0];
+                broadcast.LevelCheck_01.Source = null;
+                broadcast.LevelCheck_10.Source = LevelCheckNum[0];
+            }
+            else
+            {
+                LevelCheck_01.Source = LevelCheckNum[0];
+                LevelCheck_10.Source = LevelCheckNum[1];
+                broadcast.LevelCheck_01.Source = LevelCheckNum[0];
+                broadcast.LevelCheck_10.Source = LevelCheckNum[1];
+            }
         }
 
         private void TrackItem(string itemName, WorldGrid world)
@@ -767,29 +781,28 @@ namespace KhTracker
             }
         }
 
-        //private void UpdateMagicAddresses()
-        //{
-        //    //no loner need this i think.
-        //    if (world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
-        //        && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
-        //    {
-        //        fire.UseSTTAddress(true);
-        //        blizzard.UseSTTAddress(true);
-        //        thunder.UseSTTAddress(true);
-        //        cure.UseSTTAddress(true);
-        //        reflect.UseSTTAddress(true);
-        //        magnet.UseSTTAddress(true);
-        //    }
-        //    else
-        //    {
-        //        fire.UseSTTAddress(false);
-        //        blizzard.UseSTTAddress(false);
-        //        thunder.UseSTTAddress(false);
-        //        cure.UseSTTAddress(false);
-        //        reflect.UseSTTAddress(false);
-        //        magnet.UseSTTAddress(false);
-        //    }
-        //}
+        private void UpdateMagicAddresses()
+        {
+            if (LegacyOption.IsChecked && world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
+                && !(world.roomNumber == 21 && (world.eventID1 == 99 || world.eventID3 == 113 || world.eventID1 == 114)))
+            {
+                fire.UseSTTAddress(true);
+                blizzard.UseSTTAddress(true);
+                thunder.UseSTTAddress(true);
+                cure.UseSTTAddress(true);
+                reflect.UseSTTAddress(true);
+                magnet.UseSTTAddress(true);
+            }
+            else
+            {
+                fire.UseSTTAddress(false);
+                blizzard.UseSTTAddress(false);
+                thunder.UseSTTAddress(false);
+                cure.UseSTTAddress(false);
+                reflect.UseSTTAddress(false);
+                magnet.UseSTTAddress(false);
+            }
+        }
 
         private void UpdateCollectedItems()
         {
@@ -975,29 +988,35 @@ namespace KhTracker
             }
             else if (world.worldName == "TwilightTown")
             {
+                if (world.roomNumber == 9 && world.eventID3 == 117 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
+                {
+                    broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "TTChests");
+                    TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "TTChests");
+                    data.WorldsData[world.worldName].progress = 1;
+                }
                 if (world.roomNumber == 27 && world.eventID3 == 4) // Yen Sid after new clothes
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "MysteriousTower");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "MysteriousTower");
-                    data.WorldsData[world.worldName].progress = 1;
+                    data.WorldsData[world.worldName].progress = 2;
                 }
                 else if (world.roomNumber == 4 && world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Sandlot");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Sandlot");
-                    data.WorldsData[world.worldName].progress = 2;
+                    data.WorldsData[world.worldName].progress = 3;
                 }
                 else if (world.roomNumber == 41 && world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Mansion");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "Mansion");
-                    data.WorldsData[world.worldName].progress = 3;
+                    data.WorldsData[world.worldName].progress = 4;
                 }
                 else if (world.roomNumber == 40 && world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
                 {
                     broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "BetwixtandBetween");
                     TwilightTownProgression.SetResourceReference(ContentProperty, Prog + "BetwixtandBetween");
-                    data.WorldsData[world.worldName].progress = 4;
+                    data.WorldsData[world.worldName].progress = 5;
                 }
                 else if (world.roomNumber == 20 && world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
                 {
@@ -1287,10 +1306,10 @@ namespace KhTracker
             }
             else if (world.worldName == "HundredAcreWood")
             {
-                if (world.roomNumber == 2 && (world.eventID3 == 1 || world.eventID3 == 22)) // Pooh's house (eventID3 == 1 is when not skipping AW0)
+                if (world.roomNumber == 2 && (world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22)) // Pooh's house (eventID3 == 1 is when not skipping AW0)
                 {
-                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, (Prog + "Pooh"));
-                    HundredAcreWoodProgression.SetResourceReference(ContentProperty, (Prog + "Pooh"));
+                    broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, Prog + "Pooh");
+                    HundredAcreWoodProgression.SetResourceReference(ContentProperty, Prog + "Pooh");
                     data.WorldsData[world.worldName].progress = 1;
                 }
                 else if (world.roomNumber == 4 && world.eventID3 == 1) // Piglet's house
@@ -1715,7 +1734,7 @@ namespace KhTracker
         //used to get the numbers for everything to change color corectly when changing icon modes
         private void ReloadBindings()
         {
-            BindNumberFull(Level_01, Level_10, null, "Level", stats);
+            BindNumberTens(Level_01, Level_10, "Level", stats);
             BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
             BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
             BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
@@ -1723,7 +1742,7 @@ namespace KhTracker
             BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
-            BindNumberFull(broadcast.Level_01, broadcast.Level_10, null, "Level", stats);
+            BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
             BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
             BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
             BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
@@ -1766,7 +1785,6 @@ namespace KhTracker
 
             Updatenumbers();
             broadcast.UpdateNumbers();
-            //broadcast.UpdateTotal();
 
             UpdatePointScore(0);
         }
@@ -1848,30 +1866,6 @@ namespace KhTracker
             CollectedBar.Source = NumberBarY;
         }
 
-        //private void BindNumberHundred(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter100();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindNumberTen(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter010();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindNumberOne(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new NumberConverter001();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
         private void BindNumberFull(Image img1, Image img2, Image img3, string property, object source)
         {
             if (source != null)
@@ -1895,30 +1889,127 @@ namespace KhTracker
                 if (img3 != null)
                     img3.SetBinding(Image.SourceProperty, binding3);
             }
+        }
 
+        private void BindNumberTens(Image img1, Image img2, string property, object source)
+        {
+            if (source != null)
+            {
+                Binding binding1 = new Binding(property);
+                Binding binding2 = new Binding(property);
+                binding1.Source = source;
+                binding2.Source = source;
+                binding1.Converter = new NumberConverter001();
+                binding2.Converter = new NumberConverter010();
+
+                if (img1 != null)
+                    img1.SetBinding(Image.SourceProperty, binding1);
+
+                if (img2 != null)
+                    img2.SetBinding(Image.SourceProperty, binding2);
+            }
         }
 
         private bool CheckSynthPuzzle(bool ps2)
         {
             if (ps2)
             {
-                //code for autotracking on ps2
+                //reminder: FFFF = unloaded)
+                string Jounal = BytesToHex(memory.ReadMemory(0x35F144, 2)); //in journal
+                //reminder: FF = none | 01 = save menu | 03 = load menu | 05 = moogle | 07 = item popup | 08 = pause menu (cutscene/fight) | 0A = pause Menu (normal)
+                string menu = BytesToHex(memory.ReadMemory(0x35F2EC, 2)); //in a menu
+
+                if ((Jounal == "FFFF" && menu == "0500") || (Jounal != "FFFF" && menu == "0A00")) // in moogle shop / in puzzle menu
+                {
+                    return true;
+                }
                 return false;
             }
             else
             {
-                string menu1 = BytesToHex(memory.ReadMemory(0xBEBD28, 2)); //in a menu
-                string menu2 = BytesToHex(memory.ReadMemory(0x741230, 2)); //in journal
-                string menu3 = BytesToHex(memory.ReadMemory(0x8A41CA, 2)); //in synth
-                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                string Jounal = BytesToHex(memory.ReadMemory(0x741230, 2)); //in journal
+                //reminder: FF = none | 01 = save menu | 03 = load menu | 05 = moogle | 07 = item popup | 08 = pause menu (cutscene/fight) | 0A = pause Menu (normal)
+                string menu = BytesToHex(memory.ReadMemory(0x741320, 2)); //in a menu
 
-                if ((menu2 == "FFFF" && menu1 == "0300" && menu3 == "0100" && cntrl == "00") || (menu2 == "0000" && menu1 == "0300" && menu3 == "0000")) // in moogle shop / in puzzle mode
+                if ((Jounal == "FFFF" && menu == "0500") || (Jounal != "FFFF" && menu == "0A00")) // in moogle shop / in puzzle menu
                 {
                     return true;
                 }
-
                 return false;
             }
+        }
+
+        private void DeathCheck(bool ps2)
+        {
+            string PauseCheck;
+            if (ps2)
+            {
+                PauseCheck = BytesToHex(memory.ReadMemory(0x347E08, 2));
+            }
+            else
+            {
+                PauseCheck = BytesToHex(memory.ReadMemory(0xAB9078, 2));
+            }
+
+            if (onContinue)
+            {
+                if (PauseCheck == "0500")
+                    return;
+                else
+                    onContinue = false;
+            }
+
+            if (PauseCheck == "0500")
+            {
+                DeathCounter += 1;
+                onContinue = true;
+            }
+
+            List<BitmapImage> DeathNum = UpdateNumber(DeathCounter, "Y");
+            Death_01.Source = DeathNum[0];
+            broadcast.Death_01.Source = DeathNum[0];
+            if (DeathCounter < 10)
+            {
+                Death_10.Source = null;
+                broadcast.Death_10.Source = null;
+            }
+            else
+            {
+                Death_10.Source = DeathNum[1];
+                broadcast.Death_10.Source = DeathNum[1];
+            }
+        }
+
+        private void StatResize()
+        {
+            if (stats.Strength < 100)
+            {
+                Strength.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Strength.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+            if (stats.Magic < 100)
+            {
+                Magic.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Magic.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+            if (stats.Defense < 100)
+            {
+                Defense.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                Defense.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+            }
+
+
         }
     }
 }

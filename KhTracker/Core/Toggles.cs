@@ -49,26 +49,6 @@ namespace KhTracker
             }
         }
 
-        private void HandleGhostItemToggle(bool toggle)
-        {
-            foreach (Item GhostItem in Data.GhostItems.Values.ToList())
-            {
-
-                if (toggle && GhostItem.IsEnabled == false)
-                {
-                    GhostItem.IsEnabled = true;
-                    GhostItem.Visibility = Visibility.Visible;
-                }
-                else if (toggle == false && GhostItem.IsEnabled)
-                {
-                    GhostItem.IsEnabled = false;
-                    GhostItem.Visibility = Visibility.Hidden;
-
-                    GhostItem.HandleItemReturn();
-                }
-            }
-        }
-
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
             //this chunk of garbage for using the correct vertical image
@@ -232,54 +212,54 @@ namespace KhTracker
             HandleItemToggle(toggle, SecondChance, false);
         }
 
-        private void TornPagesToggle(object sender, RoutedEventArgs e)
-        {
-            TornPagesToggle(TornPagesOption.IsChecked);
-        }
+        //private void TornPagesToggle(object sender, RoutedEventArgs e)
+        //{
+        //    TornPagesToggle(TornPagesOption.IsChecked);
+        //}
+        //
+        //private void TornPagesToggle(bool toggle)
+        //{
+        //    Properties.Settings.Default.TornPages = toggle;
+        //    TornPagesOption.IsChecked = toggle;
+        //    if (toggle)
+        //    {
+        //        broadcast.PoohPage.Width = new GridLength(1.0, GridUnitType.Star);
+        //    }
+        //    else
+        //    {
+        //        broadcast.PoohPage.Width = new GridLength(0, GridUnitType.Star);
+        //    }
+        //    for (int i = 0; i < data.TornPages.Count; ++i)
+        //    {
+        //        HandleItemToggle(toggle, data.TornPages[i], false);
+        //    }
+        //}
 
-        private void TornPagesToggle(bool toggle)
-        {
-            Properties.Settings.Default.TornPages = toggle;
-            TornPagesOption.IsChecked = toggle;
-            if (toggle)
-            {
-                broadcast.PoohPage.Width = new GridLength(1.0, GridUnitType.Star);
-            }
-            else
-            {
-                broadcast.PoohPage.Width = new GridLength(0, GridUnitType.Star);
-            }
-            for (int i = 0; i < data.TornPages.Count; ++i)
-            {
-                HandleItemToggle(toggle, data.TornPages[i], false);
-            }
-        }
+        //private void CureToggle(object sender, RoutedEventArgs e)
+        //{
+        //    CureToggle(CureOption.IsChecked);
+        //}
+        //
+        //private void CureToggle(bool toggle)
+        //{
+        //    Properties.Settings.Default.Cure = toggle;
+        //    CureOption.IsChecked = toggle;
+        //    HandleItemToggle(toggle, Cure1, false);
+        //    HandleItemToggle(toggle, Cure2, false);
+        //    HandleItemToggle(toggle, Cure3, false);
+        //}
 
-        private void CureToggle(object sender, RoutedEventArgs e)
-        {
-            CureToggle(CureOption.IsChecked);
-        }
-
-        private void CureToggle(bool toggle)
-        {
-            Properties.Settings.Default.Cure = toggle;
-            CureOption.IsChecked = toggle;
-            HandleItemToggle(toggle, Cure1, false);
-            HandleItemToggle(toggle, Cure2, false);
-            HandleItemToggle(toggle, Cure3, false);
-        }
-
-        private void FinalFormToggle(object sender, RoutedEventArgs e)
-        {
-            FinalFormToggle(FinalFormOption.IsChecked);
-        }
-
-        private void FinalFormToggle(bool toggle)
-        {
-            Properties.Settings.Default.FinalForm = toggle;
-            FinalFormOption.IsChecked = toggle;
-            HandleItemToggle(toggle, Final, false);
-        }
+        //private void FinalFormToggle(object sender, RoutedEventArgs e)
+        //{
+        //    FinalFormToggle(FinalFormOption.IsChecked);
+        //}
+        //
+        //private void FinalFormToggle(bool toggle)
+        //{
+        //    Properties.Settings.Default.FinalForm = toggle;
+        //    FinalFormOption.IsChecked = toggle;
+        //    HandleItemToggle(toggle, Final, false);
+        //}
 
         private void SeedHashToggle(object sender, RoutedEventArgs e)
         {
@@ -421,7 +401,7 @@ namespace KhTracker
 
         private void ShowCheckCountToggle(bool toggle)
         {
-            Console.WriteLine("ShowCheckCountToggle pressed");
+            //Console.WriteLine("ShowCheckCountToggle pressed");
 
             Properties.Settings.Default.CheckCount = toggle;
             CheckCountOption.IsChecked = toggle;
@@ -488,14 +468,14 @@ namespace KhTracker
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Visible;
 
-                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
 
-                    Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
-                    grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                    grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.WorldsData[key].world, 2);
+                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
+                    //grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
+                    //grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                    //grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
+                    //Grid.SetColumnSpan(data.WorldsData[key].world, 2);
                 }
             }
             else
@@ -507,14 +487,14 @@ namespace KhTracker
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Hidden;
 
-                    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                    data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
 
-                    Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
-                    grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
-                    grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
-                    Grid.SetColumnSpan(data.WorldsData[key].world, 3);
+                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
+                    //grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
+                    //grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
+                    //grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
+                    //Grid.SetColumnSpan(data.WorldsData[key].world, 3);
                 }
             }
         }
@@ -608,6 +588,40 @@ namespace KhTracker
                 Connect.Visibility = Visibility.Hidden;
         }
 
+        private void DeathCounterToggle(object sender, RoutedEventArgs e)
+        {
+            DeathCounterToggle(DeathCounterOption.IsChecked);
+        }
+
+        private void DeathCounterToggle(bool toggle)
+        {
+            Properties.Settings.Default.DeathCounter = toggle;
+            DeathCounterOption.IsChecked = toggle;
+
+            DeathCounterDisplay();
+        }
+
+        private void DeathCounterDisplay()
+        {
+            if (DeathCounterOption.IsChecked && memory != null)
+            {
+                if (DeathCounterGrid.Visibility == Visibility.Collapsed)
+                {
+                    DeathCounterGrid.Visibility = Visibility.Visible;
+                    HintTextParent.SetValue(Grid.ColumnProperty, 0);
+                    HintTextParent.SetValue(Grid.ColumnSpanProperty, 19);
+                    broadcast.DeathCounter.Width = new GridLength(0.6, GridUnitType.Star);
+                }
+            }
+            else
+            {
+                DeathCounterGrid.Visibility = Visibility.Collapsed;
+                HintTextParent.SetValue(Grid.ColumnProperty, 2);
+                HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
+                broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
+            }
+        }
+
         //level check toggles
 
         private void NextLevelCheckToggle(object sender, RoutedEventArgs e)
@@ -625,17 +639,7 @@ namespace KhTracker
 
         private void NextLevelDisplay()
         {
-            bool Visible = false;
-
-            if (NextLevelCheckOption.IsChecked)
-            {
-                Visible = true;
-            }
-            else
-            {
-                HintTextParent.Margin = new Thickness(0, 0, 0, 0);
-                HintText.Margin = new Thickness(0, 0, 0, 0);
-            }
+            bool Visible = NextLevelCheckOption.IsChecked;
 
             if (SoraLevel01Option.IsChecked)
             {
@@ -693,6 +697,17 @@ namespace KhTracker
             {
                 NextlevelValue.Width = new GridLength(0, GridUnitType.Star);
             }
+        }
+
+        private void LegacyToggle(object sender, RoutedEventArgs e)
+        {
+            LegacyToggle(LegacyOption.IsChecked);
+        }
+
+        private void LegacyToggle(bool toggle)
+        {
+            Properties.Settings.Default.Legacy = toggle;
+            LegacyOption.IsChecked = toggle;
         }
 
         //World toggles
@@ -1687,6 +1702,50 @@ namespace KhTracker
                     broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
                     broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
                     broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+                }
+                //reload others
+                {
+                    SorasHeartCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    DriveFormsCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    TwilightTownCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    HollowBastionCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    BeastsCastleCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    OlympusColiseumCross.Source =       new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    AgrabahCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    LandofDragonsCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    HundredAcreWoodCross.Source =       new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    PrideLandsCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    DisneyCastleCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    HalloweenTownCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    PortRoyalCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    TWTNWCross.Source =                 new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    SpaceParanoidsCross.Source =        new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    AtlanticaCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    PuzzSynthCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    GoACross.Source =                   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+
+                    broadcast.SorasHeartCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.DriveFormsCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.SimulatedTwilightTownCross.Source =   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.TwilightTownCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.HollowBastionCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.BeastsCastleCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.OlympusColiseumCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.AgrabahCross.Source =                 new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.LandofDragonsCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.HundredAcreWoodCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.PrideLandsCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.DisneyCastleCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.HalloweenTownCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.PortRoyalCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.TWTNWCross.Source =                   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.SpaceParanoidsCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.AtlanticaCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                    broadcast.PuzzSynthCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+
+                    Skull.Source =           new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
+                    broadcast.Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
                 }
                 //reload prog icons (do i need this? only if i want switching to be dynamic i guess)
                 //{
