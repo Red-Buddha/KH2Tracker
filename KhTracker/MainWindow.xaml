@@ -1857,7 +1857,7 @@
             </Grid>
 
             <!-- Testing hash placement -->
-            <Grid Grid.Row="1" Visibility="Hidden">
+            <Grid Grid.Row="1" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>

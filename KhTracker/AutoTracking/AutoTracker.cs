@@ -1915,9 +1915,9 @@ namespace KhTracker
             if (ps2)
             {
                 //reminder: FFFF = unloaded)
-                string Jounal = BytesToHex(memory.ReadMemory(0x35F144, 2)); //in journal
+                string Jounal = BytesToHex(memory.ReadMemory(0x035F144 + ADDRESS_OFFSET, 2)); //in journal
                 //reminder: FF = none | 01 = save menu | 03 = load menu | 05 = moogle | 07 = item popup | 08 = pause menu (cutscene/fight) | 0A = pause Menu (normal)
-                string menu = BytesToHex(memory.ReadMemory(0x35F2EC, 2)); //in a menu
+                string menu = BytesToHex(memory.ReadMemory(0x035F2EC + ADDRESS_OFFSET, 2)); //in a menu
 
                 if ((Jounal == "FFFF" && menu == "0500") || (Jounal != "FFFF" && menu == "0A00")) // in moogle shop / in puzzle menu
                 {
@@ -1941,10 +1941,14 @@ namespace KhTracker
 
         private void DeathCheck(bool ps2)
         {
+            //Note: 04 = dying, 05 = continue screen.
+            //note: if i try tracking a death when pausecheck is "0400" then that should give a
+            //more accurate death count in the event that continue is selected too fast (i hope)
+
             string PauseCheck;
             if (ps2)
             {
-                PauseCheck = BytesToHex(memory.ReadMemory(0x347E08, 2));
+                PauseCheck = BytesToHex(memory.ReadMemory(0x0347E08 + ADDRESS_OFFSET, 2));
             }
             else
             {
@@ -1953,13 +1957,13 @@ namespace KhTracker
 
             if (onContinue)
             {
-                if (PauseCheck == "0500")
+                if (PauseCheck == "0400" || PauseCheck == "0500")
                     return;
                 else
                     onContinue = false;
             }
 
-            if (PauseCheck == "0500")
+            if (PauseCheck == "0400" || PauseCheck == "0500")
             {
                 DeathCounter += 1;
                 onContinue = true;

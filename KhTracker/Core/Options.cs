@@ -1134,7 +1134,12 @@ namespace KhTracker
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
+
             DeathCounter = 0;
+            DeathCounterGrid.Visibility = Visibility.Collapsed;
+            HintTextParent.SetValue(Grid.ColumnProperty, 2);
+            HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
+            broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
 
             foreach (ContentControl item in ItemPool.Children)
                 if (!item.Name.Contains("Ghost"))
