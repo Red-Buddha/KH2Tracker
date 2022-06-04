@@ -1134,6 +1134,7 @@ namespace KhTracker
 
             broadcast.OnReset();
             broadcast.UpdateNumbers();
+            DeathCounter = 0;
 
             foreach (ContentControl item in ItemPool.Children)
                 if (!item.Name.Contains("Ghost"))
