@@ -29,6 +29,9 @@ namespace KhTracker
 
         public event TotalHandler UpdateTotal;
         public event FoundHandler UpdateFound;
+
+        public MainWindow MainW = (MainWindow)App.Current.MainWindow;
+
         public Item()
         {
             InitializeComponent();
@@ -170,16 +173,16 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
 
-            if (this.Name.StartsWith("Ghost_") && ((MainWindow)Application.Current.MainWindow).GhostItemOption.IsChecked == false)
+            if (this.Name.StartsWith("Ghost_") && MainW.GhostItemOption.IsChecked == false)
             {
                 if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
                 {
                     WorldGrid parent = this.Parent as WorldGrid;
-            
+
                     ((WorldGrid)Parent).Handle_WorldGrid(this, false);
-            
-                    ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Add(this);
-            
+
+                    MainW.ItemPool.Children.Add(this);
+
                     parent.Children.Remove(this);
                 }
                 return;

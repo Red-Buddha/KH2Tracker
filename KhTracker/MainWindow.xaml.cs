@@ -141,14 +141,17 @@ namespace KhTracker
             data.ProgressKeys.Add("TWTNW", new List<string>() { "", "TWTNWChests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
             data.ProgressKeys.Add("Atlantica", new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
 
-            foreach (ContentControl item in ItemPool.Children)
+            foreach (Grid itemrow in ItemPool.Children)
             {
-                if (item is Item)
+                foreach (ContentControl item in itemrow.Children)
                 {
-                    if (!item.Name.StartsWith("Ghost_"))
-                        data.Items.Add(item as Item);
-                    else
-                        Data.GhostItems.Add(item.Name, item as Item);
+                    if (item is Item)
+                    {
+                        if (!item.Name.StartsWith("Ghost_"))
+                            data.Items.Add(item as Item);
+                        else
+                            Data.GhostItems.Add(item.Name, item as Item);
+                    }
                 }
             }
 
