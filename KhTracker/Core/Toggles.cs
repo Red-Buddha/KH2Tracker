@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 using System.Linq;
+using System.Collections.Generic;
 using System.Windows.Data;
 using System.IO;
 
@@ -23,7 +24,7 @@ namespace KhTracker
                     IncrementTotal();
                 }
             }
-            else if (toggle == false && button.IsEnabled == true)
+            else if (toggle == false && button.IsEnabled)
             {
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Hidden;
@@ -504,9 +505,15 @@ namespace KhTracker
             Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
             data.dragDrop = DragAndDropOption.IsChecked;
 
+            List<Grid> itempools = new List<Grid>();
+            foreach (Grid pool in ItemPool.Children)
+            {
+                itempools.Add(pool);
+            }
+
             foreach (Item item in data.Items)
             {
-                if (item.Parent == ItemPool)
+                if (itempools.Contains(item.Parent))
                 {
                     if (data.dragDrop == false)
                     {

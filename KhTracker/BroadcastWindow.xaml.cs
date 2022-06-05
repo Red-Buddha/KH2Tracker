@@ -104,7 +104,10 @@ namespace KhTracker
             important.Add("TornPage", 0);
             important.Add("SecondChance", 0);
             important.Add("OnceMore", 0);
-            //important.Add("HadesCup", 0);
+            important.Add("HadesCup", 0);
+            important.Add("OlympusStone", 0);
+            important.Add("UnknownDisk", 0);
+            important.Add("Anti", 0);
             important.Add("BeastWep", 0);
             important.Add("JackWep", 0);
             important.Add("SimbaWep", 0);

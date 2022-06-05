@@ -24,7 +24,7 @@ namespace KhTracker
         public static Data data;
         private BroadcastWindow broadcast;
         public int collected;
-        private int total = 62;
+        private int total = 66;
         public static int PointTotal = 0;
         public int DeathCounter = 0;
         public static bool SeedHashLoaded = false;
@@ -641,96 +641,6 @@ namespace KhTracker
             broadcast.Width = 500;
             broadcast.Height = 680;
         }
-
-        //might not use???
-        //public List<BitmapImage> UpdateNumber(int num, string color)
-        //{
-        //    int[] FinalNum = new int[] { 1, 1, 1 }; //Default 000
-        //    bool OldMode = Properties.Settings.Default.OldNum;
-        //    bool CustomMode = Properties.Settings.Default.CustomIcons;
-        //    List<BitmapImage> NormalNum = data.SingleNumbers;
-        //    List<BitmapImage> BlueNum = data.BlueSingleNumbers;
-        //    List<BitmapImage> GreenNum = data.GreenSingleNumbers;
-        //    List<BitmapImage> NumColor;
-        //
-        //    //Get correct number visuals
-        //    {
-        //        if (OldMode)
-        //        {
-        //            NormalNum = data.OldSingleNumbers;
-        //            BlueNum = data.OldBlueSingleNumbers;
-        //            GreenNum = data.OldGreenSingleNumbers;
-        //        }
-        //
-        //        if (CustomMode)
-        //        {
-        //            if (CustomNumbersFound)
-        //            {
-        //                NormalNum = data.CustomSingleNumbers;
-        //            }
-        //            if (CustomBlueNumbersFound)
-        //            {
-        //                BlueNum = data.CustomBlueSingleNumbers;
-        //            }
-        //            if (CustomGreenNumbersFound)
-        //            {
-        //                GreenNum = data.CustomGreenSingleNumbers;
-        //            }
-        //        }
-        //    }
-        //
-        //    //split number into separate digits
-        //    List<int> listOfInts = new List<int>();
-        //    while (num > 0)
-        //    {
-        //        listOfInts.Add(num % 10);
-        //        num /= 10;
-        //    }
-        //
-        //    //Set number images depending on number of digits
-        //    if (listOfInts.Count == 3)
-        //    {
-        //        FinalNum[0] = listOfInts[0];
-        //        FinalNum[1] = listOfInts[1];
-        //        FinalNum[2] = listOfInts[2];
-        //    }
-        //    else if (listOfInts.Count == 2)
-        //    {
-        //        FinalNum[0] = listOfInts[0];
-        //        FinalNum[1] = listOfInts[1];
-        //    }
-        //    else if (listOfInts.Count == 1)
-        //    {
-        //        FinalNum[0] = listOfInts[0];
-        //    }
-        //
-        //    //Get color
-        //    switch (color)
-        //    {
-        //        case "Y":
-        //            NumColor = NormalNum;
-        //            break;
-        //        case "B":
-        //            NumColor = BlueNum;
-        //            break;
-        //        case "G":
-        //            NumColor = GreenNum;
-        //            break;
-        //        default:
-        //            NumColor = NormalNum;
-        //            break;
-        //    }
-        //
-        //
-        //    List<BitmapImage> Numberlist = new List<BitmapImage>
-        //    {
-        //        NumColor[FinalNum[0]],
-        //        NumColor[FinalNum[1]],
-        //        NumColor[FinalNum[2]]
-        //    };
-        //
-        //    return Numberlist;
-        //}
 
         public List<BitmapImage> UpdateNumber(int num, string color)
         {

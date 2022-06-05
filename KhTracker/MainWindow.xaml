@@ -2022,8 +2022,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition Name="Ex_HadesCup" Width="1*"/>
-                        <ColumnDefinition Name="Ex_OlympusStone" Width="1*"/>
+                        <ColumnDefinition Name="Ex_HadesCup" Width="0*"/>
+                        <ColumnDefinition Name="Ex_OlympusStone" Width="0*"/>
                     </Grid.ColumnDefinitions>
                     
                     <local:Item x:Name="Fire1"          Content="{DynamicResource Min-Fire}"            Grid.Column="0"/>

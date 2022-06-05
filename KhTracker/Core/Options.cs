@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.IO.Compression;
@@ -9,6 +10,7 @@ using Microsoft.Win32;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+
 //using System.Text.Json.Serialization;
 //using YamlDotNet.Serialization;
 
@@ -878,8 +880,10 @@ namespace KhTracker
                 for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
                 {
                     Item item = worldData.worldGrid.Children[j] as Item;
+                    Grid pool = VisualTreeHelper.GetChild(ItemPool, GetItemPool[item.Name]) as Grid;
+
                     worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
-                    ItemPool.Children.Add(item);
+                    pool.Children.Add(item);
 
                     item.MouseDown -= item.Item_Return;
                     item.MouseEnter -= item.Report_Hover;
@@ -1141,9 +1145,12 @@ namespace KhTracker
             HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
             broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
 
-            foreach (ContentControl item in ItemPool.Children)
-                if (!item.Name.Contains("Ghost"))
-                    item.Opacity = 1.0;
+            foreach (Grid itempool in ItemPool.Children)
+            {
+                foreach (ContentControl item in itempool.Children)
+                    if (!item.Name.Contains("Ghost"))
+                        item.Opacity = 1.0;
+            }
 
             SetAutoDetectTimer();
             NextLevelDisplay();
@@ -1507,5 +1514,141 @@ namespace KhTracker
                 }
             }
         }
+
+        private Dictionary<string, int> GetItemPool = new Dictionary<string, int>()
+        {
+            {"Report1", 0},
+            {"Report2", 0},
+            {"Report3", 0},
+            {"Report4", 0},
+            {"Report5", 0},
+            {"Report6", 0},
+            {"Report7", 0},
+            {"Report8", 0},
+            {"Report9", 0},
+            {"Report10", 0},
+            {"Report11", 0},
+            {"Report12", 0},
+            {"Report13", 0},
+            {"Fire1", 1},
+            {"Fire2", 1},
+            {"Fire3", 1},
+            {"Blizzard1", 1},
+            {"Blizzard2", 1},
+            {"Blizzard3", 1},
+            {"Thunder1", 1},
+            {"Thunder2", 1},
+            {"Thunder3", 1},
+            {"Cure1", 1},
+            {"Cure2", 1},
+            {"Cure3", 1},
+            {"HadesCup", 1},
+            {"OlympusStone", 1},
+            {"Reflect1", 2},
+            {"Reflect2", 2},
+            {"Reflect3", 2},
+            {"Magnet1", 2},
+            {"Magnet2", 2},
+            {"Magnet3", 2},
+            {"Valor", 2},
+            {"Wisdom", 2},
+            {"Limit", 2},
+            {"Master", 2},
+            {"Final", 2},
+            {"Anti", 2},
+            {"OnceMore", 2},
+            {"SecondChance", 2},
+            {"UnknownDisk", 3},
+            {"TornPage1", 3},
+            {"TornPage2", 3},
+            {"TornPage3", 3},
+            {"TornPage4", 3},
+            {"TornPage5", 3},
+            {"Baseball", 3},
+            {"Lamp", 3},
+            {"Ukulele", 3},
+            {"Feather", 3},
+            {"Connection", 3},
+            {"Nonexistence", 3},
+            {"Peace", 3},
+            {"PromiseCharm", 3},
+            {"BeastWep", 4},
+            {"JackWep", 4},
+            {"SimbaWep", 4},
+            {"AuronWep", 4},
+            {"MulanWep", 4},
+            {"SparrowWep", 4},
+            {"AladdinWep", 4},
+            {"TronWep", 4},
+            {"MembershipCard", 4},
+            {"Picture", 4},
+            {"IceCream", 4},
+            {"Ghost_Report1", 5},
+            {"Ghost_Report2", 5},
+            {"Ghost_Report3", 5},
+            {"Ghost_Report4", 5},
+            {"Ghost_Report5", 5},
+            {"Ghost_Report6", 5},
+            {"Ghost_Report7", 5},
+            {"Ghost_Report8", 5},
+            {"Ghost_Report9", 5},
+            {"Ghost_Report10", 5},
+            {"Ghost_Report11", 5},
+            {"Ghost_Report12", 5},
+            {"Ghost_Report13", 5},
+            {"Ghost_Fire1", 6},
+            {"Ghost_Fire2", 6},
+            {"Ghost_Fire3", 6},
+            {"Ghost_Blizzard1", 6},
+            {"Ghost_Blizzard2", 6},
+            {"Ghost_Blizzard3", 6},
+            {"Ghost_Thunder1", 6},
+            {"Ghost_Thunder2", 6},
+            {"Ghost_Thunder3", 6},
+            {"Ghost_Cure1", 6},
+            {"Ghost_Cure2", 6},
+            {"Ghost_Cure3", 6},
+            {"Ghost_HadesCup", 6},
+            {"Ghost_OlympusStone", 6},
+            {"Ghost_Reflect1", 7},
+            {"Ghost_Reflect2", 7},
+            {"Ghost_Reflect3", 7},
+            {"Ghost_Magnet1", 7},
+            {"Ghost_Magnet2", 7},
+            {"Ghost_Magnet3", 7},
+            {"Ghost_Valor", 7},
+            {"Ghost_Wisdom", 7},
+            {"Ghost_Limit", 7},
+            {"Ghost_Master", 7},
+            {"Ghost_Final", 7},
+            {"Ghost_Anti", 7},
+            {"Ghost_OnceMore", 7},
+            {"Ghost_SecondChance", 7},
+            {"Ghost_UnknownDisk", 8},
+            {"Ghost_TornPage1", 8},
+            {"Ghost_TornPage2", 8},
+            {"Ghost_TornPage3", 8},
+            {"Ghost_TornPage4", 8},
+            {"Ghost_TornPage5", 8},
+            {"Ghost_Baseball", 8},
+            {"Ghost_Lamp", 8},
+            {"Ghost_Ukulele", 8},
+            {"Ghost_Feather", 8},
+            {"Ghost_Connection", 8},
+            {"Ghost_Nonexistence", 8},
+            {"Ghost_Peace", 8},
+            {"Ghost_PromiseCharm", 8},
+            {"Ghost_BeastWep", 9},
+            {"Ghost_JackWep", 9},
+            {"Ghost_SimbaWep", 9},
+            {"Ghost_AuronWep", 9},
+            {"Ghost_MulanWep", 9},
+            {"Ghost_SparrowWep", 9},
+            {"Ghost_AladdinWep", 9},
+            {"Ghost_TronWep", 9},
+            {"Ghost_MembershipCard", 9},
+            {"Ghost_Picture", 9},
+            {"Ghost_IceCream", 9}
+        };
     }
 }
