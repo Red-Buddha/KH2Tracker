@@ -61,8 +61,7 @@
     <Image x:Key="Min-ProofOfCon"		Source="Images\Checks\Simple\proof_of_connection.png"/>
     <Image x:Key="Min-ProofOfPea"		Source="Images\Checks\Simple\proof_of_tranquility.png"/>
     <Image x:Key="Min-PromiseCharm"		Source="Images\Checks\Simple\promise_charm.png"/>
-    <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Simple\hades_cup.png"/>
-
+    <!-- Visit -->
     <Image x:Key="Min-AuronWep"		    Source="Images\Checks\Simple\BattlefieldsofWar.png"/>
     <Image x:Key="Min-MulanWep"		    Source="Images\Checks\Simple\AncestorSword.png"/>
     <Image x:Key="Min-BeastWep"		    Source="Images\Checks\Simple\BeastClaw.png"/>
@@ -74,6 +73,11 @@
     <Image x:Key="Min-MembershipCard"   Source="Images\Checks\Simple\membership_card.png"/>
     <Image x:Key="Min-IceCream"		    Source="Images\Checks\Simple\IceCream.png"/>
     <Image x:Key="Min-Picture"		    Source="Images\Checks\Simple\Picture.png"/>
+    <!-- Extra -->
+    <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Simple\hades_cup.png"/>
+    <Image x:Key="Min-OlympusStone"		Source="Images\Checks\Simple\olympus_stone.png"/>
+    <Image x:Key="Min-UnknownDisk"		Source="Images\Checks\Simple\UnknownDisk.png"/>
+    <Image x:Key="Min-Anti"		        Source="Images\Checks\Simple\anti.png"/>
 
     <!--Old Item Icons (Main Window)-->
     <Image x:Key="Old-AnsemReport"	 Source="Images\Other\ansem_report_old.png" x:Shared="false"/>
