@@ -754,6 +754,28 @@ namespace KhTracker
                         broadcast.SparrowWep.SetResourceReference(ContentProperty, "Cus-SparrowWep");
                     }
 
+                    if (File.Exists("CustomImages/Checks/hades_cup.png"))
+                    {
+                        HadesCup.SetResourceReference(ContentProperty, "Cus-HadesCup");
+                        broadcast.HadesCup.SetResourceReference(ContentProperty, "Cus-HadesCup");
+                    }
+                    if (File.Exists("CustomImages/Checks/olympus_stone.png"))
+                    {
+                        OlympusStone.SetResourceReference(ContentProperty, "Cus-OlympusStone");
+                        broadcast.OlympusStone.SetResourceReference(ContentProperty, "Cus-OlympusStone");
+                    }
+                    if (File.Exists("CustomImages/Checks/UnknownDisk.png"))
+                    {
+                        UnknownDisk.SetResourceReference(ContentProperty, "Cus-UnknownDisk");
+                        broadcast.UnknownDisk.SetResourceReference(ContentProperty, "Cus-UnknownDisk");
+                    }
+
+                    if (File.Exists("CustomImages/Checks/anti.png"))
+                    {
+                        Anti.SetResourceReference(ContentProperty, "Cus-Anti");
+                        broadcast.Anti.SetResourceReference(ContentProperty, "Cus-Anti");
+                    }
+
                 }
 
                 //for ghost items
@@ -939,6 +961,24 @@ namespace KhTracker
                     if (File.Exists("CustomImages/Checks/Ghost/SkillCrossbones.png"))
                     {
                         Ghost_SparrowWep.SetResourceReference(ContentProperty, "Cus-G_SparrowWep");
+                    }
+
+                    if (File.Exists("CustomImages/Checks/Ghost/hades_cup.png"))
+                    {
+                        Ghost_HadesCup.SetResourceReference(ContentProperty, "Cus-G_HadesCup");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/olympus_stone.png"))
+                    {
+                        Ghost_OlympusStone.SetResourceReference(ContentProperty, "Cus-G_OlympusStone");
+                    }
+                    if (File.Exists("CustomImages/Checks/Ghost/UnknownDisk.png"))
+                    {
+                        Ghost_UnknownDisk.SetResourceReference(ContentProperty, "Cus-G_UnknownDisk");
+                    }
+
+                    if (File.Exists("CustomImages/Checks/Ghost/anti.png"))
+                    {
+                        Ghost_Anti.SetResourceReference(ContentProperty, "Cus-G_Anti");
                     }
 
                 }
@@ -1218,6 +1258,23 @@ namespace KhTracker
                         broadcast.SparrowWep.SetResourceReference(ContentProperty, "Cus-B_SparrowWep");
                     }
 
+                    if (File.Exists("CustomImages/Broadcast/Checks/hades_cup.png"))
+                    {
+                        broadcast.HadesCup.SetResourceReference(ContentProperty, "Cus-B_HadesCup");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/olympus_stone.png"))
+                    {
+                        broadcast.OlympusStone.SetResourceReference(ContentProperty, "Cus-B_OlympusStone");
+                    }
+                    if (File.Exists("CustomImages/Broadcast/Checks/UnknownDisk.png"))
+                    {
+                        broadcast.UnknownDisk.SetResourceReference(ContentProperty, "Cus-B_UnknownDisk");
+                    }
+
+                    if (File.Exists("CustomImages/Broadcast/Checks/anti.png"))
+                    {
+                        broadcast.Anti.SetResourceReference(ContentProperty, "Cus-B_Anti");
+                    }
                 }
             }
         }

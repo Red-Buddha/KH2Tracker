@@ -223,6 +223,8 @@ namespace KhTracker
                 data.PointsDatanew["formlv"] = 3;
             if (!points.Keys.Contains("visit"))
                 data.PointsDatanew["visit"] = 1;
+            if (!points.Keys.Contains("other"))
+                data.PointsDatanew["other"] = data.PointsDatanew["ability"];
 
             //get point totals for each world
             foreach (var world in worldsP)

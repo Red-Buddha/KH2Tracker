@@ -542,6 +542,7 @@
   <ItemGroup>
     <Content Include="CustomImages\Broadcast\Checks\aerial.png" />
     <Content Include="CustomImages\Broadcast\Checks\AncestorSword.png" />
+    <Content Include="CustomImages\Broadcast\Checks\anti.png" />
     <Content Include="CustomImages\Broadcast\Checks\BattlefieldsofWar.png" />
     <Content Include="CustomImages\Broadcast\Checks\BeastClaw.png" />
     <Content Include="CustomImages\Broadcast\Checks\blizzard.png" />
@@ -626,6 +627,7 @@
     <Content Include="CustomImages\Checks\ansem_report11.png" />
     <Content Include="CustomImages\Checks\ansem_report12.png" />
     <Content Include="CustomImages\Checks\ansem_report13.png" />
+    <Content Include="CustomImages\Checks\anti.png" />
     <Content Include="CustomImages\Checks\BattlefieldsofWar.png" />
     <Content Include="CustomImages\Checks\BeastClaw.png" />
     <Content Include="CustomImages\Checks\blizzard.png" />
@@ -650,6 +652,7 @@
     <Content Include="CustomImages\Checks\Ghost\ansem_report11.png" />
     <Content Include="CustomImages\Checks\Ghost\ansem_report12.png" />
     <Content Include="CustomImages\Checks\Ghost\ansem_report13.png" />
+    <Content Include="CustomImages\Checks\Ghost\anti.png" />
     <Content Include="CustomImages\Checks\Ghost\BattlefieldsofWar.png" />
     <Content Include="CustomImages\Checks\Ghost\BeastClaw.png" />
     <Content Include="CustomImages\Checks\Ghost\blizzard.png" />
@@ -666,6 +669,7 @@
     <Content Include="CustomImages\Checks\Ghost\magnet.png" />
     <Content Include="CustomImages\Checks\Ghost\master.png" />
     <Content Include="CustomImages\Checks\Ghost\membership_card.png" />
+    <Content Include="CustomImages\Checks\Ghost\olympus_stone.png" />
     <Content Include="CustomImages\Checks\Ghost\once_more.png" />
     <Content Include="CustomImages\Checks\Ghost\peter_pan.png" />
     <Content Include="CustomImages\Checks\Ghost\Picture.png" />
