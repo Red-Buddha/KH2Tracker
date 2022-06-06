@@ -694,5 +694,29 @@ namespace KhTracker.Properties {
                 this["Legacy"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AntiForm {
+            get {
+                return ((bool)(this["AntiForm"]));
+            }
+            set {
+                this["AntiForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExtraChecks {
+            get {
+                return ((bool)(this["ExtraChecks"]));
+            }
+            set {
+                this["ExtraChecks"] = value;
+            }
+        }
     }
 }

@@ -1588,17 +1588,17 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Name="Ex_Anti" Width="2*"/>
+
                     </Grid.ColumnDefinitions>
 
-                    <ContentControl Content="{DynamicResource Min-Valor}" Opacity="0.25" Name="Valor" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Min-Wisdom}" Opacity="0.25" Name="Wisdom" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Min-Limit}" Opacity="0.25" Name="Limit" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Min-Master}" Opacity="0.25" Name="Master" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Min-Final}" Opacity="0.25" Name="Final" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"></ContentControl>
-                    <ContentControl Content="{DynamicResource Min-Anti}" Opacity="0.25" Name="Anti" Grid.Row="1" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="2"></ContentControl>
-                    
+                    <ContentControl Content="{DynamicResource Min-Valor}" Opacity="0.25" Name="Valor" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <ContentControl Content="{DynamicResource Min-Wisdom}" Opacity="0.25" Name="Wisdom" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+                    <ContentControl Content="{DynamicResource Min-Limit}" Opacity="0.25" Name="Limit" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"/>
+                    <ContentControl Content="{DynamicResource Min-Master}" Opacity="0.25" Name="Master" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2"/>
+                    <ContentControl Content="{DynamicResource Min-Final}" Opacity="0.25" Name="Final" Grid.Row="1" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"/>
+                    <ContentControl Content="{DynamicResource Min-Anti}" Opacity="0.25" Name="Anti" Grid.Row="1" Grid.RowSpan="2" Grid.Column="10"/>
+
                     <Image Name="ValorHinted" Grid.Row="1" Grid.Column="0"/>
                     <Image Name="WisdomHinted" Grid.Row="2" Grid.Column="2"/>
                     <Image Name="LimitHinted" Grid.Row="2" Grid.Column="4"/>
@@ -1711,9 +1711,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Name="CupCol"     Width="1*"/>
-                        <ColumnDefinition Name="StoneCol"   Width="1*"/>
-                        <ColumnDefinition Name="DiskCol"    Width="1*"/>
+                        <ColumnDefinition Name="Ex_HadesCup"        Width="1*"/>
+                        <ColumnDefinition Name="Ex_OlympusStone"    Width="1*"/>
+                        <ColumnDefinition Name="Ex_UnknownDisk"     Width="1*"/>
                     </Grid.ColumnDefinitions>
 
                     <ContentControl Content="{DynamicResource Min-ChickenLittle}"   Opacity="0.25" Name="Baseball"      Grid.Row="1" Grid.Column="0"></ContentControl>

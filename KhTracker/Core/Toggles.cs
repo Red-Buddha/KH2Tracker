@@ -104,11 +104,15 @@ namespace KhTracker
             PromiseCharmOption.IsChecked = toggle;
             if (toggle)
             {
+                Pr_PromiseCharm.Width = new GridLength(1.0, GridUnitType.Star);
+
                 broadcast.PromiseCharm.Visibility = Visibility.Visible;
                 broadcast.PromiseCharmCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
+                Pr_PromiseCharm.Width = new GridLength(0, GridUnitType.Star);
+
                 broadcast.PromiseCharm.Visibility = Visibility.Hidden;
                 broadcast.PromiseCharmCol.Width = new GridLength(0, GridUnitType.Star);
             }
@@ -201,16 +205,81 @@ namespace KhTracker
             AbilitiesOption.IsChecked = toggle;
             if (toggle)
             {
+                Ab_OnceMore.Width = new GridLength(1.0, GridUnitType.Star);
+                Ab_SecondChance.Width = new GridLength(1.0, GridUnitType.Star);
+
                 broadcast.SecondChanceCol.Width = new GridLength(1.0, GridUnitType.Star);
                 broadcast.OnceMoreCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
+                Ab_OnceMore.Width = new GridLength(0, GridUnitType.Star);
+                Ab_SecondChance.Width = new GridLength(0, GridUnitType.Star);
+
                 broadcast.SecondChanceCol.Width = new GridLength(0, GridUnitType.Star);
                 broadcast.OnceMoreCol.Width = new GridLength(0, GridUnitType.Star);
             }
             HandleItemToggle(toggle, OnceMore, false);
             HandleItemToggle(toggle, SecondChance, false);
+        }
+
+        private void AntiFormToggle(object sender, RoutedEventArgs e)
+        {
+            AntiFormToggle(AntiFormOption.IsChecked);
+        }
+
+        private void AntiFormToggle(bool toggle)
+        {
+            Properties.Settings.Default.AntiForm = toggle;
+            AntiFormOption.IsChecked = toggle;
+            HandleItemToggle(toggle, Anti, false);
+
+            if(toggle)
+            {
+                Ex_Anti.Width = new GridLength(1.0, GridUnitType.Star);
+                broadcast.Ex_Anti.Width = new GridLength(2.0, GridUnitType.Star);
+            }
+            else
+            {
+                Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
+                broadcast.Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
+            }
+        }
+
+        private void ExtraChecksToggle(object sender, RoutedEventArgs e)
+        {
+            ExtraChecksToggle(ExtraChecksOption.IsChecked);
+        }
+
+        private void ExtraChecksToggle(bool toggle)
+        {
+            Properties.Settings.Default.ExtraChecks = toggle;
+            ExtraChecksOption.IsChecked = toggle;
+
+            HandleItemToggle(toggle, HadesCup, false);
+            HandleItemToggle(toggle, OlympusStone, false);
+            HandleItemToggle(toggle, UnknownDisk, false);
+
+            if (toggle)
+            {
+                Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
+                Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
+                Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
+
+                broadcast.Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
+                broadcast.Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
+                broadcast.Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
+            }
+            else
+            {
+                Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+                Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
+                Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
+
+                broadcast.Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+                broadcast.Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
+                broadcast.Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
+            }
         }
 
         //private void TornPagesToggle(object sender, RoutedEventArgs e)

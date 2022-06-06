@@ -174,6 +174,12 @@ namespace KhTracker
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
             AbilitiesToggle(AbilitiesOption.IsChecked);
 
+            ExtraChecksOption.IsChecked = Properties.Settings.Default.ExtraChecks;
+            ExtraChecksToggle(ExtraChecksOption.IsChecked);
+
+            AntiFormOption.IsChecked = Properties.Settings.Default.AntiForm;
+            AntiFormToggle(AntiFormOption.IsChecked);
+
             //TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
             //TornPagesToggle(TornPagesOption.IsChecked);
             //

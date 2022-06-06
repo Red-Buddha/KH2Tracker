@@ -55,6 +55,8 @@
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
                 <MenuItem Name="ReportsOption"      Header="Ansem Reports" IsCheckable="True" IsChecked="True" Click="ReportsToggle"/>
                 <MenuItem Name="AbilitiesOption"    Header="Once More / Second Chance" IsCheckable="True" IsChecked="True" Click="AbilitiesToggle"/>
+                <MenuItem Name="AntiFormOption"     Header="Anti Form" IsCheckable="True" IsChecked="False" Click="AntiFormToggle"/>
+                <MenuItem Name="ExtraChecksOption"  Header="Extra Important Checks" IsCheckable="True" IsChecked="False" Click="ExtraChecksToggle"/>
                 <!--MenuItem Name="TornPagesOption"    Header="Torn Pages" IsCheckable="True" IsChecked="True" Click="TornPagesToggle"/-->
                 <!--MenuItem Name="CureOption"         Header="Cure" IsCheckable="True" IsChecked="True" Click="CureToggle"/-->
                 <!--MenuItem Name="FinalFormOption"    Header="Final Form" IsCheckable="True" IsChecked="True" Click="FinalFormToggle"/-->
@@ -2057,8 +2059,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition Name="Ex_Anti" Width="1*"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Name="Ab_OnceMore"/>
+                        <ColumnDefinition Name="Ab_SecondChance"/>
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="Reflect1"       Content="{DynamicResource Min-Reflect}"         Grid.Column="0"/>
@@ -2093,7 +2095,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Name="Pr_PromiseCharm"/>
                     </Grid.ColumnDefinitions>
                     
                     <local:Item x:Name="UnknownDisk" Content="{DynamicResource Min-UnknownDisk}"    Grid.Column="0"/>

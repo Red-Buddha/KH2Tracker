@@ -322,6 +322,10 @@ namespace KhTracker
             {"MembershipCard", "visit"},
             {"IceCream", "visit"},
             {"Picture", "visit"},
+            {"Anti", "form"},
+            {"HadesCup", "other"},
+            {"OlympusStone", "other"},
+            {"UnknownDisk", "other"},
             //ghost versions
             {"Ghost_Report1", "report"},
             {"Ghost_Report2", "report"},
@@ -385,6 +389,10 @@ namespace KhTracker
             {"Ghost_MembershipCard", "visit"},
             {"Ghost_IceCream", "visit"},
             {"Ghost_Picture", "visit"},
+            {"Ghost_Anti", "form"},
+            {"Ghost_HadesCup", "other"},
+            {"Ghost_OlympusStone", "other"},
+            {"Ghost_UnknownDisk", "other"},
             //seedgen names
             {"Fire Element", "magic"},
             {"Blizzard Element", "magic"},
@@ -430,7 +438,11 @@ namespace KhTracker
             {"Scimitar (Aladdin)", "visit"},
             {"Identity Disk (Tron)", "visit"},
             {"Membership Card", "visit"},
-            {"Ice Cream", "visit"}
+            {"Ice Cream", "visit"},
+            {"Anti-Form", "form"},
+            {"Hades Cup Trophy", "other"},
+            {"Olympus Stone", "other"},
+            {"Unknown Disk", "other"}
         };
 
         public static Dictionary<string, string> convertItemNames = new Dictionary<string, string>()
@@ -448,7 +460,6 @@ namespace KhTracker
             {"Secret Ansem's Report 11", "Report11"},
             {"Secret Ansem's Report 12", "Report12"},
             {"Secret Ansem's Report 13", "Report13"},
-            {"Hades Cup Trophy", "HadesCup"},
             {"Valor Form", "Valor"},
             {"Wisdom Form", "Wisdom"},
             {"Limit Form", "Limit"},
@@ -474,7 +485,11 @@ namespace KhTracker
             {"Identity Disk (Tron)", "TronWep"},
             {"Membership Card", "MembershipCard"},
             {"Ice Cream", "IceCream"},
-            {"Picture", "Picture"}
+            {"Picture", "Picture"},
+            {"Anti-Form", "Anti"},
+            {"Hades Cup Trophy", "HadesCup"},
+            {"Olympus Stone", "OlympusStone"},
+            {"Unknown Disk", "UnknownDisk"}
         };
 
         public static Dictionary<string, string> convertOpenKH = new Dictionary<string, string>()
@@ -542,6 +557,10 @@ namespace KhTracker
             {"Membership Card", "MembershipCard"},
             {"Ice Cream", "IceCream"},
             {"Picture", "Picture"},
+            {"Anti-Form", "Anti"},
+            {"Hades Cup Trophy", "HadesCup"},
+            {"Olympus Stone", "OlympusStone"},
+            {"Unknown Disk", "UnknownDisk"},
             {"Garden of Assemblage", "GoA"},
             {"", "GoA"},
             {"Critical Bonuses", "GoA"},
