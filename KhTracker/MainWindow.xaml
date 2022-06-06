@@ -2022,8 +2022,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition Name="Ex_HadesCup" Width="0*"/>
-                        <ColumnDefinition Name="Ex_OlympusStone" Width="0*"/>
+                        <ColumnDefinition Name="Ex_HadesCup" Width="1*"/>
+                        <ColumnDefinition Name="Ex_OlympusStone" Width="1*"/>
                     </Grid.ColumnDefinitions>
                     
                     <local:Item x:Name="Fire1"          Content="{DynamicResource Min-Fire}"            Grid.Column="0"/>
@@ -2056,7 +2056,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition Name="Ex_Anti" Width="0*"/>
+                        <ColumnDefinition Name="Ex_Anti" Width="1*"/>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -2080,7 +2080,7 @@
                 <!-- Row 4 -->
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="Ex_UnknownDisk" Width="0*"/>
+                        <ColumnDefinition Name="Ex_UnknownDisk" Width="1*"/>
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
