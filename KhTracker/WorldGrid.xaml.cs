@@ -238,6 +238,12 @@ namespace KhTracker
                     // auto update world important check number
                     window.SetReportValue(data.WorldsData[data.reportInformation[index].Item1].hint, data.reportInformation[index].Item2);
                 }
+                else if (data.reportLocations[index] == "Joke")
+                {
+                    // hint text
+                    window.SetJokeText(data.reportInformation[index].Item1);
+                    isreport = true;
+                }
                 else
                 {
                     // update fail icons when location is report location is wrong

@@ -18,6 +18,38 @@ namespace KhTracker
             ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
 
+            //Joke Hints test
+            bool debug = false;
+            if (debug)
+            {
+                var random = new Random();
+                List<int> usedvalues = new List<int>();
+                for (int i = 1; i <= 13; i++) //do this for each of the 13 reports
+                {
+                    //get random number
+                    int index = random.Next(JokeHints.Count);
+
+                    //should never happen, but might as well make a failsafe
+                    if (usedvalues.Count == JokeHints.Count)
+                        usedvalues.Clear();
+
+                    //prevent the same hint appearing in multiple reports
+                    while (usedvalues.Contains(index))
+                        index = random.Next(JokeHints.Count);
+
+                    //add joke hint to report
+                    string joke = JokeHints[index];
+                    data.reportInformation.Add(new Tuple<string, int>(joke, -99)); //-99 is used to define the report as a joke
+                    data.reportLocations.Add("Joke"); //location "Joke" used so that the tracker doesn't actually care where the hint is placed (doesn't matter for shan hints)
+
+                    usedvalues.Add(index);
+                }
+
+                //turn reports back on
+                ReportsToggle(true);
+                data.hintsLoaded = true;
+            }
+
             foreach (var world in worlds)
             {
                 if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
@@ -572,5 +604,70 @@ namespace KhTracker
                     return 16;
             }
         }
+
+        public List<string> JokeHints = new List<string>
+        {
+            "\"Call my shorty zemnas the way she give me dome\" -Raisin",
+            "Have you tried contacting Tech Support Nomura?",
+            "Soul Eater is a Keyblade",
+            "Soul Eater is not a Keyblade",
+            "This report was is in the chest you just opened",
+            "I heard Xemnas is already half Xehanort",
+            "Bad luck and misfortune will infest your pathetic soul for all eternity",
+            "Have you tried freezing Demyx's bubbles?",
+            "Phil Cup hoards Pumpkinhead",
+            "Jungle Slider 50 Fruits has the Promise Charm",
+            "Put me back, please",
+            "They put bugs in Riku!",
+            "The knowledge, it fills me. It is neat.",
+            "Doubleflight is locked by winning Fruitball",
+            "Barbossa but with a squid face is holding Proof of Fantasies",
+            "Grinding 5000 munny in STT will reward you with 5000 munny",
+            "Two Cycling the Wardrobe Push will reward you with nothing",
+            "Have you considered enabling Dodge Slash?",
+            "Xehanort is a meany head",
+            "Computer Password: Sea Salt Ice Cream",
+            "A talking rat king showed up today and ate my ice cream",
+            "Oui fycdat ouin desa dnyhcmydehk drec",
+            "Roxas was placed into a simulation to mine bitcoin",
+            "Have you checked the third song of Atlantica?",
+            "Pull the pedestal to get the Master Form Keyblade",
+            "Violence is on the Path to Peace",
+            "Have you tried checking vanilla?",
+            "Stop is held by Ruler of the Sky",
+            "I heard that Sora can't read",
+            "Tron can be synthesized using two Gales and a Dark Matter",
+            "Steal Piglet's belongings before saving them",
+            "One of the Seven Seeing-stones can be found in DiZ's basement",
+            "Use the lock-on button to find the old lady's cat",
+            "The proof of owned lamers is on the 10th Seifer Struggle in TT3",
+            "Dog Street is on the Way of the Hero",
+            "Get up on the Hydra's back!",
+            "If only you could sell this useless hint",
+            "The dog in the sack in STT is Pluto's Nobody",
+            "Reading Yen Sid's book rewards you with confusion",
+            "Mission 3 of Asteroid Sweep is a foolish choice",
+            "Defeat Hayabusa to get Fireglow",
+            "Have you tried checking the world that takes place on Earth?",
+            "Defeating the Pirate Ship in Phantom Storm will reward with 300 crabs",
+            "Leon's real name is Smitty Werbenjägermanjensen",
+            "Need exp? Grind the Bolt Towers in Minnie Escort",
+            "Have you tried suplexing the Phantom Train in STT yet?",
+            "Collect the 7 Chaos Emeralds to unlock the Door to Darkness",
+            "Try to BLJ to cross the gap for COR skip",
+            "Before you attempt Shan Yu Skip, we need to talk about parallel universes",
+            "Jump, Aerial Dodge, Magnet",
+            "Found Genie? Consider DNFing if you have",
+            "Chicken Little can be found in Thanksgiving Town",
+            "It's Oogie Boogie, they put bugs in him!",
+            "Lion Dash can be found in the first room of Pride Lands",
+            "Doing 1k will make you a True Warrior of the Three Kingdoms",
+            "There's a free shield in the graveyard",
+            "Die it's faster",
+            "Piglet's grandpa's name is Trespassers Will",
+            "This is Auron's hint, and you're not a part of it",
+            "Be sure to have 7 ethers for the Hyenas fight",
+            "ARC, Reload!"
+        };
     }
 }

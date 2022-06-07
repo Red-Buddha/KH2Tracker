@@ -1273,20 +1273,18 @@ namespace KhTracker
                 ModeDisplay.Header = "Alt Hints Mode";
                 data.mode = mode;
                 ReportsToggle(false);
-                ReportRow.Height = new GridLength(0, GridUnitType.Star);
             }
             else if (mode == Mode.Hints || mode == Mode.OpenKHHints)
             {
                 ModeDisplay.Header = "Hints Mode";
                 data.mode = mode;
-                ReportRow.Height = new GridLength(1, GridUnitType.Star);
+                ReportsToggle(true);
             }
             else if (mode == Mode.DAHints)
             {
                 ModeDisplay.Header = "Points Mode";
                 data.mode = mode;
                 ReportsToggle(true);
-                ReportRow.Height = new GridLength(1, GridUnitType.Star);
 
                 ShowCheckCountToggle(null, null);
 
@@ -1300,7 +1298,6 @@ namespace KhTracker
                 ModeDisplay.Header = "Path Hints";
                 data.mode = mode;
                 ReportsToggle(true);
-                ReportRow.Height = new GridLength(1, GridUnitType.Star);
             }
             else if (mode == Mode.TimeHints)
             {
@@ -1407,8 +1404,9 @@ namespace KhTracker
                                     //FinalFormToggle(true);
 
                                     //DEBUG! UPDATE LATER
-                                    ExtraChecksToggle(false);
-                                    AntiFormToggle(false);
+                                    bool debug = false;
+                                    ExtraChecksToggle(debug);
+                                    AntiFormToggle(debug);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
@@ -1473,12 +1471,12 @@ namespace KhTracker
                                             broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             break;
                                         //DEBUG! UPDATE LATER
-                                        case "Unknown Disk":
-                                            ExtraChecksToggle(true);
-                                            break;
-                                        case "Anti-Form":
-                                            AntiFormToggle(true);
-                                            break;
+                                        //case "Unknown Disk":
+                                        //    ExtraChecksToggle(true);
+                                        //    break;
+                                        //case "Anti-Form":
+                                        //    AntiFormToggle(true);
+                                        //    break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")
                                     //    AbilitiesToggle(true);

@@ -637,6 +637,19 @@ namespace KhTracker
             }
 
             HintText.Content = text;
+            HintText.Foreground = Brushes.White;
+        }
+
+        public void SetJokeText(string text)
+        {
+            if (SeedHashLoaded)
+            {
+                HashRow.Height = new GridLength(0, GridUnitType.Star);
+                SeedHashVisible = false;
+            }
+
+            HintText.Content = text;
+            HintText.Foreground = Brushes.LightBlue;
         }
 
         private void ResetSize(object sender, RoutedEventArgs e)

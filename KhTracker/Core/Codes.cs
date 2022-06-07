@@ -240,7 +240,7 @@ namespace KhTracker
             {30, "Anti"},
             {537, "HadesCup"},
             {370, "OlympusStone"},
-            {462, "UnknownDisk"}
+            {462, "UnknownDisk"},
 
         };
 

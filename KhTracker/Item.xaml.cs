@@ -146,6 +146,10 @@ namespace KhTracker
             {
                 MainW.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
             }
+            else if(data.reportInformation[index].Item2 == -99)
+            {
+                MainW.SetJokeText(data.reportInformation[index].Item1);
+            }
             else
             {
                 MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
