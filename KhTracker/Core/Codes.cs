@@ -226,7 +226,6 @@ namespace KhTracker
             {593, "Connection"},
             {594, "Nonexistence"},
             {595, "Peace"},
-
             {54, "AuronWep"},
             {55, "MulanWep"},
             {59, "BeastWep"},
@@ -238,6 +237,10 @@ namespace KhTracker
             {369, "MembershipCard"},
             {375, "IceCream"},
             {376, "Picture"},
+            {30, "Anti"},
+            {537, "HadesCup"},
+            {370, "OlympusStone"},
+            {462, "UnknownDisk"}
 
         };
 
