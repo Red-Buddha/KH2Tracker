@@ -15,6 +15,9 @@ namespace KhTracker
     {
         private void HandleItemToggle(bool toggle, Item button, bool init)
         {
+            if(button.Name == "HadesCup")
+                Console.WriteLine(button.Name);
+
             if (toggle && button.IsEnabled == false)
             {
                 button.IsEnabled = true;

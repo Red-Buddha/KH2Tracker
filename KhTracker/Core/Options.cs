@@ -1406,6 +1406,10 @@ namespace KhTracker
                                     //CureToggle(true);
                                     //FinalFormToggle(true);
 
+                                    //DEBUG! UPDATE LATER
+                                    ExtraChecksToggle(false);
+                                    AntiFormToggle(false);
+
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                 }
@@ -1467,6 +1471,13 @@ namespace KhTracker
                                         case "better_stt":
                                             SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
+                                            break;
+                                        //DEBUG! UPDATE LATER
+                                        case "Unknown Disk":
+                                            ExtraChecksToggle(true);
+                                            break;
+                                        case "Anti-Form":
+                                            AntiFormToggle(true);
                                             break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")

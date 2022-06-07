@@ -122,7 +122,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA 1.6.7-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA 1.6.8-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
@@ -1560,7 +1560,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Viewbox Name="HintTextParent" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="21">
-                    <Label Name="HintText" Foreground="White" Padding="2" FontSize="16" FontWeight="Medium" />
+                    <Label Name="HintText" Foreground="White" Padding="2" FontSize="16"/>
                 </Viewbox>
 
                 <Grid Name="Level" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="-2,0,0,0" Visibility="Hidden">

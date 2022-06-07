@@ -100,28 +100,29 @@ namespace KhTracker
         public void Item_Click(object sender, RoutedEventArgs e)
         {
             Data data = MainWindow.data;
+            MainWindow window = ((MainWindow)Application.Current.MainWindow);
 
             if (data.selected != null)
             {
                 if (data.mode == Mode.DAHints)
                 {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PointReport(this, MainW, data))
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PointReport(this, window, data))
                     {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, MainW);
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                     }
                 }
                 else if (data.mode == Mode.PathHints)
                 {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PathReport(this, MainW, data))
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PathReport(this, window, data))
                     {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, MainW);
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                     }
                 }
                 else
                 {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, MainW, data))
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
                     {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, MainW);
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                     }
                 }
             }

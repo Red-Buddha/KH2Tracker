@@ -195,7 +195,7 @@ namespace KhTracker
             bool isreport = false;
 
             // item is a report
-            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            if (data.hintsLoaded && GetItemPool[item.Name] == 0)
             {
                 int index = (int)item.GetValue(Grid.ColumnProperty);
 
@@ -355,7 +355,7 @@ namespace KhTracker
             bool isreport = false;
 
             // item is a report
-            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            if (data.hintsLoaded && GetItemPool[item.Name] == 0)
             {
                 int index = (int)item.GetValue(Grid.ColumnProperty);
 
@@ -455,8 +455,9 @@ namespace KhTracker
         {
             bool isreport = false;
 
+
             // item is a report
-            if (data.hintsLoaded && (int)item.GetValue(Grid.RowProperty) == 0)
+            if (data.hintsLoaded && GetItemPool[item.Name] == 0)
             {
                 int index = (int)item.GetValue(Grid.ColumnProperty);
 
@@ -608,19 +609,15 @@ namespace KhTracker
             }
 
             //look for avaiable ghost item in item pool to track
-            bool found = false;
-            foreach (Grid child in MainW.ItemPool.Children)
+            for (int i = 5; i <= 9; i++) //loop through ghost collumns only 
             {
-                if (found)
-                    break;
-
-                foreach (Item Ghost in child.Children)
+                Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, i) as Grid;
+                foreach (Item Ghost in ItemRow.Children)
                 {
                     if (Ghost != null && Ghost.Name.Contains("Ghost_" + itemname))
                     {
                         //found ghost item, let's track it and break
                         data.WorldsData[world].worldGrid.Add_Ghost(Ghost, window);
-                        found = true;
                         break;
                     }
                 }
@@ -640,8 +637,9 @@ namespace KhTracker
                 if (item.StartsWith("Ghost_"))
                 {
                     item = item.Remove(0, 6);                       //remove "Ghost_" from name
-                    Item Check = ItemPool.FindName(item) as Item;   //check to see if item exists in ItemPool
-                    if (Check != null && Check.Parent == ItemPool)  //check to see if item is *in* in ItemPool (don't want the ones tracked to the world changed)
+                    Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[item]) as Grid;
+                    Item Check = ItemRow.FindName(item) as Item;   //check to see if item exists in ItemPool
+                    if (Check != null && Check.Parent == ItemRow)  //check to see if item is *in* in ItemPool (don't want the ones tracked to the world changed)
                     {
                         Check.Opacity = universalOpacity; //change opacity
                     }
@@ -727,7 +725,7 @@ namespace KhTracker
                 Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[checkName]) as Grid;
                 Item Check = ItemRow.FindName(checkName) as Item;
 
-                if (Check != null && Check.Parent == ItemPool)
+                if (Check != null && Check.Parent == ItemRow)
                 {
                     Check.Opacity = 1.0;
                     foundChecks.Add(Check.Name);
