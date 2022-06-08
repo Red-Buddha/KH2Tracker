@@ -183,6 +183,7 @@ namespace KhTracker
         OpenKHAltHints,
         DAHints,
         PathHints,
+        SpoilerHints,
         TimeHints,
         None
     }

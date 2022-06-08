@@ -171,10 +171,71 @@ namespace KhTracker
             data.hintsLoaded = true;
         }
 
+        private void SpoilerHints(Dictionary<string, object> hintObject)
+        {
+            ShouldResetHash = true;
+            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+
+            Dictionary<string, int> counts = new Dictionary<string, int>
+            {
+                {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
+                {"Cure", 1 }, {"Magnet", 1 }, {"Reflect", 1},
+                {"TornPage", 1},
+            };
+
+            foreach (var world in worlds)
+            {
+                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                {
+                    continue;
+                }
+                foreach (string item in world.Value)
+                {
+                    //DEBUG: ignore reports for now. don't count as ICs
+                    if (item.Contains("Report"))
+                        continue;
+
+                    string worldname = Codes.ConvertSeedGenName(world.Key);
+                    string checkname = Codes.ConvertSeedGenName(item);
+
+                    data.WorldsData[worldname].checkCount.Add(checkname);
+
+                    WorldGrid grid = data.WorldsData[worldname].worldGrid;
+
+                    if (counts.Keys.ToList().Contains(checkname))
+                    {
+                        Item testitem = Data.GhostItems["Ghost_" + checkname + counts[checkname]];
+                        string test = testitem.Name;
+                        Console.WriteLine(worldname);
+
+                        grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname + counts[checkname]], null);
+                        counts[checkname] += 1;
+                    }
+                    else
+                    {
+                        Item testitem = Data.GhostItems["Ghost_" + checkname];
+                        string test = testitem.Name;
+                        Console.WriteLine(worldname);
+
+                        grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname], null);
+                    }
+                }
+            }
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                data.WorldsData[key].worldGrid.WorldComplete();
+                SetReportValue(data.WorldsData[key].hint, 0);
+            }
+        }
+
         /// <summary>
         /// points hints and logic
         /// </summary>
- 
+
         //used to be a ton of ints
         //split into two dictionarys now as it's much easier to handle and uses far less if statements.
         private Dictionary<string, int> WorldPoints = new Dictionary<string, int>()

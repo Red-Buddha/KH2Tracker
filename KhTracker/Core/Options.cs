@@ -1263,7 +1263,7 @@ namespace KhTracker
 
         private void SetMode(Mode mode)
         {
-            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints || mode == Mode.PathHints)
+            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints || mode == Mode.PathHints || mode == Mode.SpoilerHints)
             {
                 OnReset(null, null);
             }
@@ -1298,6 +1298,12 @@ namespace KhTracker
                 ModeDisplay.Header = "Path Hints";
                 data.mode = mode;
                 ReportsToggle(true);
+            }
+            else if (mode == Mode.SpoilerHints)
+            {
+                ModeDisplay.Header = "Spoiler Hints";
+                data.mode = mode;
+                ReportsToggle(false);
             }
             else if (mode == Mode.TimeHints)
             {
@@ -1342,42 +1348,7 @@ namespace KhTracker
                             var settings = new List<string>();
 
                             ShouldResetHash = false;
-                            switch (hintObject["hintsType"].ToString())
-                            {
-                                case "Shananas":
-                                    {
-                                        SetMode(Mode.OpenKHAltHints);
-                                        ShanHints(hintObject);
-                                    }
-                                    break;
-                                case "JSmartee":
-                                    {
-                                        SetMode(Mode.OpenKHHints);
-                                        JsmarteeHints(hintObject);
-                                    }
-                                    break;
-                                case "Points":
-                                    {
-                                        SetMode(Mode.DAHints);
-                                        PointsHints(hintObject);
-                                    }
-                                    break;
-                                case "Path":
-                                    {
-                                        SetMode(Mode.PathHints);
-                                        PathHints(hintObject);
-                                    }
-                                    break;
-                                case "Timed":
-                                    {
-                                        //incomplete
-                                        //SetMode(Mode.TimeHints);
-                                        //TimeHints(hintObject);
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
+
 
                             if (hintObject.ContainsKey("settings"))
                             {
@@ -1404,9 +1375,9 @@ namespace KhTracker
                                     //FinalFormToggle(true);
 
                                     //DEBUG! UPDATE LATER
-                                    bool debug = false;
+                                    bool debug = true;
                                     ExtraChecksToggle(debug);
-                                    AntiFormToggle(debug);
+                                    AntiFormToggle(false);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
@@ -1489,6 +1460,48 @@ namespace KhTracker
                                 }
                             }
 
+                            switch (hintObject["hintsType"].ToString())
+                            {
+                                case "Shananas":
+                                    {
+                                        SetMode(Mode.OpenKHAltHints);
+                                        ShanHints(hintObject);
+                                    }
+                                    break;
+                                case "JSmartee":
+                                    {
+                                        SetMode(Mode.OpenKHHints);
+                                        JsmarteeHints(hintObject);
+                                    }
+                                    break;
+                                case "Points":
+                                    {
+                                        SetMode(Mode.DAHints);
+                                        PointsHints(hintObject);
+                                    }
+                                    break;
+                                case "Path":
+                                    {
+                                        SetMode(Mode.PathHints);
+                                        PathHints(hintObject);
+                                    }
+                                    break;
+                                case "Spoiler":
+                                    {
+                                        SetMode(Mode.SpoilerHints);
+                                        SpoilerHints(hintObject);
+                                    }
+                                    break;
+                                case "Timed":
+                                    {
+                                        //incomplete
+                                        //SetMode(Mode.TimeHints);
+                                        //TimeHints(hintObject);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
 

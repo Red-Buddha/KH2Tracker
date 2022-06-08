@@ -54,13 +54,43 @@ namespace KhTracker
 
             if (add)
             {
-                try
+                if (MainWindow.data.mode == Mode.SpoilerHints || MainWindow.data.mode == Mode.DAHints)
                 {
-                    Children.Add(button);
+                    int firstGhost = -1;
+
+                    foreach (Item child in Children)
+                    {
+                        if (child.Name.StartsWith("Ghost_"))
+                        {
+                            firstGhost = Children.IndexOf(child);
+                            break;
+                        }
+                    }
+
+                    try
+                    {
+                        if (firstGhost != -1)
+                        {
+                            Children.Insert(firstGhost, button);
+                        }
+                        else
+                            Children.Add(button);
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    return;
+                    try
+                    {
+                        Children.Add(button);
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
                 }
             }
             else
@@ -123,6 +153,39 @@ namespace KhTracker
                     }
 
                     MainW.UpdatePointScore(TableReturn(button.Name) * addRemove);
+                }
+            }
+
+            if (MainWindow.data.mode == Mode.SpoilerHints)
+            {
+                WorldComplete();
+
+                //remove ghost items as needed
+                if (worldName != "GoA" && !button.Name.StartsWith("Ghost_") && add)
+                {
+                    Remove_Ghost(worldName, button);
+                }
+
+                if (MainWindow.data.WorldsData[worldName].hint != null)
+                {
+                    //Get count - ghosts
+                    List<string> items = new List<string>();
+                    items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
+
+                    foreach (Item item in Children)
+                    {
+                        char[] numbers = { '1', '2', '3', '4', '5' };
+
+                        if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
+                            items.Remove(item.Name);
+                        else if (items.Contains(item.Name.TrimEnd(numbers)))
+                        {
+                            items.Remove(item.Name.TrimEnd(numbers));
+                        }
+                    }
+
+                    //Set world value
+                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, items.Count);
                 }
             }
         }
@@ -758,20 +821,28 @@ namespace KhTracker
 
         public void Add_Ghost(Item item, MainWindow window)
         {
-            Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, GetItemPool[item.Name]) as Grid;
+            if (MainW.GhostItemOption.IsChecked || MainWindow.data.mode == Mode.SpoilerHints)
+            {
+                Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;
+                if (ItemRow != null && ItemRow.Parent == MainW.ItemPool)
+                {
+                    ItemRow.Children.Remove(item);
+                    Handle_WorldGrid(item, true);
+                }
+            }
 
             // move item to world
-            if (MainW.GhostItemOption.IsChecked)
-            {
-                ItemRow.Children.Remove(item);
-                Handle_WorldGrid(item, true);
-            }
+            //if (MainW.GhostItemOption.IsChecked)
+            //{
+            //    ItemRow.Children.Remove(item);
+            //    Handle_WorldGrid(item, true);
+            //}
         }
 
         public void Remove_Ghost(string world, Item item)
         {
             //check to see if world currently contains a ghost
-            if (!MainWindow.data.WorldsData[world].containsGhost)
+           if (!MainWindow.data.WorldsData[world].containsGhost && MainWindow.data.mode == Mode.DAHints)
                 return;
 
             //get correct item name
