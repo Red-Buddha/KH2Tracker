@@ -158,7 +158,8 @@ namespace KhTracker
 
             if (MainWindow.data.mode == Mode.SpoilerHints)
             {
-                WorldComplete();
+                if (MainWindow.SpoilerWorldCompletion)
+                    WorldComplete();
 
                 //remove ghost items as needed
                 if (worldName != "GoA" && !button.Name.StartsWith("Ghost_") && add)
@@ -169,23 +170,18 @@ namespace KhTracker
                 if (MainWindow.data.WorldsData[worldName].hint != null)
                 {
                     //Get count - ghosts
-                    List<string> items = new List<string>();
-                    items.AddRange(MainWindow.data.WorldsData[Name.Substring(0, Name.Length - 4)].checkCount);
+                    int realcount = 0;
 
                     foreach (Item item in Children)
                     {
-                        char[] numbers = { '1', '2', '3', '4', '5' };
-
-                        if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
-                            items.Remove(item.Name);
-                        else if (items.Contains(item.Name.TrimEnd(numbers)))
-                        {
-                            items.Remove(item.Name.TrimEnd(numbers));
-                        }
+                        if (item.Name.StartsWith("Ghost"))
+                            continue;
+                        else
+                            realcount += 1;
                     }
 
                     //Set world value
-                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, items.Count);
+                    MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, realcount);
                 }
             }
         }
@@ -204,6 +200,11 @@ namespace KhTracker
                 else if (data.mode == Mode.PathHints)
                 {
                     if (Handle_PathReport(item, MainW, data))
+                        Add_Item(item, MainW);
+                }
+                else if (data.mode == Mode.SpoilerHints)
+                {
+                    if (Handle_SpoilerReport(item, MainW, data))
                         Add_Item(item, MainW);
                 }
                 else
@@ -416,6 +417,158 @@ namespace KhTracker
             }
 
             MainW.VisitLockCheck();
+        }
+
+        //Spoiler hints stuff
+        public bool Handle_SpoilerReport(Item item, MainWindow window, Data data)
+        {
+            bool isreport = false;
+
+            // item is a report
+            if (data.hintsLoaded && GetItemPool[item.Name] == 0)
+            {
+                int index = (int)item.GetValue(Grid.ColumnProperty);
+
+                // out of report attempts
+                if (data.reportAttempts[index] == 0)
+                    return false;
+
+                // check for correct report location
+                if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
+                {
+                    // hint text
+                    if (data.reportInformation[index].Item1 == "Empty")
+                    {
+                        window.SetHintText("This report is too faded to read...");
+                    }
+                    else
+                    {
+                        //set alt text for a hinted world that has 0 checks
+                        //(for when a world is toggled on, but happens to contain nothing)
+                        if (data.reportInformation[index].Item2 == -1)
+                        {
+                            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has no Important Checks");
+                        }
+                        else
+                        {
+                            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has been revealed!");
+                            SpoilerWorldReveal(data.reportInformation[index].Item1, data, "Report" + index);
+                        }
+                    }
+
+                    // resetting fail icons
+                    data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                    data.reportAttempts[index] = 3;
+                    isreport = true;
+                }
+                else
+                {
+                    // update fail icons when location is report location is wrong
+                    AddFailIcon(index);
+                    return false;
+                }
+            }
+
+            // show hint text on report hover
+            if (isreport)
+            {
+                item.MouseEnter -= item.Report_Hover;
+                item.MouseEnter += item.Report_Hover;
+            }
+
+            return true;
+        }
+
+        public void SpoilerWorldReveal(string worldname, Data data, string report)
+        {
+            //check if report was tracked before in this session to avoid tracking multiple ghosts for removing and placing the same report back
+            if (data.TrackedReports.Contains(report))
+                return;
+            else
+                data.TrackedReports.Add(report);
+
+            List<string> WorldItems = data.WorldsData[worldname].checkCount;
+            char[] numbers = { '1', '2', '3', '4', '5' };
+
+            //Get list of items we should track .we don't want to place more ghosts than is needed
+            //(ex. a world has 2 blizzards and we already have 1 tracked there)
+            WorldGrid worldGrid = data.WorldsData[worldname].worldGrid;
+            foreach (Item item in worldGrid.Children)
+            {
+                if (item.Name.Contains("Report") || item.Name.StartsWith("Ghost_"))
+                    WorldItems.Remove(item.Name);
+                else if (WorldItems.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    WorldItems.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            foreach (string itemname in WorldItems)
+            {
+                //this shouldn't ever happen, but return without doing anything else if the ghost values for magic/pages are higher than expected
+                switch (itemname)
+                {
+                    case "Fire":
+                        if (Ghost_Fire >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "Blizzard":
+                        if (Ghost_Blizzard >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "Thunder":
+                        if (Ghost_Thunder >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "Cure":
+                        if (Ghost_Cure >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "Magnet":
+                        if (Ghost_Magnet >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "Reflect":
+                        if (Ghost_Reflect >= 3)
+                        {
+                            return;
+                        }
+                        break;
+                    case "TornPage":
+                        if (Ghost_Pages >= 5)
+                        {
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                //look for avaiable ghost item in item pool to track
+                for (int i = 5; i <= 9; i++) //loop through ghost collumns only 
+                {
+                    Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, i) as Grid;
+                    foreach (Item Ghost in ItemRow.Children)
+                    {
+                        if (Ghost != null && Ghost.Name.Contains("Ghost_" + itemname))
+                        {
+                            //found ghost item, let's track it and break
+                            data.WorldsData[worldname].worldGrid.Add_Ghost(Ghost, MainW);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         //Path hints stuff
@@ -908,7 +1061,7 @@ namespace KhTracker
 
         public void UpdateGhostObtained(Item item, int addremove)
         {
-            if (MainWindow.data.mode != Mode.DAHints)
+            if (MainWindow.data.mode != Mode.DAHints || MainWindow.data.mode != Mode.SpoilerHints)
                 return;
 
             char[] numbers = { '1', '2', '3', '4', '5' };

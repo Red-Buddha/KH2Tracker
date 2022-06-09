@@ -89,7 +89,7 @@ namespace KhTracker
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
         public List<string> TrackedReports = new List<string>();
-
+        public List<string> SpoilerRevealTypes = new List<string>();
         //for timed hints
         public int timedHintsTimer = 0;
         public bool startedTimedHints = false;

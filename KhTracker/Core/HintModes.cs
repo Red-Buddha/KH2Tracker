@@ -175,6 +175,24 @@ namespace KhTracker
         {
             ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+            List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
+            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+            reportKeys.Sort();
+
+            //set if world value should change color on completion
+            if (reveals.Contains("complete"))
+            {
+                SpoilerWorldCompletion = true;
+            }
+            //set if reports should reveal items or not
+            if (reveals.Contains("reportmode"))
+            {
+                SpoilerReportMode = true;
+                ReportsToggle(true);
+            }
+            else
+                ReportsToggle(false);
 
             Dictionary<string, int> counts = new Dictionary<string, int>
             {
@@ -191,8 +209,8 @@ namespace KhTracker
                 }
                 foreach (string item in world.Value)
                 {
-                    //DEBUG: ignore reports for now. don't count as ICs
-                    if (item.Contains("Report"))
+                    //Ignore reports as ICs if report mode is false
+                    if (!SpoilerReportMode && item.Contains("Report"))
                         continue;
 
                     string worldname = Codes.ConvertSeedGenName(world.Key);
@@ -200,24 +218,25 @@ namespace KhTracker
 
                     data.WorldsData[worldname].checkCount.Add(checkname);
 
-                    WorldGrid grid = data.WorldsData[worldname].worldGrid;
-
-                    if (counts.Keys.ToList().Contains(checkname))
+                    //add ghosts if report mode is off
+                    if (!SpoilerReportMode)
                     {
-                        Item testitem = Data.GhostItems["Ghost_" + checkname + counts[checkname]];
-                        string test = testitem.Name;
-                        Console.WriteLine(worldname);
+                        //Skip adding ghosts for item types that aren't in reveals list 
+                        if (!reveals.Contains(Codes.FindItemType(item)))
+                        {
+                            continue;
+                        }
 
-                        grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname + counts[checkname]], null);
-                        counts[checkname] += 1;
-                    }
-                    else
-                    {
-                        Item testitem = Data.GhostItems["Ghost_" + checkname];
-                        string test = testitem.Name;
-                        Console.WriteLine(worldname);
-
-                        grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname], null);
+                        WorldGrid grid = data.WorldsData[worldname].worldGrid;
+                        if (counts.Keys.ToList().Contains(checkname))
+                        {
+                            grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname + counts[checkname]], null);
+                            counts[checkname] += 1;
+                        }
+                        else
+                        {
+                            grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname], null);
+                        }
                     }
                 }
             }
@@ -227,8 +246,33 @@ namespace KhTracker
                 if (key == "GoA")
                     continue;
 
-                data.WorldsData[key].worldGrid.WorldComplete();
+                if (SpoilerWorldCompletion)
+                    data.WorldsData[key].worldGrid.WorldComplete();
                 SetReportValue(data.WorldsData[key].hint, 0);
+            }
+
+            //add setup report info if report mode is on
+            if (SpoilerReportMode)
+            {
+                data.SpoilerRevealTypes.AddRange(reveals);
+
+                foreach (var report in reportKeys)
+                {
+                    string worldstring = reports[report.ToString()]["World"].ToString();
+                    int dummyvalue = 0;
+                    if (worldstring.StartsWith("Nothing_"))
+                    {
+                        worldstring = worldstring.Remove(0, 8);
+                        dummyvalue = -1;
+                    }
+
+                    var worldhint = Codes.ConvertSeedGenName(worldstring);
+                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+
+                    data.reportInformation.Add(new Tuple<string, int>(worldhint, dummyvalue));
+                    data.reportLocations.Add(location);
+                }
+                data.hintsLoaded = true;
             }
         }
 

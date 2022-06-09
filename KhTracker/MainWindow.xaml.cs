@@ -29,6 +29,8 @@ namespace KhTracker
         public int DeathCounter = 0;
         public static bool SeedHashLoaded = false;
         public static bool SeedHashVisible = false;
+        public static bool SpoilerWorldCompletion = false;
+        public static bool SpoilerReportMode = false;
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to

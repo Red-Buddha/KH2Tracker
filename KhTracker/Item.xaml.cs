@@ -118,6 +118,13 @@ namespace KhTracker
                         data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
                     }
                 }
+                else if (data.mode == Mode.SpoilerHints)
+                {
+                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_SpoilerReport(this, window, data))
+                    {
+                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
+                    }
+                }
                 else
                 {
                     if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
@@ -145,6 +152,24 @@ namespace KhTracker
             else if (data.mode == Mode.PathHints)
             {
                 MainW.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
+            }
+            else if (data.mode == Mode.SpoilerHints)
+            {
+                if (data.reportInformation[index].Item1 == "Empty")
+                {
+                    MainW.SetHintText("This report looks too faded to read...");
+                }
+                else
+                {
+                    if (data.reportInformation[index].Item2 == -1)
+                    {
+                        MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has no Important Checks");
+                    }
+                    else
+                    {
+                        MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has been revealed!");
+                    }
+                }
             }
             else if(data.reportInformation[index].Item2 == -99)
             {

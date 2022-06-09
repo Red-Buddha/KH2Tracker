@@ -709,6 +709,10 @@ namespace KhTracker
                     {
                         ReportType = world.Handle_PathReport(item as Item, this, data);
                     }
+                    else if (data.mode == Mode.SpoilerHints)
+                    {
+                        ReportType = world.Handle_SpoilerReport(item as Item, this, data);
+                    }
                     else
                     {
                         ReportType = world.Handle_Report(item as Item, this, data);

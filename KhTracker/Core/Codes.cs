@@ -567,7 +567,8 @@ namespace KhTracker
             {"Garden of Assemblage", "GoA"},
             {"", "GoA"},
             {"Critical Bonuses", "GoA"},
-            {"Creations", "PuzzSynth"}
+            {"Creations", "PuzzSynth"},
+            {"Empty", "Empty"}
         };
 
         //Code Lists

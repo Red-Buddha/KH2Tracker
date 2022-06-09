@@ -87,10 +87,10 @@ namespace KhTracker
             // save hint state (hint info, hints, track attempts)
             string attempts = "";
             string hintValues = "";
-            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints || data.mode == Mode.DAHints || data.mode == Mode.PathHints)
+            if (data.mode == Mode.Hints || data.mode == Mode.OpenKHHints || data.mode == Mode.DAHints || data.mode == Mode.PathHints || data.mode == Mode.SpoilerHints)
             {
                 attempts = "Attempts: ";
-                if (data.hintsLoaded)
+                if (data.hintsLoaded || data.mode == Mode.SpoilerHints)
                 {
                     foreach (int num in data.reportAttempts)
                     {
@@ -165,6 +165,12 @@ namespace KhTracker
                 writer.WriteLine(reportlist64);
                 writer.WriteLine(hintValues);
             }
+            else if (data.mode == Mode.SpoilerHints)
+            {
+                writer.WriteLine(attempts);
+                writer.WriteLine(data.openKHHintText);
+                writer.WriteLine(hintValues);
+            }
             else if (data.mode == Mode.TimeHints)
             {
                 //nothing yet
@@ -226,6 +232,8 @@ namespace KhTracker
                 SetMode(Mode.DAHints);
             else if (mode == "PathHints")
                 SetMode(Mode.PathHints);
+            else if (mode == "SpoilerHints")
+                SetMode(Mode.SpoilerHints);
 
             // set settings
             string settings = reader.ReadLine();
@@ -486,6 +494,20 @@ namespace KhTracker
                 //data.hintsLoaded = true;
                 //HintText.Content = "Hints Loaded";
             }
+            else if (mode == "SpoilerHints")
+            {
+                string attempts = reader.ReadLine();
+                attempts = attempts.Substring(13);
+                string[] attemptsArray = attempts.Split('-');
+                for (int i = 0; i < attemptsArray.Length; ++i)
+                {
+                    data.reportAttempts[i] = int.Parse(attemptsArray[i]);
+                }
+                data.openKHHintText = reader.ReadLine();
+                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
+                var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                SpoilerHints(hintObject);
+            }
 
             // set hint values (DUMB)
             if (data.hintsLoaded)
@@ -510,6 +532,8 @@ namespace KhTracker
                 SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
                 SetReportValue(data.WorldsData["PuzzSynth"].hint, int.Parse(hintValues[17]));
             }
+            else if (mode == "SpoilerHints") //we need to do this for spoiler hints because of the optional report mode
+                reader.ReadLine();
 
             string[] progress = reader.ReadLine().Substring(10).Split(' ');
             data.WorldsData["SimulatedTwilightTown"].progress = int.Parse(progress[0]);
@@ -564,8 +588,25 @@ namespace KhTracker
 
                             if (grid.Handle_PathReport(importantCheck, this, data))
                                 grid.Add_Item(importantCheck, this);
+                        }
+                    }
+                    else if (data.mode == Mode.SpoilerHints)
+                    {
+                        foreach (string item in items.Split(' '))
+                        {
+                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                            Item importantCheck = FindName(item) as Item;
 
-                            //grid.WorldComplete();
+                            if (grid.Handle_SpoilerReport(importantCheck, this, data))
+                            {
+                                if (item.StartsWith("Ghost_"))
+                                {
+                                    //grid.Add_Ghost(importantCheck, this);
+                                }
+
+                                else
+                                    grid.Add_Item(importantCheck, this);
+                            }
                         }
                     }
                     else
@@ -858,6 +899,10 @@ namespace KhTracker
             data.mode = Mode.None;
             collected = 0;
             PointTotal = 0;
+
+            data.SpoilerRevealTypes.Clear();
+            SpoilerReportMode = false;
+            SpoilerWorldCompletion = false;
 
             bool CustomMode = Properties.Settings.Default.CustomIcons;
             BitmapImage BarW = data.VerticalBarW;
@@ -1303,7 +1348,6 @@ namespace KhTracker
             {
                 ModeDisplay.Header = "Spoiler Hints";
                 data.mode = mode;
-                ReportsToggle(false);
             }
             else if (mode == Mode.TimeHints)
             {
