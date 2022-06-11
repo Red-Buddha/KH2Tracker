@@ -712,7 +712,7 @@ namespace KhTracker
 
         public List<string> JokeHints = new List<string>
         {
-            "\"Call my shorty zemnas the way she give me dome\" -Raisin",
+            "\"Call my shorty Zemnas the way she give me dome\" -Raisin",
             "Have you tried contacting Tech Support Nomura?",
             "Soul Eater is a Keyblade",
             "Soul Eater is not a Keyblade",

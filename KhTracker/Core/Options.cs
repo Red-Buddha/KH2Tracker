@@ -1393,7 +1393,6 @@ namespace KhTracker
 
                             ShouldResetHash = false;
 
-
                             if (hintObject.ContainsKey("settings"))
                             {
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
@@ -1419,9 +1418,9 @@ namespace KhTracker
                                     //FinalFormToggle(true);
 
                                     //DEBUG! UPDATE LATER
-                                    bool debug = true;
-                                    ExtraChecksToggle(debug);
-                                    AntiFormToggle(false);
+                                    bool debug = false;
+                                    ExtraChecksToggle(true);
+                                    AntiFormToggle(debug);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;

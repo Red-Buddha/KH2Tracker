@@ -158,7 +158,7 @@ namespace KhTracker
 
             if (MainWindow.data.mode == Mode.SpoilerHints)
             {
-                if (MainWindow.SpoilerWorldCompletion)
+                if (MainWindow.SpoilerWorldCompletion && !button.Name.StartsWith("Ghost_"))
                     WorldComplete();
 
                 //remove ghost items as needed
@@ -505,6 +505,12 @@ namespace KhTracker
 
             foreach (string itemname in WorldItems)
             {
+                //don't track item types not in reveal list
+                if (!data.SpoilerRevealTypes.Contains(Codes.FindItemType(itemname)))
+                {
+                    continue;
+                }
+
                 //this shouldn't ever happen, but return without doing anything else if the ghost values for magic/pages are higher than expected
                 switch (itemname)
                 {
@@ -562,7 +568,7 @@ namespace KhTracker
                     {
                         if (Ghost != null && Ghost.Name.Contains("Ghost_" + itemname))
                         {
-                            //found ghost item, let's track it and break
+                            //found ghost item
                             data.WorldsData[worldname].worldGrid.Add_Ghost(Ghost, MainW);
                             break;
                         }
@@ -1061,8 +1067,10 @@ namespace KhTracker
 
         public void UpdateGhostObtained(Item item, int addremove)
         {
-            if (MainWindow.data.mode != Mode.DAHints || MainWindow.data.mode != Mode.SpoilerHints)
+            if (MainWindow.data.mode != Mode.DAHints && MainWindow.data.mode != Mode.SpoilerHints)
+            {
                 return;
+            }
 
             char[] numbers = { '1', '2', '3', '4', '5' };
             string itemname = item.Name.TrimEnd(numbers);

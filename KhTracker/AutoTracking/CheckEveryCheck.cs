@@ -140,9 +140,11 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x1475A, Save + 0x23CA, 0));   // Rabbit's House
             checksList.Add(new Check(this, Sys3 + 0x14766, Save + 0x23B5, 7));   // Rabbit's House
             checksList.Add(new Check(this, Sys3 + 0x14772, Save + 0x23B6, 0));   // Rabbit's House
+
             checksList.Add(new Check(this, Sys3 + 0x1477E, Save + 0x23B6, 5));   // Kanga's House
             checksList.Add(new Check(this, Sys3 + 0x1478A, Save + 0x23B6, 6));   // Kanga's House
             checksList.Add(new Check(this, Sys3 + 0x14796, Save + 0x23B6, 7));   // Kanga's House
+
             checksList.Add(new Check(this, Sys3 + 0x147A2, Save + 0x23B7, 1));   // The Spooky Cave
             checksList.Add(new Check(this, Sys3 + 0x147AE, Save + 0x23B7, 2));   // The Spooky Cave
             checksList.Add(new Check(this, Sys3 + 0x147BA, Save + 0x23B7, 3));   // The Spooky Cave
