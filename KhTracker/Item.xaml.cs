@@ -201,7 +201,7 @@ namespace KhTracker
             Data data = MainWindow.data;
             Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, GetItemPool[this.Name]) as Grid;
 
-            if (this.Name.StartsWith("Ghost_") && !MainW.GhostItemOption.IsChecked)
+            if (this.Name.StartsWith("Ghost_"))
             {
                 if (Parent != ItemRow)
                 {

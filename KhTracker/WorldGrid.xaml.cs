@@ -460,6 +460,10 @@ namespace KhTracker
                     data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
                     data.reportAttempts[index] = 3;
                     isreport = true;
+                    //change hinted world to use green numbers
+                    //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
+                    data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
+                    window.Updatenumbers();
                 }
                 else
                 {
@@ -564,8 +568,10 @@ namespace KhTracker
                 for (int i = 5; i <= 9; i++) //loop through ghost collumns only 
                 {
                     Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, i) as Grid;
+                    Console.WriteLine(ItemRow.Children.Count);
                     foreach (Item Ghost in ItemRow.Children)
                     {
+                        Console.WriteLine(Ghost.Name);
                         if (Ghost != null && Ghost.Name.Contains("Ghost_" + itemname))
                         {
                             //found ghost item
@@ -1001,8 +1007,28 @@ namespace KhTracker
         public void Remove_Ghost(string world, Item item)
         {
             //check to see if world currently contains a ghost
+
+            //if Points Hints and world doesn't contain a ghost yet, do nothing and return
            if (!MainWindow.data.WorldsData[world].containsGhost && MainWindow.data.mode == Mode.DAHints)
                 return;
+
+            //If spoiler hints, check if ANY currently tracked item in this world is a ghost
+            //and return and do nothing if there are none to not waste time.
+            bool hasGhost = false;
+            if (MainWindow.data.mode == Mode.SpoilerHints)
+            {
+                foreach (Item child in MainWindow.data.WorldsData[world].hint.Children)
+                {
+                    if (child.Name.StartsWith("Ghost_"))
+                    {
+                        hasGhost = true;
+                        break;
+                    }
+                }
+
+                if (!hasGhost)
+                    return;
+            }
 
             //get correct item name
             char[] numbers = { '1', '2', '3', '4', '5' };
@@ -1029,7 +1055,7 @@ namespace KhTracker
                     //compare and remove if same
                     if (itemname == itemnameGhost.Remove(0, 6))
                     {
-                        Handle_WorldGrid(ghostItem, false);
+                        ghostItem.HandleItemReturn();
                         return;
                     }
                 }

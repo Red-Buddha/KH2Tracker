@@ -1790,7 +1790,7 @@ namespace KhTracker
             UpdatePointScore(0);
         }
 
-        private void Updatenumbers()
+        public void Updatenumbers()
         {
             //get correct slash image
             bool CustomMode = Properties.Settings.Default.CustomIcons;
@@ -1808,7 +1808,7 @@ namespace KhTracker
 
                 if (worldData.complete || worldData.hintedHint)
                     isBlue = true;
-                if (worldData.containsGhost && data.mode == Mode.DAHints)
+                if (worldData.containsGhost && (data.mode == Mode.DAHints || data.mode == Mode.SpoilerHints))
                     isGreen = true;
 
                 if (worldData.hint != null)
