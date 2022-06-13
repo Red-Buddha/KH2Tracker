@@ -1017,7 +1017,7 @@ namespace KhTracker
             bool hasGhost = false;
             if (MainWindow.data.mode == Mode.SpoilerHints)
             {
-                foreach (Item child in MainWindow.data.WorldsData[world].hint.Children)
+                foreach (Item child in MainWindow.data.WorldsData[world].worldGrid.Children)
                 {
                     if (child.Name.StartsWith("Ghost_"))
                     {

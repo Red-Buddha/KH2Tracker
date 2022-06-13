@@ -1806,6 +1806,8 @@ namespace KhTracker
                 bool isBlue = false;
                 bool isGreen = false;
 
+                string test = worldData.world.Name;
+
                 if (worldData.complete || worldData.hintedHint)
                     isBlue = true;
                 if (worldData.containsGhost && (data.mode == Mode.DAHints || data.mode == Mode.SpoilerHints))
@@ -1819,7 +1821,8 @@ namespace KhTracker
                     {
                         SetWorldNumber(worldData.hint, WorldNumber, "G");
                     }
-                    else if (isBlue)
+
+                    if (isBlue)
                     {
                         SetWorldNumber(worldData.hint, WorldNumber, "B");
                     }
