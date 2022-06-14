@@ -49,7 +49,7 @@
                 <MenuItem Header="Reset Tracker" Click="OnReset"/>
                 <MenuItem Name="TopMostOption" Header="Always on Top" IsCheckable="True" IsChecked="False" Click="TopMostToggle"/>
                 <MenuItem Name="DragAndDropOption" Header="Drag and Drop" IsCheckable="True" IsChecked="True" Click="DragDropToggle"/>
-                <MenuItem Name="LegacyOption" Header="Legacy STT Magic Tracking" IsCheckable="False" IsChecked="False" Click="LegacyToggle"/>
+                <MenuItem Name="LegacyOption" Header="Legacy STT Magic Tracking" IsCheckable="True" IsChecked="False" Click="LegacyToggle"/>
             </MenuItem>
             <MenuItem Header="Toggles" Focusable="False">
                 <MenuItem Name="PromiseCharmOption" Header="Promise Charm" IsCheckable="True" IsChecked="False" Click="PromiseCharmToggle"/>
@@ -120,7 +120,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
-            <MenuItem Header="-DA Pre-1.6.6-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="-DA Pre-1.6.7b-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/>
         </Menu>
 
         <Grid>
