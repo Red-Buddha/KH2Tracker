@@ -57,8 +57,8 @@ namespace KhTracker
             //    settings += "Final Form - ";
             if (VisitLockOption.IsChecked)
                 settings += "Visit Locks - ";
-            //if (HadesCupOption.IsChecked)
-            //    settings += "Hades Cup - ";
+            if (ExtraChecksOption.IsChecked)
+                settings += "Extra Checks - ";
             if (SoraHeartOption.IsChecked)
                 settings += "Sora's Heart - ";
             if (SoraLevel01Option.IsChecked)
@@ -871,9 +871,9 @@ namespace KhTracker
                     case "Lingering Will (Terra)":
                         TerraToggle(true);
                         break;
-                    //case "Hades Cup":
-                    //    newsettings[13] = true;
-                    //    break;
+                    case "Extra Checks":
+                        ExtraChecksToggle(true);
+                        break;
                     case "Puzzles":
                         PuzzleToggle(true);
                         break;
@@ -1417,10 +1417,8 @@ namespace KhTracker
                                     //CureToggle(true);
                                     //FinalFormToggle(true);
 
-                                    //DEBUG! UPDATE LATER
-                                    bool debug = false;
-                                    ExtraChecksToggle(true);
-                                    AntiFormToggle(debug);
+                                    ExtraChecksToggle(false);
+                                    AntiFormToggle(false);
 
                                     SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
@@ -1484,13 +1482,13 @@ namespace KhTracker
                                             SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             break;
-                                        //DEBUG! UPDATE LATER
-                                        //case "Unknown Disk":
-                                        //    ExtraChecksToggle(true);
-                                        //    break;
-                                        //case "Anti-Form":
-                                        //    AntiFormToggle(true);
-                                        //    break;
+                                        case "extra_ics":
+                                            ExtraChecksToggle(true);
+                                            break;
+                                            //DEBUG! UPDATE LATER
+                                            //case "Anti-Form":
+                                            //    AntiFormToggle(true);
+                                            //    break;
                                     }
                                     //if (setting.Key == "Second Chance & Once More ")
                                     //    AbilitiesToggle(true);
