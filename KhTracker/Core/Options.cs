@@ -972,6 +972,18 @@ namespace KhTracker
                 data.WorldsData[key].complete = false;
                 data.WorldsData[key].checkCount.Clear();
                 data.WorldsData[key].progress = 0;
+
+                //world cross reset
+                string crossname = key + "Cross";
+
+                if (data.WorldsData[key].top.FindName(crossname) is Image Cross)
+                {
+                    Cross.Visibility = Visibility.Collapsed;
+                }
+                if (broadcast.FindName(crossname) is Image CrossB)
+                {
+                    CrossB.Visibility = Visibility.Collapsed;
+                }
             }
 
             broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");

@@ -1099,8 +1099,13 @@ namespace KhTracker
             }
 
             char[] numbers = { '1', '2', '3', '4', '5' };
-            string itemname = item.Name.TrimEnd(numbers);
             string itemntype = Codes.FindItemType(item.Name);
+            string itemname;
+
+            if (item.Name.Contains("Report"))
+                itemname = item.Name;
+            else
+                itemname = item.Name.TrimEnd(numbers);
 
             //update normal items obtained
             if ((itemntype == "magic" || itemntype == "page") && !itemname.StartsWith("Ghost_"))
