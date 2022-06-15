@@ -423,11 +423,12 @@ namespace KhTracker
         public bool Handle_SpoilerReport(Item item, MainWindow window, Data data)
         {
             bool isreport = false;
+            int index = 0;
 
             // item is a report
             if (data.hintsLoaded && GetItemPool[item.Name] == 0)
             {
-                int index = (int)item.GetValue(Grid.ColumnProperty);
+                index = (int)item.GetValue(Grid.ColumnProperty);
 
                 // out of report attempts
                 if (data.reportAttempts[index] == 0)
@@ -463,7 +464,6 @@ namespace KhTracker
                     //change hinted world to use green numbers
                     //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
                     data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
-                    window.Updatenumbers();
                 }
                 else
                 {
@@ -480,7 +480,24 @@ namespace KhTracker
                 item.MouseEnter += item.Report_Hover;
             }
 
+            if (data.WorldsData[data.reportInformation[index].Item1].containsGhost)
+                Updatenumbers_spoil(data.WorldsData[data.reportInformation[index].Item1]);
+
             return true;
+        }
+
+        public void Updatenumbers_spoil(WorldData worldData)
+        {
+            if (worldData.complete || worldData.containsGhost == false)
+                return;
+
+            if (worldData.hint != null)
+            {
+                int WorldNumber = MainW.GetWorldNumber(worldData.hint);
+                MainW.SetWorldNumber(worldData.hint, WorldNumber, "G");
+            }
+            else
+                return;
         }
 
         public void SpoilerWorldReveal(string worldname, Data data, string report)
