@@ -342,7 +342,7 @@ namespace KhTracker
             SeedHashOption.IsChecked = toggle;
 
             if (toggle)
-                HintText.Content = "";
+                HintText.Text = "";
 
             if (SeedHashLoaded && toggle)
             {
@@ -457,7 +457,10 @@ namespace KhTracker
                     if (worldData.containsGhost)
                     {
                         int ghostnum = GetGhostPoints(worldData.worldGrid) * add;
-                        int worldnum = GetWorldNumber(worldData.hint);
+                        int worldnum = -1;
+                        //int worldnum = GetWorldNumber(worldData.hint);
+                        if (worldData.hint.Text != "?")
+                            worldnum = int.Parse(worldData.hint.Text);
                         SetReportValue(worldData.hint, worldnum + ghostnum);
                     }
                 }

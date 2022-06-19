@@ -174,14 +174,18 @@
                                 <ColumnDefinition Width=".3*"/>
                             </Grid.ColumnDefinitions>
 
+                            <!-- main icon -->
                             <Button Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <DynamicResource ResourceKey="Min-SoraHeartImage"/>
                             </Button>
-
+                            
+                            <!-- cross over main icon -->
                             <Image Name="SorasHeartCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
                             
+                            <!-- icon for level check setting -->
                             <ContentControl Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
 
+                            <!-- weapon selection icon -->
                             <Image Name="Weapon" Source="Images/Other/sword.png" Grid.Row="1" Panel.ZIndex="1" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,-6" RenderTransformOrigin="0.5,0.5" Visibility="Visible">
                                 <Image.RenderTransform>
                                     <TransformGroup>
@@ -193,7 +197,11 @@
                                 </Image.RenderTransform>
                             </Image>
 
-                            <Grid Name="SorasHeartHint" Grid.Row="1" Grid.ColumnSpan="3" Panel.ZIndex="1">
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?"/>
+                            </Viewbox>
+                            
+                            <!--Grid Name="SorasHeartHint" Grid.Row="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Visibility="Hidden">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
@@ -206,8 +214,9 @@
                                 <Image Name="SorasHeartHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
                                 <Image Name="SorasHeartHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
                                 <Image Name="SorasHeartHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            </Grid-->
 
+                            <!-- path hints icons-->
                             <Grid Name="SorasHeartPath" Grid.RowSpan="2" Grid.Column="3" Visibility="Hidden">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="0.18*"/>
@@ -224,10 +233,11 @@
                                 <Image Name="SorasHeartPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                             </Grid>
 
+                            <!-- separation bar -->
                             <Image Name="SorasHeartBar" Source="Images\VerticalBarWhite.png" Grid.RowSpan="2" Grid.Column="5"/>
-                            
+
                         </Grid>
-                        
+
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="1"/>
                     </Grid>
 
@@ -268,20 +278,10 @@
 
                             <Image Name="SimulatedTwilightTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="SimulatedTwilightTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="SimulatedTwilightTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="SimulatedTwilightTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="SimulatedTwilightTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="SimulatedTwilightTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="SimulatedTwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -343,20 +343,10 @@
 
                             <Image Name="HollowBastionCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="HollowBastionHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="HollowBastionHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="HollowBastionHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="HollowBastionHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="HollowBastionHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="HollowBastionProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -417,21 +407,11 @@
                             </Button>
 
                             <Image Name="OlympusColiseumCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="OlympusColiseumHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="OlympusColiseumHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="OlympusColiseumHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="OlympusColiseumHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="OlympusColiseumHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="OlympusColiseumProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -492,21 +472,11 @@
                             </Button>
 
                             <Image Name="LandofDragonsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="LandofDragonsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="LandofDragonsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="LandofDragonsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="LandofDragonsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="LandofDragonsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="LandofDragonsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -567,21 +537,11 @@
                             </Button>
 
                             <Image Name="PrideLandsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="PrideLandsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="PrideLandsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="PrideLandsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="PrideLandsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="PrideLandsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="PrideLandsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -643,20 +603,10 @@
 
                             <Image Name="HalloweenTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="HalloweenTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="HalloweenTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="HalloweenTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="HalloweenTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="HalloweenTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="HalloweenTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -717,21 +667,11 @@
                             </Button>
 
                             <Image Name="SpaceParanoidsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="SpaceParanoidsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="SpaceParanoidsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="SpaceParanoidsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="SpaceParanoidsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="SpaceParanoidsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="SpaceParanoidsProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -844,20 +784,10 @@
 
                             <Image Name="DriveFormsCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="DriveFormsHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="DriveFormsHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="DriveFormsHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="DriveFormsHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <Grid Name="DriveFormsPath" Grid.RowSpan="2" Grid.Column="3" Visibility="Hidden">
                                 <Grid.RowDefinitions>
@@ -926,21 +856,11 @@
                             </Button>
 
                             <Image Name="TwilightTownCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="TwilightTownHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="TwilightTownHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="TwilightTownHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="TwilightTownHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="TwilightTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="TwilightTownProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1002,20 +922,10 @@
 
                             <Image Name="BeastsCastleCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="BeastsCastleHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="BeastsCastleHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="BeastsCastleHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="BeastsCastleHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="BeastsCastleHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="BeastsCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1076,21 +986,11 @@
                             </Button>
 
                             <Image Name="AgrabahCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="AgrabahHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="AgrabahHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="AgrabahHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="AgrabahHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="AgrabahHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="AgrabahProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1141,20 +1041,10 @@
 
                             <Image Name="HundredAcreWoodCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="HundredAcreWoodHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="HundredAcreWoodHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="HundredAcreWoodHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="HundredAcreWoodHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="HundredAcreWoodProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1206,21 +1096,11 @@
                             </Button>
 
                             <Image Name="DisneyCastleCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="DisneyCastleHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="DisneyCastleHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="DisneyCastleHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="DisneyCastleHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="DisneyCastleProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1282,20 +1162,10 @@
 
                             <Image Name="PortRoyalCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="PortRoyalHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="PortRoyalHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="PortRoyalHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="PortRoyalHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="PortRoyalHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="PortRoyalProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1346,20 +1216,10 @@
 
                             <Image Name="TWTNWCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="TWTNWHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="TWTNWHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="TWTNWHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="TWTNWHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="TWTNWProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1410,20 +1270,10 @@
 
                             <Image Name="AtlanticaCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
 
-                            <Grid Name="AtlanticaHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="AtlanticaHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="AtlanticaHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="AtlanticaHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <ContentControl Name="AtlanticaProgression" IsHitTestVisible="False" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -1473,21 +1323,11 @@
                             </Button>
 
                             <Image Name="PuzzSynthCross" Source="Images/Other/crossworld.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" IsHitTestVisible="False"/>
-                            
-                            <Grid Name="PuzzSynthHint" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.25*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Name="PuzzSynthHint_100" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="1"/>
-                                <Image Name="PuzzSynthHint_010" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Hidden" Grid.Column="2"/>
-                                <Image Name="PuzzSynthHint_001" Source="Images/Numbers/kh2/Yellow/QuestionMark.png" Visibility="Visible" Grid.Column="3"/>
-                            </Grid>
+
+                            <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,-2" Stretch="Uniform">
+                                <local:OutlinedTextBlock x:Name="PuzzSynthHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="30" TextWrapping="Wrap" StrokeThickness="5" Stroke="Black" Fill="#FFFFEF00" Text="?">
+                                </local:OutlinedTextBlock>
+                            </Viewbox>
 
                             <Grid Name="PuzzSynthPath" Grid.RowSpan="2" Grid.Column="3" Visibility="Hidden">
                                 <Grid.RowDefinitions>
@@ -1558,9 +1398,20 @@
                     <ColumnDefinition Width="2.5*"/>
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-
+                
+                <!--Label Name="HintText" Foreground="White" Padding="2" FontSize="16"/-->
+                
                 <Viewbox Name="HintTextParent" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="21">
-                    <Label Name="HintText" Foreground="White" Padding="2" FontSize="16"/>
+                    <!--Label Name="HintText" Foreground="White" Padding="2" FontSize="16"/-->
+                    <local:OutlinedTextBlock x:Name="HintText" FontFamily="/KhTracker;component/Fonts/#KHMenu" FontSize="25pt" FontWeight="DemiBold" TextWrapping="Wrap" StrokeThickness="10" Stroke="Black">
+                        <local:OutlinedTextBlock.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="1"/>
+                                <GradientStop Color="#FFFFC500" Offset="0.484"/>
+                            </LinearGradientBrush>
+                        </local:OutlinedTextBlock.Fill>
+                        Test Text:  0  1  2  3  4  5  10  99  100
+                    </local:OutlinedTextBlock>
                 </Viewbox>
 
                 <Grid Name="Level" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="-2,0,0,0" Visibility="Hidden">
@@ -1859,7 +1710,7 @@
             </Grid>
 
             <!-- Testing hash placement -->
-            <Grid Grid.Row="1" Visibility="Visible">
+            <Grid Grid.Row="1" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Name="HashRow" Height="1*"/>
                     <RowDefinition Height="0.9*"/>
@@ -1980,7 +1831,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Report1" Content="{DynamicResource Min-AnsemReport01}"  Grid.Column="0" Panel.ZIndex="0"/>
                     <ContentControl Name="Attempts1" Content="{DynamicResource Fail0}"          Grid.Column="0" Panel.ZIndex="1"/>
                     <local:Item x:Name="Report2" Content="{DynamicResource Min-AnsemReport02}"  Grid.Column="1" Panel.ZIndex="0"/>
@@ -2027,7 +1878,7 @@
                         <ColumnDefinition Name="Ex_HadesCup" Width="1*"/>
                         <ColumnDefinition Name="Ex_OlympusStone" Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Fire1"          Content="{DynamicResource Min-Fire}"            Grid.Column="0"/>
                     <local:Item x:Name="Fire2"          Content="{DynamicResource Min-Fire}"            Grid.Column="1"/>
                     <local:Item x:Name="Fire3"          Content="{DynamicResource Min-Fire}"            Grid.Column="2"/>
@@ -2097,7 +1948,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Name="Pr_PromiseCharm"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="UnknownDisk" Content="{DynamicResource Min-UnknownDisk}"    Grid.Column="0"/>
                     <local:Item x:Name="TornPage1" Content="{DynamicResource Min-TornPage}"         Grid.Column="1"/>
                     <local:Item x:Name="TornPage2" Content="{DynamicResource Min-TornPage}"         Grid.Column="2"/>
@@ -2161,7 +2012,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Ghost_Report1" Content="{DynamicResource Min-AnsemReport01}"  Grid.Column="0"  Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Report2" Content="{DynamicResource Min-AnsemReport02}"  Grid.Column="1"  Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Report3" Content="{DynamicResource Min-AnsemReport03}"  Grid.Column="2"  Opacity="0.5"/>
@@ -2195,7 +2046,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Ghost_Fire1"        Content="{DynamicResource Min-Fire}"            Grid.Column="0" Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Fire2"        Content="{DynamicResource Min-Fire}"            Grid.Column="1" Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Fire3"        Content="{DynamicResource Min-Fire}"            Grid.Column="2" Opacity="0.5"/>
@@ -2230,7 +2081,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Ghost_Reflect1" Content="{DynamicResource Min-Reflect}"          Grid.Column="0" Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Reflect2" Content="{DynamicResource Min-Reflect}"          Grid.Column="1" Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Reflect3" Content="{DynamicResource Min-Reflect}"          Grid.Column="2" Opacity="0.5"/>

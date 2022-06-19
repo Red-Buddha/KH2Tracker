@@ -218,7 +218,7 @@ namespace KhTracker
                 if (world.Key != "GoA")
                 {
                     Grid broadcasthintgrid = this.FindName(world.Key + "Hint") as Grid;
-                    SetFoundNumber(data.WorldsData[world.Key].hint, broadcasthintgrid);
+                    //SetFoundNumber(data.WorldsData[world.Key].hint, broadcasthintgrid);
                 }
             }
 
@@ -647,6 +647,8 @@ namespace KhTracker
 
         public int GetWorldNumber(Grid hintgrid)
         {
+            if (hintgrid == null)
+                return 0;
             int Num100 = 0;
             int Num010 = 0;
             int Num001 = 0;

@@ -139,10 +139,10 @@ namespace KhTracker
 
                 Console.WriteLine(button.Name + ": " + worldName + " added/removed " + (TableReturn(button.Name) * addRemove));
 
-                Grid hint = MainWindow.data.WorldsData[worldName].hint;
+                //Grid hint = MainWindow.data.WorldsData[worldName].hint;
 
                 MainW.SetPoints(worldName, MainW.GetPoints(worldName) - (TableReturn(button.Name) * addRemove));
-                MainW.SetReportValue(hint, MainW.GetPoints(worldName));
+                MainW.SetReportValue(MainWindow.data.WorldsData[worldName].hint, MainW.GetPoints(worldName));
 
                 //remove ghost items as needed then update points score
                 if (worldName != "GoA" && !button.Name.StartsWith("Ghost_"))
@@ -493,7 +493,11 @@ namespace KhTracker
 
             if (worldData.hint != null)
             {
-                int WorldNumber = MainW.GetWorldNumber(worldData.hint);
+                int WorldNumber = -1;
+
+                if (worldData.hint.Text != "?")
+                    WorldNumber = int.Parse(worldData.hint.Text); //MainW.GetWorldNumber(worldData.hint);
+
                 MainW.SetWorldNumber(worldData.hint, WorldNumber, "G");
             }
             else

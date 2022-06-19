@@ -525,30 +525,62 @@ namespace KhTracker
         /// Handle UI Changes
         /// 
 
-        private void HandleReportValue(Grid Hint, int delta)
+        //Used for when no hints are loaded. use the scroll wheel to change world number.
+        private void HandleReportValue(OutlinedTextBlock Hint, int delta)
         {
             //return if the a hint mode is loaded
             if (data.mode != Mode.None)
                 return;
 
-            int num = GetWorldNumber(Hint);
+            int num = 0;
+
+            if (Hint.Text == "?")
+                num = -1;
+            else
+                num = int.Parse(Hint.Text);
 
             if (delta > 0)
                 ++num;
             else
                 --num;
 
-            // cap hint value to 51
-            if (num > 999)
-                num = 999;
+            if (num < 0)
+            {
+                num = -1;
+                Hint.Text = "?";
+            }
+            else
+            {
+                Hint.Text = num.ToString();
+            }
 
-            SetWorldNumber(Hint, num, "Y");
-            broadcast.SetFoundNumber(Hint, null);
+            //broadcast.SetFoundNumber(Hint, null);
         }
 
-        public void SetReportValue(Grid Hint, int value)
+        //private void HandleReportValue(Grid Hint, int delta)
+        //{
+        //    //return if the a hint mode is loaded
+        //    if (data.mode != Mode.None)
+        //        return;
+        //
+        //    int num = GetWorldNumber(Hint);
+        //
+        //    if (delta > 0)
+        //        ++num;
+        //    else
+        //        --num;
+        //
+        //    // cap hint value to 51
+        //    if (num > 999)
+        //        num = 999;
+        //
+        //    SetWorldNumber(Hint, num, "Y");
+        //    broadcast.SetFoundNumber(Hint, null);
+        //}
+
+        public void SetReportValue(OutlinedTextBlock Hint, int value)
         {
-            if (data.mode == Mode.DAHints && Hint == null)
+            if (Hint == null)
                 return;
 
             string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
@@ -562,8 +594,27 @@ namespace KhTracker
 
             SetWorldNumber(Hint, value, Color);
 
-            broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
+            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
         }
+
+        //public void SetReportValue(Grid Hint, int value)
+        //{
+        //    if (data.mode == Mode.DAHints && Hint == null)
+        //        return;
+        //
+        //    string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
+        //    string Color = "Y"; //default
+        //
+        //    if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
+        //        Color = "G";
+        //
+        //    if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
+        //        Color = "B";
+        //
+        //    SetWorldNumber(Hint, value, Color);
+        //
+        //    broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
+        //}
 
         public void IncrementCollected()
         {
@@ -638,8 +689,8 @@ namespace KhTracker
                 SeedHashVisible = false;
             }
 
-            HintText.Content = text;
-            HintText.Foreground = Brushes.White;
+            HintText.Text = text;
+            HintText.Fill = Brushes.White;
         }
 
         public void SetJokeText(string text)
@@ -650,8 +701,8 @@ namespace KhTracker
                 SeedHashVisible = false;
             }
 
-            HintText.Content = text;
-            HintText.Foreground = Brushes.LightBlue;
+            HintText.Text = text;
+            HintText.Fill = Brushes.LightBlue;
         }
 
         private void ResetSize(object sender, RoutedEventArgs e)
@@ -674,7 +725,7 @@ namespace KhTracker
             List<BitmapImage> GreenNum = data.GreenSingleNumbers;
             List<BitmapImage> NumColor;
             List<BitmapImage> Numberlist = new List<BitmapImage>();
-
+        
             //Get correct number visuals
             {
                 if (OldMode)
@@ -683,7 +734,7 @@ namespace KhTracker
                     BlueNum = data.OldBlueSingleNumbers;
                     GreenNum = data.OldGreenSingleNumbers;
                 }
-
+        
                 if (CustomMode)
                 {
                     if (CustomNumbersFound)
@@ -716,17 +767,17 @@ namespace KhTracker
                     NumColor = NormalNum;
                     break;
             }
-
+        
             //if int is below 0 then we use the question mark and return
             if (num < 0)
             {
                 Numberlist.Add(NumColor[10]);
                 Numberlist.Add(NumColor[10]);
                 Numberlist.Add(NumColor[10]);
-
+        
                 return Numberlist;
             }
-
+        
             //split number into separate digits
             List<int> listOfInts = new List<int>();
             while (num > 0)
@@ -734,7 +785,7 @@ namespace KhTracker
                 listOfInts.Add(num % 10);
                 num /= 10;
             }
-
+        
             //Set number images depending on number of digits
             if (listOfInts.Count == 3)
             {
@@ -751,12 +802,38 @@ namespace KhTracker
             {
                 FinalNum[0] = listOfInts[0];
             }
-
+        
             Numberlist.Add(NumColor[FinalNum[0]]);
             Numberlist.Add(NumColor[FinalNum[1]]);
             Numberlist.Add(NumColor[FinalNum[2]]);
-
+        
             return Numberlist;
+        }
+
+        public void SetWorldNumber(OutlinedTextBlock hintbox, int worldnum, string color)
+        {
+            if (hintbox == null)
+                return;
+
+            string colorfill = "#FFFFFFFF";
+            switch(color)
+            {
+                case "Y":
+                    colorfill = "#FFffE500";
+                    break;
+                case "G":
+                    colorfill = "#FF00A710";
+                    break;
+                case "B":
+                    colorfill = "#FF3384FF";
+                    break;
+                default:
+                    colorfill = color;
+                    break;
+            }
+
+            hintbox.Text = worldnum.ToString();
+            hintbox.Fill = (Brush)new BrushConverter().ConvertFrom(colorfill);
         }
 
         public void SetWorldNumber(Grid hintgrid, int worldnum, string color)
@@ -766,19 +843,19 @@ namespace KhTracker
             int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
             bool number10s = false;
             bool number100s = false;
-
+        
             if (worldnum > 99)
                 number100s = true;
             if (worldnum > 9)
                 number10s = true;
-
+        
             for (int i = 0; i < ChildCount; i++)
             {
                 Image child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
-
+        
                 if (child == null)
                     continue;
-
+        
                 if (child is Image && child.Name.Equals(worldname + "_001"))
                 {
                     child.Source = WorldNumImage[0];
@@ -787,29 +864,28 @@ namespace KhTracker
                 if (child is Image && child.Name.Equals(worldname + "_010"))
                 {
                     child.Source = WorldNumImage[1];
-
+        
                     string name = WorldNumImage[1].ToString();
                     if (!name.Contains("Question_Mark") && number10s)
                         child.Visibility = Visibility.Visible;
                     else if (!number10s)
                         child.Visibility = Visibility.Hidden;
-
+        
                     continue;
                 }
                 if (child is Image && child.Name.Equals(worldname + "_100"))
                 {
                     child.Source = WorldNumImage[2];
-
+        
                     string name = WorldNumImage[2].ToString();
                     if (!name.Contains("Question_Mark") && number100s)
                         child.Visibility = Visibility.Visible;
                     else if (!number100s)
                         child.Visibility = Visibility.Hidden;
-
+        
                     continue;
                 }
             }
-
         }
 
         public int GetWorldNumber(Grid hintgrid)

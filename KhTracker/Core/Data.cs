@@ -154,11 +154,11 @@ namespace KhTracker
         public Grid top;
         public Button world;
         public ContentControl progression;
-        public Grid hint;
+        public OutlinedTextBlock hint;
         public WorldGrid worldGrid;
         public Image selectedBar;
 
-        public WorldData(Grid Top, Button World, ContentControl Progression, Grid Hint, WorldGrid grid, Image SelectedBar, bool Hinted, int VisitLock)
+        public WorldData(Grid Top, Button World, ContentControl Progression, OutlinedTextBlock Hint, WorldGrid grid, Image SelectedBar, bool Hinted, int VisitLock)
         {
             top = Top;
             world = World;

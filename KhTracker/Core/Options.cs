@@ -105,7 +105,9 @@ namespace KhTracker
                     if (worldData.hint == null)
                         continue;
 
-                    int num = GetWorldNumber(worldData.hint);
+                    int num = -1; //= GetWorldNumber(worldData.hint);
+                    if (worldData.hint.Text != "?")
+                        num = int.Parse(worldData.hint.Text);
                     if (worldData.containsGhost && GhostMathOption.IsChecked) //need to recaculate correct values if ghost items and automath are toggled
                     {
                         num += GetGhostPoints(worldData.worldGrid);
@@ -267,7 +269,7 @@ namespace KhTracker
                 }
 
                 data.hintsLoaded = true;
-                HintText.Content = "Hints Loaded";
+                HintText.Text = "Hints Loaded";
             }
             else if (mode == "AltHints")
             {
@@ -735,7 +737,7 @@ namespace KhTracker
 
             if (streamReader.EndOfStream)
             {
-                HintText.Content = "Error loading hints";
+                HintText.Text = "Error loading hints";
                 streamReader.Close();
                 return;
             }
@@ -746,7 +748,7 @@ namespace KhTracker
 
             if (streamReader.EndOfStream)
             {
-                HintText.Content = "Error loading hints";
+                HintText.Text = "Error loading hints";
                 streamReader.Close();
                 return;
             }
@@ -772,7 +774,7 @@ namespace KhTracker
             }
 
             data.hintsLoaded = true;
-            HintText.Content = "Hints Loaded";
+            HintText.Text = "Hints Loaded";
         }
 
         private void ResetHints()
@@ -895,7 +897,7 @@ namespace KhTracker
             newChecks.Clear();
 
             ModeDisplay.Header = "";
-            HintText.Content = "";
+            HintText.Text = "";
             data.mode = Mode.None;
             collected = 0;
             PointTotal = 0;
@@ -1383,7 +1385,7 @@ namespace KhTracker
 
         private void OpenKHSeed(string filename)
         {
-            HintText.Content = "";
+            HintText.Text = "";
 
             foreach (string world in data.WorldsData.Keys.ToList())
             {

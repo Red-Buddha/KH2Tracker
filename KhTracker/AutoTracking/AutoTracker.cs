@@ -1815,7 +1815,9 @@ namespace KhTracker
 
                 if (worldData.hint != null)
                 {
-                    int WorldNumber = GetWorldNumber(worldData.hint);
+                    int WorldNumber = -1;
+                    if (worldData.hint.Text != "?")
+                        WorldNumber = int.Parse(worldData.hint.Text);
 
                     if (isGreen)
                     {
