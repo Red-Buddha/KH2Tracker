@@ -1603,7 +1603,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- IC Count -->
-                    <Grid Grid.Column="11">
+                    <Grid Grid.Column="11" Name="CollectionGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1660,6 +1660,23 @@
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
                             <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
+                                <local:OutlinedTextBlock.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE47606" Offset="1"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.7"/>
+                                    </LinearGradientBrush>
+                                </local:OutlinedTextBlock.Fill>
+                            </local:OutlinedTextBlock>
+                        </Viewbox>
+                    </Grid>
+
+                    <!-- Score -->
+                    <Grid Grid.Column="11" Name="ScoreGrid" Visibility="Visible">
+                        <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
+                        <!-- Total -->
+                        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                            <local:OutlinedTextBlock x:Name="ScoreValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="9999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="1"/>
