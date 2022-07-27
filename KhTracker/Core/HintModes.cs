@@ -15,7 +15,7 @@ namespace KhTracker
     {
         private void ShanHints(Dictionary<string, object> hintObject)
         {
-            ShouldResetHash = true;
+            data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
 
             //Joke Hints test
@@ -39,7 +39,7 @@ namespace KhTracker
 
                     //add joke hint to report
                     string joke = JokeHints[index];
-                    data.reportInformation.Add(new Tuple<string, int>(joke, -99)); //-99 is used to define the report as a joke
+                    data.reportInformation.Add(new Tuple<string, string, int>(joke, joke, -99)); //-99 is used to define the report as a joke
                     data.reportLocations.Add("Joke"); //location "Joke" used so that the tracker doesn't actually care where the hint is placed (doesn't matter for shan hints)
 
                     usedvalues.Add(index);
@@ -68,13 +68,13 @@ namespace KhTracker
                     continue;
 
                 data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 0);
+                SetWorldValue(data.WorldsData[key].value, 0);
             }
         }
 
         private void JsmarteeHints(Dictionary<string, object> hintObject)
         {
-            ShouldResetHash = true;
+            data.ShouldResetHash = true;
             var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
             reportKeys.Sort();
@@ -84,7 +84,7 @@ namespace KhTracker
                 var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
                 var count = reports[report.ToString()]["Count"].ToString();
                 var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
-                data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+                data.reportInformation.Add(new Tuple<string, string, int>(null, world, int.Parse(count)));
                 data.reportLocations.Add(location);
             }
             ReportsToggle(true);
@@ -93,7 +93,7 @@ namespace KhTracker
 
         private void PathHints(Dictionary<string, object> hintObject)
         {
-            ShouldResetHash = true;
+            data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
@@ -118,7 +118,7 @@ namespace KhTracker
                     continue;
 
                 data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 0);
+                SetWorldValue(data.WorldsData[key].value, 0);
             }
 
             foreach (int report in reportKeys)
@@ -146,7 +146,7 @@ namespace KhTracker
                     }
                 }
 
-                data.pathreportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
+                data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
                 data.reportLocations.Add(location);
             }
 
@@ -173,7 +173,7 @@ namespace KhTracker
 
         private void SpoilerHints(Dictionary<string, object> hintObject)
         {
-            ShouldResetHash = true;
+            data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
             var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
@@ -183,12 +183,12 @@ namespace KhTracker
             //set if world value should change color on completion
             if (reveals.Contains("complete"))
             {
-                SpoilerWorldCompletion = true;
+                data.SpoilerWorldCompletion = true;
             }
             //set if reports should reveal items or not
             if (reveals.Contains("reportmode"))
             {
-                SpoilerReportMode = true;
+                data.SpoilerReportMode = true;
                 ReportsToggle(true);
             }
             else
@@ -210,7 +210,7 @@ namespace KhTracker
                 foreach (string item in world.Value)
                 {
                     //Ignore reports as ICs if report mode is false
-                    if (!SpoilerReportMode && item.Contains("Report"))
+                    if (!data.SpoilerReportMode && item.Contains("Report"))
                         continue;
 
                     string worldname = Codes.ConvertSeedGenName(world.Key);
@@ -219,7 +219,7 @@ namespace KhTracker
                     data.WorldsData[worldname].checkCount.Add(checkname);
 
                     //add ghosts if report mode is off
-                    if (!SpoilerReportMode)
+                    if (!data.SpoilerReportMode)
                     {
                         //Skip adding ghosts for item types that aren't in reveals list 
                         if (!reveals.Contains(Codes.FindItemType(item)))
@@ -246,13 +246,13 @@ namespace KhTracker
                 if (key == "GoA")
                     continue;
 
-                if (SpoilerWorldCompletion)
+                if (data.SpoilerWorldCompletion)
                     data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 0);
+                SetWorldValue(data.WorldsData[key].value, 0);
             }
 
             //add setup report info if report mode is on
-            if (SpoilerReportMode)
+            if (data.SpoilerReportMode)
             {
                 data.SpoilerRevealTypes.AddRange(reveals);
 
@@ -269,7 +269,7 @@ namespace KhTracker
                     var worldhint = Codes.ConvertSeedGenName(worldstring);
                     var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
 
-                    data.reportInformation.Add(new Tuple<string, int>(worldhint, dummyvalue));
+                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
                     data.reportLocations.Add(location);
                 }
                 data.hintsLoaded = true;
@@ -327,7 +327,7 @@ namespace KhTracker
 
         private void PointsHints(Dictionary<string, object> hintObject)
         {
-            ShouldResetHash = true;
+            data.ShouldResetHash = true;
 
             var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
@@ -396,7 +396,7 @@ namespace KhTracker
 
                 if (WorldPoints.Keys.Contains(key))
                 {
-                    SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
+                    SetWorldValue(data.WorldsData[key].value, WorldPoints[key]);
                 }
                 else
                 {
@@ -411,7 +411,7 @@ namespace KhTracker
                 var checkP = reportsP[reportP.ToString()]["check"].ToString();
                 var locationP = Codes.ConvertSeedGenName(reportsP[reportP.ToString()]["Location"].ToString());
 
-                data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
+                data.reportInformation.Add(new Tuple<string, string, int>(worldP, checkP, 0));
                 data.reportLocations.Add(locationP);
             }
 
@@ -447,22 +447,22 @@ namespace KhTracker
 
             int[] FinalNum = new int[] { 0, 0, 0, 0 }; //Default 0000
 
-            if (!CheckCountOption.IsChecked)
-            {
-                score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
-                broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-
-                Score1000.Visibility = Visibility.Hidden;
-                Score100.Visibility = Visibility.Hidden;
-                Score10.Visibility = Visibility.Hidden;
-                Score1.Visibility = Visibility.Visible;
-                broadcast.Score1000.Visibility = Visibility.Hidden;
-                broadcast.Score100.Visibility = Visibility.Hidden;
-                broadcast.Score10.Visibility = Visibility.Hidden;
-                broadcast.Score1.Visibility = Visibility.Visible;
-            }
+            //if (!CheckCountOption.IsChecked)
+            //{
+            //    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+            //    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+            //    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+            //    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
+            //
+            //    Score1000.Visibility = Visibility.Hidden;
+            //    Score100.Visibility = Visibility.Hidden;
+            //    Score10.Visibility = Visibility.Hidden;
+            //    Score1.Visibility = Visibility.Visible;
+            //    broadcast.Score1000.Visibility = Visibility.Hidden;
+            //    broadcast.Score100.Visibility = Visibility.Hidden;
+            //    broadcast.Score10.Visibility = Visibility.Hidden;
+            //    broadcast.Score1.Visibility = Visibility.Visible;
+            //}
 
             int num = PointTotal + points; //get new point total
             int WorldBlue = 0;
@@ -498,172 +498,64 @@ namespace KhTracker
 
             num += WorldBlue;
 
-            //split point total into separate digits
-            List<int> listOfInts = new List<int>();
-            while (num > 0)
-            {
-                listOfInts.Add(num % 10);
-                num /= 10;
-            }
+            //PointScore.Text = num.ToString();
 
-            //Set number images depending on number of digits in point total
-            if (listOfInts.Count == 4)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-                FinalNum[2] = listOfInts[2];
-                FinalNum[3] = listOfInts[3];
-
-                if (!CheckCountOption.IsChecked)
-                {
-                    score1000col.Width = new GridLength(1.0, GridUnitType.Star);
-                    ScoreSpacer.Width = new GridLength(18.0, GridUnitType.Star);
-                    broadcast.score1000col.Width = new GridLength(1.0, GridUnitType.Star);
-                    broadcast.scorespacer.Width = new GridLength(2.0, GridUnitType.Star);
-
-                    Score1000.Visibility = Visibility.Visible;
-                    Score100.Visibility = Visibility.Visible;
-                    Score10.Visibility = Visibility.Visible;
-                    Score1.Visibility = Visibility.Visible;
-                    broadcast.Score1000.Visibility = Visibility.Visible;
-                    broadcast.Score100.Visibility = Visibility.Visible;
-                    broadcast.Score10.Visibility = Visibility.Visible;
-                    broadcast.Score1.Visibility = Visibility.Visible;
-                }
-
-            }
-            if (listOfInts.Count == 3)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-                FinalNum[2] = listOfInts[2];
-
-                if (!CheckCountOption.IsChecked)
-                {
-                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
-                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-
-                    Score1000.Visibility = Visibility.Hidden;
-                    Score100.Visibility = Visibility.Visible;
-                    Score10.Visibility = Visibility.Visible;
-                    Score1.Visibility = Visibility.Visible;
-                    broadcast.Score1000.Visibility = Visibility.Hidden;
-                    broadcast.Score100.Visibility = Visibility.Visible;
-                    broadcast.Score10.Visibility = Visibility.Visible;
-                    broadcast.Score1.Visibility = Visibility.Visible;
-                }
-
-            }
-            else if (listOfInts.Count == 2)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-
-                if (!CheckCountOption.IsChecked)
-                {
-                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
-                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-
-                    Score1000.Visibility = Visibility.Hidden;
-                    Score100.Visibility = Visibility.Hidden;
-                    Score10.Visibility = Visibility.Visible;
-                    Score1.Visibility = Visibility.Visible;
-                    broadcast.Score1000.Visibility = Visibility.Hidden;
-                    broadcast.Score100.Visibility = Visibility.Hidden;
-                    broadcast.Score10.Visibility = Visibility.Visible;
-                    broadcast.Score1.Visibility = Visibility.Visible;
-                }
-
-            }
-            else if (listOfInts.Count == 1)
-            {
-                FinalNum[0] = listOfInts[0];
-
-                if (!CheckCountOption.IsChecked)
-                {
-                    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
-                    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-                    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-
-                    Score1000.Visibility = Visibility.Hidden;
-                    Score100.Visibility = Visibility.Hidden;
-                    Score10.Visibility = Visibility.Hidden;
-                    Score1.Visibility = Visibility.Visible;
-                    broadcast.Score1000.Visibility = Visibility.Hidden;
-                    broadcast.Score100.Visibility = Visibility.Hidden;
-                    broadcast.Score10.Visibility = Visibility.Hidden;
-                    broadcast.Score1.Visibility = Visibility.Visible;
-                }
-
-            }
-
-            Score1000.Source = GetDataNumber("S")[FinalNum[3]];
-            Score100.Source = GetDataNumber("S")[FinalNum[2]];
-            Score10.Source = GetDataNumber("S")[FinalNum[1]];
-            Score1.Source = GetDataNumber("S")[FinalNum[0]];
-
-            broadcast.Score1000.Source = GetDataNumber("S")[FinalNum[3]];
-            broadcast.Score100.Source = GetDataNumber("S")[FinalNum[2]];
-            broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
-            broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
+            //broadcast.Score1000.Source = GetDataNumber("S")[FinalNum[3]];
+            //broadcast.Score100.Source = GetDataNumber("S")[FinalNum[2]];
+            //broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
+            //broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
         }
 
         ///
         /// Timed hints stuff
         /// 
-
-        private void TimeHints(Dictionary<string, object> hintObject)
-        {
-            ShouldResetHash = true;
-            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-
-            //get time needed to pass fore each report
-            int hintTime = JsonSerializer.Deserialize<int>(hintObject["Time"].ToString());
-            data.timedHintsTimer = hintTime;
-
-            //hint style
-            //futureproofing. idea is that maybe have hints affect the tracker in ways similar to other hint modes.
-            string hintStyle = JsonSerializer.Deserialize<string>(hintObject["Style"].ToString());
-
-            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-            reportKeys.Sort();
-
-            int i = 0;
-            foreach (var report in reportKeys)
-            {
-                var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
-                var count = reports[report.ToString()]["Count"].ToString();
-                var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
-                data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
-                data.reportLocations.Add(location);
-
-                data.worldStoredHintCount[WorldNameToIndex(data.reportLocations[i])]++;
-                data.worldStoredOrigCount[WorldNameToIndex(world)] = int.Parse(count);
-                data.worldHintNumber[WorldNameToIndex(world)] = i;
-                i++;
-            }
-
-            ReportsToggle(false);
-            data.hintsLoaded = true;
-
-            //string hintFileName = entry.FullName.Substring(0, entry.FullName.IndexOf("."));
-            ////Console.WriteLine("Seed name: " + hintFileName);
-            ////Console.WriteLine("Hashcode: " + hintFileName.GetHashCode());
-            //data.ShuffleHintOrder(hintFileName.GetHashCode());
-            ////Console.WriteLine(data.PrintHintOrder(data.worldHintNumber));
-            //data.lastStoredSeedHashTemp = hintFileName.GetHashCode();
-
-            data.seedTimeLoaded = DateTime.UtcNow.GetHashCode();
-            Console.WriteLine("utc hashcode: " + data.seedTimeLoaded);
-
-            //AlternateTimeText();
-
-        }
+        //private void TimeHints(Dictionary<string, object> hintObject)
+        //{
+        //    ShouldResetHash = true;
+        //    var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+        //
+        //    //get time needed to pass fore each report
+        //    int hintTime = JsonSerializer.Deserialize<int>(hintObject["Time"].ToString());
+        //    data.timedHintsTimer = hintTime;
+        //
+        //    //hint style
+        //    //futureproofing. idea is that maybe have hints affect the tracker in ways similar to other hint modes.
+        //    string hintStyle = JsonSerializer.Deserialize<string>(hintObject["Style"].ToString());
+        //
+        //    List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+        //    reportKeys.Sort();
+        //
+        //    int i = 0;
+        //    foreach (var report in reportKeys)
+        //    {
+        //        var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
+        //        var count = reports[report.ToString()]["Count"].ToString();
+        //        var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+        //        data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
+        //        data.reportLocations.Add(location);
+        //
+        //        data.worldStoredHintCount[WorldNameToIndex(data.reportLocations[i])]++;
+        //        data.worldStoredOrigCount[WorldNameToIndex(world)] = int.Parse(count);
+        //        data.worldHintNumber[WorldNameToIndex(world)] = i;
+        //        i++;
+        //    }
+        //
+        //    ReportsToggle(false);
+        //    data.hintsLoaded = true;
+        //
+        //    //string hintFileName = entry.FullName.Substring(0, entry.FullName.IndexOf("."));
+        //    ////Console.WriteLine("Seed name: " + hintFileName);
+        //    ////Console.WriteLine("Hashcode: " + hintFileName.GetHashCode());
+        //    //data.ShuffleHintOrder(hintFileName.GetHashCode());
+        //    ////Console.WriteLine(data.PrintHintOrder(data.worldHintNumber));
+        //    //data.lastStoredSeedHashTemp = hintFileName.GetHashCode();
+        //
+        //    data.seedTimeLoaded = DateTime.UtcNow.GetHashCode();
+        //    Console.WriteLine("utc hashcode: " + data.seedTimeLoaded);
+        //
+        //    //AlternateTimeText();
+        //
+        //}
 
         static public int WorldNameToIndex(string worldName)
         {

@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Shapes;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Data;
@@ -21,14 +23,14 @@ namespace KhTracker
                 button.Visibility = Visibility.Visible;
                 if (!init)
                 {
-                    IncrementTotal();
+                    SetTotal(true);
                 }
             }
             else if (toggle == false && button.IsEnabled)
             {
                 button.IsEnabled = false;
                 button.Visibility = Visibility.Hidden;
-                DecrementTotal();
+                SetTotal(false);
 
                 button.HandleItemReturn();
             }
@@ -53,15 +55,15 @@ namespace KhTracker
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
             //this chunk of garbage for using the correct vertical image
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage BarW = data.VerticalBarW;
-            {
-                if (CustomMode)
-                {
-                    if (MainWindow.CustomVBarWFound)
-                        BarW = data.CustomVerticalBarW;
-                }
-            }
+            //bool CustomMode = Properties.Settings.Default.CustomIcons;
+            //BitmapImage BarW = data.VerticalBarW;
+            //{
+            //    if (CustomMode)
+            //    {
+            //        if (MainWindow.CustomVBarWFound)
+            //            BarW = data.CustomVerticalBarW;
+            //    }
+            //}
 
             if (toggle && button.IsEnabled == false)
             {
@@ -75,7 +77,10 @@ namespace KhTracker
             {
                 if (data.selected == button)
                 {
-                    data.WorldsData[button.Name].selectedBar.Source = BarW;
+                    foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>())
+                    {
+                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                    }
                     data.selected = null;
                 }
 
@@ -104,14 +109,14 @@ namespace KhTracker
             PromiseCharmOption.IsChecked = toggle;
             if (toggle)
             {
-                Pr_PromiseCharm.Width = new GridLength(1.0, GridUnitType.Star);
+                //Pr_PromiseCharm.Width = new GridLength(1.0, GridUnitType.Star);
 
                 broadcast.PromiseCharm.Visibility = Visibility.Visible;
                 broadcast.PromiseCharmCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                Pr_PromiseCharm.Width = new GridLength(0, GridUnitType.Star);
+                //Pr_PromiseCharm.Width = new GridLength(0, GridUnitType.Star);
 
                 broadcast.PromiseCharm.Visibility = Visibility.Hidden;
                 broadcast.PromiseCharmCol.Width = new GridLength(0, GridUnitType.Star);
@@ -205,16 +210,16 @@ namespace KhTracker
             AbilitiesOption.IsChecked = toggle;
             if (toggle)
             {
-                Ab_OnceMore.Width = new GridLength(1.0, GridUnitType.Star);
-                Ab_SecondChance.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ab_OnceMore.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ab_SecondChance.Width = new GridLength(1.0, GridUnitType.Star);
 
                 broadcast.SecondChanceCol.Width = new GridLength(1.0, GridUnitType.Star);
                 broadcast.OnceMoreCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                Ab_OnceMore.Width = new GridLength(0, GridUnitType.Star);
-                Ab_SecondChance.Width = new GridLength(0, GridUnitType.Star);
+                //Ab_OnceMore.Width = new GridLength(0, GridUnitType.Star);
+                //Ab_SecondChance.Width = new GridLength(0, GridUnitType.Star);
 
                 broadcast.SecondChanceCol.Width = new GridLength(0, GridUnitType.Star);
                 broadcast.OnceMoreCol.Width = new GridLength(0, GridUnitType.Star);
@@ -236,12 +241,12 @@ namespace KhTracker
 
             if(toggle)
             {
-                Ex_Anti.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ex_Anti.Width = new GridLength(1.0, GridUnitType.Star);
                 broadcast.Ex_Anti.Width = new GridLength(2.0, GridUnitType.Star);
             }
             else
             {
-                Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
+                //Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
                 broadcast.Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
             }
         }
@@ -262,9 +267,9 @@ namespace KhTracker
 
             if (toggle)
             {
-                Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
-                Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
-                Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
+                //Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
 
                 broadcast.Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
                 broadcast.Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
@@ -272,9 +277,9 @@ namespace KhTracker
             }
             else
             {
-                Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-                Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
-                Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
+                //Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+                //Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
+                //Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
 
                 broadcast.Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
                 broadcast.Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
@@ -344,15 +349,15 @@ namespace KhTracker
             if (toggle)
                 HintText.Text = "";
 
-            if (SeedHashLoaded && toggle)
+            if (data.SeedHashLoaded && toggle)
             {
-                HashRow.Height = new GridLength(1.0, GridUnitType.Star);
-                SeedHashVisible = true;
+                //HashRow.Height = new GridLength(1.0, GridUnitType.Star);
+                data.SeedHashVisible = true;
             }
             else
             {
-                HashRow.Height = new GridLength(0, GridUnitType.Star);
-                SeedHashVisible = false;
+                //HashRow.Height = new GridLength(0, GridUnitType.Star);
+                data.SeedHashVisible = false;
             }
         }
 
@@ -451,7 +456,7 @@ namespace KhTracker
 
                 foreach (WorldData worldData in data.WorldsData.Values.ToList())
                 {
-                    if (worldData.hint == null)
+                    if (worldData.value == null)
                         continue;
 
                     if (worldData.containsGhost)
@@ -459,9 +464,9 @@ namespace KhTracker
                         int ghostnum = GetGhostPoints(worldData.worldGrid) * add;
                         int worldnum = -1;
                         //int worldnum = GetWorldNumber(worldData.hint);
-                        if (worldData.hint.Text != "?")
-                            worldnum = int.Parse(worldData.hint.Text);
-                        SetReportValue(worldData.hint, worldnum + ghostnum);
+                        if (worldData.value.Text != "?")
+                            worldnum = int.Parse(worldData.value.Text);
+                        SetWorldValue(worldData.value, worldnum + ghostnum);
                     }
                 }
             }
@@ -482,50 +487,50 @@ namespace KhTracker
             //if check count should be shown and replace the score IN POINTS MODE
             if (toggle && data.mode == Mode.DAHints)
             {
-                Score1.Visibility = Visibility.Hidden;
-                Score10.Visibility = Visibility.Hidden;
-                Score100.Visibility = Visibility.Hidden;
-                Score1000.Visibility = Visibility.Hidden;
-                Collected.Visibility = Visibility.Visible;
-                CollectedBar.Visibility = Visibility.Visible;
-                CheckTotal.Visibility = Visibility.Visible;
+                //Score1.Visibility = Visibility.Hidden;
+                //Score10.Visibility = Visibility.Hidden;
+                //Score100.Visibility = Visibility.Hidden;
+                //Score1000.Visibility = Visibility.Hidden;
+                //Collected.Visibility = Visibility.Visible;
+                //CollectedBar.Visibility = Visibility.Visible;
+                //CheckTotal.Visibility = Visibility.Visible;
 
-                broadcast.Score1.Visibility = Visibility.Hidden;
-                broadcast.Score10.Visibility = Visibility.Hidden;
-                broadcast.Score100.Visibility = Visibility.Hidden;
-                broadcast.Score1000.Visibility = Visibility.Hidden;
-                broadcast.Collected.Visibility = Visibility.Visible;
-                broadcast.CollectedBar.Visibility = Visibility.Visible;
-                broadcast.CheckTotal.Visibility = Visibility.Visible;
+                //broadcast.Score1.Visibility = Visibility.Hidden;
+                //broadcast.Score10.Visibility = Visibility.Hidden;
+                //broadcast.Score100.Visibility = Visibility.Hidden;
+                //broadcast.Score1000.Visibility = Visibility.Hidden;
+                //broadcast.Collected.Visibility = Visibility.Visible;
+                //broadcast.CollectedBar.Visibility = Visibility.Visible;
+                //broadcast.CheckTotal.Visibility = Visibility.Visible;
             }
             //if points should show and replace check count IN POINTS MODE
             else if (!toggle && data.mode == Mode.DAHints)
             {
-                Score1.Visibility = Visibility.Visible;
-                Score10.Visibility = Visibility.Visible;
-                Score100.Visibility = Visibility.Visible;
-                Score1000.Visibility = Visibility.Visible;
-                Collected.Visibility = Visibility.Hidden;
-                CollectedBar.Visibility = Visibility.Hidden;
-                CheckTotal.Visibility = Visibility.Hidden;
-
-                broadcast.Score1.Visibility = Visibility.Visible;
-                broadcast.Score10.Visibility = Visibility.Visible;
-                broadcast.Score100.Visibility = Visibility.Visible;
-                broadcast.Score1000.Visibility = Visibility.Visible;
-                broadcast.Collected.Visibility = Visibility.Hidden;
-                broadcast.CollectedBar.Visibility = Visibility.Hidden;
-                broadcast.CheckTotal.Visibility = Visibility.Hidden;
+                //Score1.Visibility = Visibility.Visible;
+                //Score10.Visibility = Visibility.Visible;
+                //Score100.Visibility = Visibility.Visible;
+                //Score1000.Visibility = Visibility.Visible;
+                //Collected.Visibility = Visibility.Hidden;
+                //CollectedBar.Visibility = Visibility.Hidden;
+                //CheckTotal.Visibility = Visibility.Hidden;
+                
+                //broadcast.Score1.Visibility = Visibility.Visible;
+                //broadcast.Score10.Visibility = Visibility.Visible;
+                //broadcast.Score100.Visibility = Visibility.Visible;
+                //broadcast.Score1000.Visibility = Visibility.Visible;
+                //broadcast.Collected.Visibility = Visibility.Hidden;
+                //broadcast.CollectedBar.Visibility = Visibility.Hidden;
+                //broadcast.CheckTotal.Visibility = Visibility.Hidden;
             }
             //chek coun't should always be on in non points mode
             else if (data.mode != Mode.DAHints)
             {
-                Collected.Visibility = Visibility.Visible;
-                CollectedBar.Visibility = Visibility.Visible;
-                CheckTotal.Visibility = Visibility.Visible;
-                broadcast.Collected.Visibility = Visibility.Visible;
-                broadcast.CollectedBar.Visibility = Visibility.Visible;
-                broadcast.CheckTotal.Visibility = Visibility.Visible;
+                //Collected.Visibility = Visibility.Visible;
+                //CollectedBar.Visibility = Visibility.Visible;
+                //CheckTotal.Visibility = Visibility.Visible;
+                //broadcast.Collected.Visibility = Visibility.Visible;
+                //broadcast.CollectedBar.Visibility = Visibility.Visible;
+                //broadcast.CheckTotal.Visibility = Visibility.Visible;
             }
         }
 
@@ -687,16 +692,16 @@ namespace KhTracker
                 if (DeathCounterGrid.Visibility == Visibility.Collapsed)
                 {
                     DeathCounterGrid.Visibility = Visibility.Visible;
-                    HintTextParent.SetValue(Grid.ColumnProperty, 0);
-                    HintTextParent.SetValue(Grid.ColumnSpanProperty, 19);
+                    //HintTextParent.SetValue(Grid.ColumnProperty, 0);
+                    //HintTextParent.SetValue(Grid.ColumnSpanProperty, 19);
                     broadcast.DeathCounter.Width = new GridLength(0.6, GridUnitType.Star);
                 }
             }
             else
             {
                 DeathCounterGrid.Visibility = Visibility.Collapsed;
-                HintTextParent.SetValue(Grid.ColumnProperty, 2);
-                HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
+                //HintTextParent.SetValue(Grid.ColumnProperty, 2);
+                //HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
                 broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
             }
         }
@@ -770,11 +775,11 @@ namespace KhTracker
 
             if (Visible && memory != null)
             {
-                NextlevelValue.Width = new GridLength(2.5, GridUnitType.Star);
+                //NextlevelValue.Width = new GridLength(2.5, GridUnitType.Star);
             }
             else
             {
-                NextlevelValue.Width = new GridLength(0, GridUnitType.Star);
+                //NextlevelValue.Width = new GridLength(0, GridUnitType.Star);
             }
         }
 
@@ -952,12 +957,12 @@ namespace KhTracker
 
             if (toggle)
             {
-                DisneyCastleLW.Visibility = Visibility.Visible;
+                //DisneyCastleLW.Visibility = Visibility.Visible;
                 broadcast.DisneyCastleLW.Visibility = Visibility.Visible;
             }
             else
             {
-                DisneyCastleLW.Visibility = Visibility.Collapsed;
+                //DisneyCastleLW.Visibility = Visibility.Collapsed;
                 broadcast.DisneyCastleLW.Visibility = Visibility.Collapsed;
             }
 
@@ -1520,7 +1525,7 @@ namespace KhTracker
                 broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Min-DisneyCastleImage");
 
                 //alt icons
-                DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                //DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
                 broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
                 SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
                 broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
@@ -1622,7 +1627,7 @@ namespace KhTracker
                 broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Old-DisneyCastleImage");
 
                 //alt icons
-                DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
+                //DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
                 broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Min-DisneyCastleLW");
                 SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
                 broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");

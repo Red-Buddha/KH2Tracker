@@ -53,40 +53,6 @@ namespace KhTracker
         private Magic reflect;
         private Magic cure;
 
-        //private Report rep1;
-        //private Report rep2;
-        //private Report rep3;
-        //private Report rep4;
-        //private Report rep5;
-        //private Report rep6;
-        //private Report rep7;
-        //private Report rep8;
-        //private Report rep9;
-        //private Report rep10;
-        //private Report rep11;
-        //private Report rep12;
-        //private Report rep13;
-        //private Summon chickenLittle;
-        //private Summon stitch;
-        //private Summon genie;
-        //private Summon peterPan;
-        //private ImportantCheck promiseCharm;
-        //private ImportantCheck peace;
-        //private ImportantCheck nonexist;
-        //private ImportantCheck connection;
-        //private ImportantCheck auronWep;
-        //private ImportantCheck mulanWep;
-        //private ImportantCheck beastWep;
-        //private ImportantCheck jackWep;
-        //private ImportantCheck simbaWep;
-        //private ImportantCheck sparrowWep;
-        //private ImportantCheck aladdinWep;
-        //private ImportantCheck tronWep;
-        //private ImportantCheck poster;
-        //private ImportantCheck iceCream;
-        //private ImportantCheck picture;
-        //private ImportantCheck hadescup;
-
         private Report reportItem;
         private Summon charmItem;
         private ImportantCheck proofItem;
@@ -186,13 +152,14 @@ namespace KhTracker
                     Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
                     //SetHintText("PCSX2 Detected - Tracking", 30000, ""); //change with icons later
                     Connect.Source = data.AD_PS2;
-
+                    pcsx2tracking = true;
                 }
                 else
                 {
                     Console.WriteLine("PC Found, starting Auto-Tracker");
                     //SetDetectionText("PC Detected - Connecting..."); //change with icons later
                     Connect.Source = data.AD_PC;
+                    pcsx2tracking = false;
                 }
 
                 if (storedDetectedVersion != alternateCheckInt && storedDetectedVersion != 0)
@@ -422,7 +389,7 @@ namespace KhTracker
             Magic.Visibility = Visibility.Visible;
             DefenseIcon.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
-            Weapon.Visibility = Visibility.Visible;
+            //Weapon.Visibility = Visibility.Visible;
 
             if (AutoDetectOption.IsChecked)
                 Connect.Visibility = Visibility.Visible;
@@ -559,12 +526,12 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            BindNumberTens(Level_01, Level_10, "Level", stats);
-            BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
-            BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
-            BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
+            //BindNumberTens(Level_01, Level_10, "Level", stats);
+            //BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
+            //BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
+            //BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
 
-            BindWeapon(Weapon, "Weapon", stats);
+            //BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
             BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
@@ -597,17 +564,17 @@ namespace KhTracker
             BindAbility(AerialDodge, "Obtained", aerialDodge);
             BindAbility(Glide, "Obtained", glide);
 
-            BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
-            BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
-            BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
-            BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
-            BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
-
-            BindLevel(ValorLevel, "Level", valor);
-            BindLevel(WisdomLevel, "Level", wisdom);
-            BindLevel(LimitLevel, "Level", limit);
-            BindLevel(MasterLevel, "Level", master);
-            BindLevel(FinalLevel, "Level", final);
+            //BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            //BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            //BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            //BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            //BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
+            
+            //BindLevel(ValorLevel, "Level", valor);
+            //BindLevel(WisdomLevel, "Level", wisdom);
+            //BindLevel(LimitLevel, "Level", limit);
+            //BindLevel(MasterLevel, "Level", master);
+            //BindLevel(FinalLevel, "Level", final);
 
             BindForm(ValorM, "Obtained", valor);
             BindForm(WisdomM, "Obtained", wisdom);
@@ -672,61 +639,61 @@ namespace KhTracker
 
             //next level check
             stats.SetNextLevelCheck(stats.Level);
-            List<BitmapImage> LevelCheckNum = UpdateNumber(stats.LevelCheck, "G");
-            if (stats.LevelCheck < 9)
-            {
-                LevelCheck_01.Source = null;
-                LevelCheck_10.Source = LevelCheckNum[0];
-                broadcast.LevelCheck_01.Source = null;
-                broadcast.LevelCheck_10.Source = LevelCheckNum[0];
-            }
-            else
-            {
-                LevelCheck_01.Source = LevelCheckNum[0];
-                LevelCheck_10.Source = LevelCheckNum[1];
-                broadcast.LevelCheck_01.Source = LevelCheckNum[0];
-                broadcast.LevelCheck_10.Source = LevelCheckNum[1];
-            }
+            //List<BitmapImage> LevelCheckNum = UpdateNumber(stats.LevelCheck, "G");
+            //if (stats.LevelCheck < 9)
+            //{
+            //    LevelCheck_01.Source = null;
+            //    LevelCheck_10.Source = LevelCheckNum[0];
+            //    broadcast.LevelCheck_01.Source = null;
+            //    broadcast.LevelCheck_10.Source = LevelCheckNum[0];
+            //}
+            //else
+            //{
+            //    LevelCheck_01.Source = LevelCheckNum[0];
+            //    LevelCheck_10.Source = LevelCheckNum[1];
+            //    broadcast.LevelCheck_01.Source = LevelCheckNum[0];
+            //    broadcast.LevelCheck_10.Source = LevelCheckNum[1];
+            //}
         }
 
         private void TrackItem(string itemName, WorldGrid world)
         {
-            if (!GetItemPool.ContainsKey(itemName))
-                return;
+            //if (!GetItemPool.ContainsKey(itemName))
+            //    return;
+            //
+            //Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[itemName]) as Grid;
 
-            Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[itemName]) as Grid;
-
-            foreach (ContentControl item in ItemRow.Children)
-            {
-                if (item.Name == itemName && item.IsVisible)
-                {
-                    bool ReportType;
-                    if (data.mode == Mode.DAHints)
-                    {
-                        ReportType = world.Handle_PointReport(item as Item, this, data);
-                    }
-                    else if (data.mode == Mode.PathHints)
-                    {
-                        ReportType = world.Handle_PathReport(item as Item, this, data);
-                    }
-                    else if (data.mode == Mode.SpoilerHints)
-                    {
-                        ReportType = world.Handle_SpoilerReport(item as Item, this, data);
-                    }
-                    else
-                    {
-                        ReportType = world.Handle_Report(item as Item, this, data);
-                    }
-
-                    if (ReportType)
-                    {
-                        world.Add_Item(item as Item, this);
-                        if (App.logger != null)
-                            App.logger.Record(item.Name + " tracked");
-                    }
-                    break;
-                }
-            }
+            //foreach (ContentControl item in ItemRow.Children)
+            //{
+            //    if (item.Name == itemName && item.IsVisible)
+            //    {
+            //        bool ReportType;
+            //        if (data.mode == Mode.DAHints)
+            //        {
+            //            ReportType = world.Handle_PointReport(item as Item, this, data);
+            //        }
+            //        else if (data.mode == Mode.PathHints)
+            //        {
+            //            ReportType = world.Handle_PathReport(item as Item, this, data);
+            //        }
+            //        else if (data.mode == Mode.SpoilerHints)
+            //        {
+            //            ReportType = world.Handle_SpoilerReport(item as Item, this, data);
+            //        }
+            //        else
+            //        {
+            //            ReportType = world.Handle_Report(item as Item, this, data);
+            //        }
+            //
+            //        if (ReportType)
+            //        {
+            //            world.Add_Item(item as Item, this);
+            //            if (App.logger != null)
+            //                App.logger.Record(item.Name + " tracked");
+            //        }
+            //        break;
+            //    }
+            //}
         }
 
         private void TrackQuantities()
@@ -1665,11 +1632,11 @@ namespace KhTracker
             {
                 if (world.roomNumber == 32)
                 {
-                    if (SeedHashVisible)
-                    {
-                        HashRow.Height = new GridLength(0, GridUnitType.Star);
-                        SeedHashVisible = false;
-                    }
+                    //if (SeedHashVisible)
+                    //{
+                    //    HashRow.Height = new GridLength(0, GridUnitType.Star);
+                    //    SeedHashVisible = false;
+                    //}
                 }
                 
             }
@@ -1735,12 +1702,12 @@ namespace KhTracker
         //used to get the numbers for everything to change color corectly when changing icon modes
         private void ReloadBindings()
         {
-            BindNumberTens(Level_01, Level_10, "Level", stats);
-            BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
-            BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
-            BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
+            //BindNumberTens(Level_01, Level_10, "Level", stats);
+            //BindNumberFull(Strength_001, Strength_010, Strength_100, "Strength", stats);
+            //BindNumberFull(Magic_001, Magic_010, Magic_100, "Magic", stats);
+            //BindNumberFull(Defense_001, Defense_010, Defense_100, "Defense", stats);
 
-            BindWeapon(Weapon, "Weapon", stats);
+            //BindWeapon(Weapon, "Weapon", stats);
             BindWeapon(broadcast.Weapon, "Weapon", stats);
 
             BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
@@ -1772,17 +1739,17 @@ namespace KhTracker
             BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
             BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
 
-            BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
-            BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
-            BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
-            BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
-            BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
-
-            BindLevel(ValorLevel, "Level", valor);
-            BindLevel(WisdomLevel, "Level", wisdom);
-            BindLevel(LimitLevel, "Level", limit);
-            BindLevel(MasterLevel, "Level", master);
-            BindLevel(FinalLevel, "Level", final);
+            //BindAbilityLevel(HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
+            //BindAbilityLevel(QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
+            //BindAbilityLevel(DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
+            //BindAbilityLevel(AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
+            //BindAbilityLevel(GlideLevel, "Level", glide, new GrowthAbilityConverter());
+            
+            //BindLevel(ValorLevel, "Level", valor);
+            //BindLevel(WisdomLevel, "Level", wisdom);
+            //BindLevel(LimitLevel, "Level", limit);
+            //BindLevel(MasterLevel, "Level", master);
+            //BindLevel(FinalLevel, "Level", final);
 
             Updatenumbers();
             broadcast.UpdateNumbers();
@@ -1790,87 +1757,87 @@ namespace KhTracker
             UpdatePointScore(0);
         }
 
-        public void Updatenumbers()
-        {
-            //get correct slash image
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage NumberBarY = data.SlashBarY;
-            if (CustomMode && CustomBarYFound)
-            {
-                NumberBarY = data.CustomSlashBarY;
-            }
-
-            //Get and set world values
-            foreach (WorldData worldData in data.WorldsData.Values.ToList())
-            {
-                bool isBlue = false;
-                bool isGreen = false;
-
-                string test = worldData.world.Name;
-
-                if (worldData.complete || worldData.hintedHint)
-                    isBlue = true;
-                if (worldData.containsGhost && (data.mode == Mode.DAHints || data.mode == Mode.SpoilerHints))
-                    isGreen = true;
-
-                if (worldData.hint != null)
-                {
-                    int WorldNumber = -1;
-                    if (worldData.hint.Text != "?")
-                        WorldNumber = int.Parse(worldData.hint.Text);
-
-                    if (isGreen)
-                    {
-                        SetWorldNumber(worldData.hint, WorldNumber, "G");
-                    }
-
-                    if (isBlue)
-                    {
-                        SetWorldNumber(worldData.hint, WorldNumber, "B");
-                    }
-                    else
-                    {
-                        SetWorldNumber(worldData.hint, WorldNumber, "Y");
-                    }
-                }
-
-                //might as well get and set the correct vertical bar image here while we have this data loop
-                if (worldData.world.IsPressed)
-                {
-                    if (CustomMode)
-                        worldData.selectedBar.Source = data.CustomVerticalBarY;
-                    else
-                        worldData.selectedBar.Source = data.VerticalBarY;
-                }
-                else
-                {
-                    if (CustomMode)
-                        worldData.selectedBar.Source = data.CustomVerticalBarW;
-                    else
-                        worldData.selectedBar.Source = data.VerticalBarW;
-                }
-            }
-
-
-            //update collected count numbers
-            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
-            if (collected < 10)
-                CollectedNum[1] = null;
-
-            Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = CollectedNum[1];
-            broadcast.Collected_01.Source = CollectedNum[0];
-            broadcast.Collected_10.Source = CollectedNum[1];
-
-            //update total count numbers
-            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
-            CheckTotal_01.Source = TotalNum[0];
-            CheckTotal_10.Source = TotalNum[1];
-            broadcast.CheckTotal_01.Source = TotalNum[0];
-            broadcast.CheckTotal_10.Source = TotalNum[1];
-
-            CollectedBar.Source = NumberBarY;
-        }
+        public void Updatenumbers() { }
+        //{
+        //    //get correct slash image
+        //    bool CustomMode = Properties.Settings.Default.CustomIcons;
+        //    BitmapImage NumberBarY = data.SlashBarY;
+        //    if (CustomMode && CustomBarYFound)
+        //    {
+        //        NumberBarY = data.CustomSlashBarY;
+        //    }
+        //
+        //    //Get and set world values
+        //    foreach (WorldData worldData in data.WorldsData.Values.ToList())
+        //    {
+        //        bool isBlue = false;
+        //        bool isGreen = false;
+        //
+        //        string test = worldData.world.Name;
+        //
+        //        if (worldData.complete || worldData.hintedHint)
+        //            isBlue = true;
+        //        if (worldData.containsGhost && (data.mode == Mode.DAHints || data.mode == Mode.SpoilerHints))
+        //            isGreen = true;
+        //
+        //        if (worldData.hint != null)
+        //        {
+        //            int WorldNumber = -1;
+        //            if (worldData.hint.Text != "?")
+        //                WorldNumber = int.Parse(worldData.hint.Text);
+        //
+        //            if (isGreen)
+        //            {
+        //                SetWorldNumber(worldData.hint, WorldNumber, "G");
+        //            }
+        //
+        //            if (isBlue)
+        //            {
+        //                SetWorldNumber(worldData.hint, WorldNumber, "B");
+        //            }
+        //            else
+        //            {
+        //                SetWorldNumber(worldData.hint, WorldNumber, "Y");
+        //            }
+        //        }
+        //
+        //        //might as well get and set the correct vertical bar image here while we have this data loop
+        //        if (worldData.world.IsPressed)
+        //        {
+        //            if (CustomMode)
+        //                worldData.selectedBar.Source = data.CustomVerticalBarY;
+        //            else
+        //                worldData.selectedBar.Source = data.VerticalBarY;
+        //        }
+        //        else
+        //        {
+        //            if (CustomMode)
+        //                worldData.selectedBar.Source = data.CustomVerticalBarW;
+        //            else
+        //                worldData.selectedBar.Source = data.VerticalBarW;
+        //        }
+        //    }
+        //
+        //
+        //    //update collected count numbers
+        //    List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
+        //    if (collected < 10)
+        //        CollectedNum[1] = null;
+        //
+        //    Collected_01.Source = CollectedNum[0];
+        //    Collected_10.Source = CollectedNum[1];
+        //    broadcast.Collected_01.Source = CollectedNum[0];
+        //    broadcast.Collected_10.Source = CollectedNum[1];
+        //
+        //    //update total count numbers
+        //    List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
+        //    CheckTotal_01.Source = TotalNum[0];
+        //    CheckTotal_10.Source = TotalNum[1];
+        //    broadcast.CheckTotal_01.Source = TotalNum[0];
+        //    broadcast.CheckTotal_10.Source = TotalNum[1];
+        //
+        //    CollectedBar.Source = NumberBarY;
+        //}
 
         private void BindNumberFull(Image img1, Image img2, Image img3, string property, object source)
         {
@@ -1975,19 +1942,19 @@ namespace KhTracker
                 onContinue = true;
             }
 
-            List<BitmapImage> DeathNum = UpdateNumber(DeathCounter, "Y");
-            Death_01.Source = DeathNum[0];
-            broadcast.Death_01.Source = DeathNum[0];
-            if (DeathCounter < 10)
-            {
-                Death_10.Source = null;
-                broadcast.Death_10.Source = null;
-            }
-            else
-            {
-                Death_10.Source = DeathNum[1];
-                broadcast.Death_10.Source = DeathNum[1];
-            }
+            //List<BitmapImage> DeathNum = UpdateNumber(DeathCounter, "Y");
+            //Death_01.Source = DeathNum[0];
+            //broadcast.Death_01.Source = DeathNum[0];
+            //if (DeathCounter < 10)
+            //{
+            //    Death_10.Source = null;
+            //    broadcast.Death_10.Source = null;
+            //}
+            //else
+            //{
+            //    Death_10.Source = DeathNum[1];
+            //    broadcast.Death_10.Source = DeathNum[1];
+            //}
         }
 
         private void StatResize()

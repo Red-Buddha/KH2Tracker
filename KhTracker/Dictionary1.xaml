@@ -5,7 +5,38 @@
     <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>
-    
+
+    <!--brush colors (solid)-->
+    <!--Hinted Hints-->
+    <SolidColorBrush x:Key="HintedHint" Color="#29F"/>
+    <!--Ghosted Hints-->
+    <SolidColorBrush x:Key="GhostHint" Color="#6D3"/>
+    <!--Drive / AG / 100AW / Thunder / Torn Page / Master / Chicken Little / Olympus Stone / Scimitar / Puzzle-->
+    <SolidColorBrush x:Key="Gold" Color="#FD0"/>
+    <!--DC / Wisdom / Stitch / Ice Cream / Once More-->
+    <SolidColorBrush x:Key="LightBlue" Color="#5EF"/>
+    <!--PR / Blizzard / Anti-Form / Identity Disk Skill and Crossbones-->
+    <SolidColorBrush x:Key="DarkBlue" Color="#8AF"/>
+    <!--OC / Defence / Cure / Battlefields of War / Second Chance-->
+    <SolidColorBrush x:Key="Green" Color="#CF4"/>
+    <!--STT / GoA / Reflect / Proof of Nonexistence-->
+    <SolidColorBrush x:Key="WhiteBlue" Color="#CFF"/>
+    <!--HT / Magic / Genie / Membership Card / Bone Fist-->
+    <SolidColorBrush x:Key="Purple" Color="#D8F"/>
+    <!--TWTNW / Report / Final / Proof of Peace / Unknown Disc-->
+    <SolidColorBrush x:Key="White" Color="#DDF"/>
+    <!--LoD / PL / Valor / Peter Pan / Proud Fang / Moogle-->
+    <SolidColorBrush x:Key="Red" Color="#F63"/>
+    <!--HB / BC / Magnet / Beast’s Claw / Promise Charm / Moogle&Puzzle-->
+    <SolidColorBrush x:Key="Pink" Color="#F7C"/>
+    <!--TT / Strength / Fire / Limit / Picture / Sword of the Ancestor-->
+    <SolidColorBrush x:Key="Orange" Color="#F84"/>
+    <!--Proof of Connection-->
+    <SolidColorBrush x:Key="OffWhite" Color="#FDC"/>
+    <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
+    <SolidColorBrush x:Key="DefaultRec" Color="#BF1E1E1E"/>
+    <SolidColorBrush x:Key="SelectedRec" Color="#BF3C5A78"/>
+
     <!--auto-detect icons-->
     <Image x:Key="Min-Connect"	 Source="Images\connect.png" x:Shared="false"/>
     <Image x:Key="Min-PC"	 Source="Images\PC.png" x:Shared="false"/>
@@ -40,17 +71,17 @@
     <Image x:Key="Min-AnsemReport11_old" Source="Images\Checks\Simple\ansem_report11_old.png" x:Shared="false"/>
     <Image x:Key="Min-AnsemReport12_old" Source="Images\Checks\Simple\ansem_report12_old.png" x:Shared="false"/>
     <Image x:Key="Min-AnsemReport13_old" Source="Images\Checks\Simple\ansem_report13_old.png" x:Shared="false"/>
-    <Image x:Key="Min-Fire"		Source="Images\Checks\Simple\fire.png" x:Shared="false"/>
-    <Image x:Key="Min-Blizzard" Source="Images\Checks\Simple\blizzard.png" x:Shared="false"/>
-    <Image x:Key="Min-Thunder"	Source="Images\Checks\Simple\thunder.png" x:Shared="false"/>
-    <Image x:Key="Min-Cure"		Source="Images\Checks\Simple\cure.png" x:Shared="false"/>
-    <Image x:Key="Min-Reflect"	Source="Images\Checks\Simple\reflect.png" x:Shared="false"/>
-    <Image x:Key="Min-Magnet"	Source="Images\Checks\Simple\magnet.png" x:Shared="false"/>
-    <Image x:Key="Min-Valor"	Source="Images\Checks\Simple\valor.png" x:Shared="false"/>
-    <Image x:Key="Min-Wisdom"	Source="Images\Checks\Simple\wisdom.png" x:Shared="false"/>
-    <Image x:Key="Min-Limit"	Source="Images\Checks\Simple\limit.png" x:Shared="false"/>
-    <Image x:Key="Min-Master"	Source="Images\Checks\Simple\master.png" x:Shared="false"/>
-    <Image x:Key="Min-Final"	Source="Images\Checks\Simple\final.png" x:Shared="false"/>
+    <Image x:Key="Min-Fire"		        Source="Images\Checks\Simple\fire.png" x:Shared="false"/>
+    <Image x:Key="Min-Blizzard"         Source="Images\Checks\Simple\blizzard.png" x:Shared="false"/>
+    <Image x:Key="Min-Thunder"	        Source="Images\Checks\Simple\thunder.png" x:Shared="false"/>
+    <Image x:Key="Min-Cure"		        Source="Images\Checks\Simple\cure.png" x:Shared="false"/>
+    <Image x:Key="Min-Reflect"	        Source="Images\Checks\Simple\reflect.png" x:Shared="false"/>
+    <Image x:Key="Min-Magnet"	        Source="Images\Checks\Simple\magnet.png" x:Shared="false"/>
+    <Image x:Key="Min-Valor"	        Source="Images\Checks\Simple\valor.png" x:Shared="false"/>
+    <Image x:Key="Min-Wisdom"	        Source="Images\Checks\Simple\wisdom.png" x:Shared="false"/>
+    <Image x:Key="Min-Limit"	        Source="Images\Checks\Simple\limit.png" x:Shared="false"/>
+    <Image x:Key="Min-Master"	        Source="Images\Checks\Simple\master.png" x:Shared="false"/>
+    <Image x:Key="Min-Final"	        Source="Images\Checks\Simple\final.png" x:Shared="false"/>
     <Image x:Key="Min-TornPage"			Source="Images\Checks\Simple\torn_pages.png" x:Shared="false"/>
     <Image x:Key="Min-TornPages"		Source="Images\Other\torn_pages.png" x:Shared="false"/>
     <Image x:Key="Min-Genie"			Source="Images\Checks\Simple\genie.png"/>

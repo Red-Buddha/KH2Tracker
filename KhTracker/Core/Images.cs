@@ -1,26 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-//using System.Windows.Controls;
-//using System.Windows.Controls.Primitives;
-//using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
-//using Microsoft.Win32;
-//using System.Drawing;
-//using System.Windows.Documents;
-//using System.Runtime.InteropServices;
-//using System.ComponentModel;
 
 namespace KhTracker
 {
     public partial class MainWindow : Window
     {
         //dumb stuff to help figure out what to do about custom images
-        public static bool CustomNumbersFound = false;
-        public static bool CustomBlueNumbersFound = false;
-        public static bool CustomGreenNumbersFound = false;
         public static bool CustomSwordFound = false;
         public static bool CustomStaffFound = false;
         public static bool CustomShieldFound = false;
@@ -29,170 +17,10 @@ namespace KhTracker
         public static bool CustomMagicFound = false;
         public static bool CustomDefenseFound = false;
         public static bool CustomProgFound = false;
-        public static bool CustomBarYFound = false;
-        public static bool CustomBarBFound = false;
-        public static bool CustomVBarWFound = false;
-        public static bool CustomVBarYFound = false;
 
         //handle adding all custom images and such
         public void InitImages()
         {
-            #region Numbers
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/0.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/1.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/2.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/3.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/4.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/5.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/6.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/7.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/8.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/9.png", UriKind.Relative)));
-            data.SingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Yellow/QuestionMark.png", UriKind.Relative)));
-
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/0.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/1.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/2.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/3.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/4.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/5.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/6.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/7.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/8.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/9.png", UriKind.Relative)));
-            data.BlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Blue/QuestionMark.png", UriKind.Relative)));
-
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/0.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/1.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/2.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/3.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/4.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/5.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/6.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/7.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/8.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/9.png", UriKind.Relative)));
-            data.GreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Kh2/Green/QuestionMark.png", UriKind.Relative)));
-
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/0.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/1.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/2.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/3.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/4.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/5.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/6.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/7.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/8.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/9.png", UriKind.Relative)));
-            data.OldSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Yellow/QuestionMark.png", UriKind.Relative)));
-
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/0.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/1.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/2.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/3.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/4.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/5.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/6.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/7.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/8.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/9.png", UriKind.Relative)));
-            data.OldBlueSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Blue/QuestionMark.png", UriKind.Relative)));
-
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/0.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/1.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/2.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/3.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/4.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/5.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/6.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/7.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/8.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/9.png", UriKind.Relative)));
-            data.OldGreenSingleNumbers.Add(new BitmapImage(new Uri("Images/Numbers/Old/Green/QuestionMark.png", UriKind.Relative)));
-            #endregion
-
-            #region Custom Numbers
-            //Default are the KH2 numbers
-            string GoodPath = "Images/Numbers/Kh2/";
-            string GoodPathBlue = "Images/Numbers/Kh2/";
-            string GoodPathGreen = "Images/Numbers/Kh2/";
-
-            //Separete variable for if the user wanted to customize one set of numbers
-            UriKind urikindvar = UriKind.Relative;
-            UriKind urikindvarblue = UriKind.Relative;
-            UriKind urikindvargreen = UriKind.Relative;
-
-            //Fix paths if Old Numbers toggle is on
-            if (OldNumOption.IsChecked)
-            {
-                GoodPath = "Images/Numbers/Old/";
-                GoodPathBlue = "Images/Numbers/Old/";
-                GoodPathGreen = "Images/Numbers/Old/";
-            }
-
-            //I don't want to set up the ability to replace just single images so all number images need to be included to customize them
-            if (File.Exists("CustomImages/Numbers/Yellow/0.png") && File.Exists("CustomImages/Numbers/Yellow/1.png") && File.Exists("CustomImages/Numbers/Yellow/2.png") && File.Exists("CustomImages/Numbers/Yellow/3.png") &&
-                File.Exists("CustomImages/Numbers/Yellow/4.png") && File.Exists("CustomImages/Numbers/Yellow/5.png") && File.Exists("CustomImages/Numbers/Yellow/6.png") && File.Exists("CustomImages/Numbers/Yellow/7.png") &&
-                File.Exists("CustomImages/Numbers/Yellow/8.png") && File.Exists("CustomImages/Numbers/Yellow/9.png") && File.Exists("CustomImages/Numbers/Yellow/QuestionMark.png"))
-            {
-                GoodPath = "pack://application:,,,/CustomImages/Numbers/";
-                urikindvar = UriKind.Absolute;
-                CustomNumbersFound = true;
-            }
-            if (File.Exists("CustomImages/Numbers/Blue/0.png") && File.Exists("CustomImages/Numbers/Blue/1.png") && File.Exists("CustomImages/Numbers/Blue/2.png") && File.Exists("CustomImages/Numbers/Blue/3.png") &&
-                File.Exists("CustomImages/Numbers/Blue/4.png") && File.Exists("CustomImages/Numbers/Blue/5.png") && File.Exists("CustomImages/Numbers/Blue/6.png") && File.Exists("CustomImages/Numbers/Blue/7.png") &&
-                File.Exists("CustomImages/Numbers/Blue/8.png") && File.Exists("CustomImages/Numbers/Blue/9.png") && File.Exists("CustomImages/Numbers/Blue/QuestionMark.png"))
-            {
-                GoodPathBlue = "pack://application:,,,/CustomImages/Numbers/";
-                urikindvarblue = UriKind.Absolute;
-                CustomBlueNumbersFound = true;
-            }
-            if (File.Exists("CustomImages/Numbers/Green/0.png") && File.Exists("CustomImages/Numbers/Green/1.png") && File.Exists("CustomImages/Numbers/Green/2.png") && File.Exists("CustomImages/Numbers/Green/3.png") &&
-                File.Exists("CustomImages/Numbers/Green/4.png") && File.Exists("CustomImages/Numbers/Green/5.png") && File.Exists("CustomImages/Numbers/Green/6.png") && File.Exists("CustomImages/Numbers/Green/7.png") &&
-                File.Exists("CustomImages/Numbers/Green/8.png") && File.Exists("CustomImages/Numbers/Green/9.png") && File.Exists("CustomImages/Numbers/Green/QuestionMark.png"))
-            {
-                GoodPathGreen = "pack://application:,,,/CustomImages/Numbers/";
-                urikindvargreen = UriKind.Absolute;
-                CustomGreenNumbersFound = true;
-            }
-
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/0.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/1.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/2.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/3.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/4.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/5.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/6.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/7.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/8.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/9.png", urikindvar)));
-            data.CustomSingleNumbers.Add(new BitmapImage(new Uri(GoodPath + "Yellow/QuestionMark.png", urikindvar)));
-
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/0.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/1.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/2.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/3.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/4.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/5.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/6.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/7.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/8.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/9.png", urikindvarblue)));
-            data.CustomBlueSingleNumbers.Add(new BitmapImage(new Uri(GoodPathBlue + "Blue/QuestionMark.png", urikindvarblue)));
-
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/0.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/1.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/2.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/3.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/4.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/5.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/6.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/7.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/8.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/9.png", urikindvargreen)));
-            data.CustomGreenSingleNumbers.Add(new BitmapImage(new Uri(GoodPathGreen + "Green/QuestionMark.png", urikindvargreen)));
-            #endregion
-
             //i really hate how i did some of this
 
             //for autodetect (won't bother making this customizable for now)
@@ -201,7 +29,7 @@ namespace KhTracker
             data.AD_PCred = new BitmapImage(new Uri("Images/PCred.png", UriKind.Relative));
             data.AD_PS2 = new BitmapImage(new Uri("Images/ps2.png", UriKind.Relative));
 
-            //check for custom stat and weapon icons (OLD)
+            //check for custom stat and weapon icons
             if (File.Exists("CustomImages/Other/sword.png"))
                 CustomSwordFound = true;
             if (File.Exists("CustomImages/Other/staff.png"))
@@ -217,49 +45,10 @@ namespace KhTracker
             if (File.Exists("CustomImages/Other/defence.png"))
                 CustomDefenseFound = true;
 
-
-            //set stuff for the vertical images
-            data.VerticalBarW = new BitmapImage(new Uri("Images/VerticalBarWhite.png", UriKind.Relative));
-            data.VerticalBarY = new BitmapImage(new Uri("Images/VerticalBar.png", UriKind.Relative));
-
-            if (File.Exists("CustomImages/VerticalBarWhite.png"))
-            {
-                data.CustomVerticalBarW = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBarWhite.png", UriKind.Absolute));
-                CustomVBarWFound = true;
-            }
-            else
-                data.CustomVerticalBarW = data.VerticalBarW;
-
-            if (File.Exists("CustomImages/VerticalBar.png"))
-            {
-                data.CustomVerticalBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/VerticalBar.png", UriKind.Absolute));
-                CustomVBarYFound = true;
-            }
-            else
-                data.CustomVerticalBarY = data.VerticalBarY;
-
-            //set stuff for the slash bar images
-            data.SlashBarB = new BitmapImage(new Uri("Images/Numbers/BarBlue.png", UriKind.Relative));
-            data.SlashBarY = new BitmapImage(new Uri("Images/Numbers/Bar.png", UriKind.Relative));
-
-            if (File.Exists("CustomImages/Numbers/BarBlue.png"))
-            {
-                data.CustomSlashBarB = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/BarBlue.png", UriKind.Absolute));
-                CustomBarBFound = true;
-            }
-            else
-                data.CustomSlashBarB = data.SlashBarB;
-
-            if (File.Exists("CustomImages/Numbers/Bar.png"))
-            {
-                data.CustomSlashBarY = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Numbers/Bar.png", UriKind.Absolute));
-                CustomBarYFound = true;
-            }
-            else
-                data.CustomSlashBarY = data.SlashBarY;
-
-            //check for custom progression icons
-            if (File.Exists("CustomImages/Progression/1k.png") && File.Exists("CustomImages/Progression/carpet.png") && File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
+            //check for custom progression icons. if these 4 are there then assume all progression icons are there
+            //no reason for these 4 specific ones, i just picked 4 completely unrelated ones at random.
+            if (File.Exists("CustomImages/Progression/1k.png") && File.Exists("CustomImages/Progression/carpet.png") && 
+                File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
                 CustomProgFound = true;
 
         }
@@ -451,59 +240,30 @@ namespace KhTracker
             }
         }
 
-        //stuff to call the right number image
-        public List<BitmapImage> GetDataNumber(string type)
-        {
-            //defaults
-            List<BitmapImage> SingleNum = data.SingleNumbers;
-            List<BitmapImage> SingleBlueNum = data.BlueSingleNumbers;
-            List<BitmapImage> SingleGreenNum = data.GreenSingleNumbers;
-
-            //Get correct numbers
-            {
-                if (Properties.Settings.Default.OldNum)
-                {
-                    SingleNum = data.OldSingleNumbers;
-                    SingleBlueNum = data.OldBlueSingleNumbers;
-                    SingleGreenNum = data.OldGreenSingleNumbers;
-                }
-
-                if (Properties.Settings.Default.CustomIcons)
-                {
-                    if (CustomNumbersFound)
-                    {
-                        SingleNum = data.CustomSingleNumbers;
-                    }
-                    if (CustomBlueNumbersFound)
-                    {
-                        SingleBlueNum = data.CustomBlueSingleNumbers;
-                    }
-                    if (CustomGreenNumbersFound)
-                    {
-                        SingleGreenNum = data.CustomGreenSingleNumbers;
-                    }
-                }
-            }
-
-            //return correct number list
-            switch(type)
-            {
-                case "B":
-                case "SB":
-                    return SingleBlueNum;
-                case "G":
-                case "SG":
-                    return SingleGreenNum;
-                case "Y":
-                case "S":
-                default:
-                    return SingleNum;
-            }
-        }
-
         //get cutom images for toggles. i'll recode this to be better later i swear
         private void CustomChecksCheck()
         {
+
+
+
+            switch(File.Exists())
+            {
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
             if (CustomFolderOption.IsChecked)
             {
                 //check if folders exists then start checking if each file exists in it
@@ -1456,7 +1216,7 @@ namespace KhTracker
                     {
                         if (File.Exists("CustomImages/Worlds/lingering_will.png"))
                         {
-                            DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
+                            //DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
                             broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
                         }
 

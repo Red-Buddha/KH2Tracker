@@ -4,12 +4,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.IO;
 using System.IO.Compression;
 using Microsoft.Win32;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using Path = System.IO.Path;
 
 //using System.Text.Json.Serialization;
 //using YamlDotNet.Serialization;
@@ -102,12 +104,12 @@ namespace KhTracker
                 hintValues = "HintValues: ";
                 foreach (WorldData worldData in data.WorldsData.Values.ToList())
                 {
-                    if (worldData.hint == null)
+                    if (worldData.value == null)
                         continue;
 
                     int num = -1; //= GetWorldNumber(worldData.hint);
-                    if (worldData.hint.Text != "?")
-                        num = int.Parse(worldData.hint.Text);
+                    if (worldData.value.Text != "?")
+                        num = int.Parse(worldData.value.Text);
                     if (worldData.containsGhost && GhostMathOption.IsChecked) //need to recaculate correct values if ghost items and automath are toggled
                     {
                         num += GetGhostPoints(worldData.worldGrid);
@@ -172,10 +174,6 @@ namespace KhTracker
                 writer.WriteLine(attempts);
                 writer.WriteLine(data.openKHHintText);
                 writer.WriteLine(hintValues);
-            }
-            else if (data.mode == Mode.TimeHints)
-            {
-                //nothing yet
             }
 
             string ProgressString = "Progress:";
@@ -265,7 +263,7 @@ namespace KhTracker
                 {
                     data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
                     string[] temp = reportvalues[i].Split(',');
-                    data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                    data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
                 }
 
                 data.hintsLoaded = true;
@@ -294,7 +292,7 @@ namespace KhTracker
                         continue;
 
                     data.WorldsData[key].worldGrid.WorldComplete();
-                    SetReportValue(data.WorldsData[key].hint, 0);
+                    SetWorldValue(data.WorldsData[key].value, 0);
                 }
             }
             else if (mode == "OpenKHHints")
@@ -310,22 +308,7 @@ namespace KhTracker
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 JsmarteeHints(hintObject);
-                //var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-                //
-                //List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-                //reportKeys.Sort();
-                //
-                //foreach (var report in reportKeys)
-                //{
-                //    var world = convertOpenKH[reports[report.ToString()]["World"].ToString()];
-                //    var count = reports[report.ToString()]["Count"].ToString();
-                //    var location = convertOpenKH[reports[report.ToString()]["Location"].ToString()];
-                //    data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
-                //    data.reportLocations.Add(location);
-                //}
-                //
-                //data.hintsLoaded = true;
-                //HintText.Content = "Hints Loaded";
+
             }
             else if (mode == "OpenKHAltHints")
             {
@@ -333,28 +316,7 @@ namespace KhTracker
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 ShanHints(hintObject);
-                //var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-                //
-                //foreach (var world in worlds)
-                //{
-                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                //    {
-                //        continue;
-                //    }
-                //    foreach (var item in world.Value)
-                //    {
-                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-                //    }
-                //
-                //}
-                //foreach (var key in data.WorldsData.Keys.ToList())
-                //{
-                //    if (key == "GoA")
-                //        continue;
-                //
-                //    data.WorldsData[key].worldGrid.WorldComplete();
-                //    SetReportValue(data.WorldsData[key].hint, 0);
-                //}
+
             }
             else if (mode == "DAHints")
             {
@@ -369,94 +331,6 @@ namespace KhTracker
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 PointsHints(hintObject);
-                //var worldsP = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-                //var reportsP = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-                //var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
-                //
-                //List<int> reportKeysP = reportsP.Keys.Select(int.Parse).ToList();
-                //reportKeysP.Sort();
-                //
-                //foreach (var point in points)
-                //{
-                //    if (data.PointsDatanew.Keys.Contains(point.Key))
-                //    {
-                //        data.PointsDatanew[point.Key] = point.Value;
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine($"Something went wrong in setting point values. error: {point.Key}");
-                //    }
-                //}
-                //
-                ////Fallback values for older seeds
-                //if (!points.Keys.Contains("report"))
-                //    data.PointsDatanew["report"] = data.PointsDatanew["page"];
-                //if (!points.Keys.Contains("bonus"))
-                //    data.PointsDatanew["bonus"] = 10;
-                //if (!points.Keys.Contains("complete"))
-                //    data.PointsDatanew["complete"] = 10;
-                //if (!points.Keys.Contains("formlv"))
-                //    data.PointsDatanew["formlv"] = 3;
-                //if (!points.Keys.Contains("visit"))
-                //    data.PointsDatanew["visit"] = 1;
-                //
-                ////get point totals for each world
-                //foreach (var world in worldsP)
-                //{
-                //    if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                //    {
-                //        continue;
-                //    }
-                //    foreach (var item in world.Value)
-                //    {
-                //        if (item.Contains("Ghost_") && !GhostItemOption.IsChecked)
-                //            continue;
-                //
-                //        data.WorldsData[convertOpenKH[world.Key]].checkCount.Add(convertOpenKH[item]);
-                //
-                //        string itemType = CheckItemType(item);
-                //        if (data.PointsDatanew.Keys.Contains(itemType))
-                //        {
-                //            WorldPoints[convertOpenKH[world.Key]] += data.PointsDatanew[itemType];
-                //        }
-                //        else
-                //        {
-                //            Console.WriteLine($"Something went wrong in getting world points. error: {itemType}");
-                //        }
-                //    }
-                //}
-                //
-                ////set points for each world
-                //foreach (var key in data.WorldsData.Keys.ToList())
-                //{
-                //    if (key == "GoA")
-                //        continue;
-                //
-                //    data.WorldsData[key].worldGrid.WorldPointsComplete();
-                //
-                //    if (WorldPoints.Keys.Contains(key))
-                //    {
-                //        SetReportValue(data.WorldsData[key].hint, WorldPoints[key]);
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine($"Something went wrong in setting world point numbers. error: {key}");
-                //    }
-                //}
-                //
-                //foreach (var reportP in reportKeysP)
-                //{
-                //    var worldP = convertOpenKH[reportsP[reportP.ToString()]["World"].ToString()];
-                //    var checkP = reportsP[reportP.ToString()]["check"].ToString();
-                //    var locationP = convertOpenKH[reportsP[reportP.ToString()]["Location"].ToString()];
-                //
-                //    data.pointreportInformation.Add(new Tuple<string, string>(worldP, checkP));
-                //    data.reportLocations.Add(locationP);
-                //}
-                //
-                //ReportsToggle(true);
-                //data.hintsLoaded = true;
-                //WorldPoints_c = WorldPoints;
 
                 var witemlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
                 var witemlist = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(witemlist64);
@@ -515,24 +389,24 @@ namespace KhTracker
             if (data.hintsLoaded)
             {
                 string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-                SetReportValue(data.WorldsData["SorasHeart"].hint, int.Parse(hintValues[0]));
-                SetReportValue(data.WorldsData["DriveForms"].hint, int.Parse(hintValues[1]));
-                SetReportValue(data.WorldsData["SimulatedTwilightTown"].hint, int.Parse(hintValues[2]));
-                SetReportValue(data.WorldsData["TwilightTown"].hint, int.Parse(hintValues[3]));
-                SetReportValue(data.WorldsData["HollowBastion"].hint, int.Parse(hintValues[4]));
-                SetReportValue(data.WorldsData["BeastsCastle"].hint, int.Parse(hintValues[5]));
-                SetReportValue(data.WorldsData["OlympusColiseum"].hint, int.Parse(hintValues[6]));
-                SetReportValue(data.WorldsData["Agrabah"].hint, int.Parse(hintValues[7]));
-                SetReportValue(data.WorldsData["LandofDragons"].hint, int.Parse(hintValues[8]));
-                SetReportValue(data.WorldsData["HundredAcreWood"].hint, int.Parse(hintValues[9]));
-                SetReportValue(data.WorldsData["PrideLands"].hint, int.Parse(hintValues[10]));
-                SetReportValue(data.WorldsData["DisneyCastle"].hint, int.Parse(hintValues[11]));
-                SetReportValue(data.WorldsData["HalloweenTown"].hint, int.Parse(hintValues[12]));
-                SetReportValue(data.WorldsData["PortRoyal"].hint, int.Parse(hintValues[13]));
-                SetReportValue(data.WorldsData["SpaceParanoids"].hint, int.Parse(hintValues[14]));
-                SetReportValue(data.WorldsData["TWTNW"].hint, int.Parse(hintValues[15]));
-                SetReportValue(data.WorldsData["Atlantica"].hint, int.Parse(hintValues[16]));
-                SetReportValue(data.WorldsData["PuzzSynth"].hint, int.Parse(hintValues[17]));
+                SetWorldValue(data.WorldsData["SorasHeart"].value, int.Parse(hintValues[0]));
+                SetWorldValue(data.WorldsData["DriveForms"].value, int.Parse(hintValues[1]));
+                SetWorldValue(data.WorldsData["SimulatedTwilightTown"].value, int.Parse(hintValues[2]));
+                SetWorldValue(data.WorldsData["TwilightTown"].value, int.Parse(hintValues[3]));
+                SetWorldValue(data.WorldsData["HollowBastion"].value, int.Parse(hintValues[4]));
+                SetWorldValue(data.WorldsData["BeastsCastle"].value, int.Parse(hintValues[5]));
+                SetWorldValue(data.WorldsData["OlympusColiseum"].value, int.Parse(hintValues[6]));
+                SetWorldValue(data.WorldsData["Agrabah"].value, int.Parse(hintValues[7]));
+                SetWorldValue(data.WorldsData["LandofDragons"].value, int.Parse(hintValues[8]));
+                SetWorldValue(data.WorldsData["HundredAcreWood"].value, int.Parse(hintValues[9]));
+                SetWorldValue(data.WorldsData["PrideLands"].value, int.Parse(hintValues[10]));
+                SetWorldValue(data.WorldsData["DisneyCastle"].value, int.Parse(hintValues[11]));
+                SetWorldValue(data.WorldsData["HalloweenTown"].value, int.Parse(hintValues[12]));
+                SetWorldValue(data.WorldsData["PortRoyal"].value, int.Parse(hintValues[13]));
+                SetWorldValue(data.WorldsData["SpaceParanoids"].value, int.Parse(hintValues[14]));
+                SetWorldValue(data.WorldsData["TWTNW"].value, int.Parse(hintValues[15]));
+                SetWorldValue(data.WorldsData["Atlantica"].value, int.Parse(hintValues[16]));
+                SetWorldValue(data.WorldsData["PuzzSynth"].value, int.Parse(hintValues[17]));
             }
             else if (mode == "SpoilerHints") //we need to do this for spoiler hints because of the optional report mode
                 reader.ReadLine();
@@ -565,61 +439,30 @@ namespace KhTracker
 
                 if (items != string.Empty)
                 {
-                    if (data.mode == Mode.DAHints)
+                    foreach (string item in items.Split(' '))
                     {
-                        foreach (string item in items.Split(' '))
-                        {
-                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                            Item importantCheck = FindName(item) as Item;
+                        WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
+                        Item importantCheck = FindName(item) as Item;
 
-                            if (grid.Handle_PointReport(importantCheck, this, data))
+                        if (grid.ReportHandler(importantCheck, this, data))
+                        {
+                            switch (data.mode)
                             {
-                                if (item.StartsWith("Ghost_"))
-                                    grid.Add_Ghost(importantCheck, this);
-                                else
+                                case Mode.DAHints:
+                                    if (item.StartsWith("Ghost_"))
+                                        grid.Add_Ghost(importantCheck, this);
+                                    else
+                                        grid.Add_Item(importantCheck, this);
+                                    break;
+                                case Mode.SpoilerHints:
+                                    if (!item.StartsWith("Ghost_"))
+                                        grid.Add_Item(importantCheck, this);
+                                    break;
+                                case Mode.PathHints:
+                                default:
                                     grid.Add_Item(importantCheck, this);
+                                    break;
                             }
-                        }
-                    }
-                    else if (data.mode == Mode.PathHints)
-                    {
-                        foreach (string item in items.Split(' '))
-                        {
-                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                            Item importantCheck = FindName(item) as Item;
-
-                            if (grid.Handle_PathReport(importantCheck, this, data))
-                                grid.Add_Item(importantCheck, this);
-                        }
-                    }
-                    else if (data.mode == Mode.SpoilerHints)
-                    {
-                        foreach (string item in items.Split(' '))
-                        {
-                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                            Item importantCheck = FindName(item) as Item;
-
-                            if (grid.Handle_SpoilerReport(importantCheck, this, data))
-                            {
-                                if (item.StartsWith("Ghost_"))
-                                {
-                                    //grid.Add_Ghost(importantCheck, this);
-                                }
-
-                                else
-                                    grid.Add_Item(importantCheck, this);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (string item in items.Split(' '))
-                        {
-                            WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                            Item importantCheck = FindName(item) as Item;
-
-                            if (grid.Handle_Report(importantCheck, this, data))
-                                grid.Add_Item(importantCheck, this);
                         }
                     }
                 }
@@ -770,7 +613,7 @@ namespace KhTracker
 
                 data.reportLocations.Add(location);
                 string[] temp = reportvalues[i].Split(',');
-                data.reportInformation.Add(new Tuple<string, int>(data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
             }
 
             data.hintsLoaded = true;
@@ -782,8 +625,6 @@ namespace KhTracker
             data.hintsLoaded = false;
             data.reportLocations.Clear();
             data.reportInformation.Clear();
-            data.pointreportInformation.Clear();
-            data.pathreportInformation.Clear();
             data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             foreach (var key in data.WorldsData.Keys.ToList())
@@ -801,8 +642,8 @@ namespace KhTracker
             
             foreach (WorldData worldData in data.WorldsData.Values.ToList())
             {
-                if (worldData.hint != null)
-                    SetWorldNumber(worldData.hint, -1, "Y");
+                if (worldData.value != null)
+                    SetWorldValue(worldData.value, -999999);
             }
 
             for (int i = 0; i < data.Reports.Count; ++i)
@@ -903,53 +744,58 @@ namespace KhTracker
             PointTotal = 0;
 
             data.SpoilerRevealTypes.Clear();
-            SpoilerReportMode = false;
-            SpoilerWorldCompletion = false;
+            data.SpoilerReportMode = false;
+            data.SpoilerWorldCompletion = false;
 
             bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage BarW = data.VerticalBarW;
+            //BitmapImage BarW = data.VerticalBarW;
 
-            List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
-            Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = null;
+            //List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
+            //Collected_01.Source = CollectedNum[0];
+            //Collected_10.Source = null;
 
-            if (CustomMode && CustomVBarWFound)
-                BarW = data.CustomVerticalBarW;
+            CollectedValue.Text = "0";
+
+            //if (CustomMode && CustomVBarWFound)
+            //    BarW = data.CustomVerticalBarW;
 
             if (data.selected != null)
             {
-                data.WorldsData[data.selected.Name].selectedBar.Source = BarW;
+                foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
+                {
+                    Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                }
             }
             data.selected = null;
 
-            foreach (WorldData worldData in data.WorldsData.Values.ToList())
-            {
-                for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
-                {
-                    Item item = worldData.worldGrid.Children[j] as Item;
-                    Grid pool = VisualTreeHelper.GetChild(ItemPool, GetItemPool[item.Name]) as Grid;
-
-                    worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
-                    pool.Children.Add(item);
-
-                    item.MouseDown -= item.Item_Return;
-                    item.MouseEnter -= item.Report_Hover;
-                    if (data.dragDrop)
-                    {
-                        item.MouseDoubleClick -= item.Item_Click;
-                        item.MouseDoubleClick += item.Item_Click;
-                        item.MouseMove -= item.Item_MouseMove;
-                        item.MouseMove += item.Item_MouseMove;
-                    }
-                    else
-                    {
-                        item.MouseDown -= item.Item_MouseDown;
-                        item.MouseDown += item.Item_MouseDown;
-                        item.MouseUp -= item.Item_MouseUp;
-                        item.MouseUp += item.Item_MouseUp;
-                    }
-                }
-            }
+            //foreach (WorldData worldData in data.WorldsData.Values.ToList())
+            //{
+            //    for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
+            //    {
+            //        Item item = worldData.worldGrid.Children[j] as Item;
+            //        Grid pool = VisualTreeHelper.GetChild(ItemPool, GetItemPool[item.Name]) as Grid;
+            //
+            //        worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
+            //        pool.Children.Add(item);
+            //
+            //        item.MouseDown -= item.Item_Return;
+            //        item.MouseEnter -= item.Report_Hover;
+            //        if (data.dragDrop)
+            //        {
+            //            item.MouseDoubleClick -= item.Item_Click;
+            //            item.MouseDoubleClick += item.Item_Click;
+            //            item.MouseMove -= item.Item_MouseMove;
+            //            item.MouseMove += item.Item_MouseMove;
+            //        }
+            //        else
+            //        {
+            //            item.MouseDown -= item.Item_MouseDown;
+            //            item.MouseDown += item.Item_MouseDown;
+            //            item.MouseUp -= item.Item_MouseUp;
+            //            item.MouseUp += item.Item_MouseUp;
+            //        }
+            //    }
+            //}
 
             // Reset 1st column row heights
             RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
@@ -1028,9 +874,9 @@ namespace KhTracker
             Magic.Visibility = Visibility.Hidden;
             DefenseIcon.Visibility = Visibility.Hidden;
             Defense.Visibility = Visibility.Hidden;
-            Weapon.Visibility = Visibility.Hidden;
+            //Weapon.Visibility = Visibility.Hidden;
             Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
-            SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
+            //SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
 
             broadcast.LevelIcon.Visibility = Visibility.Hidden;
             broadcast.Level.Visibility = Visibility.Hidden;
@@ -1058,16 +904,16 @@ namespace KhTracker
             AerialDodge.Opacity = .45;
             Glide.Opacity = .45;
 
-            ValorLevel.Source = null;
-            WisdomLevel.Source = null;
-            LimitLevel.Source = null;
-            MasterLevel.Source = null;
-            FinalLevel.Source = null;
-            HighJumpLevel.Source = null;
-            QuickRunLevel.Source = null;
-            DodgeRollLevel.Source = null;
-            AerialDodgeLevel.Source = null;
-            GlideLevel.Source = null;
+            ValorLevel.Text = null;
+            WisdomLevel.Text = null;
+            LimitLevel.Text = null;
+            MasterLevel.Text = null;
+            FinalLevel.Text = null;
+            HighJumpLevel.Text = null;
+            QuickRunLevel.Text = null;
+            DodgeRollLevel.Text = null;
+            AerialDodgeLevel.Text = null;
+            GlideLevel.Text = null;
 
             broadcast.ValorLevel.Source = null;
             broadcast.WisdomLevel.Source = null;
@@ -1115,11 +961,11 @@ namespace KhTracker
                 glide.Level = 0;
 
             //hide & reset seed hash
-            if (ShouldResetHash)
+            if (data.ShouldResetHash)
             {
-                HashRow.Height = new GridLength(0, GridUnitType.Star);
-                SeedHashLoaded = false;
-                SeedHashVisible = false;
+                //HashRow.Height = new GridLength(0, GridUnitType.Star);
+                data.SeedHashLoaded = false;
+                data.SeedHashVisible = false;
             }
 
             foreach (string value in data.PointsDatanew.Keys.ToList())
@@ -1150,13 +996,13 @@ namespace KhTracker
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
 
-            Collected.Visibility = Visibility.Visible;
+            //Collected.Visibility = Visibility.Visible;
             CollectedBar.Visibility = Visibility.Visible;
-            CheckTotal.Visibility = Visibility.Visible;
-            Score1000.Visibility = Visibility.Hidden;
-            Score100.Visibility = Visibility.Hidden;
-            Score10.Visibility = Visibility.Hidden;
-            Score1.Visibility = Visibility.Hidden;
+            //CheckTotal.Visibility = Visibility.Visible;
+            //Score1000.Visibility = Visibility.Hidden;
+            //Score100.Visibility = Visibility.Hidden;
+            //Score10.Visibility = Visibility.Hidden;
+            //Score1.Visibility = Visibility.Hidden;
 
             broadcast.Collected.Visibility = Visibility.Visible;
             broadcast.CollectedBar.Visibility = Visibility.Visible;
@@ -1166,8 +1012,8 @@ namespace KhTracker
             broadcast.Score10.Visibility = Visibility.Hidden;
             broadcast.Score1.Visibility = Visibility.Hidden;
 
-            score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-            ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
+            //score1000col.Width = new GridLength(0.0, GridUnitType.Star);
+            //ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
             broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
             broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
             broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
@@ -1200,8 +1046,8 @@ namespace KhTracker
 
             DeathCounter = 0;
             DeathCounterGrid.Visibility = Visibility.Collapsed;
-            HintTextParent.SetValue(Grid.ColumnProperty, 2);
-            HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
+            //HintTextParent.SetValue(Grid.ColumnProperty, 2);
+            //HintTextParent.SetValue(Grid.ColumnSpanProperty, 21);
             broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
 
             foreach (Grid itempool in ItemPool.Children)
@@ -1311,7 +1157,7 @@ namespace KhTracker
                     continue;
 
                 data.WorldsData[key].worldGrid.WorldComplete();
-                SetReportValue(data.WorldsData[key].hint, 0);
+                SetWorldValue(data.WorldsData[key].value, 0);
             }
 
             if (autotrackeron)
@@ -1363,12 +1209,6 @@ namespace KhTracker
                 ModeDisplay.Header = "Spoiler Hints";
                 data.mode = mode;
             }
-            else if (mode == Mode.TimeHints)
-            {
-                ModeDisplay.Header = "Timed Hints";
-                data.mode = mode;
-                ReportRow.Height = new GridLength(1, GridUnitType.Star);
-            }
         }
 
         private void OpenKHSeed(object sender, RoutedEventArgs e)
@@ -1405,7 +1245,7 @@ namespace KhTracker
                             var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                             var settings = new List<string>();
 
-                            ShouldResetHash = false;
+                            data.ShouldResetHash = false;
 
                             if (hintObject.ContainsKey("settings"))
                             {
@@ -1434,7 +1274,7 @@ namespace KhTracker
                                     ExtraChecksToggle(false);
                                     AntiFormToggle(false);
 
-                                    SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
+                                    //SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                     broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                 }
 
@@ -1493,7 +1333,7 @@ namespace KhTracker
                                             SynthToggle(true);
                                             break;
                                         case "better_stt":
-                                            SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
+                                            //SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             break;
                                         case "extra_ics":
@@ -1547,13 +1387,6 @@ namespace KhTracker
                                         SpoilerHints(hintObject);
                                     }
                                     break;
-                                case "Timed":
-                                    {
-                                        //incomplete
-                                        //SetMode(Mode.TimeHints);
-                                        //TimeHints(hintObject);
-                                    }
-                                    break;
                                 default:
                                     break;
                             }
@@ -1578,13 +1411,13 @@ namespace KhTracker
                             HashIcon5.SetResourceReference(ContentProperty, hash[4]);
                             HashIcon6.SetResourceReference(ContentProperty, hash[5]);
                             HashIcon7.SetResourceReference(ContentProperty, hash[6]);
-                            SeedHashLoaded = true;
+                            data.SeedHashLoaded = true;
 
                             //make visible
                             if (SeedHashOption.IsChecked)
                             {
-                                HashRow.Height = new GridLength(1.0, GridUnitType.Star);
-                                SeedHashVisible = true;
+                                //HashRow.Height = new GridLength(1.0, GridUnitType.Star);
+                                data.SeedHashVisible = true;
                             }
                         }
                     }
@@ -1592,140 +1425,140 @@ namespace KhTracker
             }
         }
 
-        private Dictionary<string, int> GetItemPool = new Dictionary<string, int>()
-        {
-            {"Report1", 0},
-            {"Report2", 0},
-            {"Report3", 0},
-            {"Report4", 0},
-            {"Report5", 0},
-            {"Report6", 0},
-            {"Report7", 0},
-            {"Report8", 0},
-            {"Report9", 0},
-            {"Report10", 0},
-            {"Report11", 0},
-            {"Report12", 0},
-            {"Report13", 0},
-            {"Fire1", 1},
-            {"Fire2", 1},
-            {"Fire3", 1},
-            {"Blizzard1", 1},
-            {"Blizzard2", 1},
-            {"Blizzard3", 1},
-            {"Thunder1", 1},
-            {"Thunder2", 1},
-            {"Thunder3", 1},
-            {"Cure1", 1},
-            {"Cure2", 1},
-            {"Cure3", 1},
-            {"HadesCup", 1},
-            {"OlympusStone", 1},
-            {"Reflect1", 2},
-            {"Reflect2", 2},
-            {"Reflect3", 2},
-            {"Magnet1", 2},
-            {"Magnet2", 2},
-            {"Magnet3", 2},
-            {"Valor", 2},
-            {"Wisdom", 2},
-            {"Limit", 2},
-            {"Master", 2},
-            {"Final", 2},
-            {"Anti", 2},
-            {"OnceMore", 2},
-            {"SecondChance", 2},
-            {"UnknownDisk", 3},
-            {"TornPage1", 3},
-            {"TornPage2", 3},
-            {"TornPage3", 3},
-            {"TornPage4", 3},
-            {"TornPage5", 3},
-            {"Baseball", 3},
-            {"Lamp", 3},
-            {"Ukulele", 3},
-            {"Feather", 3},
-            {"Connection", 3},
-            {"Nonexistence", 3},
-            {"Peace", 3},
-            {"PromiseCharm", 3},
-            {"BeastWep", 4},
-            {"JackWep", 4},
-            {"SimbaWep", 4},
-            {"AuronWep", 4},
-            {"MulanWep", 4},
-            {"SparrowWep", 4},
-            {"AladdinWep", 4},
-            {"TronWep", 4},
-            {"MembershipCard", 4},
-            {"Picture", 4},
-            {"IceCream", 4},
-            {"Ghost_Report1", 5},
-            {"Ghost_Report2", 5},
-            {"Ghost_Report3", 5},
-            {"Ghost_Report4", 5},
-            {"Ghost_Report5", 5},
-            {"Ghost_Report6", 5},
-            {"Ghost_Report7", 5},
-            {"Ghost_Report8", 5},
-            {"Ghost_Report9", 5},
-            {"Ghost_Report10", 5},
-            {"Ghost_Report11", 5},
-            {"Ghost_Report12", 5},
-            {"Ghost_Report13", 5},
-            {"Ghost_Fire1", 6},
-            {"Ghost_Fire2", 6},
-            {"Ghost_Fire3", 6},
-            {"Ghost_Blizzard1", 6},
-            {"Ghost_Blizzard2", 6},
-            {"Ghost_Blizzard3", 6},
-            {"Ghost_Thunder1", 6},
-            {"Ghost_Thunder2", 6},
-            {"Ghost_Thunder3", 6},
-            {"Ghost_Cure1", 6},
-            {"Ghost_Cure2", 6},
-            {"Ghost_Cure3", 6},
-            {"Ghost_HadesCup", 6},
-            {"Ghost_OlympusStone", 6},
-            {"Ghost_Reflect1", 7},
-            {"Ghost_Reflect2", 7},
-            {"Ghost_Reflect3", 7},
-            {"Ghost_Magnet1", 7},
-            {"Ghost_Magnet2", 7},
-            {"Ghost_Magnet3", 7},
-            {"Ghost_Valor", 7},
-            {"Ghost_Wisdom", 7},
-            {"Ghost_Limit", 7},
-            {"Ghost_Master", 7},
-            {"Ghost_Final", 7},
-            {"Ghost_Anti", 7},
-            {"Ghost_OnceMore", 7},
-            {"Ghost_SecondChance", 7},
-            {"Ghost_UnknownDisk", 8},
-            {"Ghost_TornPage1", 8},
-            {"Ghost_TornPage2", 8},
-            {"Ghost_TornPage3", 8},
-            {"Ghost_TornPage4", 8},
-            {"Ghost_TornPage5", 8},
-            {"Ghost_Baseball", 8},
-            {"Ghost_Lamp", 8},
-            {"Ghost_Ukulele", 8},
-            {"Ghost_Feather", 8},
-            {"Ghost_Connection", 8},
-            {"Ghost_Nonexistence", 8},
-            {"Ghost_Peace", 8},
-            {"Ghost_PromiseCharm", 8},
-            {"Ghost_BeastWep", 9},
-            {"Ghost_JackWep", 9},
-            {"Ghost_SimbaWep", 9},
-            {"Ghost_AuronWep", 9},
-            {"Ghost_MulanWep", 9},
-            {"Ghost_SparrowWep", 9},
-            {"Ghost_AladdinWep", 9},
-            {"Ghost_TronWep", 9},
-            {"Ghost_MembershipCard", 9},
-            {"Ghost_Picture", 9},
-            {"Ghost_IceCream", 9}
-        };
+        //private Dictionary<string, int> GetItemPool = new Dictionary<string, int>()
+        //{
+        //    {"Report1", 0},
+        //    {"Report2", 0},
+        //    {"Report3", 0},
+        //    {"Report4", 0},
+        //    {"Report5", 0},
+        //    {"Report6", 0},
+        //    {"Report7", 0},
+        //    {"Report8", 0},
+        //    {"Report9", 0},
+        //    {"Report10", 0},
+        //    {"Report11", 0},
+        //    {"Report12", 0},
+        //    {"Report13", 0},
+        //    {"Fire1", 1},
+        //    {"Fire2", 1},
+        //    {"Fire3", 1},
+        //    {"Blizzard1", 1},
+        //    {"Blizzard2", 1},
+        //    {"Blizzard3", 1},
+        //    {"Thunder1", 1},
+        //    {"Thunder2", 1},
+        //    {"Thunder3", 1},
+        //    {"Cure1", 1},
+        //    {"Cure2", 1},
+        //    {"Cure3", 1},
+        //    {"HadesCup", 1},
+        //    {"OlympusStone", 1},
+        //    {"Reflect1", 2},
+        //    {"Reflect2", 2},
+        //    {"Reflect3", 2},
+        //    {"Magnet1", 2},
+        //    {"Magnet2", 2},
+        //    {"Magnet3", 2},
+        //    {"Valor", 2},
+        //    {"Wisdom", 2},
+        //    {"Limit", 2},
+        //    {"Master", 2},
+        //    {"Final", 2},
+        //    {"Anti", 2},
+        //    {"OnceMore", 2},
+        //    {"SecondChance", 2},
+        //    {"UnknownDisk", 3},
+        //    {"TornPage1", 3},
+        //    {"TornPage2", 3},
+        //    {"TornPage3", 3},
+        //    {"TornPage4", 3},
+        //    {"TornPage5", 3},
+        //    {"Baseball", 3},
+        //    {"Lamp", 3},
+        //    {"Ukulele", 3},
+        //    {"Feather", 3},
+        //    {"Connection", 3},
+        //    {"Nonexistence", 3},
+        //    {"Peace", 3},
+        //    {"PromiseCharm", 3},
+        //    {"BeastWep", 4},
+        //    {"JackWep", 4},
+        //    {"SimbaWep", 4},
+        //    {"AuronWep", 4},
+        //    {"MulanWep", 4},
+        //    {"SparrowWep", 4},
+        //    {"AladdinWep", 4},
+        //    {"TronWep", 4},
+        //    {"MembershipCard", 4},
+        //    {"Picture", 4},
+        //    {"IceCream", 4},
+        //    {"Ghost_Report1", 5},
+        //    {"Ghost_Report2", 5},
+        //    {"Ghost_Report3", 5},
+        //    {"Ghost_Report4", 5},
+        //    {"Ghost_Report5", 5},
+        //    {"Ghost_Report6", 5},
+        //    {"Ghost_Report7", 5},
+        //    {"Ghost_Report8", 5},
+        //    {"Ghost_Report9", 5},
+        //    {"Ghost_Report10", 5},
+        //    {"Ghost_Report11", 5},
+        //    {"Ghost_Report12", 5},
+        //    {"Ghost_Report13", 5},
+        //    {"Ghost_Fire1", 6},
+        //    {"Ghost_Fire2", 6},
+        //    {"Ghost_Fire3", 6},
+        //    {"Ghost_Blizzard1", 6},
+        //    {"Ghost_Blizzard2", 6},
+        //    {"Ghost_Blizzard3", 6},
+        //    {"Ghost_Thunder1", 6},
+        //    {"Ghost_Thunder2", 6},
+        //    {"Ghost_Thunder3", 6},
+        //    {"Ghost_Cure1", 6},
+        //    {"Ghost_Cure2", 6},
+        //    {"Ghost_Cure3", 6},
+        //    {"Ghost_HadesCup", 6},
+        //    {"Ghost_OlympusStone", 6},
+        //    {"Ghost_Reflect1", 7},
+        //    {"Ghost_Reflect2", 7},
+        //    {"Ghost_Reflect3", 7},
+        //    {"Ghost_Magnet1", 7},
+        //    {"Ghost_Magnet2", 7},
+        //    {"Ghost_Magnet3", 7},
+        //    {"Ghost_Valor", 7},
+        //    {"Ghost_Wisdom", 7},
+        //    {"Ghost_Limit", 7},
+        //    {"Ghost_Master", 7},
+        //    {"Ghost_Final", 7},
+        //    {"Ghost_Anti", 7},
+        //    {"Ghost_OnceMore", 7},
+        //    {"Ghost_SecondChance", 7},
+        //    {"Ghost_UnknownDisk", 8},
+        //    {"Ghost_TornPage1", 8},
+        //    {"Ghost_TornPage2", 8},
+        //    {"Ghost_TornPage3", 8},
+        //    {"Ghost_TornPage4", 8},
+        //    {"Ghost_TornPage5", 8},
+        //    {"Ghost_Baseball", 8},
+        //    {"Ghost_Lamp", 8},
+        //    {"Ghost_Ukulele", 8},
+        //    {"Ghost_Feather", 8},
+        //    {"Ghost_Connection", 8},
+        //    {"Ghost_Nonexistence", 8},
+        //    {"Ghost_Peace", 8},
+        //    {"Ghost_PromiseCharm", 8},
+        //    {"Ghost_BeastWep", 9},
+        //    {"Ghost_JackWep", 9},
+        //    {"Ghost_SimbaWep", 9},
+        //    {"Ghost_AuronWep", 9},
+        //    {"Ghost_MulanWep", 9},
+        //    {"Ghost_SparrowWep", 9},
+        //    {"Ghost_AladdinWep", 9},
+        //    {"Ghost_TronWep", 9},
+        //    {"Ghost_MembershipCard", 9},
+        //    {"Ghost_Picture", 9},
+        //    {"Ghost_IceCream", 9}
+        //};
     }
 }

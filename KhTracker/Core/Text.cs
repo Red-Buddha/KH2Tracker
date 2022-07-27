@@ -190,6 +190,8 @@ namespace KhTracker
         {
             EnsureGeometry();
 
+            //Fill = ColorOverride(Fill);
+
             drawingContext.DrawGeometry(null, _Pen, _TextGeometry);
             drawingContext.DrawGeometry(Fill, null, _TextGeometry);
         }
@@ -294,5 +296,20 @@ namespace KhTracker
             EnsureFormattedText();
             _TextGeometry = _FormattedText.BuildGeometry(new Point(0, 0));
         }
+
+        //private Brush ColorOverride(Brush orig)
+        //{
+        //    if (this.Name != "HintText")
+        //        return orig;
+        //
+        //    //Brush Color = Brushes.Azure;
+        //
+        //    if (Text == "test")
+        //    {
+        //        return Brushes.Azure;
+        //    }
+        //
+        //    return Brushes.Azure;
+        //}
     }
 }

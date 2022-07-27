@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using System.Linq;
 using System.IO;
 using Microsoft.Win32;
@@ -24,17 +25,9 @@ namespace KhTracker
         public static Data data;
         private BroadcastWindow broadcast;
         public int collected;
-        private int total = 66;
+        private int total;
         public static int PointTotal = 0;
         public int DeathCounter = 0;
-        public static bool SeedHashLoaded = false;
-        public static bool SeedHashVisible = false;
-        public static bool SpoilerWorldCompletion = false;
-        public static bool SpoilerReportMode = false;
-
-        //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
-        //this is here as a toggle to only reset the hash when i want it to
-        public static bool ShouldResetHash = true;
 
         public MainWindow()
         {
@@ -107,58 +100,64 @@ namespace KhTracker
             data.VisitLocks.Add(IceCream);
             data.VisitLocks.Add(Picture);
 
-            data.WorldsData.Add("SorasHeart", new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, SorasHeartBar, false, 0));
-            data.WorldsData.Add("DriveForms", new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, DriveFormsBar, false, 0));
-            data.WorldsData.Add("SimulatedTwilightTown", new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, SimulatedTwilightTownBar, false, 0));
-            data.WorldsData.Add("TwilightTown", new WorldData(TwilightTownTop, TwilightTown, TwilightTownProgression, TwilightTownHint, TwilightTownGrid, TwilightTownBar, false, 0));
-            data.WorldsData.Add("HollowBastion", new WorldData(HollowBastionTop, HollowBastion, HollowBastionProgression, HollowBastionHint, HollowBastionGrid, HollowBastionBar, false, 0));
-            data.WorldsData.Add("BeastsCastle", new WorldData(BeastsCastleTop, BeastsCastle, BeastsCastleProgression, BeastsCastleHint, BeastsCastleGrid, BeastsCastleBar, false, 0));
-            data.WorldsData.Add("OlympusColiseum", new WorldData(OlympusColiseumTop, OlympusColiseum, OlympusColiseumProgression, OlympusColiseumHint, OlympusColiseumGrid, OlympusBar, false, 0));
-            data.WorldsData.Add("Agrabah", new WorldData(AgrabahTop, Agrabah, AgrabahProgression, AgrabahHint, AgrabahGrid, AgrabahBar, false, 0));
-            data.WorldsData.Add("LandofDragons", new WorldData(LandofDragonsTop, LandofDragons, LandofDragonsProgression, LandofDragonsHint, LandofDragonsGrid, LandofDragonsBar, false, 0));
-            data.WorldsData.Add("HundredAcreWood", new WorldData(HundredAcreWoodTop, HundredAcreWood, HundredAcreWoodProgression, HundredAcreWoodHint, HundredAcreWoodGrid, HundredAcreWoodBar, false, 0));
-            data.WorldsData.Add("PrideLands", new WorldData(PrideLandsTop, PrideLands, PrideLandsProgression, PrideLandsHint, PrideLandsGrid, PrideLandsBar, false, 0));
-            data.WorldsData.Add("DisneyCastle", new WorldData(DisneyCastleTop, DisneyCastle, DisneyCastleProgression, DisneyCastleHint, DisneyCastleGrid, DisneyCastleBar, false, 0));
-            data.WorldsData.Add("HalloweenTown", new WorldData(HalloweenTownTop, HalloweenTown, HalloweenTownProgression, HalloweenTownHint, HalloweenTownGrid, HalloweenTownBar, false, 0));
-            data.WorldsData.Add("PortRoyal", new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, PortRoyalBar, false, 0));
-            data.WorldsData.Add("SpaceParanoids", new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, SpaceParanoidsBar, false, 0));
-            data.WorldsData.Add("TWTNW", new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, TWTNWBar, false, 0));
-            data.WorldsData.Add("GoA", new WorldData(GoATop, GoA, null, null, GoAGrid, GoABar, true, 0));
-            data.WorldsData.Add("Atlantica", new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, AtlanticaBar, false, 0));
-            data.WorldsData.Add("PuzzSynth", new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, PuzzSynthBar, false, 0));
+            data.WorldsData.Add("SorasHeart",               new WorldData(SorasHeartTop, SorasHeart, null, SorasHeartHint, SorasHeartGrid, false, 0));
+            data.WorldsData.Add("DriveForms",               new WorldData(DriveFormsTop, DriveForms, null, DriveFormsHint, DriveFormsGrid, false, 0));
+            data.WorldsData.Add("SimulatedTwilightTown",    new WorldData(SimulatedTwilightTownTop, SimulatedTwilightTown, SimulatedTwilightTownProgression, SimulatedTwilightTownHint, SimulatedTwilightTownGrid, false, 0));
+            data.WorldsData.Add("TwilightTown",             new WorldData(TwilightTownTop, TwilightTown, TwilightTownProgression, TwilightTownHint, TwilightTownGrid, false, 0));
+            data.WorldsData.Add("HollowBastion",            new WorldData(HollowBastionTop, HollowBastion, HollowBastionProgression, HollowBastionHint, HollowBastionGrid, false, 0));
+            data.WorldsData.Add("BeastsCastle",             new WorldData(BeastsCastleTop, BeastsCastle, BeastsCastleProgression, BeastsCastleHint, BeastsCastleGrid, false, 0));
+            data.WorldsData.Add("OlympusColiseum",          new WorldData(OlympusColiseumTop, OlympusColiseum, OlympusColiseumProgression, OlympusColiseumHint, OlympusColiseumGrid, false, 0));
+            data.WorldsData.Add("Agrabah",                  new WorldData(AgrabahTop, Agrabah, AgrabahProgression, AgrabahHint, AgrabahGrid, false, 0));
+            data.WorldsData.Add("LandofDragons",            new WorldData(LandofDragonsTop, LandofDragons, LandofDragonsProgression, LandofDragonsHint, LandofDragonsGrid, false, 0));
+            data.WorldsData.Add("HundredAcreWood",          new WorldData(HundredAcreWoodTop, HundredAcreWood, HundredAcreWoodProgression, HundredAcreWoodHint, HundredAcreWoodGrid, false, 0));
+            data.WorldsData.Add("PrideLands",               new WorldData(PrideLandsTop, PrideLands, PrideLandsProgression, PrideLandsHint, PrideLandsGrid, false, 0));
+            data.WorldsData.Add("DisneyCastle",             new WorldData(DisneyCastleTop, DisneyCastle, DisneyCastleProgression, DisneyCastleHint, DisneyCastleGrid, false, 0));
+            data.WorldsData.Add("HalloweenTown",            new WorldData(HalloweenTownTop, HalloweenTown, HalloweenTownProgression, HalloweenTownHint, HalloweenTownGrid, false, 0));
+            data.WorldsData.Add("PortRoyal",                new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, false, 0));
+            data.WorldsData.Add("SpaceParanoids",           new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, false, 0));
+            data.WorldsData.Add("TWTNW",                    new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, false, 0));
+            data.WorldsData.Add("GoA",                      new WorldData(GoATop, GoA, null, null, GoAGrid, true, 0));
+            data.WorldsData.Add("Atlantica",                new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, false, 0));
+            data.WorldsData.Add("PuzzSynth",                new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, false, 0));
 
-            data.ProgressKeys.Add("SimulatedTwilightTown", new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
-            data.ProgressKeys.Add("TwilightTown", new List<string>() { "", "TTChests", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
-            data.ProgressKeys.Add("HollowBastion", new List<string>() { "", "HBChests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx" });
-            data.ProgressKeys.Add("BeastsCastle", new List<string>() { "", "BCChests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
-            data.ProgressKeys.Add("OlympusColiseum", new List<string>() { "", "OCChests", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
-            data.ProgressKeys.Add("Agrabah", new List<string>() { "", "AGChests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
-            data.ProgressKeys.Add("LandofDragons", new List<string>() { "", "LoDChests", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
-            data.ProgressKeys.Add("HundredAcreWood", new List<string>() { "", "Pooh", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
-            data.ProgressKeys.Add("PrideLands", new List<string>() { "", "PLChests", "Simba", "Scar", "GroundShaker", "DataSaix" });
-            data.ProgressKeys.Add("DisneyCastle", new List<string>() { "", "DCChests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill" });
-            data.ProgressKeys.Add("HalloweenTown", new List<string>() { "", "HTChests", "CandyCaneLane", "PrisonKeeper", "OogieBoogie", "Presents", "Experiment", "Vexen" });
-            data.ProgressKeys.Add("PortRoyal", new List<string>() { "", "PRChests", "Town", "Barbossa", "Gambler", "GrimReaper", "DataLuxord" });
-            data.ProgressKeys.Add("SpaceParanoids", new List<string>() { "", "SPChests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
-            data.ProgressKeys.Add("TWTNW", new List<string>() { "", "TWTNWChests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
-            data.ProgressKeys.Add("Atlantica", new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
+            data.ProgressKeys.Add("SimulatedTwilightTown",  new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
+            data.ProgressKeys.Add("TwilightTown",           new List<string>() { "", "TTChests", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
+            data.ProgressKeys.Add("HollowBastion",          new List<string>() { "", "HBChests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx" });
+            data.ProgressKeys.Add("BeastsCastle",           new List<string>() { "", "BCChests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
+            data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "OCChests", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
+            data.ProgressKeys.Add("Agrabah",                new List<string>() { "", "AGChests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
+            data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "LoDChests", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
+            data.ProgressKeys.Add("HundredAcreWood",        new List<string>() { "", "Pooh", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
+            data.ProgressKeys.Add("PrideLands",             new List<string>() { "", "PLChests", "Simba", "Scar", "GroundShaker", "DataSaix" });
+            data.ProgressKeys.Add("DisneyCastle",           new List<string>() { "", "DCChests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill" });
+            data.ProgressKeys.Add("HalloweenTown",          new List<string>() { "", "HTChests", "CandyCaneLane", "PrisonKeeper", "OogieBoogie", "Presents", "Experiment", "Vexen" });
+            data.ProgressKeys.Add("PortRoyal",              new List<string>() { "", "PRChests", "Town", "Barbossa", "Gambler", "GrimReaper", "DataLuxord" });
+            data.ProgressKeys.Add("SpaceParanoids",         new List<string>() { "", "SPChests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
+            data.ProgressKeys.Add("TWTNW",                  new List<string>() { "", "TWTNWChests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
+            data.ProgressKeys.Add("Atlantica",              new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
 
             foreach (Grid itemrow in ItemPool.Children)
             {
-                foreach (ContentControl item in itemrow.Children)
+                foreach (object item in itemrow.Children)
                 {
                     if (item is Item)
                     {
-                        if (!item.Name.StartsWith("Ghost_"))
-                            data.Items.Add(item as Item);
+                        Item check = item as Item;
+                        if (!check.Name.StartsWith("Ghost_"))
+                        {
+                            data.Items.Add(check, check.Parent as Grid);  //list of all valid items
+                            //data.ItemsGrid.Add(check.Parent as Grid);   //list of grids each item belongs to
+                            ++total;
+                        }
                         else
-                            Data.GhostItems.Add(item.Name, item as Item);
+                        {
+                            data.GhostItems.Add(check.Name, check);     //list of all valid ghost items (why is this a dictionary????)
+                        }
                     }
                 }
             }
 
             broadcast = new BroadcastWindow(data);
-
         }
 
         private void InitOptions()
@@ -402,59 +401,53 @@ namespace KhTracker
         /// 
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            //this chunk of garbage for using the correct vertical images
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage BarW = data.VerticalBarW;
-            BitmapImage BarY = data.VerticalBarY;
-            if (CustomMode)
-            {
-                if (CustomVBarWFound)
-                    BarW = data.CustomVerticalBarW;
-                if (CustomVBarYFound)
-                    BarY = data.CustomVerticalBarY;
-            }
-
-
             Button button = sender as Button;
 
-            if (e.ChangedButton == MouseButton.Left)
+            switch(e.ChangedButton)
             {
-                if (data.selected != null)
-                {
-                    data.WorldsData[data.selected.Name].selectedBar.Source = BarW;
-                }
-
-                data.selected = button;
-                data.WorldsData[button.Name].selectedBar.Source = BarY;
-            }
-            else if (e.ChangedButton == MouseButton.Middle)
-            {
-                if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null && data.mode == Mode.None)
-                {
-                    SetWorldNumber(data.WorldsData[button.Name].hint, -1, "Y");
-                }
-            }
-            else if (e.ChangedButton == MouseButton.Right)
-            {
-                if (data.WorldsData.ContainsKey(button.Name))
-                {
-                    string crossname = button.Name + "Cross";
-
-                    if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
+                case MouseButton.Left:
+                    if (data.selected != null)
                     {
-                        if (Cross.Visibility == Visibility.Collapsed)
-                            Cross.Visibility = Visibility.Visible;
-                        else
-                            Cross.Visibility = Visibility.Collapsed;
+                        foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
+                        {
+                            Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                        }
                     }
-                    if (broadcast.FindName(crossname) is Image CrossB)
+                    data.selected = button;
+                    foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>())
                     {
-                        if (CrossB.Visibility == Visibility.Collapsed)
-                            CrossB.Visibility = Visibility.Visible;
-                        else
-                            CrossB.Visibility = Visibility.Collapsed;
+                        Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
                     }
-                }
+                    break;
+                case MouseButton.Right:
+                    if (data.WorldsData.ContainsKey(button.Name))
+                    {
+                        string crossname = button.Name + "Cross";
+
+                        if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
+                        {
+                            if (Cross.Visibility == Visibility.Collapsed)
+                                Cross.Visibility = Visibility.Visible;
+                            else
+                                Cross.Visibility = Visibility.Collapsed;
+                        }
+                        if (broadcast.FindName(crossname) is Image CrossB)
+                        {
+                            if (CrossB.Visibility == Visibility.Collapsed)
+                                CrossB.Visibility = Visibility.Visible;
+                            else
+                                CrossB.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                    break;
+                case MouseButton.Middle:
+                    if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null && data.mode == Mode.None)
+                    {
+                        data.WorldsData[button.Name].value.Text = "?";
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -462,41 +455,26 @@ namespace KhTracker
         {
             Button button = sender as Button;
 
-            if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].hint != null)
+            if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null)
             {
-                HandleReportValue(data.WorldsData[button.Name].hint, e.Delta);
+                ManualWorldValue(data.WorldsData[button.Name].value, e.Delta);
             }
         }
-
-        //for changing an icon's appearance on right click. i need to revisit this soon
-        //private void OnMouseRightClick(object sender, MouseWheelEventArgs e)
-        //{
-        //    Button button = sender as Button;
-        //    //BitmapImage Normal = 
-        //    string test = SecondChance.ContentStringFormat;
-        //    Console.WriteLine(test);
-        //    //SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
-        //
-        //    //if (e.ChangedButton == MouseButton.Right)
-        //    //{
-        //    //    HandleReportValue(data.WorldsData[button.Name].hint, e.Delta);
-        //    //}
-        //}
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.PageDown && data.selected != null)
             {
-                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].hint != null)
+                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].value != null)
                 {
-                    HandleReportValue(data.WorldsData[data.selected.Name].hint, -1);
+                    SetWorldValue(data.WorldsData[data.selected.Name].value, -1);
                 }
             }
             if (e.Key == Key.PageUp && data.selected != null)
             {
-                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].hint != null)
+                if (data.WorldsData.ContainsKey(data.selected.Name) && data.WorldsData[data.selected.Name].value != null)
                 {
-                    HandleReportValue(data.WorldsData[data.selected.Name].hint, 1);
+                    SetWorldValue(data.WorldsData[data.selected.Name].value, 1);
                 }
             }
         }
@@ -521,190 +499,6 @@ namespace KhTracker
             Properties.Settings.Default.Height = RestoreBounds.Height;
         }
 
-        /// 
-        /// Handle UI Changes
-        /// 
-
-        //Used for when no hints are loaded. use the scroll wheel to change world number.
-        private void HandleReportValue(OutlinedTextBlock Hint, int delta)
-        {
-            //return if the a hint mode is loaded
-            if (data.mode != Mode.None)
-                return;
-
-            int num = 0;
-
-            if (Hint.Text == "?")
-                num = -1;
-            else
-                num = int.Parse(Hint.Text);
-
-            if (delta > 0)
-                ++num;
-            else
-                --num;
-
-            if (num < 0)
-            {
-                num = -1;
-                Hint.Text = "?";
-            }
-            else
-            {
-                Hint.Text = num.ToString();
-            }
-
-            //broadcast.SetFoundNumber(Hint, null);
-        }
-
-        //private void HandleReportValue(Grid Hint, int delta)
-        //{
-        //    //return if the a hint mode is loaded
-        //    if (data.mode != Mode.None)
-        //        return;
-        //
-        //    int num = GetWorldNumber(Hint);
-        //
-        //    if (delta > 0)
-        //        ++num;
-        //    else
-        //        --num;
-        //
-        //    // cap hint value to 51
-        //    if (num > 999)
-        //        num = 999;
-        //
-        //    SetWorldNumber(Hint, num, "Y");
-        //    broadcast.SetFoundNumber(Hint, null);
-        //}
-
-        public void SetReportValue(OutlinedTextBlock Hint, int value)
-        {
-            if (Hint == null)
-                return;
-
-            string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
-            string Color = "Y"; //default
-
-            if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
-                Color = "G";
-
-            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
-                Color = "B";
-
-            SetWorldNumber(Hint, value, Color);
-
-            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
-        }
-
-        //public void SetReportValue(Grid Hint, int value)
-        //{
-        //    if (data.mode == Mode.DAHints && Hint == null)
-        //        return;
-        //
-        //    string location = Hint.Name.Substring(0, Hint.Name.Length - 4);
-        //    string Color = "Y"; //default
-        //
-        //    if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
-        //        Color = "G";
-        //
-        //    if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
-        //        Color = "B";
-        //
-        //    SetWorldNumber(Hint, value, Color);
-        //
-        //    broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
-        //}
-
-        public void IncrementCollected()
-        {
-            ++collected;
-            //i don't want to update this code every time a new IC is added.
-            //just setting it to the max of 99 for now. if it breaks i know where to look
-            if (collected > 99)
-                collected = 99;
-
-            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
-            if (collected < 10)
-                CollectedNum[1] = null;
-
-            Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = CollectedNum[1];
-            broadcast.Collected_01.Source = CollectedNum[0];
-            broadcast.Collected_10.Source = CollectedNum[1];
-        }
-
-        public void DecrementCollected()
-        {
-            --collected;
-            if (collected < 0)
-                collected = 0;
-
-            List<BitmapImage> CollectedNum = UpdateNumber(collected, "Y");
-            if (collected < 10)
-                CollectedNum[1] = null;
-
-            Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = CollectedNum[1];
-            broadcast.Collected_01.Source = CollectedNum[0];
-            broadcast.Collected_10.Source = CollectedNum[1];
-        }
-
-        public void IncrementTotal()
-        {
-            ++total;
-            if (total > 99)
-                total = 99;
-
-            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
-
-            //CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            CheckTotal_01.Source = TotalNum[0];
-            CheckTotal_10.Source = TotalNum[1];
-            //broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            broadcast.CheckTotal_01.Source = TotalNum[0];
-            broadcast.CheckTotal_10.Source = TotalNum[1];
-        }
-
-        public void DecrementTotal()
-        {
-            --total;
-            if (total < 0)
-                total = 0;
-
-            List<BitmapImage> TotalNum = UpdateNumber(total, "Y");
-            //CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            CheckTotal_01.Source = TotalNum[0];
-            CheckTotal_10.Source = TotalNum[1];
-            //broadcast.CheckTotal.Source = GetDataNumber("Y")[total + 1];
-            broadcast.CheckTotal_01.Source = TotalNum[0];
-            broadcast.CheckTotal_10.Source = TotalNum[1];
-        }
-
-        public void SetHintText(string text)
-        {
-            if (SeedHashLoaded)
-            {
-                HashRow.Height = new GridLength(0, GridUnitType.Star);
-                SeedHashVisible = false;
-            }
-
-            HintText.Text = text;
-            HintText.Fill = Brushes.White;
-        }
-
-        public void SetJokeText(string text)
-        {
-            if (SeedHashLoaded)
-            {
-                HashRow.Height = new GridLength(0, GridUnitType.Star);
-                SeedHashVisible = false;
-            }
-
-            HintText.Text = text;
-            HintText.Fill = Brushes.LightBlue;
-        }
-
         private void ResetSize(object sender, RoutedEventArgs e)
         {
             Width = 570;
@@ -714,247 +508,133 @@ namespace KhTracker
             broadcast.Height = 680;
         }
 
-        public List<BitmapImage> UpdateNumber(int num, string color)
-        {
-            //we need to get all 3 sources from the grid
-            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            List<BitmapImage> NormalNum = data.SingleNumbers;
-            List<BitmapImage> BlueNum = data.BlueSingleNumbers;
-            List<BitmapImage> GreenNum = data.GreenSingleNumbers;
-            List<BitmapImage> NumColor;
-            List<BitmapImage> Numberlist = new List<BitmapImage>();
-        
-            //Get correct number visuals
-            {
-                if (OldMode)
-                {
-                    NormalNum = data.OldSingleNumbers;
-                    BlueNum = data.OldBlueSingleNumbers;
-                    GreenNum = data.OldGreenSingleNumbers;
-                }
-        
-                if (CustomMode)
-                {
-                    if (CustomNumbersFound)
-                    {
-                        NormalNum = data.CustomSingleNumbers;
-                    }
-                    if (CustomBlueNumbersFound)
-                    {
-                        BlueNum = data.CustomBlueSingleNumbers;
-                    }
-                    if (CustomGreenNumbersFound)
-                    {
-                        GreenNum = data.CustomGreenSingleNumbers;
-                    }
-                }
-            }
-            //Get color
-            switch (color)
-            {
-                case "Y":
-                    NumColor = NormalNum;
-                    break;
-                case "B":
-                    NumColor = BlueNum;
-                    break;
-                case "G":
-                    NumColor = GreenNum;
-                    break;
-                default:
-                    NumColor = NormalNum;
-                    break;
-            }
-        
-            //if int is below 0 then we use the question mark and return
-            if (num < 0)
-            {
-                Numberlist.Add(NumColor[10]);
-                Numberlist.Add(NumColor[10]);
-                Numberlist.Add(NumColor[10]);
-        
-                return Numberlist;
-            }
-        
-            //split number into separate digits
-            List<int> listOfInts = new List<int>();
-            while (num > 0)
-            {
-                listOfInts.Add(num % 10);
-                num /= 10;
-            }
-        
-            //Set number images depending on number of digits
-            if (listOfInts.Count == 3)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-                FinalNum[2] = listOfInts[2];
-            }
-            else if (listOfInts.Count == 2)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-            }
-            else if (listOfInts.Count == 1)
-            {
-                FinalNum[0] = listOfInts[0];
-            }
-        
-            Numberlist.Add(NumColor[FinalNum[0]]);
-            Numberlist.Add(NumColor[FinalNum[1]]);
-            Numberlist.Add(NumColor[FinalNum[2]]);
-        
-            return Numberlist;
-        }
+        /// 
+        /// Handle UI Changes
+        /// 
 
-        public void SetWorldNumber(OutlinedTextBlock hintbox, int worldnum, string color)
+        //Used for when no hints are loaded. use the scroll wheel to change world number.
+        private void ManualWorldValue(OutlinedTextBlock Hint, int delta)
         {
-            if (hintbox == null)
+            //return if the a hint mode is loaded
+            if (data.mode != Mode.None)
                 return;
 
-            string colorfill = "#FFFFFFFF";
-            switch(color)
+            int num;
+
+            //get current number
+            if (Hint.Text == "?")
             {
-                case "Y":
-                    colorfill = "#FFffE500";
-                    break;
-                case "G":
-                    colorfill = "#FF00A710";
-                    break;
-                case "B":
-                    colorfill = "#FF3384FF";
-                    break;
-                default:
-                    colorfill = color;
-                    break;
-            }
-
-            hintbox.Text = worldnum.ToString();
-            hintbox.Fill = (Brush)new BrushConverter().ConvertFrom(colorfill);
-        }
-
-        public void SetWorldNumber(Grid hintgrid, int worldnum, string color)
-        {
-            string worldname = hintgrid.Name;
-            List<BitmapImage> WorldNumImage = UpdateNumber(worldnum, color);
-            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
-            bool number10s = false;
-            bool number100s = false;
-        
-            if (worldnum > 99)
-                number100s = true;
-            if (worldnum > 9)
-                number10s = true;
-        
-            for (int i = 0; i < ChildCount; i++)
-            {
-                Image child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
-        
-                if (child == null)
-                    continue;
-        
-                if (child is Image && child.Name.Equals(worldname + "_001"))
-                {
-                    child.Source = WorldNumImage[0];
-                    continue;
-                }
-                if (child is Image && child.Name.Equals(worldname + "_010"))
-                {
-                    child.Source = WorldNumImage[1];
-        
-                    string name = WorldNumImage[1].ToString();
-                    if (!name.Contains("Question_Mark") && number10s)
-                        child.Visibility = Visibility.Visible;
-                    else if (!number10s)
-                        child.Visibility = Visibility.Hidden;
-        
-                    continue;
-                }
-                if (child is Image && child.Name.Equals(worldname + "_100"))
-                {
-                    child.Source = WorldNumImage[2];
-        
-                    string name = WorldNumImage[2].ToString();
-                    if (!name.Contains("Question_Mark") && number100s)
-                        child.Visibility = Visibility.Visible;
-                    else if (!number100s)
-                        child.Visibility = Visibility.Hidden;
-        
-                    continue;
-                }
-            }
-        }
-
-        public int GetWorldNumber(Grid hintgrid)
-        {
-            int Num100 = 0;
-            int Num010 = 0;
-            int Num001 = 0;
-            string worldname = hintgrid.Name;
-
-            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
-
-            for (int i = 0; i < ChildCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
-
-                if (child == null)
-                    continue;
-
-                if (child is Image && child.Name.Equals(worldname + "_001"))
-                {
-                    Num001 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-
-                if (child is Image && child.Name.Equals(worldname + "_010"))
-                {
-                    Num010 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-
-                if (child is Image && child.Name.Equals(worldname + "_100"))
-                {
-                    Num100 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-            }
-
-            int Finalnum;
-
-            //check for question marks
-            if (Num001 == 10 && Num010 == 10 && Num100 == 10)
-            {
-                Finalnum = -1;
+                if (delta > 0) 
+                    num = -1; // if adding then start at -1 so next number is 0
+                else
+                    num = 0; //if subtracting start at 0 so next number is -1
             }
             else
-                Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+                num = int.Parse(Hint.Text);
 
-            return Finalnum;
+            if (delta > 0)
+                ++num;
+            else
+                --num;
+
+            Hint.Text = num.ToString();
+            //broadcast.SetFoundNumber(Hint, null);
         }
 
-        public int GetImageNumber(string ImagePath)
+        public void SetWorldValue(OutlinedTextBlock worldValue, int value)
         {
-            int number = 10;
+            if (worldValue == null)
+                return;
 
-            if (!ImagePath.EndsWith("QuestionMark.png") && ImagePath != null)
+            string location = worldValue.Name.Substring(0, worldValue.Name.Length - 4);
+            SolidColorBrush Color = (SolidColorBrush)FindResource("DefaultWhite"); //default
+
+            if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
+                Color = (SolidColorBrush)FindResource("GhostHint");
+
+            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
+                Color = (SolidColorBrush)FindResource("HintedHint");
+
+            if (value == -999999)
             {
-                string val = ImagePath;
-                val = val.Substring(val.LastIndexOf('/') + 1);
-                number = int.Parse(val.Substring(0, val.IndexOf('.')));
-
-                if (number > 9 || number < 0)
-                    number = 10;
+                worldValue.Text = "?";
             }
+            else
+                worldValue.Text = value.ToString();
 
-            return number;
+            worldValue.Fill = Color;
+
+            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
         }
+
+        public void SetCollected(bool add)
+        {
+            if (add)
+                ++collected;
+            else
+                --collected;
+
+            CollectedValue.Text = collected.ToString();
+            //broadcast.Collected_01.Source = CollectedNum[0];
+            //broadcast.Collected_10.Source = CollectedNum[1];
+        }
+
+        public void SetTotal(bool add)
+        {
+            if (add)
+                ++total;
+            else
+                --total;
+
+            TotalValue.Text = total.ToString();
+            //broadcast.CheckTotal_01.Source = TotalNum[0];
+            //broadcast.CheckTotal_10.Source = TotalNum[1];
+        }
+
+        public void SetHintText(string text)
+        {
+            if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
+            {
+                HashGrid.Visibility = Visibility.Collapsed;
+                data.SeedHashVisible = false;
+            }
+            HintText.Text = text;
+        }
+
+        ///i might not need this anymore if i am going to set colors everytime
+        //public void SetJokeText(string text)
+        //{
+        //    if (data.SeedHashLoaded)
+        //    {
+        //        HashRow.Height = new GridLength(0, GridUnitType.Star);
+        //        SeedHashVisible = false;
+        //    }
+        //
+        //    HintText.Text = text;
+        //    HintText.Fill = Brushes.LightBlue;
+        //}
+
+        ///might need for magic numbers??
+        //public int GetImageNumber(string ImagePath)
+        //{
+        //    int number = 10;
+        //
+        //    if (!ImagePath.EndsWith("QuestionMark.png") && ImagePath != null)
+        //    {
+        //        string val = ImagePath;
+        //        val = val.Substring(val.LastIndexOf('/') + 1);
+        //        number = int.Parse(val.Substring(0, val.IndexOf('.')));
+        //
+        //        if (number > 9 || number < 0)
+        //            number = 10;
+        //    }
+        //
+        //    return number;
+        //}
 
         public void VisitLockCheck()
         {
+            //we use this to check the current lock state and set lock visuals as needed while doing so
             foreach (string World in data.WorldsData.Keys.ToList())
             {
                 //could probably be handled better. oh well
@@ -1120,79 +800,79 @@ namespace KhTracker
             {
                 if (worlditems.Children.Contains(ghost))
                 {
-                    points += data.PointsDatanew[GetGhostType[ghost.Name]];
+                    //points += data.PointsDatanew[GetGhostType[ghost.Name]];
                 }
             }
 
             return points;
         }
 
-        private Dictionary<string, string> GetGhostType = new Dictionary<string, string>()
-        {
-            {"Ghost_Report1", "report"},
-            {"Ghost_Report2", "report"},
-            {"Ghost_Report3", "report"},
-            {"Ghost_Report4", "report"},
-            {"Ghost_Report5", "report"},
-            {"Ghost_Report6", "report"},
-            {"Ghost_Report7", "report"},
-            {"Ghost_Report8", "report"},
-            {"Ghost_Report9", "report"},
-            {"Ghost_Report10", "report"},
-            {"Ghost_Report11", "report"},
-            {"Ghost_Report12", "report"},
-            {"Ghost_Report13", "report"},
-            {"Ghost_Fire1", "magic"},
-            {"Ghost_Fire2", "magic"},
-            {"Ghost_Fire3", "magic"},
-            {"Ghost_Blizzard1", "magic"},
-            {"Ghost_Blizzard2", "magic"},
-            {"Ghost_Blizzard3", "magic"},
-            {"Ghost_Thunder1", "magic"},
-            {"Ghost_Thunder2", "magic"},
-            {"Ghost_Thunder3", "magic"},
-            {"Ghost_Cure1", "magic"},
-            {"Ghost_Cure2", "magic"},
-            {"Ghost_Cure3", "magic"},
-            {"Ghost_Reflect1", "magic"},
-            {"Ghost_Reflect2", "magic"},
-            {"Ghost_Reflect3", "magic"},
-            {"Ghost_Magnet1", "magic"},
-            {"Ghost_Magnet2", "magic"},
-            {"Ghost_Magnet3", "magic"},
-            {"Ghost_Valor", "form"},
-            {"Ghost_Wisdom", "form"},
-            {"Ghost_Limit", "form"},
-            {"Ghost_Master", "form"},
-            {"Ghost_Final", "form"},
-            {"Ghost_OnceMore", "ability"},
-            {"Ghost_SecondChance", "ability"},
-            {"Ghost_TornPage1", "page"},
-            {"Ghost_TornPage2", "page"},
-            {"Ghost_TornPage3", "page"},
-            {"Ghost_TornPage4", "page"},
-            {"Ghost_TornPage5", "page"},
-            {"Ghost_Baseball", "summon"},
-            {"Ghost_Lamp", "summon"},
-            {"Ghost_Ukulele", "summon"},
-            {"Ghost_Feather", "summon"},
-            {"Ghost_Connection", "proof"},
-            {"Ghost_Nonexistence", "proof"},
-            {"Ghost_Peace", "proof"},
-            {"Ghost_PromiseCharm", "proof"},
-            {"Ghost_AuronWep", "visit"},
-            {"Ghost_MulanWep", "visit"},
-            {"Ghost_BeastWep", "visit"},
-            {"Ghost_JackWep", "visit"},
-            {"Ghost_SimbaWep", "visit"},
-            {"Ghost_SparrowWep", "visit"},
-            {"Ghost_AladdinWep", "visit"},
-            {"Ghost_TronWep", "visit"},
-            {"Ghost_MembershipCard", "visit"},
-            {"Ghost_IceCream", "visit"},
-            {"Ghost_Picture", "visit"}
-        };
+        ///put this elsewhere
+        //private Dictionary<string, string> GetGhostType = new Dictionary<string, string>()
+        //{
+        //    {"Ghost_Report1", "report"},
+        //    {"Ghost_Report2", "report"},
+        //    {"Ghost_Report3", "report"},
+        //    {"Ghost_Report4", "report"},
+        //    {"Ghost_Report5", "report"},
+        //    {"Ghost_Report6", "report"},
+        //    {"Ghost_Report7", "report"},
+        //    {"Ghost_Report8", "report"},
+        //    {"Ghost_Report9", "report"},
+        //    {"Ghost_Report10", "report"},
+        //    {"Ghost_Report11", "report"},
+        //    {"Ghost_Report12", "report"},
+        //    {"Ghost_Report13", "report"},
+        //    {"Ghost_Fire1", "magic"},
+        //    {"Ghost_Fire2", "magic"},
+        //    {"Ghost_Fire3", "magic"},
+        //    {"Ghost_Blizzard1", "magic"},
+        //    {"Ghost_Blizzard2", "magic"},
+        //    {"Ghost_Blizzard3", "magic"},
+        //    {"Ghost_Thunder1", "magic"},
+        //    {"Ghost_Thunder2", "magic"},
+        //    {"Ghost_Thunder3", "magic"},
+        //    {"Ghost_Cure1", "magic"},
+        //    {"Ghost_Cure2", "magic"},
+        //    {"Ghost_Cure3", "magic"},
+        //    {"Ghost_Reflect1", "magic"},
+        //    {"Ghost_Reflect2", "magic"},
+        //    {"Ghost_Reflect3", "magic"},
+        //    {"Ghost_Magnet1", "magic"},
+        //    {"Ghost_Magnet2", "magic"},
+        //    {"Ghost_Magnet3", "magic"},
+        //    {"Ghost_Valor", "form"},
+        //    {"Ghost_Wisdom", "form"},
+        //    {"Ghost_Limit", "form"},
+        //    {"Ghost_Master", "form"},
+        //    {"Ghost_Final", "form"},
+        //    {"Ghost_OnceMore", "ability"},
+        //    {"Ghost_SecondChance", "ability"},
+        //    {"Ghost_TornPage1", "page"},
+        //    {"Ghost_TornPage2", "page"},
+        //    {"Ghost_TornPage3", "page"},
+        //    {"Ghost_TornPage4", "page"},
+        //    {"Ghost_TornPage5", "page"},
+        //    {"Ghost_Baseball", "summon"},
+        //    {"Ghost_Lamp", "summon"},
+        //    {"Ghost_Ukulele", "summon"},
+        //    {"Ghost_Feather", "summon"},
+        //    {"Ghost_Connection", "proof"},
+        //    {"Ghost_Nonexistence", "proof"},
+        //    {"Ghost_Peace", "proof"},
+        //    {"Ghost_PromiseCharm", "proof"},
+        //    {"Ghost_AuronWep", "visit"},
+        //    {"Ghost_MulanWep", "visit"},
+        //    {"Ghost_BeastWep", "visit"},
+        //    {"Ghost_JackWep", "visit"},
+        //    {"Ghost_SimbaWep", "visit"},
+        //    {"Ghost_SparrowWep", "visit"},
+        //    {"Ghost_AladdinWep", "visit"},
+        //    {"Ghost_TronWep", "visit"},
+        //    {"Ghost_MembershipCard", "visit"},
+        //    {"Ghost_IceCream", "visit"},
+        //    {"Ghost_Picture", "visit"}
+        //};
 
     }
-
 }

@@ -189,94 +189,94 @@ namespace KhTracker
 
         public void UpdateNumbers()
         {
-            //Get correct bar images
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage NumberBartotals = data.SlashBarY;
-            //BitmapImage NumberBarG = data.SlashBarG;
-            //BitmapImage NumberBarB = data.SlashBarB;
-            BitmapImage NumberBarY = data.SlashBarY;
-            if (CustomMode)
-            {
-                //if (MainWindow.CustomBarGFound)
-                //    NumberBarB = data.CustomSlashBarG;
-                //if (MainWindow.CustomBarBFound)
-                //    NumberBarB = data.CustomSlashBarB;
-                if (MainWindow.CustomBarYFound)
-                    NumberBarY = data.CustomSlashBarY;
-            }
-            //Fix Broadcast window report and torn page numbers
-            ReportFoundBar.Source = NumberBarY;
-            TornPageBar.Source = NumberBarY;
-            CollectedBar.Source = NumberBarY;
-            ReportTotal_10.Source = UpdateNumber(1, "Y")[0];
-            ReportTotal_01.Source = UpdateNumber(3, "Y")[0];
-            TornPageTotal.Source = UpdateNumber(5, "S")[0];
-
-            foreach (KeyValuePair<string, int> world in worlds)
-            {
-                //update numbers
-                if (world.Key != "GoA")
-                {
-                    Grid broadcasthintgrid = this.FindName(world.Key + "Hint") as Grid;
-                    //SetFoundNumber(data.WorldsData[world.Key].hint, broadcasthintgrid);
-                }
-            }
-
-            foreach (KeyValuePair<string, int> other in others)
-            {
-                //single digit counts
-                if (other.Key != "Report")
-                {
-                    Image otherImage = this.FindName(other.Key + "Found") as Image;
-
-                    if (other.Value == 0 && other.Key != "TornPage")
-                    {
-                        otherImage.Source = null;
-                    }
-                    else
-                        otherImage.Source = UpdateNumber(other.Value, "Y")[0];
-                }
-                else
-                {
-                    Image otherImage01 = this.FindName(other.Key + "Found_01") as Image;
-                    Image otherImage10 = this.FindName(other.Key + "Found_10") as Image;
-                    otherImage01.Source = UpdateNumber(other.Value, "Y")[0];
-                    
-                    if (other.Value < 10)
-                        otherImage10.Source = null; //hide 10s place number
-                    else
-                        otherImage10.Source = UpdateNumber(other.Value, "Y")[1];
-                }
-            }
-
-            foreach (KeyValuePair<string, int> total in totals)
-            {
-                //check current color
-                string mainColor = "Y"; //default
-                if (data.WorldsData[total.Key].containsGhost) mainColor = "G";
-                if (data.WorldsData[total.Key].hintedHint || data.WorldsData[total.Key].complete) mainColor = "B";
-
-                //update numbers
-                if (total.Key != "GoA")
-                {
-                    Grid broadcasthintgrid = this.FindName(total.Key + "Hint") as Grid;
-                    SetTotalNumber(broadcasthintgrid, mainColor, total.Value);
-                }
-            }
-
-            foreach (KeyValuePair<string, int> impCheck in important)
-            {
-                ContentControl imp = this.FindName(impCheck.Key) as ContentControl;
-                if (impCheck.Value > 0)
-                {
-                    imp.Opacity = 1;
-                }
-                else
-                {
-                    if (impCheck.Key != "Report" && impCheck.Key != "TornPage")
-                        imp.Opacity = 0.45;
-                }
-            }
+        //    //Get correct bar images
+        //    bool CustomMode = Properties.Settings.Default.CustomIcons;
+        //    BitmapImage NumberBartotals = data.SlashBarY;
+        //    //BitmapImage NumberBarG = data.SlashBarG;
+        //    //BitmapImage NumberBarB = data.SlashBarB;
+        //    BitmapImage NumberBarY = data.SlashBarY;
+        //    if (CustomMode)
+        //    {
+        //        //if (MainWindow.CustomBarGFound)
+        //        //    NumberBarB = data.CustomSlashBarG;
+        //        //if (MainWindow.CustomBarBFound)
+        //        //    NumberBarB = data.CustomSlashBarB;
+        //        if (MainWindow.CustomBarYFound)
+        //            NumberBarY = data.CustomSlashBarY;
+        //    }
+        //    //Fix Broadcast window report and torn page numbers
+        //    ReportFoundBar.Source = NumberBarY;
+        //    TornPageBar.Source = NumberBarY;
+        //    CollectedBar.Source = NumberBarY;
+        //    ReportTotal_10.Source = UpdateNumber(1, "Y")[0];
+        //    ReportTotal_01.Source = UpdateNumber(3, "Y")[0];
+        //    TornPageTotal.Source = UpdateNumber(5, "S")[0];
+        //
+        //    foreach (KeyValuePair<string, int> world in worlds)
+        //    {
+        //        //update numbers
+        //        if (world.Key != "GoA")
+        //        {
+        //            Grid broadcasthintgrid = this.FindName(world.Key + "Hint") as Grid;
+        //            //SetFoundNumber(data.WorldsData[world.Key].hint, broadcasthintgrid);
+        //        }
+        //    }
+        //
+        //    foreach (KeyValuePair<string, int> other in others)
+        //    {
+        //        //single digit counts
+        //        if (other.Key != "Report")
+        //        {
+        //            Image otherImage = this.FindName(other.Key + "Found") as Image;
+        //
+        //            if (other.Value == 0 && other.Key != "TornPage")
+        //            {
+        //                otherImage.Source = null;
+        //            }
+        //            else
+        //                otherImage.Source = UpdateNumber(other.Value, "Y")[0];
+        //        }
+        //        else
+        //        {
+        //            Image otherImage01 = this.FindName(other.Key + "Found_01") as Image;
+        //            Image otherImage10 = this.FindName(other.Key + "Found_10") as Image;
+        //            otherImage01.Source = UpdateNumber(other.Value, "Y")[0];
+        //            
+        //            if (other.Value < 10)
+        //                otherImage10.Source = null; //hide 10s place number
+        //            else
+        //                otherImage10.Source = UpdateNumber(other.Value, "Y")[1];
+        //        }
+        //    }
+        //
+        //    foreach (KeyValuePair<string, int> total in totals)
+        //    {
+        //        //check current color
+        //        string mainColor = "Y"; //default
+        //        if (data.WorldsData[total.Key].containsGhost) mainColor = "G";
+        //        if (data.WorldsData[total.Key].hintedHint || data.WorldsData[total.Key].complete) mainColor = "B";
+        //
+        //        //update numbers
+        //        if (total.Key != "GoA")
+        //        {
+        //            Grid broadcasthintgrid = this.FindName(total.Key + "Hint") as Grid;
+        //            SetTotalNumber(broadcasthintgrid, mainColor, total.Value);
+        //        }
+        //    }
+        //
+        //    foreach (KeyValuePair<string, int> impCheck in important)
+        //    {
+        //        ContentControl imp = this.FindName(impCheck.Key) as ContentControl;
+        //        if (impCheck.Value > 0)
+        //        {
+        //            imp.Opacity = 1;
+        //        }
+        //        else
+        //        {
+        //            if (impCheck.Key != "Report" && impCheck.Key != "TornPage")
+        //                imp.Opacity = 0.45;
+        //        }
+        //    }
         }
 
         public void UpdateTotal(string world, int checks)
@@ -299,32 +299,32 @@ namespace KhTracker
         public void OnResetHints()
         {
             //Redone so that we can get the proper custom image (if it exists)
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            BitmapImage NumberBar = data.SlashBarY;
-
-            if (CustomMode && MainWindow.CustomBarYFound)
-            {
-                NumberBar = data.CustomSlashBarY;
-            }
-
-            SorasHeartBar.Source = NumberBar;
-            DriveFormsBar.Source = NumberBar;
-            HollowBastionBar.Source = NumberBar;
-            TwilightTownBar.Source = NumberBar;
-            LandofDragonsBar.Source = NumberBar;
-            BeastsCastleBar.Source = NumberBar;
-            OlympusColiseumBar.Source = NumberBar;
-            SpaceParanoidsBar.Source = NumberBar;
-            HalloweenTownBar.Source = NumberBar;
-            PortRoyalBar.Source = NumberBar;
-            AgrabahBar.Source = NumberBar;
-            PrideLandsBar.Source = NumberBar;
-            DisneyCastleBar.Source = NumberBar;
-            HundredAcreWoodBar.Source = NumberBar;
-            SimulatedTwilightTownBar.Source = NumberBar;
-            TWTNWBar.Source = NumberBar;
-            AtlanticaBar.Source = NumberBar;
-            PuzzSynthBar.Source = NumberBar;
+            //bool CustomMode = Properties.Settings.Default.CustomIcons;
+            //BitmapImage NumberBar = data.SlashBarY;
+            //
+            //if (CustomMode && MainWindow.CustomBarYFound)
+            //{
+            //    NumberBar = data.CustomSlashBarY;
+            //}
+            //
+            //SorasHeartBar.Source = NumberBar;
+            //DriveFormsBar.Source = NumberBar;
+            //HollowBastionBar.Source = NumberBar;
+            //TwilightTownBar.Source = NumberBar;
+            //LandofDragonsBar.Source = NumberBar;
+            //BeastsCastleBar.Source = NumberBar;
+            //OlympusColiseumBar.Source = NumberBar;
+            //SpaceParanoidsBar.Source = NumberBar;
+            //HalloweenTownBar.Source = NumberBar;
+            //PortRoyalBar.Source = NumberBar;
+            //AgrabahBar.Source = NumberBar;
+            //PrideLandsBar.Source = NumberBar;
+            //DisneyCastleBar.Source = NumberBar;
+            //HundredAcreWoodBar.Source = NumberBar;
+            //SimulatedTwilightTownBar.Source = NumberBar;
+            //TWTNWBar.Source = NumberBar;
+            //AtlanticaBar.Source = NumberBar;
+            //PuzzSynthBar.Source = NumberBar;
         }
 
         public void OnReset()
@@ -377,96 +377,96 @@ namespace KhTracker
         public List<BitmapImage> UpdateNumber(int num, string color)
         {
             //we need to get all 3 sources from the grid
-            int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
-            bool OldMode = Properties.Settings.Default.OldNum;
-            bool CustomMode = Properties.Settings.Default.CustomIcons;
-            List<BitmapImage> NormalNum = data.SingleNumbers;
-            List<BitmapImage> BlueNum = data.BlueSingleNumbers;
-            List<BitmapImage> GreenNum = data.GreenSingleNumbers;
-            List<BitmapImage> NumColor;
+            //int[] FinalNum = new int[] { 0, 0, 0 }; //Default 000
+            //bool OldMode = Properties.Settings.Default.OldNum;
+            //bool CustomMode = Properties.Settings.Default.CustomIcons;
+            //List<BitmapImage> NormalNum = data.SingleNumbers;
+            //List<BitmapImage> BlueNum = data.BlueSingleNumbers;
+            //List<BitmapImage> GreenNum = data.GreenSingleNumbers;
+            //List<BitmapImage> NumColor;
             List<BitmapImage> Numberlist = new List<BitmapImage>();
-
-            //Get correct number visuals
-            {
-                if (OldMode)
-                {
-                    NormalNum = data.OldSingleNumbers;
-                    BlueNum = data.OldBlueSingleNumbers;
-                    GreenNum = data.OldGreenSingleNumbers;
-                }
-
-                if (CustomMode)
-                {
-                    if (MainWindow.CustomNumbersFound)
-                    {
-                        NormalNum = data.CustomSingleNumbers;
-                    }
-                    if (MainWindow.CustomBlueNumbersFound)
-                    {
-                        BlueNum = data.CustomBlueSingleNumbers;
-                    }
-                    if (MainWindow.CustomGreenNumbersFound)
-                    {
-                        GreenNum = data.CustomGreenSingleNumbers;
-                    }
-                }
-            }
-            //Get color
-            switch (color)
-            {
-                case "Y":
-                    NumColor = NormalNum;
-                    break;
-                case "B":
-                    NumColor = BlueNum;
-                    break;
-                case "G":
-                    NumColor = GreenNum;
-                    break;
-                default:
-                    NumColor = NormalNum;
-                    break;
-            }
-
-            //if int is below 0 then we use the question mark and return
-            if (num < 0)
-            {
-                Numberlist.Add(NumColor[10]);
-                Numberlist.Add(NumColor[10]);
-                Numberlist.Add(NumColor[10]);
-
-                return Numberlist;
-            }
-
-            //split number into separate digits
-            List<int> listOfInts = new List<int>();
-            while (num > 0)
-            {
-                listOfInts.Add(num % 10);
-                num /= 10;
-            }
-
-            //Set number images depending on number of digits
-            if (listOfInts.Count == 3)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-                FinalNum[2] = listOfInts[2];
-            }
-            else if (listOfInts.Count == 2)
-            {
-                FinalNum[0] = listOfInts[0];
-                FinalNum[1] = listOfInts[1];
-            }
-            else if (listOfInts.Count == 1)
-            {
-                FinalNum[0] = listOfInts[0];
-            }
-
-            Numberlist.Add(NumColor[FinalNum[0]]);
-            Numberlist.Add(NumColor[FinalNum[1]]);
-            Numberlist.Add(NumColor[FinalNum[2]]);
-
+            //
+            ////Get correct number visuals
+            //{
+            //    if (OldMode)
+            //    {
+            //        NormalNum = data.OldSingleNumbers;
+            //        BlueNum = data.OldBlueSingleNumbers;
+            //        GreenNum = data.OldGreenSingleNumbers;
+            //    }
+            //
+            //    if (CustomMode)
+            //    {
+            //        if (MainWindow.CustomNumbersFound)
+            //        {
+            //            NormalNum = data.CustomSingleNumbers;
+            //        }
+            //        if (MainWindow.CustomBlueNumbersFound)
+            //        {
+            //            BlueNum = data.CustomBlueSingleNumbers;
+            //        }
+            //        if (MainWindow.CustomGreenNumbersFound)
+            //        {
+            //            GreenNum = data.CustomGreenSingleNumbers;
+            //        }
+            //    }
+            //}
+            ////Get color
+            //switch (color)
+            //{
+            //    case "Y":
+            //        NumColor = NormalNum;
+            //        break;
+            //    case "B":
+            //        NumColor = BlueNum;
+            //        break;
+            //    case "G":
+            //        NumColor = GreenNum;
+            //        break;
+            //    default:
+            //        NumColor = NormalNum;
+            //        break;
+            //}
+            //
+            ////if int is below 0 then we use the question mark and return
+            //if (num < 0)
+            //{
+            //    Numberlist.Add(NumColor[10]);
+            //    Numberlist.Add(NumColor[10]);
+            //    Numberlist.Add(NumColor[10]);
+            //
+            //    return Numberlist;
+            //}
+            //
+            ////split number into separate digits
+            //List<int> listOfInts = new List<int>();
+            //while (num > 0)
+            //{
+            //    listOfInts.Add(num % 10);
+            //    num /= 10;
+            //}
+            //
+            ////Set number images depending on number of digits
+            //if (listOfInts.Count == 3)
+            //{
+            //    FinalNum[0] = listOfInts[0];
+            //    FinalNum[1] = listOfInts[1];
+            //    FinalNum[2] = listOfInts[2];
+            //}
+            //else if (listOfInts.Count == 2)
+            //{
+            //    FinalNum[0] = listOfInts[0];
+            //    FinalNum[1] = listOfInts[1];
+            //}
+            //else if (listOfInts.Count == 1)
+            //{
+            //    FinalNum[0] = listOfInts[0];
+            //}
+            //
+            //Numberlist.Add(NumColor[FinalNum[0]]);
+            //Numberlist.Add(NumColor[FinalNum[1]]);
+            //Numberlist.Add(NumColor[FinalNum[2]]);
+            //
             return Numberlist;
         }
 

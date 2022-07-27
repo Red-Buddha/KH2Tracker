@@ -30,7 +30,8 @@ namespace KhTracker
         public event TotalHandler UpdateTotal;
         public event FoundHandler UpdateFound;
 
-        public MainWindow MainW = (MainWindow)App.Current.MainWindow;
+        MainWindow MainW = (MainWindow)App.Current.MainWindow;
+        Data data = MainWindow.data;
 
         public Item()
         {
@@ -99,39 +100,9 @@ namespace KhTracker
 
         public void Item_Click(object sender, RoutedEventArgs e)
         {
-            Data data = MainWindow.data;
-            MainWindow window = ((MainWindow)Application.Current.MainWindow);
-
-            if (data.selected != null)
+            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this, MainW, data))
             {
-                if (data.mode == Mode.DAHints)
-                {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PointReport(this, window, data))
-                    {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
-                    }
-                }
-                else if (data.mode == Mode.PathHints)
-                {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_PathReport(this, window, data))
-                    {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
-                    }
-                }
-                else if (data.mode == Mode.SpoilerHints)
-                {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_SpoilerReport(this, window, data))
-                    {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
-                    }
-                }
-                else
-                {
-                    if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
-                    {
-                        data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
-                    }
-                }
+                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, MainW);
             }
         }
 
@@ -142,16 +113,16 @@ namespace KhTracker
 
             if (data.mode == Mode.DAHints)
             {
-                if (shortenNames.ContainsKey(data.pointreportInformation[index].Item2))
+                if (shortenNames.ContainsKey(data.reportInformation[index].Item2))
                 {
-                    MainW.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + shortenNames[data.pointreportInformation[index].Item2]);
+                    MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + shortenNames[data.reportInformation[index].Item2]);
                 }
                 else
-                    MainW.SetHintText(Codes.GetHintTextName(data.pointreportInformation[index].Item1) + " has " + data.pointreportInformation[index].Item2);
+                    MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2);
             }
             else if (data.mode == Mode.PathHints)
             {
-                MainW.SetHintText(Codes.GetHintTextName(data.pathreportInformation[index].Item1));
+                MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             }
             else if (data.mode == Mode.SpoilerHints)
             {
@@ -161,7 +132,7 @@ namespace KhTracker
                 }
                 else
                 {
-                    if (data.reportInformation[index].Item2 == -1)
+                    if (data.reportInformation[index].Item3 == -1)
                     {
                         MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has no Important Checks");
                     }
@@ -171,9 +142,9 @@ namespace KhTracker
                     }
                 }
             }
-            else if(data.reportInformation[index].Item2 == -99)
+            else if(data.reportInformation[index].Item3 == -99)
             {
-                MainW.SetJokeText(data.reportInformation[index].Item1);
+                //MainW.SetJokeText(data.reportInformation[index].Item1);
             }
             else
             {
@@ -199,20 +170,23 @@ namespace KhTracker
         public void HandleItemReturn()
         {
             Data data = MainWindow.data;
-            Grid ItemRow = VisualTreeHelper.GetChild(MainW.ItemPool, GetItemPool[this.Name]) as Grid;
-
+            
             if (this.Name.StartsWith("Ghost_"))
             {
-                if (Parent != ItemRow)
+                Grid GhostRow = VisualTreeHelper.GetChild(MainW.ItemPool, 4) as Grid; //ghost grid always at this position
+                if (Parent != GhostRow)
                 {
                     WorldGrid parent = this.Parent as WorldGrid;
                     ((WorldGrid)Parent).Handle_WorldGrid(this, false);
 
-                    ItemRow.Children.Add(this);
+                    GhostRow.Children.Add(this);
                     parent.Children.Remove(this);
                 }
                 return;
             }
+
+            int index = data.Items.IndexOf(this);
+            Grid ItemRow = data.ItemsGrid[index];
 
             if (Parent != ItemRow)
             {
@@ -222,7 +196,7 @@ namespace KhTracker
 
                 ItemRow.Children.Add(this);
 
-                MainW.DecrementCollected();
+                MainW.SetCollected(false);
 
                 MouseDown -= Item_Return;
 
