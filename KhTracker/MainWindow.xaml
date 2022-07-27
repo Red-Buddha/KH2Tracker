@@ -145,7 +145,6 @@
                 <RowDefinition x:Name="CheckRow" Height="2.2*"/>
                 <!-- 0.4 -->
                 <RowDefinition x:Name="SettingRow" Height="0.4*"/>
-
                 <!-- Should never be visible. always 0-->
                 <RowDefinition x:Name="GhostRow" Height="0*"/>
             </Grid.RowDefinitions>
@@ -1669,7 +1668,6 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                     </Grid>
-
                     <!-- Score -->
                     <Grid Grid.Column="11" Name="ScoreGrid" Visibility="Visible">
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
