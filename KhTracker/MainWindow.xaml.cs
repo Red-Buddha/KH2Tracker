@@ -43,10 +43,10 @@ namespace KhTracker
             VisitLockCheck();
 
             //Init auto-detect
+            AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             if (AutoDetectOption.IsChecked)
             {
                 AutoDetectToggle(null, null);
-                //SetAutoDetectTimer();
             }
         }
 
@@ -145,7 +145,7 @@ namespace KhTracker
                         Item check = item as Item;
                         if (!check.Name.StartsWith("Ghost_"))
                         {
-                            data.Items.Add(check, check.Parent as Grid);  //list of all valid items
+                            data.Items.Add(check.Name, new Tuple<Item, Grid>(check, check.Parent as Grid));  //list of all valid items
                             //data.ItemsGrid.Add(check.Parent as Grid);   //list of grids each item belongs to
                             ++total;
                         }
@@ -162,63 +162,87 @@ namespace KhTracker
 
         private void InitOptions()
         {
-            //Item toggles
-            PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
-            PromiseCharmToggle(PromiseCharmOption.IsChecked);
+            #region Options
 
+            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
+            BroadcastStartupToggle(null, null);
+
+            TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
+            TopMostToggle(null, null);
+
+            DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
+            DragDropToggle(null, null);
+
+            #endregion
+
+            #region Toggles
+
+            //Items
             ReportsOption.IsChecked = Properties.Settings.Default.AnsemReports;
             ReportsToggle(ReportsOption.IsChecked);
 
-            VisitLockOption.IsChecked = Properties.Settings.Default.WorldVisitLock;
-            VisitLockToggle(VisitLockOption.IsChecked);
+            PromiseCharmOption.IsChecked = Properties.Settings.Default.PromiseCharm;
+            PromiseCharmToggle(PromiseCharmOption.IsChecked);
 
             AbilitiesOption.IsChecked = Properties.Settings.Default.Abilities;
             AbilitiesToggle(AbilitiesOption.IsChecked);
 
-            ExtraChecksOption.IsChecked = Properties.Settings.Default.ExtraChecks;
-            ExtraChecksToggle(ExtraChecksOption.IsChecked);
-
             AntiFormOption.IsChecked = Properties.Settings.Default.AntiForm;
             AntiFormToggle(AntiFormOption.IsChecked);
 
-            //TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
-            //TornPagesToggle(TornPagesOption.IsChecked);
-            //
-            //CureOption.IsChecked = Properties.Settings.Default.Cure;
-            //CureToggle(CureOption.IsChecked);
-            //
-            //FinalFormOption.IsChecked = Properties.Settings.Default.FinalForm;
-            //FinalFormToggle(FinalFormOption.IsChecked);
+            VisitLockOption.IsChecked = Properties.Settings.Default.WorldVisitLock;
+            VisitLockToggle(VisitLockOption.IsChecked);
 
-            //World Toggles
-            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
-            SoraHeartToggle(SoraHeartOption.IsChecked);
+            ExtraChecksOption.IsChecked = Properties.Settings.Default.ExtraChecks;
+            ExtraChecksToggle(ExtraChecksOption.IsChecked);
 
-            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
-            SimulatedToggle(SimulatedOption.IsChecked);
+            //Visual
+            SeedHashOption.IsChecked = Properties.Settings.Default.SeedHash;
+            SeedHashToggle(SeedHashOption.IsChecked);
 
-            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
-            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
+            WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
+            WorldProgressToggle(null, null);
 
-            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
-            AtlanticaToggle(AtlanticaOption.IsChecked);
+            FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
+            FormsGrowthToggle(null, null);
 
-            PuzzleOption.IsChecked = Properties.Settings.Default.Puzzle;
-            PuzzleToggle(PuzzleOption.IsChecked);
+            BroadcastGrowthOption.IsChecked = Properties.Settings.Default.BroadcastGrowth;
+            BroadcastGrowthToggle(null, null);
 
-            SynthOption.IsChecked = Properties.Settings.Default.Synth;
-            SynthToggle(SynthOption.IsChecked);
+            BroadcastStatsOption.IsChecked = Properties.Settings.Default.BroadcastStats;
+            BroadcastStatsToggle(null, null);
 
-            //CavernOption.IsChecked = Properties.Settings.Default.Cavern;
-            //CavernToggle(CavernOption.IsChecked);
-            //
-            //TerraOption.IsChecked = Properties.Settings.Default.Terra;
-            //TerraToggle(TerraOption.IsChecked);
-            //
-            //OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
-            //OCCupsToggle(OCCupsOption.IsChecked);
+            //points related
+            GhostItemOption.IsChecked = Properties.Settings.Default.GhostItem;
+            GhostItemToggle(GhostItemOption.IsChecked);
 
-            //Visial Toggles
+            GhostMathOption.IsChecked = Properties.Settings.Default.GhostMath;
+            GhostMathToggle(null, null);
+
+            CheckCountOption.IsChecked = Properties.Settings.Default.CheckCount;
+            ShowCheckCountToggle(CheckCountOption.IsChecked);
+
+            //Levelvisuals
+            NextLevelCheckOption.IsChecked = Properties.Settings.Default.NextLevelCheck;
+            NextLevelCheckToggle(NextLevelCheckOption.IsChecked);
+
+            DeathCounterOption.IsChecked = Properties.Settings.Default.DeathCounter;
+            DeathCounterToggle(DeathCounterOption.IsChecked);
+
+            SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
+            SoraLevel50Option.IsChecked = Properties.Settings.Default.WorldLevel50;
+            SoraLevel99Option.IsChecked = Properties.Settings.Default.WorldLevel99;
+            if (SoraLevel01Option.IsChecked)
+                SoraLevel01Toggle(null, null);
+            if (SoraLevel50Option.IsChecked)
+                SoraLevel50Toggle(null, null);          
+            if (SoraLevel99Option.IsChecked)
+                SoraLevel99Toggle(null, null);
+
+            #endregion
+
+            #region Visual
+
             MinWorldOption.IsChecked = Properties.Settings.Default.MinWorld;
             if (MinWorldOption.IsChecked)
                 MinWorldToggle(null, null);
@@ -243,157 +267,153 @@ namespace KhTracker
             if (OldProgOption.IsChecked)
                 OldProgToggle(null, null);
 
-            //MinNumOption.IsChecked = Properties.Settings.Default.MinNum;
-            //if (MinNumOption.IsChecked)
-            //    MinNumToggle(null, null);
-            //
-            //OldNumOption.IsChecked = Properties.Settings.Default.OldNum;
-            //if (OldNumOption.IsChecked)
-            //    OldNumToggle(null, null);
-
-            WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
-            WorldProgressToggle(null, null);
 
             CustomFolderOption.IsChecked = Properties.Settings.Default.CustomIcons;
             CustomImageToggle(null, null);
 
-            SeedHashOption.IsChecked = Properties.Settings.Default.SeedHash;
-            SeedHashToggle(null, null);
+            //testing background settings stuff (i thought this would be simplier than the above methods)
+            //maybe i was wrong. (at least everything is done by 2 settings instead of 8)
+            int MainBG = Properties.Settings.Default.MainBG;
+            if (MainBG == 1)
+            {
+                MainDefOption.IsChecked = false;
+                MainImg1Option.IsChecked = true;
+                MainImg2Option.IsChecked = false;
+                MainImg3Option.IsChecked = false;
+                MainBG_Img1Toggle(null, null);
+            }
+            else if (MainBG == 2)
+            {
+                MainDefOption.IsChecked = false;
+                MainImg1Option.IsChecked = false;
+                MainImg2Option.IsChecked = true;
+                MainImg3Option.IsChecked = false;
+                MainBG_Img2Toggle(null, null);
+            }
+            else if (MainBG == 3)
+            {
+                MainDefOption.IsChecked = false;
+                MainImg1Option.IsChecked = false;
+                MainImg2Option.IsChecked = false;
+                MainImg3Option.IsChecked = true;
+                MainBG_Img3Toggle(null, null);
+            }
+            else
+            {
+                MainDefOption.IsChecked = true;
+                MainImg1Option.IsChecked = false;
+                MainImg2Option.IsChecked = false;
+                MainImg3Option.IsChecked = false;
+                MainBG_DefToggle(null, null);
+            }
 
-            DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
-            DragDropToggle(null, null);
+            int BroadcastBG = Properties.Settings.Default.BroadcastBG;
+            if (BroadcastBG == 1)
+            {
+                BroadcastDefOption.IsChecked = false;
+                BroadcastImg1Option.IsChecked = true;
+                BroadcastImg2Option.IsChecked = false;
+                BroadcastImg3Option.IsChecked = false;
+                BroadcastBG_Img1Toggle(null, null);
+            }
+            else if (BroadcastBG == 2)
+            {
+                BroadcastDefOption.IsChecked = false;
+                BroadcastImg1Option.IsChecked = false;
+                BroadcastImg2Option.IsChecked = true;
+                BroadcastImg3Option.IsChecked = false;
+                BroadcastBG_Img2Toggle(null, null);
+            }
+            else if (BroadcastBG == 3)
+            {
+                BroadcastDefOption.IsChecked = false;
+                BroadcastImg1Option.IsChecked = false;
+                BroadcastImg2Option.IsChecked = false;
+                BroadcastImg3Option.IsChecked = true;
+                BroadcastBG_Img3Toggle(null, null);
+            }
+            else
+            {
+                BroadcastDefOption.IsChecked = true;
+                BroadcastImg1Option.IsChecked = false;
+                BroadcastImg2Option.IsChecked = false;
+                BroadcastImg3Option.IsChecked = false;
+                BroadcastBG_DefToggle(null, null);
+            }
 
-            TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
-            TopMostToggle(null, null);
+            #endregion
 
-            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
-            BroadcastStartupToggle(null, null);
+            #region Worlds
 
-            FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
-            FormsGrowthToggle(null, null);
+            SoraHeartOption.IsChecked = Properties.Settings.Default.SoraHeart;
+            SoraHeartToggle(SoraHeartOption.IsChecked);
 
-            BroadcastGrowthOption.IsChecked = Properties.Settings.Default.BroadcastGrowth;
-            BroadcastGrowthToggle(null, null);
+            DrivesOption.IsChecked = Properties.Settings.Default.Drives;
+            DrivesToggle(DrivesOption.IsChecked);
 
-            BroadcastStatsOption.IsChecked = Properties.Settings.Default.BroadcastStats;
-            BroadcastStatsToggle(null, null);
+            SimulatedOption.IsChecked = Properties.Settings.Default.Simulated;
+            SimulatedToggle(SimulatedOption.IsChecked);
 
-            GhostItemOption.IsChecked = Properties.Settings.Default.GhostItem;
-            GhostItemToggle(GhostItemOption.IsChecked);
+            TwilightTownOption.IsChecked = Properties.Settings.Default.TwilightTown;
+            TwilightTownToggle(TwilightTownOption.IsChecked);
 
-            GhostMathOption.IsChecked = Properties.Settings.Default.GhostMath;
-            GhostMathToggle(null, null);
+            HollowBastionOption.IsChecked = Properties.Settings.Default.HollowBastion;
+            HollowBastionToggle(HollowBastionOption.IsChecked);
 
-            AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
-            AutoDetectToggle(null, null);
+            BeastCastleOption.IsChecked = Properties.Settings.Default.BeastCastle;
+            BeastCastleToggle(BeastCastleOption.IsChecked);
 
-            CheckCountOption.IsChecked = Properties.Settings.Default.CheckCount;
-            if (CheckCountOption.IsChecked)
-                ShowCheckCountToggle(null, null);
+            OlympusOption.IsChecked = Properties.Settings.Default.Olympus;
+            OlympusToggle(OlympusOption.IsChecked);
 
-            NextLevelCheckOption.IsChecked = Properties.Settings.Default.NextLevelCheck;
-            if (NextLevelCheckOption.IsChecked)
-                NextLevelCheckToggle(null, null);
+            AgrabahOption.IsChecked = Properties.Settings.Default.Agrabah;
+            AgrabahToggle(AgrabahOption.IsChecked);
 
-            DeathCounterOption.IsChecked = Properties.Settings.Default.DeathCounter;
-            if (DeathCounterOption.IsChecked)
-                DeathCounterToggle(null, null);
+            LandofDragonsOption.IsChecked = Properties.Settings.Default.LandofDragons;
+            LandofDragonsToggle(LandofDragonsOption.IsChecked);
 
+            DisneyCastleOption.IsChecked = Properties.Settings.Default.DisneyCastle;
+            DisneyCastleToggle(DisneyCastleOption.IsChecked);
+
+            PrideLandsOption.IsChecked = Properties.Settings.Default.PrideLands;
+            PrideLandsToggle(PrideLandsOption.IsChecked);
+
+            PortRoyalOption.IsChecked = Properties.Settings.Default.PortRoyal;
+            PortRoyalToggle(PortRoyalOption.IsChecked);
+
+            HalloweenTownOption.IsChecked = Properties.Settings.Default.HalloweenTown;
+            HalloweenTownToggle(HalloweenTownOption.IsChecked);
+
+            SpaceParanoidsOption.IsChecked = Properties.Settings.Default.SpaceParanoids;
+            SpaceParanoidsToggle(SpaceParanoidsOption.IsChecked);
+
+            TWTNWOption.IsChecked = Properties.Settings.Default.TWTNW;
+            TWTNWToggle(TWTNWOption.IsChecked);
+
+            HundredAcreWoodOption.IsChecked = Properties.Settings.Default.HundredAcre;
+            HundredAcreWoodToggle(HundredAcreWoodOption.IsChecked);
+
+            AtlanticaOption.IsChecked = Properties.Settings.Default.Atlantica;
+            AtlanticaToggle(AtlanticaOption.IsChecked);
+
+            PuzzleOption.IsChecked = Properties.Settings.Default.Puzzle;
+            PuzzleToggle(PuzzleOption.IsChecked);
+
+            SynthOption.IsChecked = Properties.Settings.Default.Synth;
+            SynthToggle(SynthOption.IsChecked);
+
+            #endregion
+
+            ///TODO: repurpose for legacy layout mode later
             //LegacyOption.IsChecked = Properties.Settings.Default.Legacy;
             //if (LegacyOption.IsChecked)
             //    LegacyToggle(null, null);
-
-            SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
-            if (SoraLevel01Option.IsChecked)
-                SoraLevel01Toggle(null, null);
-
-            SoraLevel50Option.IsChecked = Properties.Settings.Default.WorldLevel50;
-            if (SoraLevel50Option.IsChecked)
-                SoraLevel50Toggle(null, null);
-
-            SoraLevel99Option.IsChecked = Properties.Settings.Default.WorldLevel99;
-            if (SoraLevel99Option.IsChecked)
-                SoraLevel99Toggle(null, null);
 
             Top = Properties.Settings.Default.WindowY;
             Left = Properties.Settings.Default.WindowX;
 
             Width = Properties.Settings.Default.Width;
             Height = Properties.Settings.Default.Height;
-
-
-            //testing background settings stuff (i thought this would be simplier than the above methods)
-            //maybe i was wrong. (at least everything is done by 2 settings instead of 8)
-            {
-                int MainBG = Properties.Settings.Default.MainBG;
-                if (MainBG == 1)
-                {
-                    MainDefOption.IsChecked = false;
-                    MainImg1Option.IsChecked = true;
-                    MainImg2Option.IsChecked = false;
-                    MainImg3Option.IsChecked = false;
-                    MainBG_Img1Toggle(null, null);
-                }
-                else if (MainBG == 2)
-                {
-                    MainDefOption.IsChecked = false;
-                    MainImg1Option.IsChecked = false;
-                    MainImg2Option.IsChecked = true;
-                    MainImg3Option.IsChecked = false;
-                    MainBG_Img2Toggle(null, null);
-                }
-                else if (MainBG == 3)
-                {
-                    MainDefOption.IsChecked = false;
-                    MainImg1Option.IsChecked = false;
-                    MainImg2Option.IsChecked = false;
-                    MainImg3Option.IsChecked = true;
-                    MainBG_Img3Toggle(null, null);
-                }
-                else
-                {
-                    MainDefOption.IsChecked = true;
-                    MainImg1Option.IsChecked = false;
-                    MainImg2Option.IsChecked = false;
-                    MainImg3Option.IsChecked = false;
-                    MainBG_DefToggle(null, null);
-                }
-            }
-            {
-                int BroadcastBG = Properties.Settings.Default.BroadcastBG;
-                if (BroadcastBG == 1)
-                {
-                    BroadcastDefOption.IsChecked = false;
-                    BroadcastImg1Option.IsChecked = true;
-                    BroadcastImg2Option.IsChecked = false;
-                    BroadcastImg3Option.IsChecked = false;
-                    BroadcastBG_Img1Toggle(null, null);
-                }
-                else if (BroadcastBG == 2)
-                {
-                    BroadcastDefOption.IsChecked = false;
-                    BroadcastImg1Option.IsChecked = false;
-                    BroadcastImg2Option.IsChecked = true;
-                    BroadcastImg3Option.IsChecked = false;
-                    BroadcastBG_Img2Toggle(null, null);
-                }
-                else if (BroadcastBG == 3)
-                {
-                    BroadcastDefOption.IsChecked = false;
-                    BroadcastImg1Option.IsChecked = false;
-                    BroadcastImg2Option.IsChecked = false;
-                    BroadcastImg3Option.IsChecked = true;
-                    BroadcastBG_Img3Toggle(null, null);
-                }
-                else
-                {
-                    BroadcastDefOption.IsChecked = true;
-                    BroadcastImg1Option.IsChecked = false;
-                    BroadcastImg2Option.IsChecked = false;
-                    BroadcastImg3Option.IsChecked = false;
-                    BroadcastBG_DefToggle(null, null);
-                }
-            }
         }
 
         /// 
@@ -792,6 +812,7 @@ namespace KhTracker
             }
         }
 
+        ///TODO: fix for ghost stuff
         public int GetGhostPoints(WorldGrid worlditems)
         {
             int points = 0;

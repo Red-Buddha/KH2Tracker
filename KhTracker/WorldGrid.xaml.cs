@@ -758,6 +758,7 @@ namespace KhTracker
         }
 
         //TODO: these need to be changed and updated. we no longer need to make the icon transparent for magic/pages
+        //UPDATE: yes we do... but i'll worry about it when i start adding legacy layout mode
         private void UpdateGhostObtained(Item item, int addremove)
         {
             //return if mod isn't either of these

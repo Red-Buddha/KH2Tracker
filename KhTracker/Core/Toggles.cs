@@ -100,6 +100,60 @@ namespace KhTracker
         /// Option Toggles
         ///
 
+        private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.BroadcastStartup = BroadcastStartupOption.IsChecked;
+            if (BroadcastStartupOption.IsChecked)
+                broadcast.Show();
+        }
+
+        private void TopMostToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
+            Topmost = TopMostOption.IsChecked;
+            broadcast.Topmost = TopMostOption.IsChecked;
+        }
+
+        private void DragDropToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
+            data.dragDrop = DragAndDropOption.IsChecked;
+
+            List<Grid> itempools = new List<Grid>();
+            foreach (Grid pool in ItemPool.Children)
+            {
+                itempools.Add(pool);
+            }
+
+            foreach (Item item in data.Items.Keys)
+            {
+                if (itempools.Contains(item.Parent))
+                {
+                    if (data.dragDrop == false)
+                    {
+                        item.MouseDoubleClick -= item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
+
+                        item.MouseDown -= item.Item_MouseDown;
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
+                    else
+                    {
+                        item.MouseDoubleClick -= item.Item_Click;
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
+                        item.MouseMove += item.Item_MouseMove;
+
+                        item.MouseDown -= item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
+                    }
+                }
+            }
+        }
+
+
 
 
         ///
@@ -1116,60 +1170,6 @@ namespace KhTracker
 
 
 
-
-
-        private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.BroadcastStartup = BroadcastStartupOption.IsChecked;
-            if (BroadcastStartupOption.IsChecked)
-                broadcast.Show();
-        }
-
-        private void TopMostToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
-            Topmost = TopMostOption.IsChecked;
-            broadcast.Topmost = TopMostOption.IsChecked;
-        }
-
-        private void DragDropToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.DragDrop = DragAndDropOption.IsChecked;
-            data.dragDrop = DragAndDropOption.IsChecked;
-
-            List<Grid> itempools = new List<Grid>();
-            foreach (Grid pool in ItemPool.Children)
-            {
-                itempools.Add(pool);
-            }
-
-            foreach (Item item in data.Items.Keys)
-            {
-                if (itempools.Contains(item.Parent))
-                {
-                    if (data.dragDrop == false)
-                    {
-                        item.MouseDoubleClick -= item.Item_Click;
-                        item.MouseMove -= item.Item_MouseMove;
-
-                        item.MouseDown -= item.Item_MouseDown;
-                        item.MouseDown += item.Item_MouseDown;
-                        item.MouseUp -= item.Item_MouseUp;
-                        item.MouseUp += item.Item_MouseUp;
-                    }
-                    else
-                    {
-                        item.MouseDoubleClick -= item.Item_Click;
-                        item.MouseDoubleClick += item.Item_Click;
-                        item.MouseMove -= item.Item_MouseMove;
-                        item.MouseMove += item.Item_MouseMove;
-
-                        item.MouseDown -= item.Item_MouseDown;
-                        item.MouseUp -= item.Item_MouseUp;
-                    }
-                }
-            }
-        }
 
 
 

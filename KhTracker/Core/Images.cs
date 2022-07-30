@@ -1075,144 +1075,7 @@ namespace KhTracker
             }
         }
 
-        ///don't need anymore
-       //private void ReportNumCheck()
-       //{
-       //    //since the numbers are a part of the actual report image, we need this if the user changes the
-       //    //number toggle or the check toggle so that the reports have the correct image
-       //
-       //    if (MinCheckOption.IsChecked && !CustomFolderOption.IsChecked)
-       //    {
-       //        if (OldNumOption.IsChecked)
-       //        {
-       //            Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
-       //            Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
-       //            Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
-       //            Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
-       //            Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
-       //            Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
-       //            Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
-       //            Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
-       //            Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
-       //            Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
-       //            Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
-       //            Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
-       //            Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
-       //
-       //            Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
-       //            Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
-       //            Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
-       //            Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
-       //            Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
-       //            Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
-       //            Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
-       //            Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
-       //            Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
-       //            Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
-       //            Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
-       //            Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
-       //            Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
-       //        }
-       //        else
-       //        {
-       //            Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
-       //            Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
-       //            Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
-       //            Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
-       //            Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
-       //            Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
-       //            Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
-       //            Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
-       //            Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
-       //            Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
-       //            Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
-       //            Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
-       //            Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
-       //
-       //            Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
-       //            Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
-       //            Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
-       //            Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
-       //            Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
-       //            Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
-       //            Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
-       //            Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
-       //            Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
-       //            Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
-       //            Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
-       //            Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
-       //            Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
-       //        }
-       //    }
-       //
-       //    if (OldCheckOption.IsChecked && !CustomFolderOption.IsChecked)
-       //    {
-       //
-       //        if (OldNumOption.IsChecked)
-       //        {
-       //            Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
-       //            Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
-       //            Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
-       //            Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
-       //            Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
-       //            Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
-       //            Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
-       //            Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
-       //            Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
-       //            Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
-       //            Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
-       //            Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
-       //            Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
-       //
-       //            Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
-       //            Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
-       //            Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
-       //            Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
-       //            Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
-       //            Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
-       //            Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
-       //            Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
-       //            Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
-       //            Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
-       //            Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
-       //            Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
-       //            Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
-       //        }
-       //        else
-       //        {
-       //            Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
-       //            Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
-       //            Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
-       //            Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
-       //            Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
-       //            Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
-       //            Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
-       //            Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
-       //            Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
-       //            Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
-       //            Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
-       //            Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
-       //            Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
-       //
-       //            Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
-       //            Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
-       //            Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
-       //            Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
-       //            Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
-       //            Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
-       //            Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
-       //            Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
-       //            Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
-       //            Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
-       //            Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
-       //            Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
-       //            Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
-       //        }
-       //    }
-       //}
-
         ///TODO: edit all to void and use it to set up the image chages here instead of toggles.cs
-
         public void SetItemImage()
         {
             LevelIcon.SetResourceReference(ContentProperty, "LevelIcon");
@@ -1233,7 +1096,8 @@ namespace KhTracker
             // Item icons
             foreach (var item in data.Items.Keys)
             {
-                item.SetResourceReference(ContentProperty, type + item.Name);
+                data.Items[item].Item1.SetResourceReference(ContentProperty, type + item);
+                //item.SetResourceReference(ContentProperty, type + item.Name);
             }
             // Ghost icons
             foreach (var item in data.GhostItems.Values)

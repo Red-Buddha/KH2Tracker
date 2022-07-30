@@ -634,59 +634,47 @@ namespace KhTracker
         {
             // we don't need bindings anymore (i think) so use this instead
 
-            stats.SetNextLevelCheck(stats.Level);
-
             //Main window
+            //Stats
+            stats.SetNextLevelCheck(stats.Level);
             LevelValue.Text = stats.Level.ToString();
             StrengthValue.Text = stats.Strength.ToString();
             MagicValue.Text = stats.Magic.ToString();
             DefenseValue.Text = stats.Defense.ToString();
+            //forms
             ValorLevel.Text = valor.Level.ToString();
             WisdomLevel.Text = wisdom.Level.ToString();
             LimitLevel.Text = limit.Level.ToString();
             MasterLevel.Text = master.Level.ToString();
             FinalLevel.Text = final.Level.ToString();
+            //growth
+            HighJumpLevel.Text = highJump.Level.ToString();
+            QuickRunLevel.Text = quickRun.Level.ToString();
+            DodgeRollLevel.Text = dodgeRoll.Level.ToString();
+            AerialDodgeLevel.Text = aerialDodge.Level.ToString();
+            GlideLevel.Text = glide.Level.ToString();
         }
 
-        ///TODO: needs to be updated correctly for new itempool handling
+        ///TODO: test to make sure it works
         private void TrackItem(string itemName, WorldGrid world)
         {
-            //if (!GetItemPool.ContainsKey(itemName))
-            //    return;
-            //
-            //Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[itemName]) as Grid;
+            //i wonder if there's a better way to do this? hmm...
+            //TODO: look this over again when i get to legacy layout mode;
+            Grid ItemRow = data.Items[itemName].Item2;
 
-            //foreach (ContentControl item in ItemRow.Children)
-            //{
-            //    if (item.Name == itemName && item.IsVisible)
-            //    {
-            //        bool ReportType;
-            //        if (data.mode == Mode.DAHints)
-            //        {
-            //            ReportType = world.Handle_PointReport(item as Item, this, data);
-            //        }
-            //        else if (data.mode == Mode.PathHints)
-            //        {
-            //            ReportType = world.Handle_PathReport(item as Item, this, data);
-            //        }
-            //        else if (data.mode == Mode.SpoilerHints)
-            //        {
-            //            ReportType = world.Handle_SpoilerReport(item as Item, this, data);
-            //        }
-            //        else
-            //        {
-            //            ReportType = world.Handle_Report(item as Item, this, data);
-            //        }
-            //
-            //        if (ReportType)
-            //        {
-            //            world.Add_Item(item as Item, this);
-            //            if (App.logger != null)
-            //                App.logger.Record(item.Name + " tracked");
-            //        }
-            //        break;
-            //    }
-            //}
+            //do a check in the report handler to actually make sure reports don't
+            //track to the wrong place in the case of mismatched seeds/hints
+            if (ItemRow.FindName(itemName) is Item item && item.IsVisible)
+            {
+                bool validItem = world.ReportHandler(item);
+
+                if (validItem)
+                {
+                    world.Add_Item(item);
+                    if (App.logger != null)
+                        App.logger.Record(item.Name + " tracked");
+                }
+            }
         }
 
         private void TrackQuantities()
@@ -762,7 +750,6 @@ namespace KhTracker
                 Prog = "Cus-";
 
             //progression defaults
-            bool validWorld = false;
             int curProg = data.WorldsData[world.worldName].progress; //current world progress int
             string curKey; //current world progression icon name
 
@@ -770,7 +757,6 @@ namespace KhTracker
             switch (world.worldName)
             {
                 case "SimulatedTwilightTown":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 1:
@@ -798,7 +784,6 @@ namespace KhTracker
                     }
                     break;
                 case "TwilightTown":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 9:
@@ -830,7 +815,6 @@ namespace KhTracker
                     }
                     break;
                 case "HollowBastion":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -877,7 +861,6 @@ namespace KhTracker
                     }
                     break;
                 case "BeastsCastle":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -912,7 +895,6 @@ namespace KhTracker
                     }
                     break;
                 case "OlympusColiseum":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -953,7 +935,6 @@ namespace KhTracker
                     }
                     break;
                 case "Agrabah":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -994,7 +975,6 @@ namespace KhTracker
                     }
                     break;
                 case "LandofDragons":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -1027,7 +1007,6 @@ namespace KhTracker
                     }
                     break;
                 case "HundredAcreWood":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 2:
@@ -1059,7 +1038,6 @@ namespace KhTracker
                     }
                     break;
                 case "PrideLands":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 4:
@@ -1084,7 +1062,6 @@ namespace KhTracker
                     }
                     break;
                 case "Atlantica":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 2:
@@ -1104,7 +1081,6 @@ namespace KhTracker
                     }
                     break;
                 case "DisneyCastle":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -1142,7 +1118,6 @@ namespace KhTracker
                     }
                     break;
                 case "HalloweenTown":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 1:
@@ -1179,7 +1154,6 @@ namespace KhTracker
                     }
                     break;
                 case "PortRoyal":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 0:
@@ -1209,7 +1183,6 @@ namespace KhTracker
                     }
                     break;
                 case "SpaceParanoids":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 1:
@@ -1241,7 +1214,6 @@ namespace KhTracker
                     }
                     break;
                 case "TWTNW":
-                    validWorld = true;
                     switch (world.roomNumber)
                     {
                         case 1:
@@ -1313,13 +1285,10 @@ namespace KhTracker
             }
 
             //if a world was valid then set progression icons
-            if (validWorld)
-            {
-                curKey = data.ProgressKeys[world.worldName][curProg];
-                progressionM.SetResourceReference(ContentProperty, Prog + curKey);
-                progressionB.SetResourceReference(ContentProperty, Prog + curKey);
-                data.WorldsData[world.worldName].progress = curProg;
-            }
+            curKey = data.ProgressKeys[world.worldName][curProg];
+            progressionM.SetResourceReference(ContentProperty, Prog + curKey);
+            progressionB.SetResourceReference(ContentProperty, Prog + curKey);
+            data.WorldsData[world.worldName].progress = curProg;
         }
 
         // Sometimes level rewards and levels dont update on the same tick

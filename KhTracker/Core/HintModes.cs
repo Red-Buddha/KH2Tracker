@@ -282,6 +282,7 @@ namespace KhTracker
 
         //used to be a ton of ints
         //split into two dictionarys now as it's much easier to handle and uses far less if statements.
+        ///TODO: update to use new font system instead of images
         private Dictionary<string, int> WorldPoints = new Dictionary<string, int>()
         {
             {"SimulatedTwilightTown", 0},
@@ -505,57 +506,6 @@ namespace KhTracker
             //broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
             //broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
         }
-
-        ///
-        /// Timed hints stuff
-        /// 
-        //private void TimeHints(Dictionary<string, object> hintObject)
-        //{
-        //    ShouldResetHash = true;
-        //    var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-        //
-        //    //get time needed to pass fore each report
-        //    int hintTime = JsonSerializer.Deserialize<int>(hintObject["Time"].ToString());
-        //    data.timedHintsTimer = hintTime;
-        //
-        //    //hint style
-        //    //futureproofing. idea is that maybe have hints affect the tracker in ways similar to other hint modes.
-        //    string hintStyle = JsonSerializer.Deserialize<string>(hintObject["Style"].ToString());
-        //
-        //    List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-        //    reportKeys.Sort();
-        //
-        //    int i = 0;
-        //    foreach (var report in reportKeys)
-        //    {
-        //        var world = Codes.ConvertSeedGenName(reports[report.ToString()]["World"].ToString());
-        //        var count = reports[report.ToString()]["Count"].ToString();
-        //        var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
-        //        data.reportInformation.Add(new Tuple<string, int>(world, int.Parse(count)));
-        //        data.reportLocations.Add(location);
-        //
-        //        data.worldStoredHintCount[WorldNameToIndex(data.reportLocations[i])]++;
-        //        data.worldStoredOrigCount[WorldNameToIndex(world)] = int.Parse(count);
-        //        data.worldHintNumber[WorldNameToIndex(world)] = i;
-        //        i++;
-        //    }
-        //
-        //    ReportsToggle(false);
-        //    data.hintsLoaded = true;
-        //
-        //    //string hintFileName = entry.FullName.Substring(0, entry.FullName.IndexOf("."));
-        //    ////Console.WriteLine("Seed name: " + hintFileName);
-        //    ////Console.WriteLine("Hashcode: " + hintFileName.GetHashCode());
-        //    //data.ShuffleHintOrder(hintFileName.GetHashCode());
-        //    ////Console.WriteLine(data.PrintHintOrder(data.worldHintNumber));
-        //    //data.lastStoredSeedHashTemp = hintFileName.GetHashCode();
-        //
-        //    data.seedTimeLoaded = DateTime.UtcNow.GetHashCode();
-        //    Console.WriteLine("utc hashcode: " + data.seedTimeLoaded);
-        //
-        //    //AlternateTimeText();
-        //
-        //}
 
         static public int WorldNameToIndex(string worldName)
         {

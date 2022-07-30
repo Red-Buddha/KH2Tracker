@@ -28,8 +28,6 @@ namespace KhTracker
         public string[] hintFileText = new string[2];
         public Codes codes = new Codes();
 
-        //public List<Tuple<string, int>> reportInformation = new List<Tuple<string, int>>();
-        //public List<Tuple<string, string>> pointreportInformation = new List<Tuple<string, string>>();
         public List<Tuple<string, string, int>> reportInformation = new List<Tuple<string, string, int>>();
         public List<string> reportLocations = new List<string>();
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
@@ -41,9 +39,7 @@ namespace KhTracker
         public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
         public List<Item> TornPages = new List<Item>();
         public List<Item> VisitLocks = new List<Item>();
-        //public List<Item> Items = new List<Item>();
-        //public List<Grid> ItemsGrid = new List<Grid>();
-        public Dictionary<Item, Grid> Items = new Dictionary<Item, Grid>();
+        public Dictionary<string, Tuple<Item, Grid>> Items = new Dictionary<string, Tuple<Item, Grid>>();
 
         //auto-detect
         public BitmapImage AD_Connect;
@@ -89,16 +85,14 @@ namespace KhTracker
         public ContentControl progression;
         public OutlinedTextBlock value;
         public WorldGrid worldGrid;
-        //public Image selectedBar;
 
-        public WorldData(Grid Top, Button World, ContentControl Progression, OutlinedTextBlock Value, WorldGrid itemgrid, bool Hinted, int VisitLock) //Image SelectedBar,
+        public WorldData(Grid Top, Button World, ContentControl Progression, OutlinedTextBlock Value, WorldGrid itemgrid, bool Hinted, int VisitLock)
         {
             top = Top;
             world = World;
             progression = Progression;
             value = Value;
             worldGrid = itemgrid;
-            //selectedBar = SelectedBar;
             hinted = Hinted;
             hintedHint = false;
             complete = false;

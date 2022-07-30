@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:KhTracker">
 
+    <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
+        <ContentPresenter Content="{TemplateBinding Content}"/>
+    </ControlTemplate>
+
     <!--Report Fail Icons-->
     <Image x:Key="Fail0" x:Shared="false"/>
     <Image x:Key="Fail1" Source="Images\FailBar.png" Margin="-25,-15,0,0" Height="15" x:Shared="false"/>

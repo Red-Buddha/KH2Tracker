@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace KhTracker
 {
+    ///TODO: i don't think i need this. remove later??
     public static class DependencyObjectExtensions
     {
         public static object GetDynamicResourceKey(this DependencyObject obj, DependencyProperty prop)
