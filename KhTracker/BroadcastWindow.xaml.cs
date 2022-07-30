@@ -25,7 +25,7 @@ namespace KhTracker
         Dictionary<string, int> others = new Dictionary<string, int>();
         Dictionary<string, int> totals = new Dictionary<string, int>();
         Dictionary<string, int> important = new Dictionary<string, int>();
-        Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
+        public Dictionary<string, ContentControl> Progression = new Dictionary<string, ContentControl>();
         Data data;
 
         public BroadcastWindow(Data dataIn)
@@ -138,7 +138,7 @@ namespace KhTracker
 
             data = dataIn;
 
-            foreach (Item item in data.Items)
+            foreach (Item item in data.Items.Keys)
             {
                 item.UpdateTotal += new Item.TotalHandler(UpdateTotal);
                 item.UpdateFound += new Item.FoundHandler(UpdateFound);

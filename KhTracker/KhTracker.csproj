@@ -89,6 +89,7 @@
     <Compile Include="AutoTracking\CheckEveryCheck.cs" />
     <Compile Include="AutoTracking\Extra.cs" />
     <Compile Include="AutoTracking\Visit.cs" />
+    <Compile Include="Core\Extend.cs" />
     <Compile Include="Core\GridHelpers.cs" />
     <Compile Include="Core\HintModes.cs" />
     <Compile Include="AutoTracking\Magic.cs" />
@@ -123,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

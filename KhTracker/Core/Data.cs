@@ -20,7 +20,7 @@ namespace KhTracker
         //this is here as a toggle to only reset the hash when i want it to
         public bool ShouldResetHash = true;
         public bool SeedHashLoaded = false;
-        public bool SeedHashVisible = false;
+        public bool SeedHashVisible = false; //TODO: remove this one. i think i don't need it anymore
         public bool SpoilerWorldCompletion = false;
         public bool SpoilerReportMode = false;
 

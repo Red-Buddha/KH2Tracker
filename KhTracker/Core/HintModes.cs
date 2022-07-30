@@ -230,12 +230,12 @@ namespace KhTracker
                         WorldGrid grid = data.WorldsData[worldname].worldGrid;
                         if (counts.Keys.ToList().Contains(checkname))
                         {
-                            grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname + counts[checkname]], null);
+                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname + counts[checkname]]);
                             counts[checkname] += 1;
                         }
                         else
                         {
-                            grid.Add_Ghost(Data.GhostItems["Ghost_" + checkname], null);
+                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname]);
                         }
                     }
                 }

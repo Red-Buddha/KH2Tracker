@@ -29,9 +29,9 @@
             </Menu.ItemsPanel>
             <MenuItem Header="Options" Focusable="False">
                 <MenuItem Header="Auto Tracking...">
-                    <MenuItem Header="Start PCSX2  Tracking" 	Click="InitPCSX2Tracker"/>
-                    <MenuItem Header="Start PC Port Tracking" 	Click="InitPCTracker"/>
-                    <MenuItem Header="Use Auto-Detection" 		Click="AutoDetectToggle" x:Name="AutoDetectOption" IsCheckable="True" IsChecked="False"/>
+                    <MenuItem Header="Use Auto-Detect Game Version" Click="AutoDetectToggle" x:Name="AutoDetectOption" IsCheckable="True" IsChecked="False"/>
+                    <MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker"/>
+                    <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Load Hints...">
@@ -56,7 +56,7 @@
                 <MenuItem Header="Promise Charm"			 Click="PromiseCharmToggle" x:Name="PromiseCharmOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Once More / Second Chance" Click="AbilitiesToggle" 	x:Name="AbilitiesOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Anti Form" 				 Click="AntiFormToggle"		x:Name="AntiFormOption"     IsCheckable="True" IsChecked="False"/>
-                <MenuItem Header="World Progression Items"   Click="VisitLockToggle"	x:Name="VisitLockOption"    IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="World Lock Checks"         Click="VisitLockToggle"	x:Name="VisitLockOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Extra Important Checks" 	 Click="ExtraChecksToggle"	x:Name="ExtraChecksOption"  IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Show Seed Hash on Load"				  Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
@@ -70,9 +70,16 @@
                 <MenuItem Header="Show Check Count (Points Mode)"     Click="ShowCheckCountToggle"  x:Name="CheckCountOption"	IsCheckable="True" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Show Next Level Check Display" Click="NextLevelCheckToggle" x:Name="NextLevelCheckOption" IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Level 1 Checks"                Click="SoraLevel01Toggle"    x:Name="SoraLevel01Option"    IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Level 50 Checks"               Click="SoraLevel50Toggle"    x:Name="SoraLevel50Option"    IsCheckable="True" IsChecked="True" />
+                <MenuItem Header="Level 99 Checks"               Click="SoraLevel99Toggle"    x:Name="SoraLevel99Option"    IsCheckable="True" IsChecked="False"/>
                 <MenuItem Header="Show Death Counter" 	 		 Click="DeathCounterToggle"   x:Name="DeathCounterOption"   IsCheckable="True" IsChecked="False"/>
             </MenuItem>
             <MenuItem Header="Visuals" Focusable="False">
+                <!-- eventually add an ption that pulls up settings window... -->
+                <!--MenuItem Header="Simple Stat/UI Icons" Click="MinStatToggle" x:Name="MinStatOption" IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Game Stat/UI Icons"   Click="OldStatToggle" x:Name="OldStatOption" IsCheckable="True" IsChecked="False"/>
+                <Separator/-->
                 <MenuItem Header="Simple World Icons" Click="MinWorldToggle" x:Name="MinWorldOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game World Icons"   Click="OldWorldToggle" x:Name="OldWorldOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/>
@@ -102,14 +109,17 @@
                 </MenuItem>
             </MenuItem>
             <!-- removing these... -->
-            <!--MenuItem x:Name="SoraLevel01Option" Header="Level 1 Checks"  IsCheckable="True" IsChecked="False" Click="SoraLevel01Toggle"/>
-			<MenuItem x:Name="SoraLevel50Option" Header="Level 50 Checks" IsCheckable="True" IsChecked="True"  Click="SoraLevel50Toggle"/>
-			<MenuItem x:Name="SoraLevel99Option" Header="Level 99 Checks" IsCheckable="True" IsChecked="False" Click="SoraLevel99Toggle"/>
-            <MenuItem x:Name="TerraOption" Header="Lingering Will" IsCheckable="True" IsChecked="False" Click="TerraToggle"/>
+            <!--MenuItem x:Name="TerraOption" Header="Lingering Will" IsCheckable="True" IsChecked="False" Click="TerraToggle"/>
             <MenuItem x:Name="CavernOption" Header="Cavern of Rememberance" IsCheckable="True" IsChecked="False" Click="CavernToggle"/>
 			<MenuItem x:Name="OCCupsOption" Header="Olympus Cups" IsCheckable="True" IsChecked="False" Click="OCCupsToggle"/-->
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Header="Sora's Heart" 				Click="SoraHeartToggle"			x:Name="SoraHeartOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Simulated Twilight Town" 		Click="SimulatedToggle" 		x:Name="SimulatedOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="100 Acre Wood" 				Click="HundredAcreWoodToggle" 	x:Name="HundredAcreWoodOption" 	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Atlantica" 					Click="AtlanticaToggle" 		x:Name="AtlanticaOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Synthesis" 					Click="SynthToggle" 			x:Name="SynthOption"			IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Puzzles" 						Click="PuzzleToggle" 			x:Name="PuzzleOption"			IsCheckable="True" IsChecked="True"/>
+                <!--MenuItem Header="Sora's Heart" 				Click="SoraHeartToggle"			x:Name="SoraHeartOption"		IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Drive Forms" 					Click="DrivesToggle"			x:Name="DrivesOption" 			IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Simulated Twilight Town" 		Click="SimulatedToggle" 		x:Name="SimulatedOption"		IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Twilight Town"  				Click="TwilightTownToggle" 		x:Name="TwilightTownOption"		IsCheckable="True" IsChecked="True"/>
@@ -127,7 +137,7 @@
                 <MenuItem Header="100 Acre Wood" 				Click="HundredAcreWoodToggle" 	x:Name="HundredAcreWoodOption" 	IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Atlantica" 					Click="AtlanticaToggle" 		x:Name="AtlanticaOption"		IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Synthesis" 					Click="SynthToggle" 			x:Name="SynthOption"			IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Puzzles" 						Click="PuzzleToggle" 			x:Name="PuzzleOption"			IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Puzzles" 						Click="PuzzleToggle" 			x:Name="PuzzleOption"			IsCheckable="True" IsChecked="True"/-->
             </MenuItem>
             <MenuItem x:Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
             <!--MenuItem Header="-DA 1.6.8-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/-->
@@ -1441,6 +1451,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0.01*"/>
                 </Grid.ColumnDefinitions>
+                
                 <!-- Hint Text -->
                 <!--Rectangle Fill="#4C1E1E25" Grid.ColumnSpan="3" Panel.ZIndex="-1"/-->
                 <Grid Grid.Row="1"  Grid.Column="1">
@@ -1453,6 +1464,7 @@
                         <local:OutlinedTextBlock x:Name="HintText" FontFamily="/KhTracker;component/Fonts/#KHMenu" FontSize="25pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="3" Stroke="Black" Fill="White" TextAlignment="Center" Text="Sora's Heart has 5 Important Checks test"/>
                     </Viewbox>
+                    
                     <!-- Death Counter-->
                     <Grid x:Name="DeathCounterGrid" Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -1473,10 +1485,12 @@
                         </Viewbox>
                     </Grid>
                 </Grid>
+                
                 <!-- Hash Text -->
                 <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden" x:Name="HashGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.75*"/>
+                        <!-- 0.75 | 0 w/deathcounter-->
+                        <ColumnDefinition Name="HashSpacer1" Width="0.75*"/>
                         <ColumnDefinition Width="3.25*"/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -1485,7 +1499,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="0.75*"/>
+                        <!-- 0.75 def | 1.75 w/deathcounter -->
+                        <ColumnDefinition  Name="HashSpacer2" Width="0.75*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox Grid.Column="1">
                         <local:OutlinedTextBlock x:Name="HashText" FontFamily="/KhTracker;component/Fonts/#KHMenu" FontSize="25pt" 
@@ -1499,13 +1514,14 @@
                     <local:Item x:Name="HashIcon6" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Column="7"/>
                     <local:Item x:Name="HashIcon7" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Column="8"/>
                 </Grid>
+                
                 <!-- Stats-->
                 <Rectangle Grid.Row="2" Fill="#BF1E1E1E" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>
                 <Grid x:Name="Statsgrid" Grid.Row="2" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  Width="1.0*"/>
-                        <!-- 0.65* when enabled-->
-                        <ColumnDefinition x:Name="NextLevelCol" Width="0.6*"/>
+                        <!-- 0.6* when enabled-->
+                        <ColumnDefinition x:Name="NextLevelCol" Width="0*"/>
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="1.15*"/>
                         <ColumnDefinition Width="0.05*"/>
@@ -1518,7 +1534,7 @@
                         <ColumnDefinition Width="1.3*"/>
                     </Grid.ColumnDefinitions>
                     <!-- Level -->
-                    <Grid x:Name="Level">
+                    <Grid x:Name="Level" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.45*"/>
                             <ColumnDefinition Width="1*"/>
@@ -1548,7 +1564,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Strength -->
-                    <Grid x:Name="Strength" Grid.Column="3">
+                    <Grid x:Name="Strength" Grid.Column="3" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1566,7 +1582,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Magic -->
-                    <Grid x:Name="Magic" Grid.Column="5">
+                    <Grid x:Name="Magic" Grid.Column="5" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1584,7 +1600,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Defense -->
-                    <Grid x:Name="Defense" Grid.Column="7">
+                    <Grid x:Name="Defense" Grid.Column="7" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1602,7 +1618,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- IC Count -->
-                    <Grid Grid.Column="11" Name="CollectionGrid" Visibility="Collapsed">
+                    <Grid Grid.Column="11" Name="CollectionGrid" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1669,7 +1685,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Score -->
-                    <Grid Grid.Column="11" Name="ScoreGrid" Visibility="Visible">
+                    <Grid Grid.Column="11" Name="ScoreGrid" Visibility="Collapsed">
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Total -->
                         <Viewbox HorizontalAlignment="Left" VerticalAlignment="Stretch">
@@ -2209,5 +2225,6 @@
                 <Rectangle Grid.Column="3" Fill="#E51E1E25" Panel.ZIndex="-2"/>
             </Grid>
         </Grid>
+    
     </DockPanel>
 </Window>

@@ -10,7 +10,7 @@
     <ContentControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionary1.xaml" />
+                <ResourceDictionary Source="ItemDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentControl.Resources>

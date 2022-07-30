@@ -75,12 +75,12 @@ namespace KhTracker
                 settings += "100 Acre Wood - ";
             if (AtlanticaOption.IsChecked)
                 settings += "Atlantica - ";
-            if (CavernOption.IsChecked)
-                settings += "Cavern of Remembrance - ";
-            if (OCCupsOption.IsChecked)
-                settings += "Olympus Cups - ";
-            if (TerraOption.IsChecked)
-                settings += "Lingering Will (Terra) - ";
+            //if (CavernOption.IsChecked)
+            //    settings += "Cavern of Remembrance - ";
+            //if (OCCupsOption.IsChecked)
+            //    settings += "Olympus Cups - ";
+            //if (TerraOption.IsChecked)
+            //    settings += "Lingering Will (Terra) - ";
             if (PuzzleOption.IsChecked)
                 settings += "Puzzles - ";
             if (SynthOption.IsChecked)
@@ -444,23 +444,23 @@ namespace KhTracker
                         WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
                         Item importantCheck = FindName(item) as Item;
 
-                        if (grid.ReportHandler(importantCheck, this, data))
+                        if (grid.ReportHandler(importantCheck))
                         {
                             switch (data.mode)
                             {
                                 case Mode.DAHints:
                                     if (item.StartsWith("Ghost_"))
-                                        grid.Add_Ghost(importantCheck, this);
+                                        grid.Add_Ghost(importantCheck);
                                     else
-                                        grid.Add_Item(importantCheck, this);
+                                        grid.Add_Item(importantCheck);
                                     break;
                                 case Mode.SpoilerHints:
                                     if (!item.StartsWith("Ghost_"))
-                                        grid.Add_Item(importantCheck, this);
+                                        grid.Add_Item(importantCheck);
                                     break;
                                 case Mode.PathHints:
                                 default:
-                                    grid.Add_Item(importantCheck, this);
+                                    grid.Add_Item(importantCheck);
                                     break;
                             }
                         }
@@ -705,15 +705,15 @@ namespace KhTracker
                     case "Atlantica":
                         AtlanticaToggle(true);
                         break;
-                    case "Cavern of Remembrance":
-                        CavernToggle(true);
-                        break;
-                    case "Olympus Cups":
-                        OCCupsToggle(true);
-                        break;
-                    case "Lingering Will (Terra)":
-                        TerraToggle(true);
-                        break;
+                    //case "Cavern of Remembrance":
+                    //    CavernToggle(true);
+                    //    break;
+                    //case "Olympus Cups":
+                    //    OCCupsToggle(true);
+                    //    break;
+                    //case "Lingering Will (Terra)":
+                    //    TerraToggle(true);
+                    //    break;
                     case "Extra Checks":
                         ExtraChecksToggle(true);
                         break;
@@ -732,7 +732,8 @@ namespace KhTracker
             if (aTimer != null)
                 aTimer.Stop();
 
-            SetWorking(false);
+            //SetWorking(false);
+            isWorking = false;
 
             collectedChecks.Clear();
             newChecks.Clear();
@@ -1257,12 +1258,12 @@ namespace KhTracker
                                     SimulatedToggle(false);
                                     HundredAcreWoodToggle(false);
                                     AtlanticaToggle(false);
-                                    CavernToggle(false);
-                                    OCCupsToggle(false);
+                                    //CavernToggle(false);
+                                    //OCCupsToggle(false);
                                     SoraHeartToggle(true);
                                     SoraLevel01Toggle(true);
                                     VisitLockToggle(false);
-                                    TerraToggle(false);
+                                    //TerraToggle(false);
                                     PuzzleToggle(false);
                                     SynthToggle(false);
 
@@ -1314,18 +1315,18 @@ namespace KhTracker
                                         case "Atlantica":
                                             AtlanticaToggle(true);
                                             break;
-                                        case "Cavern of Remembrance":
-                                            CavernToggle(true);
-                                            break;
-                                        case "Olympus Cups":
-                                            OCCupsToggle(true);
-                                            break;
-                                        case "visit_locking":
-                                            VisitLockToggle(true);
-                                            break;
-                                        case "Lingering Will (Terra)":
-                                            TerraToggle(true);
-                                            break;
+                                        //case "Cavern of Remembrance":
+                                        //    CavernToggle(true);
+                                        //    break;
+                                        //case "Olympus Cups":
+                                        //    OCCupsToggle(true);
+                                        //    break;
+                                        //case "visit_locking":
+                                        //    VisitLockToggle(true);
+                                        //    break;
+                                        //case "Lingering Will (Terra)":
+                                        //    TerraToggle(true);
+                                        //    break;
                                         case "Puzzle":
                                             PuzzleToggle(true);
                                             break;

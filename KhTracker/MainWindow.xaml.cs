@@ -209,14 +209,14 @@ namespace KhTracker
             SynthOption.IsChecked = Properties.Settings.Default.Synth;
             SynthToggle(SynthOption.IsChecked);
 
-            CavernOption.IsChecked = Properties.Settings.Default.Cavern;
-            CavernToggle(CavernOption.IsChecked);
-
-            TerraOption.IsChecked = Properties.Settings.Default.Terra;
-            TerraToggle(TerraOption.IsChecked);
-
-            OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
-            OCCupsToggle(OCCupsOption.IsChecked);
+            //CavernOption.IsChecked = Properties.Settings.Default.Cavern;
+            //CavernToggle(CavernOption.IsChecked);
+            //
+            //TerraOption.IsChecked = Properties.Settings.Default.Terra;
+            //TerraToggle(TerraOption.IsChecked);
+            //
+            //OCCupsOption.IsChecked = Properties.Settings.Default.OCCups;
+            //OCCupsToggle(OCCupsOption.IsChecked);
 
             //Visial Toggles
             MinWorldOption.IsChecked = Properties.Settings.Default.MinWorld;
@@ -243,13 +243,13 @@ namespace KhTracker
             if (OldProgOption.IsChecked)
                 OldProgToggle(null, null);
 
-            MinNumOption.IsChecked = Properties.Settings.Default.MinNum;
-            if (MinNumOption.IsChecked)
-                MinNumToggle(null, null);
-
-            OldNumOption.IsChecked = Properties.Settings.Default.OldNum;
-            if (OldNumOption.IsChecked)
-                OldNumToggle(null, null);
+            //MinNumOption.IsChecked = Properties.Settings.Default.MinNum;
+            //if (MinNumOption.IsChecked)
+            //    MinNumToggle(null, null);
+            //
+            //OldNumOption.IsChecked = Properties.Settings.Default.OldNum;
+            //if (OldNumOption.IsChecked)
+            //    OldNumToggle(null, null);
 
             WorldProgressOption.IsChecked = Properties.Settings.Default.WorldProgress;
             WorldProgressToggle(null, null);
@@ -299,9 +299,9 @@ namespace KhTracker
             if (DeathCounterOption.IsChecked)
                 DeathCounterToggle(null, null);
 
-            LegacyOption.IsChecked = Properties.Settings.Default.Legacy;
-            if (LegacyOption.IsChecked)
-                LegacyToggle(null, null);
+            //LegacyOption.IsChecked = Properties.Settings.Default.Legacy;
+            //if (LegacyOption.IsChecked)
+            //    LegacyToggle(null, null);
 
             SoraLevel01Option.IsChecked = Properties.Settings.Default.WorldLevel1;
             if (SoraLevel01Option.IsChecked)
@@ -796,7 +796,7 @@ namespace KhTracker
         {
             int points = 0;
 
-            foreach (Item ghost in Data.GhostItems.Values.ToList())
+            foreach (Item ghost in data.GhostItems.Values.ToList())
             {
                 if (worlditems.Children.Contains(ghost))
                 {

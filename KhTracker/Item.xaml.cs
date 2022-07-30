@@ -100,9 +100,9 @@ namespace KhTracker
 
         public void Item_Click(object sender, RoutedEventArgs e)
         {
-            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this, MainW, data))
+            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this))
             {
-                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, MainW);
+                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this);
             }
         }
 
@@ -185,8 +185,9 @@ namespace KhTracker
                 return;
             }
 
-            int index = data.Items.IndexOf(this);
-            Grid ItemRow = data.ItemsGrid[index];
+            //int index = data.Items.IndexOf(this);
+            //Grid ItemRow = data.ItemsGrid[index];
+            Grid ItemRow = data.Items[this];
 
             if (Parent != ItemRow)
             {

@@ -171,14 +171,18 @@ namespace KhTracker
 
         public void SetMaxLevelCheck(int lvl)
         {
-            if (lvl == 1)
-                currentCheckArray = levelChecks1;
-
-            if (lvl == 50)
-                currentCheckArray = levelChecks50;
-
-            if (lvl == 99)
-                currentCheckArray = levelChecks99;
+            switch(lvl)
+            {
+                case 50:
+                    currentCheckArray = levelChecks50;
+                    break;
+                case 99:
+                    currentCheckArray = levelChecks99;
+                    break;
+                default:
+                    currentCheckArray = levelChecks1;
+                    break;
+            }
         }
 
         public void SetNextLevelCheck(int lvl)
@@ -192,9 +196,6 @@ namespace KhTracker
                     break;
                 }
             }
-
-            //Console.WriteLine("nextLevelCheck = " + LevelCheck);
-
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KhTracker
 {
@@ -243,24 +246,158 @@ namespace KhTracker
         //get cutom images for toggles. i'll recode this to be better later i swear
         private void CustomChecksCheck()
         {
-
-
-
-            switch(File.Exists())
+            //TODO: this needs to go in init or somethin 
+            Dictionary<Item, Tuple<string, string>> CusItemCheck = new Dictionary<Item, Tuple<string, string>>
             {
+                {Report1, new Tuple<string, string>("CustomImages/Checks/ansem_report01.png", "Cus-AnsemReport01")},
+                {Report2, new Tuple<string, string>("CustomImages/Checks/ansem_report02.png", "Cus-AnsemReport02")},
+                {Report3, new Tuple<string, string>("CustomImages/Checks/ansem_report03.png", "Cus-AnsemReport03")},
+                {Report4, new Tuple<string, string>("CustomImages/Checks/ansem_report04.png", "Cus-AnsemReport04")},
+                {Report5, new Tuple<string, string>("CustomImages/Checks/ansem_report05.png", "Cus-AnsemReport05")},
+                {Report6, new Tuple<string, string>("CustomImages/Checks/ansem_report06.png", "Cus-AnsemReport06")},
+                {Report7, new Tuple<string, string>("CustomImages/Checks/ansem_report07.png", "Cus-AnsemReport07")},
+                {Report8, new Tuple<string, string>("CustomImages/Checks/ansem_report08.png", "Cus-AnsemReport08")},
+                {Report9, new Tuple<string, string>("CustomImages/Checks/ansem_report09.png", "Cus-AnsemReport09")},
+                {Report10, new Tuple<string, string>("CustomImages/Checks/ansem_report10.png", "Cus-AnsemReport10")},
+                {Report11, new Tuple<string, string>("CustomImages/Checks/ansem_report11.png", "Cus-AnsemReport11")},
+                {Report12, new Tuple<string, string>("CustomImages/Checks/ansem_report12.png", "Cus-AnsemReport12")},
+                {Report13, new Tuple<string, string>("CustomImages/Checks/ansem_report13.png", "Cus-AnsemReport13")},
+                {Fire1, new Tuple<string, string>("CustomImages/Checks/fire.png", "Cus-Fire")},
+                {Fire2, new Tuple<string, string>("CustomImages/Checks/fire.png", "Cus-Fire")},
+                {Fire3, new Tuple<string, string>("CustomImages/Checks/fire.png", "Cus-Fire")},
+                {Blizzard1, new Tuple<string, string>("CustomImages/Checks/blizzard.png", "Cus-Blizzard")},
+                {Blizzard2, new Tuple<string, string>("CustomImages/Checks/blizzard.png", "Cus-Blizzard")},
+                {Blizzard3, new Tuple<string, string>("CustomImages/Checks/blizzard.png", "Cus-Blizzard")},
+                {Thunder1, new Tuple<string, string>("CustomImages/Checks/thunder.png", "Cus-Thunder")},
+                {Thunder2, new Tuple<string, string>("CustomImages/Checks/thunder.png", "Cus-Thunder")},
+                {Thunder3, new Tuple<string, string>("CustomImages/Checks/thunder.png", "Cus-Thunder")},
+                {Cure1, new Tuple<string, string>("CustomImages/Checks/cure.png", "Cus-Cure")},
+                {Cure2, new Tuple<string, string>("CustomImages/Checks/cure.png", "Cus-Cure")},
+                {Cure3, new Tuple<string, string>("CustomImages/Checks/cure.png", "Cus-Cure")},
+                {Reflect1, new Tuple<string, string>("CustomImages/Checks/reflect.png", "Cus-Reflect")},
+                {Reflect2, new Tuple<string, string>("CustomImages/Checks/reflect.png", "Cus-Reflect")},
+                {Reflect3, new Tuple<string, string>("CustomImages/Checks/reflect.png", "Cus-Reflect")},
+                {Magnet1, new Tuple<string, string>("CustomImages/Checks/magnet.png", "Cus-Magnet")},
+                {Magnet2, new Tuple<string, string>("CustomImages/Checks/magnet.png", "Cus-Magnet")},
+                {Magnet3, new Tuple<string, string>("CustomImages/Checks/magnet.png", "Cus-Magnet")},
+                {TornPage1, new Tuple<string, string>("CustomImages/Checks/torn_pages.png", "Cus-TornPage")},
+                {TornPage2, new Tuple<string, string>("CustomImages/Checks/torn_pages.png", "Cus-TornPage")},
+                {TornPage3, new Tuple<string, string>("CustomImages/Checks/torn_pages.png", "Cus-TornPage")},
+                {TornPage4, new Tuple<string, string>("CustomImages/Checks/torn_pages.png", "Cus-TornPage")},
+                {TornPage5, new Tuple<string, string>("CustomImages/Checks/torn_pages.png", "Cus-TornPage")},
+                {Valor, new Tuple<string, string>("CustomImages/Checks/valor.png", "Cus-Valor")},
+                {Wisdom, new Tuple<string, string>("CustomImages/Checks/wisdom.png", "Cus-Wisdom")},
+                {Limit, new Tuple<string, string>("CustomImages/Checks/limit.png", "Cus-Limit")},
+                {Master, new Tuple<string, string>("CustomImages/Checks/master.png", "Cus-Master")},
+                {Final, new Tuple<string, string>("CustomImages/Checks/final.png", "Cus-Final")},
+                {Lamp, new Tuple<string, string>("CustomImages/Checks/genie.png", "Cus-Genie")},
+                {Ukulele, new Tuple<string, string>("CustomImages/Checks/stitch.png", "Cus-Stitch")},
+                {Baseball, new Tuple<string, string>("CustomImages/Checks/chicken_little.png", "Cus-ChickenLittle")},
+                {Feather, new Tuple<string, string>("CustomImages/Checks/peter_pan.png", "Cus-PeterPan")},
+                {Nonexistence, new Tuple<string, string>("CustomImages/Checks/proof_of_nonexistence.png", "Cus-ProofOfNon")},
+                {Connection, new Tuple<string, string>("CustomImages/Checks/proof_of_connection.png", "Cus-ProofOfCon")},
+                {Peace, new Tuple<string, string>("CustomImages/Checks/proof_of_tranquility.png", "Cus-ProofOfPea")},
+                {PromiseCharm, new Tuple<string, string>("CustomImages/Checks/promise_charm.png", "Cus-PromiseCharm")},
+                {OnceMore, new Tuple<string, string>("CustomImages/Checks/once_more.png", "Cus-OnceMore")},
+                {SecondChance, new Tuple<string, string>("CustomImages/Checks/second_chance.png", "Cus-SecondChance")},
+                {MulanWep, new Tuple<string, string>("CustomImages/Checks/AncestorSword.png", "Cus-MulanWep")},
+                {AuronWep, new Tuple<string, string>("CustomImages/Checks/BattlefieldsofWar.png", "Cus-AuronWep")},
+                {BeastWep, new Tuple<string, string>("CustomImages/Checks/BeastClaw.png", "Cus-BeastWep")},
+                {JackWep, new Tuple<string, string>("CustomImages/Checks/BoneFist.png", "Cus-JackWep")},
+                {IceCream, new Tuple<string, string>("CustomImages/Checks/IceCream.png", "Cus-IceCream")},
+                {TronWep, new Tuple<string, string>("CustomImages/Checks/IdentityDisk.png", "Cus-TronWep")},
+                {Picture, new Tuple<string, string>("CustomImages/Checks/Picture.png", "Cus-Picture")},
+                {MembershipCard, new Tuple<string, string>("CustomImages/Checks/membership_card.png", "Cus-MembershipCard")},
+                {SimbaWep, new Tuple<string, string>("CustomImages/Checks/ProudFang.png", "Cus-SimbaWep")},
+                {AladdinWep, new Tuple<string, string>("CustomImages/Checks/Scimitar.png", "Cus-AladdinWep")},
+                {SparrowWep, new Tuple<string, string>("CustomImages/Checks/SkillCrossbones.png", "Cus-SparrowWep")},
+                {HadesCup, new Tuple<string, string>("CustomImages/Checks/hades_cup.png", "Cus-HadesCup")},
+                {OlympusStone, new Tuple<string, string>("CustomImages/Checks/olympus_stone.png", "Cus-OlympusStone")},
+                {UnknownDisk, new Tuple<string, string>("CustomImages/Checks/UnknownDisk.png", "Cus-UnknownDisk")},
+                {Anti, new Tuple<string, string>("CustomImages/Checks/anti.png", "Cus-Anti")},
+                {Ghost_Report1, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report01.png", "Cus-G_AnsemReport01")},
+                {Ghost_Report2, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report02.png", "Cus-G_AnsemReport02")},
+                {Ghost_Report3, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report03.png", "Cus-G_AnsemReport03")},
+                {Ghost_Report4, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report04.png", "Cus-G_AnsemReport04")},
+                {Ghost_Report5, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report05.png", "Cus-G_AnsemReport05")},
+                {Ghost_Report6, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report06.png", "Cus-G_AnsemReport06")},
+                {Ghost_Report7, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report07.png", "Cus-G_AnsemReport07")},
+                {Ghost_Report8, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report08.png", "Cus-G_AnsemReport08")},
+                {Ghost_Report9, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report09.png", "Cus-G_AnsemReport09")},
+                {Ghost_Report10, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report10.png", "Cus-G_AnsemReport10")},
+                {Ghost_Report11, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report11.png", "Cus-G_AnsemReport11")},
+                {Ghost_Report12, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report12.png", "Cus-G_AnsemReport12")},
+                {Ghost_Report13, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report13.png", "Cus-G_AnsemReport13")},
+                {Ghost_Fire1, new Tuple<string, string>("CustomImages/Checks/Ghost/fire.png", "Cus-G_Fire")},
+                {Ghost_Fire2, new Tuple<string, string>("CustomImages/Checks/Ghost/fire.png", "Cus-G_Fire")},
+                {Ghost_Fire3, new Tuple<string, string>("CustomImages/Checks/Ghost/fire.png", "Cus-G_Fire")},
+                {Ghost_Blizzard1, new Tuple<string, string>("CustomImages/Checks/Ghost/blizzard.png", "Cus-G_Blizzard")},
+                {Ghost_Blizzard2, new Tuple<string, string>("CustomImages/Checks/Ghost/blizzard.png", "Cus-G_Blizzard")},
+                {Ghost_Blizzard3, new Tuple<string, string>("CustomImages/Checks/Ghost/blizzard.png", "Cus-G_Blizzard")},
+                {Ghost_Thunder1, new Tuple<string, string>("CustomImages/Checks/Ghost/thunder.png", "Cus-G_Thunder")},
+                {Ghost_Thunder2, new Tuple<string, string>("CustomImages/Checks/Ghost/thunder.png", "Cus-G_Thunder")},
+                {Ghost_Thunder3, new Tuple<string, string>("CustomImages/Checks/Ghost/thunder.png", "Cus-G_Thunder")},
+                {Ghost_Cure1, new Tuple<string, string>("CustomImages/Checks/Ghost/cure.png", "Cus-G_Cure")},
+                {Ghost_Cure2, new Tuple<string, string>("CustomImages/Checks/Ghost/cure.png", "Cus-G_Cure")},
+                {Ghost_Cure3, new Tuple<string, string>("CustomImages/Checks/Ghost/cure.png", "Cus-G_Cure")},
+                {Ghost_Reflect1, new Tuple<string, string>("CustomImages/Checks/Ghost/reflect.png", "Cus-G_Reflect")},
+                {Ghost_Reflect2, new Tuple<string, string>("CustomImages/Checks/Ghost/reflect.png", "Cus-G_Reflect")},
+                {Ghost_Reflect3, new Tuple<string, string>("CustomImages/Checks/Ghost/reflect.png", "Cus-G_Reflect")},
+                {Ghost_Magnet1, new Tuple<string, string>("CustomImages/Checks/Ghost/magnet.png", "Cus-G_Magnet")},
+                {Ghost_Magnet2, new Tuple<string, string>("CustomImages/Checks/Ghost/magnet.png", "Cus-G_Magnet")},
+                {Ghost_Magnet3, new Tuple<string, string>("CustomImages/Checks/Ghost/magnet.png", "Cus-G_Magnet")},
+                {Ghost_TornPage1, new Tuple<string, string>("CustomImages/Checks/Ghost/torn_pages.png", "Cus-G_TornPage")},
+                {Ghost_TornPage2, new Tuple<string, string>("CustomImages/Checks/Ghost/torn_pages.png", "Cus-G_TornPage")},
+                {Ghost_TornPage3, new Tuple<string, string>("CustomImages/Checks/Ghost/torn_pages.png", "Cus-G_TornPage")},
+                {Ghost_TornPage4, new Tuple<string, string>("CustomImages/Checks/Ghost/torn_pages.png", "Cus-G_TornPage")},
+                {Ghost_TornPage5, new Tuple<string, string>("CustomImages/Checks/Ghost/torn_pages.png", "Cus-G_TornPage")},
+                {Ghost_Valor, new Tuple<string, string>("CustomImages/Checks/Ghost/valor.png", "Cus-G_Valor")},
+                {Ghost_Wisdom, new Tuple<string, string>("CustomImages/Checks/Ghost/wisdom.png", "Cus-G_Wisdom")},
+                {Ghost_Limit, new Tuple<string, string>("CustomImages/Checks/Ghost/limit.png", "Cus-G_Limit")},
+                {Ghost_Master, new Tuple<string, string>("CustomImages/Checks/Ghost/master.png", "Cus-G_Master")},
+                {Ghost_Final, new Tuple<string, string>("CustomImages/Checks/Ghost/final.png", "Cus-G_Final")},
+                {Ghost_Lamp, new Tuple<string, string>("CustomImages/Checks/Ghost/genie.png", "Cus-G_Genie")},
+                {Ghost_Ukulele, new Tuple<string, string>("CustomImages/Checks/Ghost/stitch.png", "Cus-G_Stitch")},
+                {Ghost_Baseball, new Tuple<string, string>("CustomImages/Checks/Ghost/chicken_little.png", "Cus-G_ChickenLittle")},
+                {Ghost_Feather, new Tuple<string, string>("CustomImages/Checks/Ghost/peter_pan.png", "Cus-G_PeterPan")},
+                {Ghost_Nonexistence, new Tuple<string, string>("CustomImages/Checks/Ghost/proof_of_nonexistence.png", "Cus-G_ProofOfNon")},
+                {Ghost_Connection, new Tuple<string, string>("CustomImages/Checks/Ghost/proof_of_connection.png", "Cus-G_ProofOfCon")},
+                {Ghost_Peace, new Tuple<string, string>("CustomImages/Checks/Ghost/proof_of_tranquility.png", "Cus-G_ProofOfPea")},
+                {Ghost_PromiseCharm, new Tuple<string, string>("CustomImages/Checks/Ghost/promise_charm.png", "Cus-G_PromiseCharm")},
+                {Ghost_OnceMore, new Tuple<string, string>("CustomImages/Checks/Ghost/once_more.png", "Cus-G_OnceMore")},
+                {Ghost_SecondChance, new Tuple<string, string>("CustomImages/Checks/Ghost/second_chance.png", "Cus-G_SecondChance")},
+                {Ghost_MulanWep, new Tuple<string, string>("CustomImages/Checks/Ghost/AncestorSword.png", "Cus-G_MulanWep")},
+                {Ghost_AuronWep, new Tuple<string, string>("CustomImages/Checks/Ghost/BattlefieldsofWar.png", "Cus-G_AuronWep")},
+                {Ghost_BeastWep, new Tuple<string, string>("CustomImages/Checks/Ghost/BeastClaw.png", "Cus-G_BeastWep")},
+                {Ghost_JackWep, new Tuple<string, string>("CustomImages/Checks/Ghost/BoneFist.png", "Cus-G_JackWep")},
+                {Ghost_IceCream, new Tuple<string, string>("CustomImages/Checks/Ghost/IceCream.png", "Cus-G_IceCream")},
+                {Ghost_TronWep, new Tuple<string, string>("CustomImages/Checks/Ghost/IdentityDisk.png", "Cus-G_TronWep")},
+                {Ghost_Picture, new Tuple<string, string>("CustomImages/Checks/Ghost/Picture.png", "Cus-G_Picture")},
+                {Ghost_MembershipCard, new Tuple<string, string>("CustomImages/Checks/Ghost/membership_card.png", "Cus-G_MembershipCard")},
+                {Ghost_SimbaWep, new Tuple<string, string>("CustomImages/Checks/Ghost/ProudFang.png", "Cus-G_SimbaWep")},
+                {Ghost_AladdinWep, new Tuple<string, string>("CustomImages/Checks/Ghost/Scimitar.png", "Cus-G_AladdinWep")},
+                {Ghost_SparrowWep, new Tuple<string, string>("CustomImages/Checks/Ghost/SkillCrossbones.png", "Cus-G_SparrowWep")},
+                {Ghost_HadesCup, new Tuple<string, string>("CustomImages/Checks/Ghost/hades_cup.png", "Cus-G_HadesCup")},
+                {Ghost_OlympusStone, new Tuple<string, string>("CustomImages/Checks/Ghost/olympus_stone.png", "Cus-G_OlympusStone")},
+                {Ghost_UnknownDisk, new Tuple<string, string>("CustomImages/Checks/Ghost/UnknownDisk.png", "Cus-G_UnknownDisk")},
+                {Ghost_Anti, new Tuple<string, string>("CustomImages/Checks/Ghost/anti.png", "Cus-G_Anti")}
+            };
 
+            string[] files = Directory.GetFiles("CustomImages/", "*.png", SearchOption.AllDirectories);
+            //check if i actually need this lowercase edit
+            files = files.Select(s => s.ToLowerInvariant()).ToArray();
 
-
-
-
-
+            //if list isn't empty then compare against dictionary to determine what icons to replace
+            if (files.Length > 0)
+            {
+                foreach (var item in CusItemCheck)
+                {
+                    if (files.Contains(item.Value.Item1.ToLower()))
+                    {
+                        item.Key.SetResourceReference(ContentProperty, item.Value.Item2);
+                    }
+                }
             }
-
-
-
-
-
-
 
 
 
@@ -269,34 +406,6 @@ namespace KhTracker
                 //check if folders exists then start checking if each file exists in it
                 if (Directory.Exists("CustomImages/Checks/"))
                 {
-                    //Main Window
-                    if (File.Exists("CustomImages/Checks/ansem_report01.png"))
-                        Report1.SetResourceReference(ContentProperty, "Cus-AnsemReport01");
-                    if (File.Exists("CustomImages/Checks/ansem_report02.png"))
-                        Report2.SetResourceReference(ContentProperty, "Cus-AnsemReport02");
-                    if (File.Exists("CustomImages/Checks/ansem_report03.png"))
-                        Report3.SetResourceReference(ContentProperty, "Cus-AnsemReport03");
-                    if (File.Exists("CustomImages/Checks/ansem_report04.png"))
-                        Report4.SetResourceReference(ContentProperty, "Cus-AnsemReport04");
-                    if (File.Exists("CustomImages/Checks/ansem_report05.png"))
-                        Report5.SetResourceReference(ContentProperty, "Cus-AnsemReport05");
-                    if (File.Exists("CustomImages/Checks/ansem_report06.png"))
-                        Report6.SetResourceReference(ContentProperty, "Cus-AnsemReport06");
-                    if (File.Exists("CustomImages/Checks/ansem_report07.png"))
-                        Report7.SetResourceReference(ContentProperty, "Cus-AnsemReport07");
-                    if (File.Exists("CustomImages/Checks/ansem_report08.png"))
-                        Report8.SetResourceReference(ContentProperty, "Cus-AnsemReport08");
-                    if (File.Exists("CustomImages/Checks/ansem_report09.png"))
-                        Report9.SetResourceReference(ContentProperty, "Cus-AnsemReport09");
-                    if (File.Exists("CustomImages/Checks/ansem_report10.png"))
-                        Report10.SetResourceReference(ContentProperty, "Cus-AnsemReport10");
-                    if (File.Exists("CustomImages/Checks/ansem_report11.png"))
-                        Report11.SetResourceReference(ContentProperty, "Cus-AnsemReport11");
-                    if (File.Exists("CustomImages/Checks/ansem_report12.png"))
-                        Report12.SetResourceReference(ContentProperty, "Cus-AnsemReport12");
-                    if (File.Exists("CustomImages/Checks/ansem_report13.png"))
-                        Report13.SetResourceReference(ContentProperty, "Cus-AnsemReport13");
-
                     if (File.Exists("CustomImages/Checks/jump.png"))
                     {
                         HighJump.SetResourceReference(ContentProperty, "Cus-HighJump");
@@ -323,424 +432,31 @@ namespace KhTracker
                         broadcast.Glide.SetResourceReference(ContentProperty, "Cus-Glide");
                     }
 
-                    if (File.Exists("CustomImages/Checks/fire.png"))
-                    {
-                        Fire1.SetResourceReference(ContentProperty, "Cus-Fire");
-                        Fire2.SetResourceReference(ContentProperty, "Cus-Fire");
-                        Fire3.SetResourceReference(ContentProperty, "Cus-Fire");
-                        broadcast.Fire.SetResourceReference(ContentProperty, "Cus-Fire");
-                    }
-                    if (File.Exists("CustomImages/Checks/blizzard.png"))
-                    {
-                        Blizzard1.SetResourceReference(ContentProperty, "Cus-Blizzard");
-                        Blizzard2.SetResourceReference(ContentProperty, "Cus-Blizzard");
-                        Blizzard3.SetResourceReference(ContentProperty, "Cus-Blizzard");
-                        broadcast.Blizzard.SetResourceReference(ContentProperty, "Cus-Blizzard");
-                    }
-                    if (File.Exists("CustomImages/Checks/thunder.png"))
-                    {
-                        Thunder1.SetResourceReference(ContentProperty, "Cus-Thunder");
-                        Thunder2.SetResourceReference(ContentProperty, "Cus-Thunder");
-                        Thunder3.SetResourceReference(ContentProperty, "Cus-Thunder");
-                        broadcast.Thunder.SetResourceReference(ContentProperty, "Cus-Thunder");
-                    }
-                    if (File.Exists("CustomImages/Checks/cure.png"))
-                    {
-                        Cure1.SetResourceReference(ContentProperty, "Cus-Cure");
-                        Cure2.SetResourceReference(ContentProperty, "Cus-Cure");
-                        Cure3.SetResourceReference(ContentProperty, "Cus-Cure");
-                        broadcast.Cure.SetResourceReference(ContentProperty, "Cus-Cure");
-                    }
-                    if (File.Exists("CustomImages/Checks/reflect.png"))
-                    {
-                        Reflect1.SetResourceReference(ContentProperty, "Cus-Reflect");
-                        Reflect2.SetResourceReference(ContentProperty, "Cus-Reflect");
-                        Reflect3.SetResourceReference(ContentProperty, "Cus-Reflect");
-                        broadcast.Reflect.SetResourceReference(ContentProperty, "Cus-Reflect");
-                    }
-                    if (File.Exists("CustomImages/Checks/magnet.png"))
-                    {
-                        Magnet1.SetResourceReference(ContentProperty, "Cus-Magnet");
-                        Magnet2.SetResourceReference(ContentProperty, "Cus-Magnet");
-                        Magnet3.SetResourceReference(ContentProperty, "Cus-Magnet");
-                        broadcast.Magnet.SetResourceReference(ContentProperty, "Cus-Magnet");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/torn_pages.png"))
-                    {
-                        TornPage1.SetResourceReference(ContentProperty, "Cus-TornPage");
-                        TornPage2.SetResourceReference(ContentProperty, "Cus-TornPage");
-                        TornPage3.SetResourceReference(ContentProperty, "Cus-TornPage");
-                        TornPage4.SetResourceReference(ContentProperty, "Cus-TornPage");
-                        TornPage5.SetResourceReference(ContentProperty, "Cus-TornPage");
-                    }
-
                     if (File.Exists("CustomImages/Checks/valor.png"))
                     {
-                        Valor.SetResourceReference(ContentProperty, "Cus-Valor");
                         ValorM.SetResourceReference(ContentProperty, "Cus-Valor");
                         broadcast.Valor.SetResourceReference(ContentProperty, "Cus-Valor");
                     }
                     if (File.Exists("CustomImages/Checks/wisdom.png"))
                     {
-                        Wisdom.SetResourceReference(ContentProperty, "Cus-Wisdom");
                         WisdomM.SetResourceReference(ContentProperty, "Cus-Wisdom");
                         broadcast.Wisdom.SetResourceReference(ContentProperty, "Cus-Wisdom");
                     }
                     if (File.Exists("CustomImages/Checks/limit.png"))
                     {
-                        Limit.SetResourceReference(ContentProperty, "Cus-Limit");
                         LimitM.SetResourceReference(ContentProperty, "Cus-Limit");
                         broadcast.Limit.SetResourceReference(ContentProperty, "Cus-Limit");
                     }
                     if (File.Exists("CustomImages/Checks/master.png"))
                     {
-                        Master.SetResourceReference(ContentProperty, "Cus-Master");
                         MasterM.SetResourceReference(ContentProperty, "Cus-Master");
                         broadcast.Master.SetResourceReference(ContentProperty, "Cus-Master");
                     }
                     if (File.Exists("CustomImages/Checks/final.png"))
                     {
-                        Final.SetResourceReference(ContentProperty, "Cus-Final");
                         FinalM.SetResourceReference(ContentProperty, "Cus-Final");
                         broadcast.Final.SetResourceReference(ContentProperty, "Cus-Final");
                     }
-
-                    if (File.Exists("CustomImages/Checks/genie.png"))
-                    {
-                        Lamp.SetResourceReference(ContentProperty, "Cus-Genie");
-                        broadcast.Lamp.SetResourceReference(ContentProperty, "Cus-Genie");
-                    }
-                    if (File.Exists("CustomImages/Checks/stitch.png"))
-                    {
-                        Ukulele.SetResourceReference(ContentProperty, "Cus-Stitch");
-                        broadcast.Ukulele.SetResourceReference(ContentProperty, "Cus-Stitch");
-                    }
-                    if (File.Exists("CustomImages/Checks/chicken_little.png"))
-                    {
-                        Baseball.SetResourceReference(ContentProperty, "Cus-ChickenLittle");
-                        broadcast.Baseball.SetResourceReference(ContentProperty, "Cus-ChickenLittle");
-                    }
-                    if (File.Exists("CustomImages/Checks/peter_pan.png"))
-                    {
-                        Feather.SetResourceReference(ContentProperty, "Cus-PeterPan");
-                        broadcast.Feather.SetResourceReference(ContentProperty, "Cus-PeterPan");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/proof_of_nonexistence.png"))
-                    {
-                        Nonexistence.SetResourceReference(ContentProperty, "Cus-ProofOfNon");
-                        broadcast.Nonexistence.SetResourceReference(ContentProperty, "Cus-ProofOfNon");
-                    }
-                    if (File.Exists("CustomImages/Checks/proof_of_connection.png"))
-                    {
-                        Connection.SetResourceReference(ContentProperty, "Cus-ProofOfCon");
-                        broadcast.Connection.SetResourceReference(ContentProperty, "Cus-ProofOfCon");
-                    }
-                    if (File.Exists("CustomImages/Checks/proof_of_tranquility.png"))
-                    {
-                        Peace.SetResourceReference(ContentProperty, "Cus-ProofOfPea");
-                        broadcast.Peace.SetResourceReference(ContentProperty, "Cus-ProofOfPea");
-                    }
-                    if (File.Exists("CustomImages/Checks/promise_charm.png"))
-                    {
-                        PromiseCharm.SetResourceReference(ContentProperty, "Cus-PromiseCharm");
-                        broadcast.PromiseCharm.SetResourceReference(ContentProperty, "Cus-PromiseCharm");
-                    }
-                    if (File.Exists("CustomImages/Checks/once_more.png"))
-                    {
-                        OnceMore.SetResourceReference(ContentProperty, "Cus-OnceMore");
-                        broadcast.OnceMore.SetResourceReference(ContentProperty, "Cus-OnceMore");
-                    }
-                    if (File.Exists("CustomImages/Checks/second_chance.png"))
-                    {
-                        SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
-                        broadcast.SecondChance.SetResourceReference(ContentProperty, "Cus-SecondChance");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/AncestorSword.png"))
-                    {
-                        MulanWep.SetResourceReference(ContentProperty, "Cus-MulanWep");
-                        broadcast.MulanWep.SetResourceReference(ContentProperty, "Cus-MulanWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/BattlefieldsofWar.png"))
-                    {
-                        AuronWep.SetResourceReference(ContentProperty, "Cus-AuronWep");
-                        broadcast.AuronWep.SetResourceReference(ContentProperty, "Cus-AuronWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/BeastClaw.png"))
-                    {
-                        BeastWep.SetResourceReference(ContentProperty, "Cus-BeastWep");
-                        broadcast.BeastWep.SetResourceReference(ContentProperty, "Cus-BeastWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/BoneFist.png"))
-                    {
-                        JackWep.SetResourceReference(ContentProperty, "Cus-JackWep");
-                        broadcast.JackWep.SetResourceReference(ContentProperty, "Cus-JackWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/IceCream.png"))
-                    {
-                        IceCream.SetResourceReference(ContentProperty, "Cus-IceCream");
-                        broadcast.IceCream.SetResourceReference(ContentProperty, "Cus-IceCream");
-                    }
-                    if (File.Exists("CustomImages/Checks/IdentityDisk.png"))
-                    {
-                        TronWep.SetResourceReference(ContentProperty, "Cus-TronWep");
-                        broadcast.TronWep.SetResourceReference(ContentProperty, "Cus-TronWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Picture.png"))
-                    {
-                        Picture.SetResourceReference(ContentProperty, "Cus-Picture");
-                        broadcast.Picture.SetResourceReference(ContentProperty, "Cus-Picture");
-                    }
-                    if (File.Exists("CustomImages/Checks/membership_card.png"))
-                    {
-                        MembershipCard.SetResourceReference(ContentProperty, "Cus-MembershipCard");
-                        broadcast.MembershipCard.SetResourceReference(ContentProperty, "Cus-MembershipCard");
-                    }
-                    if (File.Exists("CustomImages/Checks/ProudFang.png"))
-                    {
-                        SimbaWep.SetResourceReference(ContentProperty, "Cus-SimbaWep");
-                        broadcast.SimbaWep.SetResourceReference(ContentProperty, "Cus-SimbaWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Scimitar.png"))
-                    {
-                        AladdinWep.SetResourceReference(ContentProperty, "Cus-AladdinWep");
-                        broadcast.AladdinWep.SetResourceReference(ContentProperty, "Cus-AladdinWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/SkillCrossbones.png"))
-                    {
-                        SparrowWep.SetResourceReference(ContentProperty, "Cus-SparrowWep");
-                        broadcast.SparrowWep.SetResourceReference(ContentProperty, "Cus-SparrowWep");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/hades_cup.png"))
-                    {
-                        HadesCup.SetResourceReference(ContentProperty, "Cus-HadesCup");
-                        broadcast.HadesCup.SetResourceReference(ContentProperty, "Cus-HadesCup");
-                    }
-                    if (File.Exists("CustomImages/Checks/olympus_stone.png"))
-                    {
-                        OlympusStone.SetResourceReference(ContentProperty, "Cus-OlympusStone");
-                        broadcast.OlympusStone.SetResourceReference(ContentProperty, "Cus-OlympusStone");
-                    }
-                    if (File.Exists("CustomImages/Checks/UnknownDisk.png"))
-                    {
-                        UnknownDisk.SetResourceReference(ContentProperty, "Cus-UnknownDisk");
-                        broadcast.UnknownDisk.SetResourceReference(ContentProperty, "Cus-UnknownDisk");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/anti.png"))
-                    {
-                        Anti.SetResourceReference(ContentProperty, "Cus-Anti");
-                        broadcast.Anti.SetResourceReference(ContentProperty, "Cus-Anti");
-                    }
-
-                }
-
-                //for ghost items
-                if (Directory.Exists("CustomImages/Checks/Ghost/"))
-                {
-                    //Main Window
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report01.png"))
-                        Ghost_Report1.SetResourceReference(ContentProperty, "Cus-G_AnsemReport01");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report02.png"))
-                        Ghost_Report2.SetResourceReference(ContentProperty, "Cus-G_AnsemReport02");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report03.png"))
-                        Ghost_Report3.SetResourceReference(ContentProperty, "Cus-G_AnsemReport03");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report04.png"))
-                        Ghost_Report4.SetResourceReference(ContentProperty, "Cus-G_AnsemReport04");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report05.png"))
-                        Ghost_Report5.SetResourceReference(ContentProperty, "Cus-G_AnsemReport05");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report06.png"))
-                        Ghost_Report6.SetResourceReference(ContentProperty, "Cus-G_AnsemReport06");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report07.png"))
-                        Ghost_Report7.SetResourceReference(ContentProperty, "Cus-G_AnsemReport07");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report08.png"))
-                        Ghost_Report8.SetResourceReference(ContentProperty, "Cus-G_AnsemReport08");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report09.png"))
-                        Ghost_Report9.SetResourceReference(ContentProperty, "Cus-G_AnsemReport09");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report10.png"))
-                        Ghost_Report10.SetResourceReference(ContentProperty, "Cus-G_AnsemReport10");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report11.png"))
-                        Ghost_Report11.SetResourceReference(ContentProperty, "Cus-G_AnsemReport11");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report12.png"))
-                        Ghost_Report12.SetResourceReference(ContentProperty, "Cus-G_AnsemReport12");
-                    if (File.Exists("CustomImages/Checks/Ghost/ansem_report13.png"))
-                        Ghost_Report13.SetResourceReference(ContentProperty, "Cus-G_AnsemReport13");
-
-                    if (File.Exists("CustomImages/Checks/Ghost/fire.png"))
-                    {
-                        Ghost_Fire1.SetResourceReference(ContentProperty, "Cus-G_Fire");
-                        Ghost_Fire2.SetResourceReference(ContentProperty, "Cus-G_Fire");
-                        Ghost_Fire3.SetResourceReference(ContentProperty, "Cus-G_Fire");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/blizzard.png"))
-                    {
-                        Ghost_Blizzard1.SetResourceReference(ContentProperty, "Cus-G_Blizzard");
-                        Ghost_Blizzard2.SetResourceReference(ContentProperty, "Cus-G_Blizzard");
-                        Ghost_Blizzard3.SetResourceReference(ContentProperty, "Cus-G_Blizzard");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/thunder.png"))
-                    {
-                        Ghost_Thunder1.SetResourceReference(ContentProperty, "Cus-G_Thunder");
-                        Ghost_Thunder2.SetResourceReference(ContentProperty, "Cus-G_Thunder");
-                        Ghost_Thunder3.SetResourceReference(ContentProperty, "Cus-G_Thunder");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/cure.png"))
-                    {
-                        Ghost_Cure1.SetResourceReference(ContentProperty, "Cus-G_Cure");
-                        Ghost_Cure2.SetResourceReference(ContentProperty, "Cus-G_Cure");
-                        Ghost_Cure3.SetResourceReference(ContentProperty, "Cus-G_Cure");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/reflect.png"))
-                    {
-                        Ghost_Reflect1.SetResourceReference(ContentProperty, "Cus-G_Reflect");
-                        Ghost_Reflect2.SetResourceReference(ContentProperty, "Cus-G_Reflect");
-                        Ghost_Reflect3.SetResourceReference(ContentProperty, "Cus-G_Reflect");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/magnet.png"))
-                    {
-                        Ghost_Magnet1.SetResourceReference(ContentProperty, "Cus-G_Magnet");
-                        Ghost_Magnet2.SetResourceReference(ContentProperty, "Cus-G_Magnet");
-                        Ghost_Magnet3.SetResourceReference(ContentProperty, "Cus-G_Magnet");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/torn_pages.png"))
-                    {
-                        Ghost_TornPage1.SetResourceReference(ContentProperty, "Cus-G_TornPage");
-                        Ghost_TornPage2.SetResourceReference(ContentProperty, "Cus-G_TornPage");
-                        Ghost_TornPage3.SetResourceReference(ContentProperty, "Cus-G_TornPage");
-                        Ghost_TornPage4.SetResourceReference(ContentProperty, "Cus-G_TornPage");
-                        Ghost_TornPage5.SetResourceReference(ContentProperty, "Cus-G_TornPage");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/valor.png"))
-                    {
-                        Ghost_Valor.SetResourceReference(ContentProperty, "Cus-G_Valor");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/wisdom.png"))
-                    {
-                        Ghost_Wisdom.SetResourceReference(ContentProperty, "Cus-G_Wisdom");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/limit.png"))
-                    {
-                        Ghost_Limit.SetResourceReference(ContentProperty, "Cus-G_Limit");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/master.png"))
-                    {
-                        Ghost_Master.SetResourceReference(ContentProperty, "Cus-G_Master");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/final.png"))
-                    {
-                        Ghost_Final.SetResourceReference(ContentProperty, "Cus-G_Final");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/genie.png"))
-                    {
-                        Ghost_Lamp.SetResourceReference(ContentProperty, "Cus-G_Genie");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/stitch.png"))
-                    {
-                        Ghost_Ukulele.SetResourceReference(ContentProperty, "Cus-G_Stitch");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/chicken_little.png"))
-                    {
-                        Ghost_Baseball.SetResourceReference(ContentProperty, "Cus-G_ChickenLittle");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/peter_pan.png"))
-                    {
-                        Ghost_Feather.SetResourceReference(ContentProperty, "Cus-G_PeterPan");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/proof_of_nonexistence.png"))
-                    {
-                        Ghost_Nonexistence.SetResourceReference(ContentProperty, "Cus-G_ProofOfNon");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/proof_of_connection.png"))
-                    {
-                        Ghost_Connection.SetResourceReference(ContentProperty, "Cus-G_ProofOfCon");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/proof_of_tranquility.png"))
-                    {
-                        Ghost_Peace.SetResourceReference(ContentProperty, "Cus-G_ProofOfPea");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/promise_charm.png"))
-                    {
-                        Ghost_PromiseCharm.SetResourceReference(ContentProperty, "Cus-G_PromiseCharm");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/once_more.png"))
-                    {
-                        Ghost_OnceMore.SetResourceReference(ContentProperty, "Cus-G_OnceMore");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/second_chance.png"))
-                    {
-                        Ghost_SecondChance.SetResourceReference(ContentProperty, "Cus-G_SecondChance");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/AncestorSword.png"))
-                    {
-                        Ghost_MulanWep.SetResourceReference(ContentProperty, "Cus-G_MulanWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/BattlefieldsofWar.png"))
-                    {
-                        Ghost_AuronWep.SetResourceReference(ContentProperty, "Cus-G_AuronWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/BeastClaw.png"))
-                    {
-                        Ghost_BeastWep.SetResourceReference(ContentProperty, "Cus-G_BeastWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/BoneFist.png"))
-                    {
-                        Ghost_JackWep.SetResourceReference(ContentProperty, "Cus-G_JackWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/IceCream.png"))
-                    {
-                        Ghost_IceCream.SetResourceReference(ContentProperty, "Cus-G_IceCream");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/IdentityDisk.png"))
-                    {
-                        Ghost_TronWep.SetResourceReference(ContentProperty, "Cus-G_TronWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/Picture.png"))
-                    {
-                        Ghost_Picture.SetResourceReference(ContentProperty, "Cus-G_Picture");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/membership_card.png"))
-                    {
-                        Ghost_MembershipCard.SetResourceReference(ContentProperty, "Cus-G_MembershipCard");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/ProudFang.png"))
-                    {
-                        Ghost_SimbaWep.SetResourceReference(ContentProperty, "Cus-G_SimbaWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/Scimitar.png"))
-                    {
-                        Ghost_AladdinWep.SetResourceReference(ContentProperty, "Cus-G_AladdinWep");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/SkillCrossbones.png"))
-                    {
-                        Ghost_SparrowWep.SetResourceReference(ContentProperty, "Cus-G_SparrowWep");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/hades_cup.png"))
-                    {
-                        Ghost_HadesCup.SetResourceReference(ContentProperty, "Cus-G_HadesCup");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/olympus_stone.png"))
-                    {
-                        Ghost_OlympusStone.SetResourceReference(ContentProperty, "Cus-G_OlympusStone");
-                    }
-                    if (File.Exists("CustomImages/Checks/Ghost/UnknownDisk.png"))
-                    {
-                        Ghost_UnknownDisk.SetResourceReference(ContentProperty, "Cus-G_UnknownDisk");
-                    }
-
-                    if (File.Exists("CustomImages/Checks/Ghost/anti.png"))
-                    {
-                        Ghost_Anti.SetResourceReference(ContentProperty, "Cus-G_Anti");
-                    }
-
                 }
 
                 if (CustomLevelFound)
@@ -1043,27 +759,13 @@ namespace KhTracker
         {
             if (MinWorldOption.IsChecked)
             {
-                if (CavernOption.IsChecked)
-                {
-                    HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
-                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionCorImage");
-                }
-                else
-                {
-                    HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                }
 
-                if (OCCupsOption.IsChecked)
-                {
-                    OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
-                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusCupsImage");
-                }
-                else
-                {
-                    OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
-                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
-                }
+                HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
+                broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
+                
+                OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
+                broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
+                
 
                 //puzzle/synth display
                 if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
@@ -1084,27 +786,13 @@ namespace KhTracker
             }
             if (OldWorldOption.IsChecked)
             {
-                if (CavernOption.IsChecked)
-                {
-                    HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
-                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionCorImage");
-                }
-                else
-                {
-                    HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-                    broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-                }
+ 
+                HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
+                broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
 
-                if (OCCupsOption.IsChecked)
-                {
-                    OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
-                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusCupsImage");
-                }
-                else
-                {
-                    OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                    broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                }
+                OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
+                broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
+                
 
                 //puzzle/synth display
                 if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
@@ -1238,26 +926,16 @@ namespace KhTracker
 
                         //basically we only want to set the custom images if they exist and if the toggle is on/off
                         //otherwise they just use the defaults that were defined in the beggining of this function
-                        if (File.Exists("CustomImages/Worlds/hollow_bastion.png") && !CavernOption.IsChecked)
+                        if (File.Exists("CustomImages/Worlds/hollow_bastion.png"))
                         {
                             HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionImage");
                             broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionImage");
                         }
-                        else if (File.Exists("CustomImages/Worlds/hollow_bastion_cor.png") && CavernOption.IsChecked)
-                        {
-                            HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionCorImage");
-                            broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionCorImage");
-                        }
 
-                        if (File.Exists("CustomImages/Worlds/olympus_coliseum.png") && !OCCupsOption.IsChecked)
+                        if (File.Exists("CustomImages/Worlds/olympus_coliseum.png"))
                         {
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusImage");
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusImage");
-                        }
-                        else if (File.Exists("CustomImages/Worlds/olympus_coliseum_cups.png") && OCCupsOption.IsChecked)
-                        {
-                            OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
-                            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusCupsImage");
                         }
 
                         //puzzle/synth display
@@ -1368,22 +1046,14 @@ namespace KhTracker
 
                         //basically we only want to set the custom images if they exist and if the toggle is on/off
                         //otherwise they just use the defaults that were defined in the beggining of this function
-                        if (File.Exists("CustomImages/Broadcast/Worlds/hollow_bastion.png") && !CavernOption.IsChecked)
+                        if (File.Exists("CustomImages/Broadcast/Worlds/hollow_bastion.png"))
                         {
                             broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-B_HollowBastionImage");
                         }
-                        else if (File.Exists("CustomImages/Broadcast/Worlds/hollow_bastion_cor.png") && CavernOption.IsChecked)
-                        {
-                            broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-B_HollowBastionCorImage");
-                        }
 
-                        if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum.png") && !OCCupsOption.IsChecked)
+                        if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum.png"))
                         {
                             broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusImage");
-                        }
-                        else if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum_cups.png") && OCCupsOption.IsChecked)
-                        {
-                            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusCupsImage");
                         }
 
                         //puzzle/synth display
@@ -1405,139 +1075,309 @@ namespace KhTracker
             }
         }
 
-        private void ReportNumCheck()
+        ///don't need anymore
+       //private void ReportNumCheck()
+       //{
+       //    //since the numbers are a part of the actual report image, we need this if the user changes the
+       //    //number toggle or the check toggle so that the reports have the correct image
+       //
+       //    if (MinCheckOption.IsChecked && !CustomFolderOption.IsChecked)
+       //    {
+       //        if (OldNumOption.IsChecked)
+       //        {
+       //            Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
+       //            Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
+       //            Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
+       //            Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
+       //            Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
+       //            Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
+       //            Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
+       //            Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
+       //            Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
+       //            Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
+       //            Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
+       //            Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
+       //            Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
+       //
+       //            Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
+       //            Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
+       //            Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
+       //            Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
+       //            Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
+       //            Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
+       //            Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
+       //            Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
+       //            Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
+       //            Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
+       //            Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
+       //            Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
+       //            Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
+       //        }
+       //        else
+       //        {
+       //            Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
+       //            Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
+       //            Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
+       //            Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
+       //            Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
+       //            Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
+       //            Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
+       //            Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
+       //            Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
+       //            Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
+       //            Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
+       //            Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
+       //            Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
+       //
+       //            Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
+       //            Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
+       //            Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
+       //            Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
+       //            Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
+       //            Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
+       //            Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
+       //            Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
+       //            Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
+       //            Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
+       //            Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
+       //            Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
+       //            Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
+       //        }
+       //    }
+       //
+       //    if (OldCheckOption.IsChecked && !CustomFolderOption.IsChecked)
+       //    {
+       //
+       //        if (OldNumOption.IsChecked)
+       //        {
+       //            Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
+       //            Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
+       //            Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
+       //            Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
+       //            Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
+       //            Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
+       //            Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
+       //            Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
+       //            Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
+       //            Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
+       //            Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
+       //            Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
+       //            Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
+       //
+       //            Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
+       //            Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
+       //            Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
+       //            Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
+       //            Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
+       //            Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
+       //            Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
+       //            Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
+       //            Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
+       //            Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
+       //            Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
+       //            Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
+       //            Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
+       //        }
+       //        else
+       //        {
+       //            Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
+       //            Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
+       //            Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
+       //            Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
+       //            Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
+       //            Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
+       //            Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
+       //            Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
+       //            Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
+       //            Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
+       //            Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
+       //            Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
+       //            Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
+       //
+       //            Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
+       //            Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
+       //            Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
+       //            Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
+       //            Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
+       //            Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
+       //            Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
+       //            Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
+       //            Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
+       //            Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
+       //            Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
+       //            Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
+       //            Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
+       //        }
+       //    }
+       //}
+
+        ///TODO: edit all to void and use it to set up the image chages here instead of toggles.cs
+
+        public void SetItemImage()
         {
-            //since the numbers are a part of the actual report image, we need this if the user changes the
-            //number toggle or the check toggle so that the reports have the correct image
+            LevelIcon.SetResourceReference(ContentProperty, "LevelIcon");
+            StrengthIcon.SetResourceReference(ContentProperty, "StrengthIcon");
+            MagicIcon.SetResourceReference(ContentProperty, "MagicIcon");
+            DefenseIcon.SetResourceReference(ContentProperty, "DefenseIcon");
 
-            if (MinCheckOption.IsChecked && !CustomFolderOption.IsChecked)
+            string type = "";
+            if (MinCheckOption.IsChecked)
             {
-                if (OldNumOption.IsChecked)
-                {
-                    Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
-                    Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
-                    Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
-                    Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
-                    Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
-                    Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
-                    Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
-                    Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
-                    Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
-                    Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
-                    Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
-                    Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
-                    Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
-
-                    Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01_old");
-                    Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02_old");
-                    Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03_old");
-                    Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04_old");
-                    Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05_old");
-                    Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06_old");
-                    Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07_old");
-                    Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08_old");
-                    Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09_old");
-                    Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10_old");
-                    Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11_old");
-                    Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12_old");
-                    Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13_old");
-                }
-                else
-                {
-                    Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
-                    Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
-                    Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
-                    Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
-                    Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
-                    Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
-                    Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
-                    Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
-                    Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
-                    Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
-                    Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
-                    Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
-                    Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
-
-                    Ghost_Report1.SetResourceReference(ContentProperty, "Min-AnsemReport01");
-                    Ghost_Report2.SetResourceReference(ContentProperty, "Min-AnsemReport02");
-                    Ghost_Report3.SetResourceReference(ContentProperty, "Min-AnsemReport03");
-                    Ghost_Report4.SetResourceReference(ContentProperty, "Min-AnsemReport04");
-                    Ghost_Report5.SetResourceReference(ContentProperty, "Min-AnsemReport05");
-                    Ghost_Report6.SetResourceReference(ContentProperty, "Min-AnsemReport06");
-                    Ghost_Report7.SetResourceReference(ContentProperty, "Min-AnsemReport07");
-                    Ghost_Report8.SetResourceReference(ContentProperty, "Min-AnsemReport08");
-                    Ghost_Report9.SetResourceReference(ContentProperty, "Min-AnsemReport09");
-                    Ghost_Report10.SetResourceReference(ContentProperty, "Min-AnsemReport10");
-                    Ghost_Report11.SetResourceReference(ContentProperty, "Min-AnsemReport11");
-                    Ghost_Report12.SetResourceReference(ContentProperty, "Min-AnsemReport12");
-                    Ghost_Report13.SetResourceReference(ContentProperty, "Min-AnsemReport13");
-                }
+                type = "Min-";
+            }
+            if (OldCheckOption.IsChecked)
+            {
+                type = "Old-";
             }
 
-            if (OldCheckOption.IsChecked && !CustomFolderOption.IsChecked)
+            // Item icons
+            foreach (var item in data.Items.Keys)
             {
-
-                if (OldNumOption.IsChecked)
-                {
-                    Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
-                    Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
-                    Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
-                    Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
-                    Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
-                    Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
-                    Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
-                    Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
-                    Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
-                    Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
-                    Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
-                    Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
-                    Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
-
-                    Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01_old");
-                    Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02_old");
-                    Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03_old");
-                    Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04_old");
-                    Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05_old");
-                    Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06_old");
-                    Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07_old");
-                    Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08_old");
-                    Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09_old");
-                    Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10_old");
-                    Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11_old");
-                    Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12_old");
-                    Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13_old");
-                }
-                else
-                {
-                    Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
-                    Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
-                    Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
-                    Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
-                    Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
-                    Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
-                    Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
-                    Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
-                    Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
-                    Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
-                    Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
-                    Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
-                    Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
-
-                    Ghost_Report1.SetResourceReference(ContentProperty, "Old-AnsemReport01");
-                    Ghost_Report2.SetResourceReference(ContentProperty, "Old-AnsemReport02");
-                    Ghost_Report3.SetResourceReference(ContentProperty, "Old-AnsemReport03");
-                    Ghost_Report4.SetResourceReference(ContentProperty, "Old-AnsemReport04");
-                    Ghost_Report5.SetResourceReference(ContentProperty, "Old-AnsemReport05");
-                    Ghost_Report6.SetResourceReference(ContentProperty, "Old-AnsemReport06");
-                    Ghost_Report7.SetResourceReference(ContentProperty, "Old-AnsemReport07");
-                    Ghost_Report8.SetResourceReference(ContentProperty, "Old-AnsemReport08");
-                    Ghost_Report9.SetResourceReference(ContentProperty, "Old-AnsemReport09");
-                    Ghost_Report10.SetResourceReference(ContentProperty, "Old-AnsemReport10");
-                    Ghost_Report11.SetResourceReference(ContentProperty, "Old-AnsemReport11");
-                    Ghost_Report12.SetResourceReference(ContentProperty, "Old-AnsemReport12");
-                    Ghost_Report13.SetResourceReference(ContentProperty, "Old-AnsemReport13");
-                }
+                item.SetResourceReference(ContentProperty, type + item.Name);
             }
+            // Ghost icons
+            foreach (var item in data.GhostItems.Values)
+            {
+                item.SetResourceReference(ContentProperty, type + item.Name);
+            }
+
+            // stat/info icons
+            ValorM.SetResourceReference(ContentProperty, type + "Valor");
+            WisdomM.SetResourceReference(ContentProperty, type + "Wisdom");
+            LimitM.SetResourceReference(ContentProperty, type + "Limit");
+            MasterM.SetResourceReference(ContentProperty, type + "Master");
+            FinalM.SetResourceReference(ContentProperty, type + "Final");
+            HighJump.SetResourceReference(ContentProperty, type + "HighJump");
+            QuickRun.SetResourceReference(ContentProperty, type + "QuickRun");
+            DodgeRoll.SetResourceReference(ContentProperty, type + "DodgeRoll");
+            AerialDodge.SetResourceReference(ContentProperty, type + "AerialDodge");
+            Glide.SetResourceReference(ContentProperty, type + "Glide");
+
+            // broadcast icons
+            broadcast.Report.SetResourceReference(ContentProperty, type + "AnsemReport");
+            broadcast.TornPage.SetResourceReference(ContentProperty, type + "TornPages");
+            broadcast.Chest.SetResourceReference(ContentProperty, type + "Chest");
+            broadcast.LevelIcon.SetResourceReference(ContentProperty, "LevelIcon");
+            broadcast.StrengthIcon.SetResourceReference(ContentProperty, "StrengthIcon");
+            broadcast.MagicIcon.SetResourceReference(ContentProperty, "MagicIcon");
+            broadcast.DefenseIcon.SetResourceReference(ContentProperty, "DefenseIcon");
+            broadcast.HighJump.SetResourceReference(ContentProperty, type + "HighJump");
+            broadcast.QuickRun.SetResourceReference(ContentProperty, type + "QuickRun");
+            broadcast.DodgeRoll.SetResourceReference(ContentProperty, type + "DodgeRoll");
+            broadcast.AerialDodge.SetResourceReference(ContentProperty, type + "AerialDodge");
+            broadcast.Glide.SetResourceReference(ContentProperty, type + "Glide");
+            broadcast.OnceMore.SetResourceReference(ContentProperty, type + "OnceMore");
+            broadcast.SecondChance.SetResourceReference(ContentProperty, type + "SecondChance");
+            broadcast.Peace.SetResourceReference(ContentProperty, type + "ProofOfPea");
+            broadcast.Nonexistence.SetResourceReference(ContentProperty, type + "ProofOfNon");
+            broadcast.Connection.SetResourceReference(ContentProperty, type + "ProofOfCon");
+            broadcast.PromiseCharm.SetResourceReference(ContentProperty, type + "PromiseCharm");
+            broadcast.Fire.SetResourceReference(ContentProperty, type + "Fire");
+            broadcast.Blizzard.SetResourceReference(ContentProperty, type + "Blizzard");
+            broadcast.Thunder.SetResourceReference(ContentProperty, type + "Thunder");
+            broadcast.Cure.SetResourceReference(ContentProperty, type + "Cure");
+            broadcast.Reflect.SetResourceReference(ContentProperty, type + "Reflect");
+            broadcast.Magnet.SetResourceReference(ContentProperty, type + "Magnet");
+            broadcast.Valor.SetResourceReference(ContentProperty, type + "Valor");
+            broadcast.Wisdom.SetResourceReference(ContentProperty, type + "Wisdom");
+            broadcast.Limit.SetResourceReference(ContentProperty, type + "Limit");
+            broadcast.Master.SetResourceReference(ContentProperty, type + "Master");
+            broadcast.Final.SetResourceReference(ContentProperty, type + "Final");
+            broadcast.Baseball.SetResourceReference(ContentProperty, type + "ChickenLittle");
+            broadcast.Lamp.SetResourceReference(ContentProperty, type + "Genie");
+            broadcast.Ukulele.SetResourceReference(ContentProperty, type + "Stitch");
+            broadcast.Feather.SetResourceReference(ContentProperty, type + "PeterPan");
+            broadcast.MulanWep.SetResourceReference(ContentProperty, type + "MulanWep");
+            broadcast.AuronWep.SetResourceReference(ContentProperty, type + "AuronWep");
+            broadcast.BeastWep.SetResourceReference(ContentProperty, type + "BeastWep");
+            broadcast.JackWep.SetResourceReference(ContentProperty, type + "JackWep");
+            broadcast.IceCream.SetResourceReference(ContentProperty, type + "IceCream");
+            broadcast.TronWep.SetResourceReference(ContentProperty, type + "TronWep");
+            broadcast.Picture.SetResourceReference(ContentProperty, type + "Picture");
+            broadcast.MembershipCard.SetResourceReference(ContentProperty, type + "MembershipCard");
+            broadcast.SimbaWep.SetResourceReference(ContentProperty, type + "SimbaWep");
+            broadcast.AladdinWep.SetResourceReference(ContentProperty, type + "AladdinWep");
+            broadcast.SparrowWep.SetResourceReference(ContentProperty, type + "SparrowWep");
+            broadcast.HadesCup.SetResourceReference(ContentProperty, type + "HadesCup");
+            broadcast.OlympusStone.SetResourceReference(ContentProperty, type + "OlympusStone");
+            broadcast.UnknownDisk.SetResourceReference(ContentProperty, type + "UnknownDisk");
+            broadcast.Anti.SetResourceReference(ContentProperty, type + "Anti");
+
+
+
+
+            //CustomChecksCheck();
+            //ReloadBindings();
+        }
+
+        public void SetWorldImage()
+        {
+
+            string type = "";
+            if (MinWorldOption.IsChecked)
+            {
+                type = "Min-";
+            }
+            if (OldWorldOption.IsChecked)
+            {
+                type = "Old-";
+            }
+
+            //main window worlds
+            SorasHeart.SetResourceReference(ContentProperty, type + "SoraHeartImage");
+            SimulatedTwilightTown.SetResourceReference(ContentProperty, type + "SimulatedImage");
+            OlympusColiseum.SetResourceReference(ContentProperty, type + "OlympusImage");
+            LandofDragons.SetResourceReference(ContentProperty, type + "LandofDragonsImage");
+            PrideLands.SetResourceReference(ContentProperty, type + "PrideLandsImage");
+            HalloweenTown.SetResourceReference(ContentProperty, type + "HalloweenTownImage");
+            SpaceParanoids.SetResourceReference(ContentProperty, type + "SpaceParanoidsImage");
+            GoA.SetResourceReference(ContentProperty, type + "GardenofAssemblageImage");
+            DriveForms.SetResourceReference(ContentProperty, type + "DriveFormsImage");
+            TwilightTown.SetResourceReference(ContentProperty, type + "TwilightTownImage");
+            BeastsCastle.SetResourceReference(ContentProperty, type + "BeastCastleImage");
+            Agrabah.SetResourceReference(ContentProperty, type + "AgrabahImage");
+            HundredAcreWood.SetResourceReference(ContentProperty, type + "HundredAcreImage");
+            PortRoyal.SetResourceReference(ContentProperty, type + "PortRoyalImage");
+            TWTNW.SetResourceReference(ContentProperty, type + "TWTNWImage");
+            Atlantica.SetResourceReference(ContentProperty, type + "AtlanticaImage");
+            DisneyCastle.SetResourceReference(ContentProperty, type + "DisneyCastleImage");
+
+            //broadcast window worlds
+            broadcast.SorasHeart.SetResourceReference(ContentProperty, type + "SoraHeartImage");
+            broadcast.SimulatedTwilightTown.SetResourceReference(ContentProperty, type + "SimulatedImage");
+            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, type + "OlympusImage");
+            broadcast.LandofDragons.SetResourceReference(ContentProperty, type + "LandofDragonsImage");
+            broadcast.PrideLands.SetResourceReference(ContentProperty, type + "PrideLandsImage");
+            broadcast.HalloweenTown.SetResourceReference(ContentProperty, type + "HalloweenTownImage");
+            broadcast.SpaceParanoids.SetResourceReference(ContentProperty, type + "SpaceParanoidsImage");
+            broadcast.DriveForms.SetResourceReference(ContentProperty, type + "DriveFormsImage");
+            broadcast.TwilightTown.SetResourceReference(ContentProperty, type + "TwilightTownImage");
+            broadcast.BeastsCastle.SetResourceReference(ContentProperty, type + "BeastCastleImage");
+            broadcast.Agrabah.SetResourceReference(ContentProperty, type + "AgrabahImage");
+            broadcast.HundredAcreWood.SetResourceReference(ContentProperty, type + "HundredAcreImage");
+            broadcast.PortRoyal.SetResourceReference(ContentProperty, type + "PortRoyalImage");
+            broadcast.TWTNW.SetResourceReference(ContentProperty, type + "TWTNWImage");
+            broadcast.Atlantica.SetResourceReference(ContentProperty, type + "AtlanticaImage");
+            broadcast.DisneyCastle.SetResourceReference(ContentProperty, type + "DisneyCastleImage");
+
+            //puzzle/synth display
+            if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
+            {
+                PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth");
+                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth");
+            }
+            if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
+            {
+                PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_S");
+                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_S");
+            }
+            if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
+            {
+                PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_P");
+                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_P");
+            }
+
+            //CustomWorldCheck();
         }
 
     }

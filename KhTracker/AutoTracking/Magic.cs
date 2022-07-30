@@ -11,7 +11,7 @@ namespace KhTracker
     class Magic : ImportantCheck
     {
         private int sttAddress;
-        private bool useSTTAddress;
+        //private bool useSTTAddress;
 
         private int level;
         public int Level
@@ -32,10 +32,10 @@ namespace KhTracker
         {
             byte[] data;
 
-            if (useSTTAddress)
-                data = memory.ReadMemory(sttAddress + ADDRESS_OFFSET, Bytes);
-            else
-                data = base.UpdateMemory();
+            //if (useSTTAddress)
+            //    data = memory.ReadMemory(sttAddress + ADDRESS_OFFSET, Bytes);
+            //else
+            data = base.UpdateMemory();
 
             //data = base.UpdateMemory();
 
@@ -55,9 +55,9 @@ namespace KhTracker
             return null;
         }
 
-        public void UseSTTAddress(bool toggle)
-        {
-            useSTTAddress = toggle;
-        }
+        //public void UseSTTAddress(bool toggle)
+        //{
+        //    useSTTAddress = toggle;
+        //}
     }
 }
