@@ -1,0 +1,128 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:KhTracker">
+
+    <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
+        <ContentPresenter Content="{TemplateBinding Content}"/>
+    </ControlTemplate>
+
+    <!--brush colors-->   
+    
+    <!--Hinted Hints-->
+    <SolidColorBrush x:Key="HintedHint" Color="#29F"/>
+    <!--Ghosted Hints-->
+    <SolidColorBrush x:Key="GhostHint" Color="#6D3"/>
+    <!--Drive / AG / 100AW / Thunder / Torn Page / Master / Chicken Little / Olympus Stone / Scimitar / Puzzle-->
+    <SolidColorBrush x:Key="Gold" Color="#FD0"/>
+    <!--DC / Wisdom / Stitch / Ice Cream / Once More-->
+    <SolidColorBrush x:Key="LightBlue" Color="#5EF"/>
+    <!--PR / Blizzard / Anti-Form / Identity Disk Skill and Crossbones-->
+    <SolidColorBrush x:Key="DarkBlue" Color="#8AF"/>
+    <!--OC / Defence / Cure / Battlefields of War / Second Chance-->
+    <SolidColorBrush x:Key="Green" Color="#CF4"/>
+    <!--STT / GoA / Reflect / Proof of Nonexistence-->
+    <SolidColorBrush x:Key="WhiteBlue" Color="#CFF"/>
+    <!--HT / Magic / Genie / Membership Card / Bone Fist-->
+    <SolidColorBrush x:Key="Purple" Color="#D8F"/>
+    <!--TWTNW / Report / Final / Proof of Peace / Unknown Disc-->
+    <SolidColorBrush x:Key="White" Color="#DDF"/>
+    <!--LoD / PL / Valor / Peter Pan / Proud Fang / Moogle-->
+    <SolidColorBrush x:Key="Red" Color="#F63"/>
+    <!--HB / BC / Magnet / Beast’s Claw / Promise Charm / Moogle&Puzzle-->
+    <SolidColorBrush x:Key="Pink" Color="#F7C"/>
+    <!--TT / Strength / Fire / Limit / Picture / Sword of the Ancestor-->
+    <SolidColorBrush x:Key="Orange" Color="#F84"/>
+    <!--Proof of Connection-->
+    <SolidColorBrush x:Key="OffWhite" Color="#FDC"/>
+    <!-- selection hilights -->
+    <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
+    <SolidColorBrush x:Key="DefaultRec" Color="#BF1E1E1E"/>
+    <SolidColorBrush x:Key="SelectedRec" Color="#BF3C5A78"/>
+    <!-- Window Background default -->
+    <SolidColorBrush x:Key="BG-Default" Color="#303030"/>
+    
+    
+    <!--auto-detect icons-->
+    <Image x:Key="Min-Connect"	 Source="Images\connect.png" x:Shared="false"/>
+    <Image x:Key="Min-PC"	 Source="Images\PC.png" x:Shared="false"/>
+    <Image x:Key="Min-PS2"	 Source="Images\ps2.png" x:Shared="false"/>
+
+    
+    <!--Seed Hash Icons-->
+    <Image x:Key="ability-unequip" Source="Images\Icons\ability-unequip.png"/>
+    <Image x:Key="accessory" Source="Images\Icons\accessory.png"/>
+    <Image x:Key="ai-mode-frequent" Source="Images\Icons\ai-mode-frequent.png"/>
+    <Image x:Key="ai-mode-moderate" Source="Images\Icons\ai-mode-moderate.png"/>
+    <Image x:Key="ai-mode-rare" Source="Images\Icons\ai-mode-rare.png"/>
+    <Image x:Key="ai-settings" Source="Images\Icons\ai-settings.png"/>
+    <Image x:Key="armor" Source="Images\Icons\armor.png"/>
+    <Image x:Key="button-circle" Source="Images\Icons\button-circle.png"/>
+    <Image x:Key="button-cross" Source="Images\Icons\button-cross.png"/>
+    <Image x:Key="button-l1" Source="Images\Icons\button-l1.png"/>
+    <Image x:Key="button-l2" Source="Images\Icons\button-l2.png"/>
+    <Image x:Key="button-r1" Source="Images\Icons\button-r1.png"/>
+    <Image x:Key="button-r2" Source="Images\Icons\button-r2.png"/>
+    <Image x:Key="button-square" Source="Images\Icons\button-square.png"/>
+    <Image x:Key="button-triangle" Source="Images\Icons\button-triangle.png"/>
+    <Image x:Key="exclamation-mark" Source="Images\Icons\exclamation-mark.png"/>
+    <Image x:Key="form" Source="Images\Icons\form.png"/>
+    <Image x:Key="gumi-block" Source="Images\Icons\gumi-block.png"/>
+    <Image x:Key="gumi-blueprint" Source="Images\Icons\gumi-blueprint.png"/>
+    <Image x:Key="gumi-brush" Source="Images\Icons\gumi-brush.png"/>
+    <Image x:Key="gumi-gear" Source="Images\Icons\gumi-gear.png"/>
+    <Image x:Key="gumi-ship" Source="Images\Icons\gumi-ship.png"/>
+    <Image x:Key="item-consumable" Source="Images\Icons\item-consumable.png"/>
+    <Image x:Key="item-key" Source="Images\Icons\item-key.png"/>
+    <Image x:Key="item-tent" Source="Images\Icons\item-tent.png"/>
+    <Image x:Key="magic" Source="Images\Icons\magic.png"/>
+    <Image x:Key="material" Source="Images\Icons\material.png"/>
+    <Image x:Key="party" Source="Images\Icons\party.png"/>
+    <Image x:Key="question-mark" Source="Images\Icons\question-mark.png"/>
+    <Image x:Key="rank-a" Source="Images\Icons\rank-a.png"/>
+    <Image x:Key="rank-b" Source="Images\Icons\rank-b.png"/>
+    <Image x:Key="rank-c" Source="Images\Icons\rank-c.png"/>
+    <Image x:Key="rank-s" Source="Images\Icons\rank-s.png"/>
+    <Image x:Key="weapon-keyblade" Source="Images\Icons\weapon-keyblade.png"/>
+    <Image x:Key="weapon-shield" Source="Images\Icons\weapon-shield.png"/>
+    <Image x:Key="weapon-staff" Source="Images\Icons\weapon-staff.png"/>
+
+
+
+    <!--Stat UI-->
+    <Image x:Key="LevelIcon"  		    Source="Images\Other\level.png" x:Shared="false"/>
+    <Image x:Key="StrengthIcon"		    Source="Images\Other\strength.png" x:Shared="false"/>
+    <Image x:Key="MagicIcon"  		    Source="Images\Other\magic.png" x:Shared="false"/>
+    <Image x:Key="DefenseIcon"  	    Source="Images\Other\defence.png" x:Shared="false"/>
+    <Image x:Key="Sword"		        Source="Images\Other\sword.png" x:Shared="false"/>
+    <Image x:Key="Shield"  	            Source="Images\Other\shield.png" x:Shared="false"/>
+    <Image x:Key="Staff"  	            Source="Images\Other\staff.png" x:Shared="false"/>
+    <Image x:Key="Min-Chest" 		    Source="Images\Other\chest.png"/>
+    <Image x:Key="Old-Chest" 		    Source="Images\Other\chest_old.png"/>
+    
+    <!--Custom Stat UI-->
+    <Image x:Key="Cus-LevelIcon"  		Source="pack://application:,,,/CustomImages/Other/level.png" x:Shared="false"/>
+    <Image x:Key="Cus-StrengthIcon"		Source="pack://application:,,,/CustomImages/Other/strength.png" x:Shared="false"/>
+    <Image x:Key="Cus-MagicIcon"  		Source="pack://application:,,,/CustomImages/Other/magic.png" x:Shared="false"/>
+    <Image x:Key="Cus-DefenseIcon"  	Source="pack://application:,,,/CustomImages/Other/defence.png" x:Shared="false"/>
+    <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/Other/sword.png" x:Shared="false"/>
+    <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/Other/shield.png" x:Shared="false"/>
+    <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/Other/staff.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Chest" 		    Source="pack://application:,,,/CustomImages/Broadcast/Other/chest.png"/>
+
+
+    <!-- main window custom image-->
+    <ImageBrush x:Key="BG-Image1" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" />
+    <ImageBrush x:Key="BG-ImageDef1" ImageSource="Images/BG.png" TileMode="Tile"/>
+    <ImageBrush x:Key="BG-Image2" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-ImageDef2" ImageSource="Images/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-Image3" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="None"/>
+    <ImageBrush x:Key="BG-ImageDef3" ImageSource="Images/BG.png" TileMode="Tile" Stretch="None"/>
+    <!-- broadcast window custom image-->
+    <ImageBrush x:Key="BG-BImage1" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" />
+    <ImageBrush x:Key="BG-BImageDef1" ImageSource="Images/BG_broadcast.png" TileMode="Tile"/>
+    <ImageBrush x:Key="BG-BImage2" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-BImageDef2" ImageSource="Images/BG_broadcast.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-BImage3" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" Stretch="None"/>
+    <ImageBrush x:Key="BG-BImageDef3" ImageSource="Images/BG_broadcast.png" TileMode="Tile" Stretch="None"/>
+
+</ResourceDictionary>

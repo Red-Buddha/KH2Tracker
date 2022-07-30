@@ -1464,7 +1464,7 @@
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="1" x:Name="Skull" Source="Images/Other/generic skull.png"/>
                         <Viewbox Grid.Column="2">
-                            <local:OutlinedTextBlock x:Name="DeathValue" FontFamily="KHGummi" FontSize="15pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="3" Text="999">
+                            <local:OutlinedTextBlock x:Name="DeathValue" FontFamily="{StaticResource Gummi }" FontSize="15pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="3" Text="999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC62937" Offset="1"/>
@@ -1995,30 +1995,29 @@
 
 
 
-                    <local:Item x:Name="Fire1"        Content="{DynamicResource Min-Fire}"         Grid.Column="1"/>
-                    <local:Item x:Name="Fire2"        Content="{DynamicResource Min-Fire}"         Grid.Column="1"/>
-                    <local:Item x:Name="Fire3"        Content="{DynamicResource Min-Fire}"         Grid.Column="1"/>
-
-                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard}"     Grid.Column="3"/>
-                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard}"     Grid.Column="3"/>
-                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard}"     Grid.Column="3"/>
-                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder}"      Grid.Column="5"/>
-                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder}"      Grid.Column="5"/>
-                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder}"      Grid.Column="5"/>
-                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure}"         Grid.Column="7"/>
-                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure}"         Grid.Column="7"/>
-                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure}"         Grid.Column="7"/>
-                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect}"      Grid.Column="9"/>
-                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect}"      Grid.Column="9"/>
-                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect}"      Grid.Column="9"/>
-                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet}"       Grid.Column="11"/>
-                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet}"       Grid.Column="11"/>
-                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet}"       Grid.Column="11"/>
-                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage}"     Grid.Column="13"/>
+                    <local:Item x:Name="Fire1"        Content="{DynamicResource Min-Fire1}"         Grid.Column="1"/>
+                    <local:Item x:Name="Fire2"        Content="{DynamicResource Min-Fire2}"         Grid.Column="1"/>
+                    <local:Item x:Name="Fire3"        Content="{DynamicResource Min-Fire3}"         Grid.Column="1"/>
+                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard1}"     Grid.Column="3"/>
+                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard2}"     Grid.Column="3"/>
+                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard3}"     Grid.Column="3"/>
+                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder1}"      Grid.Column="5"/>
+                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder2}"      Grid.Column="5"/>
+                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder3}"      Grid.Column="5"/>
+                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure1}"         Grid.Column="7"/>
+                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure2}"         Grid.Column="7"/>
+                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure3}"         Grid.Column="7"/>
+                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect1}"      Grid.Column="9"/>
+                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect2}"      Grid.Column="9"/>
+                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect3}"      Grid.Column="9"/>
+                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet1}"       Grid.Column="11"/>
+                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet2}"       Grid.Column="11"/>
+                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet3}"       Grid.Column="11"/>
+                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage1}"     Grid.Column="13"/>
+                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage2}"     Grid.Column="13"/>
+                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage3}"     Grid.Column="13"/>
+                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage4}"     Grid.Column="13"/>
+                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage5}"     Grid.Column="13"/>
                     <local:Item x:Name="OnceMore"     Content="{DynamicResource Min-OnceMore}"     Grid.Column="14"/>
                     <local:Item x:Name="SecondChance" Content="{DynamicResource Min-SecondChance}" Grid.Column="15"/>
                 </Grid>

@@ -45,6 +45,13 @@
     <Image x:Key="Min-ProofOfPea"		Source="Images\Checks\Simple\proof_of_tranquility.png"/>
     <Image x:Key="Min-PromiseCharm"		Source="Images\Checks\Simple\promise_charm.png"/>
     <!-- Multi -->
+    <!--Image x:Key="Min-Fire"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
+    <Image x:Key="Min-Blizzard"     Source="Images\Checks\Simple\blizzard.png"       x:Shared="false"/>
+    <Image x:Key="Min-Thunder"	    Source="Images\Checks\Simple\thunder.png"        x:Shared="false"/>
+    <Image x:Key="Min-Cure"		    Source="Images\Checks\Simple\cure.png"           x:Shared="false"/>
+    <Image x:Key="Min-Reflect"	    Source="Images\Checks\Simple\reflect.png"        x:Shared="false"/>
+    <Image x:Key="Min-Magnet"	    Source="Images\Checks\Simple\magnet.png"         x:Shared="false"/>
+    <Image x:Key="Min-TornPage"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/-->
     <Image x:Key="Min-Fire1"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
     <Image x:Key="Min-Fire2"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
     <Image x:Key="Min-Fire3"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
