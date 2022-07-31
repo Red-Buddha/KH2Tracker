@@ -42,6 +42,10 @@ namespace KhTracker
             InitOptions();
             VisitLockCheck();
 
+            //broadcast window startup
+            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
+            BroadcastStartupToggle(null, null);
+
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             if (AutoDetectOption.IsChecked)
@@ -163,9 +167,6 @@ namespace KhTracker
         private void InitOptions()
         {
             #region Options
-
-            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
-            BroadcastStartupToggle(null, null);
 
             TopMostOption.IsChecked = Properties.Settings.Default.TopMost;
             TopMostToggle(null, null);

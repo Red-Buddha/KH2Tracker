@@ -97,7 +97,7 @@ namespace KhTracker
         }
 
         ///
-        /// Option Toggles
+        /// Options
         ///
 
         private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
@@ -125,8 +125,9 @@ namespace KhTracker
                 itempools.Add(pool);
             }
 
-            foreach (Item item in data.Items.Keys)
+            foreach (string key in data.Items.Keys)
             {
+                Item item = data.Items[key].Item1;
                 if (itempools.Contains(item.Parent))
                 {
                     if (data.dragDrop == false)
@@ -153,11 +154,22 @@ namespace KhTracker
             }
         }
 
+        private void AutoDetectToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;
 
-
+            if (AutoDetectOption.IsChecked)
+            {
+                Connect.Source = data.AD_Connect;
+                Connect.Visibility = Visibility.Visible;
+                SetAutoDetectTimer();
+            }
+            else
+                Connect.Visibility = Visibility.Hidden;
+        }
 
         ///
-        /// Item Toggles
+        /// Toggles
         ///
 
         private void ReportsToggle(object sender, RoutedEventArgs e)
@@ -358,10 +370,6 @@ namespace KhTracker
             HandleItemToggle(toggle, OlympusStone, false);
             HandleItemToggle(toggle, UnknownDisk, false);
         }
-        
-        ///
-        /// Info Display Toggles
-        /// 
 
         private void SeedHashToggle(object sender, RoutedEventArgs e)
         {
@@ -635,8 +643,86 @@ namespace KhTracker
             }
         }
 
+        private void SoraLevel01Toggle(object sender, RoutedEventArgs e)
+        {
+            SoraLevel01Toggle(SoraLevel01Option.IsChecked);
+        }
+
+        private void SoraLevel01Toggle(bool toggle)
+        {
+            //mimic radio button
+            if (SoraLevel01Option.IsChecked == false)
+            {
+                SoraLevel01Option.IsChecked = true;
+                //return;
+            }
+            SoraLevel50Option.IsChecked = false;
+            SoraLevel99Option.IsChecked = false;
+            Properties.Settings.Default.WorldLevel50 = SoraLevel50Option.IsChecked;
+            Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
+            Properties.Settings.Default.WorldLevel1 = toggle;
+
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
+
+            CustomWorldCheck();
+            NextLevelDisplay();
+        }
+
+        private void SoraLevel50Toggle(object sender, RoutedEventArgs e)
+        {
+            SoraLevel50Toggle(SoraLevel50Option.IsChecked);
+        }
+
+        private void SoraLevel50Toggle(bool toggle)
+        {
+            //mimic radio button
+            if (SoraLevel50Option.IsChecked == false)
+            {
+                SoraLevel50Option.IsChecked = true;
+                //return;
+            }
+            SoraLevel01Option.IsChecked = false;
+            SoraLevel99Option.IsChecked = false;
+            Properties.Settings.Default.WorldLevel1 = SoraLevel50Option.IsChecked;
+            Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
+            Properties.Settings.Default.WorldLevel50 = toggle;
+
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
+
+            CustomWorldCheck();
+            NextLevelDisplay();
+        }
+
+        private void SoraLevel99Toggle(object sender, RoutedEventArgs e)
+        {
+            SoraLevel99Toggle(SoraLevel99Option.IsChecked);
+        }
+
+        private void SoraLevel99Toggle(bool toggle)
+        {
+            //mimic radio button
+            if (SoraLevel99Option.IsChecked == false)
+            {
+                SoraLevel99Option.IsChecked = true;
+                //return;
+            }
+            SoraLevel50Option.IsChecked = false;
+            SoraLevel01Option.IsChecked = false;
+            Properties.Settings.Default.WorldLevel50 = SoraLevel50Option.IsChecked;
+            Properties.Settings.Default.WorldLevel1 = SoraLevel01Option.IsChecked;
+            Properties.Settings.Default.WorldLevel99 = toggle;
+
+            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
+
+            CustomWorldCheck();
+            NextLevelDisplay();
+        }
+
         ///
-        /// Visual Toggles
+        /// Visual
         /// 
 
         private void MinCheckToggle(object sender, RoutedEventArgs e)
@@ -747,30 +833,124 @@ namespace KhTracker
             }
         }
 
-
-
-
-
-
-
-
-
-
-        private void AutoDetectToggle(object sender, RoutedEventArgs e)
+        private void CustomImageToggle(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;
+            Properties.Settings.Default.CustomIcons = CustomFolderOption.IsChecked;
 
-            if (AutoDetectOption.IsChecked)
+            if (CustomFolderOption.IsChecked)
             {
-                //Console.WriteLine("Auto Detect enabled?");
-                Connect.Source = data.AD_Connect;
-                //SetAutoDetectTimer();
-                Connect.Visibility = Visibility.Visible;
-                SetAutoDetectTimer();
+                CustomChecksCheck();
+                CustomWorldCheck();
+                SetProgressIcons();
             }
             else
-                Connect.Visibility = Visibility.Hidden;
+            {
+                //reload check icons
+                SetItemImage();
+                //if (MinCheckOption.IsChecked)
+                //{
+                //    MinCheckToggle(sender, e);
+                //}
+                //else if (OldCheckOption.IsChecked)
+                //{
+                //    OldCheckToggle(sender, e);
+                //}
+
+                //reload world icons
+                SetWorldImage();
+                //if (MinWorldOption.IsChecked)
+                //{
+                //    MinWorldToggle(sender, e);
+                //}
+                //else if (OldWorldOption.IsChecked)
+                //{
+                //    OldWorldToggle(sender, e);
+                //}
+
+                #region reload visit locks
+
+                HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+
+                broadcast.HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+
+                #endregion
+
+                #region reload others
+
+                SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                GoACross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+
+                broadcast.SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                broadcast.PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+
+                Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
+                broadcast.Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
+
+                #endregion
+            }
         }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -960,205 +1140,13 @@ namespace KhTracker
         //    CustomWorldCheck();
         //}
 
-        private void SoraLevel01Toggle(object sender, RoutedEventArgs e)
-        {
-            SoraLevel01Toggle(SoraLevel01Option.IsChecked);
-        }
-
-        private void SoraLevel01Toggle(bool toggle)
-        {
-            //mimic radio button
-            if (SoraLevel01Option.IsChecked == false)
-            {
-                SoraLevel01Option.IsChecked = true;
-                //return;
-            }
-            SoraLevel50Option.IsChecked = false;
-            SoraLevel99Option.IsChecked = false;
-            Properties.Settings.Default.WorldLevel50 = SoraLevel50Option.IsChecked;
-            Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
-            Properties.Settings.Default.WorldLevel1 = toggle;
-
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
-
-            CustomWorldCheck();
-            NextLevelDisplay();
-        }
-
-        private void SoraLevel50Toggle(object sender, RoutedEventArgs e)
-        {
-            SoraLevel50Toggle(SoraLevel50Option.IsChecked);
-        }
-
-        private void SoraLevel50Toggle(bool toggle)
-        {
-            //mimic radio button
-            if (SoraLevel50Option.IsChecked == false)
-            {
-                SoraLevel50Option.IsChecked = true;
-                //return;
-            }
-            SoraLevel01Option.IsChecked = false;
-            SoraLevel99Option.IsChecked = false;
-            Properties.Settings.Default.WorldLevel1 = SoraLevel50Option.IsChecked;
-            Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
-            Properties.Settings.Default.WorldLevel50 = toggle;
-
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
-
-            CustomWorldCheck();
-            NextLevelDisplay();
-        }
-
-        private void SoraLevel99Toggle(object sender, RoutedEventArgs e)
-        {
-            SoraLevel99Toggle(SoraLevel99Option.IsChecked);
-        }
-
-        private void SoraLevel99Toggle(bool toggle)
-        {
-            //mimic radio button
-            if (SoraLevel99Option.IsChecked == false)
-            {
-                SoraLevel99Option.IsChecked = true;
-                //return;
-            }
-            SoraLevel50Option.IsChecked = false;
-            SoraLevel01Option.IsChecked = false;
-            Properties.Settings.Default.WorldLevel50 = SoraLevel50Option.IsChecked;
-            Properties.Settings.Default.WorldLevel1 = SoraLevel01Option.IsChecked;
-            Properties.Settings.Default.WorldLevel99 = toggle;
-
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
-
-            CustomWorldCheck();
-            NextLevelDisplay();
-        }
 
 
 
 
 
 
-        private void CustomImageToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.CustomIcons = CustomFolderOption.IsChecked;
 
-            CustomChecksCheck();
-            CustomWorldCheck();
-            //ReloadBindings();
-            SetProgressIcons();
-
-            if (!CustomFolderOption.IsChecked)
-            {
-                //reload check icons
-                {
-                    if (MinCheckOption.IsChecked)
-                    {
-                        MinCheckToggle(sender, e);
-                    }
-                    else if (OldCheckOption.IsChecked)
-                    {
-                        OldCheckToggle(sender, e);
-                    }
-                }
-                //reload world icons
-                {
-                    if (MinWorldOption.IsChecked)
-                    {
-                        MinWorldToggle(sender, e);
-                    }
-                    else if (OldWorldOption.IsChecked)
-                    {
-                        OldWorldToggle(sender, e);
-                    }
-                }
-                //reload visit locks
-                {
-                    HollowBastionLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    LandofDragonsLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    PrideLandsLock.Source =      new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    HalloweenTownLock.Source =   new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    SpaceParanoidsLock.Source =  new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    BeastsCastleLock.Source =    new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    AgrabahLock.Source =         new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    PortRoyalLock.Source =       new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    TwilightTownLock_2.Source =  new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    TwilightTownLock_1.Source =  new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
-
-                    broadcast.HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                    broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
-                }
-                //reload others
-                {
-                    SorasHeartCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    DriveFormsCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    TwilightTownCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    HollowBastionCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    BeastsCastleCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    OlympusColiseumCross.Source =       new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    AgrabahCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    LandofDragonsCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    HundredAcreWoodCross.Source =       new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    PrideLandsCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    DisneyCastleCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    HalloweenTownCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    PortRoyalCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    TWTNWCross.Source =                 new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    SpaceParanoidsCross.Source =        new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    AtlanticaCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    PuzzSynthCross.Source =             new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    GoACross.Source =                   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-
-                    broadcast.SorasHeartCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.DriveFormsCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.SimulatedTwilightTownCross.Source =   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.TwilightTownCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.HollowBastionCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.BeastsCastleCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.OlympusColiseumCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.AgrabahCross.Source =                 new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.LandofDragonsCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.HundredAcreWoodCross.Source =         new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.PrideLandsCross.Source =              new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.DisneyCastleCross.Source =            new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.HalloweenTownCross.Source =           new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.PortRoyalCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.TWTNWCross.Source =                   new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.SpaceParanoidsCross.Source =          new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.AtlanticaCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                    broadcast.PuzzSynthCross.Source =               new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-
-                    Skull.Source =           new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
-                    broadcast.Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
-                }
-                //reload prog icons (do i need this? only if i want switching to be dynamic i guess)
-                //{
-                //    if (MinProgOption.IsChecked)
-                //    {
-                //        MinProgToggle(sender, e);
-                //    }
-                //    else if (OldProgOption.IsChecked)
-                //    {
-                //        OldProgToggle(sender, e);
-                //    }
-                //}
-            }
-        }
 
 
 
