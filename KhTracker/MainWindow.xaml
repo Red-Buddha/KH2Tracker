@@ -144,9 +144,7 @@
                 <!-- 2.2 -->
                 <RowDefinition x:Name="CheckRow" Height="2.2*"/>
                 <!-- 0.4 -->
-                <RowDefinition x:Name="SettingRow" Height="0.4*"/>
-                <!-- Should never be visible. always 0-->
-                <RowDefinition x:Name="GhostRow" Height="0*"/>
+                <RowDefinition x:Name="SettingRow" Height="0.0*"/>
             </Grid.RowDefinitions>
 
             <!-- World Grids -->
@@ -773,7 +771,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition Height="0"/>
+                        <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
@@ -1847,13 +1845,14 @@
                     <RowDefinition x:Name="CountsRow"/>
                     <RowDefinition/>
                     <RowDefinition x:Name="VisitChecks" Height="1*"/>
-                    <RowDefinition Height="0.15*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <!-- Should never be visible. always 0-->
                     <RowDefinition Height="0*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.0125*"/>
+                    <ColumnDefinition Width="0.01*"/>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="0.0125*"/>
+                    <ColumnDefinition Width="0.01*"/>
                 </Grid.ColumnDefinitions>
                 
                 <!-- Row 1 (USE FONT FOR REPORT NUMBERS?)-->
@@ -1923,7 +1922,7 @@
 
                     <!-- Numbers -->
                     <Viewbox Grid.Column="0">
-                        <local:OutlinedTextBlock x:Name="FireCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="FireCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFFF5A1A" Offset="1"/>
@@ -1933,7 +1932,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="2">
-                        <local:OutlinedTextBlock x:Name="BlizzardCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="BlizzardCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FF6F50EF" Offset="1"/>
@@ -1943,7 +1942,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="4">
-                        <local:OutlinedTextBlock x:Name="ThunderCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="ThunderCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFE17606" Offset="1"/>
@@ -1953,7 +1952,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="6">
-                        <local:OutlinedTextBlock x:Name="CureCount" FontFamily="KHGummi" FontSize="25" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="CureCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FF62B055" Offset="1"/>
@@ -1963,7 +1962,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="8">
-                        <local:OutlinedTextBlock x:Name="ReflectCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="ReflectCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFACECFF" Offset="1"/>
@@ -1973,7 +1972,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="10">
-                        <local:OutlinedTextBlock x:Name="MagnetCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="3">
+                        <local:OutlinedTextBlock x:Name="MagnetCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFFF58C0" Offset="1"/>
@@ -1983,7 +1982,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="12">
-                        <local:OutlinedTextBlock x:Name="PageCount" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="0" Text="5">
+                        <local:OutlinedTextBlock x:Name="PageCount" FontFamily="{StaticResource Gummi }" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="5">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFE16902" Offset="1"/>
@@ -1993,29 +1992,29 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
 
-                    <local:Item x:Name="Fire1"        Content="{DynamicResource Min-Fire1}"         Grid.Column="1"/>
-                    <local:Item x:Name="Fire2"        Content="{DynamicResource Min-Fire2}"         Grid.Column="1"/>
-                    <local:Item x:Name="Fire3"        Content="{DynamicResource Min-Fire3}"         Grid.Column="1"/>
-                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard1}"     Grid.Column="3"/>
-                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard2}"     Grid.Column="3"/>
-                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard3}"     Grid.Column="3"/>
-                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder1}"      Grid.Column="5"/>
-                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder2}"      Grid.Column="5"/>
-                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder3}"      Grid.Column="5"/>
-                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure1}"         Grid.Column="7"/>
-                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure2}"         Grid.Column="7"/>
-                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure3}"         Grid.Column="7"/>
-                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect1}"      Grid.Column="9"/>
-                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect2}"      Grid.Column="9"/>
-                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect3}"      Grid.Column="9"/>
-                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet1}"       Grid.Column="11"/>
-                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet2}"       Grid.Column="11"/>
-                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet3}"       Grid.Column="11"/>
-                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage1}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage2}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage3}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage4}"     Grid.Column="13"/>
-                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage5}"     Grid.Column="13"/>
+                    <local:Item x:Name="Fire1"        Content="{DynamicResource Min-Fire1}"         Grid.Column="1" Margin="2,0"/>
+                    <local:Item x:Name="Fire2"        Content="{DynamicResource Min-Fire2}"         Grid.Column="1" Margin="2,0"/>
+                    <local:Item x:Name="Fire3"        Content="{DynamicResource Min-Fire3}"         Grid.Column="1" Margin="2,0"/>
+                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard1}"     Grid.Column="3" Margin="2,0"/>
+                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard2}"     Grid.Column="3" Margin="2,0"/>
+                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard3}"     Grid.Column="3" Margin="2,0"/>
+                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder1}"      Grid.Column="5" Margin="2,0"/>
+                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder2}"      Grid.Column="5" Margin="2,0"/>
+                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder3}"      Grid.Column="5" Margin="2,0"/>
+                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure1}"         Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure2}"         Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure3}"         Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect1}"      Grid.Column="9" Margin="2,0"/>
+                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect2}"      Grid.Column="9" Margin="2,0"/>
+                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect3}"      Grid.Column="9" Margin="2,0"/>
+                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet1}"       Grid.Column="11" Margin="2,0"/>
+                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet2}"       Grid.Column="11" Margin="2,0"/>
+                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet3}"       Grid.Column="11" Margin="2,0"/>
+                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage1}"     Grid.Column="13" Margin="3,0"/>
+                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage2}"     Grid.Column="13" Margin="3,0"/>
+                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage3}"     Grid.Column="13" Margin="3,0"/>
+                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage4}"     Grid.Column="13" Margin="3,0"/>
+                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage5}"     Grid.Column="13" Margin="3,0"/>
                     <local:Item x:Name="OnceMore"     Content="{DynamicResource Min-OnceMore}"     Grid.Column="14"/>
                     <local:Item x:Name="SecondChance" Content="{DynamicResource Min-SecondChance}" Grid.Column="15"/>
                 </Grid>

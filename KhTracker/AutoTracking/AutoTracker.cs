@@ -88,9 +88,6 @@ namespace KhTracker
         private bool isWorking = false;
         private bool firstRun = true;       
 
-
-        /// going through everything one by one... lets redo a lot of it and do major cleanup
-
         ///
         /// Autotracking Startup
         ///
@@ -107,12 +104,33 @@ namespace KhTracker
             InitAutoTracker(false);
         }
 
+        public void SetAutoDetectTimer()
+        {
+            //return if autotracking already succsessful
+            if (isWorking)
+                return;
+
+            //if autotracking isn't currently working then stop timer
+            if (aTimer != null)
+                aTimer.Stop();
+
+            if (firstRun)
+            {
+                autoTimer = new DispatcherTimer();
+                autoTimer.Tick += InitAutoDetect;
+                firstRun = false;
+                autoTimer.Interval = new TimeSpan(0, 0, 0, 5, 0); // attempt tracking every 5 seconds
+            }
+
+            autoTimer.Start();
+        }
+
         private void InitAutoDetect(object sender, EventArgs e)
         {
             int hooktries = 0;
             bool version = true; //Reminder: true = emu | false = pc
 
-            //auto-detect was sucessful before so attempt tracking based on that
+            //if auto-detect was sucessful before then attempt re-autotracking based on that
             if (autoDetected && storedDetectedVersion != 0)
             {
                 do
@@ -139,6 +157,7 @@ namespace KhTracker
                 return;
             }
 
+            //attempt tracking correct version
             do
             {
                 memory = new MemoryReader(version);
@@ -161,7 +180,7 @@ namespace KhTracker
                 }
                 else if (hooktries > 20)
                 {
-                    //could not hook pc so reset and try hooking emu again
+                    //could not hook pc so reset and return to try again next tick
                     memory = null;
                     autoDetected = false;
                     storedDetectedVersion = 0;
@@ -190,32 +209,10 @@ namespace KhTracker
             }
         }
 
-        public void SetAutoDetectTimer()
-        {
-            //return autotracking already succsessful
-            if (isWorking)
-                return;
-
-            //if autotracking isn't currently working then stop timer
-            if (aTimer != null)
-                aTimer.Stop();
-
-            if (firstRun)
-            {
-                autoTimer = new DispatcherTimer();
-                autoTimer.Tick += InitAutoDetect;
-                firstRun = false;
-                autoTimer.Interval = new TimeSpan(0, 0, 0, 5, 0); // 5 seconds
-            }
-
-            autoTimer.Start();
-        }
-
         public void InitAutoTracker(bool PCSX2)
         {
             int tries = 0;
             //try at least 20 times before giving error.
-            //ignore this entirely if autoDetected is true as memory would already be hooked.
             do
             {
                 memory = new MemoryReader(PCSX2);
@@ -737,10 +734,10 @@ namespace KhTracker
             ContentControl progressionB;
             if (progressionM != null)
                 progressionB = broadcast.Progression[world.worldName];
-            else
+            else //if a progression CC doesn't exist for both main and broadcast then return. ///TODO: might need to change later for new broadcast widow
                 return;
 
-            //Get current icon prefixes
+            //Get current icon prefixes (simple, game, or custom icons)
             bool OldToggled = Properties.Settings.Default.OldProg;
             bool CustomToggled = Properties.Settings.Default.CustomIcons;
             string Prog = "Min-"; //Default
@@ -757,7 +754,7 @@ namespace KhTracker
             switch (world.worldName)
             {
                 case "SimulatedTwilightTown":
-                    switch (world.roomNumber)
+                    switch (world.roomNumber) //check based on room number now, then based on events in each room
                     {
                         case 1:
                             if ((world.eventID3 == 56 || world.eventID3 == 55) && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)/(Day 6)
@@ -779,7 +776,7 @@ namespace KhTracker
                             if (world.eventID1 == 137 && world.eventComplete == 1) // Axel finish
                                 curProg = 5;
                             break;
-                        default:
+                        default: //if not in any of the above rooms then just leave
                             return;
                     }
                     break;
@@ -1280,11 +1277,11 @@ namespace KhTracker
                             return;
                     }
                     break;
-                default:
+                default: //return if any other world
                     return;
             }
 
-            //if a world was valid then set progression icons
+            //made it this far, now just set the progression icon based on the new curProg
             curKey = data.ProgressKeys[world.worldName][curProg];
             progressionM.SetResourceReference(ContentProperty, Prog + curKey);
             progressionB.SetResourceReference(ContentProperty, Prog + curKey);
@@ -1294,6 +1291,7 @@ namespace KhTracker
         // Sometimes level rewards and levels dont update on the same tick
         // Previous tick checks are placed on the current tick with the info of both ticks
         // This way level checks don't get misplaced 
+        //Note: apparently the above is completely untrue, but its's not like it currently breaks anything so...
         private void DetermineItemLocations()
         {
             if (previousChecks.Count == 0)
@@ -1502,12 +1500,12 @@ namespace KhTracker
         /// Unused for now
         ///
 
-        //old varibles
+        ///old varibles
         //private bool alternateCheck = false; //true = PCSX2, false = PC
         //private int alternateCheckInt = 1;
         //private bool titleloaded = false;
 
-        ///checking for title scrreen is probably unneeded
+        ///checking for title scrreen is probably unneeded. previously made and used to fix a bug that i think never even existed
         //private bool CheckPCTitle()
         //{
         //    //checks if the title.2ld has been loaded into memeory
@@ -1533,7 +1531,7 @@ namespace KhTracker
         //        return false;
         //}
 
-        ///2.0 will focus on new seed gen stuff
+        ///2.0 will focus on new seed gen stuff for now
         //private void UpdateMagicAddresses()
         //{
         //    if (LegacyOption.IsChecked && world.worldName == "SimulatedTwilightTown"  // (and not in Data Roxas fight)
@@ -1676,7 +1674,7 @@ namespace KhTracker
         //    UpdatePointScore(0);
         //}
 
-        /// old auto-detect code. hopefully the new method works better.
+        ///old auto-detect code. hopefully the new method works better.
         //public void searchVersion(object sender, EventArgs e)
         //{
         //    if (!AutoDetectOption.IsChecked)

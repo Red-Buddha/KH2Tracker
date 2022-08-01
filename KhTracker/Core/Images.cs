@@ -22,7 +22,7 @@ namespace KhTracker
         public static bool CustomDefenseFound = false;
         public static bool CustomProgFound = false;
         //main window, image path, dictionary key, ghost, broadcast
-        private Dictionary<ContentControl, Tuple<string, string, ContentControl, ContentControl>> CusItemCheck;
+        private Dictionary<Item, Tuple<string, string, ContentControl, ContentControl>> CusItemCheck;
         private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckG;
         private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckB;
 
@@ -67,13 +67,13 @@ namespace KhTracker
             ///different file paths?
 
             //helps determine what item images need replacing with custom image loading
-            CusItemCheck = new Dictionary<ContentControl, Tuple<string, string, ContentControl, ContentControl>>
+            CusItemCheck = new Dictionary<Item, Tuple<string, string, ContentControl, ContentControl>>
             {
-                {HighJump, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/jump.png", "Cus-HighJump", null, broadcast.HighJump)},
-                {QuickRun, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/quick.png", "Cus-QuickRun", null, broadcast.QuickRun)},
-                {DodgeRoll, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/dodge.png", "Cus-DodgeRoll", null, broadcast.DodgeRoll)},
-                {AerialDodge, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/aerial.png", "Cus-AerialDodge", null, broadcast.AerialDodge)},
-                {Glide, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/glide.png", "Cus-Glide", null, broadcast.Glide)},
+                //{HighJump, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/jump.png", "Cus-HighJump", null, broadcast.HighJump)},
+                //{QuickRun, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/quick.png", "Cus-QuickRun", null, broadcast.QuickRun)},
+                //{DodgeRoll, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/dodge.png", "Cus-DodgeRoll", null, broadcast.DodgeRoll)},
+                //{AerialDodge, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/aerial.png", "Cus-AerialDodge", null, broadcast.AerialDodge)},
+                //{Glide, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/glide.png", "Cus-Glide", null, broadcast.Glide)},
                 {Report1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report01.png",  "Cus-Report1", Ghost_Report1, null)},
                 {Report2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report02.png",  "Cus-Report2", Ghost_Report2, null)},
                 {Report3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report03.png",  "Cus-Report3", Ghost_Report3, null)},
@@ -478,6 +478,8 @@ namespace KhTracker
             //    key     |   item1    |      item2     | item3  |  item4
             //main window | image path | dictionary key | ghost  | broadcast
 
+            ///TODO: growth ability icons don't change, fix later
+
             // broadcasts and ghost should always use main widnow icons if any are found first.
             if (checkFiles.Length > 0)
             {
@@ -489,7 +491,7 @@ namespace KhTracker
                     if (checkFiles.Contains(item.Value.Item1.ToLower()))
                     {
                         //main item
-                        Item main = item.Key as Item;
+                        var main = item.Key as Item;
                         main.SetResourceReference(ContentProperty, item.Value.Item2);
 
                         //ghost item
