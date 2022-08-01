@@ -16,33 +16,33 @@
     <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
 
     <!--Simple Item Icons (Main Window)-->
-    <Image x:Key="Min-AnsemReport"	    Source="Images\Other\ansem_report.png"           x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport01"    Source="Images\Checks\Simple\ansem_report01.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport02"    Source="Images\Checks\Simple\ansem_report02.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport03"    Source="Images\Checks\Simple\ansem_report03.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport04"    Source="Images\Checks\Simple\ansem_report04.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport05"    Source="Images\Checks\Simple\ansem_report05.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport06"    Source="Images\Checks\Simple\ansem_report06.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport07"    Source="Images\Checks\Simple\ansem_report07.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport08"    Source="Images\Checks\Simple\ansem_report08.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport09"    Source="Images\Checks\Simple\ansem_report09.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport10"    Source="Images\Checks\Simple\ansem_report10.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport11"    Source="Images\Checks\Simple\ansem_report11.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport12"    Source="Images\Checks\Simple\ansem_report12.png" x:Shared="false"/>
-    <Image x:Key="Min-AnsemReport13"    Source="Images\Checks\Simple\ansem_report13.png" x:Shared="false"/>
-    <Image x:Key="Min-Valor"	        Source="Images\Checks\Simple\valor.png"          x:Shared="false"/>
-    <Image x:Key="Min-Wisdom"	        Source="Images\Checks\Simple\wisdom.png"         x:Shared="false"/>
-    <Image x:Key="Min-Limit"	        Source="Images\Checks\Simple\limit.png"          x:Shared="false"/>
-    <Image x:Key="Min-Master"	        Source="Images\Checks\Simple\master.png"         x:Shared="false"/>
-    <Image x:Key="Min-Final"	        Source="Images\Checks\Simple\final.png"          x:Shared="false"/>
-    <Image x:Key="Min-TornPages"		Source="Images\Other\torn_pages.png"             x:Shared="false"/>
-    <Image x:Key="Min-Genie"			Source="Images\Checks\Simple\genie.png"/>
-    <Image x:Key="Min-Stitch"			Source="Images\Checks\Simple\stitch.png"/>
-    <Image x:Key="Min-ChickenLittle"	Source="Images\Checks\Simple\chicken_little.png"/>
-    <Image x:Key="Min-PeterPan"			Source="Images\Checks\Simple\peter_pan.png"/>
-    <Image x:Key="Min-ProofOfNon"		Source="Images\Checks\Simple\proof_of_nonexistence.png"/>
-    <Image x:Key="Min-ProofOfCon"		Source="Images\Checks\Simple\proof_of_connection.png"/>
-    <Image x:Key="Min-ProofOfPea"		Source="Images\Checks\Simple\proof_of_tranquility.png"/>
+    <Image x:Key="Min-AnsemReport"	    Source="Images\Other\ansem_report.png"           />
+    <Image x:Key="Min-Report1"    Source="Images\Checks\Simple\ansem_report01.png" />
+    <Image x:Key="Min-Report2"    Source="Images\Checks\Simple\ansem_report02.png" />
+    <Image x:Key="Min-Report3"    Source="Images\Checks\Simple\ansem_report03.png" />
+    <Image x:Key="Min-Report4"    Source="Images\Checks\Simple\ansem_report04.png" />
+    <Image x:Key="Min-Report5"    Source="Images\Checks\Simple\ansem_report05.png" />
+    <Image x:Key="Min-Report6"    Source="Images\Checks\Simple\ansem_report06.png" />
+    <Image x:Key="Min-Report7"    Source="Images\Checks\Simple\ansem_report07.png" />
+    <Image x:Key="Min-Report8"    Source="Images\Checks\Simple\ansem_report08.png" />
+    <Image x:Key="Min-Report9"    Source="Images\Checks\Simple\ansem_report09.png" />
+    <Image x:Key="Min-Report10"    Source="Images\Checks\Simple\ansem_report10.png" />
+    <Image x:Key="Min-Report11"    Source="Images\Checks\Simple\ansem_report11.png" />
+    <Image x:Key="Min-Report12"    Source="Images\Checks\Simple\ansem_report12.png" />
+    <Image x:Key="Min-Report13"    Source="Images\Checks\Simple\ansem_report13.png" />
+    <Image x:Key="Min-Valor"	        Source="Images\Checks\Simple\valor.png"          />
+    <Image x:Key="Min-Wisdom"	        Source="Images\Checks\Simple\wisdom.png"         />
+    <Image x:Key="Min-Limit"	        Source="Images\Checks\Simple\limit.png"          />
+    <Image x:Key="Min-Master"	        Source="Images\Checks\Simple\master.png"         />
+    <Image x:Key="Min-Final"	        Source="Images\Checks\Simple\final.png"          />
+    <Image x:Key="Min-TornPages"		Source="Images\Other\torn_pages.png"             />
+    <Image x:Key="Min-Lamp"			    Source="Images\Checks\Simple\genie.png"/>
+    <Image x:Key="Min-Ukulele"		    Source="Images\Checks\Simple\stitch.png"/>
+    <Image x:Key="Min-Baseball"	        Source="Images\Checks\Simple\chicken_little.png"/>
+    <Image x:Key="Min-Feather"		    Source="Images\Checks\Simple\peter_pan.png"/>
+    <Image x:Key="Min-Nonexistence"	    Source="Images\Checks\Simple\proof_of_nonexistence.png"/>
+    <Image x:Key="Min-Connection"	    Source="Images\Checks\Simple\proof_of_connection.png"/>
+    <Image x:Key="Min-Peace"		    Source="Images\Checks\Simple\proof_of_tranquility.png"/>
     <Image x:Key="Min-PromiseCharm"		Source="Images\Checks\Simple\promise_charm.png"/>
     <!-- Multi -->
     <!--Image x:Key="Min-Fire"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
@@ -95,31 +95,32 @@
 
     <!--Old Item Icons (Main Window)-->
     <Image x:Key="Old-AnsemReport"	  Source="Images\Other\ansem_report_old.png"     x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport01"  Source="Images\Checks\Old\ansem_report01.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport02"  Source="Images\Checks\Old\ansem_report02.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport03"  Source="Images\Checks\Old\ansem_report03.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport04"  Source="Images\Checks\Old\ansem_report04.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport05"  Source="Images\Checks\Old\ansem_report05.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport06"  Source="Images\Checks\Old\ansem_report06.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport07"  Source="Images\Checks\Old\ansem_report07.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport08"  Source="Images\Checks\Old\ansem_report08.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport09"  Source="Images\Checks\Old\ansem_report09.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport10"  Source="Images\Checks\Old\ansem_report10.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport11"  Source="Images\Checks\Old\ansem_report11.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport12"  Source="Images\Checks\Old\ansem_report12.png"  x:Shared="false"/>
-    <Image x:Key="Old-AnsemReport13"  Source="Images\Checks\Old\ansem_report13.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report1"        Source="Images\Checks\Old\ansem_report01.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report2"        Source="Images\Checks\Old\ansem_report02.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report3"        Source="Images\Checks\Old\ansem_report03.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report4"        Source="Images\Checks\Old\ansem_report04.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report5"        Source="Images\Checks\Old\ansem_report05.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report6"        Source="Images\Checks\Old\ansem_report06.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report7"        Source="Images\Checks\Old\ansem_report07.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report8"        Source="Images\Checks\Old\ansem_report08.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report9"        Source="Images\Checks\Old\ansem_report09.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report10"       Source="Images\Checks\Old\ansem_report10.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report11"       Source="Images\Checks\Old\ansem_report11.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report12"       Source="Images\Checks\Old\ansem_report12.png"  x:Shared="false"/>
+    <Image x:Key="Old-Report13"       Source="Images\Checks\Old\ansem_report13.png"  x:Shared="false"/>
+    <Image x:Key="Old-Valor"	      Source="Images\Checks\Old\valor.png"          x:Shared="false"/>
     <Image x:Key="Old-Wisdom"	      Source="Images\Checks\Old\wisdom.png"          x:Shared="false"/>
     <Image x:Key="Old-Limit"	      Source="Images\Checks\Old\limit.png"           x:Shared="false"/>
     <Image x:Key="Old-Master"	      Source="Images\Checks\Old\master.png"          x:Shared="false"/>
     <Image x:Key="Old-Final"	      Source="Images\Checks\Old\final.png"           x:Shared="false"/>
     <Image x:Key="Old-TornPages"	  Source="Images\Other\torn_pages_old.png"       x:Shared="false"/>
-    <Image x:Key="Old-Genie"		  Source="Images\Checks\Old\genie.png"/>
-    <Image x:Key="Old-Stitch"		  Source="Images\Checks\Old\stitch.png"/>
-    <Image x:Key="Old-ChickenLittle"  Source="Images\Checks\Old\chicken_little.png"/>
-    <Image x:Key="Old-PeterPan"		  Source="Images\Checks\Old\peter_pan.png"/>
-    <Image x:Key="Old-ProofOfNon"	  Source="Images\Checks\Old\proof_of_nonexistence.png"/>
-    <Image x:Key="Old-ProofOfCon"	  Source="Images\Checks\Old\proof_of_connection.png"/>
-    <Image x:Key="Old-ProofOfPea"	  Source="Images\Checks\Old\proof_of_tranquility.png"/>
+    <Image x:Key="Old-Lamp"			  Source="Images\Checks\Old\genie.png"/>
+    <Image x:Key="Old-Ukulele"		  Source="Images\Checks\Old\stitch.png"/>
+    <Image x:Key="Old-Baseball"	      Source="Images\Checks\Old\chicken_little.png"/>
+    <Image x:Key="Old-Feather"		  Source="Images\Checks\Old\peter_pan.png"/>
+    <Image x:Key="Old-Nonexistence"	  Source="Images\Checks\Old\proof_of_nonexistence.png"/>
+    <Image x:Key="Old-Connection"	  Source="Images\Checks\Old\proof_of_connection.png"/>
+    <Image x:Key="Old-Peace"		  Source="Images\Checks\Old\proof_of_tranquility.png"/>
     <Image x:Key="Old-PromiseCharm"	  Source="Images\Checks\Old\promise_charm.png"/>
     <!-- Multi -->
     <Image x:Key="Old-Fire1"		  Source="Images\Checks\Old\fire.png"           x:Shared="false"/>
@@ -175,21 +176,31 @@
     <Image x:Key="Min-AerialDodge" 		Source="Images\Checks\aerial.png" x:Shared="false"/>
     <Image x:Key="Min-Glide" 			Source="Images\Checks\glide.png" x:Shared="false"/>
 
-
+    <!--Other (old)-->
+    <Image x:Key="Old-OnceMore"			Source="Images\Checks\once_more.png" x:Shared="false"/>
+    <Image x:Key="Old-OnceMore_key"		Source="Images\Checks\once_more_key.png" x:Shared="false"/>
+    <Image x:Key="Old-SecondChance"		Source="Images\Checks\second_chance.png" x:Shared="false"/>
+    <Image x:Key="Old-SecondChance_key" Source="Images\Checks\second_chance_key.png" x:Shared="false"/>
+    <Image x:Key="Old-HighJump" 		Source="Images\Checks\jump.png" x:Shared="false"/>
+    <Image x:Key="Old-QuickRun" 		Source="Images\Checks\quick.png" x:Shared="false"/>
+    <Image x:Key="Old-DodgeRoll" 		Source="Images\Checks\dodge.png" x:Shared="false"/>
+    <Image x:Key="Old-AerialDodge" 		Source="Images\Checks\aerial.png" x:Shared="false"/>
+    <Image x:Key="Old-Glide" 	        Source="Images\Checks\glide.png" x:Shared="false"/>
+    
     <!--Custom Item Icons (Main)-->
-    <Image x:Key="Cus-AnsemReport01" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report01.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport02" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report02.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport03" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report03.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport04" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report04.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport05" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report05.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport06" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report06.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport07" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report07.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport08" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report08.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport09" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report09.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport10" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report10.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport11" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report11.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport12" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report12.png" x:Shared="false"/>
-    <Image x:Key="Cus-AnsemReport13" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report13.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report1" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report01.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report2" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report02.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report3" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report03.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report4" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report04.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report5" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report05.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report6" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report06.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report7" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report07.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report8" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report08.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report9" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report09.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report10" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report10.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report11" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report11.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report12" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report12.png" x:Shared="false"/>
+    <Image x:Key="Cus-Report13" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report13.png" x:Shared="false"/>
     
     <Image x:Key="Cus-Fire1"				 Source="pack://application:,,,/CustomImages/Checks/fire.png" x:Shared="false"/>
     <Image x:Key="Cus-Fire2"				 Source="pack://application:,,,/CustomImages/Checks/fire.png" x:Shared="false"/>
@@ -220,13 +231,13 @@
     <Image x:Key="Cus-Limit"			 Source="pack://application:,,,/CustomImages/Checks/limit.png" x:Shared="false"/>
     <Image x:Key="Cus-Master"			 Source="pack://application:,,,/CustomImages/Checks/master.png" x:Shared="false"/>
     <Image x:Key="Cus-Final"			 Source="pack://application:,,,/CustomImages/Checks/final.png" x:Shared="false"/>
-    <Image x:Key="Cus-Genie"			 Source="pack://application:,,,/CustomImages/Checks/genie.png" x:Shared="false"/>
-    <Image x:Key="Cus-Stitch"			 Source="pack://application:,,,/CustomImages/Checks/stitch.png" x:Shared="false"/>
-    <Image x:Key="Cus-ChickenLittle"	 Source="pack://application:,,,/CustomImages/Checks/chicken_little.png" x:Shared="false"/>
-    <Image x:Key="Cus-PeterPan"			 Source="pack://application:,,,/CustomImages/Checks/peter_pan.png" x:Shared="false"/>
-    <Image x:Key="Cus-ProofOfNon"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Cus-ProofOfCon"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_connection.png" x:Shared="false"/>
-    <Image x:Key="Cus-ProofOfPea"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_tranquility.png" x:Shared="false"/>
+    <Image x:Key="Cus-Lamp"			     Source="pack://application:,,,/CustomImages/Checks/genie.png" x:Shared="false"/>
+    <Image x:Key="Cus-Ukulele"			 Source="pack://application:,,,/CustomImages/Checks/stitch.png" x:Shared="false"/>
+    <Image x:Key="Cus-Baseball"	         Source="pack://application:,,,/CustomImages/Checks/chicken_little.png" x:Shared="false"/>
+    <Image x:Key="Cus-Feather"			 Source="pack://application:,,,/CustomImages/Checks/peter_pan.png" x:Shared="false"/>
+    <Image x:Key="Cus-Nonexistence"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_nonexistence.png" x:Shared="false"/>
+    <Image x:Key="Cus-Connection"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_connection.png" x:Shared="false"/>
+    <Image x:Key="Cus-Peace"		     Source="pack://application:,,,/CustomImages/Checks/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-PromiseCharm"		 Source="pack://application:,,,/CustomImages/Checks/promise_charm.png" x:Shared="false"/>
     <Image x:Key="Cus-AuronWep"		     Source="pack://application:,,,/CustomImages/Checks/BattlefieldsofWar.png"/>
     <Image x:Key="Cus-MulanWep"		     Source="pack://application:,,,/CustomImages/Checks/AncestorSword.png"/>
@@ -258,13 +269,13 @@
     <Image x:Key="Cus-B_Limit" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/limit.png" x:Shared="false"/>
     <Image x:Key="Cus-B_Master" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/master.png" x:Shared="false"/>
     <Image x:Key="Cus-B_Final" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/final.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Genie" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/genie.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Stitch" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/stitch.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_ChickenLittle" 	Source="pack://application:,,,/CustomImages/Broadcast/Checks/chicken_little.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PeterPan"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/peter_pan.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_ProofOfNon"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_ProofOfCon"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_connection.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_ProofOfPea"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_tranquility.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Lamp"			Source="pack://application:,,,/CustomImages/Broadcast/Checks/genie.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Ukulele"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/stitch.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Baseball"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/chicken_little.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Feather"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/peter_pan.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Nonexistence"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_nonexistence.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Connection"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_connection.png" x:Shared="false"/>
+    <Image x:Key="Cus-B_Peace"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-B_PromiseCharm"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/promise_charm.png" x:Shared="false"/>
     <Image x:Key="Cus-B_AuronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BattlefieldsofWar.png"/>
     <Image x:Key="Cus-B_MulanWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/AncestorSword.png"/>
@@ -283,19 +294,19 @@
     <Image x:Key="Cus-B_Anti"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/anti.png"/>
 
     <!--Custom Item Icons (Ghost)-->
-    <Image x:Key="Cus-G_AnsemReport01" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport02" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport03" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report03.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport04" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report04.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport05" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report05.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport06" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report06.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport07" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report07.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport08" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report08.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport09" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report09.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport10" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report10.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport11" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report11.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport12" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report12.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_AnsemReport13" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report13.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report1" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report2" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report3" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report03.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report4" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report04.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report5" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report05.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report6" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report06.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report7" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report07.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report8" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report08.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report9" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report09.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report10" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report10.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report11" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report11.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report12" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report12.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Report13" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report13.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Fire1"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Fire2"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Fire3"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
@@ -324,13 +335,13 @@
     <Image x:Key="Cus-G_Limit"			Source="pack://application:,,,/CustomImages/Checks/Ghost/limit.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Master"			Source="pack://application:,,,/CustomImages/Checks/Ghost/master.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Final"			Source="pack://application:,,,/CustomImages/Checks/Ghost/final.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Genie"			Source="pack://application:,,,/CustomImages/Checks/Ghost/genie.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Stitch"			Source="pack://application:,,,/CustomImages/Checks/Ghost/stitch.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_ChickenLittle"	Source="pack://application:,,,/CustomImages/Checks/Ghost/chicken_little.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_PeterPan"		Source="pack://application:,,,/CustomImages/Checks/Ghost/peter_pan.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_ProofOfNon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_ProofOfCon"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_ProofOfPea"		Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Lamp"			Source="pack://application:,,,/CustomImages/Checks/Ghost/genie.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Ukulele"		Source="pack://application:,,,/CustomImages/Checks/Ghost/stitch.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Baseball"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/chicken_little.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Feather"		Source="pack://application:,,,/CustomImages/Checks/Ghost/peter_pan.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Nonexistence"	Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_nonexistence.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Connection"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_Peace"		    Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
     <Image x:Key="Cus-G_PromiseCharm"	Source="pack://application:,,,/CustomImages/Checks/Ghost/promise_charm.png" x:Shared="false"/>
     <Image x:Key="Cus-G_OnceMore"		Source="pack://application:,,,/CustomImages/Checks/Ghost/once_more.png"/>
     <Image x:Key="Cus-G_SecondChance"	Source="pack://application:,,,/CustomImages/Checks/Ghost/second_chance.png"/>

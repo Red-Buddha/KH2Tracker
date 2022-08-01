@@ -138,10 +138,10 @@ namespace KhTracker
 
             data = dataIn;
 
-            foreach (Item item in data.Items.Keys)
+            foreach (string key in data.Items.Keys)
             {
-                item.UpdateTotal += new Item.TotalHandler(UpdateTotal);
-                item.UpdateFound += new Item.FoundHandler(UpdateFound);
+                data.Items[key].Item1.UpdateTotal += new Item.TotalHandler(UpdateTotal);
+                data.Items[key].Item1.UpdateFound += new Item.FoundHandler(UpdateFound);
             }
 
             Top = Properties.Settings.Default.BroadcastWindowY;

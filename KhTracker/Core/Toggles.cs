@@ -943,29 +943,10 @@ namespace KhTracker
             }
         }
 
+        ///
+        /// Worlds
+        /// 
 
-
-
-
-
-
-
-
-
-
-
-        //private void LegacyToggle(object sender, RoutedEventArgs e)
-        //{
-        //    LegacyToggle(LegacyOption.IsChecked);
-        //}
-        //
-        //private void LegacyToggle(bool toggle)
-        //{
-        //    Properties.Settings.Default.Legacy = toggle;
-        //    LegacyOption.IsChecked = toggle;
-        //}
-
-        //World toggles
         private void SoraHeartToggle(object sender, RoutedEventArgs e)
         {
             SoraHeartToggle(SoraHeartOption.IsChecked);
@@ -982,6 +963,22 @@ namespace KhTracker
                 broadcast.HeartCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
+        private void DrivesToggle(object sender, RoutedEventArgs e)
+        {
+            DrivesToggle(DrivesOption.IsChecked);
+        }
+
+        private void DrivesToggle(bool toggle)
+        {
+            Properties.Settings.Default.Drives = toggle;
+            DrivesOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, DriveForms, DriveFormsGrid);
+            if (toggle)
+                broadcast.DrivesCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.DrivesCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
         private void SimulatedToggle(object sender, RoutedEventArgs e)
         {
             SimulatedToggle(SimulatedOption.IsChecked);
@@ -996,6 +993,198 @@ namespace KhTracker
                 broadcast.STTColumn.Width = new GridLength(1.0, GridUnitType.Star);
             else
                 broadcast.STTColumn.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void TwilightTownToggle(object sender, RoutedEventArgs e)
+        {
+            TwilightTownToggle(TwilightTownOption.IsChecked);
+        }
+
+        private void TwilightTownToggle(bool toggle)
+        {
+            Properties.Settings.Default.TwilightTown = toggle;
+            TwilightTownOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, TwilightTown, TwilightTownGrid);
+            if (toggle)
+                broadcast.TwilightTownCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.TwilightTownCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void HollowBastionToggle(object sender, RoutedEventArgs e)
+        {
+            HollowBastionToggle(HollowBastionOption.IsChecked);
+        }
+
+        private void HollowBastionToggle(bool toggle)
+        {
+            Properties.Settings.Default.HollowBastion = toggle;
+            HollowBastionOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, HollowBastion, HollowBastionGrid);
+            if (toggle)
+                broadcast.HollowBastionCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.HollowBastionCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void BeastCastleToggle(object sender, RoutedEventArgs e)
+        {
+            BeastCastleToggle(BeastCastleOption.IsChecked);
+        }
+
+        private void BeastCastleToggle(bool toggle)
+        {
+            Properties.Settings.Default.BeastCastle = toggle;
+            BeastCastleOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, BeastsCastle, BeastsCastleGrid);
+            if (toggle)
+                broadcast.BeastCastleCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.BeastCastleCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void OlympusToggle(object sender, RoutedEventArgs e)
+        {
+            OlympusToggle(OlympusOption.IsChecked);
+        }
+
+        private void OlympusToggle(bool toggle)
+        {
+            Properties.Settings.Default.Olympus = toggle;
+            OlympusOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, OlympusColiseum, OlympusColiseumGrid);
+            if (toggle)
+                broadcast.OlympusCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.OlympusCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void AgrabahToggle(object sender, RoutedEventArgs e)
+        {
+            AgrabahToggle(AgrabahOption.IsChecked);
+        }
+
+        private void AgrabahToggle(bool toggle)
+        {
+            Properties.Settings.Default.Agrabah = toggle;
+            AgrabahOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, Agrabah, AgrabahGrid);
+            if (toggle)
+                broadcast.AgrabahCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.AgrabahCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void LandofDragonsToggle(object sender, RoutedEventArgs e)
+        {
+            LandofDragonsToggle(LandofDragonsOption.IsChecked);
+        }
+
+        private void LandofDragonsToggle(bool toggle)
+        {
+            Properties.Settings.Default.LandofDragons = toggle;
+            LandofDragonsOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, LandofDragons, LandofDragonsGrid);
+            if (toggle)
+                broadcast.LandofDragonsCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.LandofDragonsCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void DisneyCastleToggle(object sender, RoutedEventArgs e)
+        {
+            DisneyCastleToggle(DisneyCastleOption.IsChecked);
+        }
+
+        private void DisneyCastleToggle(bool toggle)
+        {
+            Properties.Settings.Default.DisneyCastle = toggle;
+            DisneyCastleOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, DisneyCastle, DisneyCastleGrid);
+            if (toggle)
+                broadcast.DisneyCastleCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.DisneyCastleCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void PrideLandsToggle(object sender, RoutedEventArgs e)
+        {
+            PrideLandsToggle(PrideLandsOption.IsChecked);
+        }
+
+        private void PrideLandsToggle(bool toggle)
+        {
+            Properties.Settings.Default.PrideLands = toggle;
+            PrideLandsOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, PrideLands, PrideLandsGrid);
+            if (toggle)
+                broadcast.PrideLandsCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.PrideLandsCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void PortRoyalToggle(object sender, RoutedEventArgs e)
+        {
+            PortRoyalToggle(PortRoyalOption.IsChecked);
+        }
+
+        private void PortRoyalToggle(bool toggle)
+        {
+            Properties.Settings.Default.PortRoyal = toggle;
+            PortRoyalOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, PortRoyal, PortRoyalGrid);
+            if (toggle)
+                broadcast.PortRoyalCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.PortRoyalCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void HalloweenTownToggle(object sender, RoutedEventArgs e)
+        {
+            HalloweenTownToggle(HalloweenTownOption.IsChecked);
+        }
+
+        private void HalloweenTownToggle(bool toggle)
+        {
+            Properties.Settings.Default.HalloweenTown = toggle;
+            HalloweenTownOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, HalloweenTown, HalloweenTownGrid);
+            if (toggle)
+                broadcast.HalloweenTownCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.HalloweenTownCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void SpaceParanoidsToggle(object sender, RoutedEventArgs e)
+        {
+            SpaceParanoidsToggle(SpaceParanoidsOption.IsChecked);
+        }
+
+        private void SpaceParanoidsToggle(bool toggle)
+        {
+            Properties.Settings.Default.SpaceParanoids = toggle;
+            SpaceParanoidsOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, SpaceParanoids, SpaceParanoidsGrid);
+            if (toggle)
+                broadcast.SpaceParanoidsCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.SpaceParanoidsCol.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void TWTNWToggle(object sender, RoutedEventArgs e)
+        {
+            TWTNWToggle(TWTNWOption.IsChecked);
+        }
+
+        private void TWTNWToggle(bool toggle)
+        {
+            Properties.Settings.Default.TWTNW = toggle;
+            TWTNWOption.IsChecked = toggle;
+            HandleWorldToggle(toggle, TWTNW, TWTNWGrid);
+            if (toggle)
+                broadcast.TWTNWCol.Width = new GridLength(1.0, GridUnitType.Star);
+            else
+                broadcast.TWTNWCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
@@ -1089,81 +1278,17 @@ namespace KhTracker
             }
         }
 
-        ///Alt World Toggles
-        //private void CavernToggle(object sender, RoutedEventArgs e)
+
+        //private void LegacyToggle(object sender, RoutedEventArgs e)
         //{
-        //    CavernToggle(CavernOption.IsChecked);
+        //    LegacyToggle(LegacyOption.IsChecked);
         //}
         //
-        //private void CavernToggle(bool toggle)
+        //private void LegacyToggle(bool toggle)
         //{
-        //    Properties.Settings.Default.Cavern = toggle;
-        //    CavernOption.IsChecked = toggle;
-        //
-        //    CustomWorldCheck();
+        //    Properties.Settings.Default.Legacy = toggle;
+        //    LegacyOption.IsChecked = toggle;
         //}
-        //
-        //private void TerraToggle(object sender, RoutedEventArgs e)
-        //{
-        //    TerraToggle(TerraOption.IsChecked);
-        //}
-        //
-        //private void TerraToggle(bool toggle)
-        //{
-        //    Properties.Settings.Default.Terra = toggle;
-        //    TerraOption.IsChecked = toggle;
-        //
-        //    if (toggle)
-        //    {
-        //        //DisneyCastleLW.Visibility = Visibility.Visible;
-        //        broadcast.DisneyCastleLW.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        //DisneyCastleLW.Visibility = Visibility.Collapsed;
-        //        broadcast.DisneyCastleLW.Visibility = Visibility.Collapsed;
-        //    }
-        //
-        //    CustomWorldCheck();
-        //}
-        //
-        //private void OCCupsToggle(object sender, RoutedEventArgs e)
-        //{
-        //    OCCupsToggle(OCCupsOption.IsChecked);
-        //}
-        //
-        //private void OCCupsToggle(bool toggle)
-        //{
-        //    Properties.Settings.Default.OCCups = toggle;
-        //    OCCupsOption.IsChecked = toggle;
-        //
-        //    CustomWorldCheck();
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

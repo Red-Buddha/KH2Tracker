@@ -187,7 +187,7 @@ namespace KhTracker
 
             //int index = data.Items.IndexOf(this);
             //Grid ItemRow = data.ItemsGrid[index];
-            Grid ItemRow = data.Items[this];
+            Grid ItemRow = data.Items[this.Name].Item2;
 
             if (Parent != ItemRow)
             {
