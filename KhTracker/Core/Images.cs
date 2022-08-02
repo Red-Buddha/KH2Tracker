@@ -22,8 +22,8 @@ namespace KhTracker
         public static bool CustomDefenseFound = false;
         public static bool CustomProgFound = false;
         //main window, image path, dictionary key, ghost, broadcast
-        private Dictionary<Item, Tuple<string, string, ContentControl, ContentControl>> CusItemCheck;
-        private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckG;
+        private Dictionary<Item, Tuple<string, string, Item, ContentControl>> CusItemCheck;
+        private Dictionary<Item, Tuple<string, string>> CusItemCheckG;
         private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckB;
 
         //handle adding all custom images and such
@@ -59,92 +59,79 @@ namespace KhTracker
                 File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
                 CustomProgFound = true;
 
-
-            ///TODO: this idea seems good but i need to make a 3rd list(?)
-            ///for making broadcast window usee the main window custom items
-            ///(maybe i'll just get rid of that funtion. might just be more trouble than it's worth...)
-            ///NOTE: both dictionaries are contentcontrols, just add a copy of broadcast stuff in there with
-            ///different file paths?
-
             //helps determine what item images need replacing with custom image loading
-            CusItemCheck = new Dictionary<Item, Tuple<string, string, ContentControl, ContentControl>>
+            CusItemCheck = new Dictionary<Item, Tuple<string, string, Item, ContentControl>>
             {
-                //{HighJump, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/jump.png", "Cus-HighJump", null, broadcast.HighJump)},
-                //{QuickRun, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/quick.png", "Cus-QuickRun", null, broadcast.QuickRun)},
-                //{DodgeRoll, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/dodge.png", "Cus-DodgeRoll", null, broadcast.DodgeRoll)},
-                //{AerialDodge, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/aerial.png", "Cus-AerialDodge", null, broadcast.AerialDodge)},
-                //{Glide, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/glide.png", "Cus-Glide", null, broadcast.Glide)},
-                {Report1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report01.png",  "Cus-Report1", Ghost_Report1, null)},
-                {Report2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report02.png",  "Cus-Report2", Ghost_Report2, null)},
-                {Report3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report03.png",  "Cus-Report3", Ghost_Report3, null)},
-                {Report4, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report04.png",  "Cus-Report4", Ghost_Report4, null)},
-                {Report5, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report05.png",  "Cus-Report5", Ghost_Report5, null)},
-                {Report6, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report06.png",  "Cus-Report6", Ghost_Report6, null)},
-                {Report7, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report07.png",  "Cus-Report7", Ghost_Report7, null)},
-                {Report8, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report08.png",  "Cus-Report8", Ghost_Report8, null)},
-                {Report9, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report09.png",  "Cus-Report9", Ghost_Report9, null)},
-                {Report10, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report10.png", "Cus-Report10", Ghost_Report10, null)},
-                {Report11, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report11.png", "Cus-Report11", Ghost_Report11, null)},
-                {Report12, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report12.png", "Cus-Report12", Ghost_Report12, null)},
-                {Report13, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ansem_report13.png", "Cus-Report13", Ghost_Report13, null)},
-                {Fire1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire1", Ghost_Fire1, broadcast.Fire)},
-                {Fire2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire2", Ghost_Fire2, null)},
-                {Fire3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire3", Ghost_Fire3, null)},
-                {Blizzard1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard1", Ghost_Blizzard1, broadcast.Blizzard)},
-                {Blizzard2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard2", Ghost_Blizzard2, null)},
-                {Blizzard3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard3", Ghost_Blizzard3, null)},
-                {Thunder1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder1", Ghost_Thunder1, broadcast.Thunder)},
-                {Thunder2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder2", Ghost_Thunder2, null)},
-                {Thunder3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder3", Ghost_Thunder3, null)},
-                {Cure1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure1", Ghost_Cure1, broadcast.Cure)},
-                {Cure2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure2", Ghost_Cure2, null)},
-                {Cure3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure3", Ghost_Cure3, null)},
-                {Reflect1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect1", Ghost_Reflect1, broadcast.Reflect)},
-                {Reflect2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect2", Ghost_Reflect2, null)},
-                {Reflect3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect3", Ghost_Reflect3, null)},
-                {Magnet1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet1", Ghost_Magnet1, broadcast.Magnet)},
-                {Magnet2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet2", Ghost_Magnet2, null)},
-                {Magnet3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet3", Ghost_Magnet3, null)},
-                {TornPage1, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage1", Ghost_TornPage1, null)},
-                {TornPage2, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage2", Ghost_TornPage2, null)},
-                {TornPage3, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage3", Ghost_TornPage3, null)},
-                {TornPage4, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage4", Ghost_TornPage4, null)},
-                {TornPage5, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage5", Ghost_TornPage5, null)},
-                {Valor, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/valor.png", "Cus-Valor", Ghost_Valor, broadcast.Valor)},
-                {Wisdom, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/wisdom.png", "Cus-Wisdom", Ghost_Wisdom, broadcast.Wisdom)},
-                {Limit, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/limit.png", "Cus-Limit", Ghost_Limit, broadcast.Limit)},
-                {Master, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/master.png", "Cus-Master", Ghost_Master, broadcast.Master)},
-                {Final, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/final.png", "Cus-Final", Ghost_Final, broadcast.Final)},
-                {Lamp, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/genie.png",                           "Cus-Lamp"		, Ghost_Lamp, broadcast.Lamp)},
-                {Ukulele, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/stitch.png",                       "Cus-Ukulele"	, Ghost_Ukulele, broadcast.Ukulele)},
-                {Baseball, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/chicken_little.png",              "Cus-Baseball"	 , Ghost_Baseball, broadcast.Baseball)},
-                {Feather, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/peter_pan.png",                    "Cus-Feather"	, Ghost_Feather, broadcast.Feather)},
-                {Nonexistence, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/proof_of_nonexistence.png",   "Cus-Nonexistence", Ghost_Nonexistence, broadcast.Nonexistence)},
-                {Connection, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/proof_of_connection.png",       "Cus-Connection"	 , Ghost_Connection, broadcast.Connection)},
-                {Peace, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/proof_of_tranquility.png",           "Cus-Peace"      , Ghost_Peace, broadcast.Peace)},
-                {PromiseCharm, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/promise_charm.png", "Cus-PromiseCharm", Ghost_PromiseCharm, broadcast.PromiseCharm)},
-                {OnceMore, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/once_more.png", "Cus-OnceMore", Ghost_OnceMore, broadcast.OnceMore)},
-                {SecondChance, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/second_chance.png", "Cus-SecondChance", Ghost_SecondChance, broadcast.SecondChance)},
-                {MulanWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/AncestorSword.png", "Cus-MulanWep", Ghost_MulanWep, broadcast.MulanWep)},
-                {AuronWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/BattlefieldsofWar.png", "Cus-AuronWep", Ghost_AuronWep, broadcast.AuronWep)},
-                {BeastWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/BeastClaw.png", "Cus-BeastWep", Ghost_BeastWep, broadcast.BeastWep)},
-                {JackWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/BoneFist.png", "Cus-JackWep", Ghost_JackWep, broadcast.JackWep)},
-                {IceCream, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/IceCream.png", "Cus-IceCream", Ghost_IceCream, broadcast.IceCream)},
-                {TronWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/IdentityDisk.png", "Cus-TronWep", Ghost_TronWep, broadcast.TronWep)},
-                {Picture, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/Picture.png", "Cus-Picture", Ghost_Picture, broadcast.Picture)},
-                {MembershipCard, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/membership_card.png", "Cus-MembershipCard", Ghost_MembershipCard, broadcast.MembershipCard)},
-                {SimbaWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/ProudFang.png", "Cus-SimbaWep", Ghost_SimbaWep, broadcast.SimbaWep)},
-                {AladdinWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/Scimitar.png", "Cus-AladdinWep", Ghost_AladdinWep, broadcast.AladdinWep)},
-                {SparrowWep, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/SkillCrossbones.png", "Cus-SparrowWep", Ghost_SparrowWep, broadcast.SparrowWep)},
-                {HadesCup, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/hades_cup.png", "Cus-HadesCup", Ghost_HadesCup, broadcast.HadesCup)},
-                {OlympusStone, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/olympus_stone.png", "Cus-OlympusStone", Ghost_OlympusStone, broadcast.OlympusStone)},
-                {UnknownDisk, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/UnknownDisk.png", "Cus-UnknownDisk", Ghost_UnknownDisk, broadcast.UnknownDisk)},
-                {Anti, new Tuple<string, string, ContentControl, ContentControl>("CustomImages/Checks/anti.png", "Cus-Anti", Ghost_Anti, broadcast.Anti)}
+                {Report1,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report01.png",  "Cus-Report1", Ghost_Report1, null)},
+                {Report2,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report02.png",  "Cus-Report2", Ghost_Report2, null)},
+                {Report3,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report03.png",  "Cus-Report3", Ghost_Report3, null)},
+                {Report4,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report04.png",  "Cus-Report4", Ghost_Report4, null)},
+                {Report5,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report05.png",  "Cus-Report5", Ghost_Report5, null)},
+                {Report6,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report06.png",  "Cus-Report6", Ghost_Report6, null)},
+                {Report7,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report07.png",  "Cus-Report7", Ghost_Report7, null)},
+                {Report8,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report08.png",  "Cus-Report8", Ghost_Report8, null)},
+                {Report9,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report09.png",  "Cus-Report9", Ghost_Report9, null)},
+                {Report10,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report10.png", "Cus-Report10", Ghost_Report10, null)},
+                {Report11,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report11.png", "Cus-Report11", Ghost_Report11, null)},
+                {Report12,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report12.png", "Cus-Report12", Ghost_Report12, null)},
+                {Report13,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report13.png", "Cus-Report13", Ghost_Report13, null)},
+                {Fire1,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire1", Ghost_Fire1, broadcast.Fire)},
+                {Fire2,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire2", Ghost_Fire2, null)},
+                {Fire3,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire3", Ghost_Fire3, null)},
+                {Blizzard1,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard1", Ghost_Blizzard1, broadcast.Blizzard)},
+                {Blizzard2,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard2", Ghost_Blizzard2, null)},
+                {Blizzard3,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard3", Ghost_Blizzard3, null)},
+                {Thunder1,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder1", Ghost_Thunder1, broadcast.Thunder)},
+                {Thunder2,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder2", Ghost_Thunder2, null)},
+                {Thunder3,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder3", Ghost_Thunder3, null)},
+                {Cure1,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure1", Ghost_Cure1, broadcast.Cure)},
+                {Cure2,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure2", Ghost_Cure2, null)},
+                {Cure3,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure3", Ghost_Cure3, null)},
+                {Reflect1,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect1", Ghost_Reflect1, broadcast.Reflect)},
+                {Reflect2,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect2", Ghost_Reflect2, null)},
+                {Reflect3,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect3", Ghost_Reflect3, null)},
+                {Magnet1,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet1", Ghost_Magnet1, broadcast.Magnet)},
+                {Magnet2,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet2", Ghost_Magnet2, null)},
+                {Magnet3,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet3", Ghost_Magnet3, null)},
+                {TornPage1,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage1", Ghost_TornPage1, null)},
+                {TornPage2,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage2", Ghost_TornPage2, null)},
+                {TornPage3,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage3", Ghost_TornPage3, null)},
+                {TornPage4,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage4", Ghost_TornPage4, null)},
+                {TornPage5,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage5", Ghost_TornPage5, null)},
+                {Valor,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/valor.png", "Cus-Valor", Ghost_Valor, broadcast.Valor)},
+                {Wisdom,            new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/wisdom.png", "Cus-Wisdom", Ghost_Wisdom, broadcast.Wisdom)},
+                {Limit,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/limit.png", "Cus-Limit", Ghost_Limit, broadcast.Limit)},
+                {Master,            new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/master.png", "Cus-Master", Ghost_Master, broadcast.Master)},
+                {Final,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/final.png", "Cus-Final", Ghost_Final, broadcast.Final)},
+                {Lamp,              new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/genie.png",                           "Cus-Lamp"		, Ghost_Lamp, broadcast.Lamp)},
+                {Ukulele,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/stitch.png",                       "Cus-Ukulele"	, Ghost_Ukulele, broadcast.Ukulele)},
+                {Baseball,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/chicken_little.png",              "Cus-Baseball"	 , Ghost_Baseball, broadcast.Baseball)},
+                {Feather,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/peter_pan.png",                    "Cus-Feather"	, Ghost_Feather, broadcast.Feather)},
+                {Nonexistence,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_nonexistence.png",   "Cus-Nonexistence", Ghost_Nonexistence, broadcast.Nonexistence)},
+                {Connection,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_connection.png",       "Cus-Connection"	 , Ghost_Connection, broadcast.Connection)},
+                {Peace,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_tranquility.png",           "Cus-Peace"      , Ghost_Peace, broadcast.Peace)},
+                {PromiseCharm,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/promise_charm.png", "Cus-PromiseCharm", Ghost_PromiseCharm, broadcast.PromiseCharm)},
+                {OnceMore,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/once_more.png", "Cus-OnceMore", Ghost_OnceMore, broadcast.OnceMore)},
+                {SecondChance,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/second_chance.png", "Cus-SecondChance", Ghost_SecondChance, broadcast.SecondChance)},
+                {MulanWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/AncestorSword.png", "Cus-MulanWep", Ghost_MulanWep, broadcast.MulanWep)},
+                {AuronWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BattlefieldsofWar.png", "Cus-AuronWep", Ghost_AuronWep, broadcast.AuronWep)},
+                {BeastWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BeastClaw.png", "Cus-BeastWep", Ghost_BeastWep, broadcast.BeastWep)},
+                {JackWep,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BoneFist.png", "Cus-JackWep", Ghost_JackWep, broadcast.JackWep)},
+                {IceCream,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IceCream.png", "Cus-IceCream", Ghost_IceCream, broadcast.IceCream)},
+                {TronWep,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IdentityDisk.png", "Cus-TronWep", Ghost_TronWep, broadcast.TronWep)},
+                {Picture,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Picture.png", "Cus-Picture", Ghost_Picture, broadcast.Picture)},
+                {MembershipCard,    new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/membership_card.png", "Cus-MembershipCard", Ghost_MembershipCard, broadcast.MembershipCard)},
+                {SimbaWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ProudFang.png", "Cus-SimbaWep", Ghost_SimbaWep, broadcast.SimbaWep)},
+                {AladdinWep,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Scimitar.png", "Cus-AladdinWep", Ghost_AladdinWep, broadcast.AladdinWep)},
+                {SparrowWep,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/SkillCrossbones.png", "Cus-SparrowWep", Ghost_SparrowWep, broadcast.SparrowWep)},
+                {HadesCup,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/hades_cup.png", "Cus-HadesCup", Ghost_HadesCup, broadcast.HadesCup)},
+                {OlympusStone,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/olympus_stone.png", "Cus-OlympusStone", Ghost_OlympusStone, broadcast.OlympusStone)},
+                {UnknownDisk,       new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/UnknownDisk.png", "Cus-UnknownDisk", Ghost_UnknownDisk, broadcast.UnknownDisk)},
+                {Anti,              new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/anti.png", "Cus-Anti", Ghost_Anti, broadcast.Anti)}
             };
 
-            //ghostst
-            //helps determine what item images need replacing with custom image loading
-            CusItemCheckG = new Dictionary<ContentControl, Tuple<string, string>>
+            //ghost items
+            CusItemCheckG = new Dictionary<Item, Tuple<string, string>>
             {
                 {Ghost_Report1, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report01.png",  "Cus-G_Report1")},
                 {Ghost_Report2, new Tuple<string, string>("CustomImages/Checks/Ghost/ansem_report02.png",  "Cus-G_Report2")},
@@ -214,7 +201,7 @@ namespace KhTracker
                 {Ghost_Anti, new Tuple<string, string>("CustomImages/Checks/Ghost/anti.png", "Cus-G_Anti")}
             };
 
-            //broadks
+            //broadcast window items
             CusItemCheckB = new Dictionary<ContentControl, Tuple<string, string>>
             {
                 {broadcast.HighJump, new Tuple<string, string>("CustomImages/Broadcast/Checks/jump.png", "Cus-B_HighJump")},
@@ -448,7 +435,6 @@ namespace KhTracker
             }
         }
 
-        //get cutom images for toggles. i'll recode this to be better later i swear
         private void CustomChecksCheck()
         {
             if (!CustomFolderOption.IsChecked)
@@ -478,8 +464,6 @@ namespace KhTracker
             //    key     |   item1    |      item2     | item3  |  item4
             //main window | image path | dictionary key | ghost  | broadcast
 
-            ///TODO: growth ability icons don't change, fix later
-
             // broadcasts and ghost should always use main widnow icons if any are found first.
             if (checkFiles.Length > 0)
             {
@@ -491,13 +475,13 @@ namespace KhTracker
                     if (checkFiles.Contains(item.Value.Item1.ToLower()))
                     {
                         //main item
-                        var main = item.Key as Item;
+                        Item main = item.Key;
                         main.SetResourceReference(ContentProperty, item.Value.Item2);
 
                         //ghost item
                         if (item.Value.Item3 != null)
                         {
-                            Item ghost = item.Value.Item3 as Item;
+                            Item ghost = item.Value.Item3;
                             ghost.SetResourceReference(ContentProperty, item.Value.Item2);
                         }
 
@@ -506,12 +490,11 @@ namespace KhTracker
                         {
                             item.Value.Item4.SetResourceReference(ContentProperty, item.Value.Item2);
                         }
-
                     }
                 }
             }
 
-            //if cutom ghost icons are found then set those (otherwise keep using the main window ones)
+            //if custom ghost icons are found then set those (otherwise keep using the main window ones)
             if (checkFilesG.Length > 0)
             {
                 //check if i actually need this lowercase edit
@@ -546,26 +529,42 @@ namespace KhTracker
             //check if folders exists then start checking if each file exists in it
             if (Directory.Exists("CustomImages/Checks/"))
             {
+                if (File.Exists("CustomImages/Checks/jump.png"))
+                {
+                    HighJump.SetResourceReference(ContentProperty, "Cus-HighJump");
+                    broadcast.HighJump.SetResourceReference(ContentProperty, "Cus-HighJump");
+                }
+                if (File.Exists("CustomImages/Checks/quick.png"))
+                {
+                    QuickRun.SetResourceReference(ContentProperty, "Cus-QuickRun");
+                    broadcast.QuickRun.SetResourceReference(ContentProperty, "Cus-QuickRun");
+                }
+                if (File.Exists("CustomImages/Checks/dodge.png"))
+                {
+                    DodgeRoll.SetResourceReference(ContentProperty, "Cus-DodgeRoll");
+                    DodgeRoll.SetResourceReference(ContentProperty, "Cus-DodgeRoll");
+                }
+                if (File.Exists("CustomImages/Checks/aerial.png"))
+                {
+                    AerialDodge.SetResourceReference(ContentProperty, "Cus-AerialDodge");
+                    broadcast.AerialDodge.SetResourceReference(ContentProperty, "Cus-AerialDodge");
+                }
+                if (File.Exists("CustomImages/Checks/glide.png"))
+                {
+                    Glide.SetResourceReference(ContentProperty, "Cus-Glide");
+                    broadcast.Glide.SetResourceReference(ContentProperty, "Cus-Glide");
+                }
+
                 if (File.Exists("CustomImages/Checks/valor.png"))
-                {
                     ValorM.SetResourceReference(ContentProperty, "Cus-Valor");
-                }
                 if (File.Exists("CustomImages/Checks/wisdom.png"))
-                {
                     WisdomM.SetResourceReference(ContentProperty, "Cus-Wisdom");
-                }
                 if (File.Exists("CustomImages/Checks/limit.png"))
-                {
                     LimitM.SetResourceReference(ContentProperty, "Cus-Limit");
-                }
                 if (File.Exists("CustomImages/Checks/master.png"))
-                {
                     MasterM.SetResourceReference(ContentProperty, "Cus-Master");
-                }
                 if (File.Exists("CustomImages/Checks/final.png"))
-                {
                     FinalM.SetResourceReference(ContentProperty, "Cus-Final");
-                }
             }
 
             if (CustomLevelFound)
@@ -675,17 +674,11 @@ namespace KhTracker
 
             //broadcast window specific
             if (File.Exists("CustomImages/Broadcast/Other/ansem_report.png"))
-            {
                 broadcast.Report.SetResourceReference(ContentProperty, "Cus-B_AnsemReport");
-            }
             if (File.Exists("CustomImages/Broadcast/Other/torn_pages.png"))
-            {
                 broadcast.TornPage.SetResourceReference(ContentProperty, "Cus-B_TornPage");
-            }
             if (File.Exists("CustomImages/Broadcast/Other/chest.png"))
-            {
                 broadcast.Chest.SetResourceReference(ContentProperty, "Cus-B_Chest");
-            }
         }
 
         private void CustomWorldCheck()
@@ -1030,7 +1023,6 @@ namespace KhTracker
             foreach (var item in data.Items.Keys)
             {
                 data.Items[item].Item1.SetResourceReference(ContentProperty, type + item);
-                //item.SetResourceReference(ContentProperty, type + item.Name);
             }
             // Ghost icons
             foreach (var item in data.GhostItems.Values)

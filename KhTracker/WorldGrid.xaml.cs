@@ -16,7 +16,16 @@ namespace KhTracker
     {
         //let's simplyfy some stuff and remove a ton of redundant code
         MainWindow window = (MainWindow)App.Current.MainWindow;
-        Data data = MainWindow.data;
+        //Data data = MainWindow.data;
+
+        //real versions for itempool counts
+        public static int Real_Fire = 0;
+        public static int Real_Blizzard = 0;
+        public static int Real_Thunder = 0;
+        public static int Real_Cure = 0;
+        public static int Real_Reflect = 0;
+        public static int Real_Magnet = 0;
+        public static int Real_Pages = 0;
 
         //public static int localLevelCount = 0;
         public static int Ghost_Fire = 0;
@@ -48,6 +57,7 @@ namespace KhTracker
         public void Handle_WorldGrid(Item button, bool add)
         {
             int addRemove = 1;
+            Data data = MainWindow.data;
 
             if (add)
             {
@@ -96,6 +106,8 @@ namespace KhTracker
                 addRemove = -1;
             }
             UpdateGhostObtained(button, addRemove);
+
+            UpdateMulti(button, add);
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)
@@ -233,12 +245,68 @@ namespace KhTracker
             item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
         }
 
+        public void UpdateMulti(Item item, bool add)
+        {
+            if (Codes.FindItemType(item.Name) != "magic" && Codes.FindItemType(item.Name) != "page")
+                return;
+
+            //int multi = 0;
+            int addRemove = 1;
+            if (!add)
+                addRemove = -1;
+
+            char[] numbers = { '1', '2', '3', '4', '5' };
+            string itemname = item.Name.TrimEnd(numbers);
+
+            switch (itemname)
+            {
+                case "Fire":
+                    Real_Fire += addRemove;
+                    window.FireCount.Text = (3 - Real_Fire).ToString();
+                    //multi = Real_Fire;
+                    return;
+                case "Blizzard":
+                    Real_Blizzard  += addRemove;
+                    window.BlizzardCount.Text = (3 - Real_Blizzard).ToString();
+                    //multi = Real_Blizzard;
+                    return;
+                case "Thunder":
+                    Real_Thunder += addRemove;
+                    window.ThunderCount.Text = (3 - Real_Thunder).ToString();
+                    //multi = Real_Thunder;
+                    return;
+                case "Cure":
+                    Real_Cure += addRemove;
+                    window.CureCount.Text = (3 - Real_Cure).ToString();
+                    //multi = Real_Cure;
+                    return;
+                case "Magnet":
+                    Real_Magnet += addRemove;
+                    window.MagnetCount.Text = (3 - Real_Magnet).ToString();
+                    //multi = Real_Magnet;
+                    return;
+                case "Reflect":
+                    Real_Reflect += addRemove;
+                    window.ReflectCount.Text = (3 - Real_Reflect).ToString();
+                    //multi = Real_Reflect;
+                    return;
+                case "TornPage":
+                    Real_Pages += addRemove;
+                    window.PageCount.Text = (5 - Real_Pages).ToString();
+                    //multi = Real_Pages;
+                    return;
+                default:
+                    return;
+            }
+        }
+
         ///
         /// Report handling 
         ///
 
         public bool ReportHandler(Item item)
         {
+            Data data = MainWindow.data;
             //we use this to check if a report is valid to be tracked before placing it in the world grid.
             //an incorrect report will update its fail status and return false
             //if any other item then alwys return true and skip any report related code.
@@ -312,6 +380,7 @@ namespace KhTracker
 
         private void Report_Jsmartee(int index, Item item)
         {
+            Data data = MainWindow.data;
             // hint text
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2) + " has " + data.reportInformation[index].Item3 + " important checks");
 
@@ -355,6 +424,7 @@ namespace KhTracker
 
         private void Report_Points(int index)
         {
+            Data data = MainWindow.data;
             // hint text
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + Codes.FindShortName(data.reportInformation[index].Item2));
             CheckGhost(data.reportInformation[index].Item1, data.reportInformation[index].Item2, "Report" + index);
@@ -366,6 +436,7 @@ namespace KhTracker
 
         private void Report_Path(int index)
         {
+            Data data = MainWindow.data;
             // hint text and proof icon display
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             PathProofToggle(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
@@ -377,6 +448,7 @@ namespace KhTracker
 
         private void Report_Spoiler(int index)
         {
+            Data data = MainWindow.data;
             // hint text
             if (data.reportInformation[index].Item1 == "Empty")
             {
@@ -433,6 +505,7 @@ namespace KhTracker
 
         private int TableReturn(string nameButton)
         {
+            Data data = MainWindow.data;
             string type = Codes.FindItemType(nameButton);
             if (type != "Unknown")
             {
@@ -449,6 +522,7 @@ namespace KhTracker
 
         public void Add_Ghost(Item item)
         {
+            Data data = MainWindow.data;
             //check if we even want to track a ghost item.
             if (window.GhostItemOption.IsChecked || data.mode == Mode.SpoilerHints)
             {
@@ -463,6 +537,7 @@ namespace KhTracker
 
         private void Remove_Ghost(string world, Item item)
         {
+            Data data = MainWindow.data;
             //check to see if world currently contains a ghost
 
             //if Points Hints and world doesn't contain a ghost yet, do nothing and return
@@ -521,6 +596,7 @@ namespace KhTracker
 
         private void CheckGhost(string world, string item, string report)
         {
+            Data data = MainWindow.data;
             //don't bother checking if ghost tracking is off
             if (window.GhostItemOption.IsChecked == false)
                 return;
@@ -637,6 +713,7 @@ namespace KhTracker
 
         private void SpoilerWorldReveal(string worldname, string report)
         {
+            Data data = MainWindow.data;
             //check if report was tracked before in this session to avoid tracking
             //multiple ghosts for removing and placing the same report back
             if (data.TrackedReports.Contains(report))
@@ -743,6 +820,7 @@ namespace KhTracker
         //TODO: this really doesn't need to be on its own.
         private void SetWorldGhost(string worldName)
         {
+            Data data = MainWindow.data;
             foreach (Item child in Children)
             {
                 if (data.GhostItems.Values.Contains(child))
@@ -761,6 +839,7 @@ namespace KhTracker
         //UPDATE: yes we do... but i'll worry about it when i start adding legacy layout mode
         private void UpdateGhostObtained(Item item, int addremove)
         {
+            Data data = MainWindow.data;
             //return if mod isn't either of these
             if (data.mode != Mode.DAHints && data.mode != Mode.SpoilerHints)
             {
@@ -974,6 +1053,7 @@ namespace KhTracker
 
         public void WorldComplete()
         {
+            Data data = MainWindow.data;
             //run a check for current world to check if all checks have been found
 
             //get worldname by rmoving "Grid" from the end of the current worldgrid name
@@ -1015,42 +1095,43 @@ namespace KhTracker
 
         private void SetVisitLock(string itemName, int addRemove)
         {
+            Data data = MainWindow.data;
             //reminder: 1 = locked | 0 = unlocked
             //reminder for TT: 10 = 3rd visit locked | 1 = 2nd visit locked | 11 = both locked | 0 = both unlocked
             switch (itemName)
             {
                 case "AuronWep":
-                    data.WorldsData["OlympusColiseum"].visitLocks += addRemove;
+                    data.WorldsData["OlympusColiseum"].visitLocks -= addRemove;
                     break;
                 case "MulanWep":
-                    data.WorldsData["LandofDragons"].visitLocks += addRemove;
+                    data.WorldsData["LandofDragons"].visitLocks -= addRemove;
                     break;
                 case "BeastWep":
-                    data.WorldsData["BeastsCastle"].visitLocks += addRemove;
+                    data.WorldsData["BeastsCastle"].visitLocks -= addRemove;
                     break;
                 case "JackWep":
-                    data.WorldsData["HalloweenTown"].visitLocks += addRemove;
+                    data.WorldsData["HalloweenTown"].visitLocks -= addRemove;
                     break;
                 case "SimbaWep":
-                    data.WorldsData["PrideLands"].visitLocks += addRemove;
+                    data.WorldsData["PrideLands"].visitLocks -= addRemove;
                     break;
                 case "SparrowWep":
-                    data.WorldsData["PortRoyal"].visitLocks += addRemove;
+                    data.WorldsData["PortRoyal"].visitLocks -= addRemove;
                     break;
                 case "AladdinWep":
-                    data.WorldsData["Agrabah"].visitLocks += addRemove;
+                    data.WorldsData["Agrabah"].visitLocks -= addRemove;
                     break;
                 case "TronWep":
-                    data.WorldsData["SpaceParanoids"].visitLocks += addRemove;
+                    data.WorldsData["SpaceParanoids"].visitLocks -= addRemove;
                     break;
                 case "IceCream":
-                    data.WorldsData["TwilightTown"].visitLocks += (addRemove * 10);
+                    data.WorldsData["TwilightTown"].visitLocks -= (addRemove * 10);
                     break;
                 case "Picture":
-                    data.WorldsData["TwilightTown"].visitLocks += addRemove;
+                    data.WorldsData["TwilightTown"].visitLocks -= addRemove;
                     break;
                 case "MembershipCard":
-                    data.WorldsData["HollowBastion"].visitLocks += addRemove;
+                    data.WorldsData["HollowBastion"].visitLocks -= addRemove;
                     break;
                 default:
                     return;
@@ -1061,6 +1142,7 @@ namespace KhTracker
 
         private void PathProofToggle(string location, int proofTotal)
         {
+            Data data = MainWindow.data;
             //reminder: location is what report is for, not from
             //reminder: con = 1 | non = 10 | peace = 100
 
