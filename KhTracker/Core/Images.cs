@@ -25,6 +25,8 @@ namespace KhTracker
         private Dictionary<Item, Tuple<string, string, Item, ContentControl>> CusItemCheck;
         private Dictionary<Item, Tuple<string, string>> CusItemCheckG;
         private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckB;
+        //dirty i guess, but i'll fix later maybe
+        private Dictionary<ContentControl, string> ItemShadow;
 
         //handle adding all custom images and such
         public void InitImages()
@@ -245,6 +247,61 @@ namespace KhTracker
                 {broadcast.HadesCup, new Tuple<string, string>("CustomImages/Broadcast/Checks/hades_cup.png", "Cus-B_HadesCup")},
                 {broadcast.OlympusStone, new Tuple<string, string>("CustomImages/Broadcast/Checks/olympus_stone.png", "Cus-B_OlympusStone")},
                 {broadcast.UnknownDisk, new Tuple<string, string>("CustomImages/Broadcast/Checks/UnknownDisk.png", "Cus-B_UnknownDisk")}
+            };
+
+            ///TODO: update later
+            ItemShadow = new Dictionary<ContentControl, string>
+            {
+                {S_Report1,        "Report1"},
+                {S_Report2,        "Report2"},
+                {S_Report3,        "Report3"},
+                {S_Report4,        "Report4"},
+                {S_Report5,        "Report5"},
+                {S_Report6,        "Report6"},
+                {S_Report7,        "Report7"},
+                {S_Report8,        "Report8"},
+                {S_Report9,        "Report9"},
+                {S_Report10,       "Report10"},
+                {S_Report11,       "Report11"},
+                {S_Report12,       "Report12"},
+                {S_Report13,       "Report13"},
+                {S_Fire,           "Fire1"},
+                {S_Blizzard,       "Blizzard1"},
+                {S_Thunder,        "Thunder1"},
+                {S_Cure,           "Cure1"},
+                {S_Reflect,        "Reflect1"},
+                {S_Magnet,         "Magnet1"},
+                {S_TornPage,       "TornPage1"},
+                {S_Valor,          "Valor"},
+                {S_Wisdom,         "Wisdom"},
+                {S_Limit,          "Limit"},
+                {S_Master,         "Master"},
+                {S_Final,          "Final"},
+                {S_Lamp,           "Lamp"},
+                {S_Ukulele,        "Ukulele"},
+                {S_Baseball,       "Baseball"},
+                {S_Feather,        "Feather"},
+                {S_Nonexistence,   "Nonexistence"},
+                {S_Connection,     "Connection"},
+                {S_Peace,          "Peace"},
+                {S_PromiseCharm,   "PromiseCharm"},
+                {S_OnceMore,       "OnceMore"},
+                {S_SecondChance,   "SecondChance"},
+                {S_MulanWep,       "MulanWep"},
+                {S_AuronWep,       "AuronWep"},
+                {S_BeastWep,       "BeastWep"},
+                {S_JackWep,        "JackWep"},
+                {S_IceCream,       "IceCream"},
+                {S_TronWep,        "TronWep"},
+                {S_Picture,        "Picture"},
+                {S_MembershipCard, "MembershipCard"},
+                {S_SimbaWep,       "SimbaWep"},
+                {S_AladdinWep,     "AladdinWep"},
+                {S_SparrowWep,     "SparrowWep"},
+                {S_HadesCup,       "HadesCup"},
+                {S_OlympusStone,   "OlympusStone"},
+                {S_UnknownDisk,    "UnknownDisk"},
+                {S_Anti,           "Anti"} 
             };
         }
 
@@ -1030,6 +1087,12 @@ namespace KhTracker
                 item.SetResourceReference(ContentProperty, type + item.Name);
             }
 
+            //item shadows
+            foreach (ContentControl item in ItemShadow.Keys)
+            {
+                item.SetResourceReference(ContentProperty, type + ItemShadow[item]);
+            }
+            
             // stat/info icons
             ValorM.SetResourceReference(ContentProperty, type + "Valor");
             WisdomM.SetResourceReference(ContentProperty, type + "Wisdom");

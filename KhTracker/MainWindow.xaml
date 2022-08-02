@@ -1875,32 +1875,102 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <local:Item x:Name="Report1" Content="{DynamicResource Min-Report1}"  Grid.Column="0" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts1" Content="{DynamicResource Fail0}"          Grid.Column="0" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report2" Content="{DynamicResource Min-Report2}"  Grid.Column="1" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts2" Content="{DynamicResource Fail0}"          Grid.Column="1" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report3" Content="{DynamicResource Min-Report3}"  Grid.Column="2" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts3" Content="{DynamicResource Fail0}"          Grid.Column="2" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report4" Content="{DynamicResource Min-Report4}"  Grid.Column="3" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts4" Content="{DynamicResource Fail0}"          Grid.Column="3" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report5" Content="{DynamicResource Min-Report5}"  Grid.Column="4" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts5" Content="{DynamicResource Fail0}"          Grid.Column="4" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report6" Content="{DynamicResource Min-Report6}"  Grid.Column="5" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts6" Content="{DynamicResource Fail0}"          Grid.Column="5" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report7" Content="{DynamicResource Min-Report7}"  Grid.Column="6" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts7" Content="{DynamicResource Fail0}"          Grid.Column="6" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report8" Content="{DynamicResource Min-Report8}"  Grid.Column="7" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts8" Content="{DynamicResource Fail0}"          Grid.Column="7" Panel.ZIndex="1"/>
-                    <local:Item x:Name="Report9" Content="{DynamicResource Min-Report9}"  Grid.Column="8" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts9" Content="{DynamicResource Fail0}"          Grid.Column="8" Panel.ZIndex="1"/>
+
+                    <local:Item x:Name="Report1" Content="{DynamicResource Min-Report1}"   Grid.Column="0" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report2" Content="{DynamicResource Min-Report2}"   Grid.Column="1" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report3" Content="{DynamicResource Min-Report3}"   Grid.Column="2" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report4" Content="{DynamicResource Min-Report4}"   Grid.Column="3" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report5" Content="{DynamicResource Min-Report5}"   Grid.Column="4" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report6" Content="{DynamicResource Min-Report6}"   Grid.Column="5" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report7" Content="{DynamicResource Min-Report7}"   Grid.Column="6" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report8" Content="{DynamicResource Min-Report8}"   Grid.Column="7" Panel.ZIndex="0"/>
+                    <local:Item x:Name="Report9" Content="{DynamicResource Min-Report9}"   Grid.Column="8" Panel.ZIndex="0"/>
                     <local:Item x:Name="Report10" Content="{DynamicResource Min-Report10}" Grid.Column="9" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts10" Content="{DynamicResource Fail0}"         Grid.Column="9" Panel.ZIndex="1"/>
                     <local:Item x:Name="Report11" Content="{DynamicResource Min-Report11}" Grid.Column="10" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts11" Content="{DynamicResource Fail0}"         Grid.Column="10" Panel.ZIndex="1"/>
                     <local:Item x:Name="Report12" Content="{DynamicResource Min-Report12}" Grid.Column="11" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts12" Content="{DynamicResource Fail0}"         Grid.Column="11" Panel.ZIndex="1"/>
                     <local:Item x:Name="Report13" Content="{DynamicResource Min-Report13}" Grid.Column="12" Panel.ZIndex="0"/>
-                    <ContentControl x:Name="Attempts13" Content="{DynamicResource Fail0}"         Grid.Column="12" Panel.ZIndex="1"/>
+
+                    <!-- Fail Icons -->
+                    <ContentControl x:Name="Attempts1" Content="{DynamicResource Fail0}"  Grid.Column="0" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts2" Content="{DynamicResource Fail0}"  Grid.Column="1" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts3" Content="{DynamicResource Fail0}"  Grid.Column="2" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts4" Content="{DynamicResource Fail0}"  Grid.Column="3" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts5" Content="{DynamicResource Fail0}"  Grid.Column="4" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts6" Content="{DynamicResource Fail0}"  Grid.Column="5" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts7" Content="{DynamicResource Fail0}"  Grid.Column="6" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts8" Content="{DynamicResource Fail0}"  Grid.Column="7" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts9" Content="{DynamicResource Fail0}"  Grid.Column="8" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts10" Content="{DynamicResource Fail0}" Grid.Column="9" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts11" Content="{DynamicResource Fail0}" Grid.Column="10" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts12" Content="{DynamicResource Fail0}" Grid.Column="11" Panel.ZIndex="1"/>
+                    <ContentControl x:Name="Attempts13" Content="{DynamicResource Fail0}" Grid.Column="12" Panel.ZIndex="1"/>
+
+                    <!-- silhouettes -->
+                    <ContentControl x:Name="S_Report1" Content="{DynamicResource Min-Report1}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report2" Content="{DynamicResource Min-Report2}"      Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report3" Content="{DynamicResource Min-Report3}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report4" Content="{DynamicResource Min-Report4}"      Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report5" Content="{DynamicResource Min-Report5}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report6" Content="{DynamicResource Min-Report6}"      Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report7" Content="{DynamicResource Min-Report7}"      Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report8" Content="{DynamicResource Min-Report8}"      Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report9" Content="{DynamicResource Min-Report9}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report10" Content="{DynamicResource Min-Report10}"    Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report11" Content="{DynamicResource Min-Report11}"    Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report12" Content="{DynamicResource Min-Report12}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Report13" Content="{DynamicResource Min-Report13}"    Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
                 </Grid>
                 <!-- Row 2 -->
                 <Grid Grid.Row="1" Grid.Column="1">
@@ -2022,7 +2092,47 @@
                     <local:Item x:Name="SecondChance" Content="{DynamicResource Min-SecondChance}"  Grid.Column="15"/>
 
                     <!-- silhouettes -->
-                    <ContentControl x:Name="Fire_S" Content="{DynamicResource Min-Fire1}" Grid.Column="1" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Fire" Content="{DynamicResource Min-Fire1}"                   Grid.Column="1" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Blizzard" Content="{DynamicResource Min-Blizzard1}"           Grid.Column="3" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Thunder" Content="{DynamicResource Min-Thunder1}"             Grid.Column="5" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Cure" Content="{DynamicResource Min-Cure1}"                   Grid.Column="7" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Reflect" Content="{DynamicResource Min-Reflect1}"             Grid.Column="9" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Magnet" Content="{DynamicResource Min-Magnet1}"               Grid.Column="11" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_TornPage" Content="{DynamicResource Min-TornPage1}"           Grid.Column="13" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_OnceMore" Content="{DynamicResource Min-OnceMore}"            Grid.Column="14" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_SecondChance" Content="{DynamicResource Min-SecondChance}"    Grid.Column="15" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
@@ -2041,14 +2151,12 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition x:Name="HadesCupCol" Width="0*"/>
-                        <ColumnDefinition x:Name="OlympusStoneCol" Width="0*"/>
-                        <ColumnDefinition x:Name="UnknownDiskCol" Width="0*"/>
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition x:Name="PromiseCharmCol" Width="1*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <local:Item x:Name="Valor"        Content="{DynamicResource Min-Valor}"         Grid.Column="0"/>
                     <local:Item x:Name="Wisdom"       Content="{DynamicResource Min-Wisdom}"        Grid.Column="1"/>
                     <local:Item x:Name="Limit"        Content="{DynamicResource Min-Limit}"         Grid.Column="2"/>
@@ -2057,13 +2165,85 @@
                     <local:Item x:Name="Anti"         Content="{DynamicResource Min-Anti}"          Grid.Column="5"/>
                     <local:Item x:Name="Baseball"     Content="{DynamicResource Min-Baseball}"      Grid.Column="6"/>
                     <local:Item x:Name="Lamp"         Content="{DynamicResource Min-Lamp}"          Grid.Column="7"/>
-                    <local:Item x:Name="Ukulele"      Content="{DynamicResource Min-Ukulele}"        Grid.Column="8"/>
-                    <local:Item x:Name="Feather"      Content="{DynamicResource Min-Feather}"      Grid.Column="9"/>
+                    <local:Item x:Name="Ukulele"      Content="{DynamicResource Min-Ukulele}"       Grid.Column="8"/>
+                    <local:Item x:Name="Feather"      Content="{DynamicResource Min-Feather}"       Grid.Column="9"/>
+                    <local:Item x:Name="Connection"   Content="{DynamicResource Min-Connection}"    Grid.Column="10"/>
+                    <local:Item x:Name="Nonexistence" Content="{DynamicResource Min-Nonexistence}"  Grid.Column="11"/>
+                    <local:Item x:Name="Peace"        Content="{DynamicResource Min-Peace}"         Grid.Column="12"/>
+                    <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"  Grid.Column="13"/>
 
-                    <local:Item x:Name="Connection"   Content="{DynamicResource Min-Connection}"    Grid.Column="13"/>
-                    <local:Item x:Name="Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="14"/>
-                    <local:Item x:Name="Peace"        Content="{DynamicResource Min-Peace}"    Grid.Column="15"/>
-                    <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"  Grid.Column="16"/>
+                    <!-- silhouettes -->
+                    <ContentControl x:Name="S_Valor" Content="{DynamicResource Min-Valor}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Wisdom" Content="{DynamicResource Min-Wisdom}"    Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Limit" Content="{DynamicResource Min-Limit}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Master" Content="{DynamicResource Min-Master}"    Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Final" Content="{DynamicResource Min-Final}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Anti" Content="{DynamicResource Min-Anti}"        Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Baseball" Content="{DynamicResource Min-Baseball}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Lamp" Content="{DynamicResource Min-Lamp}"            Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Ukulele" Content="{DynamicResource Min-Ukulele}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Feather" Content="{DynamicResource Min-Feather}"      Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Connection" Content="{DynamicResource Min-Connection}"        Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Peace" Content="{DynamicResource Min-Peace}"                  Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"    Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+
                 </Grid>
                 <!-- Row 4 -->
                 <Grid Grid.Row="3" Grid.Column="1">
@@ -2079,9 +2259,9 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition x:Name="HadesCupCol" Width="0*"/>
+                        <ColumnDefinition x:Name="OlympusStoneCol" Width="0*"/>
+                        <ColumnDefinition x:Name="UnknownDiskCol" Width="0*"/>
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="BeastWep" 	    Content="{DynamicResource Min-BeastWep}"        Grid.Column="0"/>
@@ -2095,11 +2275,83 @@
                     <local:Item x:Name="MembershipCard" Content="{DynamicResource Min-MembershipCard}"  Grid.Column="8"/>
                     <local:Item x:Name="Picture" 	    Content="{DynamicResource Min-Picture}"         Grid.Column="9"/>
                     <local:Item x:Name="IceCream" 	    Content="{DynamicResource Min-IceCream}"        Grid.Column="10"/>
+                    <local:Item x:Name="HadesCup"     Content="{DynamicResource Min-HadesCup}"          Grid.Column="11"/>
+                    <local:Item x:Name="OlympusStone" Content="{DynamicResource Min-OlympusStone}"      Grid.Column="12"/>
+                    <local:Item x:Name="UnknownDisk"  Content="{DynamicResource Min-UnknownDisk}"       Grid.Column="13"/>
 
-                    <local:Item x:Name="HadesCup"     Content="{DynamicResource Min-HadesCup}"      Grid.Column="11"/>
-                    <local:Item x:Name="OlympusStone" Content="{DynamicResource Min-OlympusStone}"  Grid.Column="12"/>
-                    <local:Item x:Name="UnknownDisk"  Content="{DynamicResource Min-UnknownDisk}"   Grid.Column="13"/>
+                    <!-- silhouettes -->
+                    <ContentControl x:Name="S_BeastWep" Content="{DynamicResource Min-BeastWep}"        Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_JackWep" Content="{DynamicResource Min-JackWep}"          Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_SimbaWep" Content="{DynamicResource Min-SimbaWep}"        Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_AuronWep" Content="{DynamicResource Min-AuronWep}"        Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_MulanWep" Content="{DynamicResource Min-MulanWep}"        Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_SparrowWep" Content="{DynamicResource Min-SparrowWep}"    Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_AladdinWep" Content="{DynamicResource Min-AladdinWep}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_TronWep" Content="{DynamicResource Min-TronWep}"          Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_MembershipCard" Content="{DynamicResource Min-MembershipCard}"    Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Picture" Content="{DynamicResource Min-Picture}"                  Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_IceCream" Content="{DynamicResource Min-IceCream}"                Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_HadesCup" Content="{DynamicResource Min-HadesCup}"                Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_OlympusStone" Content="{DynamicResource Min-OlympusStone}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_UnknownDisk" Content="{DynamicResource Min-UnknownDisk}"          Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
                 </Grid>
+                
                 <!-- Ghost Items -->
                 <Grid Grid.Row="5" Grid.Column="1">
                     <local:Item x:Name="Ghost_Report1" 			Content="{DynamicResource Min-Report1}"  	Opacity="0.5"/>
