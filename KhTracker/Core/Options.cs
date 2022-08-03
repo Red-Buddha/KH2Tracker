@@ -789,22 +789,22 @@ namespace KhTracker
             }
 
             // Reset 1st column row heights
-            RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            foreach (RowDefinition row in rows1)
-            {
-                // don't reset turned off worlds
-                if (row.Height.Value != 0)
-                    row.Height = new GridLength(1, GridUnitType.Star);
-            }
-
-            // Reset 2nd column row heights
-            RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            foreach (RowDefinition row in rows2)
-            {
-                // don't reset turned off worlds
-                if (row.Height.Value != 0)
-                    row.Height = new GridLength(1, GridUnitType.Star);
-            }
+            //RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            //foreach (RowDefinition row in rows1)
+            //{
+            //    // don't reset turned off worlds
+            //    if (row.Height.Value != 0)
+            //        row.Height = new GridLength(1, GridUnitType.Star);
+            //}
+            //
+            //// Reset 2nd column row heights
+            //RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            //foreach (RowDefinition row in rows2)
+            //{
+            //    // don't reset turned off worlds
+            //    if (row.Height.Value != 0)
+            //        row.Height = new GridLength(1, GridUnitType.Star);
+            //}
 
             foreach (var key in data.WorldsData.Keys.ToList())
             {
@@ -1000,21 +1000,21 @@ namespace KhTracker
             //broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
             //reset pathhints edits
-            foreach (string key in data.WorldsData.Keys.ToList())
-            {
-                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-                Grid grid = data.WorldsData[key].world.Parent as Grid;
-                grid.ColumnDefinitions[3].Width = new GridLength(0.1, GridUnitType.Star);
-
-                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
-                pathgrid.Visibility = Visibility.Hidden;
-                foreach (Image child in pathgrid.Children)
-                {
-                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
-                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
-                    child.Visibility = Visibility.Hidden;
-                }
-            }
+            //foreach (string key in data.WorldsData.Keys.ToList())
+            //{
+            //    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
+            //    Grid grid = data.WorldsData[key].world.Parent as Grid;
+            //    grid.ColumnDefinitions[3].Width = new GridLength(0.1, GridUnitType.Star);
+            //
+            //    Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+            //    pathgrid.Visibility = Visibility.Hidden;
+            //    foreach (Image child in pathgrid.Children)
+            //    {
+            //        if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
+            //            child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
+            //        child.Visibility = Visibility.Hidden;
+            //    }
+            //}
 
             UpdatePointScore(0);
             ReportsToggle(true);
@@ -1031,9 +1031,13 @@ namespace KhTracker
 
             foreach (Grid itempool in ItemPool.Children)
             {
-                foreach (ContentControl item in itempool.Children)
-                    if (!item.Name.Contains("Ghost"))
-                        item.Opacity = 1.0;
+                foreach (var item in itempool.Children)
+                {
+                    ContentControl check = item as ContentControl;
+
+                    if (check != null && !check.Name.Contains("Ghost"))
+                        check.Opacity = 1.0;
+                }
             }
 
             SetAutoDetectTimer();

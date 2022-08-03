@@ -16,7 +16,6 @@ namespace KhTracker
     {
         //let's simplyfy some stuff and remove a ton of redundant code
         MainWindow window = (MainWindow)App.Current.MainWindow;
-        //Data data = MainWindow.data;
 
         //real versions for itempool counts
         public static int Real_Fire = 0;
@@ -913,138 +912,149 @@ namespace KhTracker
                 }
             }
 
-            //SetItemPoolGhosts(itemname, itemntype);
+            SetItemPoolGhosts(itemname, itemntype);
         }
 
         private void SetItemPoolGhosts(string item, string type)
         {
-            //    int GhostIC = 0;
-            //    int ObtainedIC = 0;
-            //    Grid ItemPool = MainW.ItemPool;
+            int GhostIC = 0;
+            int ObtainedIC = 0;
+            OutlinedTextBlock magicValue = null;
+            //Grid ItemPool = window.ItemPool;
+            Data data = MainWindow.data;
+
+            //simplier icon opacity change for non pages/magic
+            if (type != "magic" && type != "page")
+            {
+                //check if a ghost item was tracked
+                if (item.StartsWith("Ghost_"))
+                {
+                    //remove ghost prefix
+                    item = item.Remove(0, 6);
+
+                    //get item and world grid it's supposed to be in
+                    Grid tempRow = data.Items[item].Item2;
+                    Item Check = tempRow.FindName(item) as Item;
+
+                    //check to see if item is *in* the ItemPool
+                    if (Check != null && Check.Parent == tempRow)  
+                    {
+                        Check.Opacity = universalOpacity; //change opacity
+                    }
+                    return;
+                }
+                return;
+            }
+
+            ///
+            ///I shouldn't be messing with magic/page opacity right now
+            ///
+
+            //figure out what kinda item we are working with
+            switch (item)
+            {
+                case "Ghost_Fire":
+                case "Fire":
+                    GhostIC = Ghost_Fire;
+                    ObtainedIC = Ghost_Fire_obtained;
+                    magicValue = window.Ghost_FireCount;
+                    break;
+                case "Ghost_Blizzard":
+                case "Blizzard":
+                    GhostIC = Ghost_Blizzard;
+                    ObtainedIC = Ghost_Blizzard_obtained;
+                    magicValue = window.Ghost_BlizzardCount;
+                    break;
+                case "Ghost_Thunder":
+                case "Thunder":
+                    GhostIC = Ghost_Thunder;
+                    ObtainedIC = Ghost_Thunder_obtained;
+                    magicValue = window.Ghost_ThunderCount;
+                    break;
+                case "Ghost_Cure":
+                case "Cure":
+                    GhostIC = Ghost_Cure;
+                    ObtainedIC = Ghost_Cure_obtained;
+                    magicValue = window.Ghost_CureCount;
+                    break;
+                case "Ghost_Reflect":
+                case "Reflect":
+                    GhostIC = Ghost_Reflect;
+                    ObtainedIC = Ghost_Reflect_obtained;
+                    magicValue = window.Ghost_ReflectCount;
+                    break;
+                case "Ghost_Magnet":
+                case "Magnet":
+                    GhostIC = Ghost_Magnet;
+                    ObtainedIC = Ghost_Magnet_obtained;
+                    magicValue = window.Ghost_MagnetCount;
+                    break;
+                case "Ghost_TornPage":
+                case "TornPage":
+                    GhostIC = Ghost_Pages;
+                    ObtainedIC = Ghost_Pages_obtained;
+                    magicValue = window.Ghost_PageCount;
+                    break;
+                default:
+                    Console.WriteLine("Something went wrong? item wasn't expected. Item: " + item);
+                    return;
+            }
+
+            if (magicValue != null)
+            {
+                if (GhostIC == 0)
+                    magicValue.Visibility = Visibility.Hidden;
+                else
+                    magicValue.Visibility = Visibility.Visible;
+
+                magicValue.Text = GhostIC.ToString();
+            }
+
+            //return and do nothing if the actual obtained number of items is maxed
+            //if ((type == "page" && ObtainedIC == 5) || (type == "magic" && ObtainedIC == 3))
+            //{
+            //    GhostIC = 0;
+            //    return;
+            //}
+
+            //if (item.StartsWith("Ghost_"))
+            //    item = item.Remove(0, 6);
+
+            //int Count = 3;
+            //if (type == "page")
+            //    Count = 5;
+
+            //reset opacity and add items to a temp list
+            //List<string> foundChecks = new List<string>();
+            //for (int i = 1; i <= Count; i++)
+            //{
+            //    string checkName = item + i.ToString();
+            //    Item check = data.Items[checkName].Item1;
+            //    Grid grid = data.Items[checkName].Item2;
             //
-            //    //simplier icon opacity change for non pages/magic
-            //    if (type != "magic" && type != "page")
+            //    if (check != null && check.Parent == grid)
             //    {
-            //        //check if a ghost item was tracked
-            //        if (item.StartsWith("Ghost_"))
-            //        {
-            //            item = item.Remove(0, 6);   //remove "Ghost_" from name
-            //            Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;
-            //            ItemRow.Children.Remove(item);
-            //
-            //
-            //
-            //
-            //
-            //            Tuple<Item, Grid> GhostItemInfo = GetItemCheck(item.Remove(0, 6), MainW);
-            //            if (GhostItemInfo.Item1 != null && GhostItemInfo.Item1.Parent == GhostItemInfo.Item2)  //check to see if item is *in* in ItemPool (don't want the ones tracked to the world changed)
-            //            {
-            //                GhostItemInfo.Item1.Opacity = universalOpacity; //change opacity
-            //            }
-            //        }
-            //        return;
+            //        check.Opacity = 1.0;
+            //        foundChecks.Add(check.Name);
             //    }
-            //
-            //    //figure out what kinda item we are working with
-            //    switch (item)
+            //}
+
+            //if (GhostIC > foundChecks.Count)
+            //{
+            //    Console.WriteLine("Ghost Count is greater than number of items left in itempool! How did this happen?");
+            //    return;
+            //}
+
+            //calculate opacity again (for dynamic change on adding removing checks
+            //for (int i = 1; i <= GhostIC; i++)
+            //{
+            //    Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[foundChecks[i - 1]]) as Grid;
+            //    Item Check = ItemRow.FindName(foundChecks[i-1]) as Item;
+            //    if (Check != null)
             //    {
-            //        case "Ghost_Fire":
-            //        case "Fire":
-            //            GhostIC = Ghost_Fire;
-            //            ObtainedIC = Ghost_Fire_obtained;
-            //            break;
-            //        case "Ghost_Blizzard":
-            //        case "Blizzard":
-            //            GhostIC = Ghost_Blizzard;
-            //            ObtainedIC = Ghost_Blizzard_obtained;
-            //            break;
-            //        case "Ghost_Thunder":
-            //        case "Thunder":
-            //            GhostIC = Ghost_Thunder;
-            //            ObtainedIC = Ghost_Thunder_obtained;
-            //            break;
-            //        case "Ghost_Cure":
-            //        case "Cure":
-            //            GhostIC = Ghost_Cure;
-            //            ObtainedIC = Ghost_Cure_obtained;
-            //            break;
-            //        case "Ghost_Reflect":
-            //        case "Reflect":
-            //            GhostIC = Ghost_Reflect;
-            //            ObtainedIC = Ghost_Reflect_obtained;
-            //            break;
-            //        case "Ghost_Magnet":
-            //        case "Magnet":
-            //            GhostIC = Ghost_Magnet;
-            //            ObtainedIC = Ghost_Magnet_obtained;
-            //            break;
-            //        case "Ghost_TornPage":
-            //        case "TornPage":
-            //            GhostIC = Ghost_Pages;
-            //            ObtainedIC = Ghost_Pages_obtained;
-            //            break;
-            //        default:
-            //            Console.WriteLine("Something went wrong? item wasn't expected. Item: " + item);
-            //            return;
+            //        Check.Opacity = universalOpacity;
             //    }
-            //
-            //    //return and do nothing if the actual obtained number of items is maxed
-            //    if ((type == "page" && ObtainedIC == 5) || (type == "magic" && ObtainedIC == 3))
-            //    {
-            //        GhostIC = 0;
-            //        return;
-            //    }
-            //
-            //    //there shouldn't be any more than 3 (magic) or 5 (pages) of a
-            //    //single type visible on worlds at once
-            //    if (type == "magic" && (GhostIC + ObtainedIC) > 3)
-            //    {
-            //        Console.WriteLine("more than 3 of this item visible? Item: " + item);
-            //        return;
-            //    }
-            //    if (type == "page" && (GhostIC + ObtainedIC) > 5)
-            //    {
-            //        Console.WriteLine("more than 5 of this item visible? Item: " + item);
-            //        return;
-            //    }
-            //
-            //    if (item.StartsWith("Ghost_"))
-            //        item = item.Remove(0, 6);
-            //
-            //    int Count = 3;
-            //    if (type == "page")
-            //        Count = 5;
-            //
-            //    //reset opacity and add items to a temp list
-            //    List<string> foundChecks = new List<string>();
-            //    for (int i = 1; i <= Count; i++)
-            //    {
-            //        string checkName = item + i.ToString();
-            //        Tuple<Item, Grid> ItemInfo = GetItemCheck(checkName, MainW);
-            //
-            //        if (ItemInfo.Item1 != null && ItemInfo.Item1.Parent == ItemInfo.Item2)
-            //        {
-            //            ItemInfo.Item1.Opacity = 1.0;
-            //            foundChecks.Add(ItemInfo.Item1.Name);
-            //        }
-            //    }
-            //
-            //    if (GhostIC > foundChecks.Count)
-            //    {
-            //        Console.WriteLine("Ghost Count is greater than number of items left in itempool! How did this happen?");
-            //        return;
-            //    }
-            //
-            //    //calculate opacity again (for dynamic change on adding removing checks
-            //    //for (int i = 1; i <= GhostIC; i++)
-            //    //{
-            //    //    Grid ItemRow = VisualTreeHelper.GetChild(ItemPool, GetItemPool[foundChecks[i - 1]]) as Grid;
-            //    //    Item Check = ItemRow.FindName(foundChecks[i-1]) as Item;
-            //    //    if (Check != null)
-            //    //    {
-            //    //        Check.Opacity = universalOpacity;
-            //    //    }
-            //    //}
+            //}
         }
 
         ///

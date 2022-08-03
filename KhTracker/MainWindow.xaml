@@ -1972,6 +1972,7 @@
                         </ContentControl.Effect>
                     </ContentControl>
                 </Grid>
+
                 <!-- Row 2 -->
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -2137,7 +2138,115 @@
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
+                
+                <!-- Ghost Nums -->
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_FireCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_BlizzardCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_ThunderCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="6" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_CureCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="8" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_ReflectCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="10" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_MagnetCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="12" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_PageCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="5" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
                 </Grid>
+
                 <!-- Row 3 -->
                 <Grid Grid.Row="2" Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -2156,7 +2265,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition x:Name="PromiseCharmCol" Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <local:Item x:Name="Valor"        Content="{DynamicResource Min-Valor}"         Grid.Column="0"/>
                     <local:Item x:Name="Wisdom"       Content="{DynamicResource Min-Wisdom}"        Grid.Column="1"/>
                     <local:Item x:Name="Limit"        Content="{DynamicResource Min-Limit}"         Grid.Column="2"/>
@@ -2351,7 +2460,7 @@
                         </ContentControl.Effect>
                     </ContentControl>
                 </Grid>
-                
+
                 <!-- Ghost Items -->
                 <Grid Grid.Row="5" Grid.Column="1">
                     <local:Item x:Name="Ghost_Report1" 			Content="{DynamicResource Min-Report1}"  	Opacity="0.5"/>

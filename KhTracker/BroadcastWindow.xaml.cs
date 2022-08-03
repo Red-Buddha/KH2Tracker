@@ -351,9 +351,9 @@ namespace KhTracker
 
             OnResetHints();
 
-            List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
-            Collected_01.Source = CollectedNum[0];
-            Collected_10.Source = null;
+            //List<BitmapImage> CollectedNum = UpdateNumber(0, "Y");
+            //Collected_01.Source = CollectedNum[0];
+            //Collected_10.Source = null;
         }
 
         public void ToggleProgression(bool toggle)
@@ -470,124 +470,124 @@ namespace KhTracker
             return Numberlist;
         }
 
-        public void SetFoundNumber(Grid mainhint, Grid bhint)
-        {
-            int worldvalue = GetWorldNumber(mainhint);
-            bool number10s = false;
-            bool number100s = false;
-            if (worldvalue > 99) number100s = true;
-            if (worldvalue > 9) number10s = true;
-
-            //get would numbers from main window
-            int mainChildCount = VisualTreeHelper.GetChildrenCount(mainhint);
-            ImageSource Num100 = null; ImageSource Num010 = null; ImageSource Num001 = null;
-            for (int i = 0; i < mainChildCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(mainhint, i) as Image;
-
-                if (child == null)
-                    continue;
-
-                if (child is Image && child.Name.Equals(mainhint.Name + "_001"))
-                {
-                    Num001 = child.Source;
-                    continue;
-                }
-                if (child is Image && child.Name.Equals(mainhint.Name + "_010"))
-                {
-                    Num010 = child.Source;
-                    continue;
-                }
-                if (child is Image && child.Name.Equals(mainhint.Name + "_100"))
-                {
-                    Num100 = child.Source;
-                    continue;
-                }
-            }
-
-            //set broadcast found numbers
-            if (bhint != null)
-            {
-                string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
-                int ChildCount = VisualTreeHelper.GetChildrenCount(bhint);
-                for (int i = 0; i < ChildCount; i++)
-                {
-                    var child = VisualTreeHelper.GetChild(bhint, i) as Image;
-
-                    if (child == null)
-                        continue;
-
-                    if (child is Image && child.Name.Equals(worldname + "Found_001"))
-                    {
-                        child.Source = Num001;
-                        continue;
-                    }
-                    if (child is Image && child.Name.Equals(worldname + "Found_010"))
-                    {
-                        child.Source = Num010;
-
-                        if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
-                            bhint.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
-                        else
-                            bhint.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
-
-                        continue;
-                    }
-                    if (child is Image && child.Name.Equals(worldname + "Found_100"))
-                    {
-                        child.Source = Num100;
-
-                        if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
-                            bhint.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
-                        else
-                            bhint.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
-
-                        continue;
-                    }
-                }
-            }
-            else
-            {
-                Grid broadcastG = this.FindName(mainhint.Name) as Grid;
-                string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
-                int ChildCount = VisualTreeHelper.GetChildrenCount(broadcastG);
-                for (int i = 0; i < ChildCount; i++)
-                {
-                    var child = VisualTreeHelper.GetChild(broadcastG, i) as Image;
-
-                    if (child == null)
-                        continue;
-
-                    if (child is Image && child.Name.Equals(worldname + "Found_001"))
-                    {
-                        child.Source = Num001;
-                        continue;
-                    }
-                    if (child is Image && child.Name.Equals(worldname + "Found_010"))
-                    {
-                        child.Source = Num010;
-
-                        if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
-                            broadcastG.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
-                        else
-                            broadcastG.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
-
-                        continue;
-                    }
-                    if (child is Image && child.Name.Equals(worldname + "Found_100"))
-                    {
-                        child.Source = Num100;
-
-                        if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
-                            broadcastG.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
-                        else
-                            broadcastG.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
-
-                        continue;
-                    }
-                }
-            }
-        }
+        //public void SetFoundNumber(Grid mainhint, Grid bhint)
+        //{
+        //    int worldvalue = GetWorldNumber(mainhint);
+        //    bool number10s = false;
+        //    bool number100s = false;
+        //    if (worldvalue > 99) number100s = true;
+        //    if (worldvalue > 9) number10s = true;
+        //
+        //    //get would numbers from main window
+        //    int mainChildCount = VisualTreeHelper.GetChildrenCount(mainhint);
+        //    ImageSource Num100 = null; ImageSource Num010 = null; ImageSource Num001 = null;
+        //    for (int i = 0; i < mainChildCount; i++)
+        //    {
+        //        var child = VisualTreeHelper.GetChild(mainhint, i) as Image;
+        //
+        //        if (child == null)
+        //            continue;
+        //
+        //        if (child is Image && child.Name.Equals(mainhint.Name + "_001"))
+        //        {
+        //            Num001 = child.Source;
+        //            continue;
+        //        }
+        //        if (child is Image && child.Name.Equals(mainhint.Name + "_010"))
+        //        {
+        //            Num010 = child.Source;
+        //            continue;
+        //        }
+        //        if (child is Image && child.Name.Equals(mainhint.Name + "_100"))
+        //        {
+        //            Num100 = child.Source;
+        //            continue;
+        //        }
+        //    }
+        //
+        //    //set broadcast found numbers
+        //    if (bhint != null)
+        //    {
+        //        string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
+        //        int ChildCount = VisualTreeHelper.GetChildrenCount(bhint);
+        //        for (int i = 0; i < ChildCount; i++)
+        //        {
+        //            var child = VisualTreeHelper.GetChild(bhint, i) as Image;
+        //
+        //            if (child == null)
+        //                continue;
+        //
+        //            if (child is Image && child.Name.Equals(worldname + "Found_001"))
+        //            {
+        //                child.Source = Num001;
+        //                continue;
+        //            }
+        //            if (child is Image && child.Name.Equals(worldname + "Found_010"))
+        //            {
+        //                child.Source = Num010;
+        //
+        //                if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+        //                    bhint.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
+        //                else
+        //                    bhint.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
+        //
+        //                continue;
+        //            }
+        //            if (child is Image && child.Name.Equals(worldname + "Found_100"))
+        //            {
+        //                child.Source = Num100;
+        //
+        //                if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+        //                    bhint.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
+        //                else
+        //                    bhint.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+        //
+        //                continue;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Grid broadcastG = this.FindName(mainhint.Name) as Grid;
+        //        string worldname = mainhint.Name.Substring(0, mainhint.Name.Length - 4);
+        //        int ChildCount = VisualTreeHelper.GetChildrenCount(broadcastG);
+        //        for (int i = 0; i < ChildCount; i++)
+        //        {
+        //            var child = VisualTreeHelper.GetChild(broadcastG, i) as Image;
+        //
+        //            if (child == null)
+        //                continue;
+        //
+        //            if (child is Image && child.Name.Equals(worldname + "Found_001"))
+        //            {
+        //                child.Source = Num001;
+        //                continue;
+        //            }
+        //            if (child is Image && child.Name.Equals(worldname + "Found_010"))
+        //            {
+        //                child.Source = Num010;
+        //
+        //                if (!number10s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+        //                    broadcastG.ColumnDefinitions[2].Width = new GridLength(0.0, GridUnitType.Star);
+        //                else
+        //                    broadcastG.ColumnDefinitions[2].Width = new GridLength(1.0, GridUnitType.Star);
+        //
+        //                continue;
+        //            }
+        //            if (child is Image && child.Name.Equals(worldname + "Found_100"))
+        //            {
+        //                child.Source = Num100;
+        //
+        //                if (!number100s || child.Source.ToString().ToLower().EndsWith("questionmark.png"))
+        //                    broadcastG.ColumnDefinitions[1].Width = new GridLength(0.0, GridUnitType.Star);
+        //                else
+        //                    broadcastG.ColumnDefinitions[1].Width = new GridLength(1.0, GridUnitType.Star);
+        //
+        //                continue;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void SetTotalNumber(Grid hintgrid, string color, int value)
         {
@@ -645,46 +645,46 @@ namespace KhTracker
             }
         }
 
-        public int GetWorldNumber(Grid hintgrid)
-        {
-            if (hintgrid == null)
-                return 0;
-            int Num100 = 0;
-            int Num010 = 0;
-            int Num001 = 0;
-            string worldname = hintgrid.Name;
-
-            int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
-
-            for (int i = 0; i < ChildCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
-
-                if (child == null)
-                    continue;
-
-                if (child is Image && child.Name.Equals(worldname + "_001"))
-                {
-                    Num001 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-
-                if (child is Image && child.Name.Equals(worldname + "_010"))
-                {
-                    Num010 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-
-                if (child is Image && child.Name.Equals(worldname + "_100"))
-                {
-                    Num100 = GetImageNumber(child.Source.ToString());
-                    continue;
-                }
-            }
-
-            int Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
-            return Finalnum;
-        }
+        //public int GetWorldNumber(Grid hintgrid)
+        //{
+        //    if (hintgrid == null)
+        //        return 0;
+        //    int Num100 = 0;
+        //    int Num010 = 0;
+        //    int Num001 = 0;
+        //    string worldname = hintgrid.Name;
+        //
+        //    int ChildCount = VisualTreeHelper.GetChildrenCount(hintgrid);
+        //
+        //    for (int i = 0; i < ChildCount; i++)
+        //    {
+        //        var child = VisualTreeHelper.GetChild(hintgrid, i) as Image;
+        //
+        //        if (child == null)
+        //            continue;
+        //
+        //        if (child is Image && child.Name.Equals(worldname + "_001"))
+        //        {
+        //            Num001 = GetImageNumber(child.Source.ToString());
+        //            continue;
+        //        }
+        //
+        //        if (child is Image && child.Name.Equals(worldname + "_010"))
+        //        {
+        //            Num010 = GetImageNumber(child.Source.ToString());
+        //            continue;
+        //        }
+        //
+        //        if (child is Image && child.Name.Equals(worldname + "_100"))
+        //        {
+        //            Num100 = GetImageNumber(child.Source.ToString());
+        //            continue;
+        //        }
+        //    }
+        //
+        //    int Finalnum = Num001 + (Num010 * 10) + (Num100 * 100);
+        //    return Finalnum;
+        //}
 
         public int GetImageNumber(string ImagePath)
         {

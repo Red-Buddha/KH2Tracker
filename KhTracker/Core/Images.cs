@@ -61,6 +61,10 @@ namespace KhTracker
                 File.Exists("CustomImages/Progression/screens.png") && File.Exists("CustomImages/Progression/kanga.png"))
                 CustomProgFound = true;
 
+            ///NOTE: do i need a string defines for the reference name?
+            ///isn't it always the same as the CC name anyway? 
+            ///maybe i can use that to simplify things even more later
+
             //helps determine what item images need replacing with custom image loading
             CusItemCheck = new Dictionary<Item, Tuple<string, string, Item, ContentControl>>
             {
@@ -1081,10 +1085,11 @@ namespace KhTracker
             {
                 data.Items[item].Item1.SetResourceReference(ContentProperty, type + item);
             }
+            
             // Ghost icons
             foreach (var item in data.GhostItems.Values)
             {
-                item.SetResourceReference(ContentProperty, type + item.Name);
+                item.SetResourceReference(ContentProperty, type + item.Name.Remove(0, 6));
             }
 
             //item shadows
