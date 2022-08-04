@@ -53,60 +53,47 @@ namespace KhTracker
         }
 
         ///Add Switch Case???
-        public void Handle_WorldGrid(Item button, bool add)
+        public void Handle_WorldGrid(Item item, bool add)
         {
-            int addRemove = 1;
             Data data = MainWindow.data;
-
+            int addRemove = 1;
+            
             if (add)
             {
-                if (data.mode == Mode.SpoilerHints || data.mode == Mode.DAHints)
+                //Default should be children count so that items are
+                //always added to the end if no ghosts are found
+                int firstGhost = Children.Count; 
+
+                //search for ghost items
+                foreach (Item child in Children) 
                 {
-                    int firstGhost = -1;
-
-                    foreach (Item child in Children)
+                    if (child.Name.StartsWith("Ghost_"))
                     {
-                        if (child.Name.StartsWith("Ghost_"))
-                        {
-                            firstGhost = Children.IndexOf(child);
-                            break;
-                        }
-                    }
-
-                    try
-                    {
-                        if (firstGhost != -1)
-                        {
-                            Children.Insert(firstGhost, button);
-                        }
-                        else
-                            Children.Add(button);
-                    }
-                    catch (Exception)
-                    {
-                        return;
+                        //when one is found get the index of it
+                        firstGhost = Children.IndexOf(child); 
+                        break;
                     }
                 }
-                else
+
+                //add the item
+                try
                 {
-                    try
-                    {
-                        Children.Add(button);
-                    }
-                    catch (Exception)
-                    {
-                        return;
-                    }
+                    Children.Insert(firstGhost, item);
                 }
+                catch (Exception)
+                {
+                    return;
+                }
+
             }
             else
             {
-                Children.Remove(button);
+                Children.Remove(item);
                 addRemove = -1;
             }
-            UpdateGhostObtained(button, addRemove);
 
-            UpdateMulti(button, add);
+            UpdateGhostObtained(item, addRemove);
+            UpdateMulti(item, add);
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)
