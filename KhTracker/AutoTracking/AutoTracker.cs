@@ -462,28 +462,6 @@ namespace KhTracker
             if (FormsGrowthOption.IsChecked)
                 FormRow.Height = new GridLength(0.5, GridUnitType.Star);
 
-            //TODO: look at and fix broadcast window stuff
-            //broadcast.LevelIcon.Visibility = Visibility.Visible;
-            //broadcast.Level.Visibility = Visibility.Visible;
-            //broadcast.StrengthIcon.Visibility = Visibility.Visible;
-            //broadcast.Strength.Visibility = Visibility.Visible;
-            //broadcast.MagicIcon.Visibility = Visibility.Visible;
-            //broadcast.Magic.Visibility = Visibility.Visible;
-            //broadcast.DefenseIcon.Visibility = Visibility.Visible;
-            //broadcast.Defense.Visibility = Visibility.Visible;
-            //broadcast.Weapon.Visibility = Visibility.Visible;
-            //broadcast.ValorLevel.Visibility = Visibility.Visible;
-            //broadcast.WisdomLevel.Visibility = Visibility.Visible;
-            //broadcast.LimitLevel.Visibility = Visibility.Visible;
-            //broadcast.MasterLevel.Visibility = Visibility.Visible;
-            //broadcast.FinalLevel.Visibility = Visibility.Visible;
-            //if (BroadcastGrowthOption.IsChecked)
-            //    broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
-            //if (BroadcastStatsOption.IsChecked)
-            //    broadcast.StatsRow.Height = new GridLength(1, GridUnitType.Star);
-
-
-
             //levelcheck visibility
             NextLevelDisplay();     //add this to broadcast window
             DeathCounterDisplay();  //fix broadcast window version
@@ -587,7 +565,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: broadcast window values
         private void DeathCheck(bool ps2)
         {
             //Note: 04 = dying, 05 = continue screen.
@@ -626,7 +603,6 @@ namespace KhTracker
             DeathValue.Text = DeathCounter.ToString();
         }
 
-        ///TODO: broadcast window values
         private void UpdateStatValues()
         {
             // we don't need bindings anymore (i think) so use this instead
@@ -731,11 +707,6 @@ namespace KhTracker
         {
             //check for valid progression Content Controls first
             ContentControl progressionM = data.WorldsData[world.worldName].progression;
-            ContentControl progressionB;
-            if (progressionM != null)
-                progressionB = broadcast.Progression[world.worldName];
-            else //if a progression CC doesn't exist for both main and broadcast then return. ///TODO: might need to change later for new broadcast widow
-                return;
 
             //Get current icon prefixes (simple, game, or custom icons)
             bool OldToggled = Properties.Settings.Default.OldProg;
@@ -1223,7 +1194,6 @@ namespace KhTracker
                             else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
                             {
                                 curKey = data.ProgressKeys["SimulatedTwilightTown"][6];
-                                broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 6;
                                 return;
@@ -1235,7 +1205,6 @@ namespace KhTracker
                             else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
                             {
                                 curKey = data.ProgressKeys["LandofDragons"][7];
-                                broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["LandofDragons"].progress = 7;
                                 return;
@@ -1247,7 +1216,6 @@ namespace KhTracker
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Luxord finish
                             {
                                 curKey = data.ProgressKeys["PortRoyal"][6];
-                                broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PortRoyal"].progress = 6;
                                 return;
@@ -1259,7 +1227,6 @@ namespace KhTracker
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
                             {
                                 curKey = data.ProgressKeys["PrideLands"][5];
-                                broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PrideLands"].progress = 5;
                                 return;
@@ -1284,7 +1251,6 @@ namespace KhTracker
             //made it this far, now just set the progression icon based on the new curProg
             curKey = data.ProgressKeys[world.worldName][curProg];
             progressionM.SetResourceReference(ContentProperty, Prog + curKey);
-            progressionB.SetResourceReference(ContentProperty, Prog + curKey);
             data.WorldsData[world.worldName].progress = curProg;
         }
 
@@ -1430,27 +1396,6 @@ namespace KhTracker
         private void SetBindings()
         {
             //BindWeapon(Weapon, "Weapon", stats);
-
-            //BindWeapon(broadcast.Weapon, "Weapon", stats);
-            //BindNumberTens(broadcast.Level_01, broadcast.Level_10, "Level", stats);
-            //BindNumberFull(broadcast.Strength_001, broadcast.Strength_010, broadcast.Strength_100, "Strength", stats);
-            //BindNumberFull(broadcast.Magic_001, broadcast.Magic_010, broadcast.Magic_100, "Magic", stats);
-            //BindNumberFull(broadcast.Defense_001, broadcast.Defense_010, broadcast.Defense_100, "Defense", stats);
-            //BindLevel(broadcast.ValorLevel, "Level", valor);
-            //BindLevel(broadcast.WisdomLevel, "Level", wisdom);
-            //BindLevel(broadcast.LimitLevel, "Level", limit);
-            //BindLevel(broadcast.MasterLevel, "Level", master);
-            //BindLevel(broadcast.FinalLevel, "Level", final);
-            //BindAbility(broadcast.HighJump, "Obtained", highJump);
-            //BindAbility(broadcast.QuickRun, "Obtained", quickRun);
-            //BindAbility(broadcast.DodgeRoll, "Obtained", dodgeRoll);
-            //BindAbility(broadcast.AerialDodge, "Obtained", aerialDodge);
-            //BindAbility(broadcast.Glide, "Obtained", glide);
-            //BindAbilityLevel(broadcast.HighJumpLevel, "Level", highJump, new GrowthAbilityConverter());
-            //BindAbilityLevel(broadcast.QuickRunLevel, "Level", quickRun, new GrowthAbilityConverter());
-            //BindAbilityLevel(broadcast.DodgeRollLevel, "Level", dodgeRoll, new GrowthAbilityConverter());
-            //BindAbilityLevel(broadcast.AerialDodgeLevel, "Level", aerialDodge, new GrowthAbilityConverter());
-            //BindAbilityLevel(broadcast.GlideLevel, "Level", glide, new GrowthAbilityConverter());
 
             //changes opacity for stat icons
             BindAbility(HighJump, "Obtained", highJump);

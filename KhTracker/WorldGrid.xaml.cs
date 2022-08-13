@@ -227,8 +227,6 @@ namespace KhTracker
             }
             item.MouseDown -= item.Item_Return;
             item.MouseDown += item.Item_Return;
-
-            item.DragDropEventFire(item.Name, Name.Remove(Name.Length - 4, 4), true);
         }
 
         public void UpdateMulti(Item item, bool add)
@@ -315,12 +313,12 @@ namespace KhTracker
                     switch (data.mode)
                     {
                         case Mode.Hints:
-                        case Mode.OpenKHHints:
-                            //setup joke logic later
+                        case Mode.OpenKHHints:                            
+                            Report_Jsmartee(index, item);
                             break;
                         case Mode.AltHints:
                         case Mode.OpenKHAltHints:
-                            Report_Jsmartee(index, item);
+                            //setup joke logic later
                             break;
                         case Mode.DAHints:
                             Report_Points(index);
@@ -373,8 +371,6 @@ namespace KhTracker
             // resetting fail icons
             data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
             data.reportAttempts[index] = 3;
-
-            item.DragDropEventFire(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
 
             // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
             data.WorldsData[data.reportInformation[index].Item2].hinted = true;

@@ -38,23 +38,11 @@
     <Setting Name="SoraHeart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="BroadcastWindowX" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="BroadcastWindowY" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="Width" Type="System.Double" Scope="User">
       <Value Profile="(Default)">570</Value>
     </Setting>
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">880</Value>
-    </Setting>
-    <Setting Name="BroadcastWindowWidth" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">500</Value>
-    </Setting>
-    <Setting Name="BroadcastWindowHeight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">680</Value>
     </Setting>
     <Setting Name="DragDrop" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -63,9 +51,6 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="TopMost" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="BroadcastStartup" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FormsGrowth" Type="System.Boolean" Scope="User">
@@ -95,25 +80,10 @@
     <Setting Name="OldNum" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Cavern" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="MainBG" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="BroadcastBG" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="CustomIcons" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="BroadcastStats" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="BroadcastGrowth" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="OCCups" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SeedHash" Type="System.Boolean" Scope="User">
@@ -153,9 +123,6 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="WorldVisitLock" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="Terra" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Puzzle" Type="System.Boolean" Scope="User">

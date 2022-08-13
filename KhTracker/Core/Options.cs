@@ -485,63 +485,48 @@ namespace KhTracker
 
             string STTkey = Prog + data.ProgressKeys["SimulatedTwilightTown"][data.WorldsData["SimulatedTwilightTown"].progress];
             data.WorldsData["SimulatedTwilightTown"].progression.SetResourceReference(ContentProperty, STTkey);
-            broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, STTkey);
 
             string TTkey = Prog + data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
             data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
-            broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, TTkey);
 
             string HBkey = Prog + data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
             data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
-            broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, HBkey);
 
             string BCkey = Prog + data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
             data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
-            broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, BCkey);
 
             string OCkey = Prog + data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
             data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
-            broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, OCkey);
 
             string AGkey = Prog + data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
             data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
-            broadcast.AgrabahProgression.SetResourceReference(ContentProperty, AGkey);
 
             string LoDkey = Prog + data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
             data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
-            broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, LoDkey);
 
             string HAWkey = Prog + data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
             data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
-            broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, LoDkey);
 
             string PLkey = Prog + data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
             data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
-            broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, PLkey);
 
             string DCkey = Prog + data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
             data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
-            broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, DCkey);
 
             string HTkey = Prog + data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
             data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
-            broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, HTkey);
 
             string PRkey = Prog + data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
             data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
-            broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, PRkey);
 
             string SPkey = Prog + data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
             data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
-            broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, SPkey);
 
             string TWTNWkey = Prog + data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
             data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
-            broadcast.TWTNWProgression.SetResourceReference(ContentProperty, TWTNWkey);
 
             string ATkey = Prog + data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
             data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
-            broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, ATkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
@@ -652,8 +637,6 @@ namespace KhTracker
             {
                 data.Reports[i].HandleItemReturn();
             }
-
-            broadcast.OnResetHints();
         }
 
         ///TODO: update with new settings
@@ -789,22 +772,22 @@ namespace KhTracker
             }
 
             // Reset 1st column row heights
-            //RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            //foreach (RowDefinition row in rows1)
-            //{
-            //    // don't reset turned off worlds
-            //    if (row.Height.Value != 0)
-            //        row.Height = new GridLength(1, GridUnitType.Star);
-            //}
-            //
-            //// Reset 2nd column row heights
-            //RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            //foreach (RowDefinition row in rows2)
-            //{
-            //    // don't reset turned off worlds
-            //    if (row.Height.Value != 0)
-            //        row.Height = new GridLength(1, GridUnitType.Star);
-            //}
+            RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows1)
+            {
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
+            }
+            
+            // Reset 2nd column row heights
+            RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows2)
+            {
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
+            }
 
             foreach (var key in data.WorldsData.Keys.ToList())
             {
@@ -819,27 +802,7 @@ namespace KhTracker
                 {
                     Cross.Visibility = Visibility.Collapsed;
                 }
-                if (broadcast.FindName(crossname) is Image CrossB)
-                {
-                    CrossB.Visibility = Visibility.Collapsed;
-                }
             }
-
-            //broadcast.TwilightTownProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.HollowBastionProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.PortRoyalProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.AgrabahProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.PrideLandsProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.TWTNWProgression.SetResourceReference(ContentProperty, "");
-            //broadcast.AtlanticaProgression.SetResourceReference(ContentProperty, "");
 
             TwilightTownProgression.SetResourceReference(ContentProperty, "");
             HollowBastionProgression.SetResourceReference(ContentProperty, "");
@@ -867,19 +830,7 @@ namespace KhTracker
             Defense.Visibility = Visibility.Hidden;
             Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
 
-            //broadcast.LevelIcon.Visibility = Visibility.Hidden;
-            //broadcast.Level.Visibility = Visibility.Hidden;
-            //broadcast.StrengthIcon.Visibility = Visibility.Hidden;
-            //broadcast.Strength.Visibility = Visibility.Hidden;
-            //broadcast.MagicIcon.Visibility = Visibility.Hidden;
-            //broadcast.Magic.Visibility = Visibility.Hidden;
-            //broadcast.DefenseIcon.Visibility = Visibility.Hidden;
-            //broadcast.Defense.Visibility = Visibility.Hidden;
-            //broadcast.Weapon.Visibility = Visibility.Hidden;
-
             FormRow.Height = new GridLength(0, GridUnitType.Star);
-            //broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
-            //broadcast.StatsRow.Height = new GridLength(0, GridUnitType.Star);
 
             ValorM.Opacity = .45;
             WisdomM.Opacity = .45;
@@ -902,17 +853,6 @@ namespace KhTracker
             DodgeRollLevel.Text = "";
             AerialDodgeLevel.Text = "";
             GlideLevel.Text = "";
-
-            //broadcast.ValorLevel.Source = null;
-            //broadcast.WisdomLevel.Source = null;
-            //broadcast.LimitLevel.Source = null;
-            //broadcast.MasterLevel.Source = null;
-            //broadcast.FinalLevel.Source = null;
-            //broadcast.HighJumpLevel.Source = null;
-            //broadcast.QuickRunLevel.Source = null;
-            //broadcast.DodgeRollLevel.Source = null;
-            //broadcast.AerialDodgeLevel.Source = null;
-            //broadcast.GlideLevel.Source = null;
 
             fireLevel = 0;
             blizzardLevel = 0;
@@ -987,17 +927,6 @@ namespace KhTracker
             CollectionGrid.Visibility = Visibility.Visible;
             ScoreGrid.Visibility = Visibility.Hidden;
 
-            //broadcast.Collected.Visibility = Visibility.Visible;
-            //broadcast.CollectedBar.Visibility = Visibility.Visible;
-            //broadcast.CheckTotal.Visibility = Visibility.Visible;
-            //broadcast.Score1000.Visibility = Visibility.Hidden;
-            //broadcast.Score100.Visibility = Visibility.Hidden;
-            //broadcast.Score10.Visibility = Visibility.Hidden;
-            //broadcast.Score1.Visibility = Visibility.Hidden;
-            //broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-            //broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-            //broadcast.ChestIconCol.Width = new GridLength(0.3, GridUnitType.Star);
-            //broadcast.BarCol.Width = new GridLength(0.3, GridUnitType.Star);
 
             //reset pathhints edits
             //foreach (string key in data.WorldsData.Keys.ToList())
@@ -1021,13 +950,9 @@ namespace KhTracker
             ResetHints();
             VisitLockToggle(VisitLockOption.IsChecked);
 
-            broadcast.OnReset();
-            broadcast.UpdateNumbers();
-
             DeathCounter = 0;
             DeathValue.Text = "0";
             DeathCounterGrid.Visibility = Visibility.Collapsed;
-            //broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
 
             foreach (Grid itempool in ItemPool.Children)
             {
@@ -1042,11 +967,6 @@ namespace KhTracker
 
             SetAutoDetectTimer();
             NextLevelDisplay();
-        }
-
-        private void BroadcastWindow_Open(object sender, RoutedEventArgs e)
-        {
-            broadcast.Show();
         }
 
         private void ParseSeed(object sender, RoutedEventArgs e)
@@ -1172,10 +1092,6 @@ namespace KhTracker
                 ReportsToggle(true);
 
                 ShowCheckCountToggle(null, null);
-
-                broadcast.ChestIconCol.Width = new GridLength(0.5, GridUnitType.Star);
-                broadcast.BarCol.Width = new GridLength(1, GridUnitType.Star);
-
                 UpdatePointScore(0);
             }
             else if (mode == Mode.PathHints)
@@ -1255,7 +1171,6 @@ namespace KhTracker
                                     AntiFormToggle(false);
 
                                     //SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
-                                    broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
                                 }
 
                                 //load settings from hints
@@ -1314,7 +1229,6 @@ namespace KhTracker
                                             break;
                                         case "better_stt":
                                             //SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
-                                            broadcast.SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
                                             break;
                                         case "extra_ics":
                                             ExtraChecksToggle(true);

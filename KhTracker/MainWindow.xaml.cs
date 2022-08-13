@@ -23,7 +23,6 @@ namespace KhTracker
     public partial class MainWindow : Window
     {
         public static Data data;
-        private BroadcastWindow broadcast;
         public int collected;
         private int total;
         public static int PointTotal = 0;
@@ -41,10 +40,6 @@ namespace KhTracker
 
             InitOptions();
             VisitLockCheck();
-
-            //broadcast window startup
-            BroadcastStartupOption.IsChecked = Properties.Settings.Default.BroadcastStartup;
-            BroadcastStartupToggle(null, null);
 
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
@@ -161,8 +156,6 @@ namespace KhTracker
                     }
                 }
             }
-
-            broadcast = new BroadcastWindow(data);
         }
 
         private void InitOptions()
@@ -207,12 +200,6 @@ namespace KhTracker
 
             FormsGrowthOption.IsChecked = Properties.Settings.Default.FormsGrowth;
             FormsGrowthToggle(null, null);
-
-            BroadcastGrowthOption.IsChecked = Properties.Settings.Default.BroadcastGrowth;
-            BroadcastGrowthToggle(null, null);
-
-            BroadcastStatsOption.IsChecked = Properties.Settings.Default.BroadcastStats;
-            BroadcastStatsToggle(null, null);
 
             //points related
             GhostItemOption.IsChecked = Properties.Settings.Default.GhostItem;
@@ -309,40 +296,6 @@ namespace KhTracker
                 MainBG_DefToggle(null, null);
             }
 
-            int BroadcastBG = Properties.Settings.Default.BroadcastBG;
-            if (BroadcastBG == 1)
-            {
-                BroadcastDefOption.IsChecked = false;
-                BroadcastImg1Option.IsChecked = true;
-                BroadcastImg2Option.IsChecked = false;
-                BroadcastImg3Option.IsChecked = false;
-                BroadcastBG_Img1Toggle(null, null);
-            }
-            else if (BroadcastBG == 2)
-            {
-                BroadcastDefOption.IsChecked = false;
-                BroadcastImg1Option.IsChecked = false;
-                BroadcastImg2Option.IsChecked = true;
-                BroadcastImg3Option.IsChecked = false;
-                BroadcastBG_Img2Toggle(null, null);
-            }
-            else if (BroadcastBG == 3)
-            {
-                BroadcastDefOption.IsChecked = false;
-                BroadcastImg1Option.IsChecked = false;
-                BroadcastImg2Option.IsChecked = false;
-                BroadcastImg3Option.IsChecked = true;
-                BroadcastBG_Img3Toggle(null, null);
-            }
-            else
-            {
-                BroadcastDefOption.IsChecked = true;
-                BroadcastImg1Option.IsChecked = false;
-                BroadcastImg2Option.IsChecked = false;
-                BroadcastImg3Option.IsChecked = false;
-                BroadcastBG_DefToggle(null, null);
-            }
-
             #endregion
 
             #region Worlds
@@ -427,8 +380,8 @@ namespace KhTracker
 
             switch(e.ChangedButton)
             {
-                case MouseButton.Left:
-                    if (data.selected != null)
+                case MouseButton.Left: //for changing world selection visuals
+                    if (data.selected != null) //set previousl selected world to default colors
                     {
                         foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
                         {
@@ -437,13 +390,13 @@ namespace KhTracker
                         }
                     }
                     data.selected = button;
-                    foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>())
+                    foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>()) //set currently selected world colors
                     {
                         if(Box.Name == "")
                             Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
                     }
                     break;
-                case MouseButton.Right:
+                case MouseButton.Right: //for setting world cross icon
                     if (data.WorldsData.ContainsKey(button.Name))
                     {
                         string crossname = button.Name + "Cross";
@@ -455,16 +408,9 @@ namespace KhTracker
                             else
                                 Cross.Visibility = Visibility.Collapsed;
                         }
-                        if (broadcast.FindName(crossname) is Image CrossB)
-                        {
-                            if (CrossB.Visibility == Visibility.Collapsed)
-                                CrossB.Visibility = Visibility.Visible;
-                            else
-                                CrossB.Visibility = Visibility.Collapsed;
-                        }
                     }
                     break;
-                case MouseButton.Middle:
+                case MouseButton.Middle: //setting world value back to "?" if not using any hints
                     if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null && data.mode == Mode.None)
                     {
                         data.WorldsData[button.Name].value.Text = "?";
@@ -507,8 +453,6 @@ namespace KhTracker
         {
             Save("kh2fm-tracker-autosave.txt");
             Properties.Settings.Default.Save();
-            broadcast.canClose = true;
-            broadcast.Close();
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
@@ -527,9 +471,6 @@ namespace KhTracker
         {
             Width = 570;
             Height = 880;
-
-            broadcast.Width = 500;
-            broadcast.Height = 680;
         }
 
         /// 
@@ -587,8 +528,6 @@ namespace KhTracker
                 worldValue.Text = value.ToString();
 
             worldValue.Fill = Color;
-
-            //broadcast.UpdateTotal(Hint.Name.Remove(Hint.Name.Length - 4, 4), value);
         }
 
         public void SetCollected(bool add)
@@ -670,29 +609,21 @@ namespace KhTracker
                             case 0:
                                 TwilightTownLock_1.Visibility = Visibility.Collapsed;
                                 TwilightTownLock_2.Visibility = Visibility.Collapsed;
-                                broadcast.TwilightTownLock_1.Visibility = Visibility.Collapsed;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Collapsed;
                                 TwilightTown.Opacity = 1;
                                 break;
                             case 1:
                                 TwilightTownLock_1.Visibility = Visibility.Visible;
                                 TwilightTownLock_2.Visibility = Visibility.Collapsed;
-                                broadcast.TwilightTownLock_1.Visibility = Visibility.Visible;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Collapsed;
                                 TwilightTown.Opacity = 0.45;
                                 break;
                             case 10:
                                 TwilightTownLock_1.Visibility = Visibility.Collapsed;
                                 TwilightTownLock_2.Visibility = Visibility.Visible;
-                                broadcast.TwilightTownLock_1.Visibility = Visibility.Collapsed;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Visible;
                                 TwilightTown.Opacity = 0.45;
                                 break;
                             default:
                                 TwilightTownLock_1.Visibility = Visibility.Visible;
                                 TwilightTownLock_2.Visibility = Visibility.Visible;
-                                broadcast.TwilightTownLock_1.Visibility = Visibility.Visible;
-                                broadcast.TwilightTownLock_2.Visibility = Visibility.Visible;
                                 TwilightTown.Opacity = 0.45;
                                 break;
                         }
@@ -702,12 +633,10 @@ namespace KhTracker
                         {
                             case 0:
                                 HollowBastionLock.Visibility = Visibility.Hidden;
-                                broadcast.HollowBastionLock.Visibility = Visibility.Hidden;
                                 HollowBastion.Opacity = 1;
                                 break;
                             default:
                                 HollowBastionLock.Visibility = Visibility.Visible;
-                                broadcast.HollowBastionLock.Visibility = Visibility.Visible;
                                 HollowBastion.Opacity = 0.45;
                                 break;
                         }
@@ -717,12 +646,10 @@ namespace KhTracker
                         {
                             case 0:
                                 BeastsCastleLock.Visibility = Visibility.Hidden;
-                                broadcast.BeastsCastleLock.Visibility = Visibility.Hidden;
                                 BeastsCastle.Opacity = 1;
                                 break;
                             default:
                                 BeastsCastleLock.Visibility = Visibility.Visible;
-                                broadcast.BeastsCastleLock.Visibility = Visibility.Visible;
                                 BeastsCastle.Opacity = 0.45;
                                 break;
                         }
@@ -732,12 +659,10 @@ namespace KhTracker
                         {
                             case 0:
                                 OlympusColiseumLock.Visibility = Visibility.Hidden;
-                                broadcast.OlympusColiseumLock.Visibility = Visibility.Hidden;
                                 OlympusColiseum.Opacity = 1;
                                 break;
                             default:
                                 OlympusColiseumLock.Visibility = Visibility.Visible;
-                                broadcast.OlympusColiseumLock.Visibility = Visibility.Visible;
                                 OlympusColiseum.Opacity = 0.45;
                                 break;
                         }
@@ -747,12 +672,10 @@ namespace KhTracker
                         {
                             case 0:
                                 AgrabahLock.Visibility = Visibility.Hidden;
-                                broadcast.AgrabahLock.Visibility = Visibility.Hidden;
                                 Agrabah.Opacity = 1;
                                 break;
                             default:
                                 AgrabahLock.Visibility = Visibility.Visible;
-                                broadcast.AgrabahLock.Visibility = Visibility.Visible;
                                 Agrabah.Opacity = 0.45;
                                 break;
                         }
@@ -762,12 +685,10 @@ namespace KhTracker
                         {
                             case 0:
                                 LandofDragonsLock.Visibility = Visibility.Hidden;
-                                broadcast.LandofDragonsLock.Visibility = Visibility.Hidden;
                                 LandofDragons.Opacity = 1;
                                 break;
                             default:
                                 LandofDragonsLock.Visibility = Visibility.Visible;
-                                broadcast.LandofDragonsLock.Visibility = Visibility.Visible;
                                 LandofDragons.Opacity = 0.45;
                                 break;
                         }
@@ -777,12 +698,10 @@ namespace KhTracker
                         {
                             case 0:
                                 PrideLandsLock.Visibility = Visibility.Hidden;
-                                broadcast.PrideLandsLock.Visibility = Visibility.Hidden;
                                 PrideLands.Opacity = 1;
                                 break;
                             default:
                                 PrideLandsLock.Visibility = Visibility.Visible;
-                                broadcast.PrideLandsLock.Visibility = Visibility.Visible;
                                 PrideLands.Opacity = 0.45;
                                 break;
                         }
@@ -792,12 +711,10 @@ namespace KhTracker
                         {
                             case 0:
                                 HalloweenTownLock.Visibility = Visibility.Hidden;
-                                broadcast.HalloweenTownLock.Visibility = Visibility.Hidden;
                                 HalloweenTown.Opacity = 1;
                                 break;
                             default:
                                 HalloweenTownLock.Visibility = Visibility.Visible;
-                                broadcast.HalloweenTownLock.Visibility = Visibility.Visible;
                                 HalloweenTown.Opacity = 0.45;
                                 break;
                         }
@@ -807,12 +724,10 @@ namespace KhTracker
                         {
                             case 0:
                                 PortRoyalLock.Visibility = Visibility.Hidden;
-                                broadcast.PortRoyalLock.Visibility = Visibility.Hidden;
                                 PortRoyal.Opacity = 1;
                                 break;
                             default:
                                 PortRoyalLock.Visibility = Visibility.Visible;
-                                broadcast.PortRoyalLock.Visibility = Visibility.Visible;
                                 PortRoyal.Opacity = 0.45;
                                 break;
                         }
@@ -822,12 +737,10 @@ namespace KhTracker
                         {
                             case 0:
                                 SpaceParanoidsLock.Visibility = Visibility.Hidden;
-                                broadcast.SpaceParanoidsLock.Visibility = Visibility.Hidden;
                                 SpaceParanoids.Opacity = 1;
                                 break;
                             default:
                                 SpaceParanoidsLock.Visibility = Visibility.Visible;
-                                broadcast.SpaceParanoidsLock.Visibility = Visibility.Visible;
                                 SpaceParanoids.Opacity = 0.45;
                                 break;
                         }

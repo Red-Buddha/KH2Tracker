@@ -62,7 +62,7 @@ namespace KhTracker
             //make grid visible
             if (toggle && !button.IsEnabled)
             {
-                var outerGrid = (((button.Parent as Grid).Parent as Grid).Parent as Grid);
+                var outerGrid = ((button.Parent as Grid).Parent as Grid).Parent as Grid;
                 int row = (int)((button.Parent as Grid).Parent as Grid).GetValue(Grid.RowProperty);
                 outerGrid.RowDefinitions[row].Height = new GridLength(1, GridUnitType.Star);
                 button.IsEnabled = true;
@@ -88,7 +88,7 @@ namespace KhTracker
                 }
 
                 //resize grid and collapse it
-                var outerGrid = (((button.Parent as Grid).Parent as Grid).Parent as Grid);
+                var outerGrid = ((button.Parent as Grid).Parent as Grid).Parent as Grid;
                 int row = (int)((button.Parent as Grid).Parent as Grid).GetValue(Grid.RowProperty);
                 outerGrid.RowDefinitions[row].Height = new GridLength(0, GridUnitType.Star);
                 button.IsEnabled = false;
@@ -100,18 +100,10 @@ namespace KhTracker
         /// Options
         ///
 
-        private void BroadcastStartupToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.BroadcastStartup = BroadcastStartupOption.IsChecked;
-            if (BroadcastStartupOption.IsChecked)
-                broadcast.Show();
-        }
-
         private void TopMostToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
             Topmost = TopMostOption.IsChecked;
-            broadcast.Topmost = TopMostOption.IsChecked;
         }
 
         private void DragDropToggle(object sender, RoutedEventArgs e)
@@ -190,7 +182,6 @@ namespace KhTracker
                 Size = 0.0;
 
             ReportRow.Height = new GridLength(Size, GridUnitType.Star);
-            broadcast.AnsemReport.Width = new GridLength(Size, GridUnitType.Star);
 
             //set reports
             for (int i = 0; i < data.Reports.Count; ++i)
@@ -212,16 +203,10 @@ namespace KhTracker
             if (toggle)
             {
                 //Pr_PromiseCharm.Width = new GridLength(1.0, GridUnitType.Star);
-
-                broadcast.PromiseCharm.Visibility = Visibility.Visible;
-                broadcast.PromiseCharmCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
                 //Pr_PromiseCharm.Width = new GridLength(0, GridUnitType.Star);
-
-                broadcast.PromiseCharm.Visibility = Visibility.Hidden;
-                broadcast.PromiseCharmCol.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, PromiseCharm, false);
@@ -241,17 +226,11 @@ namespace KhTracker
             {
                 //Ab_OnceMore.Width = new GridLength(1.0, GridUnitType.Star);
                 //Ab_SecondChance.Width = new GridLength(1.0, GridUnitType.Star);
-
-                broadcast.SecondChanceCol.Width = new GridLength(1.0, GridUnitType.Star);
-                broadcast.OnceMoreCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
                 //Ab_OnceMore.Width = new GridLength(0, GridUnitType.Star);
                 //Ab_SecondChance.Width = new GridLength(0, GridUnitType.Star);
-
-                broadcast.SecondChanceCol.Width = new GridLength(0, GridUnitType.Star);
-                broadcast.OnceMoreCol.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, OnceMore, false);
@@ -272,12 +251,10 @@ namespace KhTracker
             if (toggle)
             {
                 //Ex_Anti.Width = new GridLength(1.0, GridUnitType.Star);
-                broadcast.Ex_Anti.Width = new GridLength(2.0, GridUnitType.Star);
             }
             else
             {
                 //Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
-                broadcast.Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, Anti, false);
@@ -296,7 +273,6 @@ namespace KhTracker
             if (toggle)
             {
                 VisitChecks.Height = new GridLength(1.0, GridUnitType.Star);
-                broadcast.VisitsRow.Height = new GridLength(1.75, GridUnitType.Star);
 
                 data.WorldsData["TwilightTown"].visitLocks = 11;
                 data.WorldsData["HollowBastion"].visitLocks = 1;
@@ -312,7 +288,6 @@ namespace KhTracker
             else
             {
                 VisitChecks.Height = new GridLength(0, GridUnitType.Star);
-                broadcast.VisitsRow.Height = new GridLength(0, GridUnitType.Star);
 
                 data.WorldsData["TwilightTown"].visitLocks = 0;
                 data.WorldsData["HollowBastion"].visitLocks = 0;
@@ -350,20 +325,12 @@ namespace KhTracker
                 //Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
                 //Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
                 //Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
-
-                broadcast.Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
-                broadcast.Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
-                broadcast.Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
                 //Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
                 //Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
                 //Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
-
-                broadcast.Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-                broadcast.Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
-                broadcast.Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, HadesCup, false);
@@ -396,8 +363,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldProgress = WorldProgressOption.IsChecked;
             if (WorldProgressOption.IsChecked)
             {
-                broadcast.ToggleProgression(true);
-
                 foreach (string key in data.WorldsData.Keys.ToList())
                 {
                     if (data.WorldsData[key].progression != null)
@@ -415,8 +380,6 @@ namespace KhTracker
             }
             else
             {
-                broadcast.ToggleProgression(false);
-
                 foreach (string key in data.WorldsData.Keys.ToList())
                 {
                     if (data.WorldsData[key].progression != null)
@@ -442,27 +405,6 @@ namespace KhTracker
                 FormRow.Height = new GridLength(0.5, GridUnitType.Star);
             else
                 FormRow.Height = new GridLength(0, GridUnitType.Star);
-        }
-
-        ///TODO: look this over when fixing broadcast window
-        private void BroadcastGrowthToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.BroadcastGrowth = BroadcastGrowthOption.IsChecked;
-
-            if (BroadcastGrowthOption.IsChecked == false && broadcast.GrowthAbilityRow.Height.Value >= 0.01)
-                broadcast.GrowthAbilityRow.Height = new GridLength(0, GridUnitType.Star);
-            else if (BroadcastGrowthOption.IsChecked && aTimer != null)
-                broadcast.GrowthAbilityRow.Height = new GridLength(1, GridUnitType.Star);
-        }
-
-        private void BroadcastStatsToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.BroadcastStats = BroadcastStatsOption.IsChecked;
-
-            if (BroadcastStatsOption.IsChecked == false && broadcast.StatsRow.Height.Value >= 0.01)
-                broadcast.StatsRow.Height = new GridLength(0, GridUnitType.Star);
-            else if (BroadcastStatsOption.IsChecked && aTimer != null)
-                broadcast.StatsRow.Height = new GridLength(1, GridUnitType.Star);
         }
 
         private void GhostItemToggle(object sender, RoutedEventArgs e)
@@ -663,7 +605,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel1 = toggle;
 
             SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
 
             CustomWorldCheck();
             NextLevelDisplay();
@@ -689,7 +630,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel50 = toggle;
 
             SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
 
             CustomWorldCheck();
             NextLevelDisplay();
@@ -715,7 +655,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = toggle;
 
             SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
-            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
 
             CustomWorldCheck();
             NextLevelDisplay();
@@ -881,18 +820,6 @@ namespace KhTracker
                 TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
                 TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
 
-                broadcast.HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
-
                 #endregion
 
                 #region reload others
@@ -917,27 +844,7 @@ namespace KhTracker
                 PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
                 GoACross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
 
-                broadcast.SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                broadcast.PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-
                 Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
-                broadcast.Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
 
                 #endregion
             }
@@ -957,10 +864,6 @@ namespace KhTracker
             Properties.Settings.Default.SoraHeart = toggle;
             SoraHeartOption.IsChecked = toggle;
             HandleWorldToggle(toggle, SorasHeart, SorasHeartGrid);
-            if (toggle)
-                broadcast.HeartCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.HeartCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void DrivesToggle(object sender, RoutedEventArgs e)
@@ -973,10 +876,6 @@ namespace KhTracker
             Properties.Settings.Default.Drives = toggle;
             DrivesOption.IsChecked = toggle;
             HandleWorldToggle(toggle, DriveForms, DriveFormsGrid);
-            if (toggle)
-                broadcast.DrivesCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.DrivesCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void SimulatedToggle(object sender, RoutedEventArgs e)
@@ -989,10 +888,6 @@ namespace KhTracker
             Properties.Settings.Default.Simulated = toggle;
             SimulatedOption.IsChecked = toggle;
             HandleWorldToggle(toggle, SimulatedTwilightTown, SimulatedTwilightTownGrid);
-            if (toggle)
-                broadcast.STTColumn.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.STTColumn.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void TwilightTownToggle(object sender, RoutedEventArgs e)
@@ -1005,10 +900,6 @@ namespace KhTracker
             Properties.Settings.Default.TwilightTown = toggle;
             TwilightTownOption.IsChecked = toggle;
             HandleWorldToggle(toggle, TwilightTown, TwilightTownGrid);
-            if (toggle)
-                broadcast.TwilightTownCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.TwilightTownCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void HollowBastionToggle(object sender, RoutedEventArgs e)
@@ -1021,10 +912,6 @@ namespace KhTracker
             Properties.Settings.Default.HollowBastion = toggle;
             HollowBastionOption.IsChecked = toggle;
             HandleWorldToggle(toggle, HollowBastion, HollowBastionGrid);
-            if (toggle)
-                broadcast.HollowBastionCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.HollowBastionCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void BeastCastleToggle(object sender, RoutedEventArgs e)
@@ -1037,10 +924,6 @@ namespace KhTracker
             Properties.Settings.Default.BeastCastle = toggle;
             BeastCastleOption.IsChecked = toggle;
             HandleWorldToggle(toggle, BeastsCastle, BeastsCastleGrid);
-            if (toggle)
-                broadcast.BeastCastleCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.BeastCastleCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void OlympusToggle(object sender, RoutedEventArgs e)
@@ -1053,10 +936,6 @@ namespace KhTracker
             Properties.Settings.Default.Olympus = toggle;
             OlympusOption.IsChecked = toggle;
             HandleWorldToggle(toggle, OlympusColiseum, OlympusColiseumGrid);
-            if (toggle)
-                broadcast.OlympusCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.OlympusCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void AgrabahToggle(object sender, RoutedEventArgs e)
@@ -1069,10 +948,6 @@ namespace KhTracker
             Properties.Settings.Default.Agrabah = toggle;
             AgrabahOption.IsChecked = toggle;
             HandleWorldToggle(toggle, Agrabah, AgrabahGrid);
-            if (toggle)
-                broadcast.AgrabahCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.AgrabahCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void LandofDragonsToggle(object sender, RoutedEventArgs e)
@@ -1085,10 +960,6 @@ namespace KhTracker
             Properties.Settings.Default.LandofDragons = toggle;
             LandofDragonsOption.IsChecked = toggle;
             HandleWorldToggle(toggle, LandofDragons, LandofDragonsGrid);
-            if (toggle)
-                broadcast.LandofDragonsCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.LandofDragonsCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void DisneyCastleToggle(object sender, RoutedEventArgs e)
@@ -1101,10 +972,6 @@ namespace KhTracker
             Properties.Settings.Default.DisneyCastle = toggle;
             DisneyCastleOption.IsChecked = toggle;
             HandleWorldToggle(toggle, DisneyCastle, DisneyCastleGrid);
-            if (toggle)
-                broadcast.DisneyCastleCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.DisneyCastleCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void PrideLandsToggle(object sender, RoutedEventArgs e)
@@ -1117,10 +984,6 @@ namespace KhTracker
             Properties.Settings.Default.PrideLands = toggle;
             PrideLandsOption.IsChecked = toggle;
             HandleWorldToggle(toggle, PrideLands, PrideLandsGrid);
-            if (toggle)
-                broadcast.PrideLandsCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.PrideLandsCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void PortRoyalToggle(object sender, RoutedEventArgs e)
@@ -1133,10 +996,6 @@ namespace KhTracker
             Properties.Settings.Default.PortRoyal = toggle;
             PortRoyalOption.IsChecked = toggle;
             HandleWorldToggle(toggle, PortRoyal, PortRoyalGrid);
-            if (toggle)
-                broadcast.PortRoyalCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.PortRoyalCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void HalloweenTownToggle(object sender, RoutedEventArgs e)
@@ -1149,10 +1008,6 @@ namespace KhTracker
             Properties.Settings.Default.HalloweenTown = toggle;
             HalloweenTownOption.IsChecked = toggle;
             HandleWorldToggle(toggle, HalloweenTown, HalloweenTownGrid);
-            if (toggle)
-                broadcast.HalloweenTownCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.HalloweenTownCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void SpaceParanoidsToggle(object sender, RoutedEventArgs e)
@@ -1165,10 +1020,6 @@ namespace KhTracker
             Properties.Settings.Default.SpaceParanoids = toggle;
             SpaceParanoidsOption.IsChecked = toggle;
             HandleWorldToggle(toggle, SpaceParanoids, SpaceParanoidsGrid);
-            if (toggle)
-                broadcast.SpaceParanoidsCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.SpaceParanoidsCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void TWTNWToggle(object sender, RoutedEventArgs e)
@@ -1181,10 +1032,6 @@ namespace KhTracker
             Properties.Settings.Default.TWTNW = toggle;
             TWTNWOption.IsChecked = toggle;
             HandleWorldToggle(toggle, TWTNW, TWTNWGrid);
-            if (toggle)
-                broadcast.TWTNWCol.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.TWTNWCol.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void HundredAcreWoodToggle(object sender, RoutedEventArgs e)
@@ -1197,10 +1044,6 @@ namespace KhTracker
             Properties.Settings.Default.HundredAcre = toggle;
             HundredAcreWoodOption.IsChecked = toggle;
             HandleWorldToggle(toggle, HundredAcreWood, HundredAcreWoodGrid);
-            if (toggle)
-                broadcast.HAWColumn.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.HAWColumn.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void AtlanticaToggle(object sender, RoutedEventArgs e)
@@ -1213,10 +1056,6 @@ namespace KhTracker
             Properties.Settings.Default.Atlantica = toggle;
             AtlanticaOption.IsChecked = toggle;
             HandleWorldToggle(toggle, Atlantica, AtlanticaGrid);
-            if (toggle)
-                broadcast.ATColumn.Width = new GridLength(1.0, GridUnitType.Star);
-            else
-                broadcast.ATColumn.Width = new GridLength(0, GridUnitType.Star);
         }
 
         private void SynthToggle(object sender, RoutedEventArgs e)
@@ -1236,14 +1075,12 @@ namespace KhTracker
             if (!toggle && !PuzzleOn)
             {
                 HandleWorldToggle(false, PuzzSynth, PuzzSynthGrid);
-                broadcast.PuzzSynthCol.Width = new GridLength(0, GridUnitType.Star);
             }
             else //check and change display
             {
                 if (!PuzzleOn) //puzzles wasn't on before so show world
                 {
                     HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
-                    broadcast.PuzzSynthCol.Width = new GridLength(1.0, GridUnitType.Star);
                 }
                 CustomWorldCheck();
             }
@@ -1265,14 +1102,12 @@ namespace KhTracker
             if (!toggle && !SynthOn) //hide if both off
             {
                 HandleWorldToggle(false, PuzzSynth, PuzzSynthGrid);
-                broadcast.PuzzSynthCol.Width = new GridLength(0, GridUnitType.Star);
             }
             else //check and change display
             {
                 if (!SynthOn) //synth wasn't on before so show world
                 {
                     HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
-                    broadcast.PuzzSynthCol.Width = new GridLength(1.0, GridUnitType.Star);
                 }
                 CustomWorldCheck();
             }

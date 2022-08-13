@@ -44,9 +44,6 @@
                 <MenuItem Header="Save Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Progress" Click="LoadProgress"/>
                 <Separator/>
-                <MenuItem Header="Open Broadcast Window" 		Click="BroadcastWindow_Open" />
-                <MenuItem Header="Broadcast Window On Startup" 	Click="BroadcastStartupToggle" IsCheckable="True" IsChecked="False" x:Name="BroadcastStartupOption"/>
-                <Separator/>
                 <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>
                 <MenuItem Header="Always on Top" 	 Click="TopMostToggle"  x:Name="TopMostOption"     IsCheckable="True" IsChecked="False"/>
@@ -60,11 +57,9 @@
                 <MenuItem Header="World Lock Checks"         Click="VisitLockToggle"	x:Name="VisitLockOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Extra Important Checks" 	 Click="ExtraChecksToggle"	x:Name="ExtraChecksOption"  IsCheckable="True" IsChecked="True"/>
                 <Separator/>
-                <MenuItem Header="Show Seed Hash on Load"				  Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show World Progression Icons" 		  Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Form and Growth Levels" 			  Click="FormsGrowthToggle"		x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Growth Levels on Broadcast Window" Click="BroadcastGrowthToggle"	x:Name="BroadcastGrowthOption" 	IsCheckable="True" IsChecked="False"/>
-                <MenuItem Header="Show Sora Stats on Broadcast Window" 	  Click="BroadcastStatsToggle"	x:Name="BroadcastStatsOption" 	IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Show Seed Hash on Load"			  Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show World Progression Icons" 	  Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Form and Growth Levels" 		  Click="FormsGrowthToggle"		x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Track Ghost Items (Points Mode)" 	  Click="GhostItemToggle"		x:Name="GhostItemOption"	IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Ghost Item Auto-Math (Points Mode)" Click="GhostMathToggle" 		x:Name="GhostMathOption"	IsCheckable="True" IsChecked="True"/>
@@ -102,12 +97,6 @@
                     <MenuItem x:Name="MainImg3Option" Header="Custom Image (No Scaling)" IsCheckable="True" IsChecked="False" Click="MainBG_Img3Toggle"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Broadcast Window Background">
-                    <MenuItem x:Name="BroadcastDefOption" Header="Default" IsCheckable="True" IsChecked="True"  Click="BroadcastBG_DefToggle"/>
-                    <MenuItem x:Name="BroadcastImg1Option" Header="Custom Image (Stretch)"    IsCheckable="True" IsChecked="False" Click="BroadcastBG_Img1Toggle"/>
-                    <MenuItem x:Name="BroadcastImg2Option" Header="Custom Image (Uniform)"    IsCheckable="True" IsChecked="False" Click="BroadcastBG_Img2Toggle"/>
-                    <MenuItem x:Name="BroadcastImg3Option" Header="Custom Image (No Scaling)" IsCheckable="True" IsChecked="False" Click="BroadcastBG_Img3Toggle"/>
-                </MenuItem>
             </MenuItem>
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Header="Sora's Heart" 				Click="SoraHeartToggle"			x:Name="SoraHeartOption"		IsCheckable="True" IsChecked="True"/>

@@ -258,44 +258,6 @@
     <Image x:Key="Cus-UnknownDisk"		 Source="pack://application:,,,/CustomImages/Checks/UnknownDisk.png"        x:Shared="false"/>
     <Image x:Key="Cus-Anti"		         Source="pack://application:,,,/CustomImages/Checks/anti.png"               x:Shared="false"/>
 
-    <!--Custom Item Icons (Broadcast)-->
-    <Image x:Key="Cus-B_AnsemReport"	Source="pack://application:,,,/CustomImages/Broadcast/Other/ansem_report.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_TornPage" 		Source="pack://application:,,,/CustomImages/Broadcast/Other/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Fire"			Source="pack://application:,,,/CustomImages/Broadcast/Checks/fire.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Blizzard" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/blizzard.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Thunder"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/thunder.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Cure" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/cure.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Reflect" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/reflect.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Magnet" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/magnet.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Valor" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/valor.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Wisdom" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/wisdom.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Limit" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/limit.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Master" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/master.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Final" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/final.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Lamp"			Source="pack://application:,,,/CustomImages/Broadcast/Checks/genie.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Ukulele"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/stitch.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Baseball"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/chicken_little.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Feather"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/peter_pan.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Nonexistence"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Connection"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_connection.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Peace"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/proof_of_tranquility.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PromiseCharm"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/promise_charm.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_AuronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BattlefieldsofWar.png"/>
-    <Image x:Key="Cus-B_MulanWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/AncestorSword.png"/>
-    <Image x:Key="Cus-B_BeastWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BeastClaw.png"/>
-    <Image x:Key="Cus-B_JackWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/BoneFist.png"/>
-    <Image x:Key="Cus-B_SimbaWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/ProudFang.png"/>
-    <Image x:Key="Cus-B_SparrowWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/SkillCrossbones.png"/>
-    <Image x:Key="Cus-B_AladdinWep"	    Source="pack://application:,,,/CustomImages/Broadcast/Checks/Scimitar.png"/>
-    <Image x:Key="Cus-B_TronWep"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IdentityDisk.png"/>
-    <Image x:Key="Cus-B_Picture"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/Picture.png"/>
-    <Image x:Key="Cus-B_IceCream"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/IceCream.png"/>
-    <Image x:Key="Cus-B_MembershipCard" Source="pack://application:,,,/CustomImages/Broadcast/Checks/membership_card.png"/>
-    <Image x:Key="Cus-B_HadesCup"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/hades_cup.png"/>
-    <Image x:Key="Cus-B_OlympusStone"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/olympus_stone.png"/>
-    <Image x:Key="Cus-B_UnknownDisk"	Source="pack://application:,,,/CustomImages/Broadcast/Checks/UnknownDisk.png"/>
-    <Image x:Key="Cus-B_Anti"		    Source="pack://application:,,,/CustomImages/Broadcast/Checks/anti.png"/>
-
     <!--Custom Item Icons (Ghost)-->
     <Image x:Key="Cus-G_Report1" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
     <Image x:Key="Cus-G_Report2" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
@@ -374,16 +336,5 @@
     <Image x:Key="Cus-DodgeRoll" 		Source="pack://application:,,,/CustomImages/Checks/dodge.png" x:Shared="false"/>
     <Image x:Key="Cus-AerialDodge" 		Source="pack://application:,,,/CustomImages/Checks/aerial.png" x:Shared="false"/>
     <Image x:Key="Cus-Glide" 			Source="pack://application:,,,/CustomImages/Checks/glide.png" x:Shared="false"/>
-
-    <!--Custom Other (Broadcast)-->
-    <Image x:Key="Cus-B_OnceMore"			Source="pack://application:,,,/CustomImages/Broadcast/Checks/once_more.png"/>
-    <Image x:Key="Cus-B_OnceMore_key"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/once_more_key.png"/>
-    <Image x:Key="Cus-B_SecondChance"		Source="pack://application:,,,/CustomImages/Broadcast/Checks/second_chance.png"/>
-    <Image x:Key="Cus-B_SecondChance_key" 	Source="pack://application:,,,/CustomImages/Broadcast/Checks/second_chance_key.png"/>
-    <Image x:Key="Cus-B_HighJump" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/jump.png"/>
-    <Image x:Key="Cus-B_QuickRun" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/quick.png"/>
-    <Image x:Key="Cus-B_DodgeRoll" 			Source="pack://application:,,,/CustomImages/Broadcast/Checks/dodge.png"/>
-    <Image x:Key="Cus-B_AerialDodge" 		Source="pack://application:,,,/CustomImages/Broadcast/Checks/aerial.png"/>
-    <Image x:Key="Cus-B_Glide" 				Source="pack://application:,,,/CustomImages/Broadcast/Checks/glide.png"/>
 
 </ResourceDictionary>

@@ -37,7 +37,6 @@ namespace KhTracker
                 return;
             }
             Hooked = true;
-
         }
 
         public byte[] ReadMemory(Int32 address, int bytesToRead)

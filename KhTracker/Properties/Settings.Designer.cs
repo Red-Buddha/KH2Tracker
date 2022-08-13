@@ -169,30 +169,6 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double BroadcastWindowX {
-            get {
-                return ((double)(this["BroadcastWindowX"]));
-            }
-            set {
-                this["BroadcastWindowX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double BroadcastWindowY {
-            get {
-                return ((double)(this["BroadcastWindowY"]));
-            }
-            set {
-                this["BroadcastWindowY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("570")]
         public double Width {
             get {
@@ -212,30 +188,6 @@ namespace KhTracker.Properties {
             }
             set {
                 this["Height"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public double BroadcastWindowWidth {
-            get {
-                return ((double)(this["BroadcastWindowWidth"]));
-            }
-            set {
-                this["BroadcastWindowWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("680")]
-        public double BroadcastWindowHeight {
-            get {
-                return ((double)(this["BroadcastWindowHeight"]));
-            }
-            set {
-                this["BroadcastWindowHeight"] = value;
             }
         }
         
@@ -272,18 +224,6 @@ namespace KhTracker.Properties {
             }
             set {
                 this["TopMost"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool BroadcastStartup {
-            get {
-                return ((bool)(this["BroadcastStartup"]));
-            }
-            set {
-                this["BroadcastStartup"] = value;
             }
         }
         
@@ -397,18 +337,6 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Cavern {
-            get {
-                return ((bool)(this["Cavern"]));
-            }
-            set {
-                this["Cavern"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int MainBG {
             get {
@@ -421,18 +349,6 @@ namespace KhTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int BroadcastBG {
-            get {
-                return ((int)(this["BroadcastBG"]));
-            }
-            set {
-                this["BroadcastBG"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool CustomIcons {
             get {
@@ -440,42 +356,6 @@ namespace KhTracker.Properties {
             }
             set {
                 this["CustomIcons"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool BroadcastStats {
-            get {
-                return ((bool)(this["BroadcastStats"]));
-            }
-            set {
-                this["BroadcastStats"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool BroadcastGrowth {
-            get {
-                return ((bool)(this["BroadcastGrowth"]));
-            }
-            set {
-                this["BroadcastGrowth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool OCCups {
-            get {
-                return ((bool)(this["OCCups"]));
-            }
-            set {
-                this["OCCups"] = value;
             }
         }
         
@@ -632,18 +512,6 @@ namespace KhTracker.Properties {
             }
             set {
                 this["WorldVisitLock"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Terra {
-            get {
-                return ((bool)(this["Terra"]));
-            }
-            set {
-                this["Terra"] = value;
             }
         }
         

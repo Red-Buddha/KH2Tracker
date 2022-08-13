@@ -24,7 +24,6 @@ namespace KhTracker
         //main window, image path, dictionary key, ghost, broadcast
         private Dictionary<Item, Tuple<string, string, Item, ContentControl>> CusItemCheck;
         private Dictionary<Item, Tuple<string, string>> CusItemCheckG;
-        private Dictionary<ContentControl, Tuple<string, string>> CusItemCheckB;
         //dirty i guess, but i'll fix later maybe
         private Dictionary<ContentControl, string> ItemShadow;
 
@@ -68,72 +67,72 @@ namespace KhTracker
             //helps determine what item images need replacing with custom image loading
             CusItemCheck = new Dictionary<Item, Tuple<string, string, Item, ContentControl>>
             {
-                {Report1,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report01.png",  "Cus-Report1", Ghost_Report1, null)},
-                {Report2,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report02.png",  "Cus-Report2", Ghost_Report2, null)},
-                {Report3,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report03.png",  "Cus-Report3", Ghost_Report3, null)},
-                {Report4,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report04.png",  "Cus-Report4", Ghost_Report4, null)},
-                {Report5,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report05.png",  "Cus-Report5", Ghost_Report5, null)},
-                {Report6,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report06.png",  "Cus-Report6", Ghost_Report6, null)},
-                {Report7,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report07.png",  "Cus-Report7", Ghost_Report7, null)},
-                {Report8,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report08.png",  "Cus-Report8", Ghost_Report8, null)},
-                {Report9,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report09.png",  "Cus-Report9", Ghost_Report9, null)},
-                {Report10,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report10.png", "Cus-Report10", Ghost_Report10, null)},
-                {Report11,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report11.png", "Cus-Report11", Ghost_Report11, null)},
-                {Report12,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report12.png", "Cus-Report12", Ghost_Report12, null)},
-                {Report13,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report13.png", "Cus-Report13", Ghost_Report13, null)},
-                {Fire1,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire1", Ghost_Fire1, broadcast.Fire)},
-                {Fire2,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire2", Ghost_Fire2, null)},
-                {Fire3,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire3", Ghost_Fire3, null)},
-                {Blizzard1,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard1", Ghost_Blizzard1, broadcast.Blizzard)},
-                {Blizzard2,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard2", Ghost_Blizzard2, null)},
-                {Blizzard3,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard3", Ghost_Blizzard3, null)},
-                {Thunder1,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder1", Ghost_Thunder1, broadcast.Thunder)},
-                {Thunder2,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder2", Ghost_Thunder2, null)},
-                {Thunder3,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder3", Ghost_Thunder3, null)},
-                {Cure1,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure1", Ghost_Cure1, broadcast.Cure)},
-                {Cure2,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure2", Ghost_Cure2, null)},
-                {Cure3,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure3", Ghost_Cure3, null)},
-                {Reflect1,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect1", Ghost_Reflect1, broadcast.Reflect)},
-                {Reflect2,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect2", Ghost_Reflect2, null)},
-                {Reflect3,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect3", Ghost_Reflect3, null)},
-                {Magnet1,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet1", Ghost_Magnet1, broadcast.Magnet)},
-                {Magnet2,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet2", Ghost_Magnet2, null)},
-                {Magnet3,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet3", Ghost_Magnet3, null)},
-                {TornPage1,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage1", Ghost_TornPage1, null)},
-                {TornPage2,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage2", Ghost_TornPage2, null)},
-                {TornPage3,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage3", Ghost_TornPage3, null)},
-                {TornPage4,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage4", Ghost_TornPage4, null)},
-                {TornPage5,         new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage5", Ghost_TornPage5, null)},
-                {Valor,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/valor.png", "Cus-Valor", Ghost_Valor, broadcast.Valor)},
-                {Wisdom,            new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/wisdom.png", "Cus-Wisdom", Ghost_Wisdom, broadcast.Wisdom)},
-                {Limit,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/limit.png", "Cus-Limit", Ghost_Limit, broadcast.Limit)},
-                {Master,            new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/master.png", "Cus-Master", Ghost_Master, broadcast.Master)},
-                {Final,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/final.png", "Cus-Final", Ghost_Final, broadcast.Final)},
-                {Lamp,              new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/genie.png",                           "Cus-Lamp"		, Ghost_Lamp, broadcast.Lamp)},
-                {Ukulele,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/stitch.png",                       "Cus-Ukulele"	, Ghost_Ukulele, broadcast.Ukulele)},
-                {Baseball,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/chicken_little.png",              "Cus-Baseball"	 , Ghost_Baseball, broadcast.Baseball)},
-                {Feather,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/peter_pan.png",                    "Cus-Feather"	, Ghost_Feather, broadcast.Feather)},
-                {Nonexistence,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_nonexistence.png",   "Cus-Nonexistence", Ghost_Nonexistence, broadcast.Nonexistence)},
-                {Connection,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_connection.png",       "Cus-Connection"	 , Ghost_Connection, broadcast.Connection)},
-                {Peace,             new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_tranquility.png",           "Cus-Peace"      , Ghost_Peace, broadcast.Peace)},
-                {PromiseCharm,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/promise_charm.png", "Cus-PromiseCharm", Ghost_PromiseCharm, broadcast.PromiseCharm)},
-                {OnceMore,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/once_more.png", "Cus-OnceMore", Ghost_OnceMore, broadcast.OnceMore)},
-                {SecondChance,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/second_chance.png", "Cus-SecondChance", Ghost_SecondChance, broadcast.SecondChance)},
-                {MulanWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/AncestorSword.png", "Cus-MulanWep", Ghost_MulanWep, broadcast.MulanWep)},
-                {AuronWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BattlefieldsofWar.png", "Cus-AuronWep", Ghost_AuronWep, broadcast.AuronWep)},
-                {BeastWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BeastClaw.png", "Cus-BeastWep", Ghost_BeastWep, broadcast.BeastWep)},
-                {JackWep,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BoneFist.png", "Cus-JackWep", Ghost_JackWep, broadcast.JackWep)},
-                {IceCream,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IceCream.png", "Cus-IceCream", Ghost_IceCream, broadcast.IceCream)},
-                {TronWep,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IdentityDisk.png", "Cus-TronWep", Ghost_TronWep, broadcast.TronWep)},
-                {Picture,           new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Picture.png", "Cus-Picture", Ghost_Picture, broadcast.Picture)},
-                {MembershipCard,    new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/membership_card.png", "Cus-MembershipCard", Ghost_MembershipCard, broadcast.MembershipCard)},
-                {SimbaWep,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ProudFang.png", "Cus-SimbaWep", Ghost_SimbaWep, broadcast.SimbaWep)},
-                {AladdinWep,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Scimitar.png", "Cus-AladdinWep", Ghost_AladdinWep, broadcast.AladdinWep)},
-                {SparrowWep,        new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/SkillCrossbones.png", "Cus-SparrowWep", Ghost_SparrowWep, broadcast.SparrowWep)},
-                {HadesCup,          new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/hades_cup.png", "Cus-HadesCup", Ghost_HadesCup, broadcast.HadesCup)},
-                {OlympusStone,      new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/olympus_stone.png", "Cus-OlympusStone", Ghost_OlympusStone, broadcast.OlympusStone)},
-                {UnknownDisk,       new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/UnknownDisk.png", "Cus-UnknownDisk", Ghost_UnknownDisk, broadcast.UnknownDisk)},
-                {Anti,              new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/anti.png", "Cus-Anti", Ghost_Anti, broadcast.Anti)}
+                {Report1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report01.png", "Cus-Report1", Ghost_Report1, null)},
+                {Report2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report02.png", "Cus-Report2", Ghost_Report2, null)},
+                {Report3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report03.png", "Cus-Report3", Ghost_Report3, null)},
+                {Report4, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report04.png", "Cus-Report4", Ghost_Report4, null)},
+                {Report5, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report05.png", "Cus-Report5", Ghost_Report5, null)},
+                {Report6, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report06.png", "Cus-Report6", Ghost_Report6, null)},
+                {Report7, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report07.png", "Cus-Report7", Ghost_Report7, null)},
+                {Report8, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report08.png", "Cus-Report8", Ghost_Report8, null)},
+                {Report9, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report09.png", "Cus-Report9", Ghost_Report9, null)},
+                {Report10, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report10.png", "Cus-Report10", Ghost_Report10, null)},
+                {Report11, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report11.png", "Cus-Report11", Ghost_Report11, null)},
+                {Report12, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report12.png", "Cus-Report12", Ghost_Report12, null)},
+                {Report13, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ansem_report13.png", "Cus-Report13", Ghost_Report13, null)},
+                {Fire1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire1", Ghost_Fire1, null)},
+                {Fire2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire2", Ghost_Fire2, null)},
+                {Fire3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/fire.png", "Cus-Fire3", Ghost_Fire3, null)},
+                {Blizzard1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard1", Ghost_Blizzard1, null)},
+                {Blizzard2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard2", Ghost_Blizzard2, null)},
+                {Blizzard3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/blizzard.png", "Cus-Blizzard3", Ghost_Blizzard3, null)},
+                {Thunder1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder1", Ghost_Thunder1, null)},
+                {Thunder2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder2", Ghost_Thunder2, null)},
+                {Thunder3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/thunder.png", "Cus-Thunder3", Ghost_Thunder3, null)},
+                {Cure1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure1", Ghost_Cure1, null)},
+                {Cure2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure2", Ghost_Cure2, null)},
+                {Cure3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/cure.png", "Cus-Cure3", Ghost_Cure3, null)},
+                {Reflect1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect1", Ghost_Reflect1, null)},
+                {Reflect2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect2", Ghost_Reflect2, null)},
+                {Reflect3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/reflect.png", "Cus-Reflect3", Ghost_Reflect3, null)},
+                {Magnet1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet1", Ghost_Magnet1, null)},
+                {Magnet2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet2", Ghost_Magnet2, null)},
+                {Magnet3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/magnet.png", "Cus-Magnet3", Ghost_Magnet3, null)},
+                {TornPage1, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage1", Ghost_TornPage1, null)},
+                {TornPage2, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage2", Ghost_TornPage2, null)},
+                {TornPage3, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage3", Ghost_TornPage3, null)},
+                {TornPage4, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage4", Ghost_TornPage4, null)},
+                {TornPage5, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/torn_pages.png", "Cus-TornPage5", Ghost_TornPage5, null)},
+                {Valor, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/valor.png", "Cus-Valor", Ghost_Valor, null)},
+                {Wisdom, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/wisdom.png", "Cus-Wisdom", Ghost_Wisdom, null)},
+                {Limit, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/limit.png", "Cus-Limit", Ghost_Limit, null)},
+                {Master, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/master.png", "Cus-Master", Ghost_Master, null)},
+                {Final, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/final.png", "Cus-Final", Ghost_Final, null)},
+                {Lamp, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/genie.png", "Cus-Lamp", Ghost_Lamp, null)},
+                {Ukulele, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/stitch.png", "Cus-Ukulele", Ghost_Ukulele, null)},
+                {Baseball, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/chicken_little.png", "Cus-Baseball", Ghost_Baseball, null)},
+                {Feather, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/peter_pan.png", "Cus-Feather", Ghost_Feather, null)},
+                {Nonexistence, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_nonexistence.png", "Cus-Nonexistence", Ghost_Nonexistence, null)},
+                {Connection, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_connection.png", "Cus-Connection", Ghost_Connection, null)},
+                {Peace, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/proof_of_tranquility.png", "Cus-Peace", Ghost_Peace, null)},
+                {PromiseCharm, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/promise_charm.png", "Cus-PromiseCharm", Ghost_PromiseCharm, null)},
+                {OnceMore, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/once_more.png", "Cus-OnceMore", Ghost_OnceMore, null)},
+                {SecondChance, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/second_chance.png", "Cus-SecondChance", Ghost_SecondChance, null)},
+                {MulanWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/AncestorSword.png", "Cus-MulanWep", Ghost_MulanWep, null)},
+                {AuronWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BattlefieldsofWar.png", "Cus-AuronWep", Ghost_AuronWep, null)},
+                {BeastWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BeastClaw.png", "Cus-BeastWep", Ghost_BeastWep, null)},
+                {JackWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/BoneFist.png", "Cus-JackWep", Ghost_JackWep, null)},
+                {IceCream, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IceCream.png", "Cus-IceCream", Ghost_IceCream, null)},
+                {TronWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/IdentityDisk.png", "Cus-TronWep", Ghost_TronWep, null)},
+                {Picture, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Picture.png", "Cus-Picture", Ghost_Picture, null)},
+                {MembershipCard, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/membership_card.png", "Cus-MembershipCard", Ghost_MembershipCard, null)},
+                {SimbaWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/ProudFang.png", "Cus-SimbaWep", Ghost_SimbaWep, null)},
+                {AladdinWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/Scimitar.png", "Cus-AladdinWep", Ghost_AladdinWep, null)},
+                {SparrowWep, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/SkillCrossbones.png", "Cus-SparrowWep", Ghost_SparrowWep, null)},
+                {HadesCup, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/hades_cup.png", "Cus-HadesCup", Ghost_HadesCup, null)},
+                {OlympusStone, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/olympus_stone.png", "Cus-OlympusStone", Ghost_OlympusStone, null)},
+                {UnknownDisk, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/UnknownDisk.png", "Cus-UnknownDisk", Ghost_UnknownDisk, null)},
+                {Anti, new Tuple<string, string, Item, ContentControl>("CustomImages/Checks/anti.png", "Cus-Anti", Ghost_Anti, null)}
             };
 
             //ghost items
@@ -205,52 +204,6 @@ namespace KhTracker
                 {Ghost_OlympusStone, new Tuple<string, string>("CustomImages/Checks/Ghost/olympus_stone.png", "Cus-G_OlympusStone")},
                 {Ghost_UnknownDisk, new Tuple<string, string>("CustomImages/Checks/Ghost/UnknownDisk.png", "Cus-G_UnknownDisk")},
                 {Ghost_Anti, new Tuple<string, string>("CustomImages/Checks/Ghost/anti.png", "Cus-G_Anti")}
-            };
-
-            //broadcast window items
-            CusItemCheckB = new Dictionary<ContentControl, Tuple<string, string>>
-            {
-                {broadcast.HighJump, new Tuple<string, string>("CustomImages/Broadcast/Checks/jump.png", "Cus-B_HighJump")},
-                {broadcast.QuickRun, new Tuple<string, string>("CustomImages/Broadcast/Checks/quick.png", "Cus-B_QuickRun")},
-                {broadcast.DodgeRoll, new Tuple<string, string>("CustomImages/Broadcast/Checks/dodge.png", "Cus-B_DodgeRoll")},
-                {broadcast.AerialDodge, new Tuple<string, string>("CustomImages/Broadcast/Checks/aerial.png", "Cus-B_AerialDodge")},
-                {broadcast.Glide, new Tuple<string, string>("CustomImages/Broadcast/Checks/glide.png", "Cus-B_Glide")},
-                {broadcast.Fire, new Tuple<string, string>("CustomImages/Broadcast/Checks/fire.png", "Cus-B_Fire")},
-                {broadcast.Blizzard, new Tuple<string, string>("CustomImages/Broadcast/Checks/blizzard.png", "Cus-B_Blizzard")},
-                {broadcast.Thunder, new Tuple<string, string>("CustomImages/Broadcast/Checks/thunder.png", "Cus-B_Thunder")},
-                {broadcast.Cure, new Tuple<string, string>("CustomImages/Broadcast/Checks/cure.png", "Cus-B_Cure")},
-                {broadcast.Reflect, new Tuple<string, string>("CustomImages/Broadcast/Checks/reflect.png", "Cus-B_Reflect")},
-                {broadcast.Magnet, new Tuple<string, string>("CustomImages/Broadcast/Checks/magnet.png", "Cus-B_Magnet")},
-                {broadcast.Valor, new Tuple<string, string>("CustomImages/Broadcast/Checks/valor.png", "Cus-B_Valor")},
-                {broadcast.Wisdom, new Tuple<string, string>("CustomImages/Broadcast/Checks/wisdom.png", "Cus-B_Wisdom")},
-                {broadcast.Limit, new Tuple<string, string>("CustomImages/Broadcast/Checks/limit.png", "Cus-B_Limit")},
-                {broadcast.Master, new Tuple<string, string>("CustomImages/Broadcast/Checks/master.png", "Cus-B_Master")},
-                {broadcast.Final, new Tuple<string, string>("CustomImages/Broadcast/Checks/final.png", "Cus-B_Final")},
-                {broadcast.Anti, new Tuple<string, string>("CustomImages/Broadcast/Checks/anti.png", "Cus-B_Anti")},
-                {broadcast.Lamp, new Tuple<string, string>("CustomImages/Broadcast/Checks/genie.png", "Cus-B_Lamp")},
-                {broadcast.Ukulele, new Tuple<string, string>("CustomImages/Broadcast/Checks/stitch.png", "Cus-B_Ukulele")},
-                {broadcast.Baseball, new Tuple<string, string>("CustomImages/Broadcast/Checks/chicken_little.png", "Cus-B_Baseball")},
-                {broadcast.Feather, new Tuple<string, string>("CustomImages/Broadcast/Checks/peter_pan.png", "Cus-B_Feather")},
-                {broadcast.Nonexistence, new Tuple<string, string>("CustomImages/Broadcast/Checks/proof_of_nonexistence.png", "Cus-B_Nonexistence")},
-                {broadcast.Connection, new Tuple<string, string>("CustomImages/Broadcast/Checks/proof_of_connection.png", "Cus-B_Connection")},
-                {broadcast.Peace, new Tuple<string, string>("CustomImages/Broadcast/Checks/proof_of_tranquility.png", "Cus-B_Peace")},
-                {broadcast.PromiseCharm, new Tuple<string, string>("CustomImages/Broadcast/Checks/promise_charm.png", "Cus-B_PromiseCharm")},
-                {broadcast.OnceMore, new Tuple<string, string>("CustomImages/Broadcast/Checks/once_more.png", "Cus-B_OnceMore")},
-                {broadcast.SecondChance, new Tuple<string, string>("CustomImages/Broadcast/Checks/second_chance.png", "Cus-B_SecondChance")},
-                {broadcast.MulanWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/AncestorSword.png", "Cus-B_MulanWep")},
-                {broadcast.AuronWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/BattlefieldsofWar.png", "Cus-B_AuronWep")},
-                {broadcast.BeastWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/BeastClaw.png", "Cus-B_BeastWep")},
-                {broadcast.JackWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/BoneFist.png", "Cus-B_JackWep")},
-                {broadcast.IceCream, new Tuple<string, string>("CustomImages/Broadcast/Checks/IceCream.png", "Cus-B_IceCream")},
-                {broadcast.TronWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/IdentityDisk.png", "Cus-B_TronWep")},
-                {broadcast.Picture, new Tuple<string, string>("CustomImages/Broadcast/Checks/Picture.png", "Cus-B_Picture")},
-                {broadcast.MembershipCard, new Tuple<string, string>("CustomImages/Broadcast/Checks/membership_card.png", "Cus-B_MembershipCard")},
-                {broadcast.SimbaWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/ProudFang.png", "Cus-B_SimbaWep")},
-                {broadcast.AladdinWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/Scimitar.png", "Cus-B_AladdinWep")},
-                {broadcast.SparrowWep, new Tuple<string, string>("CustomImages/Broadcast/Checks/SkillCrossbones.png", "Cus-B_SparrowWep")},
-                {broadcast.HadesCup, new Tuple<string, string>("CustomImages/Broadcast/Checks/hades_cup.png", "Cus-B_HadesCup")},
-                {broadcast.OlympusStone, new Tuple<string, string>("CustomImages/Broadcast/Checks/olympus_stone.png", "Cus-B_OlympusStone")},
-                {broadcast.UnknownDisk, new Tuple<string, string>("CustomImages/Broadcast/Checks/UnknownDisk.png", "Cus-B_UnknownDisk")}
             };
 
             ///TODO: update later
@@ -403,99 +356,6 @@ namespace KhTracker
             }
         }
 
-        private void BroadcastBG_DefToggle(object sender, RoutedEventArgs e)
-        {
-            // Mimicing radio buttons so you cant toggle a button off
-            if (BroadcastDefOption.IsChecked == false)
-            {
-                BroadcastDefOption.IsChecked = true;
-                return;
-            }
-
-            BroadcastImg1Option.IsChecked = false;
-            BroadcastImg2Option.IsChecked = false;
-            BroadcastImg3Option.IsChecked = false;
-
-            Properties.Settings.Default.BroadcastBG = 0;
-
-            if (BroadcastDefOption.IsChecked)
-            {
-                broadcast.Background = Application.Current.Resources["BG-Default"] as SolidColorBrush;
-            }
-        }
-
-        private void BroadcastBG_Img1Toggle(object sender, RoutedEventArgs e)
-        {
-            // Mimicing radio buttons so you cant toggle a button off
-            if (BroadcastImg1Option.IsChecked == false)
-            {
-                BroadcastImg1Option.IsChecked = true;
-                return;
-            }
-
-            BroadcastDefOption.IsChecked = false;
-            BroadcastImg2Option.IsChecked = false;
-            BroadcastImg3Option.IsChecked = false;
-
-            Properties.Settings.Default.BroadcastBG = 1;
-
-            if (BroadcastImg1Option.IsChecked)
-            {
-                if (File.Exists("CustomImages/BG.png"))
-                    broadcast.Background = Application.Current.Resources["BG-BImage1"] as ImageBrush;
-                else
-                    broadcast.Background = Application.Current.Resources["BG-BImageDef1"] as ImageBrush;
-            }
-        }
-
-        private void BroadcastBG_Img2Toggle(object sender, RoutedEventArgs e)
-        {
-            // Mimicing radio buttons so you cant toggle a button off
-            if (BroadcastImg2Option.IsChecked == false)
-            {
-                BroadcastImg2Option.IsChecked = true;
-                return;
-            }
-
-            BroadcastDefOption.IsChecked = false;
-            BroadcastImg1Option.IsChecked = false;
-            BroadcastImg3Option.IsChecked = false;
-
-            Properties.Settings.Default.BroadcastBG = 2;
-
-            if (BroadcastImg2Option.IsChecked)
-            {
-                if (File.Exists("CustomImages/BG.png"))
-                    broadcast.Background = Application.Current.Resources["BG-BImage2"] as ImageBrush;
-                else
-                    broadcast.Background = Application.Current.Resources["BG-BImageDef2"] as ImageBrush;
-            }
-        }
-
-        private void BroadcastBG_Img3Toggle(object sender, RoutedEventArgs e)
-        {
-            // Mimicing radio buttons so you cant toggle a button off
-            if (BroadcastImg3Option.IsChecked == false)
-            {
-                BroadcastImg3Option.IsChecked = true;
-                return;
-            }
-
-            BroadcastDefOption.IsChecked = false;
-            BroadcastImg1Option.IsChecked = false;
-            BroadcastImg2Option.IsChecked = false;
-
-            Properties.Settings.Default.BroadcastBG = 3;
-
-            if (BroadcastImg3Option.IsChecked)
-            {
-                if (File.Exists("CustomImages/BG.png"))
-                    broadcast.Background = Application.Current.Resources["BG-BImage3"] as ImageBrush;
-                else
-                    broadcast.Background = Application.Current.Resources["BG-BImageDef3"] as ImageBrush;
-            }
-        }
-
         private void CustomChecksCheck()
         {
             if (!CustomFolderOption.IsChecked)
@@ -503,7 +363,6 @@ namespace KhTracker
 
             string[] checkFiles = { };
             string[] checkFilesG = { };
-            string[] checkFilesB = { };
 
             if (Directory.Exists("CustomImages/Checks/"))
             {
@@ -515,17 +374,13 @@ namespace KhTracker
                 checkFilesG = Directory.GetFiles("CustomImages/Checks/Ghost/", "*.png", SearchOption.TopDirectoryOnly);
             }
 
-            if (Directory.Exists("CustomImages/Broadcast/Checks/"))
-            {
-                checkFilesB = Directory.GetFiles("CustomImages/Broadcast/Checks/", "*.png", SearchOption.AllDirectories);
-            }
 
             //if list isn't empty then compare against dictionary to determine what icons to replace
 
             //    key     |   item1    |      item2     | item3  |  item4
-            //main window | image path | dictionary key | ghost  | broadcast
+            //main window | image path | dictionary key | ghost  | null
 
-            // broadcasts and ghost should always use main widnow icons if any are found first.
+            // ghost should always use main widnow icons if any are found first.
             if (checkFiles.Length > 0)
             {
                 //check if i actually need this lowercase edit
@@ -544,12 +399,6 @@ namespace KhTracker
                         {
                             Item ghost = item.Value.Item3;
                             ghost.SetResourceReference(ContentProperty, item.Value.Item2);
-                        }
-
-                        //broadcast window
-                        if (item.Value.Item4 != null)
-                        {
-                            item.Value.Item4.SetResourceReference(ContentProperty, item.Value.Item2);
                         }
                     }
                 }
@@ -572,49 +421,19 @@ namespace KhTracker
                 }
             }
 
-            //if broadcast window specific icons are found then set those (otherwise keep using the main window ones)
-            if (checkFilesB.Length > 0)
-            {
-                //check if i actually need this lowercase edit
-                checkFilesB = checkFilesB.Select(s => s.ToLowerInvariant()).ToArray();
-
-                foreach (var item in CusItemCheckB)
-                {
-                    if (checkFilesB.Contains(item.Value.Item1.ToLower()))
-                    {
-                        item.Key.SetResourceReference(ContentProperty, item.Value.Item2);
-                    }
-                }
-            }
-
             //check if folders exists then start checking if each file exists in it
             if (Directory.Exists("CustomImages/Checks/"))
             {
                 if (File.Exists("CustomImages/Checks/jump.png"))
-                {
                     HighJump.SetResourceReference(ContentProperty, "Cus-HighJump");
-                    broadcast.HighJump.SetResourceReference(ContentProperty, "Cus-HighJump");
-                }
                 if (File.Exists("CustomImages/Checks/quick.png"))
-                {
                     QuickRun.SetResourceReference(ContentProperty, "Cus-QuickRun");
-                    broadcast.QuickRun.SetResourceReference(ContentProperty, "Cus-QuickRun");
-                }
                 if (File.Exists("CustomImages/Checks/dodge.png"))
-                {
                     DodgeRoll.SetResourceReference(ContentProperty, "Cus-DodgeRoll");
-                    DodgeRoll.SetResourceReference(ContentProperty, "Cus-DodgeRoll");
-                }
                 if (File.Exists("CustomImages/Checks/aerial.png"))
-                {
                     AerialDodge.SetResourceReference(ContentProperty, "Cus-AerialDodge");
-                    broadcast.AerialDodge.SetResourceReference(ContentProperty, "Cus-AerialDodge");
-                }
                 if (File.Exists("CustomImages/Checks/glide.png"))
-                {
                     Glide.SetResourceReference(ContentProperty, "Cus-Glide");
-                    broadcast.Glide.SetResourceReference(ContentProperty, "Cus-Glide");
-                }
 
                 if (File.Exists("CustomImages/Checks/valor.png"))
                     ValorM.SetResourceReference(ContentProperty, "Cus-Valor");
@@ -629,29 +448,18 @@ namespace KhTracker
             }
 
             if (CustomLevelFound)
-            {
                 LevelIcon.SetResourceReference(ContentProperty, "Cus-LevelIcon");
-                broadcast.LevelIcon.SetResourceReference(ContentProperty, "Cus-LevelIcon");
-            }
 
             if (CustomStrengthFound)
-            {
                 StrengthIcon.SetResourceReference(ContentProperty, "Cus-StrengthIcon");
-                broadcast.StrengthIcon.SetResourceReference(ContentProperty, "Cus-StrengthIcon");
-            }
 
             if (CustomMagicFound)
-            {
                 MagicIcon.SetResourceReference(ContentProperty, "Cus-MagicIcon");
-                broadcast.MagicIcon.SetResourceReference(ContentProperty, "Cus-MagicIcon");
-            }
 
             if (CustomDefenseFound)
-            {
                 DefenseIcon.SetResourceReference(ContentProperty, "Cus-DefenseIcon");
-                broadcast.DefenseIcon.SetResourceReference(ContentProperty, "Cus-DefenseIcon");
-            }
 
+            ///TODO: needs to be redone for new lock images
             //visit locks
             if (File.Exists("CustomImages/Other/visitlock.png"))
             {
@@ -665,23 +473,9 @@ namespace KhTracker
                 AgrabahLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
                 PortRoyalLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
                 TwilightTownLock_2.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-
-                broadcast.HollowBastionLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.OlympusColiseumLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.LandofDragonsLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.PrideLandsLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.HalloweenTownLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.SpaceParanoidsLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.BeastsCastleLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.AgrabahLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.PortRoyalLock.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
-                broadcast.TwilightTownLock_2.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlock.png", UriKind.Absolute));
             }
             if (File.Exists("CustomImages/Other/visitlocksilver.png"))
-            {
                 TwilightTownLock_1.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlocksilver.png", UriKind.Absolute));
-                broadcast.TwilightTownLock_1.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/visitlocksilver.png", UriKind.Absolute));
-            }
 
             //world cross
             if (File.Exists("CustomImages/Other/crossworld.png"))
@@ -705,172 +499,100 @@ namespace KhTracker
                 AtlanticaCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
                 PuzzSynthCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
                 GoACross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-
-                broadcast.SorasHeartCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.DriveFormsCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.TwilightTownCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.HollowBastionCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.BeastsCastleCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.OlympusColiseumCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.AgrabahCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.LandofDragonsCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.HundredAcreWoodCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.PrideLandsCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.DisneyCastleCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.HalloweenTownCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.PortRoyalCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.TWTNWCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.SpaceParanoidsCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.AtlanticaCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
-                broadcast.PuzzSynthCross.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/crossworld.png", UriKind.Absolute));
             }
 
             //DeathCounter counter skull
             if (File.Exists("CustomImages/Other/death.png"))
-            {
                 Skull.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/death.png", UriKind.Absolute));
-                broadcast.Skull.Source = new BitmapImage(new Uri("pack://application:,,,/CustomImages/Other/death.png", UriKind.Absolute));
-            }
-
-            //broadcast window specific
-            if (File.Exists("CustomImages/Broadcast/Other/ansem_report.png"))
-                broadcast.Report.SetResourceReference(ContentProperty, "Cus-B_AnsemReport");
-            if (File.Exists("CustomImages/Broadcast/Other/torn_pages.png"))
-                broadcast.TornPage.SetResourceReference(ContentProperty, "Cus-B_TornPage");
-            if (File.Exists("CustomImages/Broadcast/Other/chest.png"))
-                broadcast.Chest.SetResourceReference(ContentProperty, "Cus-B_Chest");
         }
 
         private void CustomWorldCheck()
         {
             if (MinWorldOption.IsChecked)
             {
-
                 HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                broadcast.HollowBastion.SetResourceReference(ContentProperty, "Min-HollowBastionImage");
-                
                 OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
-                broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Min-OlympusImage");
                 
-
                 //puzzle/synth display
                 if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
-                {
                     PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth");
-                }
                 if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
-                {
                     PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_S");
-                }
-                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
-                {
+                if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
                     PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Min-PuzzSynth_P");
-                }
             }
+            
             if (OldWorldOption.IsChecked)
             {
- 
                 HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-                broadcast.HollowBastion.SetResourceReference(ContentProperty, "Old-HollowBastionImage");
-
-                OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");
-                
-
+                OlympusColiseum.SetResourceReference(ContentProperty, "Old-OlympusImage");         
+            
                 //puzzle/synth display
                 if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
-                {
                     PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth");
-                }
                 if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
-                {
                     PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_S");
-                }
-                else if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
-                {
+                if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
                     PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
-                    broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Old-PuzzSynth_P");
-                }
             }
 
             if (CustomFolderOption.IsChecked)
             {
+                ///TODO: update and maybe set up dictionary?
                 //Main Window
-                //We set both main and broadcast window worlds to the same image here
-                //this makes it so that the broadcast window uses the same custom images that the
-                //main window uses unless the specific broadacst window world folder is found
                 if (Directory.Exists("CustomImages/Worlds/"))
                 {
                     if (File.Exists("CustomImages/Worlds/simulated_twilight_town.png"))
                     {
                         SimulatedTwilightTown.SetResourceReference(ContentProperty, "Cus-SimulatedImage");
-                        broadcast.SimulatedTwilightTown.SetResourceReference(ContentProperty, "Cus-SimulatedImage");
                     }
                     if (File.Exists("CustomImages/Worlds/land_of_dragons.png"))
                     {
                         LandofDragons.SetResourceReference(ContentProperty, "Cus-LandofDragonsImage");
-                        broadcast.LandofDragons.SetResourceReference(ContentProperty, "Cus-LandofDragonsImage");
                     }
                     if (File.Exists("CustomImages/Worlds/pride_land.png"))
                     {
                         PrideLands.SetResourceReference(ContentProperty, "Cus-PrideLandsImage");
-                        broadcast.PrideLands.SetResourceReference(ContentProperty, "Cus-PrideLandsImage");
                     }
                     if (File.Exists("CustomImages/Worlds/halloween_town.png"))
                     {
                         HalloweenTown.SetResourceReference(ContentProperty, "Cus-HalloweenTownImage");
-                        broadcast.HalloweenTown.SetResourceReference(ContentProperty, "Cus-HalloweenTownImage");
                     }
                     if (File.Exists("CustomImages/Worlds/space_paranoids.png"))
                     {
                         SpaceParanoids.SetResourceReference(ContentProperty, "Cus-SpaceParanoidsImage");
-                        broadcast.SpaceParanoids.SetResourceReference(ContentProperty, "Cus-SpaceParanoidsImage");
                     }
                     if (File.Exists("CustomImages/Worlds/drive_form.png"))
                     {
                         DriveForms.SetResourceReference(ContentProperty, "Cus-DriveFormsImage");
-                        broadcast.DriveForms.SetResourceReference(ContentProperty, "Cus-DriveFormsImage");
                     }
                     if (File.Exists("CustomImages/Worlds/twilight_town.png"))
                     {
                         TwilightTown.SetResourceReference(ContentProperty, "Cus-TwilightTownImage");
-                        broadcast.TwilightTown.SetResourceReference(ContentProperty, "Cus-TwilightTownImage");
                     }
                     if (File.Exists("CustomImages/Worlds/beast's_castle.png"))
                     {
                         BeastsCastle.SetResourceReference(ContentProperty, "Cus-BeastCastleImage");
-                        broadcast.BeastsCastle.SetResourceReference(ContentProperty, "Cus-BeastCastleImage");
                     }
                     if (File.Exists("CustomImages/Worlds/agrabah.png"))
                     {
                         Agrabah.SetResourceReference(ContentProperty, "Cus-AgrabahImage");
-                        broadcast.Agrabah.SetResourceReference(ContentProperty, "Cus-AgrabahImage");
                     }
                     if (File.Exists("CustomImages/Worlds/100_acre_wood.png"))
                     {
                         HundredAcreWood.SetResourceReference(ContentProperty, "Cus-HundredAcreImage");
-                        broadcast.HundredAcreWood.SetResourceReference(ContentProperty, "Cus-HundredAcreImage");
                     }
                     if (File.Exists("CustomImages/Worlds/port_royal.png"))
                     {
                         PortRoyal.SetResourceReference(ContentProperty, "Cus-PortRoyalImage");
-                        broadcast.PortRoyal.SetResourceReference(ContentProperty, "Cus-PortRoyalImage");
                     }
                     if (File.Exists("CustomImages/Worlds/the_world_that_never_was.png"))
                     {
                         TWTNW.SetResourceReference(ContentProperty, "Cus-TWTNWImage");
-                        broadcast.TWTNW.SetResourceReference(ContentProperty, "Cus-TWTNWImage");
                     }
                     if (File.Exists("CustomImages/Worlds/atlantica.png"))
                     {
                         Atlantica.SetResourceReference(ContentProperty, "Cus-AtlanticaImage");
-                        broadcast.Atlantica.SetResourceReference(ContentProperty, "Cus-AtlanticaImage");
                     }
                     if (File.Exists("CustomImages/Worlds/replica_data.png"))
                     {
@@ -879,185 +601,51 @@ namespace KhTracker
                     if (File.Exists("CustomImages/Worlds/level.png"))
                     {
                         SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-SoraHeartImage");
                     }
                     if (File.Exists("CustomImages/Worlds/disney_castle.png"))
                     {
                         DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-DisneyCastleImage");
                     }
 
                     //check for custom cavern, timeless, and cups toggles
                     {
-                        if (File.Exists("CustomImages/Worlds/lingering_will.png"))
-                        {
-                            //DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
-                            broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-DisneyCastleLW");
-                        }
-
                         if (File.Exists("CustomImages/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
                         {
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
                         }
                         if (File.Exists("CustomImages/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
                         {
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
                         }
                         if (File.Exists("CustomImages/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
                         {
                             SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
                         }
 
-                        //basically we only want to set the custom images if they exist and if the toggle is on/off
-                        //otherwise they just use the defaults that were defined in the beggining of this function
                         if (File.Exists("CustomImages/Worlds/hollow_bastion.png"))
                         {
                             HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionImage");
-                            broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-HollowBastionImage");
                         }
 
                         if (File.Exists("CustomImages/Worlds/olympus_coliseum.png"))
                         {
                             OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusImage");
-                            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-OlympusImage");
                         }
 
                         //puzzle/synth display
                         if (File.Exists("CustomImages/Worlds/PuzzSynth.png") && PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
                         {
                             PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth");
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth");
                         }
                         if (File.Exists("CustomImages/Worlds/Synth.png") && !PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
                         {
                             PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_S");
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_S");
                         }
                         else if (File.Exists("CustomImages/Worlds/Puzzle.png") && PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
                         {
                             PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_P");
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-PuzzSynth_P");
-                        }
-
-                    }
-                }
-
-                //Broadcast Window
-                if (Directory.Exists("CustomImages/Broadcast/Worlds/"))
-                {
-                    if (File.Exists("CustomImages/Broadcast/Worlds/simulated_twilight_town.png"))
-                    {
-                        broadcast.SimulatedTwilightTown.SetResourceReference(ContentProperty, "Cus-B_SimulatedImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/land_of_dragons.png"))
-                    {
-                        broadcast.LandofDragons.SetResourceReference(ContentProperty, "Cus-B_LandofDragonsImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/pride_land.png"))
-                    {
-                        broadcast.PrideLands.SetResourceReference(ContentProperty, "Cus-B_PrideLandsImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/halloween_town.png"))
-                    {
-                        broadcast.HalloweenTown.SetResourceReference(ContentProperty, "Cus-B_HalloweenTownImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/space_paranoids.png"))
-                    {
-                        broadcast.SpaceParanoids.SetResourceReference(ContentProperty, "Cus-B_SpaceParanoidsImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/drive_form.png"))
-                    {
-                        broadcast.DriveForms.SetResourceReference(ContentProperty, "Cus-B_DriveFormsImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/twilight_town.png"))
-                    {
-                        broadcast.TwilightTown.SetResourceReference(ContentProperty, "Cus-B_TwilightTownImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/beast's_castle.png"))
-                    {
-                        broadcast.BeastsCastle.SetResourceReference(ContentProperty, "Cus-B_BeastCastleImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/agrabah.png"))
-                    {
-                        broadcast.Agrabah.SetResourceReference(ContentProperty, "Cus-B_AgrabahImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/100_acre_wood.png"))
-                    {
-                        broadcast.HundredAcreWood.SetResourceReference(ContentProperty, "Cus-B_HundredAcreImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/port_royal.png"))
-                    {
-                        broadcast.PortRoyal.SetResourceReference(ContentProperty, "Cus-B_PortRoyalImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/the_world_that_never_was.png"))
-                    {
-                        broadcast.TWTNW.SetResourceReference(ContentProperty, "Cus-B_TWTNWImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/atlantica.png"))
-                    {
-                        broadcast.Atlantica.SetResourceReference(ContentProperty, "Cus-B_AtlanticaImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/level.png"))
-                    {
-                        broadcast.SorasHeart.SetResourceReference(ContentProperty, "Cus-B_SoraHeartImage");
-                    }
-                    if (File.Exists("CustomImages/Broadcast/Worlds/disney_castle.png"))
-                    {
-                        broadcast.DisneyCastle.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleImage");
-                    }
-
-                    //check for custom cavern, timeless, and cups toggles
-                    {
-                        if (File.Exists("CustomImages/Broadcast/Worlds/lingering_will.png"))
-                        {
-                            broadcast.DisneyCastleLW.SetResourceReference(ContentProperty, "Cus-B_DisneyCastleLW");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
-                        {
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel01");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
-                        {
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel50");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
-                        {
-                            broadcast.SorasHeartType.SetResourceReference(ContentProperty, "Cus-B_SoraLevel99");
-                        }
-
-                        //basically we only want to set the custom images if they exist and if the toggle is on/off
-                        //otherwise they just use the defaults that were defined in the beggining of this function
-                        if (File.Exists("CustomImages/Broadcast/Worlds/hollow_bastion.png"))
-                        {
-                            broadcast.HollowBastion.SetResourceReference(ContentProperty, "Cus-B_HollowBastionImage");
-                        }
-
-                        if (File.Exists("CustomImages/Broadcast/Worlds/olympus_coliseum.png"))
-                        {
-                            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, "Cus-B_OlympusImage");
-                        }
-
-                        //puzzle/synth display
-                        if (File.Exists("CustomImages/Broadcast/Worlds/PuzzSynth.png") && PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
-                        {
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth");
-                        }
-                        if (File.Exists("CustomImages/Broadcast/Worlds/Synth.png") && !PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
-                        {
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth_S");
-                        }
-                        else if (File.Exists("CustomImages/Broadcast/Worlds/Puzzle.png") && PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
-                        {
-                            broadcast.PuzzSynth.SetResourceReference(ContentProperty, "Cus-B_PuzzSynth_P");
                         }
                     }
-
                 }
             }
         }
@@ -1110,56 +698,6 @@ namespace KhTracker
             AerialDodge.SetResourceReference(ContentProperty, type + "AerialDodge");
             Glide.SetResourceReference(ContentProperty, type + "Glide");
 
-            // broadcast icons
-            broadcast.Report.SetResourceReference(ContentProperty, type + "AnsemReport");
-            broadcast.TornPage.SetResourceReference(ContentProperty, type + "TornPages");
-            broadcast.Chest.SetResourceReference(ContentProperty, type + "Chest");
-            broadcast.LevelIcon.SetResourceReference(ContentProperty, "LevelIcon");
-            broadcast.StrengthIcon.SetResourceReference(ContentProperty, "StrengthIcon");
-            broadcast.MagicIcon.SetResourceReference(ContentProperty, "MagicIcon");
-            broadcast.DefenseIcon.SetResourceReference(ContentProperty, "DefenseIcon");
-            broadcast.HighJump.SetResourceReference(ContentProperty, type + "HighJump");
-            broadcast.QuickRun.SetResourceReference(ContentProperty, type + "QuickRun");
-            broadcast.DodgeRoll.SetResourceReference(ContentProperty, type + "DodgeRoll");
-            broadcast.AerialDodge.SetResourceReference(ContentProperty, type + "AerialDodge");
-            broadcast.Glide.SetResourceReference(ContentProperty, type + "Glide");
-            broadcast.OnceMore.SetResourceReference(ContentProperty, type + "OnceMore");
-            broadcast.SecondChance.SetResourceReference(ContentProperty, type + "SecondChance");
-            broadcast.Peace.SetResourceReference(ContentProperty, type + "ProofOfPea");
-            broadcast.Nonexistence.SetResourceReference(ContentProperty, type + "ProofOfNon");
-            broadcast.Connection.SetResourceReference(ContentProperty, type + "ProofOfCon");
-            broadcast.PromiseCharm.SetResourceReference(ContentProperty, type + "PromiseCharm");
-            broadcast.Fire.SetResourceReference(ContentProperty, type + "Fire");
-            broadcast.Blizzard.SetResourceReference(ContentProperty, type + "Blizzard");
-            broadcast.Thunder.SetResourceReference(ContentProperty, type + "Thunder");
-            broadcast.Cure.SetResourceReference(ContentProperty, type + "Cure");
-            broadcast.Reflect.SetResourceReference(ContentProperty, type + "Reflect");
-            broadcast.Magnet.SetResourceReference(ContentProperty, type + "Magnet");
-            broadcast.Valor.SetResourceReference(ContentProperty, type + "Valor");
-            broadcast.Wisdom.SetResourceReference(ContentProperty, type + "Wisdom");
-            broadcast.Limit.SetResourceReference(ContentProperty, type + "Limit");
-            broadcast.Master.SetResourceReference(ContentProperty, type + "Master");
-            broadcast.Final.SetResourceReference(ContentProperty, type + "Final");
-            broadcast.Baseball.SetResourceReference(ContentProperty, type + "ChickenLittle");
-            broadcast.Lamp.SetResourceReference(ContentProperty, type + "Genie");
-            broadcast.Ukulele.SetResourceReference(ContentProperty, type + "Stitch");
-            broadcast.Feather.SetResourceReference(ContentProperty, type + "PeterPan");
-            broadcast.MulanWep.SetResourceReference(ContentProperty, type + "MulanWep");
-            broadcast.AuronWep.SetResourceReference(ContentProperty, type + "AuronWep");
-            broadcast.BeastWep.SetResourceReference(ContentProperty, type + "BeastWep");
-            broadcast.JackWep.SetResourceReference(ContentProperty, type + "JackWep");
-            broadcast.IceCream.SetResourceReference(ContentProperty, type + "IceCream");
-            broadcast.TronWep.SetResourceReference(ContentProperty, type + "TronWep");
-            broadcast.Picture.SetResourceReference(ContentProperty, type + "Picture");
-            broadcast.MembershipCard.SetResourceReference(ContentProperty, type + "MembershipCard");
-            broadcast.SimbaWep.SetResourceReference(ContentProperty, type + "SimbaWep");
-            broadcast.AladdinWep.SetResourceReference(ContentProperty, type + "AladdinWep");
-            broadcast.SparrowWep.SetResourceReference(ContentProperty, type + "SparrowWep");
-            broadcast.HadesCup.SetResourceReference(ContentProperty, type + "HadesCup");
-            broadcast.OlympusStone.SetResourceReference(ContentProperty, type + "OlympusStone");
-            broadcast.UnknownDisk.SetResourceReference(ContentProperty, type + "UnknownDisk");
-            broadcast.Anti.SetResourceReference(ContentProperty, type + "Anti");
-
             //CustomChecksCheck();
         }
 
@@ -1195,43 +733,21 @@ namespace KhTracker
             Atlantica.SetResourceReference(ContentProperty, type + "AtlanticaImage");
             DisneyCastle.SetResourceReference(ContentProperty, type + "DisneyCastleImage");
 
-            //broadcast window worlds
-            broadcast.SorasHeart.SetResourceReference(ContentProperty, type + "SoraHeartImage");
-            broadcast.SimulatedTwilightTown.SetResourceReference(ContentProperty, type + "SimulatedImage");
-            broadcast.OlympusColiseum.SetResourceReference(ContentProperty, type + "OlympusImage");
-            broadcast.LandofDragons.SetResourceReference(ContentProperty, type + "LandofDragonsImage");
-            broadcast.PrideLands.SetResourceReference(ContentProperty, type + "PrideLandsImage");
-            broadcast.HalloweenTown.SetResourceReference(ContentProperty, type + "HalloweenTownImage");
-            broadcast.SpaceParanoids.SetResourceReference(ContentProperty, type + "SpaceParanoidsImage");
-            broadcast.DriveForms.SetResourceReference(ContentProperty, type + "DriveFormsImage");
-            broadcast.TwilightTown.SetResourceReference(ContentProperty, type + "TwilightTownImage");
-            broadcast.BeastsCastle.SetResourceReference(ContentProperty, type + "BeastCastleImage");
-            broadcast.Agrabah.SetResourceReference(ContentProperty, type + "AgrabahImage");
-            broadcast.HundredAcreWood.SetResourceReference(ContentProperty, type + "HundredAcreImage");
-            broadcast.PortRoyal.SetResourceReference(ContentProperty, type + "PortRoyalImage");
-            broadcast.TWTNW.SetResourceReference(ContentProperty, type + "TWTNWImage");
-            broadcast.Atlantica.SetResourceReference(ContentProperty, type + "AtlanticaImage");
-            broadcast.DisneyCastle.SetResourceReference(ContentProperty, type + "DisneyCastleImage");
-
             //puzzle/synth display
             if (PuzzleOption.IsChecked && SynthOption.IsChecked) //both on
             {
                 PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth");
-                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth");
             }
             if (!PuzzleOption.IsChecked && SynthOption.IsChecked) //synth on puzzle off
             {
                 PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_S");
-                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_S");
             }
             if (PuzzleOption.IsChecked && !SynthOption.IsChecked) //synth off puzzle on
             {
                 PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_P");
-                broadcast.PuzzSynth.SetResourceReference(ContentProperty, type + "PuzzSynth_P");
             }
 
             //CustomWorldCheck();
         }
-
     }
 }

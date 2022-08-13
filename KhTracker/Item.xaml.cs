@@ -23,13 +23,6 @@ namespace KhTracker
     public partial class Item : ContentControl
     {
         bool selected = false;
-
-        public delegate void TotalHandler(string world, int checks);
-        public delegate void FoundHandler(string item, string world, bool add);
-
-        public event TotalHandler UpdateTotal;
-        public event FoundHandler UpdateFound;
-
         MainWindow MainW = (MainWindow)App.Current.MainWindow;
 
         public Item()
@@ -148,18 +141,8 @@ namespace KhTracker
             }
             else
             {
-                MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+                MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2) + " has " + data.reportInformation[index].Item3 + " important checks");
             }
-        }
-
-        public void DragDropEventFire(string item, string world, bool add)
-        {
-            UpdateFound(item, world, add);
-        }
-
-        public void DragDropEventFire(string world, int value)
-        {
-            UpdateTotal(world, value);
         }
 
         public void Item_Return(object sender, RoutedEventArgs e)
@@ -217,9 +200,6 @@ namespace KhTracker
                 }
 
                 MouseEnter -= Report_Hover;
-
-                if (!this.Name.StartsWith("Ghost_"))
-                    UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
             }
         }
 

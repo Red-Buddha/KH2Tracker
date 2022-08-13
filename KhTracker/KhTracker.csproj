@@ -101,9 +101,6 @@
     <Compile Include="AutoTracking\Summon.cs" />
     <Compile Include="AutoTracking\TornPage.cs" />
     <Compile Include="AutoTracking\World.cs" />
-    <Compile Include="BroadcastWindow.xaml.cs">
-      <DependentUpon>BroadcastWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AutoTracking\Convertor.cs" />
     <Compile Include="AutoTracking\DriveForm.cs" />
     <Compile Include="AutoTracking\ImportantCheck.cs" />
@@ -120,10 +117,6 @@
     <Compile Include="WorldGrid.xaml.cs">
       <DependentUpon>WorldGrid.xaml</DependentUpon>
     </Compile>
-    <Page Include="BroadcastWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -567,78 +560,6 @@
     <Resource Include="Images\Worlds\Simple\twilight_town.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomImages\Broadcast\Checks\aerial.png" />
-    <Content Include="CustomImages\Broadcast\Checks\AncestorSword.png" />
-    <Content Include="CustomImages\Broadcast\Checks\anti.png" />
-    <Content Include="CustomImages\Broadcast\Checks\BattlefieldsofWar.png" />
-    <Content Include="CustomImages\Broadcast\Checks\BeastClaw.png" />
-    <Content Include="CustomImages\Broadcast\Checks\blizzard.png" />
-    <Content Include="CustomImages\Broadcast\Checks\BoneFist.png" />
-    <Content Include="CustomImages\Broadcast\Checks\chicken_little.png" />
-    <Content Include="CustomImages\Broadcast\Checks\cure.png" />
-    <Content Include="CustomImages\Broadcast\Checks\dodge.png" />
-    <Content Include="CustomImages\Broadcast\Checks\final.png" />
-    <Content Include="CustomImages\Broadcast\Checks\fire.png" />
-    <Content Include="CustomImages\Broadcast\Checks\genie.png" />
-    <Content Include="CustomImages\Broadcast\Checks\glide.png" />
-    <Content Include="CustomImages\Broadcast\Checks\hades_cup.png" />
-    <Content Include="CustomImages\Broadcast\Checks\IceCream.png" />
-    <Content Include="CustomImages\Broadcast\Checks\IdentityDisk.png" />
-    <Content Include="CustomImages\Broadcast\Checks\jump.png" />
-    <Content Include="CustomImages\Broadcast\Checks\limit.png" />
-    <Content Include="CustomImages\Broadcast\Checks\magnet.png" />
-    <Content Include="CustomImages\Broadcast\Checks\master.png" />
-    <Content Include="CustomImages\Broadcast\Checks\membership_card.png" />
-    <Content Include="CustomImages\Broadcast\Checks\olympus_stone.png" />
-    <Content Include="CustomImages\Broadcast\Checks\once_more.png" />
-    <Content Include="CustomImages\Broadcast\Checks\once_more_key.png" />
-    <Content Include="CustomImages\Broadcast\Checks\peter_pan.png" />
-    <Content Include="CustomImages\Broadcast\Checks\Picture.png" />
-    <Content Include="CustomImages\Broadcast\Checks\promise_charm.png" />
-    <Content Include="CustomImages\Broadcast\Checks\proof_of_connection.png" />
-    <Content Include="CustomImages\Broadcast\Checks\proof_of_nonexistence.png" />
-    <Content Include="CustomImages\Broadcast\Checks\proof_of_tranquility.png" />
-    <Content Include="CustomImages\Broadcast\Checks\ProudFang.png" />
-    <Content Include="CustomImages\Broadcast\Checks\quick.png" />
-    <Content Include="CustomImages\Broadcast\Checks\reflect.png" />
-    <Content Include="CustomImages\Broadcast\Checks\Scimitar.png" />
-    <Content Include="CustomImages\Broadcast\Checks\second_chance.png" />
-    <Content Include="CustomImages\Broadcast\Checks\second_chance_key.png" />
-    <Content Include="CustomImages\Broadcast\Checks\SkillCrossbones.png" />
-    <Content Include="CustomImages\Broadcast\Checks\stitch.png" />
-    <Content Include="CustomImages\Broadcast\Checks\thunder.png" />
-    <Content Include="CustomImages\Broadcast\Checks\UnknownDisk.png" />
-    <Content Include="CustomImages\Broadcast\Checks\valor.png" />
-    <Content Include="CustomImages\Broadcast\Checks\wisdom.png" />
-    <Content Include="CustomImages\Broadcast\Other\ansem_report.png" />
-    <Content Include="CustomImages\Broadcast\Other\chest.png" />
-    <Content Include="CustomImages\Broadcast\Other\torn_pages.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\100_acre_wood.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\agrabah.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\atlantica.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\beast%27s_castle.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\disney_castle.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\drive_form.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\halloween_town.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\hollow_bastion.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\land_of_dragons.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\level.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\Level01.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\Level50.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\Level99.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\lingering_will.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\olympus_coliseum_cups.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\port_royal.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\pride_land.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\Puzzle.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\PuzzSynth.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\replica_data.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\simulated_twilight_town.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\space_paranoids.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\Synth.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\the_world_that_never_was.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\twilight_town.png" />
     <Content Include="CustomImages\Checks\aerial.png" />
     <Content Include="CustomImages\Checks\AncestorSword.png" />
     <Content Include="CustomImages\Checks\ansem_report01.png" />
@@ -1037,7 +958,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\BG.png" />
-    <Resource Include="Images\BG_broadcast.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomImages\BG.png" />
@@ -1050,10 +970,6 @@
   <ItemGroup>
     <Content Include="CustomImages\Worlds\cavern_of_remembrance.png" />
     <Content Include="CustomImages\Worlds\hollow_bastion_cor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CustomImages\Broadcast\Worlds\cavern_of_remembrance.png" />
-    <Content Include="CustomImages\Broadcast\Worlds\hollow_bastion_cor.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Other\chest_old.png" />

@@ -47,7 +47,6 @@
     <Image x:Key="Min-PC"	 Source="Images\PC.png" x:Shared="false"/>
     <Image x:Key="Min-PS2"	 Source="Images\ps2.png" x:Shared="false"/>
 
-    
     <!--Seed Hash Icons-->
     <Image x:Key="ability-unequip" Source="Images\Icons\ability-unequip.png"/>
     <Image x:Key="accessory" Source="Images\Icons\accessory.png"/>
@@ -86,8 +85,6 @@
     <Image x:Key="weapon-shield" Source="Images\Icons\weapon-shield.png"/>
     <Image x:Key="weapon-staff" Source="Images\Icons\weapon-staff.png"/>
 
-
-
     <!--Stat UI-->
     <Image x:Key="LevelIcon"  		    Source="Images\Other\level.png" x:Shared="false"/>
     <Image x:Key="StrengthIcon"		    Source="Images\Other\strength.png" x:Shared="false"/>
@@ -107,8 +104,6 @@
     <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/Other/sword.png" x:Shared="false"/>
     <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/Other/shield.png" x:Shared="false"/>
     <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/Other/staff.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_Chest" 		    Source="pack://application:,,,/CustomImages/Broadcast/Other/chest.png"/>
-
 
     <!-- main window custom image-->
     <ImageBrush x:Key="BG-Image1" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" />
@@ -117,12 +112,5 @@
     <ImageBrush x:Key="BG-ImageDef2" ImageSource="Images/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
     <ImageBrush x:Key="BG-Image3" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="None"/>
     <ImageBrush x:Key="BG-ImageDef3" ImageSource="Images/BG.png" TileMode="Tile" Stretch="None"/>
-    <!-- broadcast window custom image-->
-    <ImageBrush x:Key="BG-BImage1" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" />
-    <ImageBrush x:Key="BG-BImageDef1" ImageSource="Images/BG_broadcast.png" TileMode="Tile"/>
-    <ImageBrush x:Key="BG-BImage2" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" Stretch="UniformToFill"/>
-    <ImageBrush x:Key="BG-BImageDef2" ImageSource="Images/BG_broadcast.png" TileMode="Tile" Stretch="UniformToFill"/>
-    <ImageBrush x:Key="BG-BImage3" ImageSource="pack://application:,,,/CustomImages/BG_broadcast.png" TileMode="Tile" Stretch="None"/>
-    <ImageBrush x:Key="BG-BImageDef3" ImageSource="Images/BG_broadcast.png" TileMode="Tile" Stretch="None"/>
 
 </ResourceDictionary>

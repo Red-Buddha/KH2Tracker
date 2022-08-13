@@ -56,7 +56,6 @@
     <Image x:Key="VisitLockG"  	        Source="Images\Other\visitlock.png" x:Shared="false"/>
     <Image x:Key="VisitLockS"  	        Source="Images\Other\visitlocksilver.png" x:Shared="false"/>
 
-    
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>
     <Image x:Key="Cus-SimulatedImage" 			Source="pack://application:,,,/CustomImages/Worlds/simulated_twilight_town.png" x:Shared="false"/>
@@ -79,29 +78,6 @@
     <Image x:Key="Cus-PuzzSynth" 			    Source="pack://application:,,,/CustomImages/Worlds/PuzzSynth.png" x:Shared="false"/>
     <Image x:Key="Cus-PuzzSynth_P" 			    Source="pack://application:,,,/CustomImages/Worlds/Puzzle.png" x:Shared="false"/>
     <Image x:Key="Cus-PuzzSynth_S" 			    Source="pack://application:,,,/CustomImages/Worlds/Synth.png" x:Shared="false"/>
-    
-    <!--Custom World Icons (Broadcast)-->
-    <Image x:Key="Cus-B_SoraHeartImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/level.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_SimulatedImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/simulated_twilight_town.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_HollowBastionImage" 	 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/hollow_bastion.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_OlympusImage" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/olympus_coliseum.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_LandofDragonsImage" 	 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/land_of_dragons.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PrideLandsImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/pride_land.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_HalloweenTownImage" 	 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/halloween_town.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_SpaceParanoidsImage" 	 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/space_paranoids.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_GardenofAssemblageImage" Source="pack://application:,,,/CustomImages/Broadcast/Worlds/replica_data.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_DriveFormsImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/drive_form.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_TwilightTownImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/twilight_town.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_BeastCastleImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/beast's_castle.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_AgrabahImage" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/agrabah.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_HundredAcreImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/100_acre_wood.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_DisneyCastleImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/disney_castle.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PortRoyalImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/port_royal.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_TWTNWImage" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/the_world_that_never_was.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_AtlanticaImage" 		 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/atlantica.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PuzzSynth" 			     Source="pack://application:,,,/CustomImages/Broadcast/Worlds/PuzzSynth.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PuzzSynth_P" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Puzzle.png" x:Shared="false"/>
-    <Image x:Key="Cus-B_PuzzSynth_S" 			 Source="pack://application:,,,/CustomImages/Broadcast/Worlds/Synth.png" x:Shared="false"/>
 
     <!-- Custom Visit Locks -->
     <Image x:Key="Cus-VisitLockG"  	    Source="pack://application:,,,/CustomImages/Other/visitlock.png" x:Shared="false"/>
