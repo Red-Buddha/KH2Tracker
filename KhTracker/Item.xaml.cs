@@ -224,7 +224,6 @@ namespace KhTracker
                 Item_Click(sender, e);
         }
 
-
         ///TODO: remove these and use ones from Codes.cs
         private Dictionary<string, string> shortenNames = new Dictionary<string, string>()
         {
