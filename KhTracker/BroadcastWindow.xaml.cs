@@ -165,26 +165,26 @@ namespace KhTracker
 
         public void UpdateFound(string item, string world, bool add)
         {
-            while (item.Any(char.IsDigit))
-            {
-                item = item.Remove(item.Length - 1, 1);
-            }
-
-            if (add) important[item]++; else important[item]--;
-
-            if (others.ContainsKey(item))
-            {
-                others["Report"] = important["Report"];
-                others["TornPage"] = important["TornPage"];
-                others["Fire"] = important["Fire"];
-                others["Blizzard"] = important["Blizzard"];
-                others["Thunder"] = important["Thunder"];
-                others["Cure"] = important["Cure"];
-                others["Reflect"] = important["Reflect"];
-                others["Magnet"] = important["Magnet"];
-            }
-
-            UpdateNumbers();
+            //while (item.Any(char.IsDigit))
+            //{
+            //    item = item.Remove(item.Length - 1, 1);
+            //}
+            //
+            //if (add) important[item]++; else important[item]--;
+            //
+            //if (others.ContainsKey(item))
+            //{
+            //    others["Report"] = important["Report"];
+            //    others["TornPage"] = important["TornPage"];
+            //    others["Fire"] = important["Fire"];
+            //    others["Blizzard"] = important["Blizzard"];
+            //    others["Thunder"] = important["Thunder"];
+            //    others["Cure"] = important["Cure"];
+            //    others["Reflect"] = important["Reflect"];
+            //    others["Magnet"] = important["Magnet"];
+            //}
+            //
+            //UpdateNumbers();
         }
 
         public void UpdateNumbers()

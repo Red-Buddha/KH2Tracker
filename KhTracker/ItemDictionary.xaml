@@ -75,6 +75,8 @@
     <Image x:Key="Min-TornPage3"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
     <Image x:Key="Min-TornPage4"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
     <Image x:Key="Min-TornPage5"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
+    <Image x:Key="Min-MunnyPouch1"	    Source="Images\Checks\munny_pouch.png"           x:Shared="false"/>
+    <Image x:Key="Min-MunnyPouch2"	    Source="Images\Checks\munny_pouch.png"           x:Shared="false"/>
     <!-- Visit -->
     <Image x:Key="Min-AuronWep"		    Source="Images\Checks\Simple\BattlefieldsofWar.png" x:Shared="false"/>
     <Image x:Key="Min-MulanWep"		    Source="Images\Checks\Simple\AncestorSword.png"     x:Shared="false"/>

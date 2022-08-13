@@ -53,7 +53,7 @@ namespace KhTracker
         }
 
         ///Add Switch Case???
-        public void Handle_WorldGrid(Item item, bool add)
+        public void Handle_WorldGrid(Item button, bool add)
         {
             Data data = MainWindow.data;
             int addRemove = 1;
@@ -78,7 +78,7 @@ namespace KhTracker
                 //add the item
                 try
                 {
-                    Children.Insert(firstGhost, item);
+                    Children.Insert(firstGhost, button);
                 }
                 catch (Exception)
                 {
@@ -88,12 +88,12 @@ namespace KhTracker
             }
             else
             {
-                Children.Remove(item);
+                Children.Remove(button);
                 addRemove = -1;
             }
 
-            UpdateGhostObtained(item, addRemove);
-            UpdateMulti(item, add);
+            UpdateGhostObtained(button, addRemove);
+            UpdateMulti(button, add);
 
             int gridremainder = 0;
             if (Children.Count % 5 != 0)

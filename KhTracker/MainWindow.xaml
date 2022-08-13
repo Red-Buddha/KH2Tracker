@@ -185,7 +185,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -194,7 +194,8 @@
                                 <ColumnDefinition Width="0.5*"/>
                             </Grid.ColumnDefinitions>
                             <!-- main icon -->
-                            <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SorasHeart" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SoraHeartImage}"/>
+                            <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SorasHeart" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" 
+                                    Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SoraHeartImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
@@ -204,9 +205,10 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
-                            </Viewbox>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
+                            </Viewbox>                            
                             <!-- progression -->
                             <ContentControl x:Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
                         </Grid>
@@ -246,7 +248,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -265,8 +267,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="SimulatedTwilightTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="SimulatedTwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="SimulatedTwilightTownProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -307,7 +310,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -334,8 +337,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="HollowBastionHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="HollowBastionHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="HollowBastionProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -376,7 +380,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -403,8 +407,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="OlympusColiseumHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="OlympusColiseumHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="OlympusColiseumProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -445,7 +450,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -472,8 +477,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="LandofDragonsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="LandofDragonsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="LandofDragonsProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -514,7 +520,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -541,8 +547,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="PrideLandsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="PrideLandsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="PrideLandsProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -583,7 +590,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -610,8 +617,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="HalloweenTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="HalloweenTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="HalloweenTownProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -652,7 +660,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -679,8 +687,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="SpaceParanoidsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="SpaceParanoidsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="SpaceParanoidsProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -757,7 +766,7 @@
                         <local:WorldGrid x:Name="GoAGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
                         <Rectangle Grid.ColumnSpan="2" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
-                        <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Row="1" Grid.Column="2" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
 
                         <!--Rectangle Name="WorldRec" Grid.Column="2" Fill="#4FaFaFaF" Panel.ZIndex="-1"/-->
                     </Grid>
@@ -794,7 +803,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -813,8 +822,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="DriveFormsProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -855,7 +865,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -889,8 +899,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="TwilightTownHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="TwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="TwilightTownProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -931,7 +942,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -958,8 +969,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="BeastsCastleHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="BeastsCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="BeastsCastleProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1000,7 +1012,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1027,8 +1039,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="AgrabahHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="AgrabahHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="AgrabahProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1069,7 +1082,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1088,8 +1101,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="HundredAcreWoodProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1130,7 +1144,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1149,8 +1163,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="DisneyCastleProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1191,7 +1206,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1218,8 +1233,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="PortRoyalHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="PortRoyalHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="PortRoyalProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1260,7 +1276,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1279,8 +1295,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="TWTNWProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1321,7 +1338,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1340,8 +1357,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="AtlanticaProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
@@ -1382,7 +1400,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="0.8*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1401,8 +1419,9 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="4,0,4,0">
-                                <local:OutlinedTextBlock x:Name="PuzzSynthHint" FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="20pt" StrokeThickness="5" Stroke="Black" Fill="#FFEFECE9" Text="?"/>
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                                <local:OutlinedTextBlock x:Name="PuzzSynthHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                         </Grid>
                         <!-- path hints icons -->
@@ -1422,7 +1441,7 @@
                         <local:WorldGrid x:Name="PuzzSynthGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
                         <Rectangle Grid.ColumnSpan="2" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
-                        <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Row="1" Grid.Column="2" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -1452,7 +1471,7 @@
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox>
-                        <local:OutlinedTextBlock x:Name="HintText" FontFamily="/KhTracker;component/Fonts/#KHMenu" FontSize="25pt" FontWeight="DemiBold" 
+                        <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="25pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="3" Stroke="Black" Fill="White" TextAlignment="Center" Text="Sora's Heart has 5 Important Checks test"/>
                     </Viewbox>
 
@@ -1494,7 +1513,7 @@
                         <ColumnDefinition  x:Name="HashSpacer2" Width="0.75*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox Grid.Column="1">
-                        <local:OutlinedTextBlock x:Name="HashText" FontFamily="/KhTracker;component/Fonts/#KHMenu" FontSize="25pt" 
+                        <local:OutlinedTextBlock x:Name="HashText" FontFamily="{StaticResource Menu}" FontSize="25pt" 
                                                  FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Fill="White" Text="Seed Hash:"/>
                     </Viewbox>
                     <local:Item x:Name="HashIcon1" Content="{DynamicResource party}" HorizontalAlignment="Center" Grid.Column="2"/>
@@ -1532,7 +1551,7 @@
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource LevelIcon}" x:Name="LevelIcon"/>
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2,0,0,2">
-                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
+                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#827D7D" Offset="1"/>
@@ -1544,7 +1563,7 @@
                     </Grid>
                     <Grid x:Name="NextLevel" Grid.Column="1">
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="1,0,0,0">
-                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="KHGummi" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text=")99">
+                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text=")99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE6781C" Offset="1"/>
@@ -1562,7 +1581,7 @@
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource StrengthIcon}" x:Name="StrengthIcon"/>
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="StrengthValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                            <local:OutlinedTextBlock x:Name="StrengthValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFDB3735" Offset="1"/>
@@ -1580,7 +1599,7 @@
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource MagicIcon}" x:Name="MagicIcon"/>
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="MagicValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                            <local:OutlinedTextBlock x:Name="MagicValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF8159E2" Offset="1"/>
@@ -1598,7 +1617,7 @@
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource DefenseIcon}" x:Name="DefenseIcon"/>
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="DefenseValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                            <local:OutlinedTextBlock x:Name="DefenseValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC1B41F" Offset="1"/>
@@ -1627,7 +1646,7 @@
                                     <TranslateTransform Y="0" X="-2"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
-                            <local:OutlinedTextBlock x:Name="CollectedValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="00">
+                            <local:OutlinedTextBlock x:Name="CollectedValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="1"/>
@@ -1646,7 +1665,7 @@
                                     <TranslateTransform X="0" Y="-1"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
-                            <local:OutlinedTextBlock x:Name="CollectedBar" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="|">
+                            <local:OutlinedTextBlock x:Name="CollectedBar" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="|">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="1"/>
@@ -1665,7 +1684,7 @@
                                     <TranslateTransform Y="0" X="2"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
-                            <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
+                            <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="1"/>
@@ -1680,7 +1699,7 @@
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Total -->
                         <Viewbox HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                            <local:OutlinedTextBlock x:Name="ScoreValue" FontFamily="KHGummi" FontSize="20" FontStretch="Medium" 
+                            <local:OutlinedTextBlock x:Name="ScoreValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
                                                      AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="9999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -1733,7 +1752,7 @@
                 <ContentControl Content="{DynamicResource Min-Final}"  Opacity="0.5" x:Name="FinalM"  Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2"/>
                 <!--Form level-->
                 <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="ValorLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
+                    <local:OutlinedTextBlock x:Name="ValorLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1743,7 +1762,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="3" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="WisdomLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
+                    <local:OutlinedTextBlock x:Name="WisdomLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1753,7 +1772,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="LimitLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
+                    <local:OutlinedTextBlock x:Name="LimitLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1763,7 +1782,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="7" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="MasterLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
+                    <local:OutlinedTextBlock x:Name="MasterLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1773,7 +1792,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="9" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="FinalLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
+                    <local:OutlinedTextBlock x:Name="FinalLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="7">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1790,7 +1809,7 @@
                 <ContentControl Content="{DynamicResource Min-Glide}"       Opacity="0.5" x:Name="Glide"        Grid.RowSpan="2" Grid.Column="18" Grid.ColumnSpan="2"/>
                 <!--growth levels-->
                 <Viewbox Grid.Column="11" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="HighJumpLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="0">
+                    <local:OutlinedTextBlock x:Name="HighJumpLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="0">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1800,7 +1819,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="13" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="QuickRunLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="1">
+                    <local:OutlinedTextBlock x:Name="QuickRunLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="1">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1810,7 +1829,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="15" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="DodgeRollLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="2">
+                    <local:OutlinedTextBlock x:Name="DodgeRollLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="2">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1820,7 +1839,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="17" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="AerialDodgeLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="3">
+                    <local:OutlinedTextBlock x:Name="AerialDodgeLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="3">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1830,7 +1849,7 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="19" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
-                    <local:OutlinedTextBlock x:Name="GlideLevel" FontFamily="KHGummi" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="4">
+                    <local:OutlinedTextBlock x:Name="GlideLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="4">
                         <local:OutlinedTextBlock.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#827D7D" Offset="1"/>
@@ -1858,7 +1877,7 @@
                     <ColumnDefinition Width="0.01*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Row 1 (USE FONT FOR REPORT NUMBERS?)-->
+                <!-- Row 1 (Reports) -->
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -1973,27 +1992,53 @@
                     </ContentControl>
                 </Grid>
 
-                <!-- Row 2 -->
+                <!-- Row 2 (multis) -->
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        
+                        <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Spacers -->
+
+
+                    <Rectangle Grid.Column="2" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
+                    <Rectangle Grid.Column="5" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-2,5,4,5"/>
+                    <Rectangle Grid.Column="8" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
+                    <Rectangle Grid.Column="11" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
+                    <Rectangle Grid.Column="14" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
+                    <Rectangle Grid.Column="17" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
+                    <Rectangle Grid.Column="20" Fill="#BF1E1E1E" Panel.ZIndex="-1" Margin="-2,5,4,5"/>
+
+                    
                     <!-- Numbers -->
                     <Viewbox Grid.Column="0">
                         <local:OutlinedTextBlock x:Name="FireCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
@@ -2005,7 +2050,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="2">
+                    <Viewbox Grid.Column="3">
                         <local:OutlinedTextBlock x:Name="BlizzardCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2015,7 +2060,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="4">
+                    <Viewbox Grid.Column="6">
                         <local:OutlinedTextBlock x:Name="ThunderCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2025,7 +2070,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="6">
+                    <Viewbox Grid.Column="9">
                         <local:OutlinedTextBlock x:Name="CureCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2035,7 +2080,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="8">
+                    <Viewbox Grid.Column="12">
                         <local:OutlinedTextBlock x:Name="ReflectCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2045,7 +2090,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="10">
+                    <Viewbox Grid.Column="15">
                         <local:OutlinedTextBlock x:Name="MagnetCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2055,7 +2100,7 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
-                    <Viewbox Grid.Column="12">
+                    <Viewbox Grid.Column="18">
                         <local:OutlinedTextBlock x:Name="PageCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="5">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -2065,32 +2110,60 @@
                             </local:OutlinedTextBlock.Fill>
                         </local:OutlinedTextBlock>
                     </Viewbox>
+                    <Viewbox Grid.Column="21">
+                        <local:OutlinedTextBlock x:Name="MunnyCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="2">
+                            <local:OutlinedTextBlock.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD73435" Offset="1"/>
+                                    <GradientStop Color="#FFFF9546" Offset="0.4"/>
+                                </LinearGradientBrush>
+                            </local:OutlinedTextBlock.Fill>
+                        </local:OutlinedTextBlock>
+                    </Viewbox>
 
                     <local:Item x:Name="Fire1"        Content="{DynamicResource Min-Fire1}"         Grid.Column="1" Margin="2,0"/>
                     <local:Item x:Name="Fire2"        Content="{DynamicResource Min-Fire2}"         Grid.Column="1" Margin="2,0"/>
                     <local:Item x:Name="Fire3"        Content="{DynamicResource Min-Fire3}"         Grid.Column="1" Margin="2,0"/>
-                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard1}"     Grid.Column="3" Margin="2,0"/>
-                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard2}"     Grid.Column="3" Margin="2,0"/>
-                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard3}"     Grid.Column="3" Margin="2,0"/>
-                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder1}"      Grid.Column="5" Margin="2,0"/>
-                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder2}"      Grid.Column="5" Margin="2,0"/>
-                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder3}"      Grid.Column="5" Margin="2,0"/>
-                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure1}"         Grid.Column="7" Margin="2,0"/>
-                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure2}"         Grid.Column="7" Margin="2,0"/>
-                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure3}"         Grid.Column="7" Margin="2,0"/>
-                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect1}"      Grid.Column="9" Margin="2,0"/>
-                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect2}"      Grid.Column="9" Margin="2,0"/>
-                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect3}"      Grid.Column="9" Margin="2,0"/>
-                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet1}"       Grid.Column="11" Margin="2,0"/>
-                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet2}"       Grid.Column="11" Margin="2,0"/>
-                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet3}"       Grid.Column="11" Margin="2,0"/>
-                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage1}"     Grid.Column="13" Margin="3,0"/>
-                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage2}"     Grid.Column="13" Margin="3,0"/>
-                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage3}"     Grid.Column="13" Margin="3,0"/>
-                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage4}"     Grid.Column="13" Margin="3,0"/>
-                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage5}"     Grid.Column="13" Margin="3,0"/>
-                    <local:Item x:Name="OnceMore"     Content="{DynamicResource Min-OnceMore}"      Grid.Column="14"/>
-                    <local:Item x:Name="SecondChance" Content="{DynamicResource Min-SecondChance}"  Grid.Column="15"/>
+                    <local:Item x:Name="Blizzard1"    Content="{DynamicResource Min-Blizzard1}"     Grid.Column="4" Margin="2,0"/>
+                    <local:Item x:Name="Blizzard2"    Content="{DynamicResource Min-Blizzard2}"     Grid.Column="4" Margin="2,0"/>
+                    <local:Item x:Name="Blizzard3"    Content="{DynamicResource Min-Blizzard3}"     Grid.Column="4" Margin="2,0"/>
+                    <local:Item x:Name="Thunder1"     Content="{DynamicResource Min-Thunder1}"      Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Thunder2"     Content="{DynamicResource Min-Thunder2}"      Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Thunder3"     Content="{DynamicResource Min-Thunder3}"      Grid.Column="7" Margin="2,0"/>
+                    <local:Item x:Name="Cure1"        Content="{DynamicResource Min-Cure1}"         Grid.Column="10" Margin="2,0"/>
+                    <local:Item x:Name="Cure2"        Content="{DynamicResource Min-Cure2}"         Grid.Column="10" Margin="2,0"/>
+                    <local:Item x:Name="Cure3"        Content="{DynamicResource Min-Cure3}"         Grid.Column="10" Margin="2,0"/>
+                    <local:Item x:Name="Reflect1"     Content="{DynamicResource Min-Reflect1}"      Grid.Column="13" Margin="2,0"/>
+                    <local:Item x:Name="Reflect2"     Content="{DynamicResource Min-Reflect2}"      Grid.Column="13" Margin="2,0"/>
+                    <local:Item x:Name="Reflect3"     Content="{DynamicResource Min-Reflect3}"      Grid.Column="13" Margin="2,0"/>
+                    <local:Item x:Name="Magnet1"      Content="{DynamicResource Min-Magnet1}"       Grid.Column="16" Margin="2,0"/>
+                    <local:Item x:Name="Magnet2"      Content="{DynamicResource Min-Magnet2}"       Grid.Column="16" Margin="2,0"/>
+                    <local:Item x:Name="Magnet3"      Content="{DynamicResource Min-Magnet3}"       Grid.Column="16" Margin="2,0"/>
+                    <local:Item x:Name="TornPage1"    Content="{DynamicResource Min-TornPage1}"     Grid.Column="19" Margin="3,0"/>
+                    <local:Item x:Name="TornPage2"    Content="{DynamicResource Min-TornPage2}"     Grid.Column="19" Margin="3,0"/>
+                    <local:Item x:Name="TornPage3"    Content="{DynamicResource Min-TornPage3}"     Grid.Column="19" Margin="3,0"/>
+                    <local:Item x:Name="TornPage4"    Content="{DynamicResource Min-TornPage4}"     Grid.Column="19" Margin="3,0"/>
+                    <local:Item x:Name="TornPage5"    Content="{DynamicResource Min-TornPage5}"     Grid.Column="19" Margin="3,0"/>
+                    <local:Item x:Name="MunnyPouch1"  Content="{DynamicResource Min-MunnyPouch1}"    Grid.Column="22" Margin="3,0" RenderTransformOrigin="0.5,0.5">
+                        <local:Item.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.15" ScaleY="1.05"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0" Y="0"/>
+                            </TransformGroup>
+                        </local:Item.RenderTransform>
+                    </local:Item>
+                    <local:Item x:Name="MunnyPouch2"  Content="{DynamicResource Min-MunnyPouch2}"    Grid.Column="22" Margin="3,0" RenderTransformOrigin="0.5,0.5">
+                        <local:Item.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.15" ScaleY="1.05"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0" Y="0"/>
+                            </TransformGroup>
+                        </local:Item.RenderTransform>
+                    </local:Item>
 
                     <!-- silhouettes -->
                     <ContentControl x:Name="S_Fire" Content="{DynamicResource Min-Fire1}"                   Grid.Column="1" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
@@ -2098,48 +2171,43 @@
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Blizzard" Content="{DynamicResource Min-Blizzard1}"           Grid.Column="3" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Blizzard" Content="{DynamicResource Min-Blizzard1}"           Grid.Column="4" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Thunder" Content="{DynamicResource Min-Thunder1}"             Grid.Column="5" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Thunder" Content="{DynamicResource Min-Thunder1}"             Grid.Column="7" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Cure" Content="{DynamicResource Min-Cure1}"                   Grid.Column="7" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Cure" Content="{DynamicResource Min-Cure1}"                   Grid.Column="10" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Reflect" Content="{DynamicResource Min-Reflect1}"             Grid.Column="9" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Reflect" Content="{DynamicResource Min-Reflect1}"             Grid.Column="13" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Magnet" Content="{DynamicResource Min-Magnet1}"               Grid.Column="11" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Magnet" Content="{DynamicResource Min-Magnet1}"               Grid.Column="16" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_TornPage" Content="{DynamicResource Min-TornPage1}"           Grid.Column="13" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_TornPage" Content="{DynamicResource Min-TornPage1}"           Grid.Column="19" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_OnceMore" Content="{DynamicResource Min-OnceMore}"            Grid.Column="14" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_MunnyPouch" Content="{DynamicResource Min-MunnyPouch1}"        Grid.Column="21" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_SecondChance" Content="{DynamicResource Min-SecondChance}"    Grid.Column="15" Panel.ZIndex="-2" Opacity="0.5">
-                        <ContentControl.Effect>
-                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
-                        </ContentControl.Effect>
-                    </ContentControl>
-                
-                <!-- Ghost Nums -->
+
+                    <!-- Ghost Nums -->
                     <Grid Grid.Column="0" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -2247,7 +2315,7 @@
                     </Grid>
                 </Grid>
 
-                <!-- Row 3 -->
+                <!-- Row 3 (forms/summons/proofs) -->
                 <Grid Grid.Row="2" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -2264,6 +2332,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition x:Name="PromiseCharmCol" Width="1*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="Valor"        Content="{DynamicResource Min-Valor}"         Grid.Column="0"/>
@@ -2276,10 +2346,12 @@
                     <local:Item x:Name="Lamp"         Content="{DynamicResource Min-Lamp}"          Grid.Column="7"/>
                     <local:Item x:Name="Ukulele"      Content="{DynamicResource Min-Ukulele}"       Grid.Column="8"/>
                     <local:Item x:Name="Feather"      Content="{DynamicResource Min-Feather}"       Grid.Column="9"/>
-                    <local:Item x:Name="Connection"   Content="{DynamicResource Min-Connection}"    Grid.Column="10"/>
-                    <local:Item x:Name="Nonexistence" Content="{DynamicResource Min-Nonexistence}"  Grid.Column="11"/>
-                    <local:Item x:Name="Peace"        Content="{DynamicResource Min-Peace}"         Grid.Column="12"/>
-                    <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"  Grid.Column="13"/>
+                    <local:Item x:Name="OnceMore"     Content="{DynamicResource Min-OnceMore}"      Grid.Column="10"/>
+                    <local:Item x:Name="SecondChance" Content="{DynamicResource Min-SecondChance}"  Grid.Column="11"/>
+                    <local:Item x:Name="Connection"   Content="{DynamicResource Min-Connection}"    Grid.Column="12"/>
+                    <local:Item x:Name="Nonexistence" Content="{DynamicResource Min-Nonexistence}"  Grid.Column="13"/>
+                    <local:Item x:Name="Peace"        Content="{DynamicResource Min-Peace}"         Grid.Column="14"/>
+                    <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"  Grid.Column="15"/>
 
                     <!-- silhouettes -->
                     <ContentControl x:Name="S_Valor" Content="{DynamicResource Min-Valor}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
@@ -2332,28 +2404,41 @@
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Connection" Content="{DynamicResource Min-Connection}"        Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+
+                    <ContentControl x:Name="S_OnceMore" Content="{DynamicResource Min-OnceMore}"            Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_SecondChance" Content="{DynamicResource Min-SecondChance}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Peace" Content="{DynamicResource Min-Peace}"                  Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+
+                    <ContentControl x:Name="S_Connection" Content="{DynamicResource Min-Connection}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"    Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Peace" Content="{DynamicResource Min-Peace}"                  Grid.Column="14" Panel.ZIndex="-2" Opacity="0.5">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"    Grid.Column="15" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
 
                 </Grid>
+                
                 <!-- Row 4 -->
                 <Grid Grid.Row="3" Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -2368,9 +2453,9 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
-                        <ColumnDefinition x:Name="HadesCupCol" Width="0*"/>
-                        <ColumnDefinition x:Name="OlympusStoneCol" Width="0*"/>
-                        <ColumnDefinition x:Name="UnknownDiskCol" Width="0*"/>
+                        <ColumnDefinition x:Name="HadesCupCol" Width="1*"/>
+                        <ColumnDefinition x:Name="OlympusStoneCol" Width="1*"/>
+                        <ColumnDefinition x:Name="UnknownDiskCol" Width="1*"/>
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="BeastWep" 	    Content="{DynamicResource Min-BeastWep}"        Grid.Column="0"/>
@@ -2459,6 +2544,8 @@
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
+
+
                 </Grid>
 
                 <!-- Ghost Items -->

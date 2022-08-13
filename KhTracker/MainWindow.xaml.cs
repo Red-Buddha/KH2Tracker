@@ -152,6 +152,7 @@ namespace KhTracker
                             data.Items.Add(check.Name, new Tuple<Item, Grid>(check, check.Parent as Grid));  //list of all valid items
                             //data.ItemsGrid.Add(check.Parent as Grid);   //list of grids each item belongs to
                             ++total;
+                            //Console.WriteLine(check.Name);
                         }
                         else
                         {
