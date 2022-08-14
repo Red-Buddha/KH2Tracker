@@ -40,77 +40,99 @@
     <SolidColorBrush x:Key="SelectedRec" Color="#BF3C5A78"/>
     <!-- Window Background default -->
     <SolidColorBrush x:Key="BG-Default" Color="#303030"/>
-    
-    
-    <!--auto-detect icons-->
-    <Image x:Key="Min-Connect"	 Source="Images\connect.png" x:Shared="false"/>
-    <Image x:Key="Min-PC"	 Source="Images\PC.png" x:Shared="false"/>
-    <Image x:Key="Min-PS2"	 Source="Images\ps2.png" x:Shared="false"/>
+    <ImageBrush x:Key="BG-ImageDef1"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile"/>
+    <ImageBrush x:Key="BG-ImageDef2"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-ImageDef3"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile" Stretch="None"/>
 
+    <!--auto-detect icons-->
+    <Image x:Key="Min-Connect" Source="Images\System\Config\searching.png"      x:Shared="false"/>
+    <Image x:Key="Min-PC"	   Source="Images\System\Config\pc_connected.png"   x:Shared="false"/>
+    <Image x:Key="Min-PCred"   Source="Images\System\Config\pc_detected.png"    x:Shared="false"/>
+    <Image x:Key="Min-PS2"	   Source="Images\System\Config\pcsx2.png"          x:Shared="false"/>
+                                 
     <!--Seed Hash Icons-->
-    <Image x:Key="ability-unequip" Source="Images\Icons\ability-unequip.png"/>
-    <Image x:Key="accessory" Source="Images\Icons\accessory.png"/>
-    <Image x:Key="ai-mode-frequent" Source="Images\Icons\ai-mode-frequent.png"/>
-    <Image x:Key="ai-mode-moderate" Source="Images\Icons\ai-mode-moderate.png"/>
-    <Image x:Key="ai-mode-rare" Source="Images\Icons\ai-mode-rare.png"/>
-    <Image x:Key="ai-settings" Source="Images\Icons\ai-settings.png"/>
-    <Image x:Key="armor" Source="Images\Icons\armor.png"/>
-    <Image x:Key="button-circle" Source="Images\Icons\button-circle.png"/>
-    <Image x:Key="button-cross" Source="Images\Icons\button-cross.png"/>
-    <Image x:Key="button-l1" Source="Images\Icons\button-l1.png"/>
-    <Image x:Key="button-l2" Source="Images\Icons\button-l2.png"/>
-    <Image x:Key="button-r1" Source="Images\Icons\button-r1.png"/>
-    <Image x:Key="button-r2" Source="Images\Icons\button-r2.png"/>
-    <Image x:Key="button-square" Source="Images\Icons\button-square.png"/>
-    <Image x:Key="button-triangle" Source="Images\Icons\button-triangle.png"/>
-    <Image x:Key="exclamation-mark" Source="Images\Icons\exclamation-mark.png"/>
-    <Image x:Key="form" Source="Images\Icons\form.png"/>
-    <Image x:Key="gumi-block" Source="Images\Icons\gumi-block.png"/>
-    <Image x:Key="gumi-blueprint" Source="Images\Icons\gumi-blueprint.png"/>
-    <Image x:Key="gumi-brush" Source="Images\Icons\gumi-brush.png"/>
-    <Image x:Key="gumi-gear" Source="Images\Icons\gumi-gear.png"/>
-    <Image x:Key="gumi-ship" Source="Images\Icons\gumi-ship.png"/>
-    <Image x:Key="item-consumable" Source="Images\Icons\item-consumable.png"/>
-    <Image x:Key="item-key" Source="Images\Icons\item-key.png"/>
-    <Image x:Key="item-tent" Source="Images\Icons\item-tent.png"/>
-    <Image x:Key="magic" Source="Images\Icons\magic.png"/>
-    <Image x:Key="material" Source="Images\Icons\material.png"/>
-    <Image x:Key="party" Source="Images\Icons\party.png"/>
-    <Image x:Key="question-mark" Source="Images\Icons\question-mark.png"/>
-    <Image x:Key="rank-a" Source="Images\Icons\rank-a.png"/>
-    <Image x:Key="rank-b" Source="Images\Icons\rank-b.png"/>
-    <Image x:Key="rank-c" Source="Images\Icons\rank-c.png"/>
-    <Image x:Key="rank-s" Source="Images\Icons\rank-s.png"/>
-    <Image x:Key="weapon-keyblade" Source="Images\Icons\weapon-keyblade.png"/>
-    <Image x:Key="weapon-shield" Source="Images\Icons\weapon-shield.png"/>
-    <Image x:Key="weapon-staff" Source="Images\Icons\weapon-staff.png"/>
+    <Image x:Key="ability-unequip"  Source="Images\HashIcons\ability-unequip.png"/>
+    <Image x:Key="accessory"        Source="Images\HashIcons\accessory.png"/>
+    <Image x:Key="ai-mode-frequent" Source="Images\HashIcons\ai-mode-frequent.png"/>
+    <Image x:Key="ai-mode-moderate" Source="Images\HashIcons\ai-mode-moderate.png"/>
+    <Image x:Key="ai-mode-rare"     Source="Images\HashIcons\ai-mode-rare.png"/>
+    <Image x:Key="ai-settings"      Source="Images\HashIcons\ai-settings.png"/>
+    <Image x:Key="armor"            Source="Images\HashIcons\armor.png"/>
+    <Image x:Key="button-circle"    Source="Images\HashIcons\button-circle.png"/>
+    <Image x:Key="button-cross"     Source="Images\HashIcons\button-cross.png"/>
+    <Image x:Key="button-l1"        Source="Images\HashIcons\button-l1.png"/>
+    <Image x:Key="button-l2"        Source="Images\HashIcons\button-l2.png"/>
+    <Image x:Key="button-r1"        Source="Images\HashIcons\button-r1.png"/>
+    <Image x:Key="button-r2"        Source="Images\HashIcons\button-r2.png"/>
+    <Image x:Key="button-square"    Source="Images\HashIcons\button-square.png"/>
+    <Image x:Key="button-triangle"  Source="Images\HashIcons\button-triangle.png"/>
+    <Image x:Key="exclamation-mark" Source="Images\HashIcons\exclamation-mark.png"/>
+    <Image x:Key="form"             Source="Images\HashIcons\form.png"/>
+    <Image x:Key="gumi-block"       Source="Images\HashIcons\gumi-block.png"/>
+    <Image x:Key="gumi-blueprint"   Source="Images\HashIcons\gumi-blueprint.png"/>
+    <Image x:Key="gumi-brush"       Source="Images\HashIcons\gumi-brush.png"/>
+    <Image x:Key="gumi-gear"        Source="Images\HashIcons\gumi-gear.png"/>
+    <Image x:Key="gumi-ship"        Source="Images\HashIcons\gumi-ship.png"/>
+    <Image x:Key="item-consumable"  Source="Images\HashIcons\item-consumable.png"/>
+    <Image x:Key="item-key"         Source="Images\HashIcons\item-key.png"/>
+    <Image x:Key="item-tent"        Source="Images\HashIcons\item-tent.png"/>
+    <Image x:Key="magic"            Source="Images\HashIcons\magic.png"/>
+    <Image x:Key="material"         Source="Images\HashIcons\material.png"/>
+    <Image x:Key="party"            Source="Images\HashIcons\party.png"/>
+    <Image x:Key="question-mark"    Source="Images\HashIcons\question-mark.png"/>
+    <Image x:Key="rank-a"           Source="Images\HashIcons\rank-a.png"/>
+    <Image x:Key="rank-b"           Source="Images\HashIcons\rank-b.png"/>
+    <Image x:Key="rank-c"           Source="Images\HashIcons\rank-c.png"/>
+    <Image x:Key="rank-s"           Source="Images\HashIcons\rank-s.png"/>
+    <Image x:Key="weapon-keyblade"  Source="Images\HashIcons\weapon-keyblade.png"/>
+    <Image x:Key="weapon-shield"    Source="Images\HashIcons\weapon-shield.png"/>
+    <Image x:Key="weapon-staff"     Source="Images\HashIcons\weapon-staff.png"/>
 
     <!--Stat UI-->
-    <Image x:Key="LevelIcon"  		    Source="Images\Other\level.png" x:Shared="false"/>
-    <Image x:Key="StrengthIcon"		    Source="Images\Other\strength.png" x:Shared="false"/>
-    <Image x:Key="MagicIcon"  		    Source="Images\Other\magic.png" x:Shared="false"/>
-    <Image x:Key="DefenseIcon"  	    Source="Images\Other\defence.png" x:Shared="false"/>
-    <Image x:Key="Sword"		        Source="Images\Other\sword.png" x:Shared="false"/>
-    <Image x:Key="Shield"  	            Source="Images\Other\shield.png" x:Shared="false"/>
-    <Image x:Key="Staff"  	            Source="Images\Other\staff.png" x:Shared="false"/>
-    <Image x:Key="Min-Chest" 		    Source="Images\Other\chest.png"/>
-    <Image x:Key="Old-Chest" 		    Source="Images\Other\chest_old.png"/>
-    
-    <!--Custom Stat UI-->
-    <Image x:Key="Cus-LevelIcon"  		Source="pack://application:,,,/CustomImages/Other/level.png" x:Shared="false"/>
-    <Image x:Key="Cus-StrengthIcon"		Source="pack://application:,,,/CustomImages/Other/strength.png" x:Shared="false"/>
-    <Image x:Key="Cus-MagicIcon"  		Source="pack://application:,,,/CustomImages/Other/magic.png" x:Shared="false"/>
-    <Image x:Key="Cus-DefenseIcon"  	Source="pack://application:,,,/CustomImages/Other/defence.png" x:Shared="false"/>
-    <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/Other/sword.png" x:Shared="false"/>
-    <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/Other/shield.png" x:Shared="false"/>
-    <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/Other/staff.png" x:Shared="false"/>
+    <Image x:Key="LevelIcon"  		    Source="Images\System\stats\level.png"    x:Shared="false"/>
+    <Image x:Key="StrengthIcon"		    Source="Images\System\stats\strength.png" x:Shared="false"/>
+    <Image x:Key="MagicIcon"  		    Source="Images\System\stats\magic.png"    x:Shared="false"/>
+    <Image x:Key="DefenseIcon"  	    Source="Images\System\stats\defence.png"  x:Shared="false"/>
+    <Image x:Key="DeathIcon" 		    Source="Images\System\stats\deaths.png"   x:Shared="false"/>
+    <Image x:Key="Sword"		        Source="Images\System\stats\sword.png"    x:Shared="false"/>
+    <Image x:Key="Shield"  	            Source="Images\System\stats\shield.png"   x:Shared="false"/>
+    <Image x:Key="Staff"  	            Source="Images\System\stats\staff.png"    x:Shared="false"/>
+    <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"/>
+    <Image x:Key="HighJump" 		    Source="Images\System\drive_growth\high_jump.png"    x:Shared="false"/>
+    <Image x:Key="QuickRun" 		    Source="Images\System\drive_growth\quick_run.png"    x:Shared="false"/>
+    <Image x:Key="DodgeRoll" 		    Source="Images\System\drive_growth\dodge_roll.png"   x:Shared="false"/>
+    <Image x:Key="AerialDodge" 		    Source="Images\System\drive_growth\aerial_dodge.png" x:Shared="false"/>
+    <Image x:Key="Glide" 			    Source="Images\System\drive_growth\glide.png"        x:Shared="false"/>
+    <Image x:Key="Valor" 		        Source="Images\System\drive_growth\valor.png"        x:Shared="false"/>
+    <Image x:Key="Wisdom" 		        Source="Images\System\drive_growth\Wisdom.png"       x:Shared="false"/>
+    <Image x:Key="Limit" 		        Source="Images\System\drive_growth\Limit.png"        x:Shared="false"/>
+    <Image x:Key="Master" 		        Source="Images\System\drive_growth\Master.png"       x:Shared="false"/>
+    <Image x:Key="Final" 			    Source="Images\System\drive_growth\Final.png"        x:Shared="false"/>
 
+    <!--Custom Stat UI-->
+    <Image x:Key="Cus-LevelIcon"  		Source="pack://application:,,,/CustomImages/System/stats/level.png"    x:Shared="false"/>
+    <Image x:Key="Cus-StrengthIcon"		Source="pack://application:,,,/CustomImages/System/stats/strength.png" x:Shared="false"/>
+    <Image x:Key="Cus-MagicIcon"  		Source="pack://application:,,,/CustomImages/System/stats/magic.png"    x:Shared="false"/>
+    <Image x:Key="Cus-DefenseIcon"  	Source="pack://application:,,,/CustomImages/System/stats/defence.png"  x:Shared="false"/>
+    <Image x:Key="Cus-DeathIcon" 		Source="pack://application:,,,/CustomImages/System/stats/deaths.png"   x:Shared="false"/>
+    <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/System/stats/sword.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/System/stats/shield.png"   x:Shared="false"/>
+    <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/System/stats/staff.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Chest" 		    Source="pack://application:,,,/CustomImages/System/stats/chest.png"/>
+    <Image x:Key="Cus-HighJump" 		Source="pack://application:,,,/CustomImages/System/drive_growth/high_jump.png"    x:Shared="false"/>
+    <Image x:Key="Cus-QuickRun" 		Source="pack://application:,,,/CustomImages/System/drive_growth/quick_run.png"    x:Shared="false"/>
+    <Image x:Key="Cus-DodgeRoll" 		Source="pack://application:,,,/CustomImages/System/drive_growth/dodge_roll.png"   x:Shared="false"/>
+    <Image x:Key="Cus-AerialDodge" 		Source="pack://application:,,,/CustomImages/System/drive_growth/aerial_dodge.png" x:Shared="false"/>
+    <Image x:Key="Cus-Glide" 			Source="pack://application:,,,/CustomImages/System/drive_growth/glide.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Valor" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/valor.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Wisdom" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Wisdom.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Limit" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Limit.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Master" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Master.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Final" 			Source="pack://application:,,,/CustomImages/System/drive_growth/Final.png"        x:Shared="false"/>
+    
     <!-- main window custom image-->
-    <ImageBrush x:Key="BG-Image1" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" />
-    <ImageBrush x:Key="BG-ImageDef1" ImageSource="Images/BG.png" TileMode="Tile"/>
-    <ImageBrush x:Key="BG-Image2" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
-    <ImageBrush x:Key="BG-ImageDef2" ImageSource="Images/BG.png" TileMode="Tile" Stretch="UniformToFill"/>
-    <ImageBrush x:Key="BG-Image3" ImageSource="pack://application:,,,/CustomImages/BG.png" TileMode="Tile" Stretch="None"/>
-    <ImageBrush x:Key="BG-ImageDef3" ImageSource="Images/BG.png" TileMode="Tile" Stretch="None"/>
+    <ImageBrush x:Key="BG-Image1"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" />
+    <ImageBrush x:Key="BG-Image2"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-Image3"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" Stretch="None"/>
 
 </ResourceDictionary>

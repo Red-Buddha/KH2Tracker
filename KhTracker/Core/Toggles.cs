@@ -806,47 +806,47 @@ namespace KhTracker
                 //    OldWorldToggle(sender, e);
                 //}
 
-                #region reload visit locks
-
-                HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
-
-                #endregion
-
-                #region reload others
-
-                SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                GoACross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-
-                Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
-
-                #endregion
+                //#region reload visit locks
+                //
+                //HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
+                //TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
+                //
+                //#endregion
+                //
+                //#region reload others
+                //
+                //SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //GoACross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
+                //
+                //Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
+                //
+                //#endregion
             }
         }
 

@@ -119,20 +119,20 @@ namespace KhTracker
             data.WorldsData.Add("Atlantica",                new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, false, 0));
             data.WorldsData.Add("PuzzSynth",                new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, false, 0));
 
-            data.ProgressKeys.Add("SimulatedTwilightTown",  new List<string>() { "", "STTChests", "TwilightThorn", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
-            data.ProgressKeys.Add("TwilightTown",           new List<string>() { "", "TTChests", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
-            data.ProgressKeys.Add("HollowBastion",          new List<string>() { "", "HBChests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx" });
-            data.ProgressKeys.Add("BeastsCastle",           new List<string>() { "", "BCChests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
-            data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "OCChests", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
-            data.ProgressKeys.Add("Agrabah",                new List<string>() { "", "AGChests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
-            data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "LoDChests", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
-            data.ProgressKeys.Add("HundredAcreWood",        new List<string>() { "", "Pooh", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
-            data.ProgressKeys.Add("PrideLands",             new List<string>() { "", "PLChests", "Simba", "Scar", "GroundShaker", "DataSaix" });
-            data.ProgressKeys.Add("DisneyCastle",           new List<string>() { "", "DCChests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill" });
-            data.ProgressKeys.Add("HalloweenTown",          new List<string>() { "", "HTChests", "CandyCaneLane", "PrisonKeeper", "OogieBoogie", "Presents", "Experiment", "Vexen" });
-            data.ProgressKeys.Add("PortRoyal",              new List<string>() { "", "PRChests", "Town", "Barbossa", "Gambler", "GrimReaper", "DataLuxord" });
-            data.ProgressKeys.Add("SpaceParanoids",         new List<string>() { "", "SPChests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
-            data.ProgressKeys.Add("TWTNW",                  new List<string>() { "", "TWTNWChests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
+            data.ProgressKeys.Add("SimulatedTwilightTown",  new List<string>() { "", "Chests", "Minigame", "TwilightThorn", "Axel1", "Struggle", "ComputerRoom", "Axel", "DataRoxas" });
+            data.ProgressKeys.Add("TwilightTown",           new List<string>() { "", "Chests", "Station", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
+            data.ProgressKeys.Add("HollowBastion",          new List<string>() { "", "Chests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx", "SephiDemyx" });
+            data.ProgressKeys.Add("BeastsCastle",           new List<string>() { "", "Chests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
+            data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "Chests", "Urns", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
+            data.ProgressKeys.Add("Agrabah",                new List<string>() { "", "Chests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
+            data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "Chests", "Missions", "Mountain", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
+            data.ProgressKeys.Add("HundredAcreWood",        new List<string>() { "", "Chests", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
+            data.ProgressKeys.Add("PrideLands",             new List<string>() { "", "Chests", "Simba", "Hyenas1", "Scar", "Hyenas2", "GroundShaker", "DataSaix" });
+            data.ProgressKeys.Add("DisneyCastle",           new List<string>() { "", "Chests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill", "Marluxia_LingeringWill" });
+            data.ProgressKeys.Add("HalloweenTown",          new List<string>() { "", "Chests", "CandyCaneLane", "PrisonKeeper", "OogieBoogie", "Children", "Presents", "Experiment", "Vexen" });
+            data.ProgressKeys.Add("PortRoyal",              new List<string>() { "", "Chests", "Town", "1Minute", "Barrels", "Barbossa", "GrimReaper1", "Gambler", "GrimReaper", "DataLuxord" });
+            data.ProgressKeys.Add("SpaceParanoids",         new List<string>() { "", "Chests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
+            data.ProgressKeys.Add("TWTNW",                  new List<string>() { "", "Chests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
             data.ProgressKeys.Add("Atlantica",              new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
 
             foreach (Grid itemrow in ItemPool.Children)

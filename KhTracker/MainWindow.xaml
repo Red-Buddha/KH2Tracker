@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Icon="/Images/Other/ansem_report.png" Title="KH2 Tracker 2.0 (Alpha)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Alpha)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -134,7 +134,7 @@
                 <!-- 2.2 -->
                 <RowDefinition x:Name="CheckRow" Height="2.2*"/>
                 <!-- 0.4 -->
-                <RowDefinition x:Name="SettingRow" Height="0.0*"/>
+                <RowDefinition x:Name="SettingRow" Height="0.4*"/>
             </Grid.RowDefinitions>
 
             <!-- World Grids -->
@@ -186,7 +186,7 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SorasHeart" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" 
                                     Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SoraHeartImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -210,9 +210,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="SorasHeartPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="SorasHeartPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="SorasHeartPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="SorasHeartPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="SorasHeartPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="SorasHeartPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="2"/>
@@ -248,7 +248,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SimulatedImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -272,9 +272,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="SimulatedTwilightTownPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="SimulatedTwilightTownPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="SimulatedTwilightTownPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="SimulatedTwilightTownPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="SimulatedTwilightTownPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="SimulatedTwilightTownPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Grid.Column="2"/>
@@ -308,9 +308,9 @@
                                 <ColumnDefinition Width="0.5*"/>
                             </Grid.ColumnDefinitions>
                             <!-- main icon -->
-                            <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HollowBastionImage}"/>
+                            <Button Opacity="1" Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HollowBastionImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -318,7 +318,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="HollowBastionLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="HollowBastionLock" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -331,7 +331,9 @@
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
-                            <ContentControl x:Name="HollowBastionProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+                            <ContentControl x:Name="HollowBastionProgression" Panel.ZIndex="1" IsHitTestVisible="False" 
+                                            Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+                            <Image Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Source="Images/default_progression_test/corridors.png" Margin="-5,0,0,0"/>
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="HollowBastionPath" Grid.Column="1">
@@ -342,9 +344,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="HollowBastionPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="HollowBastionPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="HollowBastionPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="HollowBastionPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="HollowBastionPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="HollowBastionPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HollowBastionGrid" Grid.Column="2"/>
@@ -380,7 +382,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-OlympusImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -388,7 +390,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="OlympusColiseumLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="OlympusColiseumLock" Source="Images/Worlds/Locks/OC.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -412,9 +414,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="OlympusColiseumPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="OlympusColiseumPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="OlympusColiseumPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="OlympusColiseumPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="OlympusColiseumPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="OlympusColiseumPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="OlympusColiseumGrid" Grid.Column="2"/>
@@ -450,7 +452,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-LandofDragonsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="LandofDragonsCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="LandofDragonsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -458,7 +460,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="LandofDragonsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="LandofDragonsLock" Source="Images/Worlds/Locks/LD.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -482,9 +484,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="LandofDragonsPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="LandofDragonsPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="LandofDragonsPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="LandofDragonsPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="LandofDragonsPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="LandofDragonsPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="LandofDragonsGrid" Grid.Column="2"/>
@@ -520,7 +522,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PrideLandsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PrideLandsCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PrideLandsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -528,7 +530,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="PrideLandsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="PrideLandsLock" Source="Images/Worlds/Locks/PL.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -552,9 +554,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="PrideLandsPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="PrideLandsPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="PrideLandsPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="PrideLandsPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="PrideLandsPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="PrideLandsPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PrideLandsGrid" Grid.Column="2"/>
@@ -590,7 +592,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HalloweenTownImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -598,7 +600,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="HalloweenTownLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="HalloweenTownLock" Source="Images/Worlds/Locks/HT.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -622,9 +624,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="HalloweenTownPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="HalloweenTownPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="HalloweenTownPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="HalloweenTownPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="HalloweenTownPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="HalloweenTownPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HalloweenTownGrid" Grid.Column="2"/>
@@ -660,7 +662,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SpaceParanoidsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SpaceParanoidsCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SpaceParanoidsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -668,7 +670,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="SpaceParanoidsLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="SpaceParanoidsLock" Source="Images/Worlds/Locks/SP.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -692,9 +694,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="SpaceParanoidsPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="SpaceParanoidsPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="SpaceParanoidsPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="SpaceParanoidsPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="SpaceParanoidsPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="SpaceParanoidsPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SpaceParanoidsGrid" Grid.Column="2"/>
@@ -730,7 +732,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="GoA" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-GardenofAssemblageImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoACross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoACross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -747,9 +749,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="GoAPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="GoAPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="GoAPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="GoAPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="GoAPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="GoAPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="GoAGrid" Grid.Column="2"/>
@@ -803,7 +805,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-DriveFormsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DriveFormsCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DriveFormsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -827,9 +829,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="DriveFormsPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="DriveFormsPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="DriveFormsPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="DriveFormsPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="DriveFormsPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="DriveFormsPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="2"/>
@@ -865,7 +867,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-TwilightTownImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -873,14 +875,14 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icons -->
-                            <Image x:Name="TwilightTownLock_1" Source="Images/Other/visitlocksilver.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0,0.5" IsHitTestVisible="False">
+                            <Image x:Name="TwilightTownLock_1" Source="Images/Worlds/Locks/TT2.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
-                            <Image x:Name="TwilightTownLock_2" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="1,0.5" IsHitTestVisible="False">
+                            <Image x:Name="TwilightTownLock_2" Source="Images/Worlds/Locks/TT3.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="1,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -904,9 +906,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="TwilightTownPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="TwilightTownPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="TwilightTownPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="TwilightTownPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="TwilightTownPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="TwilightTownPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="TwilightTownGrid" Grid.Column="2"/>
@@ -942,7 +944,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-BeastCastleImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="BeastsCastleCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="BeastsCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -950,7 +952,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="BeastsCastleLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="BeastsCastleLock" Source="Images/Worlds/Locks/BC.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -974,9 +976,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="BeastsCastlePath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="BeastsCastlePath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="BeastsCastlePath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="BeastsCastlePath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="BeastsCastlePath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="BeastsCastlePath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="BeastsCastleGrid" Grid.Column="2"/>
@@ -1012,7 +1014,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-AgrabahImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1020,7 +1022,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="AgrabahLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="AgrabahLock" Source="Images/Worlds/Locks/AG.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -1044,9 +1046,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="AgrabahPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="AgrabahPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="AgrabahPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="AgrabahPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="AgrabahPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="AgrabahPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="AgrabahGrid" Grid.Column="2"/>
@@ -1082,7 +1084,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HundredAcreImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HundredAcreWoodCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HundredAcreWoodCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1106,9 +1108,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="HundredAcreWoodPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="HundredAcreWoodPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="HundredAcreWoodPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="HundredAcreWoodPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="HundredAcreWoodPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="HundredAcreWoodPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HundredAcreWoodGrid" Grid.Column="2"/>
@@ -1144,7 +1146,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-DisneyCastleImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DisneyCastleCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DisneyCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1168,9 +1170,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="DisneyCastlePath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="DisneyCastlePath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="DisneyCastlePath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="DisneyCastlePath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="DisneyCastlePath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="DisneyCastlePath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="DisneyCastleGrid" Grid.Column="2"/>
@@ -1206,7 +1208,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PortRoyalImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PortRoyalCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PortRoyalCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1214,7 +1216,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="PortRoyalLock" Source="Images/Other/visitlock.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="PortRoyalLock" Source="Images/Worlds/Locks/PR.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -1238,9 +1240,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="PortRoyalPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="PortRoyalPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="PortRoyalPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="PortRoyalPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="PortRoyalPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="PortRoyalPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PortRoyalGrid" Grid.Column="2"/>
@@ -1276,7 +1278,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-TWTNWImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TWTNWCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TWTNWCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1300,9 +1302,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="TWTNWPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="TWTNWPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="TWTNWPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="TWTNWPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="TWTNWPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="TWTNWPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="TWTNWGrid" Grid.Column="2"/>
@@ -1338,7 +1340,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-AtlanticaImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AtlanticaCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AtlanticaCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1362,9 +1364,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="AtlanticaPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="AtlanticaPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="AtlanticaPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="AtlanticaPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="AtlanticaPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="AtlanticaPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="2"/>
@@ -1400,7 +1402,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PuzzSynth" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PuzzSynth}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthCross" Source="Images/Other/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1422,9 +1424,9 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="0.18*"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="PuzzSynthPath_Con" Source="Images/Checks/Simple/proof_of_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
-                            <Image x:Name="PuzzSynthPath_Non" Source="Images/Checks/Simple/proof_of_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
-                            <Image x:Name="PuzzSynthPath_Pea" Source="Images/Checks/Simple/proof_of_tranquility.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
+                            <Image x:Name="PuzzSynthPath_Con" Source="Images/System/proof_connection.png"      Visibility="Visible" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Image x:Name="PuzzSynthPath_Non" Source="Images/System/proof_nonexistence.png"    Visibility="Visible" Grid.Row="2"/>
+                            <Image x:Name="PuzzSynthPath_Pea" Source="Images/System/proof_peace.png"     Visibility="Visible" Grid.Row="3" VerticalAlignment="Top"/>
                         </Grid>
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PuzzSynthGrid" Grid.Column="2"/>
@@ -1471,7 +1473,7 @@
                             <ColumnDefinition Width="0.5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="1" x:Name="Skull" Source="Images/Other/generic skull.png"/>
+                        <Image Grid.Column="1" x:Name="DeathIcon" Source="Images/System/stats/deaths.png"/>
                         <Viewbox Grid.Column="2">
                             <local:OutlinedTextBlock x:Name="DeathValue" FontFamily="{StaticResource Gummi}" FontSize="15pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="3" Text="999">
                                 <local:OutlinedTextBlock.Fill>
@@ -1791,11 +1793,11 @@
                     </local:OutlinedTextBlock>
                 </Viewbox>
                 <!--growth icons-->
-                <ContentControl Content="{DynamicResource Min-HighJump}"    Opacity="0.5" x:Name="HighJump"     Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="2"/>
-                <ContentControl Content="{DynamicResource Min-QuickRun}"    Opacity="0.5" x:Name="QuickRun"     Grid.RowSpan="2" Grid.Column="12" Grid.ColumnSpan="2"/>
-                <ContentControl Content="{DynamicResource Min-DodgeRoll}"   Opacity="0.5" x:Name="DodgeRoll"    Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="2"/>
-                <ContentControl Content="{DynamicResource Min-AerialDodge}" Opacity="0.5" x:Name="AerialDodge"  Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="2"/>
-                <ContentControl Content="{DynamicResource Min-Glide}"       Opacity="0.5" x:Name="Glide"        Grid.RowSpan="2" Grid.Column="18" Grid.ColumnSpan="2"/>
+                <ContentControl Content="{DynamicResource HighJump}"    Opacity="0.5" x:Name="HighJump"     Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="2"/>
+                <ContentControl Content="{DynamicResource QuickRun}"    Opacity="0.5" x:Name="QuickRun"     Grid.RowSpan="2" Grid.Column="12" Grid.ColumnSpan="2"/>
+                <ContentControl Content="{DynamicResource DodgeRoll}"   Opacity="0.5" x:Name="DodgeRoll"    Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="2"/>
+                <ContentControl Content="{DynamicResource AerialDodge}" Opacity="0.5" x:Name="AerialDodge"  Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="2"/>
+                <ContentControl Content="{DynamicResource Glide}"       Opacity="0.5" x:Name="Glide"        Grid.RowSpan="2" Grid.Column="18" Grid.ColumnSpan="2"/>
                 <!--growth levels-->
                 <Viewbox Grid.Column="11" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,3,-2,0">
                     <local:OutlinedTextBlock x:Name="HighJumpLevel" FontFamily="{StaticResource Gummi}" FontSize="20" AllowDrop="False" IsHitTestVisible="False" Text="0">
@@ -2605,6 +2607,8 @@
                     <local:Item x:Name="Ghost_MembershipCard" 	Content="{DynamicResource Min-MembershipCard}"  Opacity="0.5"/>
                     <local:Item x:Name="Ghost_Picture" 	        Content="{DynamicResource Min-Picture}"         Opacity="0.5"/>
                     <local:Item x:Name="Ghost_IceCream" 	    Content="{DynamicResource Min-IceCream}"        Opacity="0.5"/>
+                    <local:Item x:Name="Ghost_MunnyPouch1" 	    Content="{DynamicResource Min-MunnyPouch1}"        Opacity="0.5"/>
+                    <local:Item x:Name="Ghost_MunnyPouch2" 	    Content="{DynamicResource Min-MunnyPouch2}"        Opacity="0.5"/>
                 </Grid>
             </Grid>
 
@@ -2625,33 +2629,39 @@
                 <!-- Setting Icons -->
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="03*"/>
-                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Name="Setting_BetterSTT"/>
+                        <ColumnDefinition Name="Setting_Level_01" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Level_50"/>
+                        <ColumnDefinition Name="Setting_Level_99" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Absent"/>
+                        <ColumnDefinition Name="Setting_Datas"/>
+                        <ColumnDefinition Name="Setting_Sephiroth"/>
+                        <ColumnDefinition Name="Setting_Terra"/>
+                        <ColumnDefinition Name="Setting_Cups"/>
+                        <ColumnDefinition Name="Setting_HadesCup"/>
+                        <ColumnDefinition Name="Setting_Cavern"/>
+                        <ColumnDefinition Name="Setting_Transport"/>
+                        <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="Images/Settings/Level50.png" Grid.Column="0"/>
-                    <Image Source="Images/Settings/data_organization.png" Grid.Column="1"/>
-                    <Image Source="Images/Settings/absent_silhouette.png" Grid.Column="2"/>
-                    <Image Source="Images/Settings/cerberus_cup.png" Grid.Column="3"/>
-                    <Image Source="Images/Settings/paradox_cup.png" Grid.Column="4"/>
-                    <Image Source="Images/Settings/sephiroth.png" Grid.Column="5"/>
-                    <Image Source="Images/Settings/land_of_departure.png" Grid.Column="6"/>
-                    <Image Source="Images/Settings/cavern_of_remembrance.png" Grid.Column="7"/>
-
+                    <Image Grid.Column="0" Source="Images/System/settings/better_stt.png"/>
+                    <Image Grid.Column="1" Source="Images/System/settings/Level_01.png"/>
+                    <Image Grid.Column="2" Source="Images/System/settings/Level_50.png"/>
+                    <Image Grid.Column="3" Source="Images/System/settings/Level_99.png"/>
+                    <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"/>
+                    <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"/>
+                    <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"/>
+                    <Image Grid.Column="7" Source="Images/System/settings/lingering_will.png"/>
+                    <Image Grid.Column="8" Source="Images/System/settings/underdrome_cups.png"/>
+                    <Image Grid.Column="9" Source="Images/System/settings/paradox_cup.png"/>
+                    <Image Grid.Column="10" Source="Images/System/settings/cavern_of_remembrance.png"/>
+                    <Image Grid.Column="11" Source="Images/System/settings/transport.png"/>
 
                 </Grid>
 
                 <!-- Auto-Detect Visual -->
-                <Image x:Name="Connect" Source="Images/connect.png" Grid.Column="3" Margin="0,3"/>
+                <Image x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3"/>
 
                 <!-- fancy spacer colors -->
                 <Rectangle Grid.ColumnSpan="3" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>

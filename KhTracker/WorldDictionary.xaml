@@ -7,27 +7,27 @@
     </ControlTemplate>
 
     <!--Simple World Icons-->
-    <Image x:Key="Min-SoraHeartImage" 			Source="Images\Worlds\Simple\level.png" x:Shared="false"/>
-    <Image x:Key="Min-SimulatedImage" 			Source="Images\Worlds\Simple\simulated_twilight_town.png" x:Shared="false"/>
-    <Image x:Key="Min-HollowBastionImage" 		Source="Images\Worlds\Simple\hollow_bastion.png" x:Shared="false"/>
-    <Image x:Key="Min-OlympusImage" 			Source="Images\Worlds\Simple\olympus_coliseum.png" x:Shared="false"/>
-    <Image x:Key="Min-LandofDragonsImage" 		Source="Images\Worlds\Simple\land_of_dragons.png" x:Shared="false"/>
-    <Image x:Key="Min-PrideLandsImage" 			Source="Images\Worlds\Simple\pride_land.png" x:Shared="false"/>
-    <Image x:Key="Min-HalloweenTownImage" 		Source="Images\Worlds\Simple\halloween_town.png" x:Shared="false"/>
-    <Image x:Key="Min-SpaceParanoidsImage" 		Source="Images\Worlds\Simple\space_paranoids.png" x:Shared="false"/>
-    <Image x:Key="Min-GardenofAssemblageImage" 	Source="Images\Worlds\Simple\replica_data.png" x:Shared="false"/>
-    <Image x:Key="Min-DriveFormsImage" 			Source="Images\Worlds\Simple\drive_form.png" x:Shared="false"/>
-    <Image x:Key="Min-TwilightTownImage" 		Source="Images\Worlds\Simple\twilight_town.png" x:Shared="false"/>
-    <Image x:Key="Min-BeastCastleImage" 		Source="Images\Worlds\Simple\beast's_castle.png" x:Shared="false"/>
-    <Image x:Key="Min-AgrabahImage" 			Source="Images\Worlds\Simple\agrabah.png" x:Shared="false"/>
-    <Image x:Key="Min-HundredAcreImage" 		Source="Images\Worlds\Simple\100_acre_wood.png" x:Shared="false"/>
-    <Image x:Key="Min-DisneyCastleImage" 		Source="Images\Worlds\Simple\disney_castle.png" x:Shared="false"/>
-    <Image x:Key="Min-PortRoyalImage" 			Source="Images\Worlds\Simple\port_royal.png" x:Shared="false"/>
-    <Image x:Key="Min-TWTNWImage" 				Source="Images\Worlds\Simple\the_world_that_never_was.png" x:Shared="false"/>
-    <Image x:Key="Min-AtlanticaImage" 			Source="Images\Worlds\Simple\atlantica.png" x:Shared="false"/>
-    <Image x:Key="Min-PuzzSynth" 			    Source="Images\Worlds\Simple\PuzzSynth.png" x:Shared="false"/>
-    <Image x:Key="Min-PuzzSynth_P" 			    Source="Images\Worlds\Simple\Puzzle.png" x:Shared="false"/>
-    <Image x:Key="Min-PuzzSynth_S" 			    Source="Images\Worlds\Simple\Synth.png" x:Shared="false"/>
+    <Image x:Key="Min-SoraHeartImage" 			Source="Images\Worlds\Min\level.png" x:Shared="false"/>
+    <Image x:Key="Min-SimulatedImage" 			Source="Images\Worlds\Min\simulated_twilight_town.png" x:Shared="false"/>
+    <Image x:Key="Min-HollowBastionImage" 		Source="Images\Worlds\Min\hollow_bastion.png" x:Shared="false"/>
+    <Image x:Key="Min-OlympusImage" 			Source="Images\Worlds\Min\olympus_coliseum.png" x:Shared="false"/>
+    <Image x:Key="Min-LandofDragonsImage" 		Source="Images\Worlds\Min\land_of_dragons.png" x:Shared="false"/>
+    <Image x:Key="Min-PrideLandsImage" 			Source="Images\Worlds\Min\pride_land.png" x:Shared="false"/>
+    <Image x:Key="Min-HalloweenTownImage" 		Source="Images\Worlds\Min\halloween_town.png" x:Shared="false"/>
+    <Image x:Key="Min-SpaceParanoidsImage" 		Source="Images\Worlds\Min\space_paranoids.png" x:Shared="false"/>
+    <Image x:Key="Min-GardenofAssemblageImage" 	Source="Images\Worlds\Min\replica_data.png" x:Shared="false"/>
+    <Image x:Key="Min-DriveFormsImage" 			Source="Images\Worlds\Min\drive_form.png" x:Shared="false"/>
+    <Image x:Key="Min-TwilightTownImage" 		Source="Images\Worlds\Min\twilight_town.png" x:Shared="false"/>
+    <Image x:Key="Min-BeastCastleImage" 		Source="Images\Worlds\Min\beast's_castle.png" x:Shared="false"/>
+    <Image x:Key="Min-AgrabahImage" 			Source="Images\Worlds\Min\agrabah.png" x:Shared="false"/>
+    <Image x:Key="Min-HundredAcreImage" 		Source="Images\Worlds\Min\100_acre_wood.png" x:Shared="false"/>
+    <Image x:Key="Min-DisneyCastleImage" 		Source="Images\Worlds\Min\disney_castle.png" x:Shared="false"/>
+    <Image x:Key="Min-PortRoyalImage" 			Source="Images\Worlds\Min\port_royal.png" x:Shared="false"/>
+    <Image x:Key="Min-TWTNWImage" 				Source="Images\Worlds\Min\the_world_that_never_was.png" x:Shared="false"/>
+    <Image x:Key="Min-AtlanticaImage" 			Source="Images\Worlds\Min\atlantica.png" x:Shared="false"/>
+    <Image x:Key="Min-PuzzSynth" 			    Source="Images\Worlds\Min\PuzzSynth.png" x:Shared="false"/>
+    <Image x:Key="Min-PuzzSynth_P" 			    Source="Images\Worlds\Min\Puzzle.png" x:Shared="false"/>
+    <Image x:Key="Min-PuzzSynth_S" 			    Source="Images\Worlds\Min\Synth.png" x:Shared="false"/>
 
     <!--Old World Icons-->
     <Image x:Key="Old-SoraHeartImage" 			Source="Images\Worlds\Old\level.png" x:Shared="false"/>
@@ -53,8 +53,17 @@
     <Image x:Key="Old-PuzzSynth_S" 			    Source="Images\Worlds\Old\Synth.png" x:Shared="false"/>
 
     <!-- Visit Locks -->
-    <Image x:Key="VisitLockG"  	        Source="Images\Other\visitlock.png" x:Shared="false"/>
-    <Image x:Key="VisitLockS"  	        Source="Images\Other\visitlocksilver.png" x:Shared="false"/>
+    <Image x:Key="HollowBastionLock" 		Source="Images\Worlds\Locks\hb.png" x:Shared="false"/>
+    <Image x:Key="OlympusLock" 			    Source="Images\Worlds\Locks\oc.png" x:Shared="false"/>
+    <Image x:Key="LandofDragonsLock" 		Source="Images\Worlds\Locks\ld.png" x:Shared="false"/>
+    <Image x:Key="PrideLandsLock" 			Source="Images\Worlds\Locks\pl.png" x:Shared="false"/>
+    <Image x:Key="HalloweenTownLock" 		Source="Images\Worlds\Locks\ht.png" x:Shared="false"/>
+    <Image x:Key="SpaceParanoidsLock" 		Source="Images\Worlds\Locks\sp.png" x:Shared="false"/>
+    <Image x:Key="BeastCastleLock" 		    Source="Images\Worlds\Locks\bc.png" x:Shared="false"/>
+    <Image x:Key="AgrabahLock" 			    Source="Images\Worlds\Locks\ag.png" x:Shared="false"/>
+    <Image x:Key="PortRoyalLock" 			Source="Images\Worlds\Locks\pr.png" x:Shared="false"/>
+    <Image x:Key="TwilightTownLock1" 		Source="Images\Worlds\Locks\tt2.png" x:Shared="false"/>
+    <Image x:Key="TwilightTownLock2" 		Source="Images\Worlds\Locks\tt3.png" x:Shared="false"/>
 
     <!--Custom World Icons (Main)-->
     <Image x:Key="Cus-SoraHeartImage" 			Source="pack://application:,,,/CustomImages/Worlds/level.png" x:Shared="false"/>
@@ -80,10 +89,16 @@
     <Image x:Key="Cus-PuzzSynth_S" 			    Source="pack://application:,,,/CustomImages/Worlds/Synth.png" x:Shared="false"/>
 
     <!-- Custom Visit Locks -->
-    <Image x:Key="Cus-VisitLockG"  	    Source="pack://application:,,,/CustomImages/Other/visitlock.png" x:Shared="false"/>
-    <Image x:Key="Cus-VisitLockS"  	    Source="pack://application:,,,/CustomImages/Other/visitlocksilver.png" x:Shared="false"/>
-
-
-
+    <Image x:Key="Cus-HollowBastionLock" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/hb.png" x:Shared="false"/>
+    <Image x:Key="Cus-OlympusLock" 			    Source="pack://application:,,,/CustomImages/Worlds/Locks/oc.png" x:Shared="false"/>
+    <Image x:Key="Cus-LandofDragonsLock" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/ld.png" x:Shared="false"/>
+    <Image x:Key="Cus-PrideLandsLock" 			Source="pack://application:,,,/CustomImages/Worlds/Locks/pl.png" x:Shared="false"/>
+    <Image x:Key="Cus-HalloweenTownLock" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/ht.png" x:Shared="false"/>
+    <Image x:Key="Cus-SpaceParanoidsLock" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/sp.png" x:Shared="false"/>
+    <Image x:Key="Cus-BeastCastleLock" 		    Source="pack://application:,,,/CustomImages/Worlds/Locks/bc.png" x:Shared="false"/>
+    <Image x:Key="Cus-AgrabahLock" 			    Source="pack://application:,,,/CustomImages/Worlds/Locks/ag.png" x:Shared="false"/>
+    <Image x:Key="Cus-PortRoyalLock" 			Source="pack://application:,,,/CustomImages/Worlds/Locks/pr.png" x:Shared="false"/>
+    <Image x:Key="Cus-TwilightTownLock1" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/tt2.png" x:Shared="false"/>
+    <Image x:Key="Cus-TwilightTownLock2" 		Source="pack://application:,,,/CustomImages/Worlds/Locks/tt3.png" x:Shared="false"/>
 
 </ResourceDictionary>

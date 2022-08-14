@@ -2,354 +2,369 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:KhTracker">
 
-    <!--Hollow Bastion-->
-    <Image x:Key="Min-HBChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Bailey" Source="Images\Progression\Simple\merlin.png" x:Shared="False"/>
-    <Image x:Key="Min-AnsemStudy" Source="Images\Progression\Simple\ansem_the_wise.png" x:Shared="False"/>
-    <Image x:Key="Min-Corridor" Source="Images\Progression\Simple\crimson_jazz.png" x:Shared="False"/>
-    <Image x:Key="Min-Dancers" Source="Images\Progression\Simple\dancer.png" x:Shared="False"/>
-    <Image x:Key="Min-HBDemyx" Source="Images\Progression\Simple\demyx.png" x:Shared="False"/>
-    <Image x:Key="Min-FinalFantasy" Source="Images\Progression\Simple\cloud.png" x:Shared="False"/>
-    <Image x:Key="Min-1000Heartless" Source="Images\Progression\Simple\1k.png" x:Shared="False"/>
-    <Image x:Key="Min-Sephiroth" Source="Images\Progression\Simple\sephiroth.png" x:Shared="False"/>
-    <Image x:Key="Min-DataDemyx" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Twilight Town-->
-    <Image x:Key="Min-TTChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-MysteriousTower" Source="Images\Progression\Simple\yen_sid.png" x:Shared="False"/>
-    <Image x:Key="Min-Sandlot" Source="Images\Progression\Simple\berserker.png" x:Shared="False"/>
-    <Image x:Key="Min-Mansion" Source="Images\Progression\Simple\mickey.png" x:Shared="False"/>
-    <Image x:Key="Min-BetwixtandBetween" Source="Images\Progression\Simple\axel.png" x:Shared="False"/>
-    <Image x:Key="Min-DataAxel" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Land of Dragons-->
-    <Image x:Key="Min-LoDChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Cave" Source="Images\Progression\Simple\assault_rider.png" x:Shared="False"/>
-    <Image x:Key="Min-Summit" Source="Images\Progression\Simple\rapid_thruster.png" x:Shared="False"/>
-    <Image x:Key="Min-ShanYu" Source="Images\Progression\Simple\shan_yu.png" x:Shared="False"/>
-    <Image x:Key="Min-ThroneRoom" Source="Images\Progression\Simple\emperor.png" x:Shared="False"/>
-    <Image x:Key="Min-StormRider" Source="Images\Progression\Simple\storm_rider.png" x:Shared="False"/>
-    <Image x:Key="Min-DataXigbar" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Beasts Castle-->
-    <Image x:Key="Min-BCChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Thresholder" Source="Images\Progression\Simple\thresholder.png" x:Shared="False"/>
-    <Image x:Key="Min-Beast" Source="Images\Progression\Simple\beast.png" x:Shared="False"/>
-    <Image x:Key="Min-DarkThorn" Source="Images\Progression\Simple\dark_thorn.png" x:Shared="False"/>
-    <Image x:Key="Min-Dragoons" Source="Images\Progression\Simple\dragoon.png" x:Shared="False"/>
-    <Image x:Key="Min-Xaldin" Source="Images\Progression\Simple\xaldin.png" x:Shared="False"/>
-    <Image x:Key="Min-DataXaldin" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Olympus Coliseum-->
-    <Image x:Key="Min-OCChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Cerberus" Source="Images\Progression\Simple\cerberus.png" x:Shared="False"/>
-    <Image x:Key="Min-OCDemyx" Source="Images\Progression\Simple\demyx.png" x:Shared="False"/>
-    <Image x:Key="Min-OCPete" Source="Images\Progression\Simple\pete.png" x:Shared="False"/>
-    <Image x:Key="Min-Hydra" Source="Images\Progression\Simple\hydra.png" x:Shared="False"/>
-    <Image x:Key="Min-AuronStatue" Source="Images\Progression\Simple\dusk.png" x:Shared="False"/>
-    <Image x:Key="Min-Hades" Source="Images\Progression\Simple\hades.png" x:Shared="False"/>
-    <Image x:Key="Min-Zexion" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Space Paranoids-->
-    <Image x:Key="Min-SPChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Screens" Source="Images\Progression\Simple\screens.png" x:Shared="False"/>
-    <Image x:Key="Min-HostileProgram" Source="Images\Progression\Simple\hostile_program.png" x:Shared="False"/>
-    <Image x:Key="Min-SolarSailer" Source="Images\Progression\Simple\devastator.png" x:Shared="False"/>
-    <Image x:Key="Min-MCP" Source="Images\Progression\Simple\master_control_program.png" x:Shared="False"/>
-    <Image x:Key="Min-Larxene" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Halloween Town-->
-    <Image x:Key="Min-HTChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-CandyCaneLane" Source="Images\Progression\Simple\toy_soldier.png" x:Shared="False"/>
-    <Image x:Key="Min-PrisonKeeper" Source="Images\Progression\Simple\prison_keeper.png" x:Shared="False"/>
-    <Image x:Key="Min-OogieBoogie" Source="Images\Progression\Simple\oogie_boogie.png" x:Shared="False"/>
-    <Image x:Key="Min-Presents" Source="Images\Progression\Simple\presents.png" x:Shared="False"/>
-    <Image x:Key="Min-Experiment" Source="Images\Progression\Simple\experiment.png" x:Shared="False"/>
-    <Image x:Key="Min-Vexen" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Port Royal-->
-    <Image x:Key="Min-PRChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Town" Source="Images\Progression\Simple\cannon_gun.png" x:Shared="False"/>
-    <Image x:Key="Min-Barbossa" Source="Images\Progression\Simple\barbossa.png" x:Shared="False"/>
-    <Image x:Key="Min-Gambler" Source="Images\Progression\Simple\gambler.png" x:Shared="False"/>
-    <Image x:Key="Min-GrimReaper" Source="Images\Progression\Simple\grim_reaper.png" x:Shared="False"/>
-    <Image x:Key="Min-DataLuxord" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Agrabah-->
-    <Image x:Key="Min-AGChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Abu" Source="Images\Progression\Simple\abu.png" x:Shared="False"/>
-    <Image x:Key="Min-Chasm" Source="Images\Progression\Simple\chasm_of_challenges.png" x:Shared="False"/>
-    <Image x:Key="Min-TreasureRoom" Source="Images\Progression\Simple\treasure_room.png" x:Shared="False"/>
-    <Image x:Key="Min-Lords" Source="Images\Progression\Simple\blizzard_lord.png" x:Shared="False"/>
-    <Image x:Key="Min-Carpet" Source="Images\Progression\Simple\carpet.png" x:Shared="False"/>
-    <Image x:Key="Min-GenieJafar" Source="Images\Progression\Simple\genie_jafar.png" x:Shared="False"/>
-    <Image x:Key="Min-Lexaeus" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Pride Lands-->
-    <Image x:Key="Min-PLChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Simba" Source="Images\Progression\Simple\simba.png" x:Shared="False"/>
-    <Image x:Key="Min-Scar" Source="Images\Progression\Simple\scar.png" x:Shared="False"/>
-    <Image x:Key="Min-Groundshaker" Source="Images\Progression\Simple\groundshaker.png" x:Shared="False"/>
-    <Image x:Key="Min-DataSaix" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Disney Castle-->
-    <Image x:Key="Min-DCChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Minnie" Source="Images\Progression\Simple\minnie.png" x:Shared="False"/>
-    <Image x:Key="Min-OldPete" Source="Images\Progression\Simple\old_pete.png" x:Shared="False"/>
-    <Image x:Key="Min-Windows" Source="Images\Progression\Simple\hot_rod.png" x:Shared="False"/>
-    <Image x:Key="Min-BoatPete" Source="Images\Progression\Simple\boat_pete.png" x:Shared="False"/>
-    <Image x:Key="Min-DCPete" Source="Images\Progression\Simple\pete_pete.png" x:Shared="False"/>
-    <Image x:Key="Min-Marluxia" Source="Images\Progression\Simple\marluxia.png" x:Shared="False"/>
-    <Image x:Key="Min-LingeringWill" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
+    <!--Common-->
+    <Image x:Key="Min-Chests"         Source="Images\Progression\Min\chest.png" x:Shared="False"/>
+    <Image x:Key="Min-Emblem"         Source="Images\Progression\emblem.png" x:Shared="False"/>
+    <Image x:Key="Old-Chests"         Source="Images\Progression\Old\chest.png" x:Shared="False"/>
+    <Image x:Key="Old-Emblem"         Source="Images\Progression\emblem.png" x:Shared="False"/>
+    <Image x:Key="Cus-Chests"         Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
+    <Image x:Key="Cus-Emblem"         Source="pack://application:,,,/CustomImages/Progression/emblem.png" x:Shared="False"/>
+    
     <!--100 Acre Wood-->
-    <Image x:Key="Min-Pooh" Source="Images\Progression\Simple\pooh.png" x:Shared="False"/>
-    <Image x:Key="Min-Piglet" Source="Images\Progression\Simple\piglet.png" x:Shared="False"/>
-    <Image x:Key="Min-Rabbit" Source="Images\Progression\Simple\rabbit.png" x:Shared="False"/>
-    <Image x:Key="Min-Kanga" Source="Images\Progression\Simple\kanga.png" x:Shared="False"/>
-    <Image x:Key="Min-SpookyCave" Source="Images\Progression\Simple\bees.png" x:Shared="False"/>
-    <Image x:Key="Min-StarryHill" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--Simulated Twilight Town-->
-    <Image x:Key="Min-STTChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-TwilightThorn" Source="Images\Progression\Simple\twilight_thorn.png" x:Shared="False"/>
-    <Image x:Key="Min-Struggle" Source="Images\Progression\Simple\struggle.png" x:Shared="False"/>
-    <Image x:Key="Min-ComputerRoom" Source="Images\Progression\Simple\computer_room.png" x:Shared="False"/>
-    <Image x:Key="Min-Axel" Source="Images\Progression\Simple\axel.png" x:Shared="False"/>
-    <Image x:Key="Min-DataRoxas" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
-    <!--TWTNW-->
-    <Image x:Key="Min-TWTNWChests" Source="Images\Progression\Simple\chest.png" x:Shared="False"/>
-    <Image x:Key="Min-Roxas" Source="Images\Progression\Simple\roxas.png" x:Shared="False"/>
-    <Image x:Key="Min-Xigbar" Source="Images\Progression\Simple\xigbar.png" x:Shared="False"/>
-    <Image x:Key="Min-Luxord" Source="Images\Progression\Simple\luxord.png" x:Shared="False"/>
-    <Image x:Key="Min-Saix" Source="Images\Progression\Simple\saix.png" x:Shared="False"/>
-    <Image x:Key="Min-Xemnas1" Source="Images\Progression\Simple\xemnas.png" x:Shared="False"/>
-    <Image x:Key="Min-DataXemnas" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Min-Piglet"       Source="Images\Progression\Min\100_acre_wood\blustery_rescue.png" x:Shared="False"/>
+    <Image x:Key="Min-Rabbit"       Source="Images\Progression\Min\100_acre_wood\hunny_slider.png" x:Shared="False"/>
+    <Image x:Key="Min-Kanga"        Source="Images\Progression\Min\100_acre_wood\balloon_bounce.png" x:Shared="False"/>
+    <Image x:Key="Min-SpookyCave"   Source="Images\Progression\Min\100_acre_wood\expotition.png" x:Shared="False"/>
+    <Image x:Key="Min-StarryHill"   Source="Images\Progression\Min\100_acre_wood\hunny_pot.png" x:Shared="False"/>
+    <!--Agrabah-->
+    <Image x:Key="Min-Abu"          Source="Images\Progression\Min\agrabah\abu.png" x:Shared="False"/>
+    <Image x:Key="Min-Chasm"        Source="Images\Progression\Min\agrabah\chasm_of_challenges.png" x:Shared="False"/>
+    <Image x:Key="Min-TreasureRoom" Source="Images\Progression\Min\agrabah\treasure_room.png" x:Shared="False"/>
+    <Image x:Key="Min-Lords"        Source="Images\Progression\Min\agrabah\elemental_lords.png" x:Shared="False"/>
+    <Image x:Key="Min-Carpet"       Source="Images\Progression\Min\agrabah\magic_switches.png" x:Shared="False"/>
+    <Image x:Key="Min-GenieJafar"   Source="Images\Progression\Min\agrabah\jafar.png" x:Shared="False"/>
+    <Image x:Key="Min-Lexaeus"      Source="Images\Progression\Min\agrabah\lexaeus.png" x:Shared="False"/>
     <!--Atlantica-->
-    <Image x:Key="Min-Tutorial" Source="Images\Progression\Simple\ariel.png" x:Shared="False"/>
-    <Image x:Key="Min-Ursula" Source="Images\Progression\Simple\ursula.png" x:Shared="False"/>
-    <Image x:Key="Min-NewDay" Source="Images\Progression\Simple\mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Min-Tutorial"     Source="Images\Progression\Min\atlantica\tutorial.png" x:Shared="False"/>
+    <Image x:Key="Min-Ursula"       Source="Images\Progression\Min\atlantica\ursula.png" x:Shared="False"/>
+    <Image x:Key="Min-NewDay"       Source="Images\Progression\Min\atlantica\concert.png" x:Shared="False"/>
+    <!--Beasts Castle-->
+    <Image x:Key="Min-Thresholder"  Source="Images\Progression\Min\beast's_castle\thresholder.png" x:Shared="False"/>
+    <Image x:Key="Min-Beast"        Source="Images\Progression\Min\beast's_castle\beast.png" x:Shared="False"/>
+    <Image x:Key="Min-DarkThorn"    Source="Images\Progression\Min\beast's_castle\dark_thorn.png" x:Shared="False"/>
+    <Image x:Key="Min-Dragoons"     Source="Images\Progression\Min\beast's_castle\dragoons.png" x:Shared="False"/>
+    <Image x:Key="Min-Xaldin"       Source="Images\Progression\Min\beast's_castle\xaldin_story.png" x:Shared="False"/>
+    <Image x:Key="Min-DataXaldin"   Source="Images\Progression\Min\beast's_castle\xaldin.png" x:Shared="False"/>
+    <!--Disney Castle-->
+    <Image x:Key="Min-Minnie"                   Source="Images\Progression\Min\disney_castle\minnie.png" x:Shared="False"/>
+    <Image x:Key="Min-OldPete"                  Source="Images\Progression\Min\disney_castle\old_pete.png" x:Shared="False"/>
+    <Image x:Key="Min-Windows"                  Source="Images\Progression\Min\disney_castle\windows_of_time.png" x:Shared="False"/>
+    <Image x:Key="Min-BoatPete"                 Source="Images\Progression\Min\disney_castle\steamboat_pete.png" x:Shared="False"/>
+    <Image x:Key="Min-DCPete"                   Source="Images\Progression\Min\disney_castle\pete.png" x:Shared="False"/>
+    <Image x:Key="Min-Marluxia"                 Source="Images\Progression\Min\disney_castle\marluxia.png" x:Shared="False"/>
+    <Image x:Key="Min-LingeringWill"            Source="Images\Progression\Min\disney_castle\lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Min-Marluxia_LingeringWill"   Source="Images\Progression\Min\disney_castle\marluxia_and_lingering_will.png" x:Shared="False"/>
+    <!--Halloween Town-->
+    <Image x:Key="Min-CandyCaneLane"    Source="Images\Progression\Min\halloween_town\candy_cane_lane.png" x:Shared="False"/>
+    <Image x:Key="Min-PrisonKeeper"     Source="Images\Progression\Min\halloween_town\prison_keeper.png" x:Shared="False"/>
+    <Image x:Key="Min-OogieBoogie"      Source="Images\Progression\Min\halloween_town\oogie_boogie.png" x:Shared="False"/>
+    <Image x:Key="Min-Children"         Source="Images\Progression\Min\halloween_town\children.png" x:Shared="False"/>
+    <Image x:Key="Min-Presents"         Source="Images\Progression\Min\halloween_town\presents.png" x:Shared="False"/>
+    <Image x:Key="Min-Experiment"       Source="Images\Progression\Min\halloween_town\experiment.png" x:Shared="False"/>
+    <Image x:Key="Min-Vexen"            Source="Images\Progression\Min\halloween_town\vexen.png" x:Shared="False"/>
+    <!--Hollow Bastion-->
+    <Image x:Key="Min-Bailey"           Source="Images\Progression\Min\hollow_bastion\bailey.png" x:Shared="False"/>
+    <Image x:Key="Min-AnsemStudy"       Source="Images\Progression\Min\hollow_bastion\ansem's_study.png" x:Shared="False"/>
+    <Image x:Key="Min-Corridor"         Source="Images\Progression\Min\hollow_bastion\corridors.png" x:Shared="False"/>
+    <Image x:Key="Min-Dancers"          Source="Images\Progression\Min\hollow_bastion\dancers.png" x:Shared="False"/>
+    <Image x:Key="Min-HBDemyx"          Source="Images\Progression\Min\hollow_bastion\demyx_story.png" x:Shared="False"/>
+    <Image x:Key="Min-FinalFantasy"     Source="Images\Progression\Min\hollow_bastion\final_fantasy.png" x:Shared="False"/>
+    <Image x:Key="Min-1000Heartless"    Source="Images\Progression\Min\hollow_bastion\1000_heartless.png" x:Shared="False"/>
+    <Image x:Key="Min-Sephiroth"        Source="Images\Progression\Min\hollow_bastion\sephiroth.png" x:Shared="False"/>
+    <Image x:Key="Min-DataDemyx"        Source="Images\Progression\Min\hollow_bastion\demyx.png" x:Shared="False"/>
+    <Image x:Key="Min-SephiDemyx"       Source="Images\Progression\Min\hollow_bastion\demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Land of Dragons-->
+    <Image x:Key="Min-Missions"     Source="Images\Progression\Min\land_of_dragons\missions.png" x:Shared="False"/>
+    <Image x:Key="Min-Mountain"     Source="Images\Progression\Min\land_of_dragons\mountain_climb.png" x:Shared="False"/>
+    <Image x:Key="Min-Cave"         Source="Images\Progression\Min\land_of_dragons\village_cave.png" x:Shared="False"/>
+    <Image x:Key="Min-Summit"       Source="Images\Progression\Min\land_of_dragons\summit.png" x:Shared="False"/>
+    <Image x:Key="Min-ShanYu"       Source="Images\Progression\Min\land_of_dragons\shan_yu.png" x:Shared="False"/>
+    <Image x:Key="Min-ThroneRoom"   Source="Images\Progression\Min\land_of_dragons\snipers.png" x:Shared="False"/>
+    <Image x:Key="Min-StormRider"   Source="Images\Progression\Min\land_of_dragons\storm_rider.png" x:Shared="False"/>
+    <Image x:Key="Min-DataXigbar"   Source="Images\Progression\Min\land_of_dragons\xigbar.png" x:Shared="False"/>
+    <!--Olympus Coliseum-->
+    <Image x:Key="Min-Cerberus"     Source="Images\Progression\Min\olympus_coliseum\cerberus.png" x:Shared="False"/>
+    <Image x:Key="Min-Urns"         Source="Images\Progression\Min\olympus_coliseum\urns.png" x:Shared="False"/>
+    <Image x:Key="Min-OCDemyx"      Source="Images\Progression\Min\olympus_coliseum\demyx.png" x:Shared="False"/>
+    <Image x:Key="Min-OCPete"       Source="Images\Progression\Min\olympus_coliseum\the_lock.png" x:Shared="False"/>
+    <Image x:Key="Min-Hydra"        Source="Images\Progression\Min\olympus_coliseum\hydra.png" x:Shared="False"/>
+    <Image x:Key="Min-AuronStatue"  Source="Images\Progression\Min\olympus_coliseum\dusks.png" x:Shared="False"/>
+    <Image x:Key="Min-Hades"        Source="Images\Progression\Min\olympus_coliseum\hades.png" x:Shared="False"/>
+    <Image x:Key="Min-Zexion"       Source="Images\Progression\Min\olympus_coliseum\zexion.png" x:Shared="False"/>
+    <!--Port Royal-->
+    <Image x:Key="Min-Town"         Source="Images\Progression\Min\port_royal\town.png" x:Shared="False"/>
+    <Image x:Key="Min-1Minute"      Source="Images\Progression\Min\port_royal\isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Min-Barrels"      Source="Images\Progression\Min\port_royal\explosives.png" x:Shared="False"/>
+    <Image x:Key="Min-Barbossa"     Source="Images\Progression\Min\port_royal\barbossa.png" x:Shared="False"/>
+    <Image x:Key="Min-GrimReaper1"  Source="Images\Progression\Min\port_royal\grim_reaper.png" x:Shared="False"/>
+    <Image x:Key="Min-Gambler"      Source="Images\Progression\Min\port_royal\gamblers.png" x:Shared="False"/>
+    <Image x:Key="Min-GrimReaper"   Source="Images\Progression\Min\port_royal\cursed_reaper.png" x:Shared="False"/>
+    <Image x:Key="Min-DataLuxord"   Source="Images\Progression\Min\port_royal\luxord.png" x:Shared="False"/>
+    <!--Pride Lands-->
+    <Image x:Key="Min-Simba"        Source="Images\Progression\Min\pride_lands\oasis.png" x:Shared="False"/>
+    <Image x:Key="Min-Hyenas1"      Source="Images\Progression\Min\pride_lands\timon_and_pumba.png" x:Shared="False"/>
+    <Image x:Key="Min-Scar"         Source="Images\Progression\Min\pride_lands\scar.png" x:Shared="False"/>
+    <Image x:Key="Min-Hyenas2"      Source="Images\Progression\Min\pride_lands\hyenas.png" x:Shared="False"/>
+    <Image x:Key="Min-Groundshaker" Source="Images\Progression\Min\pride_lands\groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Min-DataSaix"     Source="Images\Progression\Min\pride_lands\saix.png" x:Shared="False"/>
+    <!--Simulated Twilight Town-->
+    <Image x:Key="Min-Minigame"         Source="Images\Progression\Min\simulated_twilight_town\munny_pouch.png" x:Shared="False"/>
+    <Image x:Key="Min-TwilightThorn"    Source="Images\Progression\Min\simulated_twilight_town\twilight_thorn.png" x:Shared="False"/>
+    <Image x:Key="Min-Axel1"            Source="Images\Progression\Min\simulated_twilight_town\axel_story.png" x:Shared="False"/>
+    <Image x:Key="Min-Struggle"         Source="Images\Progression\Min\simulated_twilight_town\struggle.png" x:Shared="False"/>
+    <Image x:Key="Min-ComputerRoom"     Source="Images\Progression\Min\simulated_twilight_town\computer_room.png" x:Shared="False"/>
+    <Image x:Key="Min-Axel"             Source="Images\Progression\Min\simulated_twilight_town\pod_room.png" x:Shared="False"/>
+    <Image x:Key="Min-DataRoxas"        Source="Images\Progression\Min\simulated_twilight_town\roxas.png" x:Shared="False"/>
+    <!--Space Paranoids-->
+    <Image x:Key="Min-Screens"          Source="Images\Progression\Min\space_paranoids\dataspace.png" x:Shared="False"/>
+    <Image x:Key="Min-HostileProgram"   Source="Images\Progression\Min\space_paranoids\hostile_program.png" x:Shared="False"/>
+    <Image x:Key="Min-SolarSailer"      Source="Images\Progression\Min\space_paranoids\solar_sailer.png" x:Shared="False"/>
+    <Image x:Key="Min-Sark"             Source="Images\Progression\Min\space_paranoids\sark.png" x:Shared="False"/>
+    <Image x:Key="Min-MCP"              Source="Images\Progression\Min\space_paranoids\master_control_program.png" x:Shared="False"/>
+    <Image x:Key="Min-Larxene"          Source="Images\Progression\Min\space_paranoids\larxene.png" x:Shared="False"/>
+    <!--TWTNW-->
+    <Image x:Key="Min-Roxas"            Source="Images\Progression\Min\the_world_that_never_was\roxas.png" x:Shared="False"/>
+    <Image x:Key="Min-Xigbar"           Source="Images\Progression\Min\the_world_that_never_was\xigbar.png" x:Shared="False"/>
+    <Image x:Key="Min-Luxord"           Source="Images\Progression\Min\the_world_that_never_was\luxord.png" x:Shared="False"/>
+    <Image x:Key="Min-Saix"             Source="Images\Progression\Min\the_world_that_never_was\saix.png" x:Shared="False"/>
+    <Image x:Key="Min-Xemnas1"          Source="Images\Progression\Min\the_world_that_never_was\kingdom_hearts.png" x:Shared="False"/>
+    <Image x:Key="Min-DataXemnas"       Source="Images\Progression\Min\the_world_that_never_was\xemnas.png" x:Shared="False"/>
+    <!--Twilight Town-->
+    <Image x:Key="Min-Station"           Source="Images\Progression\Min\twilight_town\dusks.png" x:Shared="False"/>
+    <Image x:Key="Min-MysteriousTower"   Source="Images\Progression\Min\twilight_town\mysterious_tower.png" x:Shared="False"/>
+    <Image x:Key="Min-Sandlot"           Source="Images\Progression\Min\twilight_town\berserkers.png" x:Shared="False"/>
+    <Image x:Key="Min-Mansion"           Source="Images\Progression\Min\twilight_town\mickey.png" x:Shared="False"/>
+    <Image x:Key="Min-BetwixtandBetween" Source="Images\Progression\Min\twilight_town\betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Min-DataAxel"          Source="Images\Progression\Min\twilight_town\axel.png" x:Shared="False"/>
 
+
+
+    
     <!--World Progression (Old)-->
-    <!--Hollow Bastion-->
-    <Image x:Key="Old-HBChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Bailey" Source="Images\Progression\Old\merlin.png" x:Shared="False"/>
-    <Image x:Key="Old-AnsemStudy" Source="Images\Progression\Old\ansem_the_wise.png" x:Shared="False"/>
-    <Image x:Key="Old-Corridor" Source="Images\Progression\Old\crimson_jazz.png" x:Shared="False"/>
-    <Image x:Key="Old-Dancers" Source="Images\Progression\Old\dancer.png" x:Shared="False"/>
-    <Image x:Key="Old-HBDemyx" Source="Images\Progression\Old\demyx.png" x:Shared="False"/>
-    <Image x:Key="Old-FinalFantasy" Source="Images\Progression\Old\cloud.png" x:Shared="False"/>
-    <Image x:Key="Old-1000Heartless" Source="Images\Progression\Old\1k.png" x:Shared="False"/>
-    <Image x:Key="Old-Sephiroth" Source="Images\Progression\Old\sephiroth.png" x:Shared="False"/>
-    <Image x:Key="Old-DataDemyx" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Twilight Town-->
-    <Image x:Key="Old-MysteriousTower" Source="Images\Progression\Old\yen_sid.png" x:Shared="False"/>
-    <Image x:Key="Old-Sandlot" Source="Images\Progression\Old\berserker.png" x:Shared="False"/>
-    <Image x:Key="Old-Mansion" Source="Images\Progression\Old\mickey.png" x:Shared="False"/>
-    <Image x:Key="Old-BetwixtandBetween" Source="Images\Progression\Old\axel.png" x:Shared="False"/>
-    <Image x:Key="Old-DataAxel" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Land of Dragons-->
-    <Image x:Key="Old-LoDChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Cave" Source="Images\Progression\Old\assault_rider.png" x:Shared="False"/>
-    <Image x:Key="Old-Summit" Source="Images\Progression\Old\rapid_thruster.png" x:Shared="False"/>
-    <Image x:Key="Old-ShanYu" Source="Images\Progression\Old\shan_yu.png" x:Shared="False"/>
-    <Image x:Key="Old-ThroneRoom" Source="Images\Progression\Old\emperor.png" x:Shared="False"/>
-    <Image x:Key="Old-StormRider" Source="Images\Progression\Old\storm_rider.png" x:Shared="False"/>
-    <Image x:Key="Old-DataXigbar" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Beasts Castle-->
-    <Image x:Key="Old-BCChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Thresholder" Source="Images\Progression\Old\thresholder.png" x:Shared="False"/>
-    <Image x:Key="Old-Beast" Source="Images\Progression\Old\beast.png" x:Shared="False"/>
-    <Image x:Key="Old-DarkThorn" Source="Images\Progression\Old\dark_thorn.png" x:Shared="False"/>
-    <Image x:Key="Old-Dragoons" Source="Images\Progression\Old\dragoon.png" x:Shared="False"/>
-    <Image x:Key="Old-Xaldin" Source="Images\Progression\Old\xaldin.png" x:Shared="False"/>
-    <Image x:Key="Old-DataXaldin" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Olympus Coliseum-->
-    <Image x:Key="Old-OCChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Cerberus" Source="Images\Progression\Old\cerberus.png" x:Shared="False"/>
-    <Image x:Key="Old-OCDemyx" Source="Images\Progression\Old\demyx.png" x:Shared="False"/>
-    <Image x:Key="Old-OCPete" Source="Images\Progression\Old\pete.png" x:Shared="False"/>
-    <Image x:Key="Old-Hydra" Source="Images\Progression\Old\hydra.png" x:Shared="False"/>
-    <Image x:Key="Old-AuronStatue" Source="Images\Progression\Old\dusk.png" x:Shared="False"/>
-    <Image x:Key="Old-Hades" Source="Images\Progression\Old\hades.png" x:Shared="False"/>
-    <Image x:Key="Old-Zexion" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Space Paranoids-->
-    <Image x:Key="Old-SPChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Screens" Source="Images\Progression\Old\screens.png" x:Shared="False"/>
-    <Image x:Key="Old-HostileProgram" Source="Images\Progression\Old\hostile_program.png" x:Shared="False"/>
-    <Image x:Key="Old-SolarSailer" Source="Images\Progression\Old\devastator.png" x:Shared="False"/>
-    <Image x:Key="Old-MCP" Source="Images\Progression\Old\master_control_program.png" x:Shared="False"/>
-    <Image x:Key="Old-Larxene" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Halloween Town-->
-    <Image x:Key="Old-HTChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-CandyCaneLane" Source="Images\Progression\Old\toy_soldier.png" x:Shared="False"/>
-    <Image x:Key="Old-PrisonKeeper" Source="Images\Progression\Old\prison_keeper.png" x:Shared="False"/>
-    <Image x:Key="Old-OogieBoogie" Source="Images\Progression\Old\oogie_boogie.png" x:Shared="False"/>
-    <Image x:Key="Old-Presents" Source="Images\Progression\Old\presents.png" x:Shared="False"/>
-    <Image x:Key="Old-Experiment" Source="Images\Progression\Old\experiment.png" x:Shared="False"/>
-    <Image x:Key="Old-Vexen" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Port Royal-->
-    <Image x:Key="Old-PRChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Town" Source="Images\Progression\Old\cannon_gun.png" x:Shared="False"/>
-    <Image x:Key="Old-Barbossa" Source="Images\Progression\Old\barbossa.png" x:Shared="False"/>
-    <Image x:Key="Old-Gambler" Source="Images\Progression\Old\gambler.png" x:Shared="False"/>
-    <Image x:Key="Old-GrimReaper" Source="Images\Progression\Old\grim_reaper.png" x:Shared="False"/>
-    <Image x:Key="Old-DataLuxord" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Agrabah-->
-    <Image x:Key="Old-AGChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Abu" Source="Images\Progression\Old\abu.png" x:Shared="False"/>
-    <Image x:Key="Old-Chasm" Source="Images\Progression\Old\chasm_of_challenges.png" x:Shared="False"/>
-    <Image x:Key="Old-TreasureRoom" Source="Images\Progression\Old\treasure_room.png" x:Shared="False"/>
-    <Image x:Key="Old-Lords" Source="Images\Progression\Old\blizzard_lord.png" x:Shared="False"/>
-    <Image x:Key="Old-Carpet" Source="Images\Progression\Old\carpet.png" x:Shared="False"/>
-    <Image x:Key="Old-GenieJafar" Source="Images\Progression\Old\genie_jafar.png" x:Shared="False"/>
-    <Image x:Key="Old-Lexaeus" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Pride Lands-->
-    <Image x:Key="Old-PLChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Simba" Source="Images\Progression\Old\simba.png" x:Shared="False"/>
-    <Image x:Key="Old-Scar" Source="Images\Progression\Old\scar.png" x:Shared="False"/>
-    <Image x:Key="Old-Groundshaker" Source="Images\Progression\Old\groundshaker.png" x:Shared="False"/>
-    <Image x:Key="Old-DataSaix" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Disney Castle-->
-    <Image x:Key="Old-DCChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Minnie" Source="Images\Progression\Old\minnie.png" x:Shared="False"/>
-    <Image x:Key="Old-OldPete" Source="Images\Progression\Old\old_pete.png" x:Shared="False"/>
-    <Image x:Key="Old-Windows" Source="Images\Progression\Old\hot_rod.png" x:Shared="False"/>
-    <Image x:Key="Old-BoatPete" Source="Images\Progression\Old\boat_pete.png" x:Shared="False"/>
-    <Image x:Key="Old-DCPete" Source="Images\Progression\Old\pete_pete.png" x:Shared="False"/>
-    <Image x:Key="Old-Marluxia" Source="Images\Progression\Old\marluxia.png" x:Shared="False"/>
-    <Image x:Key="Old-LingeringWill" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
     <!--100 Acre Wood-->
-    <Image x:Key="Old-Pooh" Source="Images\Progression\Old\pooh.png" x:Shared="False"/>
-    <Image x:Key="Old-Piglet" Source="Images\Progression\Old\piglet.png" x:Shared="False"/>
-    <Image x:Key="Old-Rabbit" Source="Images\Progression\Old\rabbit.png" x:Shared="False"/>
-    <Image x:Key="Old-Kanga" Source="Images\Progression\Old\kanga.png" x:Shared="False"/>
-    <Image x:Key="Old-SpookyCave" Source="Images\Progression\Old\bees.png" x:Shared="False"/>
-    <Image x:Key="Old-StarryHill" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--Simulated Twilight Town-->
-    <Image x:Key="Old-STTChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-TwilightThorn" Source="Images\Progression\Old\twilight_thorn.png" x:Shared="False"/>
-    <Image x:Key="Old-Struggle" Source="Images\Progression\Old\struggle.png" x:Shared="False"/>
-    <Image x:Key="Old-ComputerRoom" Source="Images\Progression\Old\computer_room.png" x:Shared="False"/>
-    <Image x:Key="Old-Axel" Source="Images\Progression\Old\axel.png" x:Shared="False"/>
-    <Image x:Key="Old-DataRoxas" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
-    <!--TWTNW-->
-    <Image x:Key="Old-TWTNWChests" Source="Images\Progression\Old\chest.png" x:Shared="False"/>
-    <Image x:Key="Old-Roxas" Source="Images\Progression\Old\roxas.png" x:Shared="False"/>
-    <Image x:Key="Old-Xigbar" Source="Images\Progression\Old\xigbar.png" x:Shared="False"/>
-    <Image x:Key="Old-Luxord" Source="Images\Progression\Old\luxord.png" x:Shared="False"/>
-    <Image x:Key="Old-Saix" Source="Images\Progression\Old\saix.png" x:Shared="False"/>
-    <Image x:Key="Old-Xemnas1" Source="Images\Progression\Old\xemnas.png" x:Shared="False"/>
-    <Image x:Key="Old-DataXemnas" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Old-Piglet"       Source="Images\Progression\Old\100_acre_wood\blustery_rescue.png" x:Shared="False"/>
+    <Image x:Key="Old-Rabbit"       Source="Images\Progression\Old\100_acre_wood\hunny_slider.png" x:Shared="False"/>
+    <Image x:Key="Old-Kanga"        Source="Images\Progression\Old\100_acre_wood\balloon_bounce.png" x:Shared="False"/>
+    <Image x:Key="Old-SpookyCave"   Source="Images\Progression\Old\100_acre_wood\expotition.png" x:Shared="False"/>
+    <Image x:Key="Old-StarryHill"   Source="Images\Progression\Old\100_acre_wood\hunny_pot.png" x:Shared="False"/>
+    <!--Agrabah-->
+    <Image x:Key="Old-Abu"          Source="Images\Progression\Old\agrabah\abu.png" x:Shared="False"/>
+    <Image x:Key="Old-Chasm"        Source="Images\Progression\Old\agrabah\chasm_of_challenges.png" x:Shared="False"/>
+    <Image x:Key="Old-TreasureRoom" Source="Images\Progression\Old\agrabah\treasure_room.png" x:Shared="False"/>
+    <Image x:Key="Old-Lords"        Source="Images\Progression\Old\agrabah\elemental_lords.png" x:Shared="False"/>
+    <Image x:Key="Old-Carpet"       Source="Images\Progression\Old\agrabah\magic_switches.png" x:Shared="False"/>
+    <Image x:Key="Old-GenieJafar"   Source="Images\Progression\Old\agrabah\jafar.png" x:Shared="False"/>
+    <Image x:Key="Old-Lexaeus"      Source="Images\Progression\Old\agrabah\lexaeus.png" x:Shared="False"/>
     <!--Atlantica-->
-    <Image x:Key="Old-Tutorial" Source="Images\Progression\Old\ariel.png" x:Shared="False"/>
-    <Image x:Key="Old-Ursula" Source="Images\Progression\Old\ursula.png" x:Shared="False"/>
-    <Image x:Key="Old-NewDay" Source="Images\Progression\Old\mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Old-Tutorial"     Source="Images\Progression\Old\atlantica\tutorial.png" x:Shared="False"/>
+    <Image x:Key="Old-Ursula"       Source="Images\Progression\Old\atlantica\ursula.png" x:Shared="False"/>
+    <Image x:Key="Old-NewDay"       Source="Images\Progression\Old\atlantica\concert.png" x:Shared="False"/>
+    <!--Beasts Castle-->
+    <Image x:Key="Old-Thresholder"  Source="Images\Progression\Old\beast's_castle\thresholder.png" x:Shared="False"/>
+    <Image x:Key="Old-Beast"        Source="Images\Progression\Old\beast's_castle\beast.png" x:Shared="False"/>
+    <Image x:Key="Old-DarkThorn"    Source="Images\Progression\Old\beast's_castle\dark_thorn.png" x:Shared="False"/>
+    <Image x:Key="Old-Dragoons"     Source="Images\Progression\Old\beast's_castle\dragoons.png" x:Shared="False"/>
+    <Image x:Key="Old-Xaldin"       Source="Images\Progression\Old\beast's_castle\xaldin_story.png" x:Shared="False"/>
+    <Image x:Key="Old-DataXaldin"   Source="Images\Progression\Old\beast's_castle\xaldin.png" x:Shared="False"/>
+    <!--Disney Castle-->
+    <Image x:Key="Old-Minnie"                   Source="Images\Progression\Old\disney_castle\minnie.png" x:Shared="False"/>
+    <Image x:Key="Old-OldPete"                  Source="Images\Progression\Old\disney_castle\old_pete.png" x:Shared="False"/>
+    <Image x:Key="Old-Windows"                  Source="Images\Progression\Old\disney_castle\windows_of_time.png" x:Shared="False"/>
+    <Image x:Key="Old-BoatPete"                 Source="Images\Progression\Old\disney_castle\steamboat_pete.png" x:Shared="False"/>
+    <Image x:Key="Old-DCPete"                   Source="Images\Progression\Old\disney_castle\pete.png" x:Shared="False"/>
+    <Image x:Key="Old-Marluxia"                 Source="Images\Progression\Old\disney_castle\marluxia.png" x:Shared="False"/>
+    <Image x:Key="Old-LingeringWill"            Source="Images\Progression\Old\disney_castle\lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Old-Marluxia_LingeringWill"   Source="Images\Progression\Old\disney_castle\marluxia_and_lingering_will.png" x:Shared="False"/>
+    <!--Halloween Town-->
+    <Image x:Key="Old-CandyCaneLane"    Source="Images\Progression\Old\halloween_town\candy_cane_lane.png" x:Shared="False"/>
+    <Image x:Key="Old-PrisonKeeper"     Source="Images\Progression\Old\halloween_town\prison_keeper.png" x:Shared="False"/>
+    <Image x:Key="Old-OogieBoogie"      Source="Images\Progression\Old\halloween_town\oogie_boogie.png" x:Shared="False"/>
+    <Image x:Key="Old-Children"         Source="Images\Progression\Old\halloween_town\children.png" x:Shared="False"/>
+    <Image x:Key="Old-Presents"         Source="Images\Progression\Old\halloween_town\presents.png" x:Shared="False"/>
+    <Image x:Key="Old-Experiment"       Source="Images\Progression\Old\halloween_town\experiment.png" x:Shared="False"/>
+    <Image x:Key="Old-Vexen"            Source="Images\Progression\Old\halloween_town\vexen.png" x:Shared="False"/>
+    <!--Hollow Bastion-->
+    <Image x:Key="Old-Bailey"           Source="Images\Progression\Old\hollow_bastion\bailey.png" x:Shared="False"/>
+    <Image x:Key="Old-AnsemStudy"       Source="Images\Progression\Old\hollow_bastion\ansem's_study.png" x:Shared="False"/>
+    <Image x:Key="Old-Corridor"         Source="Images\Progression\Old\hollow_bastion\corridors.png" x:Shared="False"/>
+    <Image x:Key="Old-Dancers"          Source="Images\Progression\Old\hollow_bastion\dancers.png" x:Shared="False"/>
+    <Image x:Key="Old-HBDemyx"          Source="Images\Progression\Old\hollow_bastion\demyx_story.png" x:Shared="False"/>
+    <Image x:Key="Old-FinalFantasy"     Source="Images\Progression\Old\hollow_bastion\final_fantasy.png" x:Shared="False"/>
+    <Image x:Key="Old-1000Heartless"    Source="Images\Progression\Old\hollow_bastion\1000_heartless.png" x:Shared="False"/>
+    <Image x:Key="Old-Sephiroth"        Source="Images\Progression\Old\hollow_bastion\sephiroth.png" x:Shared="False"/>
+    <Image x:Key="Old-DataDemyx"        Source="Images\Progression\Old\hollow_bastion\demyx.png" x:Shared="False"/>
+    <Image x:Key="Old-SephiDemyx"       Source="Images\Progression\Old\hollow_bastion\demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Land of Dragons-->
+    <Image x:Key="Old-Missions"     Source="Images\Progression\Old\land_of_dragons\missions.png" x:Shared="False"/>
+    <Image x:Key="Old-Mountain"     Source="Images\Progression\Old\land_of_dragons\mountain_climb.png" x:Shared="False"/>
+    <Image x:Key="Old-Cave"         Source="Images\Progression\Old\land_of_dragons\village_cave.png" x:Shared="False"/>
+    <Image x:Key="Old-Summit"       Source="Images\Progression\Old\land_of_dragons\summit.png" x:Shared="False"/>
+    <Image x:Key="Old-ShanYu"       Source="Images\Progression\Old\land_of_dragons\shan_yu.png" x:Shared="False"/>
+    <Image x:Key="Old-ThroneRoom"   Source="Images\Progression\Old\land_of_dragons\snipers.png" x:Shared="False"/>
+    <Image x:Key="Old-StormRider"   Source="Images\Progression\Old\land_of_dragons\storm_rider.png" x:Shared="False"/>
+    <Image x:Key="Old-DataXigbar"   Source="Images\Progression\Old\land_of_dragons\xigbar.png" x:Shared="False"/>
+    <!--Olympus Coliseum-->
+    <Image x:Key="Old-Cerberus"     Source="Images\Progression\Old\olympus_coliseum\cerberus.png" x:Shared="False"/>
+    <Image x:Key="Old-Urns"         Source="Images\Progression\Old\olympus_coliseum\urns.png" x:Shared="False"/>
+    <Image x:Key="Old-OCDemyx"      Source="Images\Progression\Old\olympus_coliseum\demyx.png" x:Shared="False"/>
+    <Image x:Key="Old-OCPete"       Source="Images\Progression\Old\olympus_coliseum\the_lock.png" x:Shared="False"/>
+    <Image x:Key="Old-Hydra"        Source="Images\Progression\Old\olympus_coliseum\hydra.png" x:Shared="False"/>
+    <Image x:Key="Old-AuronStatue"  Source="Images\Progression\Old\olympus_coliseum\dusks.png" x:Shared="False"/>
+    <Image x:Key="Old-Hades"        Source="Images\Progression\Old\olympus_coliseum\hades.png" x:Shared="False"/>
+    <Image x:Key="Old-Zexion"       Source="Images\Progression\Old\olympus_coliseum\zexion.png" x:Shared="False"/>
+    <!--Port Royal-->
+    <Image x:Key="Old-Town"         Source="Images\Progression\Old\port_royal\town.png" x:Shared="False"/>
+    <Image x:Key="Old-1Minute"      Source="Images\Progression\Old\port_royal\isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Old-Barrels"      Source="Images\Progression\Old\port_royal\explosives.png" x:Shared="False"/>
+    <Image x:Key="Old-Barbossa"     Source="Images\Progression\Old\port_royal\barbossa.png" x:Shared="False"/>
+    <Image x:Key="Old-GrimReaper1"  Source="Images\Progression\Old\port_royal\grim_reaper.png" x:Shared="False"/>
+    <Image x:Key="Old-Gambler"      Source="Images\Progression\Old\port_royal\gamblers.png" x:Shared="False"/>
+    <Image x:Key="Old-GrimReaper"   Source="Images\Progression\Old\port_royal\cursed_reaper.png" x:Shared="False"/>
+    <Image x:Key="Old-DataLuxord"   Source="Images\Progression\Old\port_royal\luxord.png" x:Shared="False"/>
+    <!--Pride Lands-->
+    <Image x:Key="Old-Simba"        Source="Images\Progression\Old\pride_lands\oasis.png" x:Shared="False"/>
+    <Image x:Key="Old-Hyenas1"      Source="Images\Progression\Old\pride_lands\timon_and_pumba.png" x:Shared="False"/>
+    <Image x:Key="Old-Scar"         Source="Images\Progression\Old\pride_lands\scar.png" x:Shared="False"/>
+    <Image x:Key="Old-Hyenas2"      Source="Images\Progression\Old\pride_lands\hyenas.png" x:Shared="False"/>
+    <Image x:Key="Old-Groundshaker" Source="Images\Progression\Old\pride_lands\groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Old-DataSaix"     Source="Images\Progression\Old\pride_lands\saix.png" x:Shared="False"/>
+    <!--Simulated Twilight Town-->
+    <Image x:Key="Old-Minigame"         Source="Images\Progression\Old\simulated_twilight_town\munny_pouch.png" x:Shared="False"/>
+    <Image x:Key="Old-TwilightThorn"    Source="Images\Progression\Old\simulated_twilight_town\twilight_thorn.png" x:Shared="False"/>
+    <Image x:Key="Old-Axel1"            Source="Images\Progression\Old\simulated_twilight_town\axel_story.png" x:Shared="False"/>
+    <Image x:Key="Old-Struggle"         Source="Images\Progression\Old\simulated_twilight_town\struggle.png" x:Shared="False"/>
+    <Image x:Key="Old-ComputerRoom"     Source="Images\Progression\Old\simulated_twilight_town\computer_room.png" x:Shared="False"/>
+    <Image x:Key="Old-Axel"             Source="Images\Progression\Old\simulated_twilight_town\pod_room.png" x:Shared="False"/>
+    <Image x:Key="Old-DataRoxas"        Source="Images\Progression\Old\simulated_twilight_town\roxas.png" x:Shared="False"/>
+    <!--Space Paranoids-->
+    <Image x:Key="Old-Screens"          Source="Images\Progression\Old\space_paranoids\dataspace.png" x:Shared="False"/>
+    <Image x:Key="Old-HostileProgram"   Source="Images\Progression\Old\space_paranoids\hostile_program.png" x:Shared="False"/>
+    <Image x:Key="Old-SolarSailer"      Source="Images\Progression\Old\space_paranoids\solar_sailer.png" x:Shared="False"/>
+    <Image x:Key="Old-Sark"             Source="Images\Progression\Old\space_paranoids\sark.png" x:Shared="False"/>
+    <Image x:Key="Old-MCP"              Source="Images\Progression\Old\space_paranoids\master_control_program.png" x:Shared="False"/>
+    <Image x:Key="Old-Larxene"          Source="Images\Progression\Old\space_paranoids\larxene.png" x:Shared="False"/>
+    <!--TWTNW-->
+    <Image x:Key="Old-Roxas"            Source="Images\Progression\Old\the_world_that_never_was\roxas.png" x:Shared="False"/>
+    <Image x:Key="Old-Xigbar"           Source="Images\Progression\Old\the_world_that_never_was\xigbar.png" x:Shared="False"/>
+    <Image x:Key="Old-Luxord"           Source="Images\Progression\Old\the_world_that_never_was\luxord.png" x:Shared="False"/>
+    <Image x:Key="Old-Saix"             Source="Images\Progression\Old\the_world_that_never_was\saix.png" x:Shared="False"/>
+    <Image x:Key="Old-Xemnas1"          Source="Images\Progression\Old\the_world_that_never_was\kingdom_hearts.png" x:Shared="False"/>
+    <Image x:Key="Old-DataXemnas"       Source="Images\Progression\Old\the_world_that_never_was\xemnas.png" x:Shared="False"/>
+    <!--Twilight Town-->
+    <Image x:Key="Old-Station"           Source="Images\Progression\Old\twilight_town\dusks.png" x:Shared="False"/>
+    <Image x:Key="Old-MysteriousTower"   Source="Images\Progression\Old\twilight_town\mysterious_tower.png" x:Shared="False"/>
+    <Image x:Key="Old-Sandlot"           Source="Images\Progression\Old\twilight_town\berserkers.png" x:Shared="False"/>
+    <Image x:Key="Old-Mansion"           Source="Images\Progression\Old\twilight_town\mickey.png" x:Shared="False"/>
+    <Image x:Key="Old-BetwixtandBetween" Source="Images\Progression\Old\twilight_town\betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Old-DataAxel"          Source="Images\Progression\Old\twilight_town\axel.png" x:Shared="False"/>
 
 
     <!--World Progression (Custom)-->
-    <!--Hollow Bastion-->
-    <Image x:Key="Cus-HBChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Bailey" Source="pack://application:,,,/CustomImages/Progression/merlin.png" x:Shared="False"/>
-    <Image x:Key="Cus-AnsemStudy" Source="pack://application:,,,/CustomImages/Progression/ansem_the_wise.png" x:Shared="False"/>
-    <Image x:Key="Cus-Corridor" Source="pack://application:,,,/CustomImages/Progression/crimson_jazz.png" x:Shared="False"/>
-    <Image x:Key="Cus-Dancers" Source="pack://application:,,,/CustomImages/Progression/dancer.png" x:Shared="False"/>
-    <Image x:Key="Cus-HBDemyx" Source="pack://application:,,,/CustomImages/Progression/demyx.png" x:Shared="False"/>
-    <Image x:Key="Cus-FinalFantasy" Source="pack://application:,,,/CustomImages/Progression/cloud.png" x:Shared="False"/>
-    <Image x:Key="Cus-1000Heartless" Source="pack://application:,,,/CustomImages/Progression/1k.png" x:Shared="False"/>
-    <Image x:Key="Cus-Sephiroth" Source="pack://application:,,,/CustomImages/Progression/sephiroth.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataDemyx" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Twilight Town-->
-    <Image x:Key="Cus-TTChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-MysteriousTower" Source="pack://application:,,,/CustomImages/Progression/yen_sid.png" x:Shared="False"/>
-    <Image x:Key="Cus-Sandlot" Source="pack://application:,,,/CustomImages/Progression/berserker.png" x:Shared="False"/>
-    <Image x:Key="Cus-Mansion" Source="pack://application:,,,/CustomImages/Progression/mickey.png" x:Shared="False"/>
-    <Image x:Key="Cus-BetwixtandBetween" Source="pack://application:,,,/CustomImages/Progression/axel.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataAxel" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Land of Dragons-->
-    <Image x:Key="Cus-LoDChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Cave" Source="pack://application:,,,/CustomImages/Progression/assault_rider.png" x:Shared="False"/>
-    <Image x:Key="Cus-Summit" Source="pack://application:,,,/CustomImages/Progression/rapid_thruster.png" x:Shared="False"/>
-    <Image x:Key="Cus-ShanYu" Source="pack://application:,,,/CustomImages/Progression/shan_yu.png" x:Shared="False"/>
-    <Image x:Key="Cus-ThroneRoom" Source="pack://application:,,,/CustomImages/Progression/emperor.png" x:Shared="False"/>
-    <Image x:Key="Cus-StormRider" Source="pack://application:,,,/CustomImages/Progression/storm_rider.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataXigbar" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Beasts Castle-->
-    <Image x:Key="Cus-BCChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Thresholder" Source="pack://application:,,,/CustomImages/Progression/thresholder.png" x:Shared="False"/>
-    <Image x:Key="Cus-Beast" Source="pack://application:,,,/CustomImages/Progression/beast.png" x:Shared="False"/>
-    <Image x:Key="Cus-DarkThorn" Source="pack://application:,,,/CustomImages/Progression/dark_thorn.png" x:Shared="False"/>
-    <Image x:Key="Cus-Dragoons" Source="pack://application:,,,/CustomImages/Progression/dragoon.png" x:Shared="False"/>
-    <Image x:Key="Cus-Xaldin" Source="pack://application:,,,/CustomImages/Progression/xaldin.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataXaldin" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Olympus Coliseum-->
-    <Image x:Key="Cus-OCChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Cerberus" Source="pack://application:,,,/CustomImages/Progression/cerberus.png" x:Shared="False"/>
-    <Image x:Key="Cus-OCDemyx" Source="pack://application:,,,/CustomImages/Progression/demyx.png" x:Shared="False"/>
-    <Image x:Key="Cus-OCPete" Source="pack://application:,,,/CustomImages/Progression/pete.png" x:Shared="False"/>
-    <Image x:Key="Cus-Hydra" Source="pack://application:,,,/CustomImages/Progression/hydra.png" x:Shared="False"/>
-    <Image x:Key="Cus-AuronStatue" Source="pack://application:,,,/CustomImages/Progression/dusk.png" x:Shared="False"/>
-    <Image x:Key="Cus-Hades" Source="pack://application:,,,/CustomImages/Progression/hades.png" x:Shared="False"/>
-    <Image x:Key="Cus-Zexion" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Space Paranoids-->
-    <Image x:Key="Cus-SPChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Screens" Source="pack://application:,,,/CustomImages/Progression/screens.png" x:Shared="False"/>
-    <Image x:Key="Cus-HostileProgram" Source="pack://application:,,,/CustomImages/Progression/hostile_program.png" x:Shared="False"/>
-    <Image x:Key="Cus-SolarSailer" Source="pack://application:,,,/CustomImages/Progression/devastator.png" x:Shared="False"/>
-    <Image x:Key="Cus-MCP" Source="pack://application:,,,/CustomImages/Progression/master_control_program.png" x:Shared="False"/>
-    <Image x:Key="Cus-Larxene" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Halloween Town-->
-    <Image x:Key="Cus-HTChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-CandyCaneLane" Source="pack://application:,,,/CustomImages/Progression/toy_soldier.png" x:Shared="False"/>
-    <Image x:Key="Cus-PrisonKeeper" Source="pack://application:,,,/CustomImages/Progression/prison_keeper.png" x:Shared="False"/>
-    <Image x:Key="Cus-OogieBoogie" Source="pack://application:,,,/CustomImages/Progression/oogie_boogie.png" x:Shared="False"/>
-    <Image x:Key="Cus-Presents" Source="pack://application:,,,/CustomImages/Progression/presents.png" x:Shared="False"/>
-    <Image x:Key="Cus-Experiment" Source="pack://application:,,,/CustomImages/Progression/experiment.png" x:Shared="False"/>
-    <Image x:Key="Cus-Vexen" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Port Royal-->
-    <Image x:Key="Cus-PRChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Town" Source="pack://application:,,,/CustomImages/Progression/cannon_gun.png" x:Shared="False"/>
-    <Image x:Key="Cus-Barbossa" Source="pack://application:,,,/CustomImages/Progression/barbossa.png" x:Shared="False"/>
-    <Image x:Key="Cus-Gambler" Source="pack://application:,,,/CustomImages/Progression/gambler.png" x:Shared="False"/>
-    <Image x:Key="Cus-GrimReaper" Source="pack://application:,,,/CustomImages/Progression/grim_reaper.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataLuxord" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Agrabah-->
-    <Image x:Key="Cus-AGChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Abu" Source="pack://application:,,,/CustomImages/Progression/abu.png" x:Shared="False"/>
-    <Image x:Key="Cus-Chasm" Source="pack://application:,,,/CustomImages/Progression/chasm_of_challenges.png" x:Shared="False"/>
-    <Image x:Key="Cus-TreasureRoom" Source="pack://application:,,,/CustomImages/Progression/treasure_room.png" x:Shared="False"/>
-    <Image x:Key="Cus-Lords" Source="pack://application:,,,/CustomImages/Progression/blizzard_lord.png" x:Shared="False"/>
-    <Image x:Key="Cus-Carpet" Source="pack://application:,,,/CustomImages/Progression/carpet.png" x:Shared="False"/>
-    <Image x:Key="Cus-GenieJafar" Source="pack://application:,,,/CustomImages/Progression/genie_jafar.png" x:Shared="False"/>
-    <Image x:Key="Cus-Lexaeus" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Pride Lands-->
-    <Image x:Key="Cus-PLChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Simba" Source="pack://application:,,,/CustomImages/Progression/simba.png" x:Shared="False"/>
-    <Image x:Key="Cus-Scar" Source="pack://application:,,,/CustomImages/Progression/scar.png" x:Shared="False"/>
-    <Image x:Key="Cus-Groundshaker" Source="pack://application:,,,/CustomImages/Progression/groundshaker.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataSaix" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Disney Castle-->
-    <Image x:Key="Cus-DCChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Minnie" Source="pack://application:,,,/CustomImages/Progression/minnie.png" x:Shared="False"/>
-    <Image x:Key="Cus-OldPete" Source="pack://application:,,,/CustomImages/Progression/old_pete.png" x:Shared="False"/>
-    <Image x:Key="Cus-Windows" Source="pack://application:,,,/CustomImages/Progression/hot_rod.png" x:Shared="False"/>
-    <Image x:Key="Cus-BoatPete" Source="pack://application:,,,/CustomImages/Progression/boat_pete.png" x:Shared="False"/>
-    <Image x:Key="Cus-DCPete" Source="pack://application:,,,/CustomImages/Progression/pete_pete.png" x:Shared="False"/>
-    <Image x:Key="Cus-Marluxia" Source="pack://application:,,,/CustomImages/Progression/marluxia.png" x:Shared="False"/>
-    <Image x:Key="Cus-LingeringWill" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
     <!--100 Acre Wood-->
-    <Image x:Key="Cus-Pooh" Source="pack://application:,,,/CustomImages/Progression/pooh.png" x:Shared="False"/>
-    <Image x:Key="Cus-Piglet" Source="pack://application:,,,/CustomImages/Progression/piglet.png" x:Shared="False"/>
-    <Image x:Key="Cus-Rabbit" Source="pack://application:,,,/CustomImages/Progression/rabbit.png" x:Shared="False"/>
-    <Image x:Key="Cus-Kanga" Source="pack://application:,,,/CustomImages/Progression/kanga.png" x:Shared="False"/>
-    <Image x:Key="Cus-SpookyCave" Source="pack://application:,,,/CustomImages/Progression/bees.png" x:Shared="False"/>
-    <Image x:Key="Cus-StarryHill" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--Simulated Twilight Town-->
-    <Image x:Key="Cus-STTChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-TwilightThorn" Source="pack://application:,,,/CustomImages/Progression/twilight_thorn.png" x:Shared="False"/>
-    <Image x:Key="Cus-Struggle" Source="pack://application:,,,/CustomImages/Progression/struggle.png" x:Shared="False"/>
-    <Image x:Key="Cus-ComputerRoom" Source="pack://application:,,,/CustomImages/Progression/computer_room.png" x:Shared="False"/>
-    <Image x:Key="Cus-Axel" Source="pack://application:,,,/CustomImages/Progression/axel.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataRoxas" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
-    <!--TWTNW-->
-    <Image x:Key="Cus-TWTNWChests" Source="pack://application:,,,/CustomImages/Progression/chest.png" x:Shared="False"/>
-    <Image x:Key="Cus-Roxas" Source="pack://application:,,,/CustomImages/Progression/roxas.png" x:Shared="False"/>
-    <Image x:Key="Cus-Xigbar" Source="pack://application:,,,/CustomImages/Progression/xigbar.png" x:Shared="False"/>
-    <Image x:Key="Cus-Luxord" Source="pack://application:,,,/CustomImages/Progression/luxord.png" x:Shared="False"/>
-    <Image x:Key="Cus-Saix" Source="pack://application:,,,/CustomImages/Progression/saix.png" x:Shared="False"/>
-    <Image x:Key="Cus-Xemnas1" Source="pack://application:,,,/CustomImages/Progression/xemnas.png" x:Shared="False"/>
-    <Image x:Key="Cus-DataXemnas" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Cus-Piglet"       Source="pack://application:,,,/CustomImages/Progression/100_acre_wood/blustery_rescue.png" x:Shared="False"/>
+    <Image x:Key="Cus-Rabbit"       Source="pack://application:,,,/CustomImages/Progression/100_acre_wood/hunny_slider.png" x:Shared="False"/>
+    <Image x:Key="Cus-Kanga"        Source="pack://application:,,,/CustomImages/Progression/100_acre_wood/balloon_bounce.png" x:Shared="False"/>
+    <Image x:Key="Cus-SpookyCave"   Source="pack://application:,,,/CustomImages/Progression/100_acre_wood/expotition.png" x:Shared="False"/>
+    <Image x:Key="Cus-StarryHill"   Source="pack://application:,,,/CustomImages/Progression/100_acre_wood/hunny_pot.png" x:Shared="False"/>
+    <!--Agrabah-->
+    <Image x:Key="Cus-Abu"          Source="pack://application:,,,/CustomImages/Progression/agrabah/abu.png" x:Shared="False"/>
+    <Image x:Key="Cus-Chasm"        Source="pack://application:,,,/CustomImages/Progression/agrabah/chasm_of_challenges.png" x:Shared="False"/>
+    <Image x:Key="Cus-TreasureRoom" Source="pack://application:,,,/CustomImages/Progression/agrabah/treasure_room.png" x:Shared="False"/>
+    <Image x:Key="Cus-Lords"        Source="pack://application:,,,/CustomImages/Progression/agrabah/elemental_lords.png" x:Shared="False"/>
+    <Image x:Key="Cus-Carpet"       Source="pack://application:,,,/CustomImages/Progression/agrabah/magic_switches.png" x:Shared="False"/>
+    <Image x:Key="Cus-GenieJafar"   Source="pack://application:,,,/CustomImages/Progression/agrabah/jafar.png" x:Shared="False"/>
+    <Image x:Key="Cus-Lexaeus"      Source="pack://application:,,,/CustomImages/Progression/agrabah/lexaeus.png" x:Shared="False"/>
     <!--Atlantica-->
-    <Image x:Key="Cus-Tutorial" Source="pack://application:,,,/CustomImages/Progression/ariel.png" x:Shared="False"/>
-    <Image x:Key="Cus-Ursula" Source="pack://application:,,,/CustomImages/Progression/ursula.png" x:Shared="False"/>
-    <Image x:Key="Cus-NewDay" Source="pack://application:,,,/CustomImages/Progression/mickey_head.png" x:Shared="False"/>
+    <Image x:Key="Cus-Tutorial"     Source="pack://application:,,,/CustomImages/Progression/atlantica/tutorial.png" x:Shared="False"/>
+    <Image x:Key="Cus-Ursula"       Source="pack://application:,,,/CustomImages/Progression/atlantica/ursula.png" x:Shared="False"/>
+    <Image x:Key="Cus-NewDay"       Source="pack://application:,,,/CustomImages/Progression/atlantica/concert.png" x:Shared="False"/>
+    <!--Beasts Castle-->
+    <Image x:Key="Cus-Thresholder"  Source="pack://application:,,,/CustomImages/Progression/beast's_castle/thresholder.png" x:Shared="False"/>
+    <Image x:Key="Cus-Beast"        Source="pack://application:,,,/CustomImages/Progression/beast's_castle/beast.png" x:Shared="False"/>
+    <Image x:Key="Cus-DarkThorn"    Source="pack://application:,,,/CustomImages/Progression/beast's_castle/dark_thorn.png" x:Shared="False"/>
+    <Image x:Key="Cus-Dragoons"     Source="pack://application:,,,/CustomImages/Progression/beast's_castle/dragoons.png" x:Shared="False"/>
+    <Image x:Key="Cus-Xaldin"       Source="pack://application:,,,/CustomImages/Progression/beast's_castle/xaldin_story.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataXaldin"   Source="pack://application:,,,/CustomImages/Progression/beast's_castle/xaldin.png" x:Shared="False"/>
+    <!--Disney Castle-->
+    <Image x:Key="Cus-Minnie"                   Source="pack://application:,,,/CustomImages/Progression/disney_castle/minnie.png" x:Shared="False"/>
+    <Image x:Key="Cus-OldPete"                  Source="pack://application:,,,/CustomImages/Progression/disney_castle/old_pete.png" x:Shared="False"/>
+    <Image x:Key="Cus-Windows"                  Source="pack://application:,,,/CustomImages/Progression/disney_castle/windows_of_time.png" x:Shared="False"/>
+    <Image x:Key="Cus-BoatPete"                 Source="pack://application:,,,/CustomImages/Progression/disney_castle/steamboat_pete.png" x:Shared="False"/>
+    <Image x:Key="Cus-DCPete"                   Source="pack://application:,,,/CustomImages/Progression/disney_castle/pete.png" x:Shared="False"/>
+    <Image x:Key="Cus-Marluxia"                 Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxia.png" x:Shared="False"/>
+    <Image x:Key="Cus-LingeringWill"            Source="pack://application:,,,/CustomImages/Progression/disney_castle/lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Cus-Marluxia_LingeringWill"   Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxia_and_lingering_will.png" x:Shared="False"/>
+    <!--Halloween Town-->
+    <Image x:Key="Cus-CandyCaneLane"    Source="pack://application:,,,/CustomImages/Progression/halloween_town/candy_cane_lane.png" x:Shared="False"/>
+    <Image x:Key="Cus-PrisonKeeper"     Source="pack://application:,,,/CustomImages/Progression/halloween_town/prison_keeper.png" x:Shared="False"/>
+    <Image x:Key="Cus-OogieBoogie"      Source="pack://application:,,,/CustomImages/Progression/halloween_town/oogie_boogie.png" x:Shared="False"/>
+    <Image x:Key="Cus-Children"         Source="pack://application:,,,/CustomImages/Progression/halloween_town/children.png" x:Shared="False"/>
+    <Image x:Key="Cus-Presents"         Source="pack://application:,,,/CustomImages/Progression/halloween_town/presents.png" x:Shared="False"/>
+    <Image x:Key="Cus-Experiment"       Source="pack://application:,,,/CustomImages/Progression/halloween_town/experiment.png" x:Shared="False"/>
+    <Image x:Key="Cus-Vexen"            Source="pack://application:,,,/CustomImages/Progression/halloween_town/vexen.png" x:Shared="False"/>
+    <!--Hollow Bastion-->
+    <Image x:Key="Cus-Bailey"           Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/bailey.png" x:Shared="False"/>
+    <Image x:Key="Cus-AnsemStudy"       Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/ansem's_study.png" x:Shared="False"/>
+    <Image x:Key="Cus-Corridor"         Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/corridors.png" x:Shared="False"/>
+    <Image x:Key="Cus-Dancers"          Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/dancers.png" x:Shared="False"/>
+    <Image x:Key="Cus-HBDemyx"          Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/demyx_story.png" x:Shared="False"/>
+    <Image x:Key="Cus-FinalFantasy"     Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/final_fantasy.png" x:Shared="False"/>
+    <Image x:Key="Cus-1000Heartless"    Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/1000_heartless.png" x:Shared="False"/>
+    <Image x:Key="Cus-Sephiroth"        Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/sephiroth.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataDemyx"        Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/demyx.png" x:Shared="False"/>
+    <Image x:Key="Cus-SephiDemyx"       Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Land of Dragons-->
+    <Image x:Key="Cus-Missions"     Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/missions.png" x:Shared="False"/>
+    <Image x:Key="Cus-Mountain"     Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/mountain_climb.png" x:Shared="False"/>
+    <Image x:Key="Cus-Cave"         Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/village_cave.png" x:Shared="False"/>
+    <Image x:Key="Cus-Summit"       Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/summit.png" x:Shared="False"/>
+    <Image x:Key="Cus-ShanYu"       Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/shan_yu.png" x:Shared="False"/>
+    <Image x:Key="Cus-ThroneRoom"   Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/snipers.png" x:Shared="False"/>
+    <Image x:Key="Cus-StormRider"   Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/storm_rider.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataXigbar"   Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/xigbar.png" x:Shared="False"/>
+    <!--Olympus Coliseum-->
+    <Image x:Key="Cus-Cerberus"     Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/cerberus.png" x:Shared="False"/>
+    <Image x:Key="Cus-Urns"         Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/urns.png" x:Shared="False"/>
+    <Image x:Key="Cus-OCDemyx"      Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/demyx.png" x:Shared="False"/>
+    <Image x:Key="Cus-OCPete"       Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/the_lock.png" x:Shared="False"/>
+    <Image x:Key="Cus-Hydra"        Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/hydra.png" x:Shared="False"/>
+    <Image x:Key="Cus-AuronStatue"  Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/dusks.png" x:Shared="False"/>
+    <Image x:Key="Cus-Hades"        Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/hades.png" x:Shared="False"/>
+    <Image x:Key="Cus-Zexion"       Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/zexion.png" x:Shared="False"/>
+    <!--Port Royal-->
+    <Image x:Key="Cus-Town"         Source="pack://application:,,,/CustomImages/Progression/port_royal/town.png" x:Shared="False"/>
+    <Image x:Key="Cus-1Minute"      Source="pack://application:,,,/CustomImages/Progression/port_royal/isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Cus-Barrels"      Source="pack://application:,,,/CustomImages/Progression/port_royal/explosives.png" x:Shared="False"/>
+    <Image x:Key="Cus-Barbossa"     Source="pack://application:,,,/CustomImages/Progression/port_royal/barbossa.png" x:Shared="False"/>
+    <Image x:Key="Cus-GrimReaper1"  Source="pack://application:,,,/CustomImages/Progression/port_royal/grim_reaper.png" x:Shared="False"/>
+    <Image x:Key="Cus-Gambler"      Source="pack://application:,,,/CustomImages/Progression/port_royal/gamblers.png" x:Shared="False"/>
+    <Image x:Key="Cus-GrimReaper"   Source="pack://application:,,,/CustomImages/Progression/port_royal/cursed_reaper.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataLuxord"   Source="pack://application:,,,/CustomImages/Progression/port_royal/luxord.png" x:Shared="False"/>
+    <!--Pride Lands-->
+    <Image x:Key="Cus-Simba"        Source="pack://application:,,,/CustomImages/Progression/pride_lands/oasis.png" x:Shared="False"/>
+    <Image x:Key="Cus-Hyenas1"      Source="pack://application:,,,/CustomImages/Progression/pride_lands/timon_and_pumba.png" x:Shared="False"/>
+    <Image x:Key="Cus-Scar"         Source="pack://application:,,,/CustomImages/Progression/pride_lands/scar.png" x:Shared="False"/>
+    <Image x:Key="Cus-Hyenas2"      Source="pack://application:,,,/CustomImages/Progression/pride_lands/hyenas.png" x:Shared="False"/>
+    <Image x:Key="Cus-Groundshaker" Source="pack://application:,,,/CustomImages/Progression/pride_lands/groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataSaix"     Source="pack://application:,,,/CustomImages/Progression/pride_lands/saix.png" x:Shared="False"/>
+    <!--Simulated Twilight Town-->
+    <Image x:Key="Cus-Minigame"         Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/munny_pouch.png" x:Shared="False"/>
+    <Image x:Key="Cus-TwilightThorn"    Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/twilight_thorn.png" x:Shared="False"/>
+    <Image x:Key="Cus-Axel1"            Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/axel_story.png" x:Shared="False"/>
+    <Image x:Key="Cus-Struggle"         Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/struggle.png" x:Shared="False"/>
+    <Image x:Key="Cus-ComputerRoom"     Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/computer_room.png" x:Shared="False"/>
+    <Image x:Key="Cus-Axel"             Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/pod_room.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataRoxas"        Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/roxas.png" x:Shared="False"/>
+    <!--Space Paranoids-->
+    <Image x:Key="Cus-Screens"          Source="pack://application:,,,/CustomImages/Progression/space_paranoids/dataspace.png" x:Shared="False"/>
+    <Image x:Key="Cus-HostileProgram"   Source="pack://application:,,,/CustomImages/Progression/space_paranoids/hostile_program.png" x:Shared="False"/>
+    <Image x:Key="Cus-SolarSailer"      Source="pack://application:,,,/CustomImages/Progression/space_paranoids/solar_sailer.png" x:Shared="False"/>
+    <Image x:Key="Cus-Sark"             Source="pack://application:,,,/CustomImages/Progression/space_paranoids/sark.png" x:Shared="False"/>
+    <Image x:Key="Cus-MCP"              Source="pack://application:,,,/CustomImages/Progression/space_paranoids/master_control_program.png" x:Shared="False"/>
+    <Image x:Key="Cus-Larxene"          Source="pack://application:,,,/CustomImages/Progression/space_paranoids/larxene.png" x:Shared="False"/>
+    <!--TWTNW-->
+    <Image x:Key="Cus-Roxas"            Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/roxas.png" x:Shared="False"/>
+    <Image x:Key="Cus-Xigbar"           Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/xigbar.png" x:Shared="False"/>
+    <Image x:Key="Cus-Luxord"           Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/luxord.png" x:Shared="False"/>
+    <Image x:Key="Cus-Saix"             Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/saix.png" x:Shared="False"/>
+    <Image x:Key="Cus-Xemnas1"          Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/kingdom_hearts.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataXemnas"       Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/xemnas.png" x:Shared="False"/>
+    <!--Twilight Town-->
+    <Image x:Key="Cus-Station"           Source="pack://application:,,,/CustomImages/Progression/twilight_town/dusks.png" x:Shared="False"/>
+    <Image x:Key="Cus-MysteriousTower"   Source="pack://application:,,,/CustomImages/Progression/twilight_town/mysterious_tower.png" x:Shared="False"/>
+    <Image x:Key="Cus-Sandlot"           Source="pack://application:,,,/CustomImages/Progression/twilight_town/berserkers.png" x:Shared="False"/>
+    <Image x:Key="Cus-Mansion"           Source="pack://application:,,,/CustomImages/Progression/twilight_town/mickey.png" x:Shared="False"/>
+    <Image x:Key="Cus-BetwixtandBetween" Source="pack://application:,,,/CustomImages/Progression/twilight_town/betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Cus-DataAxel"          Source="pack://application:,,,/CustomImages/Progression/twilight_town/axel.png" x:Shared="False"/>
 
 </ResourceDictionary>

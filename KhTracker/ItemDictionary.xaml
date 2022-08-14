@@ -15,319 +15,310 @@
     </StackPanel>
     <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
 
-    <!--Simple Item Icons (Main Window)-->
-    <Image x:Key="Min-AnsemReport"  Source="Images\Other\ansem_report.png"                  x:Shared="false"/>
-    <Image x:Key="Min-Report1"      Source="Images\Checks\Simple\ansem_report01.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report2"      Source="Images\Checks\Simple\ansem_report02.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report3"      Source="Images\Checks\Simple\ansem_report03.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report4"      Source="Images\Checks\Simple\ansem_report04.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report5"      Source="Images\Checks\Simple\ansem_report05.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report6"      Source="Images\Checks\Simple\ansem_report06.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report7"      Source="Images\Checks\Simple\ansem_report07.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report8"      Source="Images\Checks\Simple\ansem_report08.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report9"      Source="Images\Checks\Simple\ansem_report09.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report10"     Source="Images\Checks\Simple\ansem_report10.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report11"     Source="Images\Checks\Simple\ansem_report11.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report12"     Source="Images\Checks\Simple\ansem_report12.png"        x:Shared="false"/>
-    <Image x:Key="Min-Report13"     Source="Images\Checks\Simple\ansem_report13.png"        x:Shared="false"/>
-    <Image x:Key="Min-Valor"	    Source="Images\Checks\Simple\valor.png"                 x:Shared="false"/>
-    <Image x:Key="Min-Wisdom"	    Source="Images\Checks\Simple\wisdom.png"                x:Shared="false"/>
-    <Image x:Key="Min-Limit"	    Source="Images\Checks\Simple\limit.png"                 x:Shared="false"/>
-    <Image x:Key="Min-Master"	    Source="Images\Checks\Simple\master.png"                x:Shared="false"/>
-    <Image x:Key="Min-Final"	    Source="Images\Checks\Simple\final.png"                 x:Shared="false"/>
-    <Image x:Key="Min-TornPages"	Source="Images\Other\torn_pages.png"                    x:Shared="false"/>
-    <Image x:Key="Min-Lamp"			Source="Images\Checks\Simple\genie.png"                 x:Shared="false"/>
-    <Image x:Key="Min-Ukulele"		Source="Images\Checks\Simple\stitch.png"                x:Shared="false"/>
-    <Image x:Key="Min-Baseball"	    Source="Images\Checks\Simple\chicken_little.png"        x:Shared="false"/>
-    <Image x:Key="Min-Feather"		Source="Images\Checks\Simple\peter_pan.png"             x:Shared="false"/>
-    <Image x:Key="Min-Nonexistence"	Source="Images\Checks\Simple\proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Min-Connection"	Source="Images\Checks\Simple\proof_of_connection.png"   x:Shared="false"/>
-    <Image x:Key="Min-Peace"		Source="Images\Checks\Simple\proof_of_tranquility.png"  x:Shared="false"/>
-    <Image x:Key="Min-PromiseCharm"	Source="Images\Checks\Simple\promise_charm.png"         x:Shared="false"/>
-    <!-- Multi -->
-    <!--Image x:Key="Min-Fire"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
-    <Image x:Key="Min-Blizzard"     Source="Images\Checks\Simple\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Min-Thunder"	    Source="Images\Checks\Simple\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Min-Cure"		    Source="Images\Checks\Simple\cure.png"           x:Shared="false"/>
-    <Image x:Key="Min-Reflect"	    Source="Images\Checks\Simple\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Min-Magnet"	    Source="Images\Checks\Simple\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Min-TornPage"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/-->
-    <Image x:Key="Min-Fire1"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
-    <Image x:Key="Min-Fire2"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
-    <Image x:Key="Min-Fire3"		    Source="Images\Checks\Simple\fire.png"           x:Shared="false"/>
-    <Image x:Key="Min-Blizzard1"        Source="Images\Checks\Simple\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Min-Blizzard2"        Source="Images\Checks\Simple\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Min-Blizzard3"        Source="Images\Checks\Simple\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Min-Thunder1"	        Source="Images\Checks\Simple\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Min-Thunder2"	        Source="Images\Checks\Simple\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Min-Thunder3"	        Source="Images\Checks\Simple\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Min-Cure1"		    Source="Images\Checks\Simple\cure.png"           x:Shared="false"/>
-    <Image x:Key="Min-Cure2"		    Source="Images\Checks\Simple\cure.png"           x:Shared="false"/>
-    <Image x:Key="Min-Cure3"		    Source="Images\Checks\Simple\cure.png"           x:Shared="false"/>
-    <Image x:Key="Min-Reflect1"	        Source="Images\Checks\Simple\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Min-Reflect2"	        Source="Images\Checks\Simple\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Min-Reflect3"	        Source="Images\Checks\Simple\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Min-Magnet1"	        Source="Images\Checks\Simple\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Min-Magnet2"	        Source="Images\Checks\Simple\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Min-Magnet3"	        Source="Images\Checks\Simple\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Min-TornPage1"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Min-TornPage2"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Min-TornPage3"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Min-TornPage4"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Min-TornPage5"		Source="Images\Checks\Simple\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Min-MunnyPouch1"	    Source="Images\Checks\munny_pouch.png"           x:Shared="false"/>
-    <Image x:Key="Min-MunnyPouch2"	    Source="Images\Checks\munny_pouch.png"           x:Shared="false"/>
-    <!-- Visit -->
-    <Image x:Key="Min-AuronWep"		    Source="Images\Checks\Simple\BattlefieldsofWar.png" x:Shared="false"/>
-    <Image x:Key="Min-MulanWep"		    Source="Images\Checks\Simple\AncestorSword.png"     x:Shared="false"/>
-    <Image x:Key="Min-BeastWep"		    Source="Images\Checks\Simple\BeastClaw.png"         x:Shared="false"/>
-    <Image x:Key="Min-JackWep"		    Source="Images\Checks\Simple\BoneFist.png"          x:Shared="false"/>
-    <Image x:Key="Min-SimbaWep"		    Source="Images\Checks\Simple\ProudFang.png"         x:Shared="false"/>
-    <Image x:Key="Min-SparrowWep"	    Source="Images\Checks\Simple\SkillCrossbones.png"   x:Shared="false"/>
-    <Image x:Key="Min-AladdinWep"	    Source="Images\Checks\Simple\Scimitar.png"          x:Shared="false"/>
-    <Image x:Key="Min-TronWep"		    Source="Images\Checks\Simple\IdentityDisk.png"      x:Shared="false"/>
-    <Image x:Key="Min-MembershipCard"   Source="Images\Checks\Simple\membership_card.png"   x:Shared="false"/>
-    <Image x:Key="Min-IceCream"		    Source="Images\Checks\Simple\IceCream.png"          x:Shared="false"/>
-    <Image x:Key="Min-Picture"		    Source="Images\Checks\Simple\Picture.png"           x:Shared="false"/>
+    <!--Simple Item Icons-->
+    <Image x:Key="Min-Report1"          Source="Images\Checks\Min\ansem_report01.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report2"          Source="Images\Checks\Min\ansem_report02.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report3"          Source="Images\Checks\Min\ansem_report03.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report4"          Source="Images\Checks\Min\ansem_report04.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report5"          Source="Images\Checks\Min\ansem_report05.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report6"          Source="Images\Checks\Min\ansem_report06.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report7"          Source="Images\Checks\Min\ansem_report07.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report8"          Source="Images\Checks\Min\ansem_report08.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report9"          Source="Images\Checks\Min\ansem_report09.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report10"         Source="Images\Checks\Min\ansem_report10.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report11"         Source="Images\Checks\Min\ansem_report11.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report12"         Source="Images\Checks\Min\ansem_report12.png"         x:Shared="false"/>
+    <Image x:Key="Min-Report13"         Source="Images\Checks\Min\ansem_report13.png"         x:Shared="false"/>
+    <Image x:Key="Min-Valor"	        Source="Images\Checks\Min\form_valor.png"             x:Shared="false"/>
+    <Image x:Key="Min-Wisdom"	        Source="Images\Checks\Min\form_wisdom.png"            x:Shared="false"/>
+    <Image x:Key="Min-Limit"	        Source="Images\Checks\Min\form_limit.png"             x:Shared="false"/>
+    <Image x:Key="Min-Master"	        Source="Images\Checks\Min\form_master.png"            x:Shared="false"/>
+    <Image x:Key="Min-Final"	        Source="Images\Checks\Min\form_final.png"             x:Shared="false"/>
+    <Image x:Key="Min-Anti"		        Source="Images\Checks\Min\form_anti.png"              x:Shared="false"/>
+    <Image x:Key="Min-Lamp"			    Source="Images\Checks\Min\summon_genie.png"           x:Shared="false"/>
+    <Image x:Key="Min-Ukulele"		    Source="Images\Checks\Min\summon_stitch.png"          x:Shared="false"/>
+    <Image x:Key="Min-Baseball"	        Source="Images\Checks\Min\summon_chicken_little.png"  x:Shared="false"/>
+    <Image x:Key="Min-Feather"		    Source="Images\Checks\Min\summon_peter_pan.png"       x:Shared="false"/>
+    <Image x:Key="Min-Nonexistence"	    Source="Images\Checks\Min\proof_nonexistence.png"     x:Shared="false"/>
+    <Image x:Key="Min-Connection"	    Source="Images\Checks\Min\proof_connection.png"       x:Shared="false"/>
+    <Image x:Key="Min-Peace"		    Source="Images\Checks\Min\proof_peace.png"            x:Shared="false"/>
+    <Image x:Key="Min-PromiseCharm"	    Source="Images\Checks\Min\promise_charm.png"          x:Shared="false"/>
+    <Image x:Key="Min-Fire1"	        Source="Images\Checks\Min\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Min-Fire2"	        Source="Images\Checks\Min\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Min-Fire3"	        Source="Images\Checks\Min\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Min-Blizzard1"        Source="Images\Checks\Min\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Min-Blizzard2"        Source="Images\Checks\Min\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Min-Blizzard3"        Source="Images\Checks\Min\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Min-Thunder1"	        Source="Images\Checks\Min\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Min-Thunder2"	        Source="Images\Checks\Min\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Min-Thunder3"	        Source="Images\Checks\Min\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Min-Cure1"	        Source="Images\Checks\Min\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Min-Cure2"	        Source="Images\Checks\Min\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Min-Cure3"	        Source="Images\Checks\Min\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Min-Reflect1"	        Source="Images\Checks\Min\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Min-Reflect2"	        Source="Images\Checks\Min\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Min-Reflect3"	        Source="Images\Checks\Min\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Min-Magnet1"	        Source="Images\Checks\Min\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Min-Magnet2"	        Source="Images\Checks\Min\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Min-Magnet3"	        Source="Images\Checks\Min\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Min-TornPage1"        Source="Images\Checks\Min\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Min-TornPage2"        Source="Images\Checks\Min\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Min-TornPage3"        Source="Images\Checks\Min\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Min-TornPage4"        Source="Images\Checks\Min\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Min-TornPage5"        Source="Images\Checks\Min\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Min-AuronWep"		    Source="Images\Checks\Min\Lock_BattlefieldsofWar.png" x:Shared="false"/>
+    <Image x:Key="Min-MulanWep"		    Source="Images\Checks\Min\Lock_AncestorSword.png"     x:Shared="false"/>
+    <Image x:Key="Min-BeastWep"		    Source="Images\Checks\Min\Lock_BeastClaw.png"         x:Shared="false"/>
+    <Image x:Key="Min-JackWep"		    Source="Images\Checks\Min\Lock_BoneFist.png"          x:Shared="false"/>
+    <Image x:Key="Min-SimbaWep"		    Source="Images\Checks\Min\Lock_ProudFang.png"         x:Shared="false"/>
+    <Image x:Key="Min-SparrowWep"	    Source="Images\Checks\Min\Lock_SkillCrossbones.png"   x:Shared="false"/>
+    <Image x:Key="Min-AladdinWep"	    Source="Images\Checks\Min\Lock_Scimitar.png"          x:Shared="false"/>
+    <Image x:Key="Min-TronWep"		    Source="Images\Checks\Min\Lock_IdentityDisk.png"      x:Shared="false"/>
+    <Image x:Key="Min-MembershipCard"   Source="Images\Checks\Min\Lock_membershipcard.png"    x:Shared="false"/>
+    <Image x:Key="Min-IceCream"		    Source="Images\Checks\Min\Lock_IceCream.png"          x:Shared="false"/>
+    <Image x:Key="Min-Picture"		    Source="Images\Checks\Min\Lock_Picture.png"           x:Shared="false"/>
+    <Image x:Key="Min-OnceMore"			Source="Images\Checks\once_more.png"                  x:Shared="false"/>
+    <Image x:Key="Min-SecondChance"		Source="Images\Checks\second_chance.png"              x:Shared="false"/>
     <!-- Extra -->
-    <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Simple\hades_cup.png"     x:Shared="false"/>
-    <Image x:Key="Min-OlympusStone"		Source="Images\Checks\Simple\olympus_stone.png" x:Shared="false"/>
-    <Image x:Key="Min-UnknownDisk"		Source="Images\Checks\Simple\UnknownDisk.png"   x:Shared="false"/>
-    <Image x:Key="Min-Anti"		        Source="Images\Checks\Simple\anti.png"          x:Shared="false"/>
+    <Image x:Key="Min-HadesCup"		    Source="Images\Checks\Min\Aux_hades_cup.png"          x:Shared="false"/>
+    <Image x:Key="Min-OlympusStone"		Source="Images\Checks\Min\Aux_olympus_stone.png"      x:Shared="false"/>
+    <Image x:Key="Min-UnknownDisk"		Source="Images\Checks\Min\Aux_UnknownDisk.png"        x:Shared="false"/>
+    <Image x:Key="Min-MunnyPouch1"	    Source="Images\Checks\Min\Aux_munny_pouch.png"        x:Shared="false"/>
+    <Image x:Key="Min-MunnyPouch2"	    Source="Images\Checks\Min\Aux_munny_pouch.png"        x:Shared="false"/>
 
-    <!--Old Item Icons (Main Window)-->
-    <Image x:Key="Old-AnsemReport"	  Source="Images\Other\ansem_report_old.png"            x:Shared="false"/>
-    <Image x:Key="Old-Report1"        Source="Images\Checks\Old\ansem_report01.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report2"        Source="Images\Checks\Old\ansem_report02.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report3"        Source="Images\Checks\Old\ansem_report03.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report4"        Source="Images\Checks\Old\ansem_report04.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report5"        Source="Images\Checks\Old\ansem_report05.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report6"        Source="Images\Checks\Old\ansem_report06.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report7"        Source="Images\Checks\Old\ansem_report07.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report8"        Source="Images\Checks\Old\ansem_report08.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report9"        Source="Images\Checks\Old\ansem_report09.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report10"       Source="Images\Checks\Old\ansem_report10.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report11"       Source="Images\Checks\Old\ansem_report11.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report12"       Source="Images\Checks\Old\ansem_report12.png"         x:Shared="false"/>
-    <Image x:Key="Old-Report13"       Source="Images\Checks\Old\ansem_report13.png"         x:Shared="false"/>
-    <Image x:Key="Old-Valor"	      Source="Images\Checks\Old\valor.png"                  x:Shared="false"/>
-    <Image x:Key="Old-Wisdom"	      Source="Images\Checks\Old\wisdom.png"                 x:Shared="false"/>
-    <Image x:Key="Old-Limit"	      Source="Images\Checks\Old\limit.png"                  x:Shared="false"/>
-    <Image x:Key="Old-Master"	      Source="Images\Checks\Old\master.png"                 x:Shared="false"/>
-    <Image x:Key="Old-Final"	      Source="Images\Checks\Old\final.png"                  x:Shared="false"/>
-    <Image x:Key="Old-TornPages"	  Source="Images\Other\torn_pages_old.png"              x:Shared="false"/>
-    <Image x:Key="Old-Lamp"			  Source="Images\Checks\Old\genie.png"                  x:Shared="false"/>
-    <Image x:Key="Old-Ukulele"		  Source="Images\Checks\Old\stitch.png"                 x:Shared="false"/>
-    <Image x:Key="Old-Baseball"	      Source="Images\Checks\Old\chicken_little.png"         x:Shared="false"/>
-    <Image x:Key="Old-Feather"		  Source="Images\Checks\Old\peter_pan.png"              x:Shared="false"/>
-    <Image x:Key="Old-Nonexistence"	  Source="Images\Checks\Old\proof_of_nonexistence.png"  x:Shared="false"/>
-    <Image x:Key="Old-Connection"	  Source="Images\Checks\Old\proof_of_connection.png"    x:Shared="false"/>
-    <Image x:Key="Old-Peace"		  Source="Images\Checks\Old\proof_of_tranquility.png"   x:Shared="false"/>
-    <Image x:Key="Old-PromiseCharm"	  Source="Images\Checks\Old\promise_charm.png"          x:Shared="false"/>
-    <!-- Multi -->
-    <Image x:Key="Old-Fire1"		  Source="Images\Checks\Old\fire.png"           x:Shared="false"/>
-    <Image x:Key="Old-Fire2"		  Source="Images\Checks\Old\fire.png"           x:Shared="false"/>
-    <Image x:Key="Old-Fire3"		  Source="Images\Checks\Old\fire.png"           x:Shared="false"/>
-    <Image x:Key="Old-Blizzard1"      Source="Images\Checks\Old\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Old-Blizzard2"      Source="Images\Checks\Old\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Old-Blizzard3"      Source="Images\Checks\Old\blizzard.png"       x:Shared="false"/>
-    <Image x:Key="Old-Thunder1"	      Source="Images\Checks\Old\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Old-Thunder2"	      Source="Images\Checks\Old\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Old-Thunder3"	      Source="Images\Checks\Old\thunder.png"        x:Shared="false"/>
-    <Image x:Key="Old-Cure1"		  Source="Images\Checks\Old\cure.png"           x:Shared="false"/>
-    <Image x:Key="Old-Cure2"		  Source="Images\Checks\Old\cure.png"           x:Shared="false"/>
-    <Image x:Key="Old-Cure3"		  Source="Images\Checks\Old\cure.png"           x:Shared="false"/>
-    <Image x:Key="Old-Reflect1"	      Source="Images\Checks\Old\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Old-Reflect2"	      Source="Images\Checks\Old\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Old-Reflect3"	      Source="Images\Checks\Old\reflect.png"        x:Shared="false"/>
-    <Image x:Key="Old-Magnet1"	      Source="Images\Checks\Old\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Old-Magnet2"	      Source="Images\Checks\Old\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Old-Magnet3"	      Source="Images\Checks\Old\magnet.png"         x:Shared="false"/>
-    <Image x:Key="Old-TornPage1"	  Source="Images\Checks\Old\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Old-TornPage2"	  Source="Images\Checks\Old\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Old-TornPage3"	  Source="Images\Checks\Old\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Old-TornPage4"	  Source="Images\Checks\Old\torn_pages.png"     x:Shared="false"/>
-    <Image x:Key="Old-TornPage5"	  Source="Images\Checks\Old\torn_pages.png"     x:Shared="false"/>
-    <!-- Visit -->
-    <Image x:Key="Old-AuronWep"		  Source="Images\Checks\Old\BattlefieldsofWar.png"  x:Shared="false"/>
-    <Image x:Key="Old-MulanWep"		  Source="Images\Checks\Old\AncestorSword.png"      x:Shared="false"/>
-    <Image x:Key="Old-BeastWep"		  Source="Images\Checks\Old\BeastClaw.png"          x:Shared="false"/>
-    <Image x:Key="Old-JackWep"		  Source="Images\Checks\Old\BoneFist.png"           x:Shared="false"/>
-    <Image x:Key="Old-SimbaWep"		  Source="Images\Checks\Old\ProudFang.png"          x:Shared="false"/>
-    <Image x:Key="Old-SparrowWep"	  Source="Images\Checks\Old\SkillCrossbones.png"    x:Shared="false"/>
-    <Image x:Key="Old-AladdinWep"	  Source="Images\Checks\Old\Scimitar.png"           x:Shared="false"/>
-    <Image x:Key="Old-TronWep"		  Source="Images\Checks\Old\IdentityDisk.png"       x:Shared="false"/>
-    <Image x:Key="Old-MembershipCard" Source="Images\Checks\Old\membership_card.png"    x:Shared="false"/>
-    <Image x:Key="Old-IceCream"		  Source="Images\Checks\Old\IceCream.png"           x:Shared="false"/>
-    <Image x:Key="Old-Picture"		  Source="Images\Checks\Old\Picture.png"            x:Shared="false"/>
+    <!--Old Item Icons-->
+    <Image x:Key="Old-Report1"          Source="Images\Checks\Old\ansem_report01.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report2"          Source="Images\Checks\Old\ansem_report02.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report3"          Source="Images\Checks\Old\ansem_report03.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report4"          Source="Images\Checks\Old\ansem_report04.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report5"          Source="Images\Checks\Old\ansem_report05.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report6"          Source="Images\Checks\Old\ansem_report06.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report7"          Source="Images\Checks\Old\ansem_report07.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report8"          Source="Images\Checks\Old\ansem_report08.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report9"          Source="Images\Checks\Old\ansem_report09.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report10"         Source="Images\Checks\Old\ansem_report10.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report11"         Source="Images\Checks\Old\ansem_report11.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report12"         Source="Images\Checks\Old\ansem_report12.png"         x:Shared="false"/>
+    <Image x:Key="Old-Report13"         Source="Images\Checks\Old\ansem_report13.png"         x:Shared="false"/>
+    <Image x:Key="Old-Valor"	        Source="Images\Checks\Old\form_valor.png"             x:Shared="false"/>
+    <Image x:Key="Old-Wisdom"	        Source="Images\Checks\Old\form_wisdom.png"            x:Shared="false"/>
+    <Image x:Key="Old-Limit"	        Source="Images\Checks\Old\form_limit.png"             x:Shared="false"/>
+    <Image x:Key="Old-Master"	        Source="Images\Checks\Old\form_master.png"            x:Shared="false"/>
+    <Image x:Key="Old-Final"	        Source="Images\Checks\Old\form_final.png"             x:Shared="false"/>
+    <Image x:Key="Old-Anti"		        Source="Images\Checks\Old\form_anti.png"              x:Shared="false"/>
+    <Image x:Key="Old-Lamp"			    Source="Images\Checks\Old\summon_genie.png"           x:Shared="false"/>
+    <Image x:Key="Old-Ukulele"		    Source="Images\Checks\Old\summon_stitch.png"          x:Shared="false"/>
+    <Image x:Key="Old-Baseball"	        Source="Images\Checks\Old\summon_chicken_little.png"  x:Shared="false"/>
+    <Image x:Key="Old-Feather"		    Source="Images\Checks\Old\summon_peter_pan.png"       x:Shared="false"/>
+    <Image x:Key="Old-Nonexistence"	    Source="Images\Checks\Old\proof_nonexistence.png"     x:Shared="false"/>
+    <Image x:Key="Old-Connection"	    Source="Images\Checks\Old\proof_connection.png"       x:Shared="false"/>
+    <Image x:Key="Old-Peace"		    Source="Images\Checks\Old\proof_peace.png"            x:Shared="false"/>
+    <Image x:Key="Old-PromiseCharm"	    Source="Images\Checks\Old\promise_charm.png"          x:Shared="false"/>
+    <Image x:Key="Old-Fire1"	        Source="Images\Checks\Old\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Old-Fire2"	        Source="Images\Checks\Old\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Old-Fire3"	        Source="Images\Checks\Old\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Old-Blizzard1"        Source="Images\Checks\Old\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Old-Blizzard2"        Source="Images\Checks\Old\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Old-Blizzard3"        Source="Images\Checks\Old\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Old-Thunder1"	        Source="Images\Checks\Old\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Old-Thunder2"	        Source="Images\Checks\Old\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Old-Thunder3"	        Source="Images\Checks\Old\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Old-Cure1"	        Source="Images\Checks\Old\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Old-Cure2"	        Source="Images\Checks\Old\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Old-Cure3"	        Source="Images\Checks\Old\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Old-Reflect1"	        Source="Images\Checks\Old\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Old-Reflect2"	        Source="Images\Checks\Old\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Old-Reflect3"	        Source="Images\Checks\Old\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Old-Magnet1"	        Source="Images\Checks\Old\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Old-Magnet2"	        Source="Images\Checks\Old\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Old-Magnet3"	        Source="Images\Checks\Old\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Old-TornPage1"        Source="Images\Checks\Old\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Old-TornPage2"        Source="Images\Checks\Old\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Old-TornPage3"        Source="Images\Checks\Old\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Old-TornPage4"        Source="Images\Checks\Old\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Old-TornPage5"        Source="Images\Checks\Old\torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Old-AuronWep"		    Source="Images\Checks\Old\Lock_BattlefieldsofWar.png" x:Shared="false"/>
+    <Image x:Key="Old-MulanWep"		    Source="Images\Checks\Old\Lock_AncestorSword.png"     x:Shared="false"/>
+    <Image x:Key="Old-BeastWep"		    Source="Images\Checks\Old\Lock_BeastClaw.png"         x:Shared="false"/>
+    <Image x:Key="Old-JackWep"		    Source="Images\Checks\Old\Lock_BoneFist.png"          x:Shared="false"/>
+    <Image x:Key="Old-SimbaWep"		    Source="Images\Checks\Old\Lock_ProudFang.png"         x:Shared="false"/>
+    <Image x:Key="Old-SparrowWep"	    Source="Images\Checks\Old\Lock_SkillCrossbones.png"   x:Shared="false"/>
+    <Image x:Key="Old-AladdinWep"	    Source="Images\Checks\Old\Lock_Scimitar.png"          x:Shared="false"/>
+    <Image x:Key="Old-TronWep"		    Source="Images\Checks\Old\Lock_IdentityDisk.png"      x:Shared="false"/>
+    <Image x:Key="Old-MembershipCard"   Source="Images\Checks\Old\Lock_membershipcard.png"    x:Shared="false"/>
+    <Image x:Key="Old-IceCream"		    Source="Images\Checks\Old\Lock_IceCream.png"          x:Shared="false"/>
+    <Image x:Key="Old-Picture"		    Source="Images\Checks\Old\Lock_Picture.png"           x:Shared="false"/>
+    <Image x:Key="Old-OnceMore"			Source="Images\Checks\once_more.png"                  x:Shared="false"/>
+    <Image x:Key="Old-SecondChance"		Source="Images\Checks\second_chance.png"              x:Shared="false"/>
     <!-- Extra -->
-    <Image x:Key="Old-HadesCup"		  Source="Images\Checks\Old\hades_cup.png"      x:Shared="false"/>
-    <Image x:Key="Old-OlympusStone"	  Source="Images\Checks\Old\olympus_stone.png"  x:Shared="false"/>
-    <Image x:Key="Old-UnknownDisk"	  Source="Images\Checks\Old\UnknownDisk.png"    x:Shared="false"/>
-    <Image x:Key="Old-Anti"		      Source="Images\Checks\Old\anti.png"           x:Shared="false"/>
-    
-    
-     <!--Other (Simple)-->
-    <Image x:Key="Min-OnceMore"			Source="Images\Checks\once_more.png" x:Shared="false"/>
-    <Image x:Key="Min-OnceMore_key"		Source="Images\Checks\once_more_key.png" x:Shared="false"/>
-    <Image x:Key="Min-SecondChance"		Source="Images\Checks\second_chance.png" x:Shared="false"/>
+    <Image x:Key="Old-HadesCup"		    Source="Images\Checks\Old\Aux_hades_cup.png"          x:Shared="false"/>
+    <Image x:Key="Old-OlympusStone"		Source="Images\Checks\Old\Aux_olympus_stone.png"      x:Shared="false"/>
+    <Image x:Key="Old-UnknownDisk"		Source="Images\Checks\Old\Aux_UnknownDisk.png"        x:Shared="false"/>
+    <Image x:Key="Old-MunnyPouch1"	    Source="Images\Checks\Old\Aux_munny_pouch.png"        x:Shared="false"/>
+    <Image x:Key="Old-MunnyPouch2"	    Source="Images\Checks\Old\Aux_munny_pouch.png"        x:Shared="false"/>
+
+    <!--Other (Simple)-->
+    <!--Image x:Key="Min-OnceMore_key"		Source="Images\Checks\once_more_key.png" x:Shared="false"/>
     <Image x:Key="Min-SecondChance_key" Source="Images\Checks\second_chance_key.png" x:Shared="false"/>
     <Image x:Key="Min-HighJump" 		Source="Images\Checks\jump.png" x:Shared="false"/>
     <Image x:Key="Min-QuickRun" 		Source="Images\Checks\quick.png" x:Shared="false"/>
     <Image x:Key="Min-DodgeRoll" 		Source="Images\Checks\dodge.png" x:Shared="false"/>
     <Image x:Key="Min-AerialDodge" 		Source="Images\Checks\aerial.png" x:Shared="false"/>
-    <Image x:Key="Min-Glide" 			Source="Images\Checks\glide.png" x:Shared="false"/>
+    <Image x:Key="Min-Glide" 			Source="Images\Checks\glide.png" x:Shared="false"/-->
 
     <!--Other (old)-->
-    <Image x:Key="Old-OnceMore"			Source="Images\Checks\once_more.png" x:Shared="false"/>
-    <Image x:Key="Old-OnceMore_key"		Source="Images\Checks\once_more_key.png" x:Shared="false"/>
-    <Image x:Key="Old-SecondChance"		Source="Images\Checks\second_chance.png" x:Shared="false"/>
+    <!--Image x:Key="Old-OnceMore_key"		Source="Images\Checks\once_more_key.png" x:Shared="false"/>
     <Image x:Key="Old-SecondChance_key" Source="Images\Checks\second_chance_key.png" x:Shared="false"/>
     <Image x:Key="Old-HighJump" 		Source="Images\Checks\jump.png" x:Shared="false"/>
     <Image x:Key="Old-QuickRun" 		Source="Images\Checks\quick.png" x:Shared="false"/>
     <Image x:Key="Old-DodgeRoll" 		Source="Images\Checks\dodge.png" x:Shared="false"/>
     <Image x:Key="Old-AerialDodge" 		Source="Images\Checks\aerial.png" x:Shared="false"/>
-    <Image x:Key="Old-Glide" 	        Source="Images\Checks\glide.png" x:Shared="false"/>
+    <Image x:Key="Old-Glide" 	        Source="Images\Checks\glide.png" x:Shared="false"/-->
     
-    <!--Custom Item Icons (Main)-->
-    <Image x:Key="Cus-Report1" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report01.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report2" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report02.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report3" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report03.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report4" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report04.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report5" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report05.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report6" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report06.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report7" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report07.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report8" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report08.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report9" 	 Source="pack://application:,,,/CustomImages/Checks/ansem_report09.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report10"  Source="pack://application:,,,/CustomImages/Checks/ansem_report10.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report11"  Source="pack://application:,,,/CustomImages/Checks/ansem_report11.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report12"  Source="pack://application:,,,/CustomImages/Checks/ansem_report12.png" x:Shared="false"/>
-    <Image x:Key="Cus-Report13"  Source="pack://application:,,,/CustomImages/Checks/ansem_report13.png" x:Shared="false"/>
-    
-    <Image x:Key="Cus-Fire1"		Source="pack://application:,,,/CustomImages/Checks/fire.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Fire2"		Source="pack://application:,,,/CustomImages/Checks/fire.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Fire3"		Source="pack://application:,,,/CustomImages/Checks/fire.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Blizzard1" 	Source="pack://application:,,,/CustomImages/Checks/blizzard.png"    x:Shared="false"/>
-    <Image x:Key="Cus-Blizzard2" 	Source="pack://application:,,,/CustomImages/Checks/blizzard.png"    x:Shared="false"/>
-    <Image x:Key="Cus-Blizzard3" 	Source="pack://application:,,,/CustomImages/Checks/blizzard.png"    x:Shared="false"/>
-    <Image x:Key="Cus-Thunder1"		Source="pack://application:,,,/CustomImages/Checks/thunder.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Thunder2"		Source="pack://application:,,,/CustomImages/Checks/thunder.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Thunder3"		Source="pack://application:,,,/CustomImages/Checks/thunder.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Cure1"		Source="pack://application:,,,/CustomImages/Checks/cure.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Cure2"		Source="pack://application:,,,/CustomImages/Checks/cure.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Cure3"		Source="pack://application:,,,/CustomImages/Checks/cure.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Reflect1"		Source="pack://application:,,,/CustomImages/Checks/reflect.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Reflect2"		Source="pack://application:,,,/CustomImages/Checks/reflect.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Reflect3"		Source="pack://application:,,,/CustomImages/Checks/reflect.png"     x:Shared="false"/>
-    <Image x:Key="Cus-Magnet1"		Source="pack://application:,,,/CustomImages/Checks/magnet.png"      x:Shared="false"/>
-    <Image x:Key="Cus-Magnet2"		Source="pack://application:,,,/CustomImages/Checks/magnet.png"      x:Shared="false"/>
-    <Image x:Key="Cus-Magnet3"		Source="pack://application:,,,/CustomImages/Checks/magnet.png"      x:Shared="false"/>
-    <Image x:Key="Cus-TornPage1"	Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"  x:Shared="false"/>
-    <Image x:Key="Cus-TornPage2"	Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"  x:Shared="false"/>
-    <Image x:Key="Cus-TornPage3"	Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"  x:Shared="false"/>
-    <Image x:Key="Cus-TornPage4"	Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"  x:Shared="false"/>
-    <Image x:Key="Cus-TornPage5"	Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"  x:Shared="false"/>
+    <!--Custom Item Icons (Main)-->  
+    <Image x:Key="Cus-Report1"          Source="pack://application:,,,/CustomImages/Checks/ansem_report01.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report2"          Source="pack://application:,,,/CustomImages/Checks/ansem_report02.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report3"          Source="pack://application:,,,/CustomImages/Checks/ansem_report03.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report4"          Source="pack://application:,,,/CustomImages/Checks/ansem_report04.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report5"          Source="pack://application:,,,/CustomImages/Checks/ansem_report05.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report6"          Source="pack://application:,,,/CustomImages/Checks/ansem_report06.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report7"          Source="pack://application:,,,/CustomImages/Checks/ansem_report07.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report8"          Source="pack://application:,,,/CustomImages/Checks/ansem_report08.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report9"          Source="pack://application:,,,/CustomImages/Checks/ansem_report09.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report10"         Source="pack://application:,,,/CustomImages/Checks/ansem_report10.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report11"         Source="pack://application:,,,/CustomImages/Checks/ansem_report11.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report12"         Source="pack://application:,,,/CustomImages/Checks/ansem_report12.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Report13"         Source="pack://application:,,,/CustomImages/Checks/ansem_report13.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Valor"	        Source="pack://application:,,,/CustomImages/Checks/form_valor.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Wisdom"	        Source="pack://application:,,,/CustomImages/Checks/form_wisdom.png"            x:Shared="false"/>
+    <Image x:Key="Cus-Limit"	        Source="pack://application:,,,/CustomImages/Checks/form_limit.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Master"	        Source="pack://application:,,,/CustomImages/Checks/form_master.png"            x:Shared="false"/>
+    <Image x:Key="Cus-Final"	        Source="pack://application:,,,/CustomImages/Checks/form_final.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Anti"		        Source="pack://application:,,,/CustomImages/Checks/form_anti.png"              x:Shared="false"/>
+    <Image x:Key="Cus-Lamp"			    Source="pack://application:,,,/CustomImages/Checks/summon_genie.png"           x:Shared="false"/>
+    <Image x:Key="Cus-Ukulele"		    Source="pack://application:,,,/CustomImages/Checks/summon_stitch.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Baseball"	        Source="pack://application:,,,/CustomImages/Checks/summon_chicken_little.png"  x:Shared="false"/>
+    <Image x:Key="Cus-Feather"		    Source="pack://application:,,,/CustomImages/Checks/summon_peter_pan.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Nonexistence"	    Source="pack://application:,,,/CustomImages/Checks/proof_nonexistence.png"     x:Shared="false"/>
+    <Image x:Key="Cus-Connection"	    Source="pack://application:,,,/CustomImages/Checks/proof_connection.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Peace"		    Source="pack://application:,,,/CustomImages/Checks/proof_peace.png"            x:Shared="false"/>
+    <Image x:Key="Cus-PromiseCharm"	    Source="pack://application:,,,/CustomImages/Checks/promise_charm.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Fire1"	        Source="pack://application:,,,/CustomImages/Checks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Fire2"	        Source="pack://application:,,,/CustomImages/Checks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Fire3"	        Source="pack://application:,,,/CustomImages/Checks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Blizzard1"        Source="pack://application:,,,/CustomImages/Checks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Blizzard2"        Source="pack://application:,,,/CustomImages/Checks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Blizzard3"        Source="pack://application:,,,/CustomImages/Checks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-Thunder1"	        Source="pack://application:,,,/CustomImages/Checks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Thunder2"	        Source="pack://application:,,,/CustomImages/Checks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Thunder3"	        Source="pack://application:,,,/CustomImages/Checks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Cure1"	        Source="pack://application:,,,/CustomImages/Checks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Cure2"	        Source="pack://application:,,,/CustomImages/Checks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Cure3"	        Source="pack://application:,,,/CustomImages/Checks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-Reflect1"	        Source="pack://application:,,,/CustomImages/Checks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Reflect2"	        Source="pack://application:,,,/CustomImages/Checks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Reflect3"	        Source="pack://application:,,,/CustomImages/Checks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Magnet1"	        Source="pack://application:,,,/CustomImages/Checks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-Magnet2"	        Source="pack://application:,,,/CustomImages/Checks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-Magnet3"	        Source="pack://application:,,,/CustomImages/Checks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-TornPage1"        Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-TornPage2"        Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-TornPage3"        Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-TornPage4"        Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-TornPage5"        Source="pack://application:,,,/CustomImages/Checks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-AuronWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_BattlefieldsofWar.png" x:Shared="false"/>
+    <Image x:Key="Cus-MulanWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_AncestorSword.png"     x:Shared="false"/>
+    <Image x:Key="Cus-BeastWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_BeastClaw.png"         x:Shared="false"/>
+    <Image x:Key="Cus-JackWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_BoneFist.png"          x:Shared="false"/>
+    <Image x:Key="Cus-SimbaWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_ProudFang.png"         x:Shared="false"/>
+    <Image x:Key="Cus-SparrowWep"	    Source="pack://application:,,,/CustomImages/Checks/Lock_SkillCrossbones.png"   x:Shared="false"/>
+    <Image x:Key="Cus-AladdinWep"	    Source="pack://application:,,,/CustomImages/Checks/Lock_Scimitar.png"          x:Shared="false"/>
+    <Image x:Key="Cus-TronWep"		    Source="pack://application:,,,/CustomImages/Checks/Lock_IdentityDisk.png"      x:Shared="false"/>
+    <Image x:Key="Cus-MembershipCard"   Source="pack://application:,,,/CustomImages/Checks/Lock_membershipcard.png"    x:Shared="false"/>
+    <Image x:Key="Cus-IceCream"		    Source="pack://application:,,,/CustomImages/Checks/Lock_IceCream.png"          x:Shared="false"/>
+    <Image x:Key="Cus-Picture"		    Source="pack://application:,,,/CustomImages/Checks/Lock_Picture.png"           x:Shared="false"/>
+    <Image x:Key="Cus-OnceMore"		Source="pack://application:,,,/CustomImages/Checks/once_more.png"              x:Shared="false"/>
+    <Image x:Key="Cus-SecondChance"	Source="pack://application:,,,/CustomImages/Checks/second_chance.png"          x:Shared="false"/>
+    <!-- Extra -->
+    <Image x:Key="Cus-HadesCup"		    Source="pack://application:,,,/CustomImages/Checks/Aux_hades_cup.png"          x:Shared="false"/>
+    <Image x:Key="Cus-OlympusStone"		Source="pack://application:,,,/CustomImages/Checks/Aux_olympus_stone.png"      x:Shared="false"/>
+    <Image x:Key="Cus-UnknownDisk"		Source="pack://application:,,,/CustomImages/Checks/Aux_UnknownDisk.png"        x:Shared="false"/>
+    <Image x:Key="Cus-MunnyPouch1"	    Source="pack://application:,,,/CustomImages/Checks/Aux_munny_pouch.png"        x:Shared="false"/>
+    <Image x:Key="Cus-MunnyPouch2"	    Source="pack://application:,,,/CustomImages/Checks/Aux_munny_pouch.png"        x:Shared="false"/>
 
-    <Image x:Key="Cus-Valor"			 Source="pack://application:,,,/CustomImages/Checks/valor.png"                  x:Shared="false"/>
-    <Image x:Key="Cus-Wisdom"			 Source="pack://application:,,,/CustomImages/Checks/wisdom.png"                 x:Shared="false"/>
-    <Image x:Key="Cus-Limit"			 Source="pack://application:,,,/CustomImages/Checks/limit.png"                  x:Shared="false"/>
-    <Image x:Key="Cus-Master"			 Source="pack://application:,,,/CustomImages/Checks/master.png"                 x:Shared="false"/>
-    <Image x:Key="Cus-Final"			 Source="pack://application:,,,/CustomImages/Checks/final.png"                  x:Shared="false"/>
-    <Image x:Key="Cus-Lamp"			     Source="pack://application:,,,/CustomImages/Checks/genie.png"                  x:Shared="false"/>
-    <Image x:Key="Cus-Ukulele"			 Source="pack://application:,,,/CustomImages/Checks/stitch.png"                 x:Shared="false"/>
-    <Image x:Key="Cus-Baseball"	         Source="pack://application:,,,/CustomImages/Checks/chicken_little.png"         x:Shared="false"/>
-    <Image x:Key="Cus-Feather"			 Source="pack://application:,,,/CustomImages/Checks/peter_pan.png"              x:Shared="false"/>
-    <Image x:Key="Cus-Nonexistence"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_nonexistence.png"  x:Shared="false"/>
-    <Image x:Key="Cus-Connection"		 Source="pack://application:,,,/CustomImages/Checks/proof_of_connection.png"    x:Shared="false"/>
-    <Image x:Key="Cus-Peace"		     Source="pack://application:,,,/CustomImages/Checks/proof_of_tranquility.png"   x:Shared="false"/>
-    <Image x:Key="Cus-PromiseCharm"		 Source="pack://application:,,,/CustomImages/Checks/promise_charm.png"          x:Shared="false"/>
-    
-    <Image x:Key="Cus-AuronWep"		     Source="pack://application:,,,/CustomImages/Checks/BattlefieldsofWar.png"  x:Shared="false"/>
-    <Image x:Key="Cus-MulanWep"		     Source="pack://application:,,,/CustomImages/Checks/AncestorSword.png"      x:Shared="false"/>
-    <Image x:Key="Cus-BeastWep"		     Source="pack://application:,,,/CustomImages/Checks/BeastClaw.png"          x:Shared="false"/>
-    <Image x:Key="Cus-JackWep"		     Source="pack://application:,,,/CustomImages/Checks/BoneFist.png"           x:Shared="false"/>
-    <Image x:Key="Cus-SimbaWep"		     Source="pack://application:,,,/CustomImages/Checks/ProudFang.png"          x:Shared="false"/>
-    <Image x:Key="Cus-SparrowWep"	     Source="pack://application:,,,/CustomImages/Checks/SkillCrossbones.png"    x:Shared="false"/>
-    <Image x:Key="Cus-AladdinWep"	     Source="pack://application:,,,/CustomImages/Checks/Scimitar.png"           x:Shared="false"/>
-    <Image x:Key="Cus-TronWep"		     Source="pack://application:,,,/CustomImages/Checks/IdentityDisk.png"       x:Shared="false"/>
-    <Image x:Key="Cus-Picture"		     Source="pack://application:,,,/CustomImages/Checks/Picture.png"            x:Shared="false"/>
-    <Image x:Key="Cus-IceCream"		     Source="pack://application:,,,/CustomImages/Checks/IceCream.png"           x:Shared="false"/>
-    <Image x:Key="Cus-MembershipCard"	 Source="pack://application:,,,/CustomImages/Checks/membership_card.png"    x:Shared="false"/>
-    <Image x:Key="Cus-HadesCup"		     Source="pack://application:,,,/CustomImages/Checks/hades_cup.png"          x:Shared="false"/>
-    <Image x:Key="Cus-OlympusStone"		 Source="pack://application:,,,/CustomImages/Checks/olympus_stone.png"      x:Shared="false"/>
-    <Image x:Key="Cus-UnknownDisk"		 Source="pack://application:,,,/CustomImages/Checks/UnknownDisk.png"        x:Shared="false"/>
-    <Image x:Key="Cus-Anti"		         Source="pack://application:,,,/CustomImages/Checks/anti.png"               x:Shared="false"/>
-
-    <!--Custom Item Icons (Ghost)-->
-    <Image x:Key="Cus-G_Report1" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report01.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report2" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report02.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report3" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report03.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report4" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report04.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report5" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report05.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report6" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report06.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report7" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report07.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report8" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report08.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report9" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report09.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report10" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report10.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report11" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report11.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report12" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report12.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Report13" 	Source="pack://application:,,,/CustomImages/Checks/Ghost/ansem_report13.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Fire1"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Fire2"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Fire3"	        Source="pack://application:,,,/CustomImages/Checks/Ghost/fire.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Blizzard1" 		Source="pack://application:,,,/CustomImages/Checks/Ghost/blizzard.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Blizzard2" 		Source="pack://application:,,,/CustomImages/Checks/Ghost/blizzard.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Blizzard3" 		Source="pack://application:,,,/CustomImages/Checks/Ghost/blizzard.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Thunder1"		Source="pack://application:,,,/CustomImages/Checks/Ghost/thunder.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Thunder2"		Source="pack://application:,,,/CustomImages/Checks/Ghost/thunder.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Thunder3"		Source="pack://application:,,,/CustomImages/Checks/Ghost/thunder.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Cure1"			Source="pack://application:,,,/CustomImages/Checks/Ghost/cure.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Cure2"			Source="pack://application:,,,/CustomImages/Checks/Ghost/cure.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Cure3"			Source="pack://application:,,,/CustomImages/Checks/Ghost/cure.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Reflect1"		Source="pack://application:,,,/CustomImages/Checks/Ghost/reflect.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Reflect2"		Source="pack://application:,,,/CustomImages/Checks/Ghost/reflect.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Reflect3"		Source="pack://application:,,,/CustomImages/Checks/Ghost/reflect.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Magnet1"		Source="pack://application:,,,/CustomImages/Checks/Ghost/magnet.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Magnet2"		Source="pack://application:,,,/CustomImages/Checks/Ghost/magnet.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Magnet3"		Source="pack://application:,,,/CustomImages/Checks/Ghost/magnet.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_TornPage1"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_TornPage2"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_TornPage3"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_TornPage4"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_TornPage5"		Source="pack://application:,,,/CustomImages/Checks/Ghost/torn_pages.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Valor"			Source="pack://application:,,,/CustomImages/Checks/Ghost/valor.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Wisdom"			Source="pack://application:,,,/CustomImages/Checks/Ghost/wisdom.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Limit"			Source="pack://application:,,,/CustomImages/Checks/Ghost/limit.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Master"			Source="pack://application:,,,/CustomImages/Checks/Ghost/master.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Final"			Source="pack://application:,,,/CustomImages/Checks/Ghost/final.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Lamp"			Source="pack://application:,,,/CustomImages/Checks/Ghost/genie.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Ukulele"		Source="pack://application:,,,/CustomImages/Checks/Ghost/stitch.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Baseball"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/chicken_little.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Feather"		Source="pack://application:,,,/CustomImages/Checks/Ghost/peter_pan.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Nonexistence"	Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_nonexistence.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Connection"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_connection.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_Peace"		    Source="pack://application:,,,/CustomImages/Checks/Ghost/proof_of_tranquility.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_PromiseCharm"	Source="pack://application:,,,/CustomImages/Checks/Ghost/promise_charm.png" x:Shared="false"/>
-    <Image x:Key="Cus-G_OnceMore"		Source="pack://application:,,,/CustomImages/Checks/Ghost/once_more.png"/>
-    <Image x:Key="Cus-G_SecondChance"	Source="pack://application:,,,/CustomImages/Checks/Ghost/second_chance.png"/>
-    <Image x:Key="Cus-G_AuronWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BattlefieldsofWar.png"/>
-    <Image x:Key="Cus-G_MulanWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/AncestorSword.png"/>
-    <Image x:Key="Cus-G_BeastWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BeastClaw.png"/>
-    <Image x:Key="Cus-G_JackWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/BoneFist.png"/>
-    <Image x:Key="Cus-G_SimbaWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/ProudFang.png"/>
-    <Image x:Key="Cus-G_SparrowWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/SkillCrossbones.png"/>
-    <Image x:Key="Cus-G_AladdinWep"	    Source="pack://application:,,,/CustomImages/Checks/Ghost/Scimitar.png"/>
-    <Image x:Key="Cus-G_TronWep"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IdentityDisk.png"/>
-    <Image x:Key="Cus-G_IceCream"		Source="pack://application:,,,/CustomImages/Checks/Ghost/IceCream.png"/>
-    <Image x:Key="Cus-G_Picture"		Source="pack://application:,,,/CustomImages/Checks/Ghost/Picture.png"/>
-    <Image x:Key="Cus-G_MembershipCard" Source="pack://application:,,,/CustomImages/Checks/Ghost/membership_card.png"/>
-    <Image x:Key="Cus-G_HadesCup"		Source="pack://application:,,,/CustomImages/Checks/Ghost/hades_cup.png"/>
-    <Image x:Key="Cus-G_OlympusStone"	Source="pack://application:,,,/CustomImages/Checks/Ghost/olympus_stone.png"/>
-    <Image x:Key="Cus-G_UnknownDisk"	Source="pack://application:,,,/CustomImages/Checks/Ghost/UnknownDisk.png"/>
-    <Image x:Key="Cus-G_Anti"		    Source="pack://application:,,,/CustomImages/Checks/Ghost/anti.png"/>
+    <!--Custom Item Icons (Ghost)-->  
+    <Image x:Key="Cus-G_Report1"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report01.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report2"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report02.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report3"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report03.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report4"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report04.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report5"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report05.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report6"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report06.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report7"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report07.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report8"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report08.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report9"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report09.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report10"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report10.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report11"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report11.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report12"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report12.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Report13"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report13.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Valor"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_valor.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Wisdom"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_wisdom.png"            x:Shared="false"/>
+    <Image x:Key="Cus-G_Limit"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_limit.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Master"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_master.png"            x:Shared="false"/>
+    <Image x:Key="Cus-G_Final"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_final.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Anti"		        Source="pack://application:,,,/CustomImages/GhostChecks/form_anti.png"              x:Shared="false"/>
+    <Image x:Key="Cus-G_Lamp"			    Source="pack://application:,,,/CustomImages/GhostChecks/summon_genie.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Ukulele"		    Source="pack://application:,,,/CustomImages/GhostChecks/summon_stitch.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Baseball"	        Source="pack://application:,,,/CustomImages/GhostChecks/summon_chicken_little.png"  x:Shared="false"/>
+    <Image x:Key="Cus-G_Feather"		    Source="pack://application:,,,/CustomImages/GhostChecks/summon_peter_pan.png"       x:Shared="false"/>
+    <Image x:Key="Cus-G_Nonexistence"	    Source="pack://application:,,,/CustomImages/GhostChecks/proof_nonexistence.png"     x:Shared="false"/>
+    <Image x:Key="Cus-G_Connection"	        Source="pack://application:,,,/CustomImages/GhostChecks/proof_connection.png"       x:Shared="false"/>
+    <Image x:Key="Cus-G_Peace"		        Source="pack://application:,,,/CustomImages/GhostChecks/proof_peace.png"            x:Shared="false"/>
+    <Image x:Key="Cus-G_PromiseCharm"	    Source="pack://application:,,,/CustomImages/GhostChecks/promise_charm.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Fire1"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Fire2"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Fire3"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Blizzard1"          Source="pack://application:,,,/CustomImages/GhostChecks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Blizzard2"          Source="pack://application:,,,/CustomImages/GhostChecks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Blizzard3"          Source="pack://application:,,,/CustomImages/GhostChecks/magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_Thunder1"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Thunder2"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Thunder3"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Cure1"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Cure2"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Cure3"	            Source="pack://application:,,,/CustomImages/GhostChecks/magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_Reflect1"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Reflect2"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Reflect3"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Magnet1"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Magnet2"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Magnet3"	        Source="pack://application:,,,/CustomImages/GhostChecks/magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage1"          Source="pack://application:,,,/CustomImages/GhostChecks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage2"          Source="pack://application:,,,/CustomImages/GhostChecks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage3"          Source="pack://application:,,,/CustomImages/GhostChecks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage4"          Source="pack://application:,,,/CustomImages/GhostChecks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_TornPage5"          Source="pack://application:,,,/CustomImages/GhostChecks/torn_pages.png"             x:Shared="false"/>
+    <Image x:Key="Cus-G_AuronWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_BattlefieldsofWar.png" x:Shared="false"/>
+    <Image x:Key="Cus-G_MulanWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_AncestorSword.png"     x:Shared="false"/>
+    <Image x:Key="Cus-G_BeastWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_BeastClaw.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_JackWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_BoneFist.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_SimbaWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_ProudFang.png"         x:Shared="false"/>
+    <Image x:Key="Cus-G_SparrowWep"	        Source="pack://application:,,,/CustomImages/GhostChecks/Lock_SkillCrossbones.png"   x:Shared="false"/>
+    <Image x:Key="Cus-G_AladdinWep"	        Source="pack://application:,,,/CustomImages/GhostChecks/Lock_Scimitar.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_TronWep"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_IdentityDisk.png"      x:Shared="false"/>
+    <Image x:Key="Cus-G_MembershipCard"     Source="pack://application:,,,/CustomImages/GhostChecks/Lock_membershipcard.png"    x:Shared="false"/>
+    <Image x:Key="Cus-G_IceCream"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_IceCream.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_Picture"		    Source="pack://application:,,,/CustomImages/GhostChecks/Lock_Picture.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_OnceMore"			Source="pack://application:,,,/CustomImages/GhostChecks/once_more.png"              x:Shared="false"/>
+    <Image x:Key="Cus-G_SecondChance"		Source="pack://application:,,,/CustomImages/GhostChecks/second_chance.png"          x:Shared="false"/>
+    <!-- Extra -->
+    <Image x:Key="Cus-G_HadesCup"		    Source="pack://application:,,,/CustomImages/GhostChecks/Aux_hades_cup.png"          x:Shared="false"/>
+    <Image x:Key="Cus-G_OlympusStone"		Source="pack://application:,,,/CustomImages/GhostChecks/Aux_olympus_stone.png"      x:Shared="false"/>
+    <Image x:Key="Cus-G_UnknownDisk"		Source="pack://application:,,,/CustomImages/GhostChecks/Aux_UnknownDisk.png"        x:Shared="false"/>
+    <Image x:Key="Cus-G_MunnyPouch1"	    Source="pack://application:,,,/CustomImages/GhostChecks/Aux_munny_pouch.png"        x:Shared="false"/>
+    <Image x:Key="Cus-G_MunnyPouch2"	    Source="pack://application:,,,/CustomImages/GhostChecks/Aux_munny_pouch.png"        x:Shared="false"/>
 
     <!--Custom Other (Main)-->
-    <Image x:Key="Cus-OnceMore"			Source="pack://application:,,,/CustomImages/Checks/once_more.png" x:Shared="false"/>
+    <!--Image x:Key="Cus-OnceMore"			Source="pack://application:,,,/CustomImages/Checks/once_more.png" x:Shared="false"/>
     <Image x:Key="Cus-OnceMore_key"		Source="pack://application:,,,/CustomImages/Checks/once_more_key.png" x:Shared="false"/>
     <Image x:Key="Cus-SecondChance"		Source="pack://application:,,,/CustomImages/Checks/second_chance.png" x:Shared="false"/>
     <Image x:Key="Cus-SecondChance_key" Source="pack://application:,,,/CustomImages/Checks/second_chance_key.png" x:Shared="false"/>
@@ -335,6 +326,6 @@
     <Image x:Key="Cus-QuickRun" 		Source="pack://application:,,,/CustomImages/Checks/quick.png" x:Shared="false"/>
     <Image x:Key="Cus-DodgeRoll" 		Source="pack://application:,,,/CustomImages/Checks/dodge.png" x:Shared="false"/>
     <Image x:Key="Cus-AerialDodge" 		Source="pack://application:,,,/CustomImages/Checks/aerial.png" x:Shared="false"/>
-    <Image x:Key="Cus-Glide" 			Source="pack://application:,,,/CustomImages/Checks/glide.png" x:Shared="false"/>
+    <Image x:Key="Cus-Glide" 			Source="pack://application:,,,/CustomImages/Checks/glide.png" x:Shared="false"/-->
 
 </ResourceDictionary>
