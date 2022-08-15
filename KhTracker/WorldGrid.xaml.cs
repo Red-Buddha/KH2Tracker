@@ -25,6 +25,7 @@ namespace KhTracker
         public static int Real_Reflect = 0;
         public static int Real_Magnet = 0;
         public static int Real_Pages = 0;
+        public static int Real_Pouches = 0;
 
         //public static int localLevelCount = 0;
         public static int Ghost_Fire = 0;
@@ -34,7 +35,8 @@ namespace KhTracker
         public static int Ghost_Reflect = 0;
         public static int Ghost_Magnet = 0;
         public static int Ghost_Pages = 0;
-        
+        public static int Ghost_Pouches = 0;
+
         //amount of obtained ghost magic/pages
         public static int Ghost_Fire_obtained = 0;
         public static int Ghost_Blizzard_obtained = 0;
@@ -43,6 +45,7 @@ namespace KhTracker
         public static int Ghost_Reflect_obtained = 0;
         public static int Ghost_Magnet_obtained = 0;
         public static int Ghost_Pages_obtained = 0;
+        public static int Ghost_Pouches_obtained = 0;
 
         //A single spot to have referenced for the opacity of the ghost checks idk where to put this
         public static double universalOpacity = 0.5;

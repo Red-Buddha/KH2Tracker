@@ -89,67 +89,41 @@ namespace KhTracker
 
         public static string GetHintTextName(string worldName)
         {
-            if (worldName == "SimulatedTwilightTown")
+            switch(worldName)
             {
-                return "Simulated Twilight Town";
+                case "SimulatedTwilightTown":
+                    return "Simulated Twilight Town";
+                case "TwilightTown":
+                    return "Twilight Town";
+                case "HollowBastion":
+                    return "Hollow Bastion";
+                case "LandofDragons":
+                    return "Land of Dragons";
+                case "BeastsCastle":
+                    return "Beasts Castle";
+                case "OlympusColiseum":
+                    return "Olympus Coliseum";
+                case "DisneyCastle":
+                    return "Disney Castle";
+                case "PortRoyal":
+                    return "Port Royal";
+                case "HalloweenTown":
+                    return "Halloween Town";
+                case "PrideLands":
+                    return "Pride Lands";
+                case "HundredAcreWood":
+                    return "Hundred Acre Wood";
+                case "SpaceParanoids":
+                    return "Space Paranoids";
+                case "DriveForms":
+                    return "Drive Forms";
+                case "SorasHeart":
+                    return "Soras Heart";
+                case "PuzzSynth":
+                    return "Creations";
+                default: 
+                    return worldName;
             }
-            else if (worldName == "TwilightTown")
-            {
-                return "Twilight Town";
-            }
-            else if (worldName == "HollowBastion")
-            {
-                return "Hollow Bastion";
-            }
-            else if (worldName == "LandofDragons")
-            {
-                return "Land of Dragons";
-            }
-            else if (worldName == "BeastsCastle")
-            {
-                return "Beasts Castle";
-            }
-            else if (worldName == "OlympusColiseum")
-            {
-                return "Olympus Coliseum";
-            }
-            else if (worldName == "DisneyCastle")
-            {
-                return "Disney Castle";
-            }
-            else if (worldName == "PortRoyal")
-            {
-                return "Port Royal";
-            }
-            else if (worldName == "HalloweenTown")
-            {
-                return "Halloween Town";
-            }
-            else if (worldName == "PrideLands")
-            {
-                return "Pride Lands";
-            }
-            else if (worldName == "HundredAcreWood")
-            {
-                return "Hundred Acre Wood";
-            }
-            else if (worldName == "SpaceParanoids")
-            {
-                return "Space Paranoids";
-            }
-            else if (worldName == "DriveForms")
-            {
-                return "Drive Forms";
-            }
-            else if (worldName == "SorasHeart")
-            {
-                return "Soras Heart";
-            }
-            else if (worldName == "PuzzSynth")
-            {
-                return "Creations";
-            }
-            return worldName;
         }
 
         public string GetDefault(int index)
@@ -242,7 +216,8 @@ namespace KhTracker
             {537, "HadesCup"},
             {370, "OlympusStone"},
             {462, "UnknownDisk"},
-
+            {362, "MunnyPouch1"},
+            {535, "MunnyPouch2"}
         };
 
         public static Dictionary<string, string> shortNames = new Dictionary<string, string>()
@@ -337,6 +312,8 @@ namespace KhTracker
             {"HadesCup", "other"},
             {"OlympusStone", "other"},
             {"UnknownDisk", "other"},
+            {"MunnyPouch1", "other"},
+            {"MunnyPouch2", "other"},           
             //ghost versions
             {"Ghost_Report1", "report"},
             {"Ghost_Report2", "report"},
@@ -404,6 +381,8 @@ namespace KhTracker
             {"Ghost_HadesCup", "other"},
             {"Ghost_OlympusStone", "other"},
             {"Ghost_UnknownDisk", "other"},
+            {"Ghost_MunnyPouch1", "other"},
+            {"Ghost_MunnyPouch2", "other"},  
             //seedgen names
             {"Fire Element", "magic"},
             {"Blizzard Element", "magic"},
@@ -453,7 +432,8 @@ namespace KhTracker
             {"Anti-Form", "form"},
             {"Hades Cup Trophy", "other"},
             {"Olympus Stone", "other"},
-            {"Unknown Disk", "other"}
+            {"Unknown Disk", "other"},
+            {"Munny Pouch", "other"}
         };
 
         public static Dictionary<string, string> convertItemNames = new Dictionary<string, string>()
@@ -576,7 +556,8 @@ namespace KhTracker
             {"", "GoA"},
             {"Critical Bonuses", "GoA"},
             {"Creations", "PuzzSynth"},
-            {"Empty", "Empty"}
+            {"Empty", "Empty"},
+            {"Munny Pouch", "MunnyPouch" }
         };
 
         //public static Dictionary<List<string>, string> getColors = new Dictionary<List<string>, string>()

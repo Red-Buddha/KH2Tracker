@@ -78,6 +78,26 @@ namespace KhTracker
         private ItemAdorner myAdornment;
         private PInPoint pointRef = new PInPoint();
 
+        public void Item_Click(object sender, RoutedEventArgs e)
+        {
+            Data data = MainWindow.data;
+            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this))
+            {
+                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this);
+            }
+        }
+
+        public void Item_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (selected)
+                Item_Click(sender, e);
+        }
+
+        public void Item_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            selected = true;
+        }
+
         public void Item_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -89,60 +109,61 @@ namespace KhTracker
                 adLayer.Remove(myAdornment);
             }
         }
-
-        public void Item_Click(object sender, RoutedEventArgs e)
-        {
-            Data data = MainWindow.data;
-            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this))
-            {
-                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this);
-            }
-        }
-
+ 
         public void Report_Hover(object sender, RoutedEventArgs e)
         {
             Data data = MainWindow.data;
             int index = (int)GetValue(Grid.ColumnProperty);
+            var repStr1 = data.reportInformation[index].Item1;
+            var repStr2 = data.reportInformation[index].Item2;
+            var repInt = data.reportInformation[index].Item3;
 
-            if (data.mode == Mode.DAHints)
+            switch (data.mode)
             {
-                if (shortenNames.ContainsKey(data.reportInformation[index].Item2))
-                {
-                    MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + shortenNames[data.reportInformation[index].Item2]);
-                }
-                else
-                    MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2);
-            }
-            else if (data.mode == Mode.PathHints)
-            {
-                MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
-            }
-            else if (data.mode == Mode.SpoilerHints)
-            {
-                if (data.reportInformation[index].Item1 == "Empty")
-                {
-                    MainW.SetHintText("This report looks too faded to read...");
-                }
-                else
-                {
-                    if (data.reportInformation[index].Item3 == -1)
+                case Mode.DAHints:
+                    MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has " + Codes.FindShortName(repStr2));
+                    break;
+                case Mode.PathHints:
+                    MainW.SetHintText(Codes.GetHintTextName(repStr1));
+                    break;
+                case Mode.SpoilerHints:
+                    if (repStr1 == "Empty")
                     {
-                        MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has no Important Checks");
+                        MainW.SetHintText("This report looks too faded to read...");
                     }
                     else
                     {
-                        MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has been revealed!");
+                        if (repInt == -1)
+                        {
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has no Important Checks");
+                        }
+                        else
+                        {
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has been revealed!");
+                        }
                     }
-                }
+                    break;
+                default:
+                    if (repInt == -99)
+                    {
+                        //MainW.SetJokeText(repStr1);
+                    }
+                    else
+                    {
+                        MainW.SetHintText(Codes.GetHintTextName(repStr2) + " has " + repInt + " important checks");
+                    }
+                    break;
             }
-            else if(data.reportInformation[index].Item3 == -99)
-            {
-                //MainW.SetJokeText(data.reportInformation[index].Item1);
-            }
-            else
-            {
-                MainW.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2) + " has " + data.reportInformation[index].Item3 + " important checks");
-            }
+        }
+
+        private void Item_PreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            GetCursorPos(ref pointRef);
+            Point relPos = this.PointFromScreen(pointRef.GetPoint(myAdornment.CenterOffset));
+            myAdornment.Arrange(new Rect(relPos, myAdornment.DesiredSize));
+
+            Mouse.SetCursor(Cursors.None);
+            e.Handled = true;
         }
 
         public void Item_Return(object sender, RoutedEventArgs e)
@@ -153,7 +174,7 @@ namespace KhTracker
         public void HandleItemReturn()
         {
             Data data = MainWindow.data;
-            
+
             if (this.Name.StartsWith("Ghost_"))
             {
                 Grid GhostRow = VisualTreeHelper.GetChild(MainW.ItemPool, 4) as Grid; //ghost grid always at this position
@@ -202,44 +223,5 @@ namespace KhTracker
                 MouseEnter -= Report_Hover;
             }
         }
-
-        private void Item_PreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            GetCursorPos(ref pointRef);
-            Point relPos = this.PointFromScreen(pointRef.GetPoint(myAdornment.CenterOffset));
-            myAdornment.Arrange(new Rect(relPos, myAdornment.DesiredSize));
-
-            Mouse.SetCursor(Cursors.None);
-            e.Handled = true;
-        }
-
-        public void Item_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            selected = true;
-        }
-
-        public void Item_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (selected)
-                Item_Click(sender, e);
-        }
-
-        ///TODO: remove these and use ones from Codes.cs
-        private Dictionary<string, string> shortenNames = new Dictionary<string, string>()
-        {
-            {"Baseball Charm (Chicken Little)", "Baseball Charm"},
-            {"Lamp Charm (Genie)", "Lamp Charm"},
-            {"Ukulele Charm (Stitch)", "Ukulele Charm"},
-            {"Feather Charm (Peter Pan)", "Feather Charm"},
-            {"PromiseCharm", "Promise Charm"},
-            {"Battlefields of War (Auron)", "Battlefields of War"},
-            {"Sword of the Ancestor (Mulan)", "Sword of the Ancestor"},
-            {"Beast's Claw (Beast)", "Beast's Claw"},
-            {"Bone Fist (Jack Skellington)", "Bone Fist"},
-            {"Proud Fang (Simba)", "Proud Fang"},
-            {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
-            {"Scimitar (Aladdin)", "Scimitar"},
-            {"Identity Disk (Tron)", "Identity Disk"}
-        };
     }
 }

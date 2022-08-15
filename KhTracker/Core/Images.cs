@@ -203,7 +203,6 @@ namespace KhTracker
             };
         }
 
-        //dumb window backgound stuff
         private void MainBG_DefToggle(object sender, RoutedEventArgs e)
         {
             // Mimicing radio buttons so you cant toggle a button off
