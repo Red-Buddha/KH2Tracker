@@ -15,6 +15,10 @@
     </StackPanel>
     <Image x:Key="Fail3" Source="Images\FailX.png" Margin="-20,-15,0,0" Height="15" x:Shared="false"/>
 
+    <Image x:Key="Min-Cross" Source="Images\System\cross.png" x:Shared="false"/>
+    <Image x:Key="Old-Cross" Source="Images\System\cross.png" x:Shared="false"/>
+    <Image x:Key="Cus-Cross" Source="Images\System\cross.png" x:Shared="false"/>
+    
     <!--Simple Item Icons-->
     <Image x:Key="Min-Report1"          Source="Images\Checks\Min\ansem_report01.png"         x:Shared="false"/>
     <Image x:Key="Min-Report2"          Source="Images\Checks\Min\ansem_report02.png"         x:Shared="false"/>

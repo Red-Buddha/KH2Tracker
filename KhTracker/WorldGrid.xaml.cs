@@ -234,7 +234,7 @@ namespace KhTracker
 
         public void UpdateMulti(Item item, bool add)
         {
-            if (Codes.FindItemType(item.Name) != "magic" && Codes.FindItemType(item.Name) != "page")
+            if (Codes.FindItemType(item.Name) != "magic" && Codes.FindItemType(item.Name) != "page" && Codes.FindItemType(item.Name) != "other")
                 return;
 
             //int multi = 0;
@@ -281,6 +281,10 @@ namespace KhTracker
                     Real_Pages += addRemove;
                     window.PageCount.Text = (5 - Real_Pages).ToString();
                     //multi = Real_Pages;
+                    return;
+                case "MunnyPouch":
+                    Real_Pouches += addRemove;
+                    window.MunnyCount.Text = (2 - Real_Pouches).ToString();
                     return;
                 default:
                     return;
@@ -550,7 +554,7 @@ namespace KhTracker
             //get correct item name
             char[] numbers = { '1', '2', '3', '4', '5' };
             string itemname = item.Name;
-            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page")
+            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page" || Codes.FindItemType(item.Name) == "other")
             {
                 itemname = itemname.TrimEnd(numbers);
             }
@@ -564,7 +568,7 @@ namespace KhTracker
                     itemnameGhost = ghostItem.Name;
 
                     //trim numbers
-                    if (Codes.FindItemType(ghostItem.Name) == "magic" || Codes.FindItemType(ghostItem.Name) == "page")
+                    if (Codes.FindItemType(ghostItem.Name) == "magic" || Codes.FindItemType(ghostItem.Name) == "page" || Codes.FindItemType(ghostItem.Name) == "other")
                     {
                         itemnameGhost = itemnameGhost.TrimEnd(numbers);
                     }
@@ -640,6 +644,12 @@ namespace KhTracker
                         return;
                     }
                     break;
+                case "MunnyPouch":
+                    if (Ghost_Pouches >= 2)
+                    {
+                        return;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -654,7 +664,7 @@ namespace KhTracker
                 string itemName = ItemCheck.Name;
 
                 //trim numbers if needed
-                if (Codes.FindItemType(ItemCheck.Name) == "magic" || Codes.FindItemType(ItemCheck.Name) == "page")
+                if (Codes.FindItemType(ItemCheck.Name) == "magic" || Codes.FindItemType(ItemCheck.Name) == "page" || Codes.FindItemType(ItemCheck.Name) == "other")
                 {
                     itemName = itemName.TrimEnd(numbers);
                 }
@@ -782,6 +792,12 @@ namespace KhTracker
                             return;
                         }
                         break;
+                    case "MunnyPouch":
+                        if (Ghost_Pouches >= 2)
+                        {
+                            return;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -820,8 +836,6 @@ namespace KhTracker
             }
         }
 
-        //TODO: these need to be changed and updated. we no longer need to make the icon transparent for magic/pages
-        //UPDATE: yes we do... but i'll worry about it when i start adding legacy layout mode
         private void UpdateGhostObtained(Item item, int addremove)
         {
             Data data = MainWindow.data;
@@ -841,7 +855,7 @@ namespace KhTracker
                 itemname = item.Name.TrimEnd(numbers);
 
             //update normal items obtained
-            if ((itemntype == "magic" || itemntype == "page") && !itemname.StartsWith("Ghost_"))
+            if ((itemntype == "magic" || itemntype == "page" || itemntype == "other") && !itemname.StartsWith("Ghost_"))
             {
                 switch (itemname)
                 {
@@ -866,11 +880,14 @@ namespace KhTracker
                     case "TornPage":
                         Ghost_Pages_obtained += addremove;
                         break;
+                    case "MunnyPouch":
+                        Ghost_Pouches_obtained += addremove;
+                        break;
                 }
             }
 
             //update ghost items hinted
-            if ((itemntype == "magic" || itemntype == "page") && itemname.StartsWith("Ghost_"))
+            if ((itemntype == "magic" || itemntype == "page" || itemntype == "other") && itemname.StartsWith("Ghost_"))
             {
                 switch (itemname)
                 {
@@ -895,6 +912,9 @@ namespace KhTracker
                     case "Ghost_TornPage":
                         Ghost_Pages += addremove;
                         break;
+                    case "Ghost_MunnyPouch":
+                        Ghost_Pouches += addremove;
+                        break;
                 }
             }
 
@@ -910,7 +930,7 @@ namespace KhTracker
             Data data = MainWindow.data;
 
             //simplier icon opacity change for non pages/magic
-            if (type != "magic" && type != "page")
+            if (type != "magic" && type != "page" && !item.Contains("Munny"))
             {
                 //check if a ghost item was tracked
                 if (item.StartsWith("Ghost_"))
@@ -980,6 +1000,12 @@ namespace KhTracker
                     GhostIC = Ghost_Pages;
                     ObtainedIC = Ghost_Pages_obtained;
                     magicValue = window.Ghost_PageCount;
+                    break;
+                case "Ghost_MunnyPouch":
+                case "MunnyPouch":
+                    GhostIC = Ghost_Pouches;
+                    ObtainedIC = Ghost_Pouches_obtained;
+                    magicValue = window.Ghost_MunnyCount;
                     break;
                 default:
                     Console.WriteLine("Something went wrong? item wasn't expected. Item: " + item);
@@ -1182,6 +1208,5 @@ namespace KhTracker
                 window.SetHintText("Impossible Path Error! How are you seeing this?");
             }
         }
-    
     }
 }

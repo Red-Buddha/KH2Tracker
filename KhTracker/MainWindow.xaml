@@ -1462,8 +1462,14 @@
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox>
-                        <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="25pt" FontWeight="DemiBold" 
-                                             TextWrapping="Wrap" StrokeThickness="3" Stroke="Black" Fill="White" TextAlignment="Center" Text="Sora's Heart has 5 Important Checks test"/>
+                        <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
+                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="Black" TextAlignment="Center" Text="Heart 5 Checks"/>
+                    </Viewbox>
+
+                    <Viewbox>
+                        <TextBlock FontFamily="{StaticResource Menu}" FontWeight="DemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-4,0" Foreground="White">
+                            <TextBlock Text="Heart" Foreground="Red"/> 5 <TextBlock Text="Checks " Foreground="Blue"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <!-- Death Counter-->
@@ -1626,9 +1632,14 @@
                             <ColumnDefinition Width="0.25*"/>
                             <ColumnDefinition  Width="1*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.11*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="0.11*"/>
+                        </Grid.RowDefinitions>
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Collected -->
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,3">
+                        <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,3">
                             <Viewbox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -1647,7 +1658,7 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                         <!-- Separator-->
-                        <Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,-1,1,-1" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox  Grid.Row="1"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,-1,1,-1" RenderTransformOrigin="0.5,0.5">
                             <Viewbox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.75" ScaleY="1.25"/>
@@ -1666,7 +1677,7 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                         <!-- Total -->
-                        <Viewbox Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,3" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox  Grid.Row="1"  Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,3" RenderTransformOrigin="0.5,0.5">
                             <Viewbox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="1"/>
@@ -2012,10 +2023,10 @@
                         
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
-                        
-                        <ColumnDefinition Width="0.6*"/>
-                        <ColumnDefinition Width="1*"/>
+
+                        <ColumnDefinition Width="0.1*" Name="MunnySep"/>
+                        <ColumnDefinition Width="0.6*" Name="MunnyNum"/>
+                        <ColumnDefinition Width="1.0*" Name="MunnyImg"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- Spacers -->
@@ -2192,7 +2203,7 @@
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_MunnyPouch" Content="{DynamicResource Min-MunnyPouch1}"        Grid.Column="21" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_MunnyPouch" Content="{DynamicResource Min-MunnyPouch1}"        Grid.Column="22" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
@@ -2214,7 +2225,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="2" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="3" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2229,7 +2240,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="6" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2244,7 +2255,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="6" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="9" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2259,7 +2270,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="8" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="12" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2274,7 +2285,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="10" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="15" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2289,7 +2300,7 @@
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="3" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
-                    <Grid Grid.Column="12" Grid.ColumnSpan="2">
+                    <Grid Grid.Column="18" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -2302,6 +2313,21 @@
                         <Viewbox Grid.Column="1">
                             <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_PageCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
                                                  FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="5" Fill="#FF097B00" Stroke="#FFFFECEC"/>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Grid.Column="21" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="1">
+                            <local:OutlinedTextBlock Visibility="Hidden" x:Name="Ghost_MunnyCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" 
+                                                 FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="5" Text="2" Fill="#FF097B00" Stroke="#FFFFECEC"/>
                         </Viewbox>
                     </Grid>
                 </Grid>
@@ -2319,12 +2345,12 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
+                        <ColumnDefinition x:Name="OnceMoreCol" Width="1*"/>
+                        <ColumnDefinition x:Name="SecondChanceCol" Width="1*"/>
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition x:Name="PromiseCharmCol" Width="1*"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="Valor"        Content="{DynamicResource Min-Valor}"         Grid.Column="0"/>
@@ -2661,11 +2687,39 @@
                 </Grid>
 
                 <!-- Auto-Detect Visual -->
-                <Image x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3"/>
+
+                <Viewbox></Viewbox>
+
+
+                <Image RenderTransformOrigin="0.5,0.5" x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3">
+                    <Image.RenderTransform>
+                        <RotateTransform Angle="0" />
+                    </Image.RenderTransform>
+                    <Image.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Image.Visibility" Value="Visible">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    From="0"
+                                    To="360"
+                                    Duration="0:0:2"
+                                    RepeatBehavior="Forever" DecelerationRatio="0.75"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
 
                 <!-- fancy spacer colors -->
                 <Rectangle Grid.ColumnSpan="3" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>
-                <Rectangle Grid.Column="3" Fill="#E51E1E25" Panel.ZIndex="-2"/>
+                <Rectangle Margin="-6,0,44,0" Grid.Column="3" Fill="#ff000000" Panel.ZIndex="2"/>
             </Grid>
         </Grid>
 
