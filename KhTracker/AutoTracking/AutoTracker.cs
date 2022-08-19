@@ -84,7 +84,7 @@ namespace KhTracker
 
         ///Auto-Detect Control Stuff
         private bool autoDetected = false; 
-        private int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
+        public int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
         private bool isWorking = false;
         private bool firstRun = true;       
 
@@ -240,7 +240,9 @@ namespace KhTracker
             {
                 //change connection icon visual and start pc version setup
                 //NOTE: removed title check for now. i'm unsure if it was actually ever needed.
-                Connect.Source = data.AD_PCred;
+                Connect.Visibility = Visibility.Collapsed;
+                Connect2.Source = data.AD_PCred;
+                Connect2.Visibility = Visibility.Visible;
                 FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
             }
             else
@@ -275,7 +277,9 @@ namespace KhTracker
                 Slot1 = 0x1C6C750;
 
                 //change connection icon visual and start final setup
-                Connect.Source = data.AD_PS2;
+                Connect.Visibility = Visibility.Collapsed;
+                Connect2.Source = data.AD_PS2;
+                Connect2.Visibility = Visibility.Visible;
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
             }
         }
@@ -347,7 +351,9 @@ namespace KhTracker
             }
 
             //change connection icon visual and start final setup
-            Connect.Source = data.AD_PC;
+            Connect.Visibility = Visibility.Collapsed;
+            Connect2.Source = data.AD_PC;
+            Connect2.Visibility = Visibility.Visible;
             FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
         }
 
@@ -459,8 +465,9 @@ namespace KhTracker
             Defense.Visibility = Visibility.Visible;
             //Weapon.Visibility = Visibility.Visible;
 
-            if (AutoDetectOption.IsChecked)
-                Connect.Visibility = Visibility.Visible;
+            //if (AutoDetectOption.IsChecked)
+            //    Connect.Visibility = Visibility.Visible;
+
             if (FormsGrowthOption.IsChecked)
                 FormRow.Height = new GridLength(0.5, GridUnitType.Star);
 
@@ -516,6 +523,7 @@ namespace KhTracker
                 //Console.WriteLine("event id1 = " + world.eventID1);
                 //Console.WriteLine("event id2 = " + world.eventID2);
                 //Console.WriteLine("event id3 = " + world.eventID3);
+                //Console.WriteLine("event cpl = " + world.eventComplete);
                 //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
                 //Console.WriteLine(cntrl);
                 #endregion
@@ -528,7 +536,8 @@ namespace KhTracker
                 if (!autoDetected)
                     MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
 
-                Connect.Source = data.AD_Connect;
+                Connect.Visibility = Visibility.Visible;
+                Connect2.Visibility = Visibility.Collapsed;
                 isWorking = false;
                 SetAutoDetectTimer();
                 return;
@@ -633,9 +642,17 @@ namespace KhTracker
         ///TODO: test to make sure it works
         private void TrackItem(string itemName, WorldGrid world)
         {
-            //i wonder if there's a better way to do this? hmm...
-            //TODO: look this over again when i get to legacy layout mode;
-            Grid ItemRow = data.Items[itemName].Item2;
+            Grid ItemRow = null;
+            try //try getting itemrow grid from dictionary
+            {
+                ItemRow = data.Items[itemName].Item2;
+            }
+            catch //if item is not from pool (growth) then log the item and return
+            {
+                if (App.logger != null)
+                    App.logger.Record(itemName + " tracked");
+                return;
+            }
 
             //do a check in the report handler to actually make sure reports don't
             //track to the wrong place in the case of mismatched seeds/hints
@@ -733,21 +750,27 @@ namespace KhTracker
                             if ((world.eventID3 == 56 || world.eventID3 == 55) && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)/(Day 6)
                                 curProg = 1;
                             break;
-                        case 34:
-                            if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
+                        case 8:
+                            if (world.eventID1 == 110 || world.eventID1 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
                                 curProg = 2;
                             break;
-                        case 5:
-                            if (world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
+                        case 34:
+                            if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
                                 curProg = 3;
+                            break;
+                        case 5:
+                            if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
+                                curProg = 4;
+                            if (world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
+                                curProg = 5;
                             break;
                         case 21:
                             if (world.eventID3 == 1) // Mansion: Computer Room
-                                curProg = 4;
+                                curProg = 6;
                             break;
                         case 20:
-                            if (world.eventID1 == 137 && world.eventComplete == 1) // Axel finish
-                                curProg = 5;
+                            if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
+                                curProg = 7;
                             break;
                         default: //if not in any of the above rooms then just leave
                             return;
@@ -760,25 +783,29 @@ namespace KhTracker
                             if (world.eventID3 == 117 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
                                 curProg = 1;
                             break;
+                        case 8:
+                            if (world.eventID3 == 108 && world.eventComplete == 1) // Station Nobodies
+                                curProg = 2;
+                            break;
                         case 27:
                             if (world.eventID3 == 4) // Yen Sid after new clothes
-                                curProg = 2;
+                                curProg = 3;
                             break;
                         case 4:
                             if (world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
-                                curProg = 3;
+                                curProg = 4;
                             break;
                         case 41:
                             if (world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
-                                curProg = 4;
+                                curProg = 5;
                             break;
                         case 40:
                             if (world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
-                                curProg = 5;
+                                curProg = 6;
                             break;
                         case 20:
                             if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
-                                curProg = 6;
+                                curProg = 7;
                             break;
                         default:
                             return;
@@ -867,7 +894,6 @@ namespace KhTracker
                 case "OlympusColiseum":
                     switch (world.roomNumber)
                     {
-                        case 0:
                         case 3:
                             if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
                                 curProg = 1;
@@ -876,29 +902,35 @@ namespace KhTracker
                             if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
                                 curProg = 2;
                             break;
+                        case 0:
+                            if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // (reverse rando)
+                                curProg = 1;
+                            if (world.eventID1 == 141 && world.eventComplete == 1) // Urns finish
+                                curProg = 3;
+                            break;
                         case 17:
                             if (world.eventID1 == 123 && world.eventComplete == 1) // OC Demyx finish
-                                curProg = 3;
+                                curProg = 4;
                             break;
                         case 8:
                             if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
-                                curProg = 4;
+                                curProg = 5;
                             break;
                         case 18:
                             if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
-                                curProg = 5;
+                                curProg = 6;
                             break;
                         case 6:
                             if (world.eventID1 == 126 && world.eventComplete == 1) // Auron Statue fight finish
-                                curProg = 6;
+                                curProg = 7;
                             break;
                         case 19:
                             if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
-                                curProg = 7;
+                                curProg = 8;
                             break;
                         case 34:
                             if ((world.eventID1 == 151 || world.eventID1 == 152) && world.eventComplete == 1) // Zexion finish
-                                curProg = 8;
+                                curProg = 9;
                             break;
                         default:
                             return;
@@ -952,25 +984,33 @@ namespace KhTracker
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Bamboo Grove (LoD1)
                                 curProg = 1;
                             break;
+                        case 1:
+                            if (world.eventID1 == 70 && world.eventComplete == 1) // Mission 3 (Search) finish
+                                curProg = 2;
+                            break;
+                        case 3:
+                            if (world.eventID1 == 71 && world.eventComplete == 1) // Mountain Climb finish
+                                curProg = 3;
+                            break;
                         case 5:
                             if (world.eventID1 == 72 && world.eventComplete == 1) // Cave finish
-                                curProg = 2;
+                                curProg = 4;
                             break;
                         case 7:
                             if (world.eventID1 == 73 && world.eventComplete == 1) // Summit finish
-                                curProg = 3;
+                                curProg = 5;
                             break;
                         case 9:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
-                                curProg = 4;
+                                curProg = 6;
                             break;
                         case 10:
                             if (world.eventID1 == 78 && world.eventComplete == 1) // Antechamber fight finish
-                                curProg = 5;
+                                curProg = 7;
                             break;
                         case 8:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
-                                curProg = 6;
+                                curProg = 8;
                             break;
                         default:
                             return;
@@ -1019,13 +1059,21 @@ namespace KhTracker
                             if (world.eventID3 == 1) // Oasis after talking to Simba
                                 curProg = 2;
                             break;
+                        case 2:
+                            if (world.eventID1 == 51 && world.eventComplete == 1) // Hyenas 1 Finish
+                                curProg = 3;
+                            break;
                         case 14:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
-                                curProg = 3;
+                                curProg = 4;
+                            break;
+                        case 5:
+                            if (world.eventID1 == 57 && world.eventComplete == 1) // Hyenas 2 Finish
+                                curProg = 5;
                             break;
                         case 15:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
-                                curProg = 4;
+                                curProg = 6;
                             break;
                         default:
                             return;
@@ -1108,16 +1156,18 @@ namespace KhTracker
                                 curProg = 4;
                             break;
                         case 10:
-                            if (world.eventID1 == 63 && world.eventComplete == 1) // Presents minigame
+                            if (world.eventID1 == 62 && world.eventComplete == 1) // Children Fight
                                 curProg = 5;
+                            if (world.eventID1 == 63 && world.eventComplete == 1) // Presents minigame
+                                curProg = 6;
                             break;
                         case 7:
                             if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
-                                curProg = 6;
+                                curProg = 7;
                             break;
                         case 32:
                             if ((world.eventID1 == 115 || world.eventID1 == 146) && world.eventComplete == 1) // Vexen finish
-                                curProg = 7;
+                                curProg = 8;
                             break;
                         default:
                             return;
@@ -1133,20 +1183,36 @@ namespace KhTracker
                         case 10:
                             if (world.eventID3 == 10 && data.WorldsData[world.worldName].progress == 0) // Treasure Heap (PR2)
                                 curProg = 1;
-                            else if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
-                                curProg = 3;
+                            if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
+                                curProg = 5;
                             break;
                         case 2:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Town finish
                                 curProg = 2;
                             break;
-                        case 14:
-                            if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
+                        case 9:
+                            if (world.eventID1 == 59 && world.eventComplete == 1) // 1min pirates finish
+                                curProg = 3;
+                            break;
+                        //case 7:
+                        //    if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
+                        //        curProg = ?;
+                        //    break;
+                        case 3:
+                            if (world.eventID1 == 56 && world.eventComplete == 1) // barrels finish
                                 curProg = 4;
                             break;
+                        case 18:
+                            if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
+                                curProg = 6;
+                            break;
+                        case 14:
+                            if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
+                                curProg = 7;
+                            break;
                         case 1:
-                            if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper finish
-                                curProg = 5;
+                            if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
+                                curProg = 8;
                             break;
                         default:
                             return;
@@ -1195,9 +1261,9 @@ namespace KhTracker
                                 curProg = 2;
                             else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
                             {
-                                curKey = data.ProgressKeys["SimulatedTwilightTown"][6];
+                                curKey = data.ProgressKeys["SimulatedTwilightTown"][8];
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
-                                data.WorldsData["SimulatedTwilightTown"].progress = 6;
+                                data.WorldsData["SimulatedTwilightTown"].progress = 8;
                                 return;
                             }
                             break;
@@ -1206,9 +1272,9 @@ namespace KhTracker
                                 curProg = 3;
                             else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
                             {
-                                curKey = data.ProgressKeys["LandofDragons"][7];
+                                curKey = data.ProgressKeys["LandofDragons"][9];
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
-                                data.WorldsData["LandofDragons"].progress = 7;
+                                data.WorldsData["LandofDragons"].progress = 9;
                                 return;
                             }
                             break;
@@ -1217,9 +1283,9 @@ namespace KhTracker
                                 curProg = 4;
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Luxord finish
                             {
-                                curKey = data.ProgressKeys["PortRoyal"][6];
+                                curKey = data.ProgressKeys["PortRoyal"][9];
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
-                                data.WorldsData["PortRoyal"].progress = 6;
+                                data.WorldsData["PortRoyal"].progress = 9;
                                 return;
                             }
                             break;
@@ -1228,9 +1294,9 @@ namespace KhTracker
                                 curProg = 5;
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
                             {
-                                curKey = data.ProgressKeys["PrideLands"][5];
+                                curKey = data.ProgressKeys["PrideLands"][7];
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
-                                data.WorldsData["PrideLands"].progress = 5;
+                                data.WorldsData["PrideLands"].progress = 7;
                                 return;
                             }
                             break;
@@ -1397,7 +1463,7 @@ namespace KhTracker
 
         private void SetBindings()
         {
-            //BindWeapon(Weapon, "Weapon", stats);
+            BindWeapon(SorasHeartWeapon, "Weapon", stats);
 
             //changes opacity for stat icons
             BindAbility(HighJump, "Obtained", highJump);
@@ -1427,6 +1493,14 @@ namespace KhTracker
             binding.Source = source;
             binding.Converter = new ObtainedConverter();
             img.SetBinding(OpacityProperty, binding);
+        }
+
+        private void BindWeapon(Image img, string property, object source)
+        {
+            Binding binding = new Binding(property);
+            binding.Source = source;
+            binding.Converter = new WeaponConverter();
+            img.SetBinding(Image.SourceProperty, binding);
         }
 
         private string BytesToHex(byte[] bytes)
@@ -1519,14 +1593,6 @@ namespace KhTracker
         //    Binding binding = new Binding(property);
         //    binding.Source = source;
         //    binding.Converter = new LevelConverter();
-        //    img.SetBinding(Image.SourceProperty, binding);
-        //}
-
-        //private void BindWeapon(Image img, string property, object source)
-        //{
-        //    Binding binding = new Binding(property);
-        //    binding.Source = source;
-        //    binding.Converter = new WeaponConverter();
         //    img.SetBinding(Image.SourceProperty, binding);
         //}
 

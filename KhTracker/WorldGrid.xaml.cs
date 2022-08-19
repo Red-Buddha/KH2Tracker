@@ -206,10 +206,17 @@ namespace KhTracker
         {
             //remove item from itempool
             Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;
+
+            if (ItemRow != window.ItemPool)
+                return;
+
             ItemRow.Children.Remove(item);
 
             //add it to the world grid
             Handle_WorldGrid(item, true);
+
+            //fix shadow opacity if needed
+            Handle_Shadows(item, true);
 
             //Reset any obtained item to be normal transparency
             item.Opacity = 1.0;
@@ -554,7 +561,7 @@ namespace KhTracker
             //get correct item name
             char[] numbers = { '1', '2', '3', '4', '5' };
             string itemname = item.Name;
-            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page" || Codes.FindItemType(item.Name) == "other")
+            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page" || item.Name.StartsWith("Munny"))
             {
                 itemname = itemname.TrimEnd(numbers);
             }
@@ -566,11 +573,18 @@ namespace KhTracker
                 if (ghostItem != null && ghostItem.Name.StartsWith("Ghost_"))
                 {
                     itemnameGhost = ghostItem.Name;
+                    bool isMulti = false;
 
                     //trim numbers
-                    if (Codes.FindItemType(ghostItem.Name) == "magic" || Codes.FindItemType(ghostItem.Name) == "page" || Codes.FindItemType(ghostItem.Name) == "other")
+                    if (Codes.FindItemType(ghostItem.Name) == "magic" || Codes.FindItemType(ghostItem.Name) == "page" || item.Name.StartsWith("Munny"))
                     {
                         itemnameGhost = itemnameGhost.TrimEnd(numbers);
+                        isMulti = true;
+                    }
+
+                    if (!isMulti)
+                    {
+                        Handle_Shadows(item, false);
                     }
 
                     //compare and remove if same
@@ -703,6 +717,39 @@ namespace KhTracker
                     data.WorldsData[world].worldGrid.Add_Ghost(Ghost);
                     break;
                 }
+            }
+        }
+
+        private void Handle_Shadows(Item item, bool add)
+        {
+            //don't hide shadows for the multi items
+            if (Codes.FindItemType(item.Name) == "magic" || Codes.FindItemType(item.Name) == "page" || item.Name.StartsWith("Munny") || item.Name.StartsWith("Ghost_"))
+            {
+                return;
+            }
+
+            string shadowName = "S_" + item.Name;
+            //ContentControl shadow = window.ItemPool.FindName(shadowName) as ContentControl;
+            ContentControl shadow = null;
+
+            foreach (Grid itemrow in window.ItemPool.Children)
+            {
+                shadow = itemrow.FindName(shadowName) as ContentControl;
+
+                if (shadow != null)
+                    break;
+            }
+
+            if (shadow == null)
+                return;
+
+            if (add)
+            {
+                shadow.Opacity = 1.0;
+            }
+            else
+            {
+                shadow.Opacity = 0.0;
             }
         }
 
@@ -930,7 +977,7 @@ namespace KhTracker
             Data data = MainWindow.data;
 
             //simplier icon opacity change for non pages/magic
-            if (type != "magic" && type != "page" && !item.Contains("Munny"))
+            if (type != "magic" && type != "page" && !item.StartsWith("Munny"))
             {
                 //check if a ghost item was tracked
                 if (item.StartsWith("Ghost_"))
@@ -946,6 +993,8 @@ namespace KhTracker
                     if (Check != null && Check.Parent == tempRow)  
                     {
                         Check.Opacity = universalOpacity; //change opacity
+
+                        Handle_Shadows(Check, false);
                     }
                     return;
                 }

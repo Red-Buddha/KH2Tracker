@@ -43,10 +43,7 @@ namespace KhTracker
 
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
-            if (AutoDetectOption.IsChecked)
-            {
-                AutoDetectToggle(null, null);
-            }
+            AutoDetectToggle(null, null);
         }
 
         private void InitData()
@@ -123,7 +120,7 @@ namespace KhTracker
             data.ProgressKeys.Add("TwilightTown",           new List<string>() { "", "Chests", "Station", "MysteriousTower", "Sandlot", "Mansion", "BetwixtAndBetween", "DataAxel" });
             data.ProgressKeys.Add("HollowBastion",          new List<string>() { "", "Chests", "Bailey", "AnsemStudy", "Corridor", "Dancers", "HBDemyx", "FinalFantasy", "1000Heartless", "Sephiroth", "DataDemyx", "SephiDemyx" });
             data.ProgressKeys.Add("BeastsCastle",           new List<string>() { "", "Chests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
-            data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "Chests", "Urns", "Cerberus", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
+            data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "Chests", "Cerberus", "Urns", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
             data.ProgressKeys.Add("Agrabah",                new List<string>() { "", "Chests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
             data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "Chests", "Missions", "Mountain", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
             data.ProgressKeys.Add("HundredAcreWood",        new List<string>() { "", "Chests", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
@@ -503,7 +500,6 @@ namespace KhTracker
                 --num;
 
             Hint.Text = num.ToString();
-            //broadcast.SetFoundNumber(Hint, null);
         }
 
         public void SetWorldValue(OutlinedTextBlock worldValue, int value)
@@ -538,8 +534,6 @@ namespace KhTracker
                 --collected;
 
             CollectedValue.Text = collected.ToString();
-            //broadcast.Collected_01.Source = CollectedNum[0];
-            //broadcast.Collected_10.Source = CollectedNum[1];
         }
 
         public void SetTotal(bool add)
@@ -550,8 +544,6 @@ namespace KhTracker
                 --total;
 
             TotalValue.Text = total.ToString();
-            //broadcast.CheckTotal_01.Source = TotalNum[0];
-            //broadcast.CheckTotal_10.Source = TotalNum[1];
         }
 
         public void SetHintText(string text)

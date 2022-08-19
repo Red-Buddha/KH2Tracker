@@ -65,10 +65,10 @@ namespace KhTracker
 
     public class WeaponConverter : IValueConverter
     {
-        private string CusPath = "pack://application:,,,/CustomImages/Other/";
-        private string EnabledPath1 = "Images/Other/"; //sword
-        private string EnabledPath2 = "Images/Other/"; //shield
-        private string EnabledPath3 = "Images/Other/"; //staff
+        private string CusPath = "pack://application:,,,/CustomImages/System/stats/";
+        private string EnabledPath1 = "Images/System/stats/"; //sword
+        private string EnabledPath2 = "Images/System/stats/"; //shield
+        private string EnabledPath3 = "Images/System/stats/"; //staff
         private bool CusMode = Properties.Settings.Default.CustomIcons;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

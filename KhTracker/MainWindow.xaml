@@ -41,8 +41,8 @@
                     <MenuItem Header="Load KH2Randomizer Seed (*.zip)" 	Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Save Progress" Click="SaveProgress"/>
-                <MenuItem Header="Load Progress" Click="LoadProgress"/>
+                <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
+                <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
                 <Separator/>
                 <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>
@@ -57,19 +57,20 @@
                 <MenuItem Header="World Lock Checks"         Click="VisitLockToggle"	x:Name="VisitLockOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Extra Important Checks" 	 Click="ExtraChecksToggle"	x:Name="ExtraChecksOption"  IsCheckable="True" IsChecked="True"/>
                 <Separator/>
-                <MenuItem Header="Show Seed Hash on Load"			  Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show World Progression Icons" 	  Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Form and Growth Levels" 		  Click="FormsGrowthToggle"		x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Seed Hash"			    Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
+                <!--MenuItem Header="Show Seed Settings"			Click="SeedSettingsToggle"	x:Name="SeedSettingsOption"	    IsCheckable="True" IsChecked="True"/-->
+                <MenuItem Header="Show World Progression Icons" Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Form and Growth Levels" 	Click="FormsGrowthToggle"   x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Death Counter" 	 		Click="DeathCounterToggle"  x:Name="DeathCounterOption"     IsCheckable="True" IsChecked="False"/>
                 <Separator/>
-                <MenuItem Header="Track Ghost Items (Points Mode)" 	  Click="GhostItemToggle"		x:Name="GhostItemOption"	IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Ghost Item Auto-Math (Points Mode)" Click="GhostMathToggle" 		x:Name="GhostMathOption"	IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Check Count (Points Mode)"     Click="ShowCheckCountToggle"  x:Name="CheckCountOption"	IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Track Ghost Items" 	                Click="GhostItemToggle"		  x:Name="GhostItemOption"	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Ghost Item Auto-Math (Points Hints)"  Click="GhostMathToggle" 	  x:Name="GhostMathOption"	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Check Count (Points/Score Mode)" Click="ShowCheckCountToggle"  x:Name="CheckCountOption"	IsCheckable="True" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Show Next Level Check Display" Click="NextLevelCheckToggle" x:Name="NextLevelCheckOption" IsCheckable="True" IsChecked="False"/>
                 <MenuItem Header="Level 1 Checks"                Click="SoraLevel01Toggle"    x:Name="SoraLevel01Option"    IsCheckable="True" IsChecked="False"/>
                 <MenuItem Header="Level 50 Checks"               Click="SoraLevel50Toggle"    x:Name="SoraLevel50Option"    IsCheckable="True" IsChecked="True" />
                 <MenuItem Header="Level 99 Checks"               Click="SoraLevel99Toggle"    x:Name="SoraLevel99Option"    IsCheckable="True" IsChecked="False"/>
-                <MenuItem Header="Show Death Counter" 	 		 Click="DeathCounterToggle"   x:Name="DeathCounterOption"   IsCheckable="True" IsChecked="False"/>
             </MenuItem>
             <MenuItem Header="Visuals" Focusable="False">
                 <!-- eventually add an ption that pulls up settings window... -->
@@ -91,7 +92,7 @@
                 <MenuItem Header="Load Custom Images" Click="CustomImageToggle" x:Name="CustomFolderOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Main Window Background">
-                    <MenuItem x:Name="MainDefOption" Header="Default" IsCheckable="True" IsChecked="True"  Click="MainBG_DefToggle"/>
+                    <MenuItem x:Name="MainDefOption"  Header="Default"                   IsCheckable="True" IsChecked="True"  Click="MainBG_DefToggle"/>
                     <MenuItem x:Name="MainImg1Option" Header="Custom Image (Stretch)"    IsCheckable="True" IsChecked="False" Click="MainBG_Img1Toggle"/>
                     <MenuItem x:Name="MainImg2Option" Header="Custom Image (Uniform)"    IsCheckable="True" IsChecked="False" Click="MainBG_Img2Toggle"/>
                     <MenuItem x:Name="MainImg3Option" Header="Custom Image (No Scaling)" IsCheckable="True" IsChecked="False" Click="MainBG_Img3Toggle"/>
@@ -119,7 +120,7 @@
                 <MenuItem Header="Synthesis" 					Click="SynthToggle" 			x:Name="SynthOption"			IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Puzzles" 						Click="PuzzleToggle" 			x:Name="PuzzleOption"			IsCheckable="True" IsChecked="True"/>
             </MenuItem>
-            <MenuItem x:Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False"/>
+            <MenuItem x:Name="ModeDisplay" Header=" " Focusable="False" IsHitTestVisible="False" HorizontalAlignment="Right"/>
             <!--MenuItem Header="-DA 1.6.8-" IsHitTestVisible="False" Focusable="False" HorizontalAlignment="Right"/-->
         </Menu>
 
@@ -128,7 +129,7 @@
                 <!-- 6.6 -->
                 <RowDefinition x:Name="WorldRow" Height="6.6*"/>
                 <!-- 0.8 -->
-                <RowDefinition x:Name="InfoRow"  Height="0.8*"/>
+                <RowDefinition x:Name="InfoRow"  Height="0.65*"/>
                 <!-- 0.5 -->
                 <RowDefinition x:Name="FormRow"  Height="0.5*"/>
                 <!-- 2.2 -->
@@ -174,7 +175,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -186,7 +187,7 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SorasHeart" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" 
                                     Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SoraHeartImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -194,12 +195,12 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>                            
                             <!-- progression -->
-                            <ContentControl x:Name="SorasHeartType" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+                            <Image Name="SorasHeartWeapon" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="SorasHeartPath" Grid.Column="1">
@@ -237,7 +238,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -248,7 +249,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SimulatedImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -256,7 +257,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="SimulatedTwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -299,7 +300,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -310,7 +311,8 @@
                             <!-- main icon -->
                             <Button Opacity="1" Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HollowBastion" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HollowBastionImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionCross" Source="Images/System/crossworld.png" Visibility="Collapsed" 
+                                   IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -318,7 +320,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- lock icon -->
-                            <Image x:Name="HollowBastionLock" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                            <Image x:Name="HollowBastionLock" Source="Images/Worlds/Locks/HB.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -326,14 +328,14 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HollowBastionHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="HollowBastionProgression" Panel.ZIndex="1" IsHitTestVisible="False" 
                                             Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
-                            <Image Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Source="Images/default_progression_test/corridors.png" Margin="-5,0,0,0"/>
+                            <!--Image Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Source="Images/default_progression_test/corridors.png" Margin="-5,0,0,0"/-->
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="HollowBastionPath" Grid.Column="1">
@@ -371,7 +373,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -382,7 +384,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-OlympusImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -398,7 +400,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="OlympusColiseumHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -441,7 +443,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -452,7 +454,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="LandofDragons" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-LandofDragonsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="LandofDragonsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="LandofDragonsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -468,7 +470,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="LandofDragonsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -511,7 +513,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -522,7 +524,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PrideLands" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PrideLandsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PrideLandsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PrideLandsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -538,7 +540,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PrideLandsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -581,7 +583,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -592,7 +594,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HalloweenTownImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -608,7 +610,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HalloweenTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -651,7 +653,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -662,7 +664,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SpaceParanoids" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SpaceParanoidsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SpaceParanoidsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SpaceParanoidsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -678,7 +680,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="SpaceParanoidsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -732,7 +734,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="GoA" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-GardenofAssemblageImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoACross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoACross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -794,7 +796,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -805,7 +807,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="DriveForms" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-DriveFormsImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DriveFormsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DriveFormsCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -813,7 +815,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -856,7 +858,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -867,7 +869,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-TwilightTownImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -890,7 +892,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="TwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -933,7 +935,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -944,7 +946,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="BeastsCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-BeastCastleImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="BeastsCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="BeastsCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -960,7 +962,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="BeastsCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1003,7 +1005,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1014,7 +1016,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-AgrabahImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1030,7 +1032,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="AgrabahHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1073,7 +1075,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1084,7 +1086,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HundredAcreWood" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HundredAcreImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HundredAcreWoodCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HundredAcreWoodCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1092,7 +1094,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1135,7 +1137,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1146,7 +1148,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="DisneyCastle" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-DisneyCastleImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DisneyCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DisneyCastleCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1154,7 +1156,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1197,7 +1199,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1208,7 +1210,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PortRoyal" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PortRoyalImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PortRoyalCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PortRoyalCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1224,7 +1226,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PortRoyalHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1267,7 +1269,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1278,7 +1280,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="TWTNW" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-TWTNWImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TWTNWCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TWTNWCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1286,7 +1288,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1329,7 +1331,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1340,7 +1342,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="Atlantica" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-AtlanticaImage}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AtlanticaCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AtlanticaCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1348,7 +1350,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1391,7 +1393,7 @@
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="0.65*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -1402,7 +1404,7 @@
                             <!-- main icon -->
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PuzzSynth" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PuzzSynth}"/>
                             <!-- cross icon -->
-                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9">
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1410,7 +1412,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="1" Margin="0,0,5,0" HorizontalAlignment="Right">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PuzzSynthHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1459,18 +1461,18 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <!-- 0.2 when in use -->
-                        <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
+                        <ColumnDefinition x:Name="DeathCol" Width="0.0*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox>
                         <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
-                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="Black" TextAlignment="Center" Text="Heart 5 Checks"/>
+                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text=""/>
                     </Viewbox>
 
-                    <Viewbox>
+                    <!--Viewbox>
                         <TextBlock FontFamily="{StaticResource Menu}" FontWeight="DemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-4,0" Foreground="White">
                             <TextBlock Text="Heart" Foreground="Red"/> 5 <TextBlock Text="Checks " Foreground="Blue"/>
                         </TextBlock>
-                    </Viewbox>
+                    </Viewbox-->
 
                     <!-- Death Counter-->
                     <Grid x:Name="DeathCounterGrid" Grid.Column="1">
@@ -1494,7 +1496,7 @@
                 </Grid>
 
                 <!-- Hash Text -->
-                <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden" x:Name="HashGrid">
+                <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible" x:Name="HashGrid">
                     <Grid.ColumnDefinitions>
                         <!-- 0.75 | 0 w/deathcounter-->
                         <ColumnDefinition x:Name="HashSpacer1" Width="0.75*"/>
@@ -1927,67 +1929,67 @@
                     <ContentControl x:Name="Attempts13" Content="{DynamicResource Fail0}" Grid.Column="12" Panel.ZIndex="1"/>
 
                     <!-- silhouettes -->
-                    <ContentControl x:Name="S_Report1" Content="{DynamicResource Min-Report1}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report1" Content="{DynamicResource Min-Report1}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report2" Content="{DynamicResource Min-Report2}"      Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report2" Content="{DynamicResource Min-Report2}"      Grid.Column="1" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report3" Content="{DynamicResource Min-Report3}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report3" Content="{DynamicResource Min-Report3}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report4" Content="{DynamicResource Min-Report4}"      Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report4" Content="{DynamicResource Min-Report4}"      Grid.Column="3" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report5" Content="{DynamicResource Min-Report5}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report5" Content="{DynamicResource Min-Report5}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report6" Content="{DynamicResource Min-Report6}"      Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report6" Content="{DynamicResource Min-Report6}"      Grid.Column="5" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report7" Content="{DynamicResource Min-Report7}"      Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report7" Content="{DynamicResource Min-Report7}"      Grid.Column="6" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report8" Content="{DynamicResource Min-Report8}"      Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report8" Content="{DynamicResource Min-Report8}"      Grid.Column="7" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report9" Content="{DynamicResource Min-Report9}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report9" Content="{DynamicResource Min-Report9}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report10" Content="{DynamicResource Min-Report10}"    Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report10" Content="{DynamicResource Min-Report10}"    Grid.Column="9" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report11" Content="{DynamicResource Min-Report11}"    Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report11" Content="{DynamicResource Min-Report11}"    Grid.Column="10" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report12" Content="{DynamicResource Min-Report12}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report12" Content="{DynamicResource Min-Report12}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Report13" Content="{DynamicResource Min-Report13}"    Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Report13" Content="{DynamicResource Min-Report13}"    Grid.Column="12" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
@@ -2168,42 +2170,42 @@
                     </local:Item>
 
                     <!-- silhouettes -->
-                    <ContentControl x:Name="S_Fire" Content="{DynamicResource Min-Fire1}"                   Grid.Column="1" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Fire" Content="{DynamicResource Min-Fire1}"                   Grid.Column="1" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Blizzard" Content="{DynamicResource Min-Blizzard1}"           Grid.Column="4" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Blizzard" Content="{DynamicResource Min-Blizzard1}"           Grid.Column="4" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Thunder" Content="{DynamicResource Min-Thunder1}"             Grid.Column="7" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Thunder" Content="{DynamicResource Min-Thunder1}"             Grid.Column="7" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Cure" Content="{DynamicResource Min-Cure1}"                   Grid.Column="10" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Cure" Content="{DynamicResource Min-Cure1}"                   Grid.Column="10" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Reflect" Content="{DynamicResource Min-Reflect1}"             Grid.Column="13" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Reflect" Content="{DynamicResource Min-Reflect1}"             Grid.Column="13" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Magnet" Content="{DynamicResource Min-Magnet1}"               Grid.Column="16" Margin="2,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Magnet" Content="{DynamicResource Min-Magnet1}"               Grid.Column="16" Margin="2,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_TornPage" Content="{DynamicResource Min-TornPage1}"           Grid.Column="19" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_TornPage" Content="{DynamicResource Min-TornPage1}"           Grid.Column="19" Margin="3,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_MunnyPouch" Content="{DynamicResource Min-MunnyPouch1}"        Grid.Column="22" Margin="3,0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_MunnyPouch" Content="{DynamicResource Min-MunnyPouch1}"        Grid.Column="22" Margin="3,0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
@@ -2371,84 +2373,84 @@
                     <local:Item x:Name="PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"  Grid.Column="15"/>
 
                     <!-- silhouettes -->
-                    <ContentControl x:Name="S_Valor" Content="{DynamicResource Min-Valor}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Valor" Content="{DynamicResource Min-Valor}"      Grid.Column="0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Wisdom" Content="{DynamicResource Min-Wisdom}"    Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Wisdom" Content="{DynamicResource Min-Wisdom}"    Grid.Column="1" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Limit" Content="{DynamicResource Min-Limit}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Limit" Content="{DynamicResource Min-Limit}"      Grid.Column="2" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Master" Content="{DynamicResource Min-Master}"    Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Master" Content="{DynamicResource Min-Master}"    Grid.Column="3" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Final" Content="{DynamicResource Min-Final}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Final" Content="{DynamicResource Min-Final}"      Grid.Column="4" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Anti" Content="{DynamicResource Min-Anti}"        Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Anti" Content="{DynamicResource Min-Anti}"        Grid.Column="5" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Baseball" Content="{DynamicResource Min-Baseball}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Baseball" Content="{DynamicResource Min-Baseball}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Lamp" Content="{DynamicResource Min-Lamp}"            Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Lamp" Content="{DynamicResource Min-Lamp}"            Grid.Column="7" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Ukulele" Content="{DynamicResource Min-Ukulele}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Ukulele" Content="{DynamicResource Min-Ukulele}"      Grid.Column="8" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Feather" Content="{DynamicResource Min-Feather}"      Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
-                        <ContentControl.Effect>
-                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
-                        </ContentControl.Effect>
-                    </ContentControl>
-
-                    <ContentControl x:Name="S_OnceMore" Content="{DynamicResource Min-OnceMore}"            Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
-                        <ContentControl.Effect>
-                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
-                        </ContentControl.Effect>
-                    </ContentControl>
-                    <ContentControl x:Name="S_SecondChance" Content="{DynamicResource Min-SecondChance}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Feather" Content="{DynamicResource Min-Feather}"      Grid.Column="9" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
 
-                    <ContentControl x:Name="S_Connection" Content="{DynamicResource Min-Connection}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_OnceMore" Content="{DynamicResource Min-OnceMore}"            Grid.Column="10" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_SecondChance" Content="{DynamicResource Min-SecondChance}"    Grid.Column="11" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Peace" Content="{DynamicResource Min-Peace}"                  Grid.Column="14" Panel.ZIndex="-2" Opacity="0.5">
+
+                    <ContentControl x:Name="S_Connection" Content="{DynamicResource Min-Connection}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"    Grid.Column="15" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Nonexistence" Content="{DynamicResource Min-Nonexistence}"    Grid.Column="13" Panel.ZIndex="-2" Opacity="1">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_Peace" Content="{DynamicResource Min-Peace}"                  Grid.Column="14" Panel.ZIndex="-2" Opacity="1">
+                        <ContentControl.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </ContentControl.Effect>
+                    </ContentControl>
+                    <ContentControl x:Name="S_PromiseCharm" Content="{DynamicResource Min-PromiseCharm}"    Grid.Column="15" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
@@ -2491,78 +2493,133 @@
                     <local:Item x:Name="UnknownDisk"  Content="{DynamicResource Min-UnknownDisk}"       Grid.Column="13"/>
 
                     <!-- silhouettes -->
-                    <ContentControl x:Name="S_BeastWep" Content="{DynamicResource Min-BeastWep}"        Grid.Column="0" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_BeastWep" Content="{DynamicResource Min-BeastWep}"        Grid.Column="0" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_JackWep" Content="{DynamicResource Min-JackWep}"          Grid.Column="1" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_JackWep" Content="{DynamicResource Min-JackWep}"          Grid.Column="1" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_SimbaWep" Content="{DynamicResource Min-SimbaWep}"        Grid.Column="2" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_SimbaWep" Content="{DynamicResource Min-SimbaWep}"        Grid.Column="2" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_AuronWep" Content="{DynamicResource Min-AuronWep}"        Grid.Column="3" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_AuronWep" Content="{DynamicResource Min-AuronWep}"        Grid.Column="3" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_MulanWep" Content="{DynamicResource Min-MulanWep}"        Grid.Column="4" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_MulanWep" Content="{DynamicResource Min-MulanWep}"        Grid.Column="4" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_SparrowWep" Content="{DynamicResource Min-SparrowWep}"    Grid.Column="5" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_SparrowWep" Content="{DynamicResource Min-SparrowWep}"    Grid.Column="5" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_AladdinWep" Content="{DynamicResource Min-AladdinWep}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_AladdinWep" Content="{DynamicResource Min-AladdinWep}"    Grid.Column="6" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_TronWep" Content="{DynamicResource Min-TronWep}"          Grid.Column="7" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_TronWep" Content="{DynamicResource Min-TronWep}"          Grid.Column="7" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_MembershipCard" Content="{DynamicResource Min-MembershipCard}"    Grid.Column="8" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_MembershipCard" Content="{DynamicResource Min-MembershipCard}"    Grid.Column="8" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_Picture" Content="{DynamicResource Min-Picture}"                  Grid.Column="9" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_Picture" Content="{DynamicResource Min-Picture}"                  Grid.Column="9" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_IceCream" Content="{DynamicResource Min-IceCream}"                Grid.Column="10" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_IceCream" Content="{DynamicResource Min-IceCream}"                Grid.Column="10" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_HadesCup" Content="{DynamicResource Min-HadesCup}"                Grid.Column="11" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_HadesCup" Content="{DynamicResource Min-HadesCup}"                Grid.Column="11" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_OlympusStone" Content="{DynamicResource Min-OlympusStone}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_OlympusStone" Content="{DynamicResource Min-OlympusStone}"        Grid.Column="12" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
-                    <ContentControl x:Name="S_UnknownDisk" Content="{DynamicResource Min-UnknownDisk}"          Grid.Column="13" Panel.ZIndex="-2" Opacity="0.5">
+                    <ContentControl x:Name="S_UnknownDisk" Content="{DynamicResource Min-UnknownDisk}"          Grid.Column="13" Panel.ZIndex="-2" Opacity="1">
                         <ContentControl.Effect>
                             <Custom1:BrightnessContrastEffect Brightness="-1"/>
                         </ContentControl.Effect>
                     </ContentControl>
 
-
+                    <!-- alt silhouettes -->
+                    <Image x:Name="Cross01" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="0" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross02" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="1" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross03" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="2" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross04" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="3" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross05" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="4" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross06" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="5" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross07" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="6" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross08" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="7" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross09" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="8" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross10" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="9" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
+                    <Image x:Name="Cross11" Source="Images/System/cross.png" Visibility="Collapsed" Grid.Column="10" Panel.ZIndex="-2" Opacity="1">
+                        <Image.Effect>
+                            <Custom1:BrightnessContrastEffect Brightness="-1"/>
+                        </Image.Effect>
+                    </Image>
                 </Grid>
 
                 <!-- Ghost Items -->
@@ -2648,33 +2705,37 @@
 
                 <!-- Text -->
                 <Viewbox>
-                    <local:OutlinedTextBlock FontFamily="/KhTracker;component/Fonts/#KHGummi" FontSize="10pt" Margin="4,0,0,4"
-                                                 FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Fill="White" Text="Settings:"/>
+                    <local:OutlinedTextBlock x:Name="SettingsText" FontFamily="{StaticResource Gummi}" FontSize="10pt" Margin="4,0,0,4"
+                                                 FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Fill="White" Text=""/>
                 </Viewbox>
 
                 <!-- Setting Icons -->
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="Setting_BetterSTT"/>
                         <ColumnDefinition Name="Setting_Level_01" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Level_50"/>
+                        <ColumnDefinition Name="Setting_Level_50" Width="0*"/>
                         <ColumnDefinition Name="Setting_Level_99" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Absent"/>
-                        <ColumnDefinition Name="Setting_Datas"/>
-                        <ColumnDefinition Name="Setting_Sephiroth"/>
-                        <ColumnDefinition Name="Setting_Terra"/>
-                        <ColumnDefinition Name="Setting_Cups"/>
-                        <ColumnDefinition Name="Setting_HadesCup"/>
-                        <ColumnDefinition Name="Setting_Cavern"/>
-                        <ColumnDefinition Name="Setting_Transport"/>
+                        <ColumnDefinition Name="Setting_BetterSTT" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Absent" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Datas" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Sephiroth" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Terra" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Cups" Width="0*"/>
+                        <ColumnDefinition Name="Setting_HadesCup" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Cavern" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Transport" Width="0*"/>
+                        
+                        <!-- +1.0 for each setting off (level1/50/99 counted together as 1 is any of them are on) -->
+                        <ColumnDefinition Name ="Setting_Spacer" Width="10*"/>
+
                         <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0" Source="Images/System/settings/better_stt.png"/>
-                    <Image Grid.Column="1" Source="Images/System/settings/Level_01.png"/>
-                    <Image Grid.Column="2" Source="Images/System/settings/Level_50.png"/>
-                    <Image Grid.Column="3" Source="Images/System/settings/Level_99.png"/>
+                    <Image Grid.Column="0" Source="Images/System/settings/Level_01.png"/>
+                    <Image Grid.Column="1" Source="Images/System/settings/Level_50.png"/>
+                    <Image Grid.Column="2" Source="Images/System/settings/Level_99.png"/>
+                    <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"/>
                     <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"/>
                     <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"/>
                     <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"/>
@@ -2687,11 +2748,7 @@
                 </Grid>
 
                 <!-- Auto-Detect Visual -->
-
-                <Viewbox></Viewbox>
-
-
-                <Image RenderTransformOrigin="0.5,0.5" x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3">
+                <Image RenderTransformOrigin="0.5,0.5" x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed">
                     <Image.RenderTransform>
                         <RotateTransform Angle="0" />
                     </Image.RenderTransform>
@@ -2716,6 +2773,8 @@
                         </Style>
                     </Image.Style>
                 </Image>
+
+                <Image x:Name="Connect2" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed"/>
 
                 <!-- fancy spacer colors -->
                 <Rectangle Grid.ColumnSpan="3" Fill="#BF1E1E1E" Panel.ZIndex="-1"/>

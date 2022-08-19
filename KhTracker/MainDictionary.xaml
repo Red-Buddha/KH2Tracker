@@ -51,42 +51,42 @@
     <Image x:Key="Min-PS2"	   Source="Images\System\Config\pcsx2.png"          x:Shared="false"/>
                                  
     <!--Seed Hash Icons-->
-    <Image x:Key="ability-unequip"  Source="Images\HashIcons\ability-unequip.png"/>
-    <Image x:Key="accessory"        Source="Images\HashIcons\accessory.png"/>
-    <Image x:Key="ai-mode-frequent" Source="Images\HashIcons\ai-mode-frequent.png"/>
-    <Image x:Key="ai-mode-moderate" Source="Images\HashIcons\ai-mode-moderate.png"/>
-    <Image x:Key="ai-mode-rare"     Source="Images\HashIcons\ai-mode-rare.png"/>
-    <Image x:Key="ai-settings"      Source="Images\HashIcons\ai-settings.png"/>
-    <Image x:Key="armor"            Source="Images\HashIcons\armor.png"/>
-    <Image x:Key="button-circle"    Source="Images\HashIcons\button-circle.png"/>
-    <Image x:Key="button-cross"     Source="Images\HashIcons\button-cross.png"/>
-    <Image x:Key="button-l1"        Source="Images\HashIcons\button-l1.png"/>
-    <Image x:Key="button-l2"        Source="Images\HashIcons\button-l2.png"/>
-    <Image x:Key="button-r1"        Source="Images\HashIcons\button-r1.png"/>
-    <Image x:Key="button-r2"        Source="Images\HashIcons\button-r2.png"/>
-    <Image x:Key="button-square"    Source="Images\HashIcons\button-square.png"/>
-    <Image x:Key="button-triangle"  Source="Images\HashIcons\button-triangle.png"/>
-    <Image x:Key="exclamation-mark" Source="Images\HashIcons\exclamation-mark.png"/>
-    <Image x:Key="form"             Source="Images\HashIcons\form.png"/>
-    <Image x:Key="gumi-block"       Source="Images\HashIcons\gumi-block.png"/>
-    <Image x:Key="gumi-blueprint"   Source="Images\HashIcons\gumi-blueprint.png"/>
-    <Image x:Key="gumi-brush"       Source="Images\HashIcons\gumi-brush.png"/>
-    <Image x:Key="gumi-gear"        Source="Images\HashIcons\gumi-gear.png"/>
-    <Image x:Key="gumi-ship"        Source="Images\HashIcons\gumi-ship.png"/>
-    <Image x:Key="item-consumable"  Source="Images\HashIcons\item-consumable.png"/>
-    <Image x:Key="item-key"         Source="Images\HashIcons\item-key.png"/>
-    <Image x:Key="item-tent"        Source="Images\HashIcons\item-tent.png"/>
-    <Image x:Key="magic"            Source="Images\HashIcons\magic.png"/>
-    <Image x:Key="material"         Source="Images\HashIcons\material.png"/>
-    <Image x:Key="party"            Source="Images\HashIcons\party.png"/>
+    <Image x:Key="ability-unequip"  Source="Images\HashIcons\ability-unequip.png" x:Shared="false"/>
+    <Image x:Key="accessory"        Source="Images\HashIcons\accessory.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-frequent" Source="Images\HashIcons\ai-mode-frequent.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-moderate" Source="Images\HashIcons\ai-mode-moderate.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-rare"     Source="Images\HashIcons\ai-mode-rare.png" x:Shared="false"/>
+    <Image x:Key="ai-settings"      Source="Images\HashIcons\ai-settings.png" x:Shared="false"/>
+    <Image x:Key="armor"            Source="Images\HashIcons\armor.png" x:Shared="false"/>
+    <Image x:Key="button-circle"    Source="Images\HashIcons\button-circle.png" x:Shared="false"/>
+    <Image x:Key="button-cross"     Source="Images\HashIcons\button-cross.png" x:Shared="false"/>
+    <Image x:Key="button-l1"        Source="Images\HashIcons\button-l1.png" x:Shared="false"/>
+    <Image x:Key="button-l2"        Source="Images\HashIcons\button-l2.png" x:Shared="false"/>
+    <Image x:Key="button-r1"        Source="Images\HashIcons\button-r1.png" x:Shared="false"/>
+    <Image x:Key="button-r2"        Source="Images\HashIcons\button-r2.png" x:Shared="false"/>
+    <Image x:Key="button-square"    Source="Images\HashIcons\button-square.png" x:Shared="false"/>
+    <Image x:Key="button-triangle"  Source="Images\HashIcons\button-triangle.png" x:Shared="false"/>
+    <Image x:Key="exclamation-mark" Source="Images\HashIcons\exclamation-mark.png" x:Shared="false"/>
+    <Image x:Key="form"             Source="Images\HashIcons\form.png" x:Shared="false"/>
+    <Image x:Key="gumi-block"       Source="Images\HashIcons\gumi-block.png" x:Shared="false"/>
+    <Image x:Key="gumi-blueprint"   Source="Images\HashIcons\gumi-blueprint.png" x:Shared="false"/>
+    <Image x:Key="gumi-brush"       Source="Images\HashIcons\gumi-brush.png" x:Shared="false"/>
+    <Image x:Key="gumi-gear"        Source="Images\HashIcons\gumi-gear.png" x:Shared="false"/>
+    <Image x:Key="gumi-ship"        Source="Images\HashIcons\gumi-ship.png" x:Shared="false"/>
+    <Image x:Key="item-consumable"  Source="Images\HashIcons\item-consumable.png" x:Shared="false"/>
+    <Image x:Key="item-key"         Source="Images\HashIcons\item-key.png" x:Shared="false"/>
+    <Image x:Key="item-tent"        Source="Images\HashIcons\item-tent.png" x:Shared="false"/>
+    <Image x:Key="magic"            Source="Images\HashIcons\magic.png" x:Shared="false"/>
+    <Image x:Key="material"         Source="Images\HashIcons\material.png" x:Shared="false"/>
+    <Image x:Key="party"            Source="Images\HashIcons\party.png" x:Shared="false"/>
     <Image x:Key="question-mark"    Source="Images\HashIcons\question-mark.png"/>
-    <Image x:Key="rank-a"           Source="Images\HashIcons\rank-a.png"/>
-    <Image x:Key="rank-b"           Source="Images\HashIcons\rank-b.png"/>
-    <Image x:Key="rank-c"           Source="Images\HashIcons\rank-c.png"/>
-    <Image x:Key="rank-s"           Source="Images\HashIcons\rank-s.png"/>
-    <Image x:Key="weapon-keyblade"  Source="Images\HashIcons\weapon-keyblade.png"/>
-    <Image x:Key="weapon-shield"    Source="Images\HashIcons\weapon-shield.png"/>
-    <Image x:Key="weapon-staff"     Source="Images\HashIcons\weapon-staff.png"/>
+    <Image x:Key="rank-a"           Source="Images\HashIcons\rank-a.png" x:Shared="false"/>
+    <Image x:Key="rank-b"           Source="Images\HashIcons\rank-b.png" x:Shared="false"/>
+    <Image x:Key="rank-c"           Source="Images\HashIcons\rank-c.png" x:Shared="false"/>
+    <Image x:Key="rank-s"           Source="Images\HashIcons\rank-s.png" x:Shared="false"/>
+    <Image x:Key="weapon-keyblade"  Source="Images\HashIcons\weapon-keyblade.png" x:Shared="false"/>
+    <Image x:Key="weapon-shield"    Source="Images\HashIcons\weapon-shield.png" x:Shared="false"/>
+    <Image x:Key="weapon-staff"     Source="Images\HashIcons\weapon-staff.png" x:Shared="false"/>
 
     <!--Stat UI-->
     <Image x:Key="LevelIcon"  		    Source="Images\System\stats\level.png"    x:Shared="false"/>

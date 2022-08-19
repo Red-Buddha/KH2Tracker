@@ -574,18 +574,18 @@ namespace KhTracker
                 }
 
                 //check for custom cavern, timeless, and cups toggles
-                if (File.Exists("CustomImages/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
-                {
-                    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
-                }
-                if (File.Exists("CustomImages/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
-                {
-                    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
-                }
-                if (File.Exists("CustomImages/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
-                {
-                    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
-                }
+                //if (File.Exists("CustomImages/Worlds/Level01.png") && SoraLevel01Option.IsChecked)
+                //{
+                //    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel01");
+                //}
+                //if (File.Exists("CustomImages/Worlds/Level50.png") && SoraLevel50Option.IsChecked)
+                //{
+                //    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel50");
+                //}
+                //if (File.Exists("CustomImages/Worlds/Level99.png") && SoraLevel99Option.IsChecked)
+                //{
+                //    SorasHeartType.SetResourceReference(ContentProperty, "Cus-SoraLevel99");
+                //}
 
                 //puzzle/synth display
                 if (File.Exists("CustomImages/Worlds/PuzzSynth.png") && PuzzleOption.IsChecked && SynthOption.IsChecked) //both on

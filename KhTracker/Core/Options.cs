@@ -747,7 +747,12 @@ namespace KhTracker
                 for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
                 {
                     Item item = worldData.worldGrid.Children[j] as Item;
-                    Grid pool = data.Items[item.Name].Item2;
+                    Grid pool;
+
+                    if(item.Name.StartsWith("Ghost_"))
+                        pool = VisualTreeHelper.GetChild(ItemPool, 4) as Grid;
+                    else
+                        pool = data.Items[item.Name].Item2;
             
                     worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
                     pool.Children.Add(item);
@@ -921,12 +926,38 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect_obtained = 0;
             WorldGrid.Ghost_Magnet_obtained = 0;
             WorldGrid.Ghost_Pages_obtained = 0;
+            WorldGrid.Ghost_Pouches_obtained = 0;
+
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
 
             CollectionGrid.Visibility = Visibility.Visible;
             ScoreGrid.Visibility = Visibility.Hidden;
 
+            //reset settings row
+            SettingsText.Text = "";
+            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
+
+            if (AutoDetectOption.IsChecked)
+            {
+                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+            }
+            else
+            {
+                SettingRow.Height = new GridLength(0, GridUnitType.Star);
+            }
 
             //reset pathhints edits
             //foreach (string key in data.WorldsData.Keys.ToList())
@@ -1147,31 +1178,54 @@ namespace KhTracker
                             {
                                 settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
 
-                                //set all settings to false
-                                {
-                                    PromiseCharmToggle(false);
-                                    SimulatedToggle(false);
-                                    HundredAcreWoodToggle(false);
-                                    AtlanticaToggle(false);
-                                    //CavernToggle(false);
-                                    //OCCupsToggle(false);
-                                    SoraHeartToggle(true);
-                                    SoraLevel01Toggle(true);
-                                    VisitLockToggle(false);
-                                    //TerraToggle(false);
-                                    PuzzleToggle(false);
-                                    SynthToggle(false);
+                                #region Settings
 
-                                    AbilitiesToggle(true);
-                                    //TornPagesToggle(true);
-                                    //CureToggle(true);
-                                    //FinalFormToggle(true);
+                                //item settings
+                                PromiseCharmToggle(false);
+                                AbilitiesToggle(false);
+                                VisitLockToggle(false);
+                                ExtraChecksToggle(false);
+                                AntiFormToggle(false);
 
-                                    ExtraChecksToggle(false);
-                                    AntiFormToggle(false);
+                                //world settings
+                                SoraHeartToggle(true);
+                                DrivesToggle(false);
+                                SimulatedToggle(false);
+                                TwilightTownToggle(false);
+                                HollowBastionToggle(false);
+                                BeastCastleToggle(false);
+                                OlympusToggle(false);
+                                AgrabahToggle(false);
+                                LandofDragonsToggle(false);
+                                DisneyCastleToggle(false);
+                                PrideLandsToggle(false);
+                                PortRoyalToggle(false);
+                                HalloweenTownToggle(false);
+                                SpaceParanoidsToggle(false);
+                                TWTNWToggle(false);
+                                HundredAcreWoodToggle(false);
+                                AtlanticaToggle(false);
+                                PuzzleToggle(false);
+                                SynthToggle(false);
 
-                                    //SimulatedTwilightTownPlus.Visibility = Visibility.Hidden;
-                                }
+                                //settings visuals
+                                Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+                                Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+                                Double SpacerValue = 10;
+                                #endregion
+
+                                //to be safe about this i guess
+                                bool abilitiesOn = true;
 
                                 //load settings from hints
                                 foreach (string setting in settings)
@@ -1180,25 +1234,41 @@ namespace KhTracker
 
                                     switch (setting)
                                     {
+                                        //items
                                         case "PromiseCharm":
                                             PromiseCharmToggle(true);
                                             break;
-                                        case "Level":
-                                            {
-                                                SoraHeartToggle(false);
-                                            }
+                                        case "Level1Mode":
+                                            abilitiesOn = false;
                                             break;
-                                        case "ExcludeFrom50":
-                                            {
-                                                SoraHeartToggle(true);
-                                                SoraLevel50Toggle(true);
-                                            }
+                                        case "visit_locking":
+                                            VisitLockToggle(true);
+                                            break;
+                                        case "extra_ics":
+                                            ExtraChecksToggle(true);
+                                            break;
+                                        case "Anti-Form":
+                                            AntiFormToggle(true);
+                                            break;
+                                        //worlds
+                                        case "Level":
+                                            SoraHeartToggle(false);
+                                            SoraLevel01Toggle(true);
+                                            AbilitiesToggle(true);
+                                            Setting_Level_01.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "ExcludeFrom50":                                          
+                                            SoraLevel50Toggle(true);
+                                            AbilitiesToggle(true);
+                                            Setting_Level_50.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
                                             break;
                                         case "ExcludeFrom99":
-                                            {
-                                                SoraHeartToggle(true);
-                                                SoraLevel99Toggle(true);
-                                            }
+                                            SoraLevel99Toggle(true);
+                                            AbilitiesToggle(true);
+                                            Setting_Level_99.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
                                             break;
                                         case "Simulated Twilight Town":
                                             SimulatedToggle(true);
@@ -1209,44 +1279,97 @@ namespace KhTracker
                                         case "Atlantica":
                                             AtlanticaToggle(true);
                                             break;
-                                        //case "Cavern of Remembrance":
-                                        //    CavernToggle(true);
-                                        //    break;
-                                        //case "Olympus Cups":
-                                        //    OCCupsToggle(true);
-                                        //    break;
-                                        //case "visit_locking":
-                                        //    VisitLockToggle(true);
-                                        //    break;
-                                        //case "Lingering Will (Terra)":
-                                        //    TerraToggle(true);
-                                        //    break;
                                         case "Puzzle":
                                             PuzzleToggle(true);
                                             break;
                                         case "Synthesis":
                                             SynthToggle(true);
                                             break;
+                                        case "Form Levels":
+                                            DrivesToggle(true);
+                                            break;
+                                        case "Land of Dragons":
+                                            LandofDragonsToggle(true);
+                                            break;
+                                        case "Beast's Castle":
+                                            BeastCastleToggle(true);
+                                            break;
+                                        case "Hollow Bastion":
+                                            HollowBastionToggle(true);
+                                            break;
+                                        case "Twilight Town":
+                                            TwilightTownToggle(true);
+                                            break;
+                                        case "The World That Never Was":
+                                            TWTNWToggle(true);
+                                            break;
+                                        case "Space Paranoids":
+                                            SpaceParanoidsToggle(true);
+                                            break;
+                                        case "Port Royal":
+                                            PortRoyalToggle(true);
+                                            break;
+                                        case "Olympus Coliseum":
+                                            OlympusToggle(true);
+                                            break;
+                                        case "Agrabah":
+                                            AgrabahToggle(true);
+                                            break;
+                                        case "Halloween Town":
+                                            HalloweenTownToggle(true);
+                                            break;
+                                        case "Pride Lands":
+                                            PrideLandsToggle(true);
+                                            break;
+                                        case "Disney Castle / Timeless River":
+                                            DisneyCastleToggle(true);
+                                            break;
+                                        //settings
                                         case "better_stt":
-                                            //SimulatedTwilightTownPlus.Visibility = Visibility.Visible;
+                                            Setting_BetterSTT.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
                                             break;
-                                        case "extra_ics":
-                                            ExtraChecksToggle(true);
+                                        case "Cavern of Remembrance":
+                                            Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
                                             break;
-                                            //DEBUG! UPDATE LATER
-                                            //case "Anti-Form":
-                                            //    AntiFormToggle(true);
-                                            //    break;
+                                        case "Absent Silhouettes":
+                                            Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Sephiroth":
+                                            Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Lingering Will (Terra)":
+                                            Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Data Organization XIII":
+                                            Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Transport to Remembrance":
+                                            Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Olympus Cups":
+                                            Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
+                                        case "Hades Paradox Cup":
+                                            Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                            break;
                                     }
-                                    //if (setting.Key == "Second Chance & Once More ")
-                                    //    AbilitiesToggle(true);
-                                    //if (setting.Key == "Torn Pages")
-                                    //    TornPagesToggle(true);
-                                    //if (setting.Key == "Cure")
-                                    //    CureToggle(true);
-                                    //if (setting.Key == "Final Form")
-                                    //    FinalFormToggle(true);
                                 }
+
+                                if(abilitiesOn == false)
+                                    AbilitiesToggle(false);
+
+                                Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
+                                SettingsText.Text = "Settings:";
+                                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
                             }
 
                             switch (hintObject["hintsType"].ToString())
@@ -1310,7 +1433,8 @@ namespace KhTracker
                             //make visible
                             if (SeedHashOption.IsChecked)
                             {
-                                //HashRow.Height = new GridLength(1.0, GridUnitType.Star);
+                                HashGrid.Visibility = Visibility.Visible;
+                                HintText.Text = "";
                                 data.SeedHashVisible = true;
                             }
                         }

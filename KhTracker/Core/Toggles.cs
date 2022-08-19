@@ -152,12 +152,22 @@ namespace KhTracker
 
             if (AutoDetectOption.IsChecked)
             {
-                Connect.Source = data.AD_Connect;
                 Connect.Visibility = Visibility.Visible;
+                Connect2.Visibility = Visibility.Collapsed;
                 SetAutoDetectTimer();
+
+                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
             }
             else
-                Connect.Visibility = Visibility.Hidden;
+            {
+                Connect.Visibility = Visibility.Collapsed;
+                Connect2.Visibility = Visibility.Collapsed;
+
+                if (SettingsText.Text == "Settings:")
+                    SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                else
+                    SettingRow.Height = new GridLength(0, GridUnitType.Star);
+            }              
         }
 
         ///
@@ -190,7 +200,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: fix main window icon hiding
         private void PromiseCharmToggle(object sender, RoutedEventArgs e)
         {
             PromiseCharmToggle(PromiseCharmOption.IsChecked);
@@ -202,17 +211,16 @@ namespace KhTracker
             PromiseCharmOption.IsChecked = toggle;
             if (toggle)
             {
-                //Pr_PromiseCharm.Width = new GridLength(1.0, GridUnitType.Star);
+                PromiseCharmCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                //Pr_PromiseCharm.Width = new GridLength(0, GridUnitType.Star);
+                PromiseCharmCol.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, PromiseCharm, false);
         }
 
-        ///TODO: fix main window icon hiding
         private void AbilitiesToggle(object sender, RoutedEventArgs e)
         {
             AbilitiesToggle(AbilitiesOption.IsChecked);
@@ -224,20 +232,19 @@ namespace KhTracker
             AbilitiesOption.IsChecked = toggle;
             if (toggle)
             {
-                //Ab_OnceMore.Width = new GridLength(1.0, GridUnitType.Star);
-                //Ab_SecondChance.Width = new GridLength(1.0, GridUnitType.Star);
+                OnceMoreCol.Width = new GridLength(1.0, GridUnitType.Star);
+                SecondChanceCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                //Ab_OnceMore.Width = new GridLength(0, GridUnitType.Star);
-                //Ab_SecondChance.Width = new GridLength(0, GridUnitType.Star);
+                OnceMoreCol.Width = new GridLength(0, GridUnitType.Star);
+                SecondChanceCol.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, OnceMore, false);
             HandleItemToggle(toggle, SecondChance, false);
         }
 
-        ///TODO: fix main window icon hiding
         private void AntiFormToggle(object sender, RoutedEventArgs e)
         {
             AntiFormToggle(AntiFormOption.IsChecked);
@@ -250,11 +257,11 @@ namespace KhTracker
 
             if (toggle)
             {
-                //Ex_Anti.Width = new GridLength(1.0, GridUnitType.Star);
+                AntiFormCol.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                //Ex_Anti.Width = new GridLength(0, GridUnitType.Star);
+                AntiFormCol.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, Anti, false);
@@ -270,36 +277,75 @@ namespace KhTracker
             Properties.Settings.Default.WorldVisitLock = toggle;
             VisitLockOption.IsChecked = toggle;
 
+            int value = 0;
+
             if (toggle)
             {
-                VisitChecks.Height = new GridLength(1.0, GridUnitType.Star);
+                value = 1;
 
-                data.WorldsData["TwilightTown"].visitLocks = 11;
-                data.WorldsData["HollowBastion"].visitLocks = 1;
-                data.WorldsData["BeastsCastle"].visitLocks = 1;
-                data.WorldsData["OlympusColiseum"].visitLocks = 1;
-                data.WorldsData["Agrabah"].visitLocks = 1;
-                data.WorldsData["LandofDragons"].visitLocks = 1;
-                data.WorldsData["PrideLands"].visitLocks = 1;
-                data.WorldsData["HalloweenTown"].visitLocks = 1;
-                data.WorldsData["PortRoyal"].visitLocks = 1;
-                data.WorldsData["SpaceParanoids"].visitLocks = 1;
+                S_MulanWep.Visibility = Visibility.Visible;
+                S_AuronWep.Visibility = Visibility.Visible;
+                S_BeastWep.Visibility = Visibility.Visible;
+                S_JackWep.Visibility = Visibility.Visible;
+                S_IceCream.Visibility = Visibility.Visible;
+                S_TronWep.Visibility = Visibility.Visible;
+                S_Picture.Visibility = Visibility.Visible;
+                S_MembershipCard.Visibility = Visibility.Visible;
+                S_SimbaWep.Visibility = Visibility.Visible;
+                S_AladdinWep.Visibility = Visibility.Visible;
+                S_SparrowWep.Visibility = Visibility.Visible;
+
+                Cross01.Visibility = Visibility.Collapsed;
+                Cross02.Visibility = Visibility.Collapsed;
+                Cross03.Visibility = Visibility.Collapsed;
+                Cross04.Visibility = Visibility.Collapsed;
+                Cross05.Visibility = Visibility.Collapsed;
+                Cross06.Visibility = Visibility.Collapsed;
+                Cross07.Visibility = Visibility.Collapsed;
+                Cross08.Visibility = Visibility.Collapsed;
+                Cross09.Visibility = Visibility.Collapsed;
+                Cross10.Visibility = Visibility.Collapsed;
+                Cross11.Visibility = Visibility.Collapsed;
             }
             else
             {
-                VisitChecks.Height = new GridLength(0, GridUnitType.Star);
+                S_MulanWep.Visibility = Visibility.Collapsed;
+                S_AuronWep.Visibility = Visibility.Collapsed;
+                S_BeastWep.Visibility = Visibility.Collapsed;
+                S_JackWep.Visibility = Visibility.Collapsed;
+                S_IceCream.Visibility = Visibility.Collapsed;
+                S_TronWep.Visibility = Visibility.Collapsed;
+                S_Picture.Visibility = Visibility.Collapsed;
+                S_MembershipCard.Visibility = Visibility.Collapsed;
+                S_SimbaWep.Visibility = Visibility.Collapsed;
+                S_AladdinWep.Visibility = Visibility.Collapsed;
+                S_SparrowWep.Visibility = Visibility.Collapsed;
 
-                data.WorldsData["TwilightTown"].visitLocks = 0;
-                data.WorldsData["HollowBastion"].visitLocks = 0;
-                data.WorldsData["BeastsCastle"].visitLocks = 0;
-                data.WorldsData["OlympusColiseum"].visitLocks = 0;
-                data.WorldsData["Agrabah"].visitLocks = 0;
-                data.WorldsData["LandofDragons"].visitLocks = 0;
-                data.WorldsData["PrideLands"].visitLocks = 0;
-                data.WorldsData["HalloweenTown"].visitLocks = 0;
-                data.WorldsData["PortRoyal"].visitLocks = 0;
-                data.WorldsData["SpaceParanoids"].visitLocks = 0;
+                Cross01.Visibility = Visibility.Visible;
+                Cross02.Visibility = Visibility.Visible;
+                Cross03.Visibility = Visibility.Visible;
+                Cross04.Visibility = Visibility.Visible;
+                Cross05.Visibility = Visibility.Visible;
+                Cross06.Visibility = Visibility.Visible;
+                Cross07.Visibility = Visibility.Visible;
+                Cross08.Visibility = Visibility.Visible;
+                Cross09.Visibility = Visibility.Visible;
+                Cross10.Visibility = Visibility.Visible;
+                Cross11.Visibility = Visibility.Visible;
             }
+
+
+            //set lock values
+            data.WorldsData["TwilightTown"].visitLocks = value * 11;
+            data.WorldsData["HollowBastion"].visitLocks = value;
+            data.WorldsData["BeastsCastle"].visitLocks = value;
+            data.WorldsData["OlympusColiseum"].visitLocks = value;
+            data.WorldsData["Agrabah"].visitLocks = value;
+            data.WorldsData["LandofDragons"].visitLocks = value;
+            data.WorldsData["PrideLands"].visitLocks = value;
+            data.WorldsData["HalloweenTown"].visitLocks = value;
+            data.WorldsData["PortRoyal"].visitLocks = value;
+            data.WorldsData["SpaceParanoids"].visitLocks = value;
 
             for (int i = 0; i < data.VisitLocks.Count; ++i)
             {
@@ -309,7 +355,6 @@ namespace KhTracker
             VisitLockCheck();
         }
 
-        ///TODO: fix main window icon hiding
         private void ExtraChecksToggle(object sender, RoutedEventArgs e)
         {
             ExtraChecksToggle(ExtraChecksOption.IsChecked);
@@ -322,20 +367,30 @@ namespace KhTracker
 
             if (toggle)
             {
-                //Ex_HadesCup.Width = new GridLength(1.0, GridUnitType.Star);
-                //Ex_OlympusStone.Width = new GridLength(1.0, GridUnitType.Star);
-                //Ex_UnknownDisk.Width = new GridLength(1.0, GridUnitType.Star);
+                HadesCupCol.Width = new GridLength(1.0, GridUnitType.Star);
+                OlympusStoneCol.Width = new GridLength(1.0, GridUnitType.Star);
+                UnknownDiskCol.Width = new GridLength(1.0, GridUnitType.Star);
+
+                MunnySep.Width = new GridLength(0.1, GridUnitType.Star);
+                MunnyNum.Width = new GridLength(0.6, GridUnitType.Star);
+                MunnyImg.Width = new GridLength(1.0, GridUnitType.Star);
             }
             else
             {
-                //Ex_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-                //Ex_OlympusStone.Width = new GridLength(0, GridUnitType.Star);
-                //Ex_UnknownDisk.Width = new GridLength(0, GridUnitType.Star);
+                HadesCupCol.Width = new GridLength(0, GridUnitType.Star);
+                OlympusStoneCol.Width = new GridLength(0, GridUnitType.Star);
+                UnknownDiskCol.Width = new GridLength(0, GridUnitType.Star);
+
+                MunnySep.Width = new GridLength(0, GridUnitType.Star);
+                MunnyNum.Width = new GridLength(0, GridUnitType.Star);
+                MunnyImg.Width = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, HadesCup, false);
             HandleItemToggle(toggle, OlympusStone, false);
             HandleItemToggle(toggle, UnknownDisk, false);
+            HandleItemToggle(toggle, MunnyPouch1, false);
+            HandleItemToggle(toggle, MunnyPouch2, false);
         }
 
         private void SeedHashToggle(object sender, RoutedEventArgs e)
@@ -357,7 +412,6 @@ namespace KhTracker
                 HashGrid.Visibility = Visibility.Hidden;
         }
 
-        ///TODO: fix progression visibility
         private void WorldProgressToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.WorldProgress = WorldProgressOption.IsChecked;
@@ -367,15 +421,6 @@ namespace KhTracker
                 {
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Visible;
-
-                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(3.3, GridUnitType.Star);
-
-                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    //grid.ColumnDefinitions[0].Width = new GridLength(3.5, GridUnitType.Star);
-                    //grid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-                    //grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
-                    //Grid.SetColumnSpan(data.WorldsData[key].world, 2);
                 }
             }
             else
@@ -384,15 +429,6 @@ namespace KhTracker
                 {
                     if (data.WorldsData[key].progression != null)
                         data.WorldsData[key].progression.Visibility = Visibility.Hidden;
-
-                    //data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                    //data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(4, GridUnitType.Star);
-
-                    //Grid grid = data.WorldsData[key].world.Parent as Grid;
-                    //grid.ColumnDefinitions[0].Width = new GridLength(2, GridUnitType.Star);
-                    //grid.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
-                    //grid.ColumnDefinitions[2].Width = new GridLength(4, GridUnitType.Star);
-                    //Grid.SetColumnSpan(data.WorldsData[key].world, 3);
                 }
             }
         }
@@ -436,6 +472,7 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect_obtained = 0;
             WorldGrid.Ghost_Magnet_obtained = 0;
             WorldGrid.Ghost_Pages_obtained = 0;
+            WorldGrid.Ghost_Pouches_obtained = 0;
         }
 
         private void GhostMathToggle(object sender, RoutedEventArgs e)
@@ -469,7 +506,7 @@ namespace KhTracker
             }
         }
 
-        ///TODO: look this over when fixing broadcast window
+        ///TODO: look this over when adding score mode
         private void ShowCheckCountToggle(object sender, RoutedEventArgs e)
         {
             ShowCheckCountToggle(CheckCountOption.IsChecked);
@@ -481,7 +518,7 @@ namespace KhTracker
             CheckCountOption.IsChecked = toggle;
 
             //don't do anything if not in points mode
-            if (data.mode != Mode.DAHints)
+            if (data.mode != Mode.DAHints || !data.ScoreMode)
                 return;
 
             //if check count should be shown and replace the score IN POINTS MODE
@@ -489,18 +526,12 @@ namespace KhTracker
             {
                 CollectionGrid.Visibility = Visibility.Visible;
                 ScoreGrid.Visibility = Visibility.Collapsed;
-
-                //broadcast.Score.Visibility = Visibility.Hidden;
-                //broadcast.Collected.Visibility = Visibility.Visible;
             }
             //if points should show and replace check count IN POINTS MODE
             else
             {
                 CollectionGrid.Visibility = Visibility.Collapsed;
                 ScoreGrid.Visibility = Visibility.Visible;
-
-                //broadcast.Score.Visibility = Visibility.Visible;
-                //broadcast.Collected.Visibility = Visibility.Hidden;
             }
         }
 
@@ -553,7 +584,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: look this over when fixing broadcast window
         private void DeathCounterToggle(object sender, RoutedEventArgs e)
         {
             DeathCounterToggle(DeathCounterOption.IsChecked);
@@ -574,14 +604,16 @@ namespace KhTracker
                 DeathCounterGrid.Visibility = Visibility.Visible;
                 DeathCol.Width = new GridLength(0.2, GridUnitType.Star);
 
-                //broadcast.DeathCounter.Width = new GridLength(0.6, GridUnitType.Star);
+                HashSpacer1.Width = new GridLength(0.00, GridUnitType.Star);
+                HashSpacer2.Width = new GridLength(1.75, GridUnitType.Star);
             }
             else
             {
                 DeathCounterGrid.Visibility = Visibility.Collapsed;
                 DeathCol.Width = new GridLength(0, GridUnitType.Star);
 
-                //broadcast.DeathCounter.Width = new GridLength(0, GridUnitType.Star);
+                HashSpacer1.Width = new GridLength(0.75, GridUnitType.Star);
+                HashSpacer2.Width = new GridLength(0.75, GridUnitType.Star);
             }
         }
 
@@ -604,9 +636,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
             Properties.Settings.Default.WorldLevel1 = toggle;
 
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel01");
-
-            CustomWorldCheck();
             NextLevelDisplay();
         }
 
@@ -629,9 +658,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel99 = SoraLevel99Option.IsChecked;
             Properties.Settings.Default.WorldLevel50 = toggle;
 
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel50");
-
-            CustomWorldCheck();
             NextLevelDisplay();
         }
 
@@ -654,9 +680,6 @@ namespace KhTracker
             Properties.Settings.Default.WorldLevel1 = SoraLevel01Option.IsChecked;
             Properties.Settings.Default.WorldLevel99 = toggle;
 
-            SorasHeartType.SetResourceReference(ContentProperty, "Min-SoraLevel99");
-
-            CustomWorldCheck();
             NextLevelDisplay();
         }
 
@@ -679,7 +702,6 @@ namespace KhTracker
 
             SetItemImage();
             CustomChecksCheck();
-            //ReloadBindings();
         }
 
         private void OldCheckToggle(object sender, RoutedEventArgs e)
@@ -697,7 +719,6 @@ namespace KhTracker
 
             SetItemImage();
             CustomChecksCheck();
-            //ReloadBindings();
         }
 
         private void MinWorldToggle(object sender, RoutedEventArgs e)
@@ -747,10 +768,7 @@ namespace KhTracker
             Properties.Settings.Default.MinProg = MinProgOption.IsChecked;
             Properties.Settings.Default.OldProg = OldProgOption.IsChecked;
 
-            if (MinProgOption.IsChecked)
-            {
-                SetProgressIcons();
-            }
+            SetProgressIcons();
         }
 
         private void OldProgToggle(object sender, RoutedEventArgs e)
@@ -766,10 +784,7 @@ namespace KhTracker
             Properties.Settings.Default.MinProg = MinProgOption.IsChecked;
             Properties.Settings.Default.OldProg = OldProgOption.IsChecked;
 
-            if (OldProgOption.IsChecked)
-            {
-                SetProgressIcons();
-            }
+            SetProgressIcons();
         }
 
         private void CustomImageToggle(object sender, RoutedEventArgs e)
@@ -786,67 +801,8 @@ namespace KhTracker
             {
                 //reload check icons
                 SetItemImage();
-                //if (MinCheckOption.IsChecked)
-                //{
-                //    MinCheckToggle(sender, e);
-                //}
-                //else if (OldCheckOption.IsChecked)
-                //{
-                //    OldCheckToggle(sender, e);
-                //}
-
                 //reload world icons
                 SetWorldImage();
-                //if (MinWorldOption.IsChecked)
-                //{
-                //    MinWorldToggle(sender, e);
-                //}
-                //else if (OldWorldOption.IsChecked)
-                //{
-                //    OldWorldToggle(sender, e);
-                //}
-
-                //#region reload visit locks
-                //
-                //HollowBastionLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //OlympusColiseumLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //LandofDragonsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //PrideLandsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //HalloweenTownLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //SpaceParanoidsLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //BeastsCastleLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //AgrabahLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //PortRoyalLock.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //TwilightTownLock_2.Source = new BitmapImage(new Uri("Images/Other/visitlock.png", UriKind.Relative));
-                //TwilightTownLock_1.Source = new BitmapImage(new Uri("Images/Other/visitlocksilver.png", UriKind.Relative));
-                //
-                //#endregion
-                //
-                //#region reload others
-                //
-                //SorasHeartCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //DriveFormsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //SimulatedTwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //TwilightTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //HollowBastionCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //BeastsCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //OlympusColiseumCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //AgrabahCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //LandofDragonsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //HundredAcreWoodCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //PrideLandsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //DisneyCastleCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //HalloweenTownCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //PortRoyalCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //TWTNWCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //SpaceParanoidsCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //AtlanticaCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //PuzzSynthCross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //GoACross.Source = new BitmapImage(new Uri("Images/Other/crossworld.png", UriKind.Relative));
-                //
-                //Skull.Source = new BitmapImage(new Uri("Images/Other/generic skull.png", UriKind.Relative));
-                //
-                //#endregion
             }
         }
 
