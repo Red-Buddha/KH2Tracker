@@ -587,7 +587,7 @@ namespace KhTracker
                 }
             }
 
-            if (levelsetting == 1)
+            if (levelsetting == 1 || Level.Visibility != Visibility.Visible)
             {
                 NextLevelCol.Width = new GridLength(0, GridUnitType.Star);
                 return;

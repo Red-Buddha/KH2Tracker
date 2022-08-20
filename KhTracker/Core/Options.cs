@@ -835,6 +835,7 @@ namespace KhTracker
             SorasHeartWeapon.SetResourceReference(ContentProperty, "");
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
+            NextLevelCol.Width = new GridLength(0, GridUnitType.Star);
 
             ValorM.Opacity = .45;
             WisdomM.Opacity = .45;
