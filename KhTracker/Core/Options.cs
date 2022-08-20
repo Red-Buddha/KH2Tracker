@@ -825,15 +825,15 @@ namespace KhTracker
             TWTNWProgression.SetResourceReference(ContentProperty, "");
             AtlanticaProgression.SetResourceReference(ContentProperty, "");
 
-            LevelIcon.Visibility = Visibility.Hidden;
-            Level.Visibility = Visibility.Hidden;
-            StrengthIcon.Visibility = Visibility.Hidden;
-            Strength.Visibility = Visibility.Hidden;
-            MagicIcon.Visibility = Visibility.Hidden;
-            Magic.Visibility = Visibility.Hidden;
-            DefenseIcon.Visibility = Visibility.Hidden;
-            Defense.Visibility = Visibility.Hidden;
-            Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
+            //LevelIcon.Visibility = Visibility.Hidden;
+            //Level.Visibility = Visibility.Hidden;
+            //StrengthIcon.Visibility = Visibility.Hidden;
+            //Strength.Visibility = Visibility.Hidden;
+            //MagicIcon.Visibility = Visibility.Hidden;
+            //Magic.Visibility = Visibility.Hidden;
+            //DefenseIcon.Visibility = Visibility.Hidden;
+            //Defense.Visibility = Visibility.Hidden;
+            //Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
 
@@ -935,29 +935,25 @@ namespace KhTracker
             ScoreGrid.Visibility = Visibility.Hidden;
 
             //reset settings row
-            SettingsText.Text = "";
-            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
-
-            if (AutoDetectOption.IsChecked)
-            {
-                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
-            }
-            else
-            {
-                SettingRow.Height = new GridLength(0, GridUnitType.Star);
-            }
+            //SettingsText.Text = "";
+            //Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+            //Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
+            //
+            //if (AutoDetectOption.IsChecked)
+            //{
+            //    SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+            //}
 
             //reset pathhints edits
             //foreach (string key in data.WorldsData.Keys.ToList())
@@ -1209,6 +1205,7 @@ namespace KhTracker
                                 SynthToggle(false);
 
                                 //settings visuals
+                                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
                                 Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
                                 Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
                                 Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
@@ -1369,7 +1366,7 @@ namespace KhTracker
 
                                 Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
                                 SettingsText.Text = "Settings:";
-                                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                                
                             }
 
                             switch (hintObject["hintsType"].ToString())

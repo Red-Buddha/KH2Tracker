@@ -207,7 +207,7 @@ namespace KhTracker
             //remove item from itempool
             Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;
 
-            if (ItemRow != window.ItemPool)
+            if (ItemRow.Parent != window.ItemPool)
                 return;
 
             ItemRow.Children.Remove(item);

@@ -1700,11 +1700,15 @@
                     </Grid>
                     <!-- Score -->
                     <Grid Grid.Column="11" x:Name="ScoreGrid" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Total -->
-                        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                        <Viewbox HorizontalAlignment="Right" VerticalAlignment="Stretch">
                             <local:OutlinedTextBlock x:Name="ScoreValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
-                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="9999">
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="1"/>
@@ -2706,27 +2710,27 @@
                 <!-- Text -->
                 <Viewbox>
                     <local:OutlinedTextBlock x:Name="SettingsText" FontFamily="{StaticResource Gummi}" FontSize="10pt" Margin="4,0,0,4"
-                                                 FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Fill="White" Text=""/>
+                                                 FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Fill="White" Text="Settings:"/>
                 </Viewbox>
 
                 <!-- Setting Icons -->
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="Setting_Level_01" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Level_01" Width="1*"/>
                         <ColumnDefinition Name="Setting_Level_50" Width="0*"/>
                         <ColumnDefinition Name="Setting_Level_99" Width="0*"/>
-                        <ColumnDefinition Name="Setting_BetterSTT" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Absent" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Datas" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Sephiroth" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Terra" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Cups" Width="0*"/>
-                        <ColumnDefinition Name="Setting_HadesCup" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Cavern" Width="0*"/>
-                        <ColumnDefinition Name="Setting_Transport" Width="0*"/>
+                        <ColumnDefinition Name="Setting_BetterSTT" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Absent" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Datas" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Sephiroth" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Terra" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Cups" Width="1*"/>
+                        <ColumnDefinition Name="Setting_HadesCup" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Cavern" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Transport" Width="1*"/>
                         
                         <!-- +1.0 for each setting off (level1/50/99 counted together as 1 is any of them are on) -->
-                        <ColumnDefinition Name ="Setting_Spacer" Width="10*"/>
+                        <ColumnDefinition Name ="Setting_Spacer" Width="0*"/>
 
                         <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.25*"/>

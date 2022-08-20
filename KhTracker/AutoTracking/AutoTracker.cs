@@ -107,7 +107,7 @@ namespace KhTracker
         public void SetAutoDetectTimer()
         {
             //return if autotracking already succsessful
-            if (isWorking)
+            if (isWorking || !AutoDetectOption.IsChecked)
                 return;
 
             //if autotracking isn't currently working then stop timer

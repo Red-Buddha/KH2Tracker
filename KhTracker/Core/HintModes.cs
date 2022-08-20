@@ -443,27 +443,8 @@ namespace KhTracker
 
         public void UpdatePointScore(int points)
         {
-            if (data.mode != Mode.DAHints)
+            if (data.mode != Mode.DAHints && !data.ScoreMode)
                 return;
-
-            int[] FinalNum = new int[] { 0, 0, 0, 0 }; //Default 0000
-
-            //if (!CheckCountOption.IsChecked)
-            //{
-            //    score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-            //    ScoreSpacer.Width = new GridLength(15.0, GridUnitType.Star);
-            //    broadcast.score1000col.Width = new GridLength(0.0, GridUnitType.Star);
-            //    broadcast.scorespacer.Width = new GridLength(1.6, GridUnitType.Star);
-            //
-            //    Score1000.Visibility = Visibility.Hidden;
-            //    Score100.Visibility = Visibility.Hidden;
-            //    Score10.Visibility = Visibility.Hidden;
-            //    Score1.Visibility = Visibility.Visible;
-            //    broadcast.Score1000.Visibility = Visibility.Hidden;
-            //    broadcast.Score100.Visibility = Visibility.Hidden;
-            //    broadcast.Score10.Visibility = Visibility.Hidden;
-            //    broadcast.Score1.Visibility = Visibility.Visible;
-            //}
 
             int num = PointTotal + points; //get new point total
             int WorldBlue = 0;
@@ -499,12 +480,7 @@ namespace KhTracker
 
             num += WorldBlue;
 
-            //PointScore.Text = num.ToString();
-
-            //broadcast.Score1000.Source = GetDataNumber("S")[FinalNum[3]];
-            //broadcast.Score100.Source = GetDataNumber("S")[FinalNum[2]];
-            //broadcast.Score10.Source = GetDataNumber("S")[FinalNum[1]];
-            //broadcast.Score1.Source = GetDataNumber("S")[FinalNum[0]];
+            ScoreValue.Text = num.ToString();
         }
 
         static public int WorldNameToIndex(string worldName)

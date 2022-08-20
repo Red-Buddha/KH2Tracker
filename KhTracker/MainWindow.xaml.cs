@@ -743,7 +743,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: fix for ghost stuff
         public int GetGhostPoints(WorldGrid worlditems)
         {
             int points = 0;
@@ -752,7 +751,7 @@ namespace KhTracker
             {
                 if (worlditems.Children.Contains(ghost))
                 {
-                    //points += data.PointsDatanew[GetGhostType[ghost.Name]];
+                    points += data.PointsDatanew[Codes.FindItemType(ghost.Name)];
                 }
             }
 

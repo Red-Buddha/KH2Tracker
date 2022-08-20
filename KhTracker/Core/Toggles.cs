@@ -479,7 +479,7 @@ namespace KhTracker
         {
             Properties.Settings.Default.GhostMath = GhostMathOption.IsChecked;
 
-            if (GhostItemOption.IsChecked && data.mode == Mode.DAHints)
+            if (GhostItemOption.IsChecked && (data.mode == Mode.DAHints || data.ScoreMode))
             {
                 int add = -1;
 
@@ -506,7 +506,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: look this over when adding score mode
         private void ShowCheckCountToggle(object sender, RoutedEventArgs e)
         {
             ShowCheckCountToggle(CheckCountOption.IsChecked);
@@ -518,7 +517,7 @@ namespace KhTracker
             CheckCountOption.IsChecked = toggle;
 
             //don't do anything if not in points mode
-            if (data.mode != Mode.DAHints || !data.ScoreMode)
+            if (data.mode != Mode.DAHints && !data.ScoreMode)
                 return;
 
             //if check count should be shown and replace the score IN POINTS MODE
