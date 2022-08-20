@@ -154,9 +154,8 @@ namespace KhTracker
             foreach (string key in data.WorldsData.Keys.ToList())
             {
                 //adjust grid sizes for path proof icons
-                data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(2.25, GridUnitType.Star);
+                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0.1, GridUnitType.Star);
                 Grid grid = data.WorldsData[key].world.Parent as Grid;
-                grid.ColumnDefinitions[3].Width = new GridLength(2.2, GridUnitType.Star);
 
                 //get grid for path proof collumn and set visibility
                 Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;

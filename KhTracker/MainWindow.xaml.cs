@@ -382,14 +382,14 @@ namespace KhTracker
                     {
                         foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
                         {
-                            if (Box.Name == "")
+                            if (Box.Opacity != 0.9)
                                 Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
                         }
                     }
                     data.selected = button;
                     foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>()) //set currently selected world colors
                     {
-                        if(Box.Name == "")
+                        if(Box.Opacity != 0.9)
                             Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
                     }
                     break;
