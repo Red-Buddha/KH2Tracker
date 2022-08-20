@@ -41,6 +41,8 @@ namespace KhTracker
             InitOptions();
             VisitLockCheck();
 
+            OnReset(null, null);
+
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
@@ -112,7 +114,7 @@ namespace KhTracker
             data.WorldsData.Add("PortRoyal",                new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, false, 0));
             data.WorldsData.Add("SpaceParanoids",           new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, false, 0));
             data.WorldsData.Add("TWTNW",                    new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, false, 0));
-            data.WorldsData.Add("GoA",                      new WorldData(GoATop, GoA, null, null, GoAGrid, true, 0));
+            data.WorldsData.Add("GoA",                      new WorldData(GoATop, GoA, GoAProgression, null, GoAGrid, true, 0));
             data.WorldsData.Add("Atlantica",                new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, false, 0));
             data.WorldsData.Add("PuzzSynth",                new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, false, 0));
 
@@ -131,6 +133,7 @@ namespace KhTracker
             data.ProgressKeys.Add("SpaceParanoids",         new List<string>() { "", "Chests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
             data.ProgressKeys.Add("TWTNW",                  new List<string>() { "", "Chests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
             data.ProgressKeys.Add("Atlantica",              new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
+            data.ProgressKeys.Add("Cavern",                 new List<string>() { "", "Chests", "Fight1", "Fight2", "Transport", "Valves" });
 
             foreach (Grid itemrow in ItemPool.Children)
             {

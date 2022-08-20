@@ -306,6 +306,8 @@ namespace KhTracker
                 Cross09.Visibility = Visibility.Collapsed;
                 Cross10.Visibility = Visibility.Collapsed;
                 Cross11.Visibility = Visibility.Collapsed;
+
+                VisitsRow.Height = new GridLength(1, GridUnitType.Star);
             }
             else
             {
@@ -332,6 +334,11 @@ namespace KhTracker
                 Cross09.Visibility = Visibility.Visible;
                 Cross10.Visibility = Visibility.Visible;
                 Cross11.Visibility = Visibility.Visible;
+
+                if(ExtraChecksOption.IsChecked)
+                    VisitsRow.Height = new GridLength(1, GridUnitType.Star);
+                else
+                    VisitsRow.Height = new GridLength(0, GridUnitType.Star);
             }
 
 
@@ -374,6 +381,8 @@ namespace KhTracker
                 MunnySep.Width = new GridLength(0.1, GridUnitType.Star);
                 MunnyNum.Width = new GridLength(0.6, GridUnitType.Star);
                 MunnyImg.Width = new GridLength(1.0, GridUnitType.Star);
+
+                VisitsRow.Height = new GridLength(1, GridUnitType.Star);
             }
             else
             {
@@ -384,6 +393,11 @@ namespace KhTracker
                 MunnySep.Width = new GridLength(0, GridUnitType.Star);
                 MunnyNum.Width = new GridLength(0, GridUnitType.Star);
                 MunnyImg.Width = new GridLength(0, GridUnitType.Star);
+
+                if (VisitLockOption.IsChecked)
+                    VisitsRow.Height = new GridLength(1, GridUnitType.Star);
+                else
+                    VisitsRow.Height = new GridLength(0, GridUnitType.Star);
             }
 
             HandleItemToggle(toggle, HadesCup, false);
@@ -571,6 +585,12 @@ namespace KhTracker
                 {
                     Console.WriteLine("Tried to edit while loading");
                 }
+            }
+
+            if (levelsetting == 1)
+            {
+                NextLevelCol.Width = new GridLength(0, GridUnitType.Star);
+                return;
             }
 
             if (Visible && memory != null)

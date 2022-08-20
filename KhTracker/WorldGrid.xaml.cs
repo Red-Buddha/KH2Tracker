@@ -205,9 +205,17 @@ namespace KhTracker
         public void Add_Item(Item item)
         {
             //remove item from itempool
-            Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;
+            Grid ItemRow = null;
+            try
+            {
+                ItemRow = VisualTreeHelper.GetParent(item) as Grid;
+            }
+            catch
+            {
+                return;
+            }
 
-            if (ItemRow.Parent != window.ItemPool)
+            if (ItemRow == null || ItemRow.Parent != window.ItemPool)
                 return;
 
             ItemRow.Children.Remove(item);
@@ -1230,7 +1238,7 @@ namespace KhTracker
             if (proofTotal == 0) //no path to light
             {
                 //TODO: set up custom images for the mini cross icon
-                mid.Source = new BitmapImage(new Uri("Images/Other/cross.png", UriKind.Relative));
+                mid.Source = new BitmapImage(new Uri("Images/System/cross.png", UriKind.Relative));
                 mid.Visibility = Visibility.Visible;
                 return;
             }

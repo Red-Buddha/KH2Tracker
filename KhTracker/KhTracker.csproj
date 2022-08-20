@@ -340,7 +340,11 @@
     <Content Include="CustomImages\Progression\hollow_bastion\demyx_and_sephiroth.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\demyx_story.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\final_fantasy.png" />
+    <Content Include="CustomImages\Progression\hollow_bastion\first_fight.png" />
+    <Content Include="CustomImages\Progression\hollow_bastion\second_fight.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\sephiroth.png" />
+    <Content Include="CustomImages\Progression\hollow_bastion\steam_valve.png" />
+    <Content Include="CustomImages\Progression\hollow_bastion\transport.png" />
     <Content Include="CustomImages\Progression\land_of_dragons\missions.png" />
     <Content Include="CustomImages\Progression\land_of_dragons\mountain_climb.png" />
     <Content Include="CustomImages\Progression\land_of_dragons\shan_yu.png" />
@@ -449,6 +453,14 @@
     <Content Include="CustomImages\Worlds\Synth.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\Progression\Old\hollow_bastion\first_fight.png" />
+    <Resource Include="Images\Progression\Old\hollow_bastion\second_fight.png" />
+    <Resource Include="Images\Progression\Old\hollow_bastion\steam_valve.png" />
+    <Resource Include="Images\Progression\Old\hollow_bastion\transport.png" />
+    <Resource Include="Images\Progression\Min\hollow_bastion\first_fight.png" />
+    <Resource Include="Images\Progression\Min\hollow_bastion\second_fight.png" />
+    <Resource Include="Images\Progression\Min\hollow_bastion\steam_valve.png" />
+    <Resource Include="Images\Progression\Min\hollow_bastion\transport.png" />
     <Resource Include="Images\default_progression_test\1000_heartless.png" />
     <Resource Include="Images\default_progression_test\ansem%27s_study.png" />
     <Resource Include="Images\default_progression_test\corridors.png" />

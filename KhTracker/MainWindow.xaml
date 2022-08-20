@@ -218,7 +218,7 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SorasHeartGrid" Grid.Column="2"/>
                         <!-- fancy colors -->
-                        <Rectangle Grid.ColumnSpan="1" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                         <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
@@ -281,7 +281,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SimulatedTwilightTownGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -354,7 +355,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HollowBastionGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -424,7 +426,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="OlympusColiseumGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -494,7 +497,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="LandofDragonsGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -564,7 +568,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PrideLandsGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -634,7 +639,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HalloweenTownGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -704,7 +710,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="SpaceParanoidsGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -742,6 +749,8 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- progression -->
+                            <ContentControl x:Name="GoAProgression" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="GoAPath" Grid.Column="1">
@@ -759,7 +768,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="GoAGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
 
                         <!--Rectangle Name="WorldRec" Grid.Column="2" Fill="#4FaFaFaF" Panel.ZIndex="-1"/-->
@@ -839,7 +849,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -916,7 +927,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="TwilightTownGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -986,7 +998,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="BeastsCastleGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1056,7 +1069,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="AgrabahGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1118,7 +1132,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="HundredAcreWoodGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1180,7 +1195,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="DisneyCastleGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1250,7 +1266,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PortRoyalGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1312,7 +1329,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="TWTNWGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1374,7 +1392,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="AtlanticaGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
 
@@ -1434,7 +1453,8 @@
                         <!-- item grid -->
                         <local:WorldGrid x:Name="PuzzSynthGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
-                        <Rectangle Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                        <Rectangle Grid.Column="1" Fill="#FF162D25" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                     </Grid>
                 </Grid>
@@ -1462,7 +1482,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <!-- 0.2 when in use -->
-                        <ColumnDefinition x:Name="DeathCol" Width="0.0*"/>
+                        <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox>
                         <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
@@ -1476,7 +1496,7 @@
                     </Viewbox-->
 
                     <!-- Death Counter-->
-                    <Grid x:Name="DeathCounterGrid" Grid.Column="1">
+                    <Grid x:Name="DeathCounterGrid" Grid.Column="1" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="0.5*"/>
@@ -1494,10 +1514,11 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                     </Grid>
+                    <Rectangle Grid.Column="1" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="5,-5,-10,0"/>
                 </Grid>
 
                 <!-- Hash Text -->
-                <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible" x:Name="HashGrid">
+                <Grid Grid.Row="1" Grid.Column="1" Visibility="Collapsed" x:Name="HashGrid">
                     <Grid.ColumnDefinitions>
                         <!-- 0.75 | 0 w/deathcounter-->
                         <ColumnDefinition x:Name="HashSpacer1" Width="0.75*"/>
@@ -1875,7 +1896,7 @@
                     <RowDefinition x:Name="ReportRow"/>
                     <RowDefinition x:Name="CountsRow"/>
                     <RowDefinition/>
-                    <RowDefinition x:Name="VisitChecks" Height="1*"/>
+                    <RowDefinition x:Name="VisitsRow" Height="1*"/>
                     <RowDefinition Height="0.1*"/>
                     <!-- Should never be visible. always 0-->
                     <RowDefinition Height="0*"/>
@@ -2705,11 +2726,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.33*"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="0.01*"/>
                     <ColumnDefinition Width="0.1*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
                 <!-- Text -->
-                <Viewbox>
+                <Viewbox Grid.Row="1">
                     <local:OutlinedTextBlock x:Name="SettingsText" FontFamily="{StaticResource Gummi}" FontSize="10pt" Margin="4,0,0,2"
                                                  FontWeight="DemiBold" StrokeThickness="3" Stroke="Black" Text="Settings:">
                         <local:OutlinedTextBlock.Fill>
@@ -2722,7 +2748,7 @@
                 </Viewbox>
 
                 <!-- Setting Icons -->
-                <Grid Grid.Column="1">
+                <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Name="Setting_Level_01" Width="1*"/>
                         <ColumnDefinition Name="Setting_Level_50" Width="0*"/>
@@ -2744,23 +2770,23 @@
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0" Source="Images/System/settings/Level_01.png"/>
-                    <Image Grid.Column="1" Source="Images/System/settings/Level_50.png"/>
-                    <Image Grid.Column="2" Source="Images/System/settings/Level_99.png"/>
-                    <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"/>
-                    <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"/>
-                    <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"/>
-                    <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"/>
-                    <Image Grid.Column="7" Source="Images/System/settings/lingering_will.png"/>
-                    <Image Grid.Column="8" Source="Images/System/settings/underdrome_cups.png"/>
-                    <Image Grid.Column="9" Source="Images/System/settings/paradox_cup.png"/>
-                    <Image Grid.Column="10" Source="Images/System/settings/cavern_of_remembrance.png"/>
-                    <Image Grid.Column="11" Source="Images/System/settings/transport.png"/>
+                    <Image Grid.Column="0" Source="Images/System/settings/Level_01.png"                 ToolTip="Level 1 Checks"/>
+                    <Image Grid.Column="1" Source="Images/System/settings/Level_50.png"                 ToolTip="Level 50 Checks"/>
+                    <Image Grid.Column="2" Source="Images/System/settings/Level_99.png"                 ToolTip="Level 99 Checks"/>
+                    <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"               ToolTip="Roxas STT Improvements"/>
+                    <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"        ToolTip="Absent Silhouettes"/>
+                    <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"        ToolTip="Data Organization"/>
+                    <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"                ToolTip="Sephiroth"/>
+                    <Image Grid.Column="7" Source="Images/System/settings/lingering_will.png"           ToolTip="Lingering Will (Terra)"/>
+                    <Image Grid.Column="8" Source="Images/System/settings/underdrome_cups.png"          ToolTip="Underdrome Cups"/>
+                    <Image Grid.Column="9" Source="Images/System/settings/paradox_cup.png"              ToolTip="Hades Paradox Cup"/>
+                    <Image Grid.Column="10" Source="Images/System/settings/cavern_of_remembrance.png"   ToolTip="Cavern of Rememberance"/>
+                    <Image Grid.Column="11" Source="Images/System/settings/transport.png"               ToolTip="Transport to Rememberance"/>
 
                 </Grid>
 
                 <!-- Auto-Detect Visual -->
-                <Image RenderTransformOrigin="0.5,0.5" x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed">
+                <Image Grid.Row="1" RenderTransformOrigin="0.5,0.5" x:Name="Connect" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed">
                     <Image.RenderTransform>
                         <RotateTransform Angle="0" />
                     </Image.RenderTransform>
@@ -2786,11 +2812,14 @@
                     </Image.Style>
                 </Image>
 
-                <Image x:Name="Connect2" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed"/>
+                <Image Grid.Row="1" x:Name="Connect2" Source="Images/System/config/searching.png" Grid.Column="3" Margin="0,3" Visibility="Collapsed"/>
 
                 <!-- fancy spacer colors -->
-                <Rectangle Grid.ColumnSpan="3" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
-                <Rectangle Margin="-6,0,44,0" Grid.Column="3" Fill="#ff000000" Panel.ZIndex="2"/>
+                <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
+                <Rectangle Grid.Row="1" Grid.Column="2" Fill="Black" Panel.ZIndex="-1"/>
+                <Rectangle Grid.ColumnSpan="4" Fill="Black" Panel.ZIndex="-1"/>
+                <Rectangle Grid.Row="1" Grid.Column="3" Fill="#D8282828" Panel.ZIndex="-1"/>
+                <!--Rectangle Margin="-6,0,44,0" Grid.Column="3" Fill="#ff000000" Panel.ZIndex="2"/-->
             </Grid>
         </Grid>
 

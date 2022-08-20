@@ -79,6 +79,7 @@ namespace KhTracker
         }
 
         //show next level check
+        MainWindow window = (MainWindow)App.Current.MainWindow;
         private int levelCheck;
         public int LevelCheck
         {
@@ -86,6 +87,7 @@ namespace KhTracker
             set
             {
                 levelCheck = value;
+                window.NextLevelValue.Text = ")" + value;
                 OnPropertyChanged("LevelCheck");
             }
         }

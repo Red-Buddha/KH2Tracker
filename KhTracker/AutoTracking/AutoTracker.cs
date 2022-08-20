@@ -853,6 +853,50 @@ namespace KhTracker
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
                                 curProg = 9;
                             break;
+                        //CoR
+                        case 21:
+                            if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
+                            {
+                                curKey = data.ProgressKeys["Cavern"][1];
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                data.WorldsData["GoA"].progress = 1;
+                                return;
+                            }
+                            break;
+                        case 22:
+                            if (world.eventID3 == 1 && data.WorldsData["GoA"].progress <= 1 && world.eventComplete == 1) //valves after skip
+                            {
+                                curKey = data.ProgressKeys["Cavern"][5];
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                data.WorldsData["GoA"].progress = 5;
+                                return;
+                            }
+                            break;
+                        case 24:
+                            if (world.eventID3 == 1 && world.eventComplete == 1) //first fight
+                            {
+                                curKey = data.ProgressKeys["Cavern"][2];
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                data.WorldsData["GoA"].progress = 2;
+                                return;
+                            }
+                            if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
+                            {
+                                curKey = data.ProgressKeys["Cavern"][3];
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                data.WorldsData["GoA"].progress = 3;
+                                return;
+                            }
+                            break;
+                        case 25:
+                            if (world.eventID3 == 3 && world.eventComplete == 1) //transport
+                            {
+                                curKey = data.ProgressKeys["Cavern"][4];
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                data.WorldsData["GoA"].progress = 4;
+                                return;
+                            }
+                            break;
                         default:
                             return;
                     }

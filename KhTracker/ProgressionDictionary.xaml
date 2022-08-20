@@ -63,6 +63,11 @@
     <Image x:Key="Min-Sephiroth"        Source="Images\Progression\Min\hollow_bastion\sephiroth.png" x:Shared="False"/>
     <Image x:Key="Min-DataDemyx"        Source="Images\Progression\Min\hollow_bastion\demyx.png" x:Shared="False"/>
     <Image x:Key="Min-SephiDemyx"       Source="Images\Progression\Min\hollow_bastion\demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Cavern of Rememberance-->
+    <Image x:Key="Min-Fight1"           Source="Images\Progression\Min\hollow_bastion\first_fight.png" x:Shared="False"/>
+    <Image x:Key="Min-Fight2"           Source="Images\Progression\Min\hollow_bastion\second_fight.png" x:Shared="False"/>
+    <Image x:Key="Min-Transport"        Source="Images\Progression\Min\hollow_bastion\transport.png" x:Shared="False"/>
+    <Image x:Key="Min-Valves"           Source="Images\Progression\Min\hollow_bastion\steam_valve.png" x:Shared="False"/>
     <!--Land of Dragons-->
     <Image x:Key="Min-Missions"     Source="Images\Progression\Min\land_of_dragons\missions.png" x:Shared="False"/>
     <Image x:Key="Min-Mountain"     Source="Images\Progression\Min\land_of_dragons\mountain_climb.png" x:Shared="False"/>
@@ -184,6 +189,11 @@
     <Image x:Key="Old-Sephiroth"        Source="Images\Progression\Old\hollow_bastion\sephiroth.png" x:Shared="False"/>
     <Image x:Key="Old-DataDemyx"        Source="Images\Progression\Old\hollow_bastion\demyx.png" x:Shared="False"/>
     <Image x:Key="Old-SephiDemyx"       Source="Images\Progression\Old\hollow_bastion\demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Cavern of Rememberance-->
+    <Image x:Key="Old-Fight1"           Source="Images\Progression\Old\hollow_bastion\first_fight.png" x:Shared="False"/>
+    <Image x:Key="Old-Fight2"           Source="Images\Progression\Old\hollow_bastion\second_fight.png" x:Shared="False"/>
+    <Image x:Key="Old-Transport"        Source="Images\Progression\Old\hollow_bastion\transport.png" x:Shared="False"/>
+    <Image x:Key="Old-Valves"           Source="Images\Progression\Old\hollow_bastion\steam_valve.png" x:Shared="False"/>
     <!--Land of Dragons-->
     <Image x:Key="Old-Missions"     Source="Images\Progression\Old\land_of_dragons\missions.png" x:Shared="False"/>
     <Image x:Key="Old-Mountain"     Source="Images\Progression\Old\land_of_dragons\mountain_climb.png" x:Shared="False"/>
@@ -303,6 +313,11 @@
     <Image x:Key="Cus-Sephiroth"        Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/sephiroth.png" x:Shared="False"/>
     <Image x:Key="Cus-DataDemyx"        Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/demyx.png" x:Shared="False"/>
     <Image x:Key="Cus-SephiDemyx"       Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/demyx_and_sephiroth.png" x:Shared="False"/>
+    <!--Cavern of Rememberance-->
+    <Image x:Key="Cus-Fight1"           Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/first_fight.png" x:Shared="False"/>
+    <Image x:Key="Cus-Fight2"           Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/second_fight.png" x:Shared="False"/>
+    <Image x:Key="Cus-Transport"        Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/transport.png" x:Shared="False"/>
+    <Image x:Key="Cus-Valves"           Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/steam_valve.png" x:Shared="False"/>
     <!--Land of Dragons-->
     <Image x:Key="Cus-Missions"     Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/missions.png" x:Shared="False"/>
     <Image x:Key="Cus-Mountain"     Source="pack://application:,,,/CustomImages/Progression/land_of_dragons/mountain_climb.png" x:Shared="False"/>

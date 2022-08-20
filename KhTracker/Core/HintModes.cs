@@ -155,7 +155,6 @@ namespace KhTracker
             {
                 //adjust grid sizes for path proof icons
                 data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0.1, GridUnitType.Star);
-                Grid grid = data.WorldsData[key].world.Parent as Grid;
 
                 //get grid for path proof collumn and set visibility
                 Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;

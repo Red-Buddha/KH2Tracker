@@ -560,8 +560,9 @@ namespace KhTracker
 
         public void LoadHints(string filename)
         {
+            OnReset(null, null);
             SetMode(Mode.Hints);
-            ResetHints();
+            //ResetHints();
 
             StreamReader streamReader = new StreamReader(filename);
 
@@ -824,16 +825,14 @@ namespace KhTracker
             SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
             TWTNWProgression.SetResourceReference(ContentProperty, "");
             AtlanticaProgression.SetResourceReference(ContentProperty, "");
+            GoAProgression.SetResourceReference(ContentProperty, "");
 
-            //LevelIcon.Visibility = Visibility.Hidden;
-            //Level.Visibility = Visibility.Hidden;
-            //StrengthIcon.Visibility = Visibility.Hidden;
-            //Strength.Visibility = Visibility.Hidden;
-            //MagicIcon.Visibility = Visibility.Hidden;
-            //Magic.Visibility = Visibility.Hidden;
-            //DefenseIcon.Visibility = Visibility.Hidden;
-            //Defense.Visibility = Visibility.Hidden;
-            //Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
+            Level.Visibility = Visibility.Collapsed;
+            Strength.Visibility = Visibility.Collapsed;
+            Magic.Visibility = Visibility.Collapsed;
+            Defense.Visibility = Visibility.Collapsed;
+            Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
+            SorasHeartWeapon.SetResourceReference(ContentProperty, "");
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
 
@@ -935,42 +934,42 @@ namespace KhTracker
             ScoreGrid.Visibility = Visibility.Hidden;
 
             //reset settings row
-            //SettingsText.Text = "";
-            //Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-            //Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
-            //
-            //if (AutoDetectOption.IsChecked)
-            //{
-            //    SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
-            //}
+            SettingsText.Text = "";
+            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
+            
+            if (AutoDetectOption.IsChecked)
+            {
+                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+            }
+            else
+                SettingRow.Height = new GridLength(0, GridUnitType.Star);
 
             //reset pathhints edits
-            //foreach (string key in data.WorldsData.Keys.ToList())
-            //{
-            //    data.WorldsData[key].top.ColumnDefinitions[0].Width = new GridLength(1.5, GridUnitType.Star);
-            //    Grid grid = data.WorldsData[key].world.Parent as Grid;
-            //    grid.ColumnDefinitions[3].Width = new GridLength(0.1, GridUnitType.Star);
-            //
-            //    Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
-            //    pathgrid.Visibility = Visibility.Hidden;
-            //    foreach (Image child in pathgrid.Children)
-            //    {
-            //        if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
-            //            child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
-            //        child.Visibility = Visibility.Hidden;
-            //    }
-            //}
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
+            
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Hidden;
+                foreach (Image child in pathgrid.Children)
+                {
+                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
+                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
+                    child.Visibility = Visibility.Hidden;
+                }
+            }
 
             UpdatePointScore(0);
             ReportsToggle(true);
@@ -1095,10 +1094,10 @@ namespace KhTracker
 
         private void SetMode(Mode mode)
         {
-            if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints || mode == Mode.PathHints || mode == Mode.SpoilerHints)
-            {
-                OnReset(null, null);
-            }
+            //if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.AltHints || mode == Mode.OpenKHAltHints || mode == Mode.DAHints || mode == Mode.PathHints || mode == Mode.SpoilerHints)
+            //{
+            //    OnReset(null, null);
+            //}
 
             if (mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
             {
@@ -1148,7 +1147,7 @@ namespace KhTracker
 
         private void OpenKHSeed(string filename)
         {
-            HintText.Text = "";
+            OnReset(null, null);
 
             foreach (string world in data.WorldsData.Keys.ToList())
             {
