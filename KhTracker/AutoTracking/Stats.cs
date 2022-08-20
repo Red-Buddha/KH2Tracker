@@ -87,7 +87,7 @@ namespace KhTracker
             set
             {
                 levelCheck = value;
-                window.NextLevelValue.Text = ")" + value;
+                window.NextLevelValue.Text = ">" + value;
                 OnPropertyChanged("LevelCheck");
             }
         }

@@ -1552,7 +1552,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  Width="1.0*"/>
                         <!-- 0.6* when enabled-->
-                        <ColumnDefinition x:Name="NextLevelCol" Width="0*"/>
+                        <ColumnDefinition x:Name="NextLevelCol" Width="1*"/>
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="1.15*"/>
                         <ColumnDefinition Width="0.05*"/>
@@ -1565,14 +1565,15 @@
                         <ColumnDefinition Width="1.3*"/>
                     </Grid.ColumnDefinitions>
                     <!-- Level -->
-                    <Grid x:Name="Level" Visibility="Collapsed">
+                    <Grid x:Name="Level" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.45*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource LevelIcon}" x:Name="LevelIcon"/>
                         <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2,0,0,2">
-                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
+                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#827D7D" Offset="1"/>
@@ -1583,8 +1584,9 @@
                         </Viewbox>
                     </Grid>
                     <Grid x:Name="NextLevel" Grid.Column="1">
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="1,0,0,0">
-                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text=")99">
+                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2,0,0,2">
+                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text=">99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE6781C" Offset="1"/>
