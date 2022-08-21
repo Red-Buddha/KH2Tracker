@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Alpha)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -41,8 +41,8 @@
                     <MenuItem Header="Load KH2Randomizer Seed (*.zip)" 	Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
-                <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
+                <MenuItem Header="Save Current Progress" Click="SaveProgress" IsEnabled="False"/>
+                <MenuItem Header="Load Tracker Progress" Click="LoadProgress" IsEnabled="False"/>
                 <Separator/>
                 <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>

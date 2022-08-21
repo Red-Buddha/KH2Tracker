@@ -48,13 +48,13 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\2.0\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>hnet.com-image.ico</ApplicationIcon>
+    <ApplicationIcon>tracker.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -198,9 +198,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="hnet.com-image.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="1.png" />
@@ -455,6 +452,7 @@
     <Content Include="CustomImages\Worlds\Synth.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="tracker.ico" />
     <Resource Include="Images\Checks\Old\ansem_report.png" />
     <Resource Include="Images\Checks\Min\ansem_report.png" />
     <Resource Include="Images\Progression\Old\hollow_bastion\first_fight.png" />
