@@ -156,7 +156,7 @@ namespace KhTracker
                 Connect2.Visibility = Visibility.Collapsed;
                 SetAutoDetectTimer();
 
-                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
             }
             else
             {
@@ -164,7 +164,7 @@ namespace KhTracker
                 Connect2.Visibility = Visibility.Collapsed;
 
                 if (SettingsText.Text == "Settings:")
-                    SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
                 else
                     SettingRow.Height = new GridLength(0, GridUnitType.Star);
             }              

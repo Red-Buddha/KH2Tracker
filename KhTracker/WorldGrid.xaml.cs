@@ -984,6 +984,12 @@ namespace KhTracker
             //Grid ItemPool = window.ItemPool;
             Data data = MainWindow.data;
 
+            //don't change report opacity
+            if (type == "report")
+            {
+                return;
+            }
+
             //simplier icon opacity change for non pages/magic
             if (type != "magic" && type != "page" && !item.StartsWith("Munny"))
             {

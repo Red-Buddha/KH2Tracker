@@ -132,19 +132,19 @@ namespace KhTracker
             //ghost items
             CusItemCheckG = new Dictionary<Item, Tuple<string, string>>
             {
-                {Ghost_Report1,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report01.png",  "Cus-G_Report1")},
-                {Ghost_Report2,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report02.png",  "Cus-G_Report2")},
-                {Ghost_Report3,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report03.png",  "Cus-G_Report3")},
-                {Ghost_Report4,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report04.png",  "Cus-G_Report4")},
-                {Ghost_Report5,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report05.png",  "Cus-G_Report5")},
-                {Ghost_Report6,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report06.png",  "Cus-G_Report6")},
-                {Ghost_Report7,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report07.png",  "Cus-G_Report7")},
-                {Ghost_Report8,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report08.png",  "Cus-G_Report8")},
-                {Ghost_Report9,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report09.png",  "Cus-G_Report9")},
-                {Ghost_Report10,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report10.png", "Cus-G_Report10")},
-                {Ghost_Report11,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report11.png", "Cus-G_Report11")},
-                {Ghost_Report12,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report12.png", "Cus-G_Report12")},
-                {Ghost_Report13,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report13.png", "Cus-G_Report13")},
+                {Ghost_Report1,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report1")},
+                {Ghost_Report2,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report2")},
+                {Ghost_Report3,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report3")},
+                {Ghost_Report4,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report4")},
+                {Ghost_Report5,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report5")},
+                {Ghost_Report6,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report6")},
+                {Ghost_Report7,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report7")},
+                {Ghost_Report8,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report8")},
+                {Ghost_Report9,         new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png",  "Cus-G_Report9")},
+                {Ghost_Report10,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png", "Cus-G_Report10")},
+                {Ghost_Report11,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png", "Cus-G_Report11")},
+                {Ghost_Report12,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png", "Cus-G_Report12")},
+                {Ghost_Report13,        new Tuple<string, string>("CustomImages/GhostChecks/ansem_report.png", "Cus-G_Report13")},
                 {Ghost_Fire1,           new Tuple<string, string>("CustomImages/GhostChecks/magic_fire.png", "Cus-G_Fire1")},
                 {Ghost_Fire2,           new Tuple<string, string>("CustomImages/GhostChecks/magic_fire.png", "Cus-G_Fire2")},
                 {Ghost_Fire3,           new Tuple<string, string>("CustomImages/GhostChecks/magic_fire.png", "Cus-G_Fire3")},
@@ -338,14 +338,17 @@ namespace KhTracker
                         if (item.Value.Item3 != null)
                         {
                             ContentControl shadow = item.Value.Item3;
-                            shadow.SetResourceReference(ContentProperty, item.Value.Item3);
+                            shadow.SetResourceReference(ContentProperty, item.Value.Item1);
                         }
 
                         //ghost item
                         if (item.Value.Item2 != null)
                         {
                             Item ghost = item.Value.Item2;
-                            ghost.SetResourceReference(ContentProperty, item.Value.Item1);
+                            if (Codes.FindItemType(ghost.Name) != "report")
+                                ghost.SetResourceReference(ContentProperty, item.Value.Item1);
+                            else
+                                ghost.SetResourceReference(ContentProperty, "Cus-Report");
                         }
                     }
                 }
@@ -363,7 +366,11 @@ namespace KhTracker
                     {
                         //main item
                         Item ghost = item.Key as Item;
-                        ghost.SetResourceReference(ContentProperty, item.Value.Item2);
+                        if (Codes.FindItemType(ghost.Name) != "report")
+                            ghost.SetResourceReference(ContentProperty, item.Value.Item2);
+                        else
+                            ghost.SetResourceReference(ContentProperty, "Cus-G_Report");
+
                     }
                 }
             }
@@ -633,7 +640,10 @@ namespace KhTracker
             // Ghost icons
             foreach (var item in data.GhostItems.Values)
             {
-                item.SetResourceReference(ContentProperty, type + item.Name.Remove(0, 6));
+                if (Codes.FindItemType(item.Name) != "report")
+                    item.SetResourceReference(ContentProperty, type + item.Name.Remove(0, 6));
+                else
+                    item.SetResourceReference(ContentProperty, type + "Report");
             }
             
             // stat/info icons

@@ -20,6 +20,7 @@
     <Image x:Key="Cus-Cross" Source="Images\System\cross.png" x:Shared="false"/>
     
     <!--Simple Item Icons-->
+    <Image x:Key="Min-Report"           Source="Images\Checks\Min\ansem_report.png"           x:Shared="false"/>
     <Image x:Key="Min-Report1"          Source="Images\Checks\Min\ansem_report01.png"         x:Shared="false"/>
     <Image x:Key="Min-Report2"          Source="Images\Checks\Min\ansem_report02.png"         x:Shared="false"/>
     <Image x:Key="Min-Report3"          Source="Images\Checks\Min\ansem_report03.png"         x:Shared="false"/>
@@ -91,6 +92,7 @@
     <Image x:Key="Min-MunnyPouch2"	    Source="Images\Checks\Min\Aux_munny_pouch.png"        x:Shared="false"/>
 
     <!--Old Item Icons-->
+    <Image x:Key="Old-Report"           Source="Images\Checks\Old\ansem_report.png"           x:Shared="false"/>
     <Image x:Key="Old-Report1"          Source="Images\Checks\Old\ansem_report01.png"         x:Shared="false"/>
     <Image x:Key="Old-Report2"          Source="Images\Checks\Old\ansem_report02.png"         x:Shared="false"/>
     <Image x:Key="Old-Report3"          Source="Images\Checks\Old\ansem_report03.png"         x:Shared="false"/>
@@ -179,7 +181,8 @@
     <Image x:Key="Old-AerialDodge" 		Source="Images\Checks\aerial.png" x:Shared="false"/>
     <Image x:Key="Old-Glide" 	        Source="Images\Checks\glide.png" x:Shared="false"/-->
     
-    <!--Custom Item Icons (Main)-->  
+    <!--Custom Item Icons (Main)-->
+    <Image x:Key="Cus-Report"           Source="pack://application:,,,/CustomImages/Checks/ansem_report.png"           x:Shared="false"/>
     <Image x:Key="Cus-Report1"          Source="pack://application:,,,/CustomImages/Checks/ansem_report01.png"         x:Shared="false"/>
     <Image x:Key="Cus-Report2"          Source="pack://application:,,,/CustomImages/Checks/ansem_report02.png"         x:Shared="false"/>
     <Image x:Key="Cus-Report3"          Source="pack://application:,,,/CustomImages/Checks/ansem_report03.png"         x:Shared="false"/>
@@ -250,20 +253,21 @@
     <Image x:Key="Cus-MunnyPouch1"	    Source="pack://application:,,,/CustomImages/Checks/Aux_munny_pouch.png"        x:Shared="false"/>
     <Image x:Key="Cus-MunnyPouch2"	    Source="pack://application:,,,/CustomImages/Checks/Aux_munny_pouch.png"        x:Shared="false"/>
 
-    <!--Custom Item Icons (Ghost)-->  
-    <Image x:Key="Cus-G_Report1"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report01.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report2"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report02.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report3"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report03.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report4"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report04.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report5"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report05.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report6"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report06.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report7"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report07.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report8"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report08.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report9"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report09.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report10"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report10.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report11"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report11.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report12"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report12.png"         x:Shared="false"/>
-    <Image x:Key="Cus-G_Report13"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report13.png"         x:Shared="false"/>
+    <!--Custom Item Icons (Ghost)-->
+    <Image x:Key="Cus-G_Report"             Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report1"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report2"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report3"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report4"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report5"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report6"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report7"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report8"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report9"            Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report10"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report11"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report12"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
+    <Image x:Key="Cus-G_Report13"           Source="pack://application:,,,/CustomImages/GhostChecks/ansem_report.png"           x:Shared="false"/>
     <Image x:Key="Cus-G_Valor"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_valor.png"             x:Shared="false"/>
     <Image x:Key="Cus-G_Wisdom"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_wisdom.png"            x:Shared="false"/>
     <Image x:Key="Cus-G_Limit"	            Source="pack://application:,,,/CustomImages/GhostChecks/form_limit.png"             x:Shared="false"/>

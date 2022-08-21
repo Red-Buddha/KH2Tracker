@@ -952,7 +952,7 @@ namespace KhTracker
             
             if (AutoDetectOption.IsChecked)
             {
-                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
             }
             else
                 SettingRow.Height = new GridLength(0, GridUnitType.Star);
@@ -1205,7 +1205,7 @@ namespace KhTracker
                                 SynthToggle(false);
 
                                 //settings visuals
-                                SettingRow.Height = new GridLength(0.4, GridUnitType.Star);
+                                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
                                 Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
                                 Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
                                 Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
