@@ -1273,7 +1273,7 @@ namespace KhTracker
             {
                 top.Visibility = Visibility.Visible;
             }
-            else if (proofTotal < 1)
+            else if (proofTotal != 0)
             {
                 window.SetHintText("Impossible Path Error! How are you seeing this?");
             }
