@@ -999,7 +999,7 @@ namespace KhTracker
             DeathValue.Text = "0";
             
             //DeathCounterGrid.Visibility = Visibility.Collapsed;
-            //DeathCol.Width = new GridLength(0, GridUnitType.Star);
+            DeathCol.Width = new GridLength(0, GridUnitType.Star);
 
             foreach (Grid itempool in ItemPool.Children)
             {
@@ -1014,7 +1014,7 @@ namespace KhTracker
 
             SetAutoDetectTimer();
             NextLevelDisplay();
-            DeathCounterDisplay();
+            //DeathCounterDisplay();
         }
 
         private void ParseSeed(object sender, RoutedEventArgs e)
