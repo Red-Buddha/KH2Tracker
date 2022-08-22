@@ -75,7 +75,8 @@ namespace KhTracker
                 {
                     foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>())
                     {
-                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                        if (Box.Opacity != 0.9)
+                            Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
                     }
                     data.selected = null;
                 }

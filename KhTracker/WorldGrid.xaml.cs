@@ -205,6 +205,7 @@ namespace KhTracker
         public void Add_Item(Item item)
         {
             //remove item from itempool
+            _ = item.Name;
             Grid ItemRow = null;
             try
             {
@@ -328,6 +329,12 @@ namespace KhTracker
                 // out of report attempts
                 if (data.reportAttempts[index] == 0)
                     return false;
+
+                //check to see if report is in the itempool.
+                //if it's not then assume it's already tracked and do nothing else
+                Grid ItemRow = VisualTreeHelper.GetParent(item) as Grid;        
+                if(ItemRow == null || ItemRow.Parent != window.ItemPool)
+                    return true;
 
                 // check for correct report location then run report hint logic based on current hint mode
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))

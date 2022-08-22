@@ -912,6 +912,23 @@ namespace KhTracker
                 WorldPoints_c[world] = 0;
             }
 
+            WorldGrid.Real_Fire = 0;
+            WorldGrid.Real_Blizzard = 0;
+            WorldGrid.Real_Thunder = 0;
+            WorldGrid.Real_Cure = 0;
+            WorldGrid.Real_Reflect = 0;
+            WorldGrid.Real_Magnet = 0;
+            WorldGrid.Real_Pages = 0;
+            WorldGrid.Real_Pouches = 0;
+            FireCount.Text = "3";
+            BlizzardCount.Text = "3";
+            ThunderCount.Text = "3";
+            CureCount.Text = "3";
+            ReflectCount.Text = "3";
+            MagnetCount.Text = "3";
+            PageCount.Text = "5";
+            MunnyCount.Text = "2";
+
             WorldGrid.Ghost_Fire = 0;
             WorldGrid.Ghost_Blizzard = 0;
             WorldGrid.Ghost_Thunder = 0;
@@ -919,6 +936,7 @@ namespace KhTracker
             WorldGrid.Ghost_Reflect = 0;
             WorldGrid.Ghost_Magnet = 0;
             WorldGrid.Ghost_Pages = 0;
+            WorldGrid.Ghost_Pouches = 0;
             WorldGrid.Ghost_Fire_obtained = 0;
             WorldGrid.Ghost_Blizzard_obtained = 0;
             WorldGrid.Ghost_Thunder_obtained = 0;
@@ -979,7 +997,9 @@ namespace KhTracker
 
             DeathCounter = 0;
             DeathValue.Text = "0";
-            DeathCounterGrid.Visibility = Visibility.Collapsed;
+            
+            //DeathCounterGrid.Visibility = Visibility.Collapsed;
+            //DeathCol.Width = new GridLength(0, GridUnitType.Star);
 
             foreach (Grid itempool in ItemPool.Children)
             {
@@ -994,6 +1014,7 @@ namespace KhTracker
 
             SetAutoDetectTimer();
             NextLevelDisplay();
+            DeathCounterDisplay();
         }
 
         private void ParseSeed(object sender, RoutedEventArgs e)
