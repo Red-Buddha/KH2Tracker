@@ -324,7 +324,7 @@ namespace KhTracker
         {
             //PC needs some slight changing to make sure auto-detect works
             //delay continuing for a short time to avoid connecting too early
-            int Delay = 2500;
+            int Delay = 10000;
 
             //if auto-detect isn't enabled then we don't wait. 
             if (!AutoDetectOption.IsChecked)
@@ -463,22 +463,16 @@ namespace KhTracker
             Strength.Visibility = Visibility.Visible;
             Magic.Visibility = Visibility.Visible;
             Defense.Visibility = Visibility.Visible;
-            //Weapon.Visibility = Visibility.Visible;
-
-            //if (AutoDetectOption.IsChecked)
-            //    Connect.Visibility = Visibility.Visible;
 
             if (FormsGrowthOption.IsChecked)
                 FormRow.Height = new GridLength(0.5, GridUnitType.Star);
 
             //levelcheck visibility
-            NextLevelDisplay();     //add this to broadcast window
-            DeathCounterDisplay();  //fix broadcast window version
+            NextLevelDisplay();
+            DeathCounterDisplay();
             SetBindings();
             SetTimer();
             OnTimedEvent(null, null);
-
-            //titleloaded = false;
         }
 
         private void SetTimer()
@@ -507,7 +501,6 @@ namespace KhTracker
                 stats.UpdateMemory();        //updatestats
                 world.UpdateMemory();        //current world
                 UpdateStatValues();          //set stat values
-                //UpdateMagicAddresses();      //
                 UpdateWorldProgress(world);  //progression update
                 UpdatePointScore(0);         //update score
                 DeathCheck(pcsx2tracking);   //update deathcounter
@@ -531,15 +524,21 @@ namespace KhTracker
             catch
             {
                 aTimer.Stop();
-
-                //show message box if not using auto-detect
-                if (!autoDetected)
-                    MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
-
-                Connect.Visibility = Visibility.Visible;
-                Connect2.Visibility = Visibility.Collapsed;
                 isWorking = false;
-                SetAutoDetectTimer();
+
+                if (AutoDetectOption.IsChecked)
+                {
+                    Connect.Visibility = Visibility.Visible;
+                    Connect2.Visibility = Visibility.Collapsed;
+                    SetAutoDetectTimer();
+                }
+                else
+                {
+                    Connect.Visibility = Visibility.Collapsed;
+                    Connect2.SetResourceReference(ContentProperty, "Min-Cross");
+                    MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
+                }
+
                 return;
             }
 

@@ -1058,7 +1058,7 @@ namespace KhTracker
                 {
                     HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
                 }
-                CustomWorldCheck();
+                SetWorldImage();
             }
         }
 
@@ -1085,7 +1085,7 @@ namespace KhTracker
                 {
                     HandleWorldToggle(true, PuzzSynth, PuzzSynthGrid);
                 }
-                CustomWorldCheck();
+                SetWorldImage();
             }
         }
 
