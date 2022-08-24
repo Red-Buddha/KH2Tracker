@@ -205,7 +205,6 @@ namespace KhTracker
         public void Add_Item(Item item)
         {
             //remove item from itempool
-            _ = item.Name;
             Grid ItemRow = null;
             try
             {

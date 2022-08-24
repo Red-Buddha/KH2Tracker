@@ -897,9 +897,9 @@ namespace KhTracker
             //hide & reset seed hash
             if (data.ShouldResetHash)
             {
-                HashGrid.Visibility = Visibility.Hidden;
+                HashGrid.Visibility = Visibility.Collapsed;
                 data.SeedHashLoaded = false;
-                data.SeedHashVisible = false;
+                //data.SeedHashVisible = false;
             }
 
             foreach (string value in data.PointsDatanew.Keys.ToList())
@@ -1454,7 +1454,7 @@ namespace KhTracker
                             {
                                 HashGrid.Visibility = Visibility.Visible;
                                 HintText.Text = "";
-                                data.SeedHashVisible = true;
+                                //data.SeedHashVisible = true;
                             }
                         }
                     }

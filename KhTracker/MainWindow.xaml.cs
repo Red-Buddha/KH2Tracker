@@ -554,7 +554,7 @@ namespace KhTracker
             if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
             {
                 HashGrid.Visibility = Visibility.Collapsed;
-                data.SeedHashVisible = false;
+                //data.SeedHashVisible = false;
             }
             HintText.Text = text;
         }

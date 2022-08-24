@@ -33,6 +33,7 @@ namespace KhTracker
             data.AD_PC =        new BitmapImage(new Uri("Images/System/config/pc_connected.png", UriKind.Relative));
             data.AD_PCred =     new BitmapImage(new Uri("Images/System/config/pc_detected.png", UriKind.Relative));
             data.AD_PS2 =       new BitmapImage(new Uri("Images/System/config/pcsx2.png", UriKind.Relative));
+            data.AD_Cross =     new BitmapImage(new Uri("Images/System/cross.png", UriKind.Relative));
 
             //check for custom stat and weapon icons
             if (File.Exists("CustomImages/System/stats/sword.png"))

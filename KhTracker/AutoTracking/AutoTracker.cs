@@ -536,7 +536,8 @@ namespace KhTracker
                 else
                 {
                     Connect.Visibility = Visibility.Collapsed;
-                    Connect2.SetResourceReference(ContentProperty, "Min-Cross");
+                    Connect2.Visibility = Visibility.Visible;
+                    Connect2.Source = data.AD_Cross;
                     MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
                 }
 
@@ -1401,6 +1402,15 @@ namespace KhTracker
                             return;
                     }
                     break;
+                case "GoA":
+                    if (world.roomNumber == 32)
+                    {
+                        if (HashGrid.Visibility == Visibility.Visible)
+                        {
+                            HashGrid.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                    return;
                 default: //return if any other world
                     return;
             }

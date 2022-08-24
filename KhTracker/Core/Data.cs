@@ -21,7 +21,7 @@ namespace KhTracker
         //this is here as a toggle to only reset the hash when i want it to
         public bool ShouldResetHash = true;
         public bool SeedHashLoaded = false;
-        public bool SeedHashVisible = false; //TODO: remove this one. i think i don't need it anymore
+        //public bool SeedHashVisible = false;
         public bool SpoilerWorldCompletion = false;
         public bool SpoilerReportMode = false;
 
@@ -47,6 +47,7 @@ namespace KhTracker
         public BitmapImage AD_PC;
         public BitmapImage AD_PCred;
         public BitmapImage AD_PS2;
+        public BitmapImage AD_Cross;
 
         //for points hints
         public Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();

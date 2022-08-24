@@ -424,7 +424,7 @@ namespace KhTracker
             if (data.SeedHashLoaded && toggle)
                 HashGrid.Visibility = Visibility.Visible;
             else
-                HashGrid.Visibility = Visibility.Hidden;
+                HashGrid.Visibility = Visibility.Collapsed;
         }
 
         private void WorldProgressToggle(object sender, RoutedEventArgs e)
