@@ -663,11 +663,11 @@ namespace KhTracker
             MagicValue.Text = stats.Magic.ToString();
             DefenseValue.Text = stats.Defense.ToString();
             //forms
-            ValorLevel.Text = valor.Level.ToString();
-            WisdomLevel.Text = wisdom.Level.ToString();
-            LimitLevel.Text = limit.Level.ToString();
-            MasterLevel.Text = master.Level.ToString();
-            FinalLevel.Text = final.Level.ToString();
+            ValorLevel.Text = valor.VisualLevel.ToString();
+            WisdomLevel.Text = wisdom.VisualLevel.ToString();
+            LimitLevel.Text = limit.VisualLevel.ToString();
+            MasterLevel.Text = master.VisualLevel.ToString();
+            FinalLevel.Text = final.VisualLevel.ToString();
             //growth
             HighJumpLevel.Text = highJump.Level.ToString();
             QuickRunLevel.Text = quickRun.Level.ToString();
@@ -890,7 +890,10 @@ namespace KhTracker
                             if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
                                 curProg = 6;
                             else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
-                                curProg = 10;
+                                if (curProg <= 9)
+                                    curProg = 11; //data demyx + sephi finished
+                                else
+                                    curProg = 10;
                             break;
                         case 16:
                             if (world.eventID1 == 65 && world.eventComplete == 1) // FF Cloud finish
@@ -902,7 +905,10 @@ namespace KhTracker
                             break;
                         case 1:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
-                                curProg = 9;
+                                if (curProg <= 10)
+                                    curProg = 11; //data demyx + sephi finished
+                                else
+                                    curProg = 9;
                             break;
                         //CoR
                         case 21:
@@ -1220,11 +1226,17 @@ namespace KhTracker
                             break;
                         case 38:
                             if ((world.eventID1 == 145 || world.eventID1 == 150) && world.eventComplete == 1) // Marluxia finish
-                                curProg = 7;
+                                if (curProg <= 8)
+                                    curProg = 9; //marluxia + LW finished
+                                else
+                                    curProg = 7;
                             break;
                         case 7:
                             if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
-                                curProg = 8;
+                                if (curProg <= 7)
+                                    curProg = 9; //marluxia + LW finished
+                                else
+                                    curProg = 8;
                             break;
                         default:
                             return;
