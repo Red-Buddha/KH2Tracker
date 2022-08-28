@@ -442,9 +442,9 @@ namespace KhTracker
             importantChecks.Add(extraItem = new Extra(memory, Save + 0x363C, ADDRESS_OFFSET, "MunnyPouch1"));
             importantChecks.Add(extraItem = new Extra(memory, Save + 0x3695, ADDRESS_OFFSET, "MunnyPouch2"));
 
-            //int count = pages != null ? pages.Quantity : 0;
+            int count = pages != null ? pages.Quantity : 0;
             importantChecks.Add(pages = new TornPage(memory, Save + 0x3598, ADDRESS_OFFSET, "TornPage"));
-            //pages.Quantity = count;
+            pages.Quantity = count;
 
             #endregion
 
@@ -579,39 +579,39 @@ namespace KhTracker
             }
         }
 
-        private bool CheckTornPage(Item item)
-        {
-            //return true and track item for anything that isn't a torn page
-            if (!item.Name.StartsWith("TornPage"))
-                return true;
-
-            int Tracked = WorldGrid.Real_Pages; //current number of pages tracked to any of the world grids
-            int Inventory = memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x3598, 1)[0]; //number of pages currently in sora's inventory
-            int Used = 0; //number of torn pages used so far in 100 AW
-
-            //don't try tracking a torn page if we already tracked 5
-            //as there should only ever be 5 total under normal means.
-            if(Tracked >= 5)
-                return false;
-
-            //note: Save = 0x09A70B0;
-            //check current 100 AW story flags to see what pages have been used already.
-            if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 1 used flag
-                Used = 1;
-            if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 2 used flag
-                Used = 2;
-            if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 3 used flag
-                Used = 3;
-            if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 4 used flag
-                Used = 4;
-
-            //if number of torn pages used + current number of pages in sora's inventory
-            //are equal to the current number of pages tracked, then don't track anything.
-            if (Used + Inventory == Tracked)
-                return false;
-
-            return true;
-        }
+        //private bool CheckTornPage(Item item)
+        //{
+        //    //return true and track item for anything that isn't a torn page
+        //    if (!item.Name.StartsWith("TornPage"))
+        //        return true;
+        //
+        //    int Tracked = WorldGrid.Real_Pages; //current number of pages tracked to any of the world grids
+        //    int Inventory = memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x3598, 1)[0]; //number of pages currently in sora's inventory
+        //    int Used = 0; //number of torn pages used so far in 100 AW
+        //
+        //    //don't try tracking a torn page if we already tracked 5
+        //    //as there should only ever be 5 total under normal means.
+        //    if(Tracked >= 5)
+        //        return false;
+        //
+        //    //note: Save = 0x09A70B0;
+        //    //check current 100 AW story flags to see what pages have been used already.
+        //    if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 1 used flag
+        //        Used = 1;
+        //    if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 2 used flag
+        //        Used = 2;
+        //    if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 3 used flag
+        //        Used = 3;
+        //    if (new BitArray(memory.ReadMemory(ADDRESS_OFFSET + 0x09A70B0 + 0x1DB1, 1))[1]) //page 4 used flag
+        //        Used = 4;
+        //
+        //    //if number of torn pages used + current number of pages in sora's inventory
+        //    //are equal to the current number of pages tracked, then don't track anything.
+        //    if (Used + Inventory == Tracked)
+        //        return false;
+        //
+        //    return true;
+        //}
 
         private void DeathCheck(bool ps2)
         {
@@ -699,20 +699,21 @@ namespace KhTracker
 
                 if (validItem)
                 {
-                    string LogText;
-                    //check torn pages
-                    if (CheckTornPage(item) == false)
-                    {
-                        LogText = "Attempted to track a page past 5?";
-                    }
-                    else
-                    {
-                        world.Add_Item(item);
-                        LogText = item.Name + " tracked";
-                    }
+                    //string LogText;
+                    ////check torn pages
+                    //if (CheckTornPage(item) == false)
+                    //{
+                    //    LogText = "Attempted to track a page past 5?";
+                    //}
+                    //else
+                    //{
+                    //    
+                    //    LogText = item.Name + " tracked";
+                    //}
 
+                    world.Add_Item(item);
                     if (App.logger != null)
-                        App.logger.Record(LogText);
+                        App.logger.Record(item.Name + " tracked");
                 }
             }
         }
@@ -1631,6 +1632,16 @@ namespace KhTracker
         public string GetWorld()
         {
             return world.worldName;
+        }
+
+        public void UpdateUsedPages()
+        {
+            data.usedPages++;
+        }
+
+        public int GetUsedPages()
+        {
+            return data.usedPages;
         }
 
         ///

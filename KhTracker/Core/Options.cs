@@ -745,6 +745,7 @@ namespace KhTracker
             data.SpoilerRevealTypes.Clear();
             data.SpoilerReportMode = false;
             data.SpoilerWorldCompletion = false;
+            data.usedPages = 0;
             CollectedValue.Text = "0";
 
             //unselect any currently selected world grid

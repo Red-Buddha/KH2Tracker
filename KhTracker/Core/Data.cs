@@ -16,6 +16,7 @@ namespace KhTracker
         public Button selected = null;
         public bool dragDrop = true;
         public bool ScoreMode = false;
+        public int usedPages = 0;
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to
