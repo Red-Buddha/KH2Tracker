@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v3)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v4)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -823,7 +823,7 @@
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
-                            <ContentControl Content="{DynamicResource Min-Drive4}" x:Name="DriveFormsCap" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+                            <ContentControl Content="{DynamicResource Min-Drive4}" x:Name="DriveFormsCap" Panel.ZIndex="1" IsHitTestVisible="False" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="-5,0,0,0"/>
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="DriveFormsPath" Grid.Column="1">

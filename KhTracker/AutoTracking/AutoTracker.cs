@@ -483,7 +483,7 @@ namespace KhTracker
 
             aTimer = new DispatcherTimer();
             aTimer.Tick += OnTimedEvent;
-            aTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            aTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
             aTimer.Start();
         }
 
@@ -503,6 +503,7 @@ namespace KhTracker
                 world.UpdateMemory();        //current world
                 UpdateStatValues();          //set stat values
                 UpdateWorldProgress(world);  //progression update
+                UpdateFormProgression();
                 DeathCheck(pcsx2tracking);   //update deathcounter
 
                 if(data.mode == Mode.DAHints || data.ScoreMode)
@@ -714,6 +715,8 @@ namespace KhTracker
                     world.Add_Item(item);
                     if (App.logger != null)
                         App.logger.Record(item.Name + " tracked");
+
+
                 }
             }
         }
@@ -1642,6 +1645,55 @@ namespace KhTracker
         public int GetUsedPages()
         {
             return data.usedPages;
+        }
+
+        public void UpdateFormProgression()
+        {
+            int found = 0;
+            string drives = "";
+            bool OldToggled = Properties.Settings.Default.OldProg;
+            bool CustomToggled = Properties.Settings.Default.CustomIcons;
+            string Prog = "Min-"; //Default
+            if (OldToggled)
+                Prog = "Old-";
+            if (CustomProgFound && CustomToggled)
+                Prog = "Cus-";
+
+            if (ValorM.Opacity == 1)
+                found++;
+            if (WisdomM.Opacity == 1)
+                found++;
+            if (LimitM.Opacity == 1)
+                found++;
+            if (MasterM.Opacity == 1)
+                found++;
+            if (FinalM.Opacity == 1)
+                found++;
+
+
+            switch (found)
+            {
+                case 1:
+                    drives = "Drive3";
+                    break;
+                case 2:
+                    drives = "Drive4";
+                    break;
+                case 3:
+                    drives = "Drive5";
+                    break;
+                case 4:
+                    drives = "Drive6";
+                    break;
+                case 5:
+                    drives = "Drive7";
+                    break;
+                default:
+                    drives = "Drive2";
+                    break;
+            }
+
+            DriveFormsCap.SetResourceReference(ContentProperty, Prog + drives);
         }
 
         ///

@@ -830,22 +830,23 @@ namespace KhTracker
                 }
             }
 
-            //TwilightTownProgression.SetResourceReference(ContentProperty, "");
-            //HollowBastionProgression.SetResourceReference(ContentProperty, "");
-            //LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-            //BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-            //OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-            //SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-            //HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-            //PortRoyalProgression.SetResourceReference(ContentProperty, "");
-            //AgrabahProgression.SetResourceReference(ContentProperty, "");
-            //PrideLandsProgression.SetResourceReference(ContentProperty, "");
-            //DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-            //HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-            //SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-            //TWTNWProgression.SetResourceReference(ContentProperty, "");
-            //AtlanticaProgression.SetResourceReference(ContentProperty, "");
-            //GoAProgression.SetResourceReference(ContentProperty, "");
+            TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            AgrabahProgression.SetResourceReference(ContentProperty, "");
+            PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            TWTNWProgression.SetResourceReference(ContentProperty, "");
+            AtlanticaProgression.SetResourceReference(ContentProperty, "");
+            GoAProgression.SetResourceReference(ContentProperty, "");
+            DriveFormsCap.SetResourceReference(ContentProperty, "");
 
             Level.Visibility = Visibility.Collapsed;
             Strength.Visibility = Visibility.Collapsed;
