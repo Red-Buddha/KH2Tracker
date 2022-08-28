@@ -483,50 +483,65 @@ namespace KhTracker
             if (CustomProgFound && CustomToggled)
                 Prog = "Cus-";
 
-            string STTkey = Prog + data.ProgressKeys["SimulatedTwilightTown"][data.WorldsData["SimulatedTwilightTown"].progress];
-            data.WorldsData["SimulatedTwilightTown"].progression.SetResourceReference(ContentProperty, STTkey);
+            foreach (string world in data.WorldsData.Keys.ToList())
+            {
+                if (world == "SorasHeart" || world == "DriveForms" || world == "PuzzSynth")
+                    continue;
 
-            string TTkey = Prog + data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
-            data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
+                data.WorldsData[world].progression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world][data.WorldsData[world].progress]);
+                data.WorldsData[world].progression.ToolTip = data.ProgressKeys[world + "Desc"][data.WorldsData[world].progress];
+            }
 
-            string HBkey = Prog + data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
-            data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
-
-            string BCkey = Prog + data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
-            data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
-
-            string OCkey = Prog + data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
-            data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
-
-            string AGkey = Prog + data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
-            data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
-
-            string LoDkey = Prog + data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
-            data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
-
-            string HAWkey = Prog + data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
-            data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
-
-            string PLkey = Prog + data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
-            data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
-
-            string DCkey = Prog + data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
-            data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
-
-            string HTkey = Prog + data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
-            data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
-
-            string PRkey = Prog + data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
-            data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
-
-            string SPkey = Prog + data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
-            data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
-
-            string TWTNWkey = Prog + data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
-            data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
-
-            string ATkey = Prog + data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
-            data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
+            //////////
+            //string STTkey = Prog + data.ProgressKeys["SimulatedTwilightTown"][data.WorldsData["SimulatedTwilightTown"].progress];
+            //string STTDes = data.ProgressKeys["SimulatedTwilightTownDesc"][data.WorldsData["SimulatedTwilightTown"].progress];
+            //data.WorldsData["SimulatedTwilightTown"].progression.SetResourceReference(ContentProperty, STTkey);
+            //data.WorldsData["SimulatedTwilightTown"].progression.ToolTip = STTDes;
+            //
+            //string TTkey = Prog + data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
+            //data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
+            //
+            //string HBkey = Prog + data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
+            //data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
+            //
+            //string BCkey = Prog + data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
+            //data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
+            //
+            //string OCkey = Prog + data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
+            //data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
+            //
+            //string AGkey = Prog + data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
+            //data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
+            //
+            //string LoDkey = Prog + data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
+            //data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
+            //
+            //string HAWkey = Prog + data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
+            //data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
+            //
+            //string PLkey = Prog + data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
+            //data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
+            //
+            //string DCkey = Prog + data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
+            //data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
+            //
+            //string HTkey = Prog + data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
+            //data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
+            //
+            //string PRkey = Prog + data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
+            //data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
+            //
+            //string SPkey = Prog + data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
+            //data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
+            //
+            //string TWTNWkey = Prog + data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
+            //data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
+            //
+            //string ATkey = Prog + data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
+            //data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
+            //
+            //string CoRkey = Prog + data.ProgressKeys["GoA"][data.WorldsData["GoA"].progress];
+            //data.WorldsData["GoA"].progression.SetResourceReference(ContentProperty, CoRkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
@@ -737,8 +752,11 @@ namespace KhTracker
             {
                 foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
                 {
-                    if(Box.Opacity != 0.9)
+                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                         Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                    if (Box.Name.EndsWith("SelWG"))
+                        Box.Visibility = Visibility.Collapsed;
                 }
             }
             data.selected = null;
@@ -811,22 +829,22 @@ namespace KhTracker
                 }
             }
 
-            TwilightTownProgression.SetResourceReference(ContentProperty, "");
-            HollowBastionProgression.SetResourceReference(ContentProperty, "");
-            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-            PortRoyalProgression.SetResourceReference(ContentProperty, "");
-            AgrabahProgression.SetResourceReference(ContentProperty, "");
-            PrideLandsProgression.SetResourceReference(ContentProperty, "");
-            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-            TWTNWProgression.SetResourceReference(ContentProperty, "");
-            AtlanticaProgression.SetResourceReference(ContentProperty, "");
-            GoAProgression.SetResourceReference(ContentProperty, "");
+            //TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            //HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            //LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            //BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            //OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            //SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            //HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            //PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            //AgrabahProgression.SetResourceReference(ContentProperty, "");
+            //PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            //DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            //HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            //SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            //TWTNWProgression.SetResourceReference(ContentProperty, "");
+            //AtlanticaProgression.SetResourceReference(ContentProperty, "");
+            //GoAProgression.SetResourceReference(ContentProperty, "");
 
             Level.Visibility = Visibility.Collapsed;
             Strength.Visibility = Visibility.Collapsed;

@@ -6,8 +6,11 @@
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>
 
-    <!--brush colors-->   
-    
+    <!--brush colors-->
+
+
+    <!--Classic-->
+    <SolidColorBrush x:Key="ClassicYellow" Color="#FFE500"/>
     <!--Hinted Hints-->
     <SolidColorBrush x:Key="HintedHint" Color="#29F"/>
     <!--Ghosted Hints-->
@@ -79,7 +82,7 @@
     <Image x:Key="magic"            Source="Images\HashIcons\magic.png" x:Shared="false"/>
     <Image x:Key="material"         Source="Images\HashIcons\material.png" x:Shared="false"/>
     <Image x:Key="party"            Source="Images\HashIcons\party.png" x:Shared="false"/>
-    <Image x:Key="question-mark"    Source="Images\HashIcons\question-mark.png"/>
+    <Image x:Key="question-mark"    Source="Images\HashIcons\question-mark.png" x:Shared="false"/>
     <Image x:Key="rank-a"           Source="Images\HashIcons\rank-a.png" x:Shared="false"/>
     <Image x:Key="rank-b"           Source="Images\HashIcons\rank-b.png" x:Shared="false"/>
     <Image x:Key="rank-c"           Source="Images\HashIcons\rank-c.png" x:Shared="false"/>

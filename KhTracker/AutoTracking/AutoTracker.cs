@@ -503,8 +503,10 @@ namespace KhTracker
                 world.UpdateMemory();        //current world
                 UpdateStatValues();          //set stat values
                 UpdateWorldProgress(world);  //progression update
-                UpdatePointScore(0);         //update score
                 DeathCheck(pcsx2tracking);   //update deathcounter
+
+                if(data.mode == Mode.DAHints || data.ScoreMode)
+                    UpdatePointScore(0);         //update score
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {
@@ -522,11 +524,11 @@ namespace KhTracker
                 //Console.WriteLine(cntrl);
                 #endregion
             }
-            catch
+           catch
             {
                 aTimer.Stop();
                 isWorking = false;
-
+            
                 if (AutoDetectOption.IsChecked)
                 {
                     Connect.Visibility = Visibility.Visible;
@@ -540,7 +542,7 @@ namespace KhTracker
                     Connect2.Source = data.AD_Cross;
                     MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
                 }
-
+            
                 return;
             }
 
@@ -770,6 +772,9 @@ namespace KhTracker
 
         void UpdateWorldProgress(World world)
         {
+            if (world.worldName == "DestinyIsland" || world.worldName == "Unknown")
+                return;
+
             //check for valid progression Content Controls first
             ContentControl progressionM = data.WorldsData[world.worldName].progression;
 
@@ -903,7 +908,7 @@ namespace KhTracker
                         case 21:
                             if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
                             {
-                                curKey = data.ProgressKeys["Cavern"][1];
+                                curKey = data.ProgressKeys["GoA"][1];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 1;
                                 return;
@@ -912,7 +917,7 @@ namespace KhTracker
                         case 22:
                             if (world.eventID3 == 1 && data.WorldsData["GoA"].progress <= 1 && world.eventComplete == 1) //valves after skip
                             {
-                                curKey = data.ProgressKeys["Cavern"][5];
+                                curKey = data.ProgressKeys["GoA"][5];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 5;
                                 return;
@@ -921,14 +926,14 @@ namespace KhTracker
                         case 24:
                             if (world.eventID3 == 1 && world.eventComplete == 1) //first fight
                             {
-                                curKey = data.ProgressKeys["Cavern"][2];
+                                curKey = data.ProgressKeys["GoA"][2];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 2;
                                 return;
                             }
                             if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
                             {
-                                curKey = data.ProgressKeys["Cavern"][3];
+                                curKey = data.ProgressKeys["GoA"][3];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 3;
                                 return;
@@ -937,7 +942,7 @@ namespace KhTracker
                         case 25:
                             if (world.eventID3 == 3 && world.eventComplete == 1) //transport
                             {
-                                curKey = data.ProgressKeys["Cavern"][4];
+                                curKey = data.ProgressKeys["GoA"][4];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 4;
                                 return;
@@ -1371,7 +1376,7 @@ namespace KhTracker
                         case 14:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
                                 curProg = 4;
-                            else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Luxord finish
+                            else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
                             {
                                 curKey = data.ProgressKeys["PortRoyal"][9];
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);

@@ -371,9 +371,17 @@ namespace KhTracker
                 }
                 foreach (var item in world.Value)
                 {
+                    
+                    string itemName = item;
+                    string itemType = Codes.FindItemType(item);
+
+                    //Zero point items are not ICs
+                    if (data.PointsDatanew[itemType] == 0)
+                        continue;
+
                     data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
 
-                    string itemType = Codes.FindItemType(item);
+                    //string itemType = Codes.FindItemType(item);
                     if (data.PointsDatanew.Keys.Contains(itemType))
                     {
                         WorldPoints[Codes.ConvertSeedGenName(world.Key)] += data.PointsDatanew[itemType];

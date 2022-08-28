@@ -75,8 +75,11 @@ namespace KhTracker
                 {
                     foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>())
                     {
-                        if (Box.Opacity != 0.9)
+                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                             Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                        if (Box.Name.EndsWith("SelWG"))
+                            Box.Visibility = Visibility.Collapsed;
                     }
                     data.selected = null;
                 }

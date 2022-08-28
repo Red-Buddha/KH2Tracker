@@ -67,6 +67,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -322,6 +323,12 @@
     <Content Include="CustomImages\Progression\disney_castle\pete.png" />
     <Content Include="CustomImages\Progression\disney_castle\steamboat_pete.png" />
     <Content Include="CustomImages\Progression\disney_castle\windows_of_time.png" />
+    <Content Include="CustomImages\Progression\drive_forms\2.png" />
+    <Content Include="CustomImages\Progression\drive_forms\3.png" />
+    <Content Include="CustomImages\Progression\drive_forms\4.png" />
+    <Content Include="CustomImages\Progression\drive_forms\5.png" />
+    <Content Include="CustomImages\Progression\drive_forms\6.png" />
+    <Content Include="CustomImages\Progression\drive_forms\7.png" />
     <Content Include="CustomImages\Progression\emblem.png" />
     <Content Include="CustomImages\Progression\halloween_town\candy_cane_lane.png" />
     <Content Include="CustomImages\Progression\halloween_town\children.png" />
@@ -452,6 +459,24 @@
     <Content Include="CustomImages\Worlds\Synth.png" />
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_blizzard.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_cure.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_fire.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_magnet.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_reflect.png" />
+    <Resource Include="Images\Checks\Min\Ghost\magic_thunder.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\7.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\6.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\5.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\4.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\3.png" />
+    <Resource Include="Images\Progression\Old\drive_forms\2.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\2.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\3.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\4.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\5.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\6.png" />
+    <Resource Include="Images\Progression\Min\drive_forms\7.png" />
     <Resource Include="tracker.ico" />
     <Resource Include="Images\Checks\Old\ansem_report.png" />
     <Resource Include="Images\Checks\Min\ansem_report.png" />

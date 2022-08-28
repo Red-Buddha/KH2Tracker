@@ -76,9 +76,9 @@ namespace KhTracker
         {
             previousworldName = worldName;
 
-            //this shouldn't happen, but use goa as the world in case it ever does
+            //this shouldn't happen, but use unknown as the world in case it ever does
             if (worldName == null)
-                worldName = "GOA";
+                worldName = "Unknown";
 
             byte[] worldData = memory.ReadMemory(worldAddress + ADDRESS_OFFSET, 9);
             worldNum = worldData[0];

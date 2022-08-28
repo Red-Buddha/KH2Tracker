@@ -18,7 +18,26 @@
     <Image x:Key="Min-Cross" Source="Images\System\cross.png" x:Shared="false"/>
     <Image x:Key="Old-Cross" Source="Images\System\cross.png" x:Shared="false"/>
     <Image x:Key="Cus-Cross" Source="Images\System\cross.png" x:Shared="false"/>
-    
+
+    <Image x:Key="Gst-Fire1"	        Source="Images\Checks\Min\Ghost\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Fire2"	        Source="Images\Checks\Min\Ghost\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Fire3"	        Source="Images\Checks\Min\Ghost\magic_fire.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Blizzard1"        Source="Images\Checks\Min\Ghost\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Gst-Blizzard2"        Source="Images\Checks\Min\Ghost\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Gst-Blizzard3"        Source="Images\Checks\Min\Ghost\magic_blizzard.png"         x:Shared="false"/>
+    <Image x:Key="Gst-Thunder1"	        Source="Images\Checks\Min\Ghost\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Thunder2"	        Source="Images\Checks\Min\Ghost\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Thunder3"	        Source="Images\Checks\Min\Ghost\magic_thunder.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Cure1"	        Source="Images\Checks\Min\Ghost\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Cure2"	        Source="Images\Checks\Min\Ghost\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Cure3"	        Source="Images\Checks\Min\Ghost\magic_cure.png"             x:Shared="false"/>
+    <Image x:Key="Gst-Reflect1"	        Source="Images\Checks\Min\Ghost\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Reflect2"	        Source="Images\Checks\Min\Ghost\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Reflect3"	        Source="Images\Checks\Min\Ghost\magic_reflect.png"          x:Shared="false"/>
+    <Image x:Key="Gst-Magnet1"	        Source="Images\Checks\Min\Ghost\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Gst-Magnet2"	        Source="Images\Checks\Min\Ghost\magic_magnet.png"           x:Shared="false"/>
+    <Image x:Key="Gst-Magnet3"	        Source="Images\Checks\Min\Ghost\magic_magnet.png"           x:Shared="false"/>
+
     <!--Simple Item Icons-->
     <Image x:Key="Min-Report"           Source="Images\Checks\Min\ansem_report.png"           x:Shared="false"/>
     <Image x:Key="Min-Report1"          Source="Images\Checks\Min\ansem_report01.png"         x:Shared="false"/>

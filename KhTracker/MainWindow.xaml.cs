@@ -14,6 +14,8 @@ using System.Drawing;
 using System.Windows.Documents;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Windows.Forms;
+using Button = System.Windows.Controls.Button;
 
 namespace KhTracker
 {
@@ -133,7 +135,26 @@ namespace KhTracker
             data.ProgressKeys.Add("SpaceParanoids",         new List<string>() { "", "Chests", "Screens", "HostileProgram", "SolarSailer", "MCP", "Larxene" });
             data.ProgressKeys.Add("TWTNW",                  new List<string>() { "", "Chests", "Roxas", "Xigbar", "Luxord", "Saix", "Xemnas1", "DataXemnas" });
             data.ProgressKeys.Add("Atlantica",              new List<string>() { "", "Tutorial", "Ursula", "NewDay" });
-            data.ProgressKeys.Add("Cavern",                 new List<string>() { "", "Chests", "Fight1", "Fight2", "Transport", "Valves" });
+            data.ProgressKeys.Add("GoA",                    new List<string>() { "", "Chests", "Fight1", "Fight2", "Transport", "Valves" });
+
+            //testing tooltip descriptions
+            //(adding to existing list above cause it's easier) 
+            data.ProgressKeys.Add("SimulatedTwilightTownDesc",  new List<string>() { "", "Early Checks", "Part-Time Job", "Twilight Thorn (Boss)", "Axel 1 (Boss)", "Beat Setzer", "Mansion Computer Room", "Axel 2 (Boss)", "Roxas (Data)" });
+            data.ProgressKeys.Add("TwilightTownDesc",           new List<string>() { "", "Early Checks", "Train Station Fight", "Mysterious Tower", "Sandlot Fight", "Mansion Gate Fight", "Betwixt And Between", "Axel (Data)" });
+            data.ProgressKeys.Add("HollowBastionDesc",          new List<string>() { "", "Early Checks", "Bailey Gate Fight", "Ansem's Study", "Corridor Fight", "Restoration Site Fight", "Demyx (Boss)", "Final Fantasy Fights", "1000 Heartless", "Sephiroth (Boss)", "Demyx (Data)", "Sephiroth and Demyx" });
+            data.ProgressKeys.Add("BeastsCastleDesc",           new List<string>() { "", "Early Checks", "Thresholder (Boss)", "Beast Fight", "Dark Thorn (Boss)", "Dragoons Forced Fight", "Xaldin (Boss)", "Xaldin (Data)" });
+            data.ProgressKeys.Add("OlympusColiseumDesc",        new List<string>() { "", "Early Checks", "Cerberus (Boss)", "Phil's Training", "Demyx Fight", "Pete Fight", "Hydra (Boss)", "Hades' Chamber Fight", "Hades (Boss)", "Zexion (AS/Data)" });
+            data.ProgressKeys.Add("AgrabahDesc",                new List<string>() { "", "Early Checks", "Abu Minigame", "Chasm of Challenges", "Treasure Room Fight", "Twin Lords (Boss)", "Carpet Magic Minigame", "Genie Jafar (Boss)", "Lexaeus (AS/Data)" });
+            data.ProgressKeys.Add("LandofDragonsDesc",          new List<string>() { "", "Early Checks", "Mission 3 (The Search)", "Mountain Climb", "Town Cave Fight", "Summmit Fight", "Shan Yu (Boss)", "Throne Room", "Storm Rider (Boss)", "Xigbar (Data)" });
+            data.ProgressKeys.Add("HundredAcreWoodDesc",        new List<string>() { "", "Early Checks", "Entered Piglet's House", "Entered Rabbit's House", "Entered Kanga's House", "Entered Spooky Cave", "Entered Starry Hill" });
+            data.ProgressKeys.Add("PrideLandsDesc",             new List<string>() { "", "Early Checks", "Met Simba", "Hyenas Fight (1st Visit)", "Scar (Boss)", "Hyenas Fight (2nd Visit)", "Ground Shaker (Boss)", "Saix (Data)" });
+            data.ProgressKeys.Add("DisneyCastleDesc",           new List<string>() { "", "Early Checks", "Minnie Escort", "Past Pete Fight", "Windows of Time", "Steamboat Fight", "Pete (Boss)", "Marluxia (AS/Data)", "Lingering Will (Boss)", "Marluxia and Lingering Will" });
+            data.ProgressKeys.Add("HalloweenTownDesc",          new List<string>() { "", "Early Checks", "Candy Cane Lane Fight", "Prison Keeper (Boss)", "Oogie Boogie (Boss)", "Lock, Shock, and Barrel", "Made Decoy Presents", "The Experiment (Boss)", "Vexen (AS/Data)" });
+            data.ProgressKeys.Add("PortRoyalDesc",              new List<string>() { "", "Early Checks", "Town Fight", "1 Minute Isle Fight", "Interceptor Barrels", "Barbossa (Boss)", "Grim Reaper 1 (Boss)", "1st Gambler Medallion", "Grim Reaper 2 (Boss)", "Luxord (Data)" });
+            data.ProgressKeys.Add("SpaceParanoidsDesc",         new List<string>() { "", "Early Checks", "Dataspace Fight", "Hostile Program (Boss)", "Solar Sailer", "MCP (Boss)", "Larxene (AS/Data)" });
+            data.ProgressKeys.Add("TWTNWDesc",                  new List<string>() { "", "Early Checks", "Roxas (Boss)", "Xigbar (Boss)", "Luxord (Boss)", "Saix (Boss)", "Xemnas 1 (Boss)", "Xemnas (Data)" });
+            data.ProgressKeys.Add("AtlanticaDesc",              new List<string>() { "", "Music Tutorial", "Ursula's Revenge", "A New Day is Dawning" });
+            data.ProgressKeys.Add("GoADesc",                    new List<string>() { "", "Early Checks", "Forced Fight 1", "Forced Fight 2", "Transport to Rememberance", "Steam Valves (CoR Skip)" });
 
             foreach (Grid itemrow in ItemPool.Children)
             {
@@ -385,15 +406,21 @@ namespace KhTracker
                     {
                         foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
                         {
-                            if (Box.Opacity != 0.9)
+                            if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                                 Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                            if (Box.Name.EndsWith("SelWG"))
+                                Box.Visibility = Visibility.Collapsed;
                         }
                     }
                     data.selected = button;
                     foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>()) //set currently selected world colors
                     {
-                        if(Box.Opacity != 0.9)
+                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                             Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
+
+                        if (Box.Name.EndsWith("SelWG"))
+                            Box.Visibility = Visibility.Visible;
                     }
                     break;
                 case MouseButton.Right: //for setting world cross icon
@@ -431,7 +458,18 @@ namespace KhTracker
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                case Keys.Up:
+                    e.IsInputKey = true;
+                    break;
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.PageDown && data.selected != null)
             {
@@ -516,8 +554,11 @@ namespace KhTracker
             if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
                 Color = (SolidColorBrush)FindResource("GhostHint");
 
-            if (data.WorldsData[location].hintedHint || data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
+            if (data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
                 Color = (SolidColorBrush)FindResource("HintedHint");
+
+            if (data.WorldsData[location].hintedHint) //turn blue if it's marked as hinted hint or complete
+                Color = (SolidColorBrush)FindResource("ClassicYellow");
 
             if (value == -999999)
             {
