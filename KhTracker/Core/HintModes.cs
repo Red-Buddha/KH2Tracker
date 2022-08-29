@@ -87,6 +87,11 @@ namespace KhTracker
                 data.reportInformation.Add(new Tuple<string, string, int>(null, world, int.Parse(count)));
                 data.reportLocations.Add(location);
             }
+
+            //start adding score data
+            if (data.ScoreMode)
+                ScoreModifier(hintObject);
+
             ReportsToggle(true);
             data.hintsLoaded = true;
         }
@@ -272,6 +277,25 @@ namespace KhTracker
                 }
                 data.hintsLoaded = true;
             }
+        }
+
+        private void ScoreModifier(Dictionary<string, object> hintObject)
+        {
+            var points = JsonSerializer.Deserialize<Dictionary<string, int>>(hintObject["checkValue"].ToString());
+
+            //set point values
+            foreach (var point in points)
+            {
+                if (data.PointsDatanew.Keys.Contains(point.Key))
+                {
+                    data.PointsDatanew[point.Key] = point.Value;
+                }
+                else
+                {
+                    Console.WriteLine($"Something went wrong in setting point values. Unknown Key: {point.Key}");
+                }
+            }
+
         }
 
         /// <summary>

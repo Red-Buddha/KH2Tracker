@@ -22,7 +22,6 @@ namespace KhTracker
         //this is here as a toggle to only reset the hash when i want it to
         public bool ShouldResetHash = true;
         public bool SeedHashLoaded = false;
-        //public bool SeedHashVisible = false;
         public bool SpoilerWorldCompletion = false;
         public bool SpoilerReportMode = false;
 
@@ -65,11 +64,21 @@ namespace KhTracker
             { "bonus", 0 },
             { "formlv", 0 },
             { "other", 0},
-            { "visit", 0}
+            { "visit", 0},
+            { "boss_as", 0 },
+            { "boss_datas", 0 },
+            { "boss_sephi", 0 },
+            { "boss_terra", 0 },
+            { "boss_other", 0 },
+            { "deaths", 0 }
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
         public List<string> TrackedReports = new List<string>();
         public List<string> SpoilerRevealTypes = new List<string>();
+
+        //for boss rando points
+        public bool BossRandoFound = false;
+        public Dictionary<string, string> BossList = new Dictionary<string, string>();
     }
 
     public class WorldData

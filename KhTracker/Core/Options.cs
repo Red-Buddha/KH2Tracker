@@ -747,6 +747,7 @@ namespace KhTracker
             data.SpoilerWorldCompletion = false;
             data.usedPages = 0;
             CollectedValue.Text = "0";
+            data.ScoreMode = false;
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1400,6 +1401,9 @@ namespace KhTracker
                                             Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
                                             SpacerValue--;
                                             break;
+                                        case "ScoreMode":
+                                            data.ScoreMode = true;
+                                            break;
                                     }
                                 }
 
@@ -1446,6 +1450,8 @@ namespace KhTracker
                                 default:
                                     break;
                             }
+
+                            reader.Close();
                         }
                     }
 
@@ -1476,11 +1482,58 @@ namespace KhTracker
                                 HintText.Text = "";
                                 //data.SeedHashVisible = true;
                             }
+                            reader2.Close();
+                        }
+                    }
+
+                    if (entry.FullName.Equals("enemyspoilers.txt"))
+                    {
+                        //only care about parsing this with points hints or score mode
+                        if (data.mode != Mode.DAHints && !data.ScoreMode)
+                            return;
+
+                        using (var reader3 = new StreamReader(entry.Open()))
+                        {
+                            string firstLine = reader3.ReadLine();
+                            if (firstLine != "BOSSES")
+                            {
+                                Console.WriteLine("No Bosses Present? Expected \"BOSSES\" but got " + firstLine);
+                                reader3.Close();
+                                return;
+                            }
+
+                            //we found bosses, set bool to alter how boss points are awarded
+                            data.BossRandoFound = true;
+
+                            string[] separatingString = { " became " };
+                            int lineNumber = 85;
+                            for (int i = 1; i < lineNumber; i++)
+                            {
+                                string curLine = reader3.ReadLine().Trim();
+                                string[] enemies = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
+
+                                data.BossList.Add(enemies[0], enemies[1]);
+
+                                //start checking bosses at this point.
+                                //We want to stop at data zexion as he is always at the end.
+                                if (i > 52)
+                                {
+                                    switch (enemies[0])
+                                    {
+                                        case "Zexion (Data)":
+                                            lineNumber = i;
+                                            break;
+                                        default:
+                                            Console.WriteLine(enemies[0]);
+                                            break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                archive.Dispose();
             }
         }
-
     }
 }
