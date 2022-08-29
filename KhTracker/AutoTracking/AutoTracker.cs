@@ -82,6 +82,8 @@ namespace KhTracker
 
         public static bool pcsx2tracking = false; //game version
         private bool onContinue = false; //for death counter
+        bool eventInProgress = false; //boss detection
+
 
         ///Auto-Detect Control Stuff
         private bool autoDetected = false; 
@@ -1575,6 +1577,368 @@ namespace KhTracker
                 }
             }
             TrackQuantities();
+        }
+
+        void GetBoss(World world)
+        {
+            string boss = "None";
+
+            //stops awarding points for a single boss each tick
+            if (world.eventComplete == 1 && eventInProgress)
+                return;
+            else
+                eventInProgress = false;
+
+            //boss beaten events from progression code
+            switch (world.worldName)
+            {
+                case "SimulatedTwilightTown":
+                    switch (world.roomNumber) //check based on room number now, then based on events in each room
+                    {
+                        case 34:
+                            if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
+                                boss = "Twilight Thorn";
+                            break;
+                        case 5:
+                            if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
+                                boss = "Axel I";
+                            break;
+                        case 20:
+                            if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
+                                boss = "Axel II";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "TwilightTown":
+                    switch (world.roomNumber)
+                    {
+                        case 20:
+                            if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
+                                boss = "Axel (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "HollowBastion":
+                    switch (world.roomNumber)
+                    {
+                        case 4:
+                            if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
+                                boss = "Demyx";
+                            else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
+                                boss = "Demyx (Data)";
+                            break;
+                        case 1:
+                            if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
+                                boss = "Sephiroth";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "BeastsCastle":
+                    switch (world.roomNumber)
+                    {
+                        case 11:
+                            if (world.eventID1 == 72 && world.eventComplete == 1) // Thresholder finish
+                                boss = "Thresholder";
+                            break;
+                        case 3:
+                            if (world.eventID1 == 69 && world.eventComplete == 1) // Beast finish
+                                boss = "The Beast";
+                            break;
+                        case 5:
+                            if (world.eventID1 == 79 && world.eventComplete == 1) // Dark Thorn finish
+                                boss = "Dark Thorn";
+                            break;
+                        case 15:
+                            if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
+                                boss = "Xaldin";
+                            else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
+                                boss = "Xaldin (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "OlympusColiseum":
+                    switch (world.roomNumber)
+                    {
+                        case 7:
+                            if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
+                                boss = "Cerberus";
+                            break;
+                        case 8:
+                            if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
+                                boss = "Pete OC II";
+                            break;
+                        case 18:
+                            if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
+                                boss = "Hydra";
+                            break;
+                        case 19:
+                            if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
+                                boss = "Hades II";
+                            break;
+                        case 34:
+                            if (world.eventID1 == 151 && world.eventComplete == 1) // Zexion finish
+                                boss = "Zexion";
+                            else if (world.eventID1 == 152 && world.eventComplete == 1) // Data Zexion finish
+                                boss = "Zexion (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "Agrabah":
+                    switch (world.roomNumber)
+                    {
+                        case 3:
+                            if (world.eventID1 == 59 && world.eventComplete == 1) // Lords finish
+                                boss = "Twin Lords";
+                            break;
+                        case 5:
+                            if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
+                                boss = "Genie Jafar";
+                            break;
+                        case 33:
+                            if (world.eventID1 == 142 && world.eventComplete == 1) // Lexaeus finish
+                                boss = "Lexaeus";
+                            else if (world.eventID1 == 147 && world.eventComplete == 1) // Data Lexaeus finish
+                                boss = "Lexaeus (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "LandofDragons":
+                    switch (world.roomNumber)
+                    {
+                        case 9:
+                            if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
+                                boss = "Shan-Yu";
+                            break;
+                        case 8:
+                            if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
+                                boss = "Storm Rider";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "PrideLands":
+                    switch (world.roomNumber)
+                    {
+                        case 14:
+                            if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
+                                boss = "Scar";
+                            break;
+                        case 15:
+                            if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
+                                boss = "Groundshaker";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "DisneyCastle":
+                    switch (world.roomNumber)
+                    {
+                        case 1:
+                            if (world.eventID1 == 58 && world.eventComplete == 1) // Old Pete finish
+                                boss = "Past Pete";
+                            break;
+                        case 2:
+                            if (world.eventID1 == 52 && world.eventComplete == 1) // Boat Pete finish
+                                boss = "Boat Pete";
+                            break;
+                        case 3:
+                            if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
+                                boss = "Future Pete";
+                            break;
+                        case 38:
+                            if (world.eventID1 == 145 && world.eventComplete == 1) // Marluxia finish
+                                boss = "Marluxia";
+                            else if (world.eventID1 == 150 && world.eventComplete == 1) // Data Marluxia finish
+                                boss = "Marluxia (Data)";
+                            break;
+                        case 7:
+                            if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
+                                boss = "Terra";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "HalloweenTown":
+                    switch (world.roomNumber)
+                    {
+                        case 3:
+                            if (world.eventID1 == 52 && world.eventComplete == 1) // Prison Keeper finish
+                                boss = "Prison Keeper";
+                            break;
+                        case 9:
+                            if (world.eventID1 == 55 && world.eventComplete == 1) // Oogie Boogie finish
+                                boss = "Oogie Boogie";
+                            break;
+                        case 7:
+                            if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
+                                boss = "The Experiment";
+                            break;
+                        case 32:
+                            if (world.eventID1 == 115 && world.eventComplete == 1) // Vexen finish
+                                boss = "Vexen";
+                            if (world.eventID1 == 146 && world.eventComplete == 1) // Data Vexen finish
+                                boss = "Vexen (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "PortRoyal":
+                    switch (world.roomNumber)
+                    {
+                        case 10:
+                            if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
+                                boss = "Barbossa";
+                            break;
+                        case 18:
+                            if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
+                                boss = "Grim Reaper I";
+                            break;
+                        case 1:
+                            if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
+                                boss = "Grim Reaper II";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "SpaceParanoids":
+                    switch (world.roomNumber)
+                    {
+                        case 4:
+                            if (world.eventID1 == 55 && world.eventComplete == 1) // Hostile Program finish
+                                boss = "Hostile Program";
+                            break;
+                        case 9:
+                            if (world.eventID1 == 58 && world.eventComplete == 1) // Sark finish
+                                boss = "Sark";
+                            else if (world.eventID1 == 59 && world.eventComplete == 1) // MCP finish
+                                boss = "MCP";
+                            break;
+                        case 33:
+                            if (world.eventID1 == 143 && world.eventComplete == 1) // Larxene finish
+                                boss = "Larxene";
+                            else if (world.eventID1 == 148 && world.eventComplete == 1) // Data Larxene finish
+                                boss = "Larxene (Data)";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                case "TWTNW":
+                    switch (world.roomNumber)
+                    {
+                        case 21:
+                            if (world.eventID1 == 65 && world.eventComplete == 1) // Roxas finish
+                                boss = "Roxas";
+                            else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
+                                boss = "Roxas (Data)";
+                            break;
+                        case 10:
+                            if (world.eventID1 == 57 && world.eventComplete == 1) // Xigbar finish
+                                boss = "Xigbar";
+                            else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
+                                boss = "Xigbar (Data)";
+                            break;
+                        case 14:
+                            if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
+                                boss = "Luxord";
+                            else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
+                                boss = "Luxord (Data)";
+                            break;
+                        case 15:
+                            if (world.eventID1 == 56 && world.eventComplete == 1) // Saix finish
+                                boss = "Saix";
+                            else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
+                                boss = "Saix (Data)";
+                            break;
+                        case 19:
+                            if (world.eventID1 == 59 && world.eventComplete == 1) // Xemnas 1 finish
+                                boss = "Xemnas";
+                            else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xemnas I finish
+                                boss = "Xemnas (Data)";
+                            break;
+                        case 20:
+                            if (world.eventID1 == 74 && world.eventComplete == 1) // Final Xemnas finish
+                                boss = "Final Xemnas";
+                            else if (world.eventID1 == 98 && world.eventComplete == 1) // Data Final Xemnas finish
+                                boss = "Final Xemnas (Data)";
+                            break;
+                        case 23:
+                            if (world.eventID1 == 73 && world.eventComplete == 1) // Armor Xemnas II
+                                boss = "Armor Xemnas II";
+                            break;
+                        case 24:
+                            if (world.eventID1 == 71 && world.eventComplete == 1) // Armor Xemnas I
+                                boss = "Armor Xemnas I";
+                            break;
+                        default:
+                            return;
+                    }
+                    break;
+                default: //return if any other world
+                    return;
+            }
+
+            //if the boss was found and beaten then set flag
+            if (world.eventComplete == 1 && boss != "None")
+                eventInProgress = true;
+
+            //for now do nothing with final xemnas
+            if (boss == "None" || boss.StartsWith("Final Xemnas"))
+                return;
+
+            //get points for boss kills
+            GetBossPoints(boss);
+
+        }
+
+        private void GetBossPoints(string boss)
+        {
+            int points = 0;
+            string bossType;
+
+            if (data.BossRandoFound)
+            {
+                bossType = Codes.FindBossType(data.BossList[boss]);
+            }
+
+
+
+
+
+
+
+
+            bossType = Codes.FindBossType(boss);
+            //might do something with this later
+            if (bossType == "boss_static")
+                bossType = "boss_other";
+
+            if (bossType == "Unknown")
+            {
+                Console.WriteLine("Unknown Boss: " + boss);
+                return;
+            }
+
+            points = data.PointsDatanew[bossType];
+
+            UpdatePointScore(points);
         }
 
         ///

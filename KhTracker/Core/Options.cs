@@ -1510,23 +1510,20 @@ namespace KhTracker
                             for (int i = 1; i < lineNumber; i++)
                             {
                                 string curLine = reader3.ReadLine().Trim();
-                                string[] enemies = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
+                                string[] bosses = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
 
-                                data.BossList.Add(enemies[0], enemies[1]);
+                                data.BossList.Add(bosses[0], bosses[1]);
 
-                                //start checking bosses at this point.
-                                //We want to stop at data zexion as he is always at the end.
-                                if (i > 52)
+                                //check boss name. We want to stop at data zexion as he is always at the end.
+                                switch (bosses[0])
                                 {
-                                    switch (enemies[0])
-                                    {
-                                        case "Zexion (Data)":
-                                            lineNumber = i;
-                                            break;
-                                        default:
-                                            Console.WriteLine(enemies[0]);
-                                            break;
-                                    }
+                                    case "Zexion (Data)":
+                                        lineNumber = i;
+                                        Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
+                                        break;
+                                    default:
+                                        Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
+                                        break;
                                 }
                             }
                         }

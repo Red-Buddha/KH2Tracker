@@ -164,6 +164,14 @@ namespace KhTracker
                 return "Unknown";
         }
 
+        public static string FindBossType(string name)
+        {
+            if (bossTypes.Keys.Contains(name))
+                return bossTypes[name];
+            else
+                return "Unknown";
+        }
+
         //Dictionaries
         public Dictionary<int, string> itemCodes = new Dictionary<int, string>
         {
@@ -559,6 +567,99 @@ namespace KhTracker
             {"Creations", "PuzzSynth"},
             {"Empty", "Empty"},
             {"Munny Pouch", "MunnyPouch" }
+        };
+
+        public static Dictionary<string, string> bossTypes = new Dictionary<string, string>()
+        {
+            {"Armor Xemnas I", "boss_other"},
+            {"Armor Xemnas II", "boss_other"},
+            {"Axel (Data)", "boss_datas"},
+            {"Axel I", "boss_other"},
+            {"Axel II", "boss_other"},
+            {"Barbossa", "boss_other"},
+            {"Blizzard Lord", "boss_other"},
+            {"Blizzard Lord (Cups)", "boss_other"},
+            {"Cerberus", "boss_other"},
+            {"Cerberus (Cups)", "boss_other"},
+            {"Cloud", "boss_other"},
+            {"Cloud (1)", "boss_other"},
+            {"Cloud (2)", "boss_other"},
+            {"Dark Thorn", "boss_other"},
+            {"Demyx", "boss_other"},
+            {"Demyx (Data)", "boss_datas"},
+            {"Grim Reaper I", "boss_other"},
+            {"Grim Reaper II", "boss_other"},
+            {"Hades Cups", "boss_other"},
+            {"Hades II", "boss_other"},
+            {"Hades II (1)", "boss_other"},
+            {"Hayner", "boss_other"},
+            {"Hercules", "boss_other"},
+            {"Hostile Program", "boss_other"},
+            {"Hydra", "boss_other"},
+            {"Larxene", "boss_as"},
+            {"Larxene (Data)", "boss_datas"},
+            {"Leon", "boss_other"},
+            {"Leon (1)", "boss_other"},
+            {"Leon (2)", "boss_other"},
+            {"Leon (3)", "boss_other"},
+            {"Lexaeus", "boss_as"},
+            {"Lexaeus (Data)", "boss_datas"},
+            {"Luxord", "boss_other"},
+            {"Luxord (Data)", "boss_datas"},
+            {"Marluxia", "boss_as"},
+            {"Marluxia (Data)", "boss_datas"},
+            {"Past Pete", "boss_other"},
+            {"Pete Cups", "boss_other"},
+            {"Pete OC II", "boss_other"},
+            {"Prison Keeper", "boss_other"},
+            {"Roxas", "boss_other"},
+            {"Roxas (Data)", "boss_datas"},
+            {"Saix", "boss_other"},
+            {"Saix (Data)", "boss_datas"},
+            {"Sark", "boss_other"},
+            {"Scar", "boss_other"},
+            {"Seifer", "boss_other"},
+            {"Seifer (1)", "boss_other"},
+            {"Seifer (2)", "boss_other"},
+            {"Seifer (3)", "boss_other"},
+            {"Seifer (4)", "boss_other"},
+            {"Sephiroth", "boss_sephi"},
+            {"Setzer", "boss_other"},
+            {"Shan-Yu", "boss_other"},
+            {"Storm Rider", "boss_other"},
+            {"Terra", "boss_terra"},
+            {"The Beast", "boss_other"},
+            {"The Experiment", "boss_other"},
+            {"Thresholder", "boss_other"},
+            {"Tifa", "boss_other"},
+            {"Tifa (1)", "boss_other"},
+            {"Tifa (2)", "boss_other"},
+            {"Twilight Thorn", "boss_other"},
+            {"Vexen", "boss_as"},
+            {"Vexen (Data)", "boss_datas"},
+            {"Vivi", "boss_other"},
+            {"Volcano Lord", "boss_other"},
+            {"Volcano Lord (Cups)", "boss_other"},
+            {"Xaldin", "boss_other"},
+            {"Xaldin (Data)", "boss_datas"},
+            {"Xemnas", "boss_other"},
+            {"Xemnas (Data)", "boss_datas"},
+            {"Xigbar", "boss_other"},
+            {"Xigbar (Data)", "boss_datas"},
+            {"Yuffie", "boss_other"},
+            {"Yuffie (1)", "boss_other"},
+            {"Yuffie (2)", "boss_other"},
+            {"Yuffie (3)", "boss_other"},
+            {"Zexion", "boss_as"},
+            {"Zexion (Data)", "boss_datas"},
+            {"Hydra", "boss_static"},
+            {"Genie Jafar", "boss_static"},
+            {"Storm Rider", "boss_static"},
+            {"Groundshaker", "boss_static"},
+            {"Boat Pete", "boss_static"},
+            {"Future Pete", "boss_static"},
+            {"Oogie Boogie", "boss_static"},
+            {"MCP", "boss_static"}
         };
 
         //public static Dictionary<List<string>, string> getColors = new Dictionary<List<string>, string>()
