@@ -45,6 +45,10 @@ namespace KhTracker
                     usedvalues.Add(index);
                 }
 
+                //start adding score data
+                if (data.ScoreMode)
+                    ScoreModifier(hintObject);
+
                 //turn reports back on
                 ReportsToggle(true);
                 data.hintsLoaded = true;
@@ -170,6 +174,10 @@ namespace KhTracker
                 }
             }
 
+            //start adding score data
+            if (data.ScoreMode)
+                ScoreModifier(hintObject);
+
             ReportsToggle(true);
             data.hintsLoaded = true;
         }
@@ -277,6 +285,10 @@ namespace KhTracker
                 }
                 data.hintsLoaded = true;
             }
+
+            //start adding score data
+            if (data.ScoreMode)
+                ScoreModifier(hintObject);
         }
 
         private void ScoreModifier(Dictionary<string, object> hintObject)
@@ -295,7 +307,6 @@ namespace KhTracker
                     Console.WriteLine($"Something went wrong in setting point values. Unknown Key: {point.Key}");
                 }
             }
-
         }
 
         /// <summary>

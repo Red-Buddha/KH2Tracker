@@ -180,6 +180,14 @@ namespace KhTracker
                     window.SetWorldValue(data.WorldsData[worldName].value, realcount);
                 }
             }
+        
+            if (data.ScoreMode)
+            {
+                if (worldName != "GoA" && !button.Name.StartsWith("Ghost_"))
+                {
+                    window.UpdatePointScore(TableReturn(button.Name) * addRemove);
+                }
+            }
         }
 
         private void Item_Drop(Object sender, DragEventArgs e)

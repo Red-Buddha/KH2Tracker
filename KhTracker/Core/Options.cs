@@ -1161,8 +1161,8 @@ namespace KhTracker
                 data.mode = mode;
                 ReportsToggle(true);
 
-                ShowCheckCountToggle(null, null);
                 UpdatePointScore(0);
+                ShowCheckCountToggle(null, null);
             }
             else if (mode == Mode.PathHints)
             {
@@ -1174,6 +1174,14 @@ namespace KhTracker
             {
                 ModeDisplay.Header = "Spoiler Hints";
                 data.mode = mode;
+            }
+
+            if (data.ScoreMode)
+            {
+                UpdatePointScore(0);
+                ShowCheckCountToggle(null, null);
+
+                ModeDisplay.Header = ModeDisplay.Header + " | Hi-Score Mode";
             }
         }
 

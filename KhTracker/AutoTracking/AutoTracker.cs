@@ -82,7 +82,7 @@ namespace KhTracker
 
         public static bool pcsx2tracking = false; //game version
         private bool onContinue = false; //for death counter
-        bool eventInProgress = false; //boss detection
+        private bool eventInProgress = false; //boss detection
 
 
         ///Auto-Detect Control Stuff
@@ -509,7 +509,10 @@ namespace KhTracker
                 DeathCheck(pcsx2tracking);   //update deathcounter
 
                 if(data.mode == Mode.DAHints || data.ScoreMode)
-                    UpdatePointScore(0);         //update score
+                {
+                    UpdatePointScore(0); //update score
+                    GetBoss(world);
+                }
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
                 {
@@ -776,7 +779,7 @@ namespace KhTracker
             }
         }
 
-        void UpdateWorldProgress(World world)
+        private void UpdateWorldProgress(World world)
         {
             if (world.worldName == "DestinyIsland" || world.worldName == "Unknown")
                 return;
@@ -1579,7 +1582,7 @@ namespace KhTracker
             TrackQuantities();
         }
 
-        void GetBoss(World world)
+        private void GetBoss(World world)
         {
             string boss = "None";
 
@@ -1911,32 +1914,57 @@ namespace KhTracker
         private void GetBossPoints(string boss)
         {
             int points = 0;
+            int bonuspoints = 0;
             string bossType;
-
-            if (data.BossRandoFound)
-            {
-                bossType = Codes.FindBossType(data.BossList[boss]);
-            }
-
-
-
-
-
-
-
+            string replacementType = "None";
 
             bossType = Codes.FindBossType(boss);
-            //might do something with this later
-            if (bossType == "boss_static")
-                bossType = "boss_other";
 
             if (bossType == "Unknown")
             {
                 Console.WriteLine("Unknown Boss: " + boss);
+
+                if (App.logger != null)
+                    App.logger.Record("Unknown Boss: " + boss);
                 return;
             }
 
-            points = data.PointsDatanew[bossType];
+            if (bossType == "boss_static")
+                bossType = "boss_other";
+
+            if (data.BossRandoFound)
+            {
+                if (Codes.FindBossType(boss) == "boss_static")
+                    replacementType = "boss_other";
+                else
+                    replacementType = Codes.FindBossType(data.BossList[boss]);
+
+                if (replacementType == "Unknown")
+                {
+                    Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss]);
+
+                    if (App.logger != null)
+                        App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss]);
+                    return;
+                }
+
+                //add extra points for bosses in data/sephi/terra arenas
+                switch (bossType)
+                {
+                    case "boss_datas":
+                    case "boss_sephi":
+                    case "boss_terra":
+                        bonuspoints += data.PointsDatanew[bossType];
+                        break;
+                }
+
+                if (bonuspoints > 0)
+                    bonuspoints /= 2;
+            }
+            else
+                replacementType = bossType;
+
+            points = data.PointsDatanew[replacementType] + bonuspoints;
 
             UpdatePointScore(points);
         }
