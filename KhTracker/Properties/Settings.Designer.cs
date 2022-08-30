@@ -742,5 +742,17 @@ namespace KhTracker.Properties {
                 this["TWTNW"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ColorHints {
+            get {
+                return ((bool)(this["ColorHints"]));
+            }
+            set {
+                this["ColorHints"] = value;
+            }
+        }
     }
 }

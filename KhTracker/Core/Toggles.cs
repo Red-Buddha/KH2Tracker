@@ -422,7 +422,11 @@ namespace KhTracker
             SeedHashOption.IsChecked = toggle;
 
             if (toggle)
-                HintText.Text = "";
+            {
+                HintTextBegin.Text = "";
+                HintTextMiddle.Text = "";
+                HintTextEnd.Text = "";
+            }
 
             if (data.SeedHashLoaded && toggle)
                 HashGrid.Visibility = Visibility.Visible;
@@ -713,6 +717,11 @@ namespace KhTracker
         ///
         /// Visual
         /// 
+
+        private void ColorHintToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.ColorHints = ColorHintOption.IsChecked;
+        }
 
         private void MinCheckToggle(object sender, RoutedEventArgs e)
         {

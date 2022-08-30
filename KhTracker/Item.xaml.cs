@@ -121,7 +121,7 @@ namespace KhTracker
             switch (data.mode)
             {
                 case Mode.DAHints:
-                    MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has " + Codes.FindShortName(repStr2));
+                    MainW.SetHintText(Codes.GetHintTextName(repStr1), "has", Codes.FindShortName(Codes.GetHintTextName(repStr2)), true, false, true);
                     break;
                 case Mode.PathHints:
                     MainW.SetHintText(Codes.GetHintTextName(repStr1));
@@ -135,11 +135,11 @@ namespace KhTracker
                     {
                         if (repInt == -1)
                         {
-                            MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has no Important Checks");
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1), "has no Important Checks", "", true, false, false);
                         }
                         else
                         {
-                            MainW.SetHintText(Codes.GetHintTextName(repStr1) + " has been revealed!");
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1), "has been revealed!", "", true, false, false);
                         }
                     }
                     break;
@@ -150,7 +150,7 @@ namespace KhTracker
                     }
                     else
                     {
-                        MainW.SetHintText(Codes.GetHintTextName(repStr2) + " has " + repInt + " important checks");
+                        MainW.SetHintText(Codes.GetHintTextName(repStr2), "has", repInt + " important checks", true, false, true);
                     }
                     break;
             }

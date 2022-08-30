@@ -277,9 +277,10 @@ namespace KhTracker
             if (OldProgOption.IsChecked)
                 OldProgToggle(null, null);
 
-
             CustomFolderOption.IsChecked = Properties.Settings.Default.CustomIcons;
             CustomImageToggle(null, null);
+
+            ColorHintOption.IsChecked = Properties.Settings.Default.ColorHints;
 
             //testing background settings stuff (i thought this would be simplier than the above methods)
             //maybe i was wrong. (at least everything is done by 2 settings instead of 8)
@@ -590,46 +591,55 @@ namespace KhTracker
             TotalValue.Text = total.ToString();
         }
 
+        //full
+        public void SetHintText(string textBeg, string textMid, string textEnd, bool Color1, bool Color2, bool Color3)
+        {
+            if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
+            {
+                HashGrid.Visibility = Visibility.Collapsed;
+            }
+
+            string colorBeg = "DefWhite";
+            string colorMid = "DefWhite";
+            string colorEnd = "DefWhite";
+
+            if (ColorHintOption.IsChecked)
+            {
+                if (Color1)
+                    colorBeg = Codes.GetTextColor(textBeg);
+                if (Color2)
+                    colorMid = Codes.GetTextColor(textMid);
+                if (Color3)
+                    colorEnd = Codes.GetTextColor(textEnd);
+            }
+
+            HintTextBegin.Text = textBeg;
+            HintTextBegin.Foreground = (SolidColorBrush)FindResource(colorBeg);
+
+            HintTextMiddle.Text = textMid;
+            HintTextMiddle.Foreground = (SolidColorBrush)FindResource(colorMid);
+
+            HintTextEnd.Text = textEnd;
+            HintTextEnd.Foreground = (SolidColorBrush)FindResource(colorEnd);
+
+        }
+
+        //single lines
         public void SetHintText(string text)
         {
             if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
             {
                 HashGrid.Visibility = Visibility.Collapsed;
-                //data.SeedHashVisible = false;
             }
-            HintText.Text = text;
+
+            HintTextBegin.Text = text;
+            HintTextMiddle.Text = "";
+            HintTextEnd.Text = "";
+
+            HintTextBegin.Foreground = (SolidColorBrush)FindResource("DefWhite");
+            HintTextMiddle.Foreground = (SolidColorBrush)FindResource("DefWhite");
+            HintTextEnd.Foreground = (SolidColorBrush)FindResource("DefWhite");
         }
-
-        ///i might not need this anymore if i am going to set colors everytime
-        //public void SetJokeText(string text)
-        //{
-        //    if (data.SeedHashLoaded)
-        //    {
-        //        HashRow.Height = new GridLength(0, GridUnitType.Star);
-        //        SeedHashVisible = false;
-        //    }
-        //
-        //    HintText.Text = text;
-        //    HintText.Fill = Brushes.LightBlue;
-        //}
-
-        ///might need for magic numbers??
-        //public int GetImageNumber(string ImagePath)
-        //{
-        //    int number = 10;
-        //
-        //    if (!ImagePath.EndsWith("QuestionMark.png") && ImagePath != null)
-        //    {
-        //        string val = ImagePath;
-        //        val = val.Substring(val.LastIndexOf('/') + 1);
-        //        number = int.Parse(val.Substring(0, val.IndexOf('.')));
-        //
-        //        if (number > 9 || number < 0)
-        //            number = 10;
-        //    }
-        //
-        //    return number;
-        //}
 
         public void VisitLockCheck()
         {
@@ -801,73 +811,6 @@ namespace KhTracker
 
             return points;
         }
-
-        ///put this elsewhere
-        //private Dictionary<string, string> GetGhostType = new Dictionary<string, string>()
-        //{
-        //    {"Ghost_Report1", "report"},
-        //    {"Ghost_Report2", "report"},
-        //    {"Ghost_Report3", "report"},
-        //    {"Ghost_Report4", "report"},
-        //    {"Ghost_Report5", "report"},
-        //    {"Ghost_Report6", "report"},
-        //    {"Ghost_Report7", "report"},
-        //    {"Ghost_Report8", "report"},
-        //    {"Ghost_Report9", "report"},
-        //    {"Ghost_Report10", "report"},
-        //    {"Ghost_Report11", "report"},
-        //    {"Ghost_Report12", "report"},
-        //    {"Ghost_Report13", "report"},
-        //    {"Ghost_Fire1", "magic"},
-        //    {"Ghost_Fire2", "magic"},
-        //    {"Ghost_Fire3", "magic"},
-        //    {"Ghost_Blizzard1", "magic"},
-        //    {"Ghost_Blizzard2", "magic"},
-        //    {"Ghost_Blizzard3", "magic"},
-        //    {"Ghost_Thunder1", "magic"},
-        //    {"Ghost_Thunder2", "magic"},
-        //    {"Ghost_Thunder3", "magic"},
-        //    {"Ghost_Cure1", "magic"},
-        //    {"Ghost_Cure2", "magic"},
-        //    {"Ghost_Cure3", "magic"},
-        //    {"Ghost_Reflect1", "magic"},
-        //    {"Ghost_Reflect2", "magic"},
-        //    {"Ghost_Reflect3", "magic"},
-        //    {"Ghost_Magnet1", "magic"},
-        //    {"Ghost_Magnet2", "magic"},
-        //    {"Ghost_Magnet3", "magic"},
-        //    {"Ghost_Valor", "form"},
-        //    {"Ghost_Wisdom", "form"},
-        //    {"Ghost_Limit", "form"},
-        //    {"Ghost_Master", "form"},
-        //    {"Ghost_Final", "form"},
-        //    {"Ghost_OnceMore", "ability"},
-        //    {"Ghost_SecondChance", "ability"},
-        //    {"Ghost_TornPage1", "page"},
-        //    {"Ghost_TornPage2", "page"},
-        //    {"Ghost_TornPage3", "page"},
-        //    {"Ghost_TornPage4", "page"},
-        //    {"Ghost_TornPage5", "page"},
-        //    {"Ghost_Baseball", "summon"},
-        //    {"Ghost_Lamp", "summon"},
-        //    {"Ghost_Ukulele", "summon"},
-        //    {"Ghost_Feather", "summon"},
-        //    {"Ghost_Connection", "proof"},
-        //    {"Ghost_Nonexistence", "proof"},
-        //    {"Ghost_Peace", "proof"},
-        //    {"Ghost_PromiseCharm", "proof"},
-        //    {"Ghost_AuronWep", "visit"},
-        //    {"Ghost_MulanWep", "visit"},
-        //    {"Ghost_BeastWep", "visit"},
-        //    {"Ghost_JackWep", "visit"},
-        //    {"Ghost_SimbaWep", "visit"},
-        //    {"Ghost_SparrowWep", "visit"},
-        //    {"Ghost_AladdinWep", "visit"},
-        //    {"Ghost_TronWep", "visit"},
-        //    {"Ghost_MembershipCard", "visit"},
-        //    {"Ghost_IceCream", "visit"},
-        //    {"Ghost_Picture", "visit"}
-        //};
 
     }
 }

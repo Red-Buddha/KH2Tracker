@@ -583,7 +583,7 @@ namespace KhTracker
 
             if (streamReader.EndOfStream)
             {
-                HintText.Text = "Error loading hints";
+                SetHintText("Error loading hints");
                 streamReader.Close();
                 return;
             }
@@ -594,7 +594,7 @@ namespace KhTracker
 
             if (streamReader.EndOfStream)
             {
-                HintText.Text = "Error loading hints";
+                SetHintText("Error loading hints");
                 streamReader.Close();
                 return;
             }
@@ -620,7 +620,7 @@ namespace KhTracker
             }
 
             data.hintsLoaded = true;
-            HintText.Text = "Hints Loaded";
+            //HintText.Text = "Hints Loaded";
         }
 
         private void ResetHints()
@@ -738,7 +738,9 @@ namespace KhTracker
             collectedChecks.Clear();
             newChecks.Clear();
             ModeDisplay.Header = "";
-            HintText.Text = "";
+            HintTextMiddle.Text = "";
+            HintTextBegin.Text = "";
+            HintTextEnd.Text = "";
             data.mode = Mode.None;
             collected = 0;
             PointTotal = 0;
@@ -1492,7 +1494,7 @@ namespace KhTracker
                             if (SeedHashOption.IsChecked)
                             {
                                 HashGrid.Visibility = Visibility.Visible;
-                                HintText.Text = "";
+                                SetHintText("");
                                 //data.SeedHashVisible = true;
                             }
                             reader2.Close();

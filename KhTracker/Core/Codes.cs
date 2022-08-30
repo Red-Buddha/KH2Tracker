@@ -101,7 +101,7 @@ namespace KhTracker
                 case "LandofDragons":
                     return "Land of Dragons";
                 case "BeastsCastle":
-                    return "Beasts Castle";
+                    return "Beast's Castle";
                 case "OlympusColiseum":
                     return "Olympus Coliseum";
                 case "DisneyCastle":
@@ -119,7 +119,7 @@ namespace KhTracker
                 case "DriveForms":
                     return "Drive Forms";
                 case "SorasHeart":
-                    return "Soras Heart";
+                    return "Sora's Heart";
                 case "PuzzSynth":
                     return "Creations";
                 default: 
@@ -146,6 +146,16 @@ namespace KhTracker
                 return itemTypes[name];
             else
                 return "Unknown";
+        }
+
+        public static string GetTextColor(string name)
+        {
+            if (getColors.Keys.Contains(name))
+                return getColors[name];
+            else if (name.EndsWith("important checks"))
+                return "Gold";
+            else
+                return "DefWhite";
         }
 
         public static string FindItemName(string name)
@@ -662,52 +672,79 @@ namespace KhTracker
             {"MCP", "boss_static"}
         };
 
-        //public static Dictionary<List<string>, string> getColors = new Dictionary<List<string>, string>()
-        //{
-        //    {new List<string>() {"Report1","" }, "White"},
-        //    {"Secret Ansem's Report 2", "Report2"},
-        //    {"Secret Ansem's Report 3", "Report3"},
-        //    {"Secret Ansem's Report 4", "Report4"},
-        //    {"Secret Ansem's Report 5", "Report5"},
-        //    {"Secret Ansem's Report 6", "Report6"},
-        //    {"Secret Ansem's Report 7", "Report7"},
-        //    {"Secret Ansem's Report 8", "Report8"},
-        //    {"Secret Ansem's Report 9", "Report9"},
-        //    {"Secret Ansem's Report 10", "Report10"},
-        //    {"Secret Ansem's Report 11", "Report11"},
-        //    {"Secret Ansem's Report 12", "Report12"},
-        //    {"Secret Ansem's Report 13", "Report13"},
-        //    {"Valor Form", "Valor"},
-        //    {"Wisdom Form", "Wisdom"},
-        //    {"Limit Form", "Limit"},
-        //    {"Master Form", "Master"},
-        //    {"Final Form", "Final"},
-        //    {"Once More", "OnceMore"},
-        //    {"Second Chance", "SecondChance"},
-        //    {"Baseball Charm (Chicken Little)", "Baseball"},
-        //    {"Lamp Charm (Genie)", "Lamp"},
-        //    {"Ukulele Charm (Stitch)", "Ukulele"},
-        //    {"Feather Charm (Peter Pan)", "Feather"},
-        //    {"Proof of Connection", "Connection"},
-        //    {"Proof of Nonexistence", "Nonexistence"},
-        //    {"Proof of Peace", "Peace"},
-        //    {"PromiseCharm", "PromiseCharm"},
-        //    {"Battlefields of War (Auron)", "AuronWep"},
-        //    {"Sword of the Ancestor (Mulan)", "MulanWep"},
-        //    {"Beast's Claw (Beast)", "BeastWep"},
-        //    {"Bone Fist (Jack Skellington)", "JackWep"},
-        //    {"Proud Fang (Simba)", "SimbaWep"},
-        //    {"Skill and Crossbones (Jack Sparrow)", "SparrowWep"},
-        //    {"Scimitar (Aladdin)", "AladdinWep"},
-        //    {"Identity Disk (Tron)", "TronWep"},
-        //    {"Membership Card", "MembershipCard"},
-        //    {"Ice Cream", "IceCream"},
-        //    {"Picture", "Picture"},
-        //    {"Anti-Form", "Anti"},
-        //    {"Hades Cup Trophy", "HadesCup"},
-        //    {"Olympus Stone", "OlympusStone"},
-        //    {"Unknown Disk", "UnknownDisk"}
-        //};
+        public static Dictionary<string, string> getColors = new Dictionary<string, string>()
+        {
+            {"Sora's Heart", "Pink" },
+            {"Drive Forms", "Gold" },
+            {"Simulated Twilight Town", "WhiteBlue" },
+            {"Twilight Town", "Orange" },
+            {"Hollow Bastion", "Pink" },
+            {"Beast's Castle", "Pink" },
+            {"Olympus Coliseum", "Green" },
+            {"Agrabah", "Gold" },
+            {"Land of Dragons", "Red" },
+            {"Hundred Acre Wood", "Gold" },
+            {"Pride Lands", "Red" },
+            {"Disney Castle", "LightBlue" },
+            {"Halloween Town", "Purple" },
+            {"Port Royal", "DarkBlue" },
+            {"Space Paranoids", "DarkBlue" },
+            {"TWTNW", "White" },
+            {"Atlantica", "LightBlue" },
+            {"Creations", "Pink"},
+            {"GoA", "WhiteBlue"},
+            {"Secret Ansem's Report 1", "White"},
+            {"Secret Ansem's Report 2", "White"},
+            {"Secret Ansem's Report 3", "White"},
+            {"Secret Ansem's Report 4", "White"},
+            {"Secret Ansem's Report 5", "White"},
+            {"Secret Ansem's Report 6", "White"},
+            {"Secret Ansem's Report 7", "White"},
+            {"Secret Ansem's Report 8", "White"},
+            {"Secret Ansem's Report 9", "White"},
+            {"Secret Ansem's Report 10", "White"},
+            {"Secret Ansem's Report 11", "White"},
+            {"Secret Ansem's Report 12", "White"},
+            {"Secret Ansem's Report 13", "White"},
+            {"Valor Form", "Red"},
+            {"Wisdom Form", "LightBlue"},
+            {"Limit Form", "Orange"},
+            {"Master Form", "Gold"},
+            {"Final Form", "White"},
+            {"Anti-Form", "DarkBlue"},
+            {"Once More", "LightBlue"},
+            {"Second Chance", "Green"},
+            {"Baseball Charm", "Gold"},
+            {"Lamp Charm", "Purple"},
+            {"Ukulele Charm", "LightBlue"},
+            {"Feather Charm", "Red"},
+            {"Proof of Connection", "OffWhite"},
+            {"Proof of Nonexistence", "OffWhite"},
+            {"Proof of Peace", "OffWhite"},
+            {"Promise Charm", "Pink"},
+            {"Battlefields of War", "Green"},
+            {"Sword of the Ancestor", "Orange"},
+            {"Beast's Claw", "Pink"},
+            {"Bone Fist", "Purple"},
+            {"Proud Fang", "Red"},
+            {"Skill and Crossbones", "DarkBlue"},
+            {"Scimitar", "Gold"},
+            {"Identity Disk", "DarkBlue"},
+            {"Membership Card", "Purple"},
+            {"Ice Cream", "LightBlue"},
+            {"Picture", "Orange"},
+            {"Hades Cup Trophy", "DarkBlue"},
+            {"Olympus Stone", "Gold"},
+            {"Unknown Disk", "White"},
+            {"Munny Pouch", "Red"},
+            {"Fire Element", "Orange" },
+            {"Blizzard Element", "DarkBlue" },
+            {"Thunder Element", "Gold" },
+            {"Cure Element", "Green" },
+            {"Magnet Element", "Pink" },
+            {"Reflect Element", "WhiteBlue" },
+            {"Torn Pages", "Gold" }
+        };
 
         //private Dictionary<string, int> GetItemPool = new Dictionary<string, int>()
         //{

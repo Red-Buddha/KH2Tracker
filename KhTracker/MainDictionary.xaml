@@ -37,6 +37,8 @@
     <SolidColorBrush x:Key="Orange" Color="#F84"/>
     <!--Proof of Connection-->
     <SolidColorBrush x:Key="OffWhite" Color="#FDC"/>
+    <!--default-->
+    <SolidColorBrush x:Key="DefWhite" Color="White"/>
     <!-- selection hilights -->
     <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
     <SolidColorBrush x:Key="DefaultRec" Color="#D81E1E1E"/>

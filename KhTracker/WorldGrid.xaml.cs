@@ -402,7 +402,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             // hint text
-            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2) + " has " + data.reportInformation[index].Item3 + " important checks");
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + "important checks", true, false, true);
 
             // resetting fail icons
             data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
@@ -444,7 +444,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             // hint text
-            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + Codes.FindShortName(data.reportInformation[index].Item2));
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has", Codes.FindShortName(data.reportInformation[index].Item2), true, false, true);
             CheckGhost(data.reportInformation[index].Item1, data.reportInformation[index].Item2, "Report" + index);
 
             //resetting fail icons
@@ -478,11 +478,11 @@ namespace KhTracker
                 //(for when a world is toggled on, but happens to contain nothing)
                 if (data.reportInformation[index].Item3 == -1)
                 {
-                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has no Important Checks");
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has no Important Checks", "", true, false, false);
                 }
                 else
                 {
-                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has been revealed!");
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has been revealed!", "", true, false, false);
                     SpoilerWorldReveal(data.reportInformation[index].Item1, "Report" + index);
                 }
             }

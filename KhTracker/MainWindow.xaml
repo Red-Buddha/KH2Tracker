@@ -77,6 +77,8 @@
                 <!--MenuItem Header="Simple Stat/UI Icons" Click="MinStatToggle" x:Name="MinStatOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game Stat/UI Icons"   Click="OldStatToggle" x:Name="OldStatOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/-->
+                <MenuItem Header="Colorful Hint Text" Click="ColorHintToggle" x:Name="ColorHintOption" IsCheckable="True" IsChecked="True"/>
+                <Separator/>
                 <MenuItem Header="Simple World Icons" Click="MinWorldToggle" x:Name="MinWorldOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game World Icons"   Click="OldWorldToggle" x:Name="OldWorldOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/>
@@ -85,9 +87,6 @@
                 <Separator/>
                 <MenuItem Header="Simple Progression Icons"	Click="MinProgToggle" x:Name="MinProgOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game Progression Icons" 	Click="OldProgToggle" x:Name="OldProgOption" IsCheckable="True" IsChecked="False"/>
-                <!--Separator/>
-                <MenuItem x:Name="MinNumOption" Header="Kh2 Number Icons" IsCheckable="True" IsChecked="True"  Click="MinNumToggle"/>
-                <MenuItem x:Name="OldNumOption" Header="Classic Number Icons"	 IsCheckable="True" IsChecked="False" Click="OldNumToggle"/-->
                 <Separator/>
                 <MenuItem Header="Load Custom Images" Click="CustomImageToggle" x:Name="CustomFolderOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/>
@@ -1505,8 +1504,18 @@
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
                     <Viewbox>
-                        <local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
-                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/>
+                        <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
+                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
+
+                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="White" FontSize="20pt">
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
+                            </TextBlock.Effect>
+                            <Run Name="HintTextBegin"/>
+                            <Run Name="HintTextMiddle" xml:space="preserve"/>
+                            <Run Name="HintTextEnd" xml:space="preserve"/>
+                        </TextBlock>
+
                     </Viewbox>
 
                     <!--Viewbox>
