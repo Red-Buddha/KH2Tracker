@@ -642,6 +642,8 @@ namespace KhTracker
             {"Xaldin (Data)", "boss_datas"},
             {"Xemnas", "boss_other"},
             {"Xemnas (Data)", "boss_datas"},
+            {"Final Xemnas", "boss_final"},
+            {"Final Xemnas (Data)", "boss_final"},
             {"Xigbar", "boss_other"},
             {"Xigbar (Data)", "boss_datas"},
             {"Yuffie", "boss_other"},

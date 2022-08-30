@@ -848,6 +848,7 @@ namespace KhTracker
             AtlanticaProgression.SetResourceReference(ContentProperty, "");
             GoAProgression.SetResourceReference(ContentProperty, "");
             DriveFormsCap.SetResourceReference(ContentProperty, "");
+            ChestIcon.SetResourceReference(ContentProperty, "Chest");
 
             Level.Visibility = Visibility.Collapsed;
             Strength.Visibility = Visibility.Collapsed;
@@ -1163,6 +1164,8 @@ namespace KhTracker
 
                 UpdatePointScore(0);
                 ShowCheckCountToggle(null, null);
+
+                //ChestIcon.SetResourceReference(ContentProperty, "Score");
             }
             else if (mode == Mode.PathHints)
             {
@@ -1181,7 +1184,8 @@ namespace KhTracker
                 UpdatePointScore(0);
                 ShowCheckCountToggle(null, null);
 
-                ModeDisplay.Header = ModeDisplay.Header + " | Hi-Score Mode";
+                ModeDisplay.Header += " | Hi-Score Mode";
+                //ChestIcon.SetResourceReference(ContentProperty, "Score");
             }
         }
 

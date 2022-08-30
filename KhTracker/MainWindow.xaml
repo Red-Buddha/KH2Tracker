@@ -1670,6 +1670,9 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                     </Grid>
+
+                    <ContentControl  Grid.Column="9" Content="{DynamicResource Chest}" Name="ChestIcon" HorizontalAlignment="Right"/>
+
                     <!-- IC Count -->
                     <Grid Grid.Column="11" x:Name="CollectionGrid" Visibility="Visible">
                         <Grid.ColumnDefinitions>
@@ -1748,7 +1751,6 @@
                             <ColumnDefinition  Width="1*"/>
                             <ColumnDefinition Width="0.1*"/>
                         </Grid.ColumnDefinitions>
-                        <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Total -->
                         <Viewbox HorizontalAlignment="Right" VerticalAlignment="Stretch">
                             <local:OutlinedTextBlock x:Name="ScoreValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 

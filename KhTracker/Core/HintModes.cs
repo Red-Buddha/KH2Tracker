@@ -492,6 +492,7 @@ namespace KhTracker
             int BonusPoints = data.PointsDatanew["bonus"];
             int FormPoints = data.PointsDatanew["formlv"];
             int CompletePoints = data.PointsDatanew["complete"];
+            int DeathPoints = data.PointsDatanew["deaths"];
 
             PointTotal = num; //set new point total
 
@@ -501,12 +502,13 @@ namespace KhTracker
             if (aTimer != null)
             {
                 int BonusTotal = stats.BonusLevel * BonusPoints;
-                int Valorlv = (valor.Level - 1) * FormPoints;
-                int Wisdomlv = (wisdom.Level - 1) * FormPoints;
-                int Limitlv = (limit.Level - 1) * FormPoints;
-                int Masterlv = (master.Level - 1) * FormPoints;
-                int Finallv = (final.Level - 1) * FormPoints;
-                num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv;
+                int Valorlv = (valor.VisualLevel - 1) * FormPoints;
+                int Wisdomlv = (wisdom.VisualLevel - 1) * FormPoints;
+                int Limitlv = (limit.VisualLevel - 1) * FormPoints;
+                int Masterlv = (master.VisualLevel - 1) * FormPoints;
+                int Finallv = (final.VisualLevel - 1) * FormPoints;
+                int Deaths = DeathCounter * DeathPoints;
+                num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv + Deaths;
             }
 
             //add bonus points for completeing a world

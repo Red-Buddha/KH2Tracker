@@ -100,7 +100,8 @@
     <Image x:Key="Sword"		        Source="Images\System\stats\sword.png"    x:Shared="false"/>
     <Image x:Key="Shield"  	            Source="Images\System\stats\shield.png"   x:Shared="false"/>
     <Image x:Key="Staff"  	            Source="Images\System\stats\staff.png"    x:Shared="false"/>
-    <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"/>
+    <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"    x:Shared="false"/>
+    <Image x:Key="Score" 		        Source="Images\System\stats\limit.png"    x:Shared="false"/>
     <Image x:Key="HighJump" 		    Source="Images\System\drive_growth\high_jump.png"    x:Shared="false"/>
     <Image x:Key="QuickRun" 		    Source="Images\System\drive_growth\quick_run.png"    x:Shared="false"/>
     <Image x:Key="DodgeRoll" 		    Source="Images\System\drive_growth\dodge_roll.png"   x:Shared="false"/>
@@ -121,7 +122,8 @@
     <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/System/stats/sword.png"    x:Shared="false"/>
     <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/System/stats/shield.png"   x:Shared="false"/>
     <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/System/stats/staff.png"    x:Shared="false"/>
-    <Image x:Key="Cus-Chest" 		    Source="pack://application:,,,/CustomImages/System/stats/chest.png"/>
+    <Image x:Key="Cus-Chest" 		    Source="pack://application:,,,/CustomImages/System/stats/chest.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Score" 		    Source="pack://application:,,,/CustomImages/System/stats/limit.png"    x:Shared="false"/>
     <Image x:Key="Cus-HighJump" 		Source="pack://application:,,,/CustomImages/System/drive_growth/high_jump.png"    x:Shared="false"/>
     <Image x:Key="Cus-QuickRun" 		Source="pack://application:,,,/CustomImages/System/drive_growth/quick_run.png"    x:Shared="false"/>
     <Image x:Key="Cus-DodgeRoll" 		Source="pack://application:,,,/CustomImages/System/drive_growth/dodge_roll.png"   x:Shared="false"/>

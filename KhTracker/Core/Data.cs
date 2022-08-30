@@ -70,6 +70,7 @@ namespace KhTracker
             { "boss_sephi", 0 },
             { "boss_terra", 0 },
             { "boss_other", 0 },
+            { "boss_final", 0 },
             { "deaths", 0 }
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();

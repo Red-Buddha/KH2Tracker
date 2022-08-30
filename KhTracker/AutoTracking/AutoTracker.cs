@@ -899,9 +899,9 @@ namespace KhTracker
                             if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
                                 curProg = 6;
                             else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
-                                if (curProg <= 9)
+                                if (curProg == 9)
                                     curProg = 11; //data demyx + sephi finished
-                                else
+                                else if (curProg != 11)
                                     curProg = 10;
                             break;
                         case 16:
@@ -914,9 +914,9 @@ namespace KhTracker
                             break;
                         case 1:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
-                                if (curProg <= 10)
+                                if (curProg == 10)
                                     curProg = 11; //data demyx + sephi finished
-                                else
+                                else if (curProg != 11)
                                     curProg = 9;
                             break;
                         //CoR
@@ -1235,16 +1235,16 @@ namespace KhTracker
                             break;
                         case 38:
                             if ((world.eventID1 == 145 || world.eventID1 == 150) && world.eventComplete == 1) // Marluxia finish
-                                if (curProg <= 8)
+                                if (curProg == 8)
                                     curProg = 9; //marluxia + LW finished
-                                else
+                                else if (curProg != 9)
                                     curProg = 7;
                             break;
                         case 7:
                             if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
-                                if (curProg <= 7)
+                                if (curProg == 7)
                                     curProg = 9; //marluxia + LW finished
-                                else
+                                else if (curProg != 9)
                                     curProg = 8;
                             break;
                         default:
@@ -1902,8 +1902,7 @@ namespace KhTracker
             if (world.eventComplete == 1 && boss != "None")
                 eventInProgress = true;
 
-            //for now do nothing with final xemnas
-            if (boss == "None" || boss.StartsWith("Final Xemnas"))
+            if (boss == "None")
                 return;
 
             //get points for boss kills
@@ -1915,56 +1914,172 @@ namespace KhTracker
         {
             int points = 0;
             int bonuspoints = 0;
+            int bonuspoints1 = 0;
+            int bonuspoints2 = 0;
             string bossType;
+            string bossType1;
+            string bossType2;
             string replacementType = "None";
+            string replacementType1 = "None";
+            string replacementType2 = "None";
 
-            bossType = Codes.FindBossType(boss);
 
-            if (bossType == "Unknown")
+            if (boss == "Twin Lords")
             {
-                Console.WriteLine("Unknown Boss: " + boss);
+                string boss1 = "Blizzard Lord";
+                string boss2 = "Volcano Lord";
 
-                if (App.logger != null)
-                    App.logger.Record("Unknown Boss: " + boss);
-                return;
-            }
+                bossType1 = Codes.FindBossType(boss1);
+                bossType2 = Codes.FindBossType(boss2);
 
-            if (bossType == "boss_static")
-                bossType = "boss_other";
 
-            if (data.BossRandoFound)
-            {
-                if (Codes.FindBossType(boss) == "boss_static")
-                    replacementType = "boss_other";
-                else
-                    replacementType = Codes.FindBossType(data.BossList[boss]);
-
-                if (replacementType == "Unknown")
+                if (bossType1 == "Unknown")
                 {
-                    Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss]);
+                    Console.WriteLine("Unknown Boss: " + boss1);
 
                     if (App.logger != null)
-                        App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss]);
+                        App.logger.Record("Unknown Boss: " + boss1);
+
+                    bossType1 = "boss_other";
+                }
+
+                if (bossType2 == "Unknown")
+                {
+                    Console.WriteLine("Unknown Boss: " + boss2);
+
+                    if (App.logger != null)
+                        App.logger.Record("Unknown Boss: " + boss2);
+
+                    bossType2 = "boss_other";
+                }
+
+                if (bossType1 == "boss_static")
+                    bossType1 = "boss_other";
+
+                if (bossType2 == "boss_static")
+                    bossType2 = "boss_other";
+
+                if (data.BossRandoFound)
+                {
+                    if (Codes.FindBossType(boss1) == "boss_static")
+                        replacementType1 = "boss_other";
+                    else
+                        replacementType1 = Codes.FindBossType(data.BossList[boss1]);
+
+                    if (replacementType1 == "Unknown")
+                    {
+                        Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss1]);
+
+                        if (App.logger != null)
+                            App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss1]);
+                    }
+
+                    //add extra points for bosses in data/sephi/terra arenas
+                    switch (bossType1)
+                    {
+                        case "boss_datas":
+                        case "boss_sephi":
+                        case "boss_terra":
+                            bonuspoints1 += data.PointsDatanew[bossType1];
+                            break;
+                    }
+
+                    if (bonuspoints1 > 0)
+                        bonuspoints1 /= 2;
+
+                    if (Codes.FindBossType(boss2) == "boss_static")
+                        replacementType2 = "boss_other";
+                    else
+                        replacementType2 = Codes.FindBossType(data.BossList[boss2]);
+
+                    if (replacementType2 == "Unknown")
+                    {
+                        Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss2]);
+
+                        if (App.logger != null)
+                            App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss2]);
+                    }
+
+                    //add extra points for bosses in data/sephi/terra arenas
+                    switch (bossType2)
+                    {
+                        case "boss_datas":
+                        case "boss_sephi":
+                        case "boss_terra":
+                            bonuspoints2 += data.PointsDatanew[bossType2];
+                            break;
+                    }
+
+                    if (bonuspoints2 > 0)
+                        bonuspoints2 /= 2;
+
+                    bonuspoints = bonuspoints1 + bonuspoints2;
+
+                }
+                else
+                {
+                    replacementType1 = bossType1;
+                    replacementType2 = bossType2;
+                }
+
+                int pointstemp = data.PointsDatanew[replacementType1] + data.PointsDatanew[replacementType2];
+
+                points = pointstemp + bonuspoints + (pointstemp / 2);
+            }
+            else
+            {
+                int datafinal = 0;
+                if (boss == "Final Xemnas (Data)")
+                    datafinal = data.PointsDatanew["boss_datas"];
+
+                bossType = Codes.FindBossType(boss);
+
+                if (bossType == "Unknown")
+                {
+                    Console.WriteLine("Unknown Boss: " + boss);
+
+                    if (App.logger != null)
+                        App.logger.Record("Unknown Boss: " + boss);
                     return;
                 }
 
-                //add extra points for bosses in data/sephi/terra arenas
-                switch (bossType)
+                if (bossType == "boss_static")
+                    bossType = "boss_other";
+
+                if (data.BossRandoFound)
                 {
-                    case "boss_datas":
-                    case "boss_sephi":
-                    case "boss_terra":
-                        bonuspoints += data.PointsDatanew[bossType];
-                        break;
+                    if (Codes.FindBossType(boss) == "boss_static")
+                        replacementType = "boss_other";
+                    else
+                        replacementType = Codes.FindBossType(data.BossList[boss]);
+
+                    if (replacementType == "Unknown")
+                    {
+                        Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss]);
+
+                        if (App.logger != null)
+                            App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss]);
+                        return;
+                    }
+
+                    //add extra points for bosses in data/sephi/terra arenas
+                    switch (bossType)
+                    {
+                        case "boss_datas":
+                        case "boss_sephi":
+                        case "boss_terra":
+                            bonuspoints += data.PointsDatanew[bossType];
+                            break;
+                    }
+
+                    if (bonuspoints > 0)
+                        bonuspoints /= 2;
                 }
+                else
+                    replacementType = bossType;
 
-                if (bonuspoints > 0)
-                    bonuspoints /= 2;
+                points = data.PointsDatanew[replacementType] + bonuspoints + datafinal;
             }
-            else
-                replacementType = bossType;
-
-            points = data.PointsDatanew[replacementType] + bonuspoints;
 
             UpdatePointScore(points);
         }

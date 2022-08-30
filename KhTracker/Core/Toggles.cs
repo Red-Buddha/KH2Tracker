@@ -543,12 +543,16 @@ namespace KhTracker
             {
                 CollectionGrid.Visibility = Visibility.Visible;
                 ScoreGrid.Visibility = Visibility.Collapsed;
+
+                ChestIcon.SetResourceReference(ContentProperty, "Chest");
             }
             //if points should show and replace check count IN POINTS MODE
             else
             {
                 CollectionGrid.Visibility = Visibility.Collapsed;
                 ScoreGrid.Visibility = Visibility.Visible;
+
+                ChestIcon.SetResourceReference(ContentProperty, "Score");
             }
         }
 
