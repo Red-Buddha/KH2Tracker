@@ -77,7 +77,6 @@ namespace KhTracker
         private int magnetLevel;
         private int tornPageCount;
 
-        private bool forcedFinal;
         private CheckEveryCheck checkEveryCheck;
 
         public static bool pcsx2tracking = false; //game version
@@ -458,7 +457,7 @@ namespace KhTracker
             stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
 
-            forcedFinal = false;
+            //forcedfinal = flase;
             checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
 
             // set stat info visibiliy
@@ -1559,14 +1558,14 @@ namespace KhTracker
                     else if (check.Name == "Final")
                     {
                         // if forced Final, start tracking the Final Form check
-                        if (!forcedFinal && stats.form == 5)
+                        if (!data.forcedFinal && stats.form == 5)
                         {
-                            forcedFinal = true;
+                            data.forcedFinal = true;
                             checkEveryCheck.TrackCheck(0x001D);
                         }
                         // if not forced Final, track Final Form check like normal
                         // else if Final was forced, check the tracked Final Form check
-                        else if (!forcedFinal || checkEveryCheck.UpdateTargetMemory())
+                        else if (!data.forcedFinal || checkEveryCheck.UpdateTargetMemory())
                         {
                             collectedChecks.Add(check);
                             newChecks.Add(check);

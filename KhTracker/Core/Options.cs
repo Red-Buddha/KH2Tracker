@@ -748,6 +748,7 @@ namespace KhTracker
             data.usedPages = 0;
             CollectedValue.Text = "0";
             data.ScoreMode = false;
+            data.forcedFinal = false;
 
             //unselect any currently selected world grid
             if (data.selected != null)

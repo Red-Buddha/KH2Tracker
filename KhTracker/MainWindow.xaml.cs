@@ -126,7 +126,7 @@ namespace KhTracker
             data.ProgressKeys.Add("BeastsCastle",           new List<string>() { "", "Chests", "Thresholder", "Beast", "DarkThorn", "Dragoons", "Xaldin", "DataXaldin" });
             data.ProgressKeys.Add("OlympusColiseum",        new List<string>() { "", "Chests", "Cerberus", "Urns", "OCDemyx", "OCPete", "Hydra", "AuronStatue", "Hades", "Zexion" });
             data.ProgressKeys.Add("Agrabah",                new List<string>() { "", "Chests", "Abu", "Chasm", "TreasureRoom", "Lords", "Carpet", "GenieJafar", "Lexaeus" });
-            data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "Chests", "Missions", "Mountain", "Cave", "Summmit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
+            data.ProgressKeys.Add("LandofDragons",          new List<string>() { "", "Chests", "Missions", "Mountain", "Cave", "Summit", "ShanYu", "ThroneRoom", "StormRider", "DataXigbar" });
             data.ProgressKeys.Add("HundredAcreWood",        new List<string>() { "", "Chests", "Piglet", "Rabbit", "Kanga", "SpookyCave", "StarryHill" });
             data.ProgressKeys.Add("PrideLands",             new List<string>() { "", "Chests", "Simba", "Hyenas1", "Scar", "Hyenas2", "GroundShaker", "DataSaix" });
             data.ProgressKeys.Add("DisneyCastle",           new List<string>() { "", "Chests", "Minnie", "OldPete", "Windows", "BoatPete", "DCPete", "Marluxia", "LingeringWill", "Marluxia_LingeringWill" });

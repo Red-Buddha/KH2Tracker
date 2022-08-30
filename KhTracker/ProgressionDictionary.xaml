@@ -129,7 +129,7 @@
     <Image x:Key="Min-MysteriousTower"   Source="Images\Progression\Min\twilight_town\mysterious_tower.png" x:Shared="False"/>
     <Image x:Key="Min-Sandlot"           Source="Images\Progression\Min\twilight_town\berserkers.png" x:Shared="False"/>
     <Image x:Key="Min-Mansion"           Source="Images\Progression\Min\twilight_town\mickey.png" x:Shared="False"/>
-    <Image x:Key="Min-BetwixtandBetween" Source="Images\Progression\Min\twilight_town\betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Min-BetwixtAndBetween" Source="Images\Progression\Min\twilight_town\betwixt_and_between.png" x:Shared="False"/>
     <Image x:Key="Min-DataAxel"          Source="Images\Progression\Min\twilight_town\axel.png" x:Shared="False"/>
 
     <!--Drive Forms-->
