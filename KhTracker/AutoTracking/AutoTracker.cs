@@ -1982,7 +1982,7 @@ namespace KhTracker
                     bossType = "boss_other";
                 }
 
-                if (data.BossRandoFound && !boss.StartsWith("Final Xemnas"))
+                if (data.BossRandoFound && !boss.StartsWith("Final Xemnas") && data.BossList.ContainsKey(boss))
                 {
                     replacementType = Codes.FindBossType(data.BossList[boss]);
 
@@ -2026,6 +2026,13 @@ namespace KhTracker
                     //temp fix. might change if final xemnas gets randomized
                     if (boss == "Final Xemnas (Data)")
                         points += data.PointsDatanew["boss_datas"];
+
+                    //logging
+                    if(data.BossRandoFound)
+                    {
+                        if (App.logger != null)
+                            App.logger.Record("Static boss found? Boss: " + boss);
+                    }
                 }
             }
 
