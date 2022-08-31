@@ -590,7 +590,7 @@ namespace KhTracker
 
             if (Visible && memory != null)
             {
-                NextLevelCol.Width = new GridLength(0.6, GridUnitType.Star);
+                NextLevelCol.Width = new GridLength(0.8, GridUnitType.Star);
             }
             else
             {
