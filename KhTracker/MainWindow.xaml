@@ -128,7 +128,7 @@
                 <!-- 6.6 -->
                 <RowDefinition x:Name="WorldRow" Height="6.6*"/>
                 <!-- 0.8 -->
-                <RowDefinition x:Name="InfoRow"  Height="0.8*"/>
+                <RowDefinition x:Name="InfoRow"  Height="0.9*"/>
                 <!-- 0.45 -->
                 <RowDefinition x:Name="FormRow"  Height="0.45*"/>
                 <!-- 2.2 -->
@@ -841,7 +841,7 @@
                         <local:WorldGrid x:Name="DriveFormsGrid" Grid.Column="2"/>
                         <!-- fancy spacer colors -->
                         <Rectangle Fill="#D81E1E1E" Panel.ZIndex="-1"/>
-                        <Rectangle Grid.Column="1" Fill="#FF454545" Panel.ZIndex="-1" Opacity="0.9"/>
+                        <Rectangle Fill="#FF454545" Grid.Column="1" Panel.ZIndex="-1" Opacity="0.9"/>
                         <Rectangle Grid.Row="1" Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1"/>
                         <Rectangle Name="DriveFormsSelWG" Grid.Column="2" Fill="#B25A5A5A" Panel.ZIndex="-1" Visibility="Collapsed"/>
                     </Grid>
@@ -1543,7 +1543,18 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                     </Grid>
-                    <Rectangle Name="DeathCounterRec" Grid.Column="1" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="5,-5,-10,0"/>
+
+
+                    <Border Name="DeathCounterRec" Grid.Column="1" Panel.ZIndex="-1" Margin="4,-6,-20,-0.5">
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border CornerRadius="20,0,0,0" Height="100" Width="100" Background="White" BorderThickness="25,0,15,50"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+                        <Rectangle Fill="#D81E1E1E" />
+                    </Border>
                 </Grid>
 
                 <!-- Hash Text -->
@@ -1581,22 +1592,22 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  Width="1.0*"/>
                         <!-- 0.6* when enabled-->
-                        <ColumnDefinition x:Name="NextLevelCol" Width="1*"/>
+                        <ColumnDefinition x:Name="NextLevelCol" Width="0.6*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.15*"/>
+                        <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.15*"/>
+                        <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.15*"/>
+                        <ColumnDefinition Width="1.25*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.0*"/>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="1.3*"/>
                     </Grid.ColumnDefinitions>
                     <!-- Level -->
                     <Grid x:Name="Level" Visibility="Visible">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.65*"/>
+                            <ColumnDefinition Width="0.7*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource LevelIcon}" x:Name="LevelIcon"/>
@@ -1626,7 +1637,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Strength -->
-                    <Grid x:Name="Strength" Grid.Column="3" Visibility="Collapsed">
+                    <Grid x:Name="Strength" Grid.Column="3" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1644,7 +1655,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Magic -->
-                    <Grid x:Name="Magic" Grid.Column="5" Visibility="Collapsed">
+                    <Grid x:Name="Magic" Grid.Column="5" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>
@@ -1662,7 +1673,7 @@
                         </Viewbox>
                     </Grid>
                     <!-- Defense -->
-                    <Grid x:Name="Defense" Grid.Column="7" Visibility="Collapsed">
+                    <Grid x:Name="Defense" Grid.Column="7" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition  Width="1*"/>

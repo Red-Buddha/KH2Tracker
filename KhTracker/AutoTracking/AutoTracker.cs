@@ -1591,7 +1591,7 @@ namespace KhTracker
             else
                 eventInProgress = false;
 
-            //boss beaten events from progression code
+            //boss beaten events (taken mostly from progression code)
             switch (world.worldName)
             {
                 case "SimulatedTwilightTown":
@@ -1897,12 +1897,12 @@ namespace KhTracker
                     return;
             }
 
-            //if the boss was found and beaten then set flag
-            if (world.eventComplete == 1 && boss != "None")
-                eventInProgress = true;
-
             if (boss == "None")
                 return;
+
+            //if the boss was found and beaten then set flag
+            if (world.eventComplete == 1)
+                eventInProgress = true;
 
             if (App.logger != null)
                 App.logger.Record("Beaten Boss: " + boss);
@@ -1915,7 +1915,6 @@ namespace KhTracker
         private void GetBossPoints(string boss)
         {
             int points;
-            int bonuspoints = 0;
             string bossType;
             string replacementType;
 
@@ -1962,7 +1961,8 @@ namespace KhTracker
                     points += data.PointsDatanew[replacementType];
 
                     //bonus points here should be sum of both boss types / 2
-                    points += points / 2;
+                    if (points > 1)
+                        points += points / 2;
                 }
                 else
                 {
@@ -1982,7 +1982,7 @@ namespace KhTracker
                     bossType = "boss_other";
                 }
 
-                if (data.BossRandoFound && !boss.StartsWith("Final Xemnas") && data.BossList.ContainsKey(boss))
+                if (data.BossRandoFound && data.BossList.ContainsKey(boss))
                 {
                     replacementType = Codes.FindBossType(data.BossList[boss]);
 
@@ -2003,9 +2003,11 @@ namespace KhTracker
 
                     points = data.PointsDatanew[replacementType];
 
-                    //add extra points for bosses in data/sephi/terra arenas
+                    //add extra points for bosses in special arenas
+                    int bonuspoints = 0;
                     switch (bossType)
                     {
+                        case "boss_as":
                         case "boss_datas":
                         case "boss_sephi":
                         case "boss_terra":
@@ -2014,7 +2016,7 @@ namespace KhTracker
                     }
 
                     //arena bonus is full boss points of that arena / 2
-                    if (bonuspoints > 0)
+                    if (bonuspoints > 1)
                         bonuspoints /= 2;
 
                     points += bonuspoints;
@@ -2024,6 +2026,7 @@ namespace KhTracker
                     points = data.PointsDatanew[bossType];
 
                     //temp fix. might change if final xemnas gets randomized
+                    //for now this just makes worth data points * 2
                     if (boss == "Final Xemnas (Data)")
                         points += data.PointsDatanew["boss_datas"];
 
@@ -2031,7 +2034,7 @@ namespace KhTracker
                     if(data.BossRandoFound)
                     {
                         if (App.logger != null)
-                            App.logger.Record("Static boss found? Boss: " + boss);
+                            App.logger.Record("No replacement found? Boss: " + boss);
                     }
                 }
             }
