@@ -176,6 +176,9 @@ namespace KhTracker
 
         public static string FindBossType(string name)
         {
+            if (name == null)
+                return "Unknown";
+
             if (bossTypes.Keys.Contains(name))
                 return bossTypes[name];
             else
@@ -653,7 +656,7 @@ namespace KhTracker
             {"Xemnas", "boss_other"},
             {"Xemnas (Data)", "boss_datas"},
             {"Final Xemnas", "boss_final"},
-            {"Final Xemnas (Data)", "boss_final"},
+            {"Final Xemnas (Data)", "boss_datas"},
             {"Xigbar", "boss_other"},
             {"Xigbar (Data)", "boss_datas"},
             {"Yuffie", "boss_other"},
@@ -662,14 +665,14 @@ namespace KhTracker
             {"Yuffie (3)", "boss_other"},
             {"Zexion", "boss_as"},
             {"Zexion (Data)", "boss_datas"},
-            {"Hydra", "boss_static"},
-            {"Genie Jafar", "boss_static"},
-            {"Storm Rider", "boss_static"},
-            {"Groundshaker", "boss_static"},
-            {"Boat Pete", "boss_static"},
-            {"Future Pete", "boss_static"},
-            {"Oogie Boogie", "boss_static"},
-            {"MCP", "boss_static"}
+            {"Hydra", "boss_other"},
+            {"Genie Jafar", "boss_other"},
+            {"Storm Rider", "boss_other"},
+            {"Groundshaker", "boss_other"},
+            {"Boat Pete", "boss_other"},
+            {"Future Pete", "boss_other"},
+            {"Oogie Boogie", "boss_other"},
+            {"MCP", "boss_other"}
         };
 
         public static Dictionary<string, string> getColors = new Dictionary<string, string>()

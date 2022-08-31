@@ -1493,9 +1493,8 @@ namespace KhTracker
                             //make visible
                             if (SeedHashOption.IsChecked)
                             {
-                                HashGrid.Visibility = Visibility.Visible;
                                 SetHintText("");
-                                //data.SeedHashVisible = true;
+                                HashGrid.Visibility = Visibility.Visible;
                             }
                             reader2.Close();
                         }

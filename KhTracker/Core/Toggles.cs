@@ -40,23 +40,6 @@ namespace KhTracker
             }
         }
 
-        ///rethink this. do i really need it?
-        private void HandleGhostItemToggle(bool toggle, Item button)
-        {
-            if (toggle && button.IsEnabled == false)
-            {
-                button.IsEnabled = true;
-                button.Visibility = Visibility.Visible;
-            }
-            else if (toggle == false && button.IsEnabled)
-            {
-                button.IsEnabled = false;
-                button.Visibility = Visibility.Hidden;
-
-                button.HandleItemReturn();
-            }
-        }
-
         private void HandleWorldToggle(bool toggle, Button button, UniformGrid grid)
         {
             //make grid visible

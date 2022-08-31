@@ -100,7 +100,7 @@
     <Image x:Key="Min-Hyenas1"      Source="Images\Progression\Min\pride_lands\timon_and_pumba.png" x:Shared="False"/>
     <Image x:Key="Min-Scar"         Source="Images\Progression\Min\pride_lands\scar.png" x:Shared="False"/>
     <Image x:Key="Min-Hyenas2"      Source="Images\Progression\Min\pride_lands\hyenas.png" x:Shared="False"/>
-    <Image x:Key="Min-Groundshaker" Source="Images\Progression\Min\pride_lands\groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Min-GroundShaker" Source="Images\Progression\Min\pride_lands\groundshaker.png" x:Shared="False"/>
     <Image x:Key="Min-DataSaix"     Source="Images\Progression\Min\pride_lands\saix.png" x:Shared="False"/>
     <!--Simulated Twilight Town-->
     <Image x:Key="Min-Minigame"         Source="Images\Progression\Min\simulated_twilight_town\munny_pouch.png" x:Shared="False"/>
@@ -233,7 +233,7 @@
     <Image x:Key="Old-Hyenas1"      Source="Images\Progression\Old\pride_lands\timon_and_pumba.png" x:Shared="False"/>
     <Image x:Key="Old-Scar"         Source="Images\Progression\Old\pride_lands\scar.png" x:Shared="False"/>
     <Image x:Key="Old-Hyenas2"      Source="Images\Progression\Old\pride_lands\hyenas.png" x:Shared="False"/>
-    <Image x:Key="Old-Groundshaker" Source="Images\Progression\Old\pride_lands\groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Old-GroundShaker" Source="Images\Progression\Old\pride_lands\groundshaker.png" x:Shared="False"/>
     <Image x:Key="Old-DataSaix"     Source="Images\Progression\Old\pride_lands\saix.png" x:Shared="False"/>
     <!--Simulated Twilight Town-->
     <Image x:Key="Old-Minigame"         Source="Images\Progression\Old\simulated_twilight_town\munny_pouch.png" x:Shared="False"/>
@@ -262,7 +262,7 @@
     <Image x:Key="Old-MysteriousTower"   Source="Images\Progression\Old\twilight_town\mysterious_tower.png" x:Shared="False"/>
     <Image x:Key="Old-Sandlot"           Source="Images\Progression\Old\twilight_town\berserkers.png" x:Shared="False"/>
     <Image x:Key="Old-Mansion"           Source="Images\Progression\Old\twilight_town\mickey.png" x:Shared="False"/>
-    <Image x:Key="Old-BetwixtandBetween" Source="Images\Progression\Old\twilight_town\betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Old-BetwixtAndBetween" Source="Images\Progression\Old\twilight_town\betwixt_and_between.png" x:Shared="False"/>
     <Image x:Key="Old-DataAxel"          Source="Images\Progression\Old\twilight_town\axel.png" x:Shared="False"/>
 
     <!--Drive Forms-->
