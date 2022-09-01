@@ -48,6 +48,11 @@ namespace KhTracker
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
+
+            if(!Directory.Exists("KhTrackerAutoSaves"))
+            {
+                Directory.CreateDirectory("KhTrackerAutoSaves\\");
+            }
         }
 
         private void InitData()
@@ -290,6 +295,8 @@ namespace KhTracker
 
             ColorHintOption.IsChecked = Properties.Settings.Default.ColorHints;
 
+            AutoSaveProgressOption.IsChecked = Properties.Settings.Default.AutoSaveProgress;
+
             //testing background settings stuff (i thought this would be simplier than the above methods)
             //maybe i was wrong. (at least everything is done by 2 settings instead of 8)
             int MainBG = Properties.Settings.Default.MainBG;
@@ -498,7 +505,10 @@ namespace KhTracker
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            Save("kh2fm-tracker-autosave.txt");
+            if (AutoSaveProgressOption.IsChecked)
+            {
+                Save("Tracker-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".txt");
+            }
             Properties.Settings.Default.Save();
         }
 

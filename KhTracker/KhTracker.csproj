@@ -91,8 +91,6 @@
     <Compile Include="AutoTracking\CheckEveryCheck.cs" />
     <Compile Include="AutoTracking\Extra.cs" />
     <Compile Include="AutoTracking\Visit.cs" />
-    <Compile Include="Core\Extend.cs" />
-    <Compile Include="Core\GridHelpers.cs" />
     <Compile Include="Core\HintModes.cs" />
     <Compile Include="AutoTracking\Magic.cs" />
     <Compile Include="AutoTracking\Proof.cs" />

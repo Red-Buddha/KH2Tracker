@@ -778,5 +778,17 @@ namespace KhTracker.Properties {
                 this["OldWorldLayout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSaveProgress {
+            get {
+                return ((bool)(this["AutoSaveProgress"]));
+            }
+            set {
+                this["AutoSaveProgress"] = value;
+            }
+        }
     }
 }

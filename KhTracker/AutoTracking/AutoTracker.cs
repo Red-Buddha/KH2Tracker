@@ -681,7 +681,6 @@ namespace KhTracker
             GlideLevel.Text = glide.Level.ToString();
         }
 
-        ///TODO: test to make sure it works
         private void TrackItem(string itemName, WorldGrid world)
         {
             Grid ItemRow = null;

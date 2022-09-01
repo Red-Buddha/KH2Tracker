@@ -887,7 +887,6 @@ namespace KhTracker
             }
         }
 
-        //TODO: this really doesn't need to be on its own.
         private void SetWorldGhost(string worldName)
         {
             Data data = MainWindow.data;

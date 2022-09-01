@@ -87,6 +87,11 @@ namespace KhTracker
         /// Options
         ///
 
+        private void AutoSaveProgressToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.AutoSaveProgress = AutoSaveProgressOption.IsChecked;
+        }
+
         private void TopMostToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
@@ -1323,30 +1328,5 @@ namespace KhTracker
         //    Properties.Settings.Default.Legacy = toggle;
         //    LegacyOption.IsChecked = toggle;
         //}
-
-        public Dictionary<string, Tuple<int, int>> WorldOrderList = new Dictionary<string, Tuple<int, int>>()
-        {
-            {"SorasHeartTop",               new Tuple<int, int>(0,0) },
-            {"SimulatedTwilightTownTop",    new Tuple<int, int>(1,1) },
-            {"HollowBastionTop",            new Tuple<int, int>(2,2) },
-            {"OlympusColiseumTop",          new Tuple<int, int>(3,3) },
-            {"LandofDragonsTop",            new Tuple<int, int>(2,4) },
-            {"PrideLandsTop",               new Tuple<int, int>(6,5) },
-            {"HalloweenTownTop",            new Tuple<int, int>(5,6) },
-            {"SpaceParanoidsTop",           new Tuple<int, int>(6,7) },
-            {"GoATop",                      new Tuple<int, int>(8,8) },
-            
-            {"DriveFormsTop",       new Tuple<int, int>(0,0) },
-            {"TwilightTownTop",     new Tuple<int, int>(1,1) },
-            {"BeastsCastleTop",     new Tuple<int, int>(3,2) },
-            {"AgrabahTop",          new Tuple<int, int>(5,3) },
-            {"HundredAcreWoodTop",  new Tuple<int, int>(7,4) },
-            {"DisneyCastleTop",     new Tuple<int, int>(4,5) },
-            {"PortRoyalTop",        new Tuple<int, int>(4,6) },
-            {"TWTNWTop",            new Tuple<int, int>(7,7) },
-            {"AtlanticaTop",        new Tuple<int, int>(8,8) },
-            {"PuzzSynthTop",        new Tuple<int, int>(9,9) },
-
-        };
     }
 }

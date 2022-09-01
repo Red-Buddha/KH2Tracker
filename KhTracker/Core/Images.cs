@@ -414,7 +414,6 @@ namespace KhTracker
             if (CustomDefenseFound)
                 DefenseIcon.SetResourceReference(ContentProperty, "Cus-DefenseIcon");
 
-            ///TODO: needs to be redone for new lock images
             //visit locks
             if(Directory.Exists("CustomImages/Worlds/Locks/"))
             {
@@ -498,11 +497,6 @@ namespace KhTracker
                     }
                 }
             }
-
-
-
-
-
 
             ///TODO: update and maybe set up dictionary?
             //Main Window
@@ -610,11 +604,8 @@ namespace KhTracker
                 }
             }
 
-
-
         }
 
-        ///TODO: test and make sure this works
         public void SetItemImage()
         {
             LevelIcon.SetResourceReference(ContentProperty, "LevelIcon");

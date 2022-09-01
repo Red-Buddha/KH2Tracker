@@ -39,7 +39,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: redo entire saving code once i have everything set
         public void Save(string filename)
         {
             string mode = "Mode: " + data.mode.ToString();
@@ -143,7 +142,7 @@ namespace KhTracker
                 }
             }
         
-            FileStream file = File.Create(filename);
+            FileStream file = File.Create("KhTrackerAutoSaves\\" + filename);
             StreamWriter writer = new StreamWriter(file);
      
             writer.WriteLine(mode);
@@ -299,7 +298,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: redo entire loading code once i have everything set
         private void Load(string filename)
         {
             // reset tracker
@@ -713,7 +711,6 @@ namespace KhTracker
             }
         }
 
-        ///TODO: update with new settings
         private void LoadSettings(string settings)
         {
             //item settings

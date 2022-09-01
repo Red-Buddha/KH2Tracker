@@ -29,7 +29,7 @@ namespace KhTracker
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            (MainWindow as MainWindow).Save("kh2fm-tracker-autosave.txt");
+            (MainWindow as MainWindow).Save("Tracker-CrashBackup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".txt");
         }
     }
 }

@@ -43,6 +43,7 @@
                 <Separator/>
                 <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
+                <MenuItem Header="Auto-Save Tracker Progress on Exit" Click="AutoSaveProgressToggle" x:Name="AutoSaveProgressOption" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>

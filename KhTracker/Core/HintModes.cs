@@ -315,7 +315,6 @@ namespace KhTracker
 
         //used to be a ton of ints
         //split into two dictionarys now as it's much easier to handle and uses far less if statements.
-        ///TODO: update to use new font system instead of images
         private Dictionary<string, int> WorldPoints = new Dictionary<string, int>()
         {
             {"SimulatedTwilightTown", 0},
