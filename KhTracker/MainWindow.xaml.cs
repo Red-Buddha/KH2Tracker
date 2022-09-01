@@ -48,11 +48,6 @@ namespace KhTracker
             //Init auto-detect
             AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             AutoDetectToggle(null, null);
-
-            if(!Directory.Exists("KhTrackerAutoSaves"))
-            {
-                Directory.CreateDirectory("KhTrackerAutoSaves\\");
-            }
         }
 
         private void InitData()
@@ -507,7 +502,12 @@ namespace KhTracker
         {
             if (AutoSaveProgressOption.IsChecked)
             {
-                Save("Tracker-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".txt");
+                if (!Directory.Exists("KhTrackerAutoSaves"))
+                {
+                    Directory.CreateDirectory("KhTrackerAutoSaves\\");
+                }
+
+                Save("KhTrackerAutoSaves\\" + "Tracker-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".txt");
             }
             Properties.Settings.Default.Save();
         }

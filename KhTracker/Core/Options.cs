@@ -142,7 +142,7 @@ namespace KhTracker
                 }
             }
         
-            FileStream file = File.Create("KhTrackerAutoSaves\\" + filename);
+            FileStream file = File.Create(filename);
             StreamWriter writer = new StreamWriter(file);
      
             writer.WriteLine(mode);
