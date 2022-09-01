@@ -144,6 +144,9 @@ namespace KhTracker
                 SetAutoDetectTimer();
 
                 SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+
+                TrackPCSX2Toggle.IsEnabled = false;
+                TrackPCToggle.IsEnabled = false;
             }
             else
             {
@@ -154,7 +157,10 @@ namespace KhTracker
                     SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
                 else
                     SettingRow.Height = new GridLength(0, GridUnitType.Star);
-            }              
+
+                TrackPCSX2Toggle.IsEnabled = true;
+                TrackPCToggle.IsEnabled = true;
+            }
         }
 
         ///

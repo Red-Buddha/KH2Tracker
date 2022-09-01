@@ -31,8 +31,8 @@
             <MenuItem Header="Options" Focusable="False">
                 <MenuItem Header="Auto Tracking...">
                     <MenuItem Header="Use Auto-Detect Game Version" Click="AutoDetectToggle" x:Name="AutoDetectOption" IsCheckable="True" IsChecked="False"/>
-                    <MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker"/>
-                    <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"/>
+                    <MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker" x:Name="TrackPCSX2Toggle"/>
+                    <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"    x:Name="TrackPCToggle"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Load Hints...">
@@ -41,8 +41,8 @@
                     <MenuItem Header="Load KH2Randomizer Seed (*.zip)" 	Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Save Current Progress" Click="SaveProgress" IsEnabled="False"/>
-                <MenuItem Header="Load Tracker Progress" Click="LoadProgress" IsEnabled="False"/>
+                <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
+                <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
                 <Separator/>
                 <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>
@@ -96,7 +96,6 @@
                     <MenuItem x:Name="MainImg2Option" Header="Custom Image (Uniform)"    IsCheckable="True" IsChecked="False" Click="MainBG_Img2Toggle"/>
                     <MenuItem x:Name="MainImg3Option" Header="Custom Image (No Scaling)" IsCheckable="True" IsChecked="False" Click="MainBG_Img3Toggle"/>
                 </MenuItem>
-                <Separator/>
             </MenuItem>
             <MenuItem Header="Worlds" Focusable="False">
                 <MenuItem Header="Sora's Heart" 				Click="SoraHeartToggle"			x:Name="SoraHeartOption"		IsCheckable="True" IsChecked="True"/>
