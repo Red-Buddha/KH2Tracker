@@ -754,5 +754,29 @@ namespace KhTracker.Properties {
                 this["ColorHints"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool NewWorldLayout {
+            get {
+                return ((bool)(this["NewWorldLayout"]));
+            }
+            set {
+                this["NewWorldLayout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OldWorldLayout {
+            get {
+                return ((bool)(this["OldWorldLayout"]));
+            }
+            set {
+                this["OldWorldLayout"] = value;
+            }
+        }
     }
 }

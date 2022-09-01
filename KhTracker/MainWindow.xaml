@@ -77,6 +77,9 @@
                 <!--MenuItem Header="Simple Stat/UI Icons" Click="MinStatToggle" x:Name="MinStatOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game Stat/UI Icons"   Click="OldStatToggle" x:Name="OldStatOption" IsCheckable="True" IsChecked="False"/>
                 <Separator/-->
+                <MenuItem Header="New World Layout"     Click="NewWorldLayoutToggle" x:Name="NewWorldLayoutOption" IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Classic World Layout" Click="OldWorldLayoutToggle" x:Name="OldWorldLayoutOption" IsCheckable="True" IsChecked="False"/>
+                <Separator/>
                 <MenuItem Header="Colorful Hint Text" Click="ColorHintToggle" x:Name="ColorHintOption" IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Simple World Icons" Click="MinWorldToggle" x:Name="MinWorldOption" IsCheckable="True" IsChecked="True"/>
@@ -144,7 +147,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Left Side -->
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="0" Name="WorldsLeft">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -767,7 +770,7 @@
                 </Grid>
 
                 <!-- Right Side -->
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" Name="WorldsRight">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>

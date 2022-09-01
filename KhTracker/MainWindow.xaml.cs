@@ -253,6 +253,14 @@ namespace KhTracker
 
             #region Visual
 
+            NewWorldLayoutOption.IsChecked = Properties.Settings.Default.NewWorldLayout;
+            if (NewWorldLayoutOption.IsChecked)
+                NewWorldLayoutToggle(null, null);
+
+            OldWorldLayoutOption.IsChecked = Properties.Settings.Default.OldWorldLayout;
+            if (OldWorldLayoutOption.IsChecked)
+                OldWorldLayoutToggle(null, null);
+
             MinWorldOption.IsChecked = Properties.Settings.Default.MinWorld;
             if (MinWorldOption.IsChecked)
                 MinWorldToggle(null, null);
