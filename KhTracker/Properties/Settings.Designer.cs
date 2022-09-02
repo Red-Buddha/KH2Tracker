@@ -790,5 +790,17 @@ namespace KhTracker.Properties {
                 this["AutoSaveProgress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WorldHighlight {
+            get {
+                return ((bool)(this["WorldHighlight"]));
+            }
+            set {
+                this["WorldHighlight"] = value;
+            }
+        }
     }
 }

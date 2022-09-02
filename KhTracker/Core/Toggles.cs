@@ -712,6 +712,22 @@ namespace KhTracker
         /// Visual
         /// 
 
+        private void WorldHighlightToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.WorldHighlight = WorldHighlightOption.IsChecked;
+
+            if (WorldHighlightOption.IsChecked == true && data.selected != null) //set previousl selected world to default colors
+            {
+                foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
+                {
+                    if (Box.Name.EndsWith("SelWG"))
+                        Box.Visibility = Visibility.Collapsed;
+                }
+            }
+
+
+        }
+
         private void NewWorldLayoutToggle(object sender, RoutedEventArgs e)
         {
             // Mimicing radio buttons so you cant toggle a button off

@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v5.3)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v6)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -50,7 +50,7 @@
                 <MenuItem Header="Always on Top" 	 Click="TopMostToggle"  x:Name="TopMostOption"     IsCheckable="True" IsChecked="False"/>
                 <MenuItem Header="Drag and Drop" 	 Click="DragDropToggle" x:Name="DragAndDropOption" IsCheckable="True" IsChecked="True"/>
             </MenuItem>
-            <MenuItem Header="Toggles" Focusable="False">
+            <MenuItem Header="Display Toggles" Focusable="False">
                 <MenuItem Header="Ansem Reports" 			 Click="ReportsToggle"		x:Name="ReportsOption"      IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Promise Charm"			 Click="PromiseCharmToggle" x:Name="PromiseCharmOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Once More / Second Chance" Click="AbilitiesToggle" 	x:Name="AbilitiesOption"    IsCheckable="True" IsChecked="True"/>
@@ -63,6 +63,7 @@
                 <MenuItem Header="Show World Progression Icons" Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Show Form and Growth Levels" 	Click="FormsGrowthToggle"   x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Show Death Counter" 	 		Click="DeathCounterToggle"  x:Name="DeathCounterOption"     IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Auto Highlight Current World" Click="WorldHighlightToggle" x:Name="WorldHighlightOption"  IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Track Ghost Items" 	                Click="GhostItemToggle"		  x:Name="GhostItemOption"	IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Ghost Item Auto-Math (Points Hints)"  Click="GhostMathToggle" 	  x:Name="GhostMathOption"	IsCheckable="True" IsChecked="True"/>
@@ -73,7 +74,7 @@
                 <MenuItem Header="Level 50 Checks"               Click="SoraLevel50Toggle"    x:Name="SoraLevel50Option"    IsCheckable="True" IsChecked="True" />
                 <MenuItem Header="Level 99 Checks"               Click="SoraLevel99Toggle"    x:Name="SoraLevel99Option"    IsCheckable="True" IsChecked="False"/>
             </MenuItem>
-            <MenuItem Header="Visuals" Focusable="False">
+            <MenuItem Header="Image Visuals" Focusable="False">
                 <!-- eventually add an ption that pulls up settings window... -->
                 <!--MenuItem Header="Simple Stat/UI Icons" Click="MinStatToggle" x:Name="MinStatOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Game Stat/UI Icons"   Click="OldStatToggle" x:Name="OldStatOption" IsCheckable="True" IsChecked="False"/>

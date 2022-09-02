@@ -502,6 +502,7 @@ namespace KhTracker
             {
                 stats.UpdateMemory();        //updatestats
                 world.UpdateMemory();        //current world
+                HighlightWorld(world);
                 UpdateStatValues();          //set stat values
                 UpdateWorldProgress(world);  //progression update
                 UpdateFormProgression();
@@ -552,7 +553,7 @@ namespace KhTracker
             }
 
             UpdateCollectedItems();
-            DetermineItemLocations();         
+            DetermineItemLocations();
         }
 
         private bool CheckSynthPuzzle(bool ps2)
@@ -2039,6 +2040,28 @@ namespace KhTracker
             }
 
             UpdatePointScore(points);
+        }
+
+        private void HighlightWorld(World world)
+        {
+            if (WorldHighlightOption.IsChecked == false)
+                return;
+
+            if (world.previousworldName != null && data.WorldsData.ContainsKey(world.previousworldName))
+            {
+                foreach (Rectangle Box in data.WorldsData[world.previousworldName].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
+                {
+                    Box.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            if (data.WorldsData.ContainsKey(world.worldName))
+            {
+                foreach (Rectangle Box in data.WorldsData[world.worldName].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
+                {
+                    Box.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         ///

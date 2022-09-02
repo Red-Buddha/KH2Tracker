@@ -189,6 +189,8 @@ namespace KhTracker
             DragAndDropOption.IsChecked = Properties.Settings.Default.DragDrop;
             DragDropToggle(null, null);
 
+            AutoSaveProgressOption.IsChecked = Properties.Settings.Default.AutoSaveProgress;
+
             #endregion
 
             #region Toggles
@@ -249,6 +251,8 @@ namespace KhTracker
             if (SoraLevel99Option.IsChecked)
                 SoraLevel99Toggle(null, null);
 
+            WorldHighlightOption.IsChecked = Properties.Settings.Default.WorldHighlight;
+
             #endregion
 
             #region Visual
@@ -289,8 +293,6 @@ namespace KhTracker
             CustomImageToggle(null, null);
 
             ColorHintOption.IsChecked = Properties.Settings.Default.ColorHints;
-
-            AutoSaveProgressOption.IsChecked = Properties.Settings.Default.AutoSaveProgress;
 
             //testing background settings stuff (i thought this would be simplier than the above methods)
             //maybe i was wrong. (at least everything is done by 2 settings instead of 8)
@@ -420,7 +422,7 @@ namespace KhTracker
                             if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                                 Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
 
-                            if (Box.Name.EndsWith("SelWG"))
+                            if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
                                 Box.Visibility = Visibility.Collapsed;
                         }
                     }
@@ -430,7 +432,7 @@ namespace KhTracker
                         if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                             Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
 
-                        if (Box.Name.EndsWith("SelWG"))
+                        if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
                             Box.Visibility = Visibility.Visible;
                     }
                     break;
@@ -466,17 +468,6 @@ namespace KhTracker
             if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null)
             {
                 ManualWorldValue(data.WorldsData[button.Name].value, e.Delta);
-            }
-        }
-
-        private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Down:
-                case Keys.Up:
-                    e.IsInputKey = true;
-                    break;
             }
         }
 
