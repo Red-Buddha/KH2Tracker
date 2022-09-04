@@ -798,6 +798,7 @@ namespace KhTracker
             //progression defaults
             int curProg = data.WorldsData[world.worldName].progress; //current world progress int
             string curKey; //current world progression icon name
+            string curDes;
 
             //get current world progress key
             switch (world.worldName)
@@ -1442,8 +1443,10 @@ namespace KhTracker
 
             //made it this far, now just set the progression icon based on the new curProg
             curKey = data.ProgressKeys[world.worldName][curProg];
+            curDes = data.ProgressKeys[world.worldName + "Desc"][curProg];
             progressionM.SetResourceReference(ContentProperty, Prog + curKey);
             data.WorldsData[world.worldName].progress = curProg;
+            data.WorldsData[world.worldName].progression.ToolTip = curDes;
         }
 
         // Sometimes level rewards and levels dont update on the same tick
@@ -2016,8 +2019,8 @@ namespace KhTracker
                     }
 
                     //arena bonus is full boss points of that arena / 2
-                    if (bonuspoints > 1)
-                        bonuspoints /= 2;
+                    //if (bonuspoints > 1)
+                    //    bonuspoints /= 2;
 
                     points += bonuspoints;
                 }

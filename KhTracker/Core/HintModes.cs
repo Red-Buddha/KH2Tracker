@@ -486,13 +486,8 @@ namespace KhTracker
             if (data.mode != Mode.DAHints && !data.ScoreMode)
                 return;
 
-            int num = PointTotal + points; //get new point total
             int WorldBlue = 0;
-            int BonusPoints = data.PointsDatanew["bonus"];
-            int FormPoints = data.PointsDatanew["formlv"];
-            int CompletePoints = data.PointsDatanew["complete"];
-            int DeathPoints = data.PointsDatanew["deaths"];
-
+            int num = PointTotal + points; //get new point total
             PointTotal = num; //set new point total
 
             //adjust point score based on bonus and form levels
@@ -500,13 +495,14 @@ namespace KhTracker
             //increasing forever when adding/removing items
             if (aTimer != null)
             {
-                int BonusTotal = stats.BonusLevel * BonusPoints;
-                int Valorlv = (valor.VisualLevel - 1) * FormPoints;
-                int Wisdomlv = (wisdom.VisualLevel - 1) * FormPoints;
-                int Limitlv = (limit.VisualLevel - 1) * FormPoints;
-                int Masterlv = (master.VisualLevel - 1) * FormPoints;
-                int Finallv = (final.VisualLevel - 1) * FormPoints;
-                int Deaths = DeathCounter * DeathPoints;
+                int BonusTotal = stats.BonusLevel * data.PointsDatanew["bonus"];
+                int Valorlv = (valor.VisualLevel - 1) * data.PointsDatanew["formlv"];
+                int Wisdomlv = (wisdom.VisualLevel - 1) * data.PointsDatanew["formlv"];
+                int Limitlv = (limit.VisualLevel - 1) * data.PointsDatanew["formlv"];
+                int Masterlv = (master.VisualLevel - 1) * data.PointsDatanew["formlv"];
+                int Finallv = (final.VisualLevel - 1) * data.PointsDatanew["formlv"];
+                int Deaths = DeathCounter * data.PointsDatanew["deaths"];
+
                 num += BonusTotal + Valorlv + Wisdomlv + Limitlv + Masterlv + Finallv + Deaths;
             }
 
@@ -517,58 +513,84 @@ namespace KhTracker
                     continue;
 
                 if (data.WorldsData[key].complete && data.WorldsData[key].checkCount.Count != 0)
-                    WorldBlue += CompletePoints;
+                    WorldBlue += data.PointsDatanew["complete"];
             }
-
             num += WorldBlue;
+
+            //add bonus points for collecting all multis in a set
+            if (data.PointsDatanew["magic"] > 0)
+            {
+                if (WorldGrid.Real_Fire == 3)
+                    num += data.PointsDatanew["magic"];
+                if (WorldGrid.Real_Blizzard == 3)
+                    num += data.PointsDatanew["magic"];
+                if (WorldGrid.Real_Thunder == 3)
+                    num += data.PointsDatanew["magic"];
+                if (WorldGrid.Real_Cure == 3)
+                    num += data.PointsDatanew["magic"];
+                if (WorldGrid.Real_Magnet == 3)
+                    num += data.PointsDatanew["magic"];
+                if (WorldGrid.Real_Reflect == 3)
+                    num += data.PointsDatanew["magic"];
+            }
+            if (data.PointsDatanew["page"] > 0)
+            {
+                if (WorldGrid.Real_Pages == 5)
+                    num += data.PointsDatanew["page"] * 5;
+            }
+            if (data.PointsDatanew["other"] > 0)
+            {
+                if (WorldGrid.Real_Pouches == 2)
+                    num += data.PointsDatanew["other"];
+            }
 
             ScoreValue.Text = num.ToString();
         }
 
-        static public int WorldNameToIndex(string worldName)
-        {
-            switch (worldName)
-            {
-                case "SorasHeart":
-                    return 0;
-                case "DriveForms":
-                    return 1;
-                case "SimulatedTwilightTown":
-                    return 2;
-                case "TwilightTown":
-                    return 3;
-                case "HollowBastion":
-                    return 4;
-                case "BeastsCastle":
-                    return 5;
-                case "OlympusColiseum":
-                    return 6;
-                case "Agrabah":
-                    return 7;
-                case "LandofDragons":
-                    return 8;
-                case "HundredAcreWood":
-                    return 9;
-                case "PrideLands":
-                    return 10;
-                case "DisneyCastle":
-                    return 11;
-                case "HalloweenTown":
-                    return 12;
-                case "PortRoyal":
-                    return 13;
-                case "SpaceParanoids":
-                    return 14;
-                case "TWTNW":
-                    return 15;
-                case "Atlantica":
-                    return 17;
-                case "PuzzSynth":
-                    return 18;
-                default: //GoA
-                    return 16;
-            }
-        }
+        //static public int WorldNameToIndex(string worldName)
+        //{
+        //    switch (worldName)
+        //    {
+        //        case "SorasHeart":
+        //            return 0;
+        //        case "DriveForms":
+        //            return 1;
+        //        case "SimulatedTwilightTown":
+        //            return 2;
+        //        case "TwilightTown":
+        //            return 3;
+        //        case "HollowBastion":
+        //            return 4;
+        //        case "BeastsCastle":
+        //            return 5;
+        //        case "OlympusColiseum":
+        //            return 6;
+        //        case "Agrabah":
+        //            return 7;
+        //        case "LandofDragons":
+        //            return 8;
+        //        case "HundredAcreWood":
+        //            return 9;
+        //        case "PrideLands":
+        //            return 10;
+        //        case "DisneyCastle":
+        //            return 11;
+        //        case "HalloweenTown":
+        //            return 12;
+        //        case "PortRoyal":
+        //            return 13;
+        //        case "SpaceParanoids":
+        //            return 14;
+        //        case "TWTNW":
+        //            return 15;
+        //        case "Atlantica":
+        //            return 17;
+        //        case "PuzzSynth":
+        //            return 18;
+        //        default: //GoA
+        //            return 16;
+        //    }
+        //}
 
         public List<string> JokeHints = new List<string>
         {

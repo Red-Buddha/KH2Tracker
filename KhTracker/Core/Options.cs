@@ -1384,7 +1384,7 @@ namespace KhTracker
                 UpdatePointScore(0);
                 ShowCheckCountToggle(null, null);
 
-                ModeDisplay.Header += " | Hi-Score Mode";
+                ModeDisplay.Header += " | HSM";
             }
         }
 
