@@ -233,7 +233,7 @@ namespace KhTracker
                     //if (!data.SpoilerReportMode && item.Contains("Report"))
                     //    continue;
 
-                    if (item.Contains("Report") && (!data.SpoilerReportMode || !TMP_bossReports))
+                    if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
                         continue;
 
                     string worldname = Codes.ConvertSeedGenName(world.Key);
