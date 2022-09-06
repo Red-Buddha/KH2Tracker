@@ -184,6 +184,10 @@ namespace KhTracker
 
         private void SpoilerHints(Dictionary<string, object> hintObject)
         {
+            //DEBUG
+            //This bool should be gotten from the seed gen!
+            bool TMP_bossReports = false;
+
             data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
@@ -201,6 +205,11 @@ namespace KhTracker
             {
                 data.SpoilerReportMode = true;
                 ReportsToggle(true);
+            }
+            else if(!reveals.Contains("reportmode") && reveals.Contains("report"))
+            {
+                ReportsToggle(true);
+                TMP_bossReports = true;
             }
             else
                 ReportsToggle(false);
@@ -221,7 +230,10 @@ namespace KhTracker
                 foreach (string item in world.Value)
                 {
                     //Ignore reports as ICs if report mode is false
-                    if (!data.SpoilerReportMode && item.Contains("Report"))
+                    //if (!data.SpoilerReportMode && item.Contains("Report"))
+                    //    continue;
+
+                    if (item.Contains("Report") && (!data.SpoilerReportMode || !TMP_bossReports))
                         continue;
 
                     string worldname = Codes.ConvertSeedGenName(world.Key);
@@ -285,6 +297,93 @@ namespace KhTracker
                 }
                 data.hintsLoaded = true;
             }
+            else if (data.BossRandoFound && TMP_bossReports)
+            {
+                List<string> keyList = new List<string>(data.BossList.Keys);
+                List<string> OrigBosses = new List<string>();
+                //get random based on seed hash
+                Random rand = new Random(data.BossRandoSeed);
+
+                foreach (var report in reportKeys)
+                {
+                    //get a boss
+                    string boss = keyList[rand.Next(0, keyList.Count)];
+                    //make sure it's not a duplicate
+                    while (OrigBosses.Contains(boss) || boss.Contains("(Cups)") || boss.Contains("(Data)"))
+                    {
+                        boss = keyList[rand.Next(0, keyList.Count)];
+                    }
+
+                    //check boss type
+                    string origType = Codes.FindBossType(boss);
+                    string replaceType = Codes.FindBossType(data.BossList[boss]);
+
+                    if (replaceType == "Unknown")
+                    {
+                        replaceType = "boss_other";
+                    }
+                    if (origType == "Unknown")
+                    {
+                        origType = "boss_other";
+                    }
+
+                    //prioritize special arenas and bosses (70%?)
+                    while (origType == "boss_other" && replaceType == "boss_other")
+                    {
+                        int reroll = rand.Next(1, 10);
+                        if (reroll > 5) //30% chance to keep basic bosses
+                        {
+                            break;
+                        }
+
+                        boss = keyList[rand.Next(0, keyList.Count)];
+
+                        while (OrigBosses.Contains(boss) || boss.Contains("(Cups)") || boss.Contains("(Data)"))
+                        {
+                            boss = keyList[rand.Next(0, keyList.Count)];
+                        }
+
+                        origType = Codes.FindBossType(boss);
+                        replaceType = Codes.FindBossType(data.BossList[boss]);
+
+                        if (replaceType == "Unknown")
+                        {
+                            replaceType = "boss_other";
+                        }
+                        if (origType == "Unknown")
+                        {
+                            origType = "boss_other";
+                        }
+                    }
+
+                    //report location and final hint string
+                    string worldhint;
+
+                    if (boss == "Hades II (1)")
+                    {
+                        OrigBosses.Add(boss);
+                        boss = "Hades II";
+                    }
+                    
+                    if (boss == data.BossList[boss])
+                    {
+                        worldhint = boss + " is unchanged";
+                    }
+                    else 
+                    {
+                        worldhint = boss + " became " + data.BossList[boss];
+                    }
+                    int dummyvalue = -12345; //use this for boss reports i guess
+                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
+
+                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+                    data.reportLocations.Add(location);
+
+                    OrigBosses.Add(boss);
+                }
+                
+                data.hintsLoaded = true;
+            }
 
             //start adding score data
             if (data.ScoreMode)
@@ -307,6 +406,15 @@ namespace KhTracker
                     Console.WriteLine($"Something went wrong in setting point values. Unknown Key: {point.Key}");
                 }
             }
+        }
+
+        private void BossReports()
+        {
+
+
+
+
+
         }
 
         /// <summary>

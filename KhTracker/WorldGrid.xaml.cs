@@ -468,7 +468,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             // hint text
-            if (data.reportInformation[index].Item1 == "Empty")
+            if (data.reportInformation[index].Item1 == "Empty") //normal reports
             {
                 window.SetHintText("This report reveals nothing...");
             }
@@ -479,6 +479,10 @@ namespace KhTracker
                 if (data.reportInformation[index].Item3 == -1)
                 {
                     window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has no Important Checks", "", true, false, false);
+                }
+                else if (data.reportInformation[index].Item3 == -12345)
+                {
+                    window.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
                 }
                 else
                 {
@@ -493,10 +497,13 @@ namespace KhTracker
 
             //change hinted world to use green numbers
             //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
-            data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
+            if (data.SpoilerReportMode)
+            {
+                data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
 
-            if (data.WorldsData[data.reportInformation[index].Item1].containsGhost)
-                window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item1].value, int.Parse(data.WorldsData[data.reportInformation[index].Item1].value.Text));
+                if (data.WorldsData[data.reportInformation[index].Item1].containsGhost)
+                    window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item1].value, int.Parse(data.WorldsData[data.reportInformation[index].Item1].value.Text));
+            }
         }
 
         ///

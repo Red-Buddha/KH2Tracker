@@ -749,6 +749,46 @@ namespace KhTracker
             {"Torn Pages", "Gold" }
         };
 
+        public static Dictionary<string, int> HashInt = new Dictionary<string, int>
+        {
+            {"ability-unequip", 1},
+            {"accessory", 2},
+            {"ai-mode-frequent", 3},
+            {"ai-mode-moderate", 4},
+            {"ai-mode-rare", 5},
+            {"ai-settings", 6},
+            {"armor", 7},
+            {"button-circle", 8},
+            {"button-cross", 9},
+            {"button-l1", 10},
+            {"button-l2", 11},
+            {"button-r1", 12},
+            {"button-r2", 13},
+            {"button-square", 14},
+            {"button-triangle", 15},
+            {"exclamation-mark", 16},
+            {"form", 17},
+            {"gumi-block", 18},
+            {"gumi-blueprint", 19},
+            {"gumi-brush", 20},
+            {"gumi-gear", 21},
+            {"gumi-ship", 22},
+            {"item-consumable", 23},
+            {"item-key", 24},
+            {"item-tent", 25},
+            {"magic", 26},
+            {"material", 27},
+            {"party", 28},
+            {"question-mark", 29},
+            {"rank-a", 30},
+            {"rank-b", 31},
+            {"rank-c", 32},
+            {"rank-s", 33},
+            {"weapon-keyblade", 34},
+            {"weapon-shield", 35},
+            {"weapon-staff", 36}
+        };
+
         //private Dictionary<string, int> GetItemPool = new Dictionary<string, int>()
         //{
         //    {"Report1", 0},

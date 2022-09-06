@@ -46,8 +46,8 @@ namespace KhTracker
             OnReset(null, null);
 
             //Init auto-detect
-            AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
-            AutoDetectToggle(null, null);
+            //AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
+            //AutoDetectToggle(null, null);
         }
 
         private void InitData()

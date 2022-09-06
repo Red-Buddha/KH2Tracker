@@ -85,10 +85,10 @@ namespace KhTracker
 
 
         ///Auto-Detect Control Stuff
-        private bool autoDetected = false; 
-        public int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
-        private bool isWorking = false;
-        private bool firstRun = true;       
+        //private bool autoDetected = false; 
+        //public int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
+        //private bool isWorking = false;
+        //private bool firstRun = true;       
 
         ///
         /// Autotracking Startup
@@ -106,110 +106,110 @@ namespace KhTracker
             InitAutoTracker(false);
         }
 
-        public void SetAutoDetectTimer()
-        {
-            //return if autotracking already succsessful
-            if (isWorking || !AutoDetectOption.IsChecked)
-                return;
+        //public void SetAutoDetectTimer()
+        //{
+        //    //return if autotracking already succsessful
+        //    if (isWorking || !AutoDetectOption.IsChecked)
+        //        return;
+        //
+        //    //if autotracking isn't currently working then stop timer
+        //    if (aTimer != null)
+        //        aTimer.Stop();
+        //
+        //    if (firstRun)
+        //    {
+        //        autoTimer = new DispatcherTimer();
+        //        autoTimer.Tick += InitAutoDetect;
+        //        firstRun = false;
+        //        autoTimer.Interval = new TimeSpan(0, 0, 0, 5, 0); // attempt tracking every 5 seconds
+        //    }
+        //
+        //    autoTimer.Start();
+        //}
 
-            //if autotracking isn't currently working then stop timer
-            if (aTimer != null)
-                aTimer.Stop();
-
-            if (firstRun)
-            {
-                autoTimer = new DispatcherTimer();
-                autoTimer.Tick += InitAutoDetect;
-                firstRun = false;
-                autoTimer.Interval = new TimeSpan(0, 0, 0, 5, 0); // attempt tracking every 5 seconds
-            }
-
-            autoTimer.Start();
-        }
-
-        private void InitAutoDetect(object sender, EventArgs e)
-        {
-            int hooktries = 0;
-            bool version = true; //Reminder: true = emu | false = pc
-
-            //if auto-detect was sucessful before then attempt re-autotracking based on that
-            if (autoDetected && storedDetectedVersion != 0)
-            {
-                do
-                {
-                    memory = new MemoryReader(pcsx2tracking);
-                    if (hooktries < 20)
-                    {
-                        hooktries++;
-                    }
-                    else
-                    {
-                        memory = null;
-                        return;
-                    }
-                } while (!memory.Hooked);
-
-                //stop auto-detect timer
-                if (autoTimer != null)
-                    autoTimer.Stop();
-
-                firstRun = true;                  //reset firstrun
-                isWorking = true;
-                InitAutoTracker(pcsx2tracking);   //start rest of autotracking
-                return;
-            }
-
-            //attempt tracking correct version
-            do
-            {
-                memory = new MemoryReader(version);
-
-                //try emu hooking 1st
-                if (hooktries <= 10 && version)
-                {
-                    hooktries++;
-                }
-                else
-                {
-                    //could not hook emu so change version to try pc hooking
-                    version = false;
-                }
-
-                //try pc hooking if emu failed
-                if (hooktries <= 20 && !version)
-                {
-                    hooktries++;
-                }
-                else if (hooktries > 20)
-                {
-                    //could not hook pc so reset and return to try again next tick
-                    memory = null;
-                    autoDetected = false;
-                    storedDetectedVersion = 0;
-                    return;
-                }
-
-            } while (!memory.Hooked);
-
-            if (memory.Hooked)
-            {
-                //stop auto-detect timer
-                if (autoTimer != null)
-                    autoTimer.Stop();
-
-                //store version for disconnect
-                if (version)
-                    storedDetectedVersion = 2;
-                else
-                    storedDetectedVersion = 1;
-
-                autoDetected = true;        //autodetect success
-                isWorking = true;
-                firstRun = true;            //reset frstrun
-                pcsx2tracking = version;    //set which version we are tracking
-                InitAutoTracker(version);   //start rest of autotracking
-            }
-        }
+        //private void InitAutoDetect(object sender, EventArgs e)
+        //{
+        //    int hooktries = 0;
+        //    bool version = true; //Reminder: true = emu | false = pc
+        //
+        //    //if auto-detect was sucessful before then attempt re-autotracking based on that
+        //    if (autoDetected && storedDetectedVersion != 0)
+        //    {
+        //        do
+        //        {
+        //            memory = new MemoryReader(pcsx2tracking);
+        //            if (hooktries < 20)
+        //            {
+        //                hooktries++;
+        //            }
+        //            else
+        //            {
+        //                memory = null;
+        //                return;
+        //            }
+        //        } while (!memory.Hooked);
+        //
+        //        //stop auto-detect timer
+        //        if (autoTimer != null)
+        //            autoTimer.Stop();
+        //
+        //        firstRun = true;                  //reset firstrun
+        //        isWorking = true;
+        //        InitAutoTracker(pcsx2tracking);   //start rest of autotracking
+        //        return;
+        //    }
+        //
+        //    //attempt tracking correct version
+        //    do
+        //    {
+        //        memory = new MemoryReader(version);
+        //
+        //        //try emu hooking 1st
+        //        if (hooktries <= 10 && version)
+        //        {
+        //            hooktries++;
+        //        }
+        //        else
+        //        {
+        //            //could not hook emu so change version to try pc hooking
+        //            version = false;
+        //        }
+        //
+        //        //try pc hooking if emu failed
+        //        if (hooktries <= 20 && !version)
+        //        {
+        //            hooktries++;
+        //        }
+        //        else if (hooktries > 20)
+        //        {
+        //            //could not hook pc so reset and return to try again next tick
+        //            memory = null;
+        //            autoDetected = false;
+        //            storedDetectedVersion = 0;
+        //            return;
+        //        }
+        //
+        //    } while (!memory.Hooked);
+        //
+        //    if (memory.Hooked)
+        //    {
+        //        //stop auto-detect timer
+        //        if (autoTimer != null)
+        //            autoTimer.Stop();
+        //
+        //        //store version for disconnect
+        //        if (version)
+        //            storedDetectedVersion = 2;
+        //        else
+        //            storedDetectedVersion = 1;
+        //
+        //        autoDetected = true;        //autodetect success
+        //        isWorking = true;
+        //        firstRun = true;            //reset frstrun
+        //        pcsx2tracking = version;    //set which version we are tracking
+        //        InitAutoTracker(version);   //start rest of autotracking
+        //    }
+        //}
 
         public void InitAutoTracker(bool PCSX2)
         {
@@ -228,7 +228,7 @@ namespace KhTracker
                     MessageBox.Show("Please start KH2 before loading the Auto Tracker.");
                     return;
                 }
-            } while (!memory.Hooked && !autoDetected);
+            } while (!memory.Hooked); // && !autoDetected);
 
             // PC Address anchors
             int Now = 0x0714DB8;
@@ -257,16 +257,16 @@ namespace KhTracker
                 {
                     memory = null;
                     MessageBox.Show("Unable to access PCSX2 try running KHTracker as admin");
-                    isWorking = false;
-                    SetAutoDetectTimer();
+                    //isWorking = false;
+                    //SetAutoDetectTimer();
                     return;
                 }
                 catch
                 {
                     memory = null;
                     MessageBox.Show("Error connecting to PCSX2");
-                    isWorking = false;
-                    SetAutoDetectTimer();
+                    //isWorking = false;
+                    //SetAutoDetectTimer();
                     return;
                 }
 
@@ -322,17 +322,17 @@ namespace KhTracker
             }
         }
 
-        private async void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
+        private void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
         {
             //PC needs some slight changing to make sure auto-detect works
             //delay continuing for a short time to avoid connecting too early
-            int Delay = 10000;
+            //int Delay = 10000;
 
             //if auto-detect isn't enabled then we don't wait. 
-            if (!AutoDetectOption.IsChecked)
-                Delay = 0;
+            //if (!AutoDetectOption.IsChecked)
+            //    Delay = 0;
 
-            await Task.Delay(Delay);
+            //await Task.Delay(Delay);
             try
             {
                 CheckPCOffset();
@@ -341,14 +341,14 @@ namespace KhTracker
             {
                 memory = null;
                 MessageBox.Show("Unable to access KH2FM try running KHTracker as admin");
-                isWorking = false;
+                //isWorking = false;
                 return;
             }
             catch
             {
                 memory = null;
                 MessageBox.Show("Error connecting to KH2FM");
-                isWorking = false;
+                //isWorking = false;
                 return;
             }
 
@@ -533,21 +533,21 @@ namespace KhTracker
            catch
             {
                 aTimer.Stop();
-                isWorking = false;
+                //isWorking = false;
             
-                if (AutoDetectOption.IsChecked)
-                {
-                    Connect.Visibility = Visibility.Visible;
-                    Connect2.Visibility = Visibility.Collapsed;
-                    SetAutoDetectTimer();
-                }
-                else
-                {
+                //if (AutoDetectOption.IsChecked)
+                //{
+                //    Connect.Visibility = Visibility.Visible;
+                //    Connect2.Visibility = Visibility.Collapsed;
+                //    SetAutoDetectTimer();
+                //}
+                //else
+                //{
                     Connect.Visibility = Visibility.Collapsed;
                     Connect2.Visibility = Visibility.Visible;
                     Connect2.Source = data.AD_Cross;
                     MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
-                }
+                //}
             
                 return;
             }
@@ -1686,7 +1686,7 @@ namespace KhTracker
                             break;
                         case 19:
                             if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
-                                boss = "Hades II";
+                                boss = "Hades II (1)";
                             break;
                         case 34:
                             if (world.eventID1 == 151 && world.eventComplete == 1) // Zexion finish

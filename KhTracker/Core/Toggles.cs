@@ -138,35 +138,35 @@ namespace KhTracker
             }
         }
 
-        private void AutoDetectToggle(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;
-
-            if (AutoDetectOption.IsChecked)
-            {
-                Connect.Visibility = Visibility.Visible;
-                Connect2.Visibility = Visibility.Collapsed;
-                SetAutoDetectTimer();
-
-                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-
-                TrackPCSX2Toggle.IsEnabled = false;
-                TrackPCToggle.IsEnabled = false;
-            }
-            else
-            {
-                Connect.Visibility = Visibility.Collapsed;
-                Connect2.Visibility = Visibility.Collapsed;
-
-                if (SettingsText.Text == "Settings:")
-                    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-                else
-                    SettingRow.Height = new GridLength(0, GridUnitType.Star);
-
-                TrackPCSX2Toggle.IsEnabled = true;
-                TrackPCToggle.IsEnabled = true;
-            }
-        }
+        //private void AutoDetectToggle(object sender, RoutedEventArgs e)
+        //{
+        //    Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;
+        //
+        //    if (AutoDetectOption.IsChecked)
+        //    {
+        //        Connect.Visibility = Visibility.Visible;
+        //        Connect2.Visibility = Visibility.Collapsed;
+        //        SetAutoDetectTimer();
+        //
+        //        SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+        //
+        //        TrackPCSX2Toggle.IsEnabled = false;
+        //        TrackPCToggle.IsEnabled = false;
+        //    }
+        //    else
+        //    {
+        //        Connect.Visibility = Visibility.Collapsed;
+        //        Connect2.Visibility = Visibility.Collapsed;
+        //
+        //        if (SettingsText.Text == "Settings:")
+        //            SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+        //        else
+        //            SettingRow.Height = new GridLength(0, GridUnitType.Star);
+        //
+        //        TrackPCSX2Toggle.IsEnabled = true;
+        //        TrackPCToggle.IsEnabled = true;
+        //    }
+        //}
 
         ///
         /// Toggles
@@ -773,37 +773,38 @@ namespace KhTracker
                 Grid.SetRow(SorasHeartTop, 0);
                 WorldsLeft.Children.Add(SimulatedTwilightTownTop);
                 Grid.SetRow(SimulatedTwilightTownTop, 1);
+                WorldsLeft.Children.Add(TwilightTownTop);
+                Grid.SetRow(TwilightTownTop, 2);
                 WorldsLeft.Children.Add(HollowBastionTop);
-                Grid.SetRow(HollowBastionTop, 2);
+                Grid.SetRow(HollowBastionTop, 3);
+                WorldsLeft.Children.Add(LandofDragonsTop);
+                Grid.SetRow(LandofDragonsTop, 4);
                 WorldsLeft.Children.Add(BeastsCastleTop);
-                Grid.SetRow(BeastsCastleTop, 3);
+                Grid.SetRow(BeastsCastleTop, 5);
+                WorldsLeft.Children.Add(OlympusColiseumTop);
+                Grid.SetRow(OlympusColiseumTop, 6);
                 WorldsLeft.Children.Add(DisneyCastleTop);
-                Grid.SetRow(DisneyCastleTop, 4);
-                WorldsLeft.Children.Add(AgrabahTop);
-                Grid.SetRow(AgrabahTop, 5);
-                WorldsLeft.Children.Add(PrideLandsTop);
-                Grid.SetRow(PrideLandsTop, 6);
-                WorldsLeft.Children.Add(HundredAcreWoodTop);
-                Grid.SetRow(HundredAcreWoodTop, 7);
+                Grid.SetRow(DisneyCastleTop, 7);
                 WorldsLeft.Children.Add(GoATop);
                 Grid.SetRow(GoATop, 8);
 
+
                 WorldsRight.Children.Add(DriveFormsTop);
                 Grid.SetRow(DriveFormsTop, 0);
-                WorldsRight.Children.Add(TwilightTownTop);
-                Grid.SetRow(TwilightTownTop, 1);
-                WorldsRight.Children.Add(LandofDragonsTop);
-                Grid.SetRow(LandofDragonsTop, 2);
-                WorldsRight.Children.Add(OlympusColiseumTop);
-                Grid.SetRow(OlympusColiseumTop, 3);
                 WorldsRight.Children.Add(PortRoyalTop);
-                Grid.SetRow(PortRoyalTop, 4);
+                Grid.SetRow(PortRoyalTop, 1);
+                WorldsRight.Children.Add(AgrabahTop);
+                Grid.SetRow(AgrabahTop, 2);
                 WorldsRight.Children.Add(HalloweenTownTop);
-                Grid.SetRow(HalloweenTownTop, 5);
+                Grid.SetRow(HalloweenTownTop, 3);
+                WorldsRight.Children.Add(PrideLandsTop);
+                Grid.SetRow(PrideLandsTop, 4);
                 WorldsRight.Children.Add(SpaceParanoidsTop);
-                Grid.SetRow(SpaceParanoidsTop, 6);
+                Grid.SetRow(SpaceParanoidsTop, 5);
                 WorldsRight.Children.Add(TWTNWTop);
-                Grid.SetRow(TWTNWTop, 7);
+                Grid.SetRow(TWTNWTop, 6);
+                WorldsRight.Children.Add(HundredAcreWoodTop);
+                Grid.SetRow(HundredAcreWoodTop, 7);
                 WorldsRight.Children.Add(AtlanticaTop);
                 Grid.SetRow(AtlanticaTop, 8);
                 WorldsRight.Children.Add(PuzzSynthTop);

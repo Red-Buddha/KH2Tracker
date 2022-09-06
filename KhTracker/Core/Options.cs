@@ -931,7 +931,7 @@ namespace KhTracker
             if (aTimer != null)
                 aTimer.Stop();
 
-            isWorking = false;
+            //isWorking = false;
             collectedChecks.Clear();
             newChecks.Clear();
             ModeDisplay.Header = "";
@@ -950,6 +950,7 @@ namespace KhTracker
             data.forcedFinal = false;
             data.BossRandoFound = false;
             data.BossList.Clear();
+            data.BossRandoSeed = 0;
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1056,7 +1057,7 @@ namespace KhTracker
             Strength.Visibility = Visibility.Collapsed;
             Magic.Visibility = Visibility.Collapsed;
             Defense.Visibility = Visibility.Collapsed;
-            Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
+            //Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
             SorasHeartWeapon.SetResourceReference(ContentProperty, "");
 
             FormRow.Height = new GridLength(0, GridUnitType.Star);
@@ -1193,12 +1194,12 @@ namespace KhTracker
             Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
             Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
             
-            if (AutoDetectOption.IsChecked)
-            {
-                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-            }
-            else
-                SettingRow.Height = new GridLength(0, GridUnitType.Star);
+            //if (AutoDetectOption.IsChecked)
+            //{
+            //    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+            //}
+            //else
+            //    SettingRow.Height = new GridLength(0, GridUnitType.Star);
 
             //reset pathhints edits
             foreach (string key in data.WorldsData.Keys.ToList())
@@ -1237,7 +1238,7 @@ namespace KhTracker
                 }
             }
 
-            SetAutoDetectTimer();
+            //SetAutoDetectTimer();
             NextLevelDisplay();
             //DeathCounterDisplay();
         }
@@ -1411,336 +1412,368 @@ namespace KhTracker
 
             using (ZipArchive archive = ZipFile.OpenRead(filename))
             {
+                ZipArchiveEntry hintsfile = null;
+                ZipArchiveEntry hashfile = null;
+                ZipArchiveEntry enemyfile = null;
+
                 foreach (var entry in archive.Entries)
                 {
-                    if (entry.FullName.EndsWith(".Hints"))
+                    if (entry.FullName.Equals("HintFile.Hints"))
                     {
-                        using (StreamReader reader = new StreamReader(entry.Open()))
-                        {
-                            data.openKHHintText = reader.ReadToEnd();
-                            var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
-                            var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-                            var settings = new List<string>();
-
-                            data.ShouldResetHash = false;
-
-                            if (hintObject.ContainsKey("settings"))
-                            {
-                                settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
-
-                                #region Settings
-
-                                //item settings
-                                PromiseCharmToggle(false);
-                                AbilitiesToggle(false);
-                                VisitLockToggle(false);
-                                ExtraChecksToggle(false);
-                                AntiFormToggle(false);
-
-                                //world settings
-                                SoraHeartToggle(true);
-                                DrivesToggle(false);
-                                SimulatedToggle(false);
-                                TwilightTownToggle(false);
-                                HollowBastionToggle(false);
-                                BeastCastleToggle(false);
-                                OlympusToggle(false);
-                                AgrabahToggle(false);
-                                LandofDragonsToggle(false);
-                                DisneyCastleToggle(false);
-                                PrideLandsToggle(false);
-                                PortRoyalToggle(false);
-                                HalloweenTownToggle(false);
-                                SpaceParanoidsToggle(false);
-                                TWTNWToggle(false);
-                                HundredAcreWoodToggle(false);
-                                AtlanticaToggle(false);
-                                PuzzleToggle(false);
-                                SynthToggle(false);
-
-                                //settings visuals
-                                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-                                Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-                                Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-                                Double SpacerValue = 10;
-                                #endregion
-
-                                //to be safe about this i guess
-                                bool abilitiesOn = true;
-
-                                //load settings from hints
-                                foreach (string setting in settings)
-                                {
-                                    Console.WriteLine("setting found = " + setting);
-
-                                    switch (setting)
-                                    {
-                                        //items
-                                        case "PromiseCharm":
-                                            PromiseCharmToggle(true);
-                                            break;
-                                        case "Level1Mode":
-                                            abilitiesOn = false;
-                                            break;
-                                        case "visit_locking":
-                                            VisitLockToggle(true);
-                                            break;
-                                        case "extra_ics":
-                                            ExtraChecksToggle(true);
-                                            break;
-                                        case "Anti-Form":
-                                            AntiFormToggle(true);
-                                            break;
-                                        //worlds
-                                        case "Level":
-                                            SoraHeartToggle(false);
-                                            SoraLevel01Toggle(true);
-                                            AbilitiesToggle(true);
-                                            Setting_Level_01.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "ExcludeFrom50":                                          
-                                            SoraLevel50Toggle(true);
-                                            AbilitiesToggle(true);
-                                            Setting_Level_50.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "ExcludeFrom99":
-                                            SoraLevel99Toggle(true);
-                                            AbilitiesToggle(true);
-                                            Setting_Level_99.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Simulated Twilight Town":
-                                            SimulatedToggle(true);
-                                            break;
-                                        case "Hundred Acre Wood":
-                                            HundredAcreWoodToggle(true);
-                                            break;
-                                        case "Atlantica":
-                                            AtlanticaToggle(true);
-                                            break;
-                                        case "Puzzle":
-                                            PuzzleToggle(true);
-                                            break;
-                                        case "Synthesis":
-                                            SynthToggle(true);
-                                            break;
-                                        case "Form Levels":
-                                            DrivesToggle(true);
-                                            break;
-                                        case "Land of Dragons":
-                                            LandofDragonsToggle(true);
-                                            break;
-                                        case "Beast's Castle":
-                                            BeastCastleToggle(true);
-                                            break;
-                                        case "Hollow Bastion":
-                                            HollowBastionToggle(true);
-                                            break;
-                                        case "Twilight Town":
-                                            TwilightTownToggle(true);
-                                            break;
-                                        case "The World That Never Was":
-                                            TWTNWToggle(true);
-                                            break;
-                                        case "Space Paranoids":
-                                            SpaceParanoidsToggle(true);
-                                            break;
-                                        case "Port Royal":
-                                            PortRoyalToggle(true);
-                                            break;
-                                        case "Olympus Coliseum":
-                                            OlympusToggle(true);
-                                            break;
-                                        case "Agrabah":
-                                            AgrabahToggle(true);
-                                            break;
-                                        case "Halloween Town":
-                                            HalloweenTownToggle(true);
-                                            break;
-                                        case "Pride Lands":
-                                            PrideLandsToggle(true);
-                                            break;
-                                        case "Disney Castle / Timeless River":
-                                            DisneyCastleToggle(true);
-                                            break;
-                                        //settings
-                                        case "better_stt":
-                                            Setting_BetterSTT.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Cavern of Remembrance":
-                                            Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Absent Silhouettes":
-                                            Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Sephiroth":
-                                            Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Lingering Will (Terra)":
-                                            Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Data Organization XIII":
-                                            Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Transport to Remembrance":
-                                            Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Olympus Cups":
-                                            Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "Hades Paradox Cup":
-                                            Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
-                                            SpacerValue--;
-                                            break;
-                                        case "ScoreMode":
-                                            data.ScoreMode = true;
-                                            break;
-                                    }
-                                }
-
-                                if(abilitiesOn == false)
-                                    AbilitiesToggle(false);
-
-                                Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
-                                SettingsText.Text = "Settings:";
-                                
-                            }
-
-                            switch (hintObject["hintsType"].ToString())
-                            {
-                                case "Shananas":
-                                    {
-                                        SetMode(Mode.OpenKHAltHints);
-                                        ShanHints(hintObject);
-                                    }
-                                    break;
-                                case "JSmartee":
-                                    {
-                                        SetMode(Mode.OpenKHHints);
-                                        JsmarteeHints(hintObject);
-                                    }
-                                    break;
-                                case "Points":
-                                    {
-                                        SetMode(Mode.DAHints);
-                                        PointsHints(hintObject);
-                                    }
-                                    break;
-                                case "Path":
-                                    {
-                                        SetMode(Mode.PathHints);
-                                        PathHints(hintObject);
-                                    }
-                                    break;
-                                case "Spoiler":
-                                    {
-                                        SetMode(Mode.SpoilerHints);
-                                        SpoilerHints(hintObject);
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-
-                            reader.Close();
-                        }
+                        hintsfile = entry;
                     }
-
                     if (entry.FullName.Equals("sys.yml"))
                     {
-                        using (var reader2 = new StreamReader(entry.Open()))
-                        {
-                            string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
-                            string text1 = reader2.ReadLine();
-                            string text2 = reader2.ReadLine();
-                            string text = text1 + text2;
-                            string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-
-                            //Set Icons
-                            HashIcon1.SetResourceReference(ContentProperty, hash[0]);
-                            HashIcon2.SetResourceReference(ContentProperty, hash[1]);
-                            HashIcon3.SetResourceReference(ContentProperty, hash[2]);
-                            HashIcon4.SetResourceReference(ContentProperty, hash[3]);
-                            HashIcon5.SetResourceReference(ContentProperty, hash[4]);
-                            HashIcon6.SetResourceReference(ContentProperty, hash[5]);
-                            HashIcon7.SetResourceReference(ContentProperty, hash[6]);
-                            data.SeedHashLoaded = true;
-
-                            //make visible
-                            if (SeedHashOption.IsChecked)
-                            {
-                                SetHintText("");
-                                HashGrid.Visibility = Visibility.Visible;
-                            }
-                            reader2.Close();
-                        }
+                        hashfile = entry;
                     }
-
                     if (entry.FullName.Equals("enemyspoilers.txt"))
                     {
-                        //only care about parsing this with points hints or score mode
-                        if (data.mode != Mode.DAHints && !data.ScoreMode)
-                            return;
+                        enemyfile = entry;
+                    }
+                }
 
-                        using (var reader3 = new StreamReader(entry.Open()))
+                if (enemyfile != null)
+                {
+                    using (var reader3 = new StreamReader(enemyfile.Open()))
+                    {
+                        string firstLine = reader3.ReadLine();
+                        if (firstLine != "BOSSES")
                         {
-                            string firstLine = reader3.ReadLine();
-                            if (firstLine != "BOSSES")
+                            Console.WriteLine("No Bosses Present? Expected \"BOSSES\" but got " + firstLine);
+                            reader3.Close();
+                            return;
+                        }
+
+                        //we found bosses, set bool to alter how boss points are awarded
+                        data.BossRandoFound = true;
+
+                        string[] separatingString = { " became " };
+                        int lineNumber = 85;
+                        for (int i = 1; i < lineNumber; i++)
+                        {
+                            string curLine = reader3.ReadLine().Trim();
+                            string[] bosses = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
+
+                            data.BossList.Add(bosses[0], bosses[1]);
+
+                            //check boss name. We want to stop at data zexion as he is always at the end.
+                            switch (bosses[0])
                             {
-                                Console.WriteLine("No Bosses Present? Expected \"BOSSES\" but got " + firstLine);
-                                reader3.Close();
-                                return;
-                            }
-
-                            //we found bosses, set bool to alter how boss points are awarded
-                            data.BossRandoFound = true;
-
-                            string[] separatingString = { " became " };
-                            int lineNumber = 85;
-                            for (int i = 1; i < lineNumber; i++)
-                            {
-                                string curLine = reader3.ReadLine().Trim();
-                                string[] bosses = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
-
-                                data.BossList.Add(bosses[0], bosses[1]);
-
-                                //check boss name. We want to stop at data zexion as he is always at the end.
-                                switch (bosses[0])
-                                {
-                                    case "Zexion (Data)":
-                                        lineNumber = i;
-                                        Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
-                                        break;
-                                    default:
-                                        Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
-                                        break;
-                                }
+                                case "Zexion (Data)":
+                                    lineNumber = i;
+                                    Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
+                                    break;
+                                default:
+                                    Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
+                                    break;
                             }
                         }
                     }
                 }
+
+                if (hashfile != null)
+                {
+                    using (var reader2 = new StreamReader(hashfile.Open()))
+                    {
+                        string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
+                        string text1 = reader2.ReadLine();
+                        string text2 = reader2.ReadLine();
+                        string text = text1 + text2;
+                        string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+
+                        //Set Icons
+                        HashIcon1.SetResourceReference(ContentProperty, hash[0]);
+                        HashIcon2.SetResourceReference(ContentProperty, hash[1]);
+                        HashIcon3.SetResourceReference(ContentProperty, hash[2]);
+                        HashIcon4.SetResourceReference(ContentProperty, hash[3]);
+                        HashIcon5.SetResourceReference(ContentProperty, hash[4]);
+                        HashIcon6.SetResourceReference(ContentProperty, hash[5]);
+                        HashIcon7.SetResourceReference(ContentProperty, hash[6]);
+                        data.SeedHashLoaded = true;
+
+                        //make visible
+                        if (SeedHashOption.IsChecked)
+                        {
+                            SetHintText("");
+                            HashGrid.Visibility = Visibility.Visible;
+                        }
+
+                        HashToSeed(hash);
+
+                        reader2.Close();
+                    }
+                }
+
+                if (hintsfile != null)
+                {
+                    using (StreamReader reader = new StreamReader(hintsfile.Open()))
+                    {
+                        data.openKHHintText = reader.ReadToEnd();
+                        var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
+                        var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
+                        var settings = new List<string>();
+
+                        data.ShouldResetHash = false;
+
+                        if (hintObject.ContainsKey("settings"))
+                        {
+                            settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
+
+                            #region Settings
+
+                            //item settings
+                            PromiseCharmToggle(false);
+                            AbilitiesToggle(false);
+                            VisitLockToggle(false);
+                            ExtraChecksToggle(false);
+                            AntiFormToggle(false);
+
+                            //world settings
+                            SoraHeartToggle(true);
+                            DrivesToggle(false);
+                            SimulatedToggle(false);
+                            TwilightTownToggle(false);
+                            HollowBastionToggle(false);
+                            BeastCastleToggle(false);
+                            OlympusToggle(false);
+                            AgrabahToggle(false);
+                            LandofDragonsToggle(false);
+                            DisneyCastleToggle(false);
+                            PrideLandsToggle(false);
+                            PortRoyalToggle(false);
+                            HalloweenTownToggle(false);
+                            SpaceParanoidsToggle(false);
+                            TWTNWToggle(false);
+                            HundredAcreWoodToggle(false);
+                            AtlanticaToggle(false);
+                            PuzzleToggle(false);
+                            SynthToggle(false);
+
+                            //settings visuals
+                            SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+                            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+                            Double SpacerValue = 10;
+                            #endregion
+
+                            //to be safe about this i guess
+                            bool abilitiesOn = true;
+
+                            //load settings from hints
+                            foreach (string setting in settings)
+                            {
+                                Console.WriteLine("setting found = " + setting);
+
+                                switch (setting)
+                                {
+                                    //items
+                                    case "PromiseCharm":
+                                        PromiseCharmToggle(true);
+                                        break;
+                                    case "Level1Mode":
+                                        abilitiesOn = false;
+                                        break;
+                                    case "visit_locking":
+                                        VisitLockToggle(true);
+                                        break;
+                                    case "extra_ics":
+                                        ExtraChecksToggle(true);
+                                        break;
+                                    case "Anti-Form":
+                                        AntiFormToggle(true);
+                                        break;
+                                    //worlds
+                                    case "Level":
+                                        SoraHeartToggle(false);
+                                        SoraLevel01Toggle(true);
+                                        AbilitiesToggle(true);
+                                        Setting_Level_01.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "ExcludeFrom50":
+                                        SoraLevel50Toggle(true);
+                                        AbilitiesToggle(true);
+                                        Setting_Level_50.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "ExcludeFrom99":
+                                        SoraLevel99Toggle(true);
+                                        AbilitiesToggle(true);
+                                        Setting_Level_99.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Simulated Twilight Town":
+                                        SimulatedToggle(true);
+                                        break;
+                                    case "Hundred Acre Wood":
+                                        HundredAcreWoodToggle(true);
+                                        break;
+                                    case "Atlantica":
+                                        AtlanticaToggle(true);
+                                        break;
+                                    case "Puzzle":
+                                        PuzzleToggle(true);
+                                        break;
+                                    case "Synthesis":
+                                        SynthToggle(true);
+                                        break;
+                                    case "Form Levels":
+                                        DrivesToggle(true);
+                                        break;
+                                    case "Land of Dragons":
+                                        LandofDragonsToggle(true);
+                                        break;
+                                    case "Beast's Castle":
+                                        BeastCastleToggle(true);
+                                        break;
+                                    case "Hollow Bastion":
+                                        HollowBastionToggle(true);
+                                        break;
+                                    case "Twilight Town":
+                                        TwilightTownToggle(true);
+                                        break;
+                                    case "The World That Never Was":
+                                        TWTNWToggle(true);
+                                        break;
+                                    case "Space Paranoids":
+                                        SpaceParanoidsToggle(true);
+                                        break;
+                                    case "Port Royal":
+                                        PortRoyalToggle(true);
+                                        break;
+                                    case "Olympus Coliseum":
+                                        OlympusToggle(true);
+                                        break;
+                                    case "Agrabah":
+                                        AgrabahToggle(true);
+                                        break;
+                                    case "Halloween Town":
+                                        HalloweenTownToggle(true);
+                                        break;
+                                    case "Pride Lands":
+                                        PrideLandsToggle(true);
+                                        break;
+                                    case "Disney Castle / Timeless River":
+                                        DisneyCastleToggle(true);
+                                        break;
+                                    //settings
+                                    case "better_stt":
+                                        Setting_BetterSTT.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Cavern of Remembrance":
+                                        Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Absent Silhouettes":
+                                        Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Sephiroth":
+                                        Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Lingering Will (Terra)":
+                                        Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Data Organization XIII":
+                                        Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Transport to Remembrance":
+                                        Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Olympus Cups":
+                                        Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "Hades Paradox Cup":
+                                        Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
+                                        SpacerValue--;
+                                        break;
+                                    case "ScoreMode":
+                                        data.ScoreMode = true;
+                                        break;
+                                }
+                            }
+
+                            if (abilitiesOn == false)
+                                AbilitiesToggle(false);
+
+                            Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
+                            SettingsText.Text = "Settings:";
+
+                        }
+
+                        switch (hintObject["hintsType"].ToString())
+                        {
+                            case "Shananas":
+                                {
+                                    SetMode(Mode.OpenKHAltHints);
+                                    ShanHints(hintObject);
+                                }
+                                break;
+                            case "JSmartee":
+                                {
+                                    SetMode(Mode.OpenKHHints);
+                                    JsmarteeHints(hintObject);
+                                }
+                                break;
+                            case "Points":
+                                {
+                                    SetMode(Mode.DAHints);
+                                    PointsHints(hintObject);
+                                }
+                                break;
+                            case "Path":
+                                {
+                                    SetMode(Mode.PathHints);
+                                    PathHints(hintObject);
+                                }
+                                break;
+                            case "Spoiler":
+                                {
+                                    SetMode(Mode.SpoilerHints);
+                                    SpoilerHints(hintObject);
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                        reader.Close();
+                    }
+                }
+
                 archive.Dispose();
             }
+        }
+    
+        private void HashToSeed(string[] hash)
+        {
+            int icon1 = Codes.HashInt[hash[0]];
+            int icon2 = Codes.HashInt[hash[1]];
+            int icon3 = Codes.HashInt[hash[2]];
+            int icon4 = Codes.HashInt[hash[3]];
+            int icon5 = Codes.HashInt[hash[4]];
+            int icon6 = Codes.HashInt[hash[5]];
+            int icon7 = Codes.HashInt[hash[6]];
+
+            int final = (icon1 + icon2) * (icon3 + icon4) * (icon5 + icon6) - icon7;
+
+            data.BossRandoSeed = final;
         }
     }
 }

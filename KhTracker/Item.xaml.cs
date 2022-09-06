@@ -137,6 +137,10 @@ namespace KhTracker
                         {
                             MainW.SetHintText(Codes.GetHintTextName(repStr1), "has no Important Checks", "", true, false, false);
                         }
+                        else if (repInt == -12345)
+                        {
+                            MainW.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
+                        }
                         else
                         {
                             MainW.SetHintText(Codes.GetHintTextName(repStr1), "has been revealed!", "", true, false, false);
