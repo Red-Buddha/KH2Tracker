@@ -82,6 +82,8 @@ namespace KhTracker
         public bool BossRandoFound = false;
         public Dictionary<string, string> BossList = new Dictionary<string, string>();
         public int BossRandoSeed;
+
+        public List<string> enabledWorlds = new List<string>();
     }
 
     public class WorldData

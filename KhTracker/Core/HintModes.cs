@@ -184,10 +184,7 @@ namespace KhTracker
 
         private void SpoilerHints(Dictionary<string, object> hintObject)
         {
-            //DEBUG
-            //This bool should be gotten from the seed gen!
             bool TMP_bossReports = false;
-
             data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
@@ -200,18 +197,22 @@ namespace KhTracker
             {
                 data.SpoilerWorldCompletion = true;
             }
+
             //set if reports should reveal items or not
             if (reveals.Contains("reportmode"))
             {
                 data.SpoilerReportMode = true;
                 ReportsToggle(true);
             }
-            else if(!reveals.Contains("reportmode") && reveals.Contains("report"))
+
+            //reports reveal bosses
+            if(reveals.Contains("bossreports"))
             {
                 ReportsToggle(true);
                 TMP_bossReports = true;
             }
-            else
+
+            if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
                 ReportsToggle(false);
 
             Dictionary<string, int> counts = new Dictionary<string, int>
@@ -308,6 +309,13 @@ namespace KhTracker
                 {
                     //get a boss
                     string boss = keyList[rand.Next(0, keyList.Count)];
+
+                    //make sure boss is in a world that's enabled
+                    while (!data.enabledWorlds.Contains(Codes.bossLocations[boss]))
+                    {
+                        boss = keyList[rand.Next(0, keyList.Count)];
+                    }
+
                     //make sure it's not a duplicate
                     while (OrigBosses.Contains(boss) || boss.Contains("(Cups)") || boss.Contains("(Data)"))
                     {
@@ -327,11 +335,11 @@ namespace KhTracker
                         origType = "boss_other";
                     }
 
-                    //prioritize special arenas and bosses (70%?)
+                    //prioritize special arenas and bosses (50%?)
                     while (origType == "boss_other" && replaceType == "boss_other")
                     {
                         int reroll = rand.Next(1, 10);
-                        if (reroll > 5) //30% chance to keep basic bosses
+                        if (reroll > 5) //50% chance to keep basic bosses
                         {
                             break;
                         }
@@ -359,19 +367,44 @@ namespace KhTracker
                     //report location and final hint string
                     string worldhint;
 
-                    if (boss == "Hades II (1)")
-                    {
-                        OrigBosses.Add(boss);
-                        boss = "Hades II";
-                    }
-                    
                     if (boss == data.BossList[boss])
                     {
-                        worldhint = boss + " is unchanged";
+                        string tmp_origBoss = boss;
+                        if (tmp_origBoss == "Hades II (1)")
+                        {
+                            tmp_origBoss = "Hades";
+                        }
+                        if (tmp_origBoss == "Pete OC II")
+                        {
+                            tmp_origBoss = "Pete";
+                        }
+
+                        worldhint = tmp_origBoss + " is unchanged";
                     }
                     else 
                     {
-                        worldhint = boss + " became " + data.BossList[boss];
+                        string tmp_origBoss = boss;
+                        string tmp_replBoss = data.BossList[boss];
+
+                        if (tmp_origBoss == "Hades II (1)")
+                        {
+                            tmp_origBoss = "Hades";
+                        }
+                        if (tmp_origBoss == "Pete OC II")
+                        {
+                            tmp_origBoss = "Pete";
+                        }
+
+                        if (tmp_replBoss == "Hades II (1)")
+                        {
+                            tmp_replBoss = "Hades";
+                        }
+                        if (tmp_replBoss == "Pete OC II")
+                        {
+                            tmp_replBoss = "Pete";
+                        }
+
+                        worldhint = tmp_origBoss + " became " + tmp_replBoss;
                     }
                     int dummyvalue = -12345; //use this for boss reports i guess
                     data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
@@ -406,15 +439,6 @@ namespace KhTracker
                     Console.WriteLine($"Something went wrong in setting point values. Unknown Key: {point.Key}");
                 }
             }
-        }
-
-        private void BossReports()
-        {
-
-
-
-
-
         }
 
         /// <summary>

@@ -1426,7 +1426,7 @@ namespace KhTracker
                     {
                         hashfile = entry;
                     }
-                    if (entry.FullName.Equals("enemyspoilers.txt"))
+                    if (entry.FullName.Equals("enemies.rando"))
                     {
                         enemyfile = entry;
                     }
@@ -1436,37 +1436,18 @@ namespace KhTracker
                 {
                     using (var reader3 = new StreamReader(enemyfile.Open()))
                     {
-                        string firstLine = reader3.ReadLine();
-                        if (firstLine != "BOSSES")
-                        {
-                            Console.WriteLine("No Bosses Present? Expected \"BOSSES\" but got " + firstLine);
-                            reader3.Close();
-                            return;
-                        }
-
-                        //we found bosses, set bool to alter how boss points are awarded
                         data.BossRandoFound = true;
+                        string enemyText64 = reader3.ReadToEnd();
+                        var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(enemyText64));
+                        var enemyObject = JsonSerializer.Deserialize<Dictionary<string, object>>(enemyText);
+                        var bosses = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(enemyObject["BOSSES"].ToString());
 
-                        string[] separatingString = { " became " };
-                        int lineNumber = 85;
-                        for (int i = 1; i < lineNumber; i++)
+                        foreach (var bosspair in bosses)
                         {
-                            string curLine = reader3.ReadLine().Trim();
-                            string[] bosses = curLine.Split(separatingString, System.StringSplitOptions.RemoveEmptyEntries);
+                            string bossOrig = bosspair["original"].ToString();
+                            string bossRepl = bosspair["new"].ToString();
 
-                            data.BossList.Add(bosses[0], bosses[1]);
-
-                            //check boss name. We want to stop at data zexion as he is always at the end.
-                            switch (bosses[0])
-                            {
-                                case "Zexion (Data)":
-                                    lineNumber = i;
-                                    Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
-                                    break;
-                                default:
-                                    Console.WriteLine("Boss: " + bosses[0] + " | Replacement: " + bosses[1]);
-                                    break;
-                            }
+                            data.BossList.Add(bossOrig, bossRepl);
                         }
                     }
                 }
@@ -1614,6 +1595,7 @@ namespace KhTracker
                                         break;
                                     case "Simulated Twilight Town":
                                         SimulatedToggle(true);
+                                        data.enabledWorlds.Add("STT");
                                         break;
                                     case "Hundred Acre Wood":
                                         HundredAcreWoodToggle(true);
@@ -1632,39 +1614,51 @@ namespace KhTracker
                                         break;
                                     case "Land of Dragons":
                                         LandofDragonsToggle(true);
+                                        data.enabledWorlds.Add("LoD");
                                         break;
                                     case "Beast's Castle":
                                         BeastCastleToggle(true);
+                                        data.enabledWorlds.Add("BC");
                                         break;
                                     case "Hollow Bastion":
                                         HollowBastionToggle(true);
+                                        data.enabledWorlds.Add("HB");
                                         break;
                                     case "Twilight Town":
                                         TwilightTownToggle(true);
+                                        data.enabledWorlds.Add("TT");
                                         break;
                                     case "The World That Never Was":
                                         TWTNWToggle(true);
+                                        data.enabledWorlds.Add("TWTNW");
                                         break;
                                     case "Space Paranoids":
                                         SpaceParanoidsToggle(true);
+                                        data.enabledWorlds.Add("SP");
                                         break;
                                     case "Port Royal":
                                         PortRoyalToggle(true);
+                                        data.enabledWorlds.Add("PR");
                                         break;
                                     case "Olympus Coliseum":
                                         OlympusToggle(true);
+                                        data.enabledWorlds.Add("OC");
                                         break;
                                     case "Agrabah":
                                         AgrabahToggle(true);
+                                        data.enabledWorlds.Add("AG");
                                         break;
                                     case "Halloween Town":
                                         HalloweenTownToggle(true);
+                                        data.enabledWorlds.Add("HT");
                                         break;
                                     case "Pride Lands":
                                         PrideLandsToggle(true);
+                                        data.enabledWorlds.Add("PL");
                                         break;
                                     case "Disney Castle / Timeless River":
                                         DisneyCastleToggle(true);
+                                        data.enabledWorlds.Add("DC");
                                         break;
                                     //settings
                                     case "better_stt":
