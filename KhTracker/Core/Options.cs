@@ -951,6 +951,7 @@ namespace KhTracker
             data.BossRandoFound = false;
             data.BossList.Clear();
             data.BossRandoSeed = 0;
+            data.enabledWorlds.Clear();
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1172,6 +1173,15 @@ namespace KhTracker
             WorldGrid.Ghost_Pages_obtained = 0;
             WorldGrid.Ghost_Pouches_obtained = 0;
 
+            Ghost_FireCount.Visibility = Visibility.Hidden;
+            Ghost_BlizzardCount.Visibility = Visibility.Hidden;
+            Ghost_ThunderCount.Visibility = Visibility.Hidden;
+            Ghost_CureCount.Visibility = Visibility.Hidden;
+            Ghost_ReflectCount.Visibility = Visibility.Hidden;
+            Ghost_MagnetCount.Visibility = Visibility.Hidden;
+            Ghost_PageCount.Visibility = Visibility.Hidden;
+            Ghost_MunnyCount.Visibility = Visibility.Hidden;
+
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
 
@@ -1199,7 +1209,7 @@ namespace KhTracker
             //    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
             //}
             //else
-            //    SettingRow.Height = new GridLength(0, GridUnitType.Star);
+            SettingRow.Height = new GridLength(0, GridUnitType.Star);
 
             //reset pathhints edits
             foreach (string key in data.WorldsData.Keys.ToList())
