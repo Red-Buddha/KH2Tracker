@@ -175,6 +175,11 @@
     <Resource Include="Fonts\HVD_Comic_Serif_Pro.otf" />
     <Resource Include="Fonts\KHGummi.otf" />
     <Resource Include="Fonts\KHMenu.otf" />
+    <Resource Include="Fonts\KHData.otf" />
+    <Resource Include="Fonts\KHMenu-Bold.otf" />
+    <Resource Include="Fonts\KHMenu-BoldItalic.otf" />
+    <Resource Include="Fonts\KHMenu-Italic.otf" />
+    <Resource Include="Fonts\KHTitle.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

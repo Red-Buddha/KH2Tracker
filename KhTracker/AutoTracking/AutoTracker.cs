@@ -1300,7 +1300,7 @@ namespace KhTracker
                             if (world.eventID3 == 10 && data.WorldsData[world.worldName].progress == 0) // Treasure Heap (PR2)
                                 curProg = 1;
                             if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
-                                curProg = 5;
+                                curProg = 6;
                             break;
                         case 2:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Town finish
@@ -1310,25 +1310,25 @@ namespace KhTracker
                             if (world.eventID1 == 59 && world.eventComplete == 1) // 1min pirates finish
                                 curProg = 3;
                             break;
-                        //case 7:
-                        //    if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
-                        //        curProg = ?;
-                        //    break;
+                        case 7:
+                            if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
+                                curProg = 4;
+                            break;
                         case 3:
                             if (world.eventID1 == 56 && world.eventComplete == 1) // barrels finish
-                                curProg = 4;
+                                curProg = 5;
                             break;
                         case 18:
                             if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
-                                curProg = 6;
+                                curProg = 7;
                             break;
                         case 14:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
-                                curProg = 7;
+                                curProg = 8;
                             break;
                         case 1:
                             if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
-                                curProg = 8;
+                                curProg = 9;
                             break;
                         default:
                             return;
@@ -1399,9 +1399,9 @@ namespace KhTracker
                                 curProg = 4;
                             else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
                             {
-                                curKey = data.ProgressKeys["PortRoyal"][9];
+                                curKey = data.ProgressKeys["PortRoyal"][10];
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
-                                data.WorldsData["PortRoyal"].progress = 9;
+                                data.WorldsData["PortRoyal"].progress = 10;
                                 return;
                             }
                             break;
