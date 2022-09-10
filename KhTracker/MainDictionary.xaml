@@ -7,8 +7,41 @@
     </ControlTemplate>
 
     <!--brush colors-->
-
-
+    <LinearGradientBrush x:Key="Color_Fire" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF5A1A" Offset="1"/>
+        <GradientStop Color="#FFFFAA3B" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Blizzard" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF6F50EF" Offset="1"/>
+        <GradientStop Color="#FFA4C8FF" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Thunder" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE17606" Offset="1"/>
+        <GradientStop Color="#FFFFE437" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Cure" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF62B055" Offset="1"/>
+        <GradientStop Color="#FFECFF5B" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Reflect" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFACECFF" Offset="1"/>
+        <GradientStop Color="#FFE6FFFF" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Magnet" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF58C0" Offset="1"/>
+        <GradientStop Color="#FFFFA5CA" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Page" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE16902" Offset="1"/>
+        <GradientStop Color="#FFFFF64A" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Pouch" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFD73435" Offset="1"/>
+        <GradientStop Color="#FFFF9546" Offset="0.4"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Color_Black" Color="Black"/>
+    <SolidColorBrush x:Key="Color_Trans" Color="Transparent"/>
+    
     <!--Classic-->
     <SolidColorBrush x:Key="ClassicYellow" Color="#FFE500"/>
     <!--Hinted Hints-->

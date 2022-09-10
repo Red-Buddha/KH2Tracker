@@ -273,41 +273,114 @@ namespace KhTracker
                 case "Fire":
                     Real_Fire += addRemove;
                     window.FireCount.Text = (3 - Real_Fire).ToString();
-                    //multi = Real_Fire;
+                    if (Real_Fire == 3)
+                    {
+                        window.FireCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.FireCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.FireCount.Fill = (LinearGradientBrush)FindResource("Color_Fire");
+                        window.FireCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "Blizzard":
                     Real_Blizzard  += addRemove;
                     window.BlizzardCount.Text = (3 - Real_Blizzard).ToString();
-                    //multi = Real_Blizzard;
+                    if (Real_Blizzard == 3)
+                    {
+                        window.BlizzardCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.BlizzardCount.Fill = (LinearGradientBrush)FindResource("Color_Blizzard");
+                        window.BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "Thunder":
                     Real_Thunder += addRemove;
                     window.ThunderCount.Text = (3 - Real_Thunder).ToString();
-                    //multi = Real_Thunder;
+                    if (Real_Thunder == 3)
+                    {
+                        window.ThunderCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.ThunderCount.Fill = (LinearGradientBrush)FindResource("Color_Thunder");
+                        window.ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "Cure":
                     Real_Cure += addRemove;
                     window.CureCount.Text = (3 - Real_Cure).ToString();
-                    //multi = Real_Cure;
+                    if (Real_Cure == 3)
+                    {
+                        window.CureCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.CureCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.CureCount.Fill = (LinearGradientBrush)FindResource("Color_Cure");
+                        window.CureCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "Magnet":
                     Real_Magnet += addRemove;
                     window.MagnetCount.Text = (3 - Real_Magnet).ToString();
-                    //multi = Real_Magnet;
+                    if (Real_Magnet == 3)
+                    {
+                        window.MagnetCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.MagnetCount.Fill = (LinearGradientBrush)FindResource("Color_Magnet");
+                        window.MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "Reflect":
                     Real_Reflect += addRemove;
                     window.ReflectCount.Text = (3 - Real_Reflect).ToString();
-                    //multi = Real_Reflect;
+                    if (Real_Reflect == 3)
+                    {
+                        window.ReflectCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.ReflectCount.Fill = (LinearGradientBrush)FindResource("Color_Reflect");
+                        window.ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "TornPage":
                     Real_Pages += addRemove;
                     window.PageCount.Text = (5 - Real_Pages).ToString();
-                    //multi = Real_Pages;
+                    if (Real_Pages == 5)
+                    {
+                        window.PageCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.PageCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.PageCount.Fill = (LinearGradientBrush)FindResource("Color_Page");
+                        window.PageCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 case "MunnyPouch":
                     Real_Pouches += addRemove;
                     window.MunnyCount.Text = (2 - Real_Pouches).ToString();
+                    if (Real_Pouches == 2)
+                    {
+                        window.MunnyCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+                        window.MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+                    }
+                    else
+                    {
+                        window.MunnyCount.Fill = (LinearGradientBrush)FindResource("Color_Pouch");
+                        window.MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+                    }
                     return;
                 default:
                     return;

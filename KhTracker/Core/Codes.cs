@@ -176,13 +176,10 @@ namespace KhTracker
 
         public static string FindBossType(string name)
         {
-            if (name == null)
-                return "Unknown";
-
             if (bossTypes.Keys.Contains(name))
                 return bossTypes[name];
             else
-                return "Unknown";
+                return "boss_other";
         }
 
         //Dictionaries

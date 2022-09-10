@@ -300,40 +300,53 @@ namespace KhTracker
             }
             else if (data.BossRandoFound && TMP_bossReports)
             {
-                List<string> keyList = new List<string>(data.BossList.Keys);
-                List<string> OrigBosses = new List<string>();
                 //get random based on seed hash
                 Random rand = new Random(data.BossRandoSeed);
+                
+                //setup lists
+                List<string> keyList = new List<string>(data.BossList.Keys);
 
+                //Remove bosses for worlds not enabled and remove "duplicates"
+                foreach (var key in data.BossList.Keys)
+                {
+                    if (!data.enabledWorlds.Contains(Codes.bossLocations[key]))
+                        keyList.Remove(key);
+                    else if (key.Contains("Cups"))
+                        keyList.Remove(key);
+                    else if (key == "Hades II")
+                        keyList.Remove(key);
+                    else if (key.Contains("(Data)"))
+                    {
+                        //special case for some datas. we normally don't want
+                        //to hint datas unless the world the normally are in is off
+                        // (only applies for datas where the data fight is in a different world)
+                        switch(key)
+                        {
+                            case "Axel (Data)":
+                                if (data.enabledWorlds.Contains("STT"))
+                                    keyList.Remove(key);
+                            break;
+                            case "Luxord (Data)":
+                            case "Roxas (Data)":
+                            case "Xigbar (Data)":
+                                if (data.enabledWorlds.Contains("TWTNW"))
+                                    keyList.Remove(key);
+                                break;
+                            default:
+                                keyList.Remove(key);
+                                break;
+                        }
+                    }
+                }
+
+                //get report info
                 foreach (var report in reportKeys)
                 {
                     //get a boss
                     string boss = keyList[rand.Next(0, keyList.Count)];
-
-                    //make sure boss is in a world that's enabled
-                    while (!data.enabledWorlds.Contains(Codes.bossLocations[boss]))
-                    {
-                        boss = keyList[rand.Next(0, keyList.Count)];
-                    }
-
-                    //make sure it's not a duplicate
-                    while (OrigBosses.Contains(boss) || boss.Contains("(Cups)") || boss.Contains("(Data)"))
-                    {
-                        boss = keyList[rand.Next(0, keyList.Count)];
-                    }
-
-                    //check boss type
+                    //get boss types
                     string origType = Codes.FindBossType(boss);
                     string replaceType = Codes.FindBossType(data.BossList[boss]);
-
-                    if (replaceType == "Unknown")
-                    {
-                        replaceType = "boss_other";
-                    }
-                    if (origType == "Unknown")
-                    {
-                        origType = "boss_other";
-                    }
 
                     //prioritize special arenas and bosses (50%?)
                     while (origType == "boss_other" && replaceType == "boss_other")
@@ -345,23 +358,8 @@ namespace KhTracker
                         }
 
                         boss = keyList[rand.Next(0, keyList.Count)];
-
-                        while (OrigBosses.Contains(boss) || boss.Contains("(Cups)") || boss.Contains("(Data)"))
-                        {
-                            boss = keyList[rand.Next(0, keyList.Count)];
-                        }
-
                         origType = Codes.FindBossType(boss);
                         replaceType = Codes.FindBossType(data.BossList[boss]);
-
-                        if (replaceType == "Unknown")
-                        {
-                            replaceType = "boss_other";
-                        }
-                        if (origType == "Unknown")
-                        {
-                            origType = "boss_other";
-                        }
                     }
 
                     //report location and final hint string
@@ -406,13 +404,13 @@ namespace KhTracker
 
                         worldhint = tmp_origBoss + " became " + tmp_replBoss;
                     }
+                    
                     int dummyvalue = -12345; //use this for boss reports i guess
                     data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
-
                     var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
                     data.reportLocations.Add(location);
 
-                    OrigBosses.Add(boss);
+                    keyList.Remove(boss);
                 }
                 
                 data.hintsLoaded = true;

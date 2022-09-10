@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v6.3)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v6.4)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -201,7 +201,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25" VerticalAlignment="Top">
                                 <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -265,7 +265,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="SimulatedTwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -338,7 +338,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HollowBastionHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -412,7 +412,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="BeastsCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -476,7 +476,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -548,7 +548,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="AgrabahHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -620,7 +620,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PrideLandsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -684,7 +684,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -824,7 +824,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -903,7 +903,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="TwilightTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -975,7 +975,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="LandofDragonsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1047,7 +1047,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="OlympusColiseumHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1119,7 +1119,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PortRoyalHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1191,7 +1191,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HalloweenTownHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1263,7 +1263,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="SpaceParanoidsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1327,7 +1327,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1391,7 +1391,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1455,7 +1455,7 @@
                                 </Image.RenderTransform>
                             </Image>
                             <!-- world value -->
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="PuzzSynthHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
@@ -1494,7 +1494,7 @@
                     <!--hint text-->
                     <RowDefinition Height="1*"/>
                     <!--info/stats-->
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.115*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.01*"/>
@@ -1543,8 +1543,8 @@
                             <local:OutlinedTextBlock x:Name="DeathValue" FontFamily="{StaticResource Gummi}" FontSize="15pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="3" Text="999">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFC62937" Offset="1"/>
-                                        <GradientStop Color="#FFFF6B37" Offset="0.4"/>
+                                        <GradientStop Color="#FFC62937" Offset="0.927"/>
+                                        <GradientStop Color="#FFFF8B42" Offset="0.286"/>
                                     </LinearGradientBrush>
                                 </local:OutlinedTextBlock.Fill>
                             </local:OutlinedTextBlock>
@@ -1597,29 +1597,33 @@
                 <Rectangle Grid.Row="2" Fill="#D81E1E1E" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>
                 <Grid x:Name="Statsgrid" Grid.Row="2" Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition  Width="1.20*"/>
-                        <!-- 0.6* when enabled-->
-                        <ColumnDefinition x:Name="NextLevelCol" Width="0.8*"/>
+                        <ColumnDefinition  Width="1.35*"/>
+                        <!-- 0.8* when enabled-->
+                        <ColumnDefinition x:Name="NextLevelCol" Width="0.*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.25*"/>
+                        
+                        <ColumnDefinition Width="1.35*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.25*"/>
+                        
+                        <ColumnDefinition Width="1.35*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="1.25*"/>
+                        
+                        <ColumnDefinition Width="1.35*"/>
                         <ColumnDefinition Width="0.05*"/>
+                        
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.05*"/>
+                        <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
                     <!-- Level -->
                     <Grid x:Name="Level" Visibility="Visible">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.6*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource LevelIcon}" x:Name="LevelIcon"/>
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2,0,0,2">
-                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" 
+                        <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,2">
+                            <local:OutlinedTextBlock x:Name="LevelValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
                                                      AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -1632,8 +1636,8 @@
                     </Grid>
                     <Grid x:Name="NextLevel" Grid.Column="1">
                         <Viewbox HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2,4,0,4">
-                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="{StaticResource Gummi}" FontSize="25" FontStretch="Medium" 
-                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text=">99">
+                            <local:OutlinedTextBlock x:Name="NextLevelValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="2" Text=">99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE6781C" Offset="1"/>
@@ -1650,8 +1654,9 @@
                             <ColumnDefinition  Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource StrengthIcon}" x:Name="StrengthIcon"/>
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="StrengthValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                        <Viewbox Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,0,2">
+                            <local:OutlinedTextBlock x:Name="StrengthValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFDB3735" Offset="1"/>
@@ -1668,8 +1673,9 @@
                             <ColumnDefinition  Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource MagicIcon}" x:Name="MagicIcon"/>
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="MagicValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                        <Viewbox Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,0,2">
+                            <local:OutlinedTextBlock x:Name="MagicValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF8159E2" Offset="1"/>
@@ -1686,8 +1692,9 @@
                             <ColumnDefinition  Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ContentControl Content="{DynamicResource DefenseIcon}" x:Name="DefenseIcon"/>
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,2">
-                            <local:OutlinedTextBlock x:Name="DefenseValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="999">
+                        <Viewbox Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,0,2">
+                            <local:OutlinedTextBlock x:Name="DefenseValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="99">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC1B41F" Offset="1"/>
@@ -1704,14 +1711,14 @@
                     <Grid Grid.Column="11" x:Name="CollectionGrid" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition  Width="1*"/>
-                            <ColumnDefinition Width="0.25*"/>
-                            <ColumnDefinition  Width="1*"/>
+                            <ColumnDefinition Width="1.15*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.11*"/>
+                            <RowDefinition Height="0.15*"/>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="0.11*"/>
+                            <RowDefinition Height="0.05*"/>
                         </Grid.RowDefinitions>
                         <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Collected -->
@@ -1724,11 +1731,12 @@
                                     <TranslateTransform Y="0" X="-2"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
-                            <local:OutlinedTextBlock x:Name="CollectedValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
+                            <local:OutlinedTextBlock x:Name="CollectedValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFE47606" Offset="1"/>
-                                        <GradientStop Color="#FFFFE435" Offset="0.7"/>
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
                                     </LinearGradientBrush>
                                 </local:OutlinedTextBlock.Fill>
                             </local:OutlinedTextBlock>
@@ -1739,34 +1747,35 @@
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="0.75" ScaleY="1.25"/>
                                     <SkewTransform/>
-                                    <RotateTransform Angle="9"/>
-                                    <TranslateTransform X="0" Y="-1"/>
+                                    <RotateTransform Angle="8"/>
+                                    <TranslateTransform X="0" Y="-2"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
                             <local:OutlinedTextBlock x:Name="CollectedBar" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="|">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFE47606" Offset="1"/>
-                                        <GradientStop Color="#FFFFE435" Offset="0.7"/>
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
                                     </LinearGradientBrush>
                                 </local:OutlinedTextBlock.Fill>
                             </local:OutlinedTextBlock>
                         </Viewbox>
                         <!-- Total -->
-                        <Viewbox  Grid.Row="1"  Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,3" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,3">
                             <Viewbox.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleX="1"/>
+                                    <ScaleTransform/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform Y="0" X="2"/>
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
-                            <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
+                            <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFE47606" Offset="1"/>
-                                        <GradientStop Color="#FFFFE435" Offset="0.7"/>
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
                                     </LinearGradientBrush>
                                 </local:OutlinedTextBlock.Fill>
                             </local:OutlinedTextBlock>
@@ -1784,8 +1793,8 @@
                                                      AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFE47606" Offset="1"/>
-                                        <GradientStop Color="#FFFFE435" Offset="0.7"/>
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
                                     </LinearGradientBrush>
                                 </local:OutlinedTextBlock.Fill>
                             </local:OutlinedTextBlock>
@@ -2108,16 +2117,19 @@
                         <ColumnDefinition Width="1.0*" Name="MunnyImg"/>
                     </Grid.ColumnDefinitions>
 
+                    
+                    
+                    
                     <!-- Spacers -->
 
 
-                    <Rectangle Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-2,5,4,5"/>
+                    <!--Rectangle Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-2,5,4,5"/>
                     <Rectangle Grid.Column="5" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-1,5,3,5"/>
                     <Rectangle Grid.Column="8" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
                     <Rectangle Grid.Column="11" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
                     <Rectangle Grid.Column="14" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-1,5,3,5"/>
                     <Rectangle Grid.Column="17" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
-                    <Rectangle Grid.Column="20" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-0,5,2,5"/>
+                    <Rectangle Grid.Column="20" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-0,5,2,5"/-->
 
 
                     <!-- Numbers -->
@@ -2142,7 +2154,7 @@
                         </local:OutlinedTextBlock>
                     </Viewbox>
                     <Viewbox Grid.Column="6" MaxHeight="70">
-                        <local:OutlinedTextBlock x:Name="ThunderCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="3">
+                        <local:OutlinedTextBlock x:Name="ThunderCount" FontFamily="{StaticResource Gummi}" TextAlignment="Center" Margin="0,7,0,7" FontSize="20pt" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="4" Text="1">
                             <local:OutlinedTextBlock.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FFE17606" Offset="1"/>
@@ -2785,11 +2797,11 @@
                 <!-- Setting Icons -->
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="Setting_Level_01" Width="1*"/>
+                        <ColumnDefinition Name="Setting_Level_01" Width="1.5*"/>
                         <ColumnDefinition Name="Setting_Level_50" Width="0*"/>
                         <ColumnDefinition Name="Setting_Level_99" Width="0*"/>
-                        <ColumnDefinition Name="Setting_BetterSTT" Width="1*"/>
-                        <ColumnDefinition Name="Setting_Absent" Width="1*"/>
+                        <ColumnDefinition Name="Setting_BetterSTT" Width="1.1*"/>
+                        <ColumnDefinition Name="Setting_Absent" Width="1.1*"/>
                         <ColumnDefinition Name="Setting_Datas" Width="1*"/>
                         <ColumnDefinition Name="Setting_Sephiroth" Width="1*"/>
                         <ColumnDefinition Name="Setting_Terra" Width="1*"/>
@@ -2808,7 +2820,7 @@
                     <Image Grid.Column="0" Source="Images/System/settings/Level_01.png"                 ToolTip="Level 1 Checks"/>
                     <Image Grid.Column="1" Source="Images/System/settings/Level_50.png"                 ToolTip="Level 50 Checks"/>
                     <Image Grid.Column="2" Source="Images/System/settings/Level_99.png"                 ToolTip="Level 99 Checks"/>
-                    <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"               ToolTip="Roxas STT Improvements"/>
+                    <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"               ToolTip="Roxas STT Improvements" Margin="0,-4,0,-4"/>
                     <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"        ToolTip="Absent Silhouettes"/>
                     <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"        ToolTip="Data Organization"/>
                     <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"                ToolTip="Sephiroth"/>

@@ -872,19 +872,19 @@ namespace KhTracker
                         SettingsText.Text = "";
                         return;
                     case "Setting_Level_01":
-                        Setting_Level_01.Width = new GridLength(1, GridUnitType.Star);
+                        Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
                         SpacerValue--;
                         break;
                     case "Setting_Level_50":
-                        Setting_Level_50.Width = new GridLength(1, GridUnitType.Star);
+                        Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
                         SpacerValue--;
                         break;
                     case "Setting_Level_99":
-                        Setting_Level_99.Width = new GridLength(1, GridUnitType.Star);
+                        Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
                         SpacerValue--;
                         break;
                     case "Setting_BetterSTT":
-                        Setting_BetterSTT.Width = new GridLength(1, GridUnitType.Star);
+                        Setting_BetterSTT.Width = new GridLength(1.1, GridUnitType.Star);
                         SpacerValue--;
                         break;
                     case "Setting_Cavern":
@@ -1181,6 +1181,39 @@ namespace KhTracker
             Ghost_MagnetCount.Visibility = Visibility.Hidden;
             Ghost_PageCount.Visibility = Visibility.Hidden;
             Ghost_MunnyCount.Visibility = Visibility.Hidden;
+
+            FireCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            FireCount.Fill = (LinearGradientBrush)FindResource("Color_Fire");
+            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            BlizzardCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            BlizzardCount.Fill = (LinearGradientBrush)FindResource("Color_Blizzard");
+            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            ThunderCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            ThunderCount.Fill = (LinearGradientBrush)FindResource("Color_Thunder");
+            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            CureCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            CureCount.Fill = (LinearGradientBrush)FindResource("Color_Cure");
+            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            MagnetCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            MagnetCount.Fill = (LinearGradientBrush)FindResource("Color_Magnet");
+            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            ReflectCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            ReflectCount.Fill = (LinearGradientBrush)FindResource("Color_Reflect");
+            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            PageCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            PageCount.Fill = (LinearGradientBrush)FindResource("Color_Page");
+            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            MunnyCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            MunnyCount.Fill = (LinearGradientBrush)FindResource("Color_Pouch");
+            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
 
             Data.WorldItems.Clear();
             data.TrackedReports.Clear();
@@ -1588,19 +1621,19 @@ namespace KhTracker
                                         SoraHeartToggle(false);
                                         SoraLevel01Toggle(true);
                                         AbilitiesToggle(true);
-                                        Setting_Level_01.Width = new GridLength(1, GridUnitType.Star);
+                                        Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
                                     case "ExcludeFrom50":
                                         SoraLevel50Toggle(true);
                                         AbilitiesToggle(true);
-                                        Setting_Level_50.Width = new GridLength(1, GridUnitType.Star);
+                                        Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
                                     case "ExcludeFrom99":
                                         SoraLevel99Toggle(true);
                                         AbilitiesToggle(true);
-                                        Setting_Level_99.Width = new GridLength(1, GridUnitType.Star);
+                                        Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
                                     case "Simulated Twilight Town":
@@ -1672,7 +1705,7 @@ namespace KhTracker
                                         break;
                                     //settings
                                     case "better_stt":
-                                        Setting_BetterSTT.Width = new GridLength(1, GridUnitType.Star);
+                                        Setting_BetterSTT.Width = new GridLength(1.1, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
                                     case "Cavern of Remembrance":
