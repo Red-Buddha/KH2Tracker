@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v6.4)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v6.5)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -270,7 +270,7 @@
                                                          StrokeThickness="7" Fill="#FFEFECE9" Text="?" Margin="0,-5,0,2"/>
                             </Viewbox>
                             <!-- progression -->
-                            <ContentControl x:Name="SimulatedTwilightTownProgression" Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+                            <ContentControl Content="{StaticResource Min-Axel1}" x:Name="SimulatedTwilightTownProgression" Panel.ZIndex="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" MaxHeight="55"/>
                         </Grid>
                         <!-- path hints icons -->
                         <Grid x:Name="SimulatedTwilightTownPath" Grid.Column="1">

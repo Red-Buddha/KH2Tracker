@@ -75,7 +75,7 @@
     <!-- selection hilights -->
     <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
     <SolidColorBrush x:Key="DefaultRec" Color="#D81E1E1E"/>
-    <SolidColorBrush x:Key="SelectedRec" Color="#BF3C5A78"/>
+    <SolidColorBrush x:Key="SelectedRec" Color="#D8466482"/>
     <!-- Window Background default -->
     <SolidColorBrush x:Key="BG-Default" Color="#303030"/>
     <ImageBrush x:Key="BG-ImageDef1"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile"/>

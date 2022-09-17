@@ -475,7 +475,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             // hint text
-            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + "important checks", true, false, true);
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + " important checks", true, false, true);
 
             // resetting fail icons
             data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");

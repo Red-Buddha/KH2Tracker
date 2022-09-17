@@ -89,6 +89,7 @@
     <!--Port Royal-->
     <Image x:Key="Min-Town"         Source="Images\Progression\Min\port_royal\town.png" x:Shared="False"/>
     <Image x:Key="Min-1Minute"      Source="Images\Progression\Min\port_royal\isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Min-Medallions"   Source="Images\Progression\Min\port_royal\medallions.png" x:Shared="False"/>
     <Image x:Key="Min-Barrels"      Source="Images\Progression\Min\port_royal\explosives.png" x:Shared="False"/>
     <Image x:Key="Min-Barbossa"     Source="Images\Progression\Min\port_royal\barbossa.png" x:Shared="False"/>
     <Image x:Key="Min-GrimReaper1"  Source="Images\Progression\Min\port_royal\grim_reaper.png" x:Shared="False"/>
@@ -222,6 +223,7 @@
     <!--Port Royal-->
     <Image x:Key="Old-Town"         Source="Images\Progression\Old\port_royal\town.png" x:Shared="False"/>
     <Image x:Key="Old-1Minute"      Source="Images\Progression\Old\port_royal\isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Old-Medallions"   Source="Images\Progression\Old\port_royal\medallions.png" x:Shared="False"/>
     <Image x:Key="Old-Barrels"      Source="Images\Progression\Old\port_royal\explosives.png" x:Shared="False"/>
     <Image x:Key="Old-Barbossa"     Source="Images\Progression\Old\port_royal\barbossa.png" x:Shared="False"/>
     <Image x:Key="Old-GrimReaper1"  Source="Images\Progression\Old\port_royal\grim_reaper.png" x:Shared="False"/>
@@ -354,6 +356,7 @@
     <!--Port Royal-->
     <Image x:Key="Cus-Town"         Source="pack://application:,,,/CustomImages/Progression/port_royal/town.png" x:Shared="False"/>
     <Image x:Key="Cus-1Minute"      Source="pack://application:,,,/CustomImages/Progression/port_royal/isla_de_muerta.png" x:Shared="False"/>
+    <Image x:Key="Cus-Medallions"   Source="pack://application:,,,/CustomImages/Progression/port_royal/medallions.png" x:Shared="False"/>
     <Image x:Key="Cus-Barrels"      Source="pack://application:,,,/CustomImages/Progression/port_royal/explosives.png" x:Shared="False"/>
     <Image x:Key="Cus-Barbossa"     Source="pack://application:,,,/CustomImages/Progression/port_royal/barbossa.png" x:Shared="False"/>
     <Image x:Key="Cus-GrimReaper1"  Source="pack://application:,,,/CustomImages/Progression/port_royal/grim_reaper.png" x:Shared="False"/>

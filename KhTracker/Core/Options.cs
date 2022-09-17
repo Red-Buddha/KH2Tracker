@@ -148,6 +148,13 @@ namespace KhTracker
             writer.WriteLine(mode);
             writer.WriteLine(settings);
 
+            if (data.BossRandoFound)
+            {
+                string bossText = JsonSerializer.Serialize(data.BossList);
+                bossText = Convert.ToBase64String(Encoding.UTF8.GetBytes(bossText));
+                writer.WriteLine(bossText);
+            }
+
             if (data.mode == Mode.OpenKHHints || data.mode == Mode.PathHints || data.mode == Mode.SpoilerHints || data.mode == Mode.Hints)
             {
                 writer.WriteLine(attempts);
@@ -215,12 +222,6 @@ namespace KhTracker
 
             writer.WriteLine(data.usedPages);
             writer.WriteLine(DeathCounter);
-            if (data.BossRandoFound)
-            {
-                string bossText = JsonSerializer.Serialize(data.BossList);
-                bossText = Convert.ToBase64String(Encoding.UTF8.GetBytes(bossText));
-                writer.WriteLine(bossText);
-            }
 
             settings = "SettingsBar: ";
             if (SettingRow.Height.Value != 0)
@@ -323,6 +324,13 @@ namespace KhTracker
                 SetMode(Mode.PathHints);
             else if (mode == "SpoilerHints")
                 SetMode(Mode.SpoilerHints);
+
+            if (data.BossRandoFound)
+            {
+                string tempList = reader.ReadLine();
+                var bossText = Encoding.UTF8.GetString(Convert.FromBase64String(tempList));
+                data.BossList = JsonSerializer.Deserialize<Dictionary<string, string>>(bossText);
+            }
 
             // set hint state
             if (data.mode != Mode.None && data.mode != Mode.AltHints)
@@ -506,23 +514,11 @@ namespace KhTracker
                 }
             }
 
-            //while (reader.EndOfStream == false)
-            //{
-            //
-            //}
-
             //set extra data stuff
             string UsedPages = reader.ReadLine();
             string Deaths = reader.ReadLine();
             data.usedPages = int.Parse(UsedPages);
             DeathCounter = int.Parse(Deaths);
-
-            if (data.BossRandoFound)
-            {
-                string tempList = reader.ReadLine();
-                var bossText = Encoding.UTF8.GetString(Convert.FromBase64String(tempList));
-                data.BossList = JsonSerializer.Deserialize<Dictionary<string, string>>(bossText);
-            }
 
             LoadSettingBar(reader.ReadLine().Substring(13));
 
@@ -784,42 +780,55 @@ namespace KhTracker
                         break;
                     case "Simulated Twilight Town":
                         SimulatedToggle(true);
+                        data.enabledWorlds.Add("STT");
                         break;
                     case "Twilight Town":
                         TwilightTownToggle(true);
+                        data.enabledWorlds.Add("TT");
                         break;
                     case "Hollow Bastion":
                         HollowBastionToggle(true);
+                        data.enabledWorlds.Add("HB");
                         break;
                     case "Beast Castle":
                         BeastCastleToggle(true);
+                        data.enabledWorlds.Add("BC");
                         break;
                     case "Olympus":
                         OlympusToggle(true);
+                        data.enabledWorlds.Add("OC");
                         break;
                     case "Agrabah":
                         AgrabahToggle(true);
+                        data.enabledWorlds.Add("AG");
                         break;
                     case "Land of Dragons":
                         LandofDragonsToggle(true);
+                        data.enabledWorlds.Add("LoD");
                         break;
                     case "Disney Castle":
                         DisneyCastleToggle(true);
+                        data.enabledWorlds.Add("DC");
                         break;
                     case "Pride Lands":
                         PrideLandsToggle(true);
+                        data.enabledWorlds.Add("PL");
                         break;
                     case "Port Royal":
                         PortRoyalToggle(true);
+                        data.enabledWorlds.Add("PR");
                         break;
                     case "Halloween Town":
                         HalloweenTownToggle(true);
+                        data.enabledWorlds.Add("HT");
                         break;
                     case "Space Paranoids":
                         SpaceParanoidsToggle(true);
+                        data.enabledWorlds.Add("SP");
                         break;
                     case "TWTNW":
                         TWTNWToggle(true);
+                        data.enabledWorlds.Add("TWTNW");
                         break;
                     case "100 Acre Wood":
                         HundredAcreWoodToggle(true);
@@ -1482,16 +1491,28 @@ namespace KhTracker
                         data.BossRandoFound = true;
                         string enemyText64 = reader3.ReadToEnd();
                         var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(enemyText64));
-                        var enemyObject = JsonSerializer.Deserialize<Dictionary<string, object>>(enemyText);
-                        var bosses = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(enemyObject["BOSSES"].ToString());
-
-                        foreach (var bosspair in bosses)
+                        try 
                         {
-                            string bossOrig = bosspair["original"].ToString();
-                            string bossRepl = bosspair["new"].ToString();
+                            var enemyObject = JsonSerializer.Deserialize<Dictionary<string, object>>(enemyText);
+                            var bosses = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(enemyObject["BOSSES"].ToString());
 
-                            data.BossList.Add(bossOrig, bossRepl);
+                            foreach (var bosspair in bosses)
+                            {
+                                string bossOrig = bosspair["original"].ToString();
+                                string bossRepl = bosspair["new"].ToString();
+
+                                data.BossList.Add(bossOrig, bossRepl);
+                            }
                         }
+                        catch 
+                        {
+                            data.BossRandoFound = false;
+
+                            if (App.logger != null)
+                                App.logger.Record("error while trying to parse bosses.");
+                        }
+                        
+                        reader3.Close();
                     }
                 }
 
