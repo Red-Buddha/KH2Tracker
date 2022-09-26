@@ -55,7 +55,6 @@ namespace KhTracker
             InitializeComponent();
         }
 
-        ///Add Switch Case???
         public void Handle_WorldGrid(Item button, bool add)
         {
             Data data = MainWindow.data;
