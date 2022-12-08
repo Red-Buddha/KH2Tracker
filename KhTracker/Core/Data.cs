@@ -84,12 +84,51 @@ namespace KhTracker
         public int BossRandoSeed;
 
         public List<string> enabledWorlds = new List<string>();
+
+        //Progression Hints stuff
+        public bool UsingProgressionHints = false;
+        public int ProgressionPoints = 0;
+        public int TotalProgressionPoints = 0;
+        public int WorldsEnabled = 0;
+        public int ProgressionHash = 0;
+        public int PrevEventID1 = 0;
+        public int PrevEventID3 = 0;
+        public string PrevWorld = "";
+        public int PrevRoomNum = 0;
+        //public List<int> HintCosts = new List<int>();
+        public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
+        public int ProgressionCurrentHint = 0;
+        public int ReportBonus = 1;
+        public List<string> HintRevealOrder = new List<string>();
+        //                                    Sora   Drive   STT    TT     HB     BC     OC     AG     LoD   100AW   PL     DC     HT     PR     SP   TWTNW    GoA    AT
+        //                                      0      1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17
+        public int[] worldStoredHintCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        public int[] worldStoredOrigCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        public int[] worldHintNumber      = {  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1   };
+        //future - add sora leveling and drives here
+        public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        public List<int> BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> AT_ProgressionValues = new List<int>() { 1, 2, 3 };
+        public List<int> DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
     }
 
     public class WorldData
     {
         public bool hinted;         //currently hinted? (for hinted hint logic)
         public bool hintedHint;     //currently hinted hint?
+        //Progression Hints
+        public bool hintedProgression;
         public bool complete;       //are all checks found?
         public int progress;        //current world progression
         public bool containsGhost;  //contains ghost item?

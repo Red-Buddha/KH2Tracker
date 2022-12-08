@@ -555,7 +555,7 @@ namespace KhTracker
 
         public void SetWorldValue(OutlinedTextBlock worldValue, int value)
         {
-            if (worldValue == null)
+            if (worldValue == null || (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
                 return;
 
             string location = worldValue.Name.Substring(0, worldValue.Name.Length - 4);
@@ -582,6 +582,8 @@ namespace KhTracker
 
         public void SetCollected(bool add)
         {
+            //AddProgressionPoints(1);
+
             if (add)
                 ++collected;
             else

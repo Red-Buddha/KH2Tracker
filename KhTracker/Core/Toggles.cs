@@ -541,6 +541,7 @@ namespace KhTracker
             {
                 CollectionGrid.Visibility = Visibility.Visible;
                 ScoreGrid.Visibility = Visibility.Collapsed;
+                ProgressionCollectionGrid.Visibility = Visibility.Collapsed;
 
                 ChestIcon.SetResourceReference(ContentProperty, "Chest");
             }
@@ -549,6 +550,7 @@ namespace KhTracker
             {
                 CollectionGrid.Visibility = Visibility.Collapsed;
                 ScoreGrid.Visibility = Visibility.Visible;
+                ProgressionCollectionGrid.Visibility = Visibility.Collapsed;
 
                 ChestIcon.SetResourceReference(ContentProperty, "Score");
             }

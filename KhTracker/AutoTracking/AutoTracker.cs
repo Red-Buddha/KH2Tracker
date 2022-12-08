@@ -808,29 +808,29 @@ namespace KhTracker
                     {
                         case 1:
                             if ((world.eventID3 == 56 || world.eventID3 == 55) && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)/(Day 6)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 8:
                             if (world.eventID1 == 110 || world.eventID1 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 34:
                             if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
                             if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             if (world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 21:
                             if (world.eventID3 == 1) // Mansion: Computer Room
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 20:
                             if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         default: //if not in any of the above rooms then just leave
                             return;
@@ -841,31 +841,31 @@ namespace KhTracker
                     {
                         case 9:
                             if (world.eventID3 == 117 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 8:
                             if (world.eventID3 == 108 && world.eventComplete == 1) // Station Nobodies
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 27:
                             if (world.eventID3 == 4) // Yen Sid after new clothes
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 4:
                             if (world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 41:
                             if (world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 40:
                             if (world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 20:
                             if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         default:
                             return;
@@ -877,47 +877,53 @@ namespace KhTracker
                         case 0:
                         case 10:
                             if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData[world.worldName].progress == 0) // Villain's Vale (HB1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 8:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Bailey finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 5:
                             if (world.eventID3 == 20) // Ansem Study post Computer
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 20:
                             if (world.eventID1 == 86 && world.eventComplete == 1) // Corridor finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 18:
                             if (world.eventID1 == 73 && world.eventComplete == 1) // Dancers finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 4:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
+                            {
                                 if (curProg == 9)
                                     curProg = 11; //data demyx + sephi finished
                                 else if (curProg != 11)
                                     curProg = 10;
+                                UpdateProgressionPoints(world.worldName,  10);
+                            }
                             break;
                         case 16:
                             if (world.eventID1 == 65 && world.eventComplete == 1) // FF Cloud finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 17:
                             if (world.eventID1 == 66 && world.eventComplete == 1) // 1k Heartless finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         case 1:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
+                            {
                                 if (curProg == 10)
                                     curProg = 11; //data demyx + sephi finished
                                 else if (curProg != 11)
                                     curProg = 9;
+                                UpdateProgressionPoints(world.worldName,  9);
+                            }
                             break;
                         //CoR
                         case 21:
@@ -973,29 +979,29 @@ namespace KhTracker
                         case 0:
                         case 2:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Entrance Hall (BC1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 11:
                             if (world.eventID1 == 72 && world.eventComplete == 1) // Thresholder finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
                             if (world.eventID1 == 69 && world.eventComplete == 1) // Beast finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Dark Thorn finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 4:
                             if (world.eventID1 == 74 && world.eventComplete == 1) // Dragoons finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 15:
                             if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         default:
                             return;
@@ -1006,41 +1012,41 @@ namespace KhTracker
                     {
                         case 3:
                             if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 7:
                             if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 0:
                             if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // (reverse rando)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             if (world.eventID1 == 141 && world.eventComplete == 1) // Urns finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 17:
                             if (world.eventID1 == 123 && world.eventComplete == 1) // OC Demyx finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 8:
                             if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 18:
                             if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 6:
                             if (world.eventID1 == 126 && world.eventComplete == 1) // Auron Statue fight finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 19:
                             if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         case 34:
                             if ((world.eventID1 == 151 || world.eventID1 == 152) && world.eventComplete == 1) // Zexion finish
-                                curProg = 9;
+                                UpdateProgressionPoints(world.worldName,  curProg = 9);
                             break;
                         default:
                             return;
@@ -1052,35 +1058,35 @@ namespace KhTracker
                         case 0:
                         case 4:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Agrabah (Ag1) || The Vault (Ag2)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 9:
                             if (world.eventID1 == 2 && world.eventComplete == 1) // Abu finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 13:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Chasm fight finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 10:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Treasure Room finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 3:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Lords finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 14:
                             if (world.eventID1 == 100 && world.eventComplete == 1) // Carpet finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 5:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 33:
                             if ((world.eventID1 == 142 || world.eventID1 == 147) && world.eventComplete == 1) // Lexaeus finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         default:
                             return;
@@ -1092,35 +1098,35 @@ namespace KhTracker
                         case 0:
                         case 12:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Bamboo Grove (LoD1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 1:
                             if (world.eventID1 == 70 && world.eventComplete == 1) // Mission 3 (Search) finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
                             if (world.eventID1 == 71 && world.eventComplete == 1) // Mountain Climb finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
                             if (world.eventID1 == 72 && world.eventComplete == 1) // Cave finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 7:
                             if (world.eventID1 == 73 && world.eventComplete == 1) // Summit finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 9:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 10:
                             if (world.eventID1 == 78 && world.eventComplete == 1) // Antechamber fight finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 8:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         default:
                             return;
@@ -1131,27 +1137,27 @@ namespace KhTracker
                     {
                         case 2:
                             if ((world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22) && data.WorldsData[world.worldName].progress == 0) // Pooh's house
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 4:
                             if (world.eventID3 == 1) // Piglet's house
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
                             if (world.eventID3 == 1) // Rabbit's house
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
                             if (world.eventID3 == 1) // Kanga's house
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
                             if (world.eventID3 == 1) // Spooky Cave
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
                             if (world.eventID3 == 1) // Starry Hill
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
                             return;
@@ -1163,27 +1169,27 @@ namespace KhTracker
                         case 4:
                         case 16:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Wildebeest Valley (PL1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 12:
                             if (world.eventID3 == 1) // Oasis after talking to Simba
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 2:
                             if (world.eventID1 == 51 && world.eventComplete == 1) // Hyenas 1 Finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 14:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 5:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Hyenas 2 Finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 15:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
                             return;
@@ -1194,15 +1200,15 @@ namespace KhTracker
                     {
                         case 2:
                             if (world.eventID1 == 63) // Tutorial
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 9:
                             if (world.eventID1 == 65) // Ursula's Revenge
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 4:
                             if (world.eventID1 == 55) // A New Day is Dawning
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         default:
                             return;
@@ -1215,37 +1221,43 @@ namespace KhTracker
                             if (world.eventID3 == 22 && data.WorldsData[world.worldName].progress == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
                                 curProg = 0;
                             else if (world.eventID1 == 51 && world.eventComplete == 1) // Minnie Escort finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             else if (world.eventID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 1:
                             if (world.eventID1 == 53 && data.WorldsData[world.worldName].progress == 0) // Library (DC)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             else if (world.eventID1 == 58 && world.eventComplete == 1) // Old Pete finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 2:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Boat Pete finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 3:
                             if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 38:
                             if ((world.eventID1 == 145 || world.eventID1 == 150) && world.eventComplete == 1) // Marluxia finish
+                            {
                                 if (curProg == 8)
                                     curProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
                                     curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  7);
+                            }
                             break;
                         case 7:
                             if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
+                            {
                                 if (curProg == 7)
                                     curProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
                                     curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  8);
+                            }
                             break;
                         default:
                             return;
@@ -1257,33 +1269,33 @@ namespace KhTracker
                         case 1:
                         case 4:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Hinterlands (HT1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 6:
                             if (world.eventID1 == 53 && world.eventComplete == 1) // Candy Cane Lane fight finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Prison Keeper finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 9:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Oogie Boogie finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 10:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Children Fight
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             if (world.eventID1 == 63 && world.eventComplete == 1) // Presents minigame
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 7:
                             if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 32:
                             if ((world.eventID1 == 115 || world.eventID1 == 146) && world.eventComplete == 1) // Vexen finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         default:
                             return;
@@ -1294,41 +1306,41 @@ namespace KhTracker
                     {
                         case 0:
                             if (world.eventID3 == 1 && data.WorldsData[world.worldName].progress == 0) // Rampart (PR1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 10:
                             if (world.eventID3 == 10 && data.WorldsData[world.worldName].progress == 0) // Treasure Heap (PR2)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 2:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Town finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 9:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // 1min pirates finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 7:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 3:
                             if (world.eventID1 == 56 && world.eventComplete == 1) // barrels finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 18:
                             if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         case 14:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
-                                curProg = 8;
+                                UpdateProgressionPoints(world.worldName,  curProg = 8);
                             break;
                         case 1:
                             if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
-                                curProg = 9;
+                                UpdateProgressionPoints(world.worldName,  curProg = 9);
                             break;
                         default:
                             return;
@@ -1339,27 +1351,27 @@ namespace KhTracker
                     {
                         case 1:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Canyon (SP1)
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 3:
                             if (world.eventID1 == 54 && world.eventComplete == 1) // Screens finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 4:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Hostile Program finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 7:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Solar Sailer finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // MCP finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 33:
                             if ((world.eventID1 == 143 || world.eventID1 == 148) && world.eventComplete == 1) // Larxene finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
                             return;
@@ -1370,59 +1382,63 @@ namespace KhTracker
                     {
                         case 1:
                             if (world.eventID3 == 1) // Alley to Between
-                                curProg = 1;
+                                UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 21:
                             if (world.eventID1 == 65 && world.eventComplete == 1) // Roxas finish
-                                curProg = 2;
+                                UpdateProgressionPoints(world.worldName,  curProg = 2);
                             else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
                             {
                                 curKey = data.ProgressKeys["SimulatedTwilightTown"][8];
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 8;
+                                UpdateProgressionPoints("SimulatedTwilightTown", 8);
                                 return;
                             }
                             break;
                         case 10:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Xigbar finish
-                                curProg = 3;
+                                UpdateProgressionPoints(world.worldName,  curProg = 3);
                             else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
                             {
                                 curKey = data.ProgressKeys["LandofDragons"][9];
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["LandofDragons"].progress = 9;
+                                UpdateProgressionPoints("LandofDragons", 9);
                                 return;
                             }
                             break;
                         case 14:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
-                                curProg = 4;
+                                UpdateProgressionPoints(world.worldName,  curProg = 4);
                             else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
                             {
                                 curKey = data.ProgressKeys["PortRoyal"][10];
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PortRoyal"].progress = 10;
+                                UpdateProgressionPoints("PortRoyal", 10);
                                 return;
                             }
                             break;
                         case 15:
                             if (world.eventID1 == 56 && world.eventComplete == 1) // Saix finish
-                                curProg = 5;
+                                UpdateProgressionPoints(world.worldName,  curProg = 5);
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
                             {
                                 curKey = data.ProgressKeys["PrideLands"][7];
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PrideLands"].progress = 7;
+                                UpdateProgressionPoints("PrideLands", 7);
                                 return;
                             }
                             break;
                         case 19:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Xemnas 1 finish
-                                curProg = 6;
+                                UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         case 20:
                             if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
-                                curProg = 7;
+                                UpdateProgressionPoints(world.worldName,  curProg = 7);
                             break;
                         default:
                             return;
@@ -2184,6 +2200,23 @@ namespace KhTracker
             }
 
             DriveFormsCap.SetResourceReference(ContentProperty, Prog + drives);
+        }
+
+        //progression hints - compare last saved progression point
+        //must be checked this way cause of OnTimedEvent
+        public void UpdateProgressionPoints(string worldName, int prog)
+        {
+            //if event is current, skip
+            if (world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum
+                && data.UsingProgressionHints)
+                return;
+
+            AddProgressionPoints(GetProgressionPointsReward(worldName, prog));
+            data.PrevEventID1 = world.eventID1;
+            data.PrevEventID3 = world.eventID3;
+            data.PrevWorld = world.worldName;
+            data.PrevRoomNum = world.roomNumber;
         }
     }
 }

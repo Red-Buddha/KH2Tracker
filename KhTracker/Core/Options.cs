@@ -962,6 +962,12 @@ namespace KhTracker
             data.BossRandoSeed = 0;
             data.enabledWorlds.Clear();
 
+            //clear progression hints stuff
+            data.WorldsEnabled = 0;
+            data.HintRevealOrder.Clear();
+            data.ProgressionCurrentHint = 0;
+            data.ProgressionPoints = 0;
+
             //unselect any currently selected world grid
             if (data.selected != null)
             {
@@ -1439,6 +1445,15 @@ namespace KhTracker
 
                 ModeDisplay.Header += " | HSM";
             }
+
+            if (data.UsingProgressionHints)
+            {
+                CollectionGrid.Visibility = Visibility.Collapsed;
+                ScoreGrid.Visibility = Visibility.Collapsed;
+                ProgressionCollectionGrid.Visibility = Visibility.Visible;
+
+                ModeDisplay.Header += " | Progression";
+            }
         }
 
         private void OpenKHSeed(object sender, RoutedEventArgs e)
@@ -1650,79 +1665,119 @@ namespace KhTracker
                                         AbilitiesToggle(true);
                                         Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("SorasHeart");
                                         break;
                                     case "ExcludeFrom99":
                                         SoraLevel99Toggle(true);
                                         AbilitiesToggle(true);
                                         Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("SorasHeart");
                                         break;
                                     case "Simulated Twilight Town":
                                         SimulatedToggle(true);
                                         data.enabledWorlds.Add("STT");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("SimulatedTwilightTown");
                                         break;
                                     case "Hundred Acre Wood":
                                         HundredAcreWoodToggle(true);
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("HundredAcreWood");
                                         break;
                                     case "Atlantica":
                                         AtlanticaToggle(true);
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("Atlantica");
                                         break;
                                     case "Puzzle":
                                         PuzzleToggle(true);
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("PuzzSynth");
                                         break;
                                     case "Synthesis":
                                         SynthToggle(true);
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("PuzzSynth");
                                         break;
                                     case "Form Levels":
                                         DrivesToggle(true);
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("DriveForms");
                                         break;
                                     case "Land of Dragons":
                                         LandofDragonsToggle(true);
                                         data.enabledWorlds.Add("LoD");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("LandofDragons");
                                         break;
                                     case "Beast's Castle":
                                         BeastCastleToggle(true);
                                         data.enabledWorlds.Add("BC");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("BeastsCastle");
                                         break;
                                     case "Hollow Bastion":
                                         HollowBastionToggle(true);
                                         data.enabledWorlds.Add("HB");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("HollowBastion");
                                         break;
                                     case "Twilight Town":
                                         TwilightTownToggle(true);
                                         data.enabledWorlds.Add("TT");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("TwilightTown");
                                         break;
                                     case "The World That Never Was":
                                         TWTNWToggle(true);
                                         data.enabledWorlds.Add("TWTNW");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("TWTNW");
                                         break;
                                     case "Space Paranoids":
                                         SpaceParanoidsToggle(true);
                                         data.enabledWorlds.Add("SP");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("SpaceParanoids");
                                         break;
                                     case "Port Royal":
                                         PortRoyalToggle(true);
                                         data.enabledWorlds.Add("PR");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("PortRoyal");
                                         break;
                                     case "Olympus Coliseum":
                                         OlympusToggle(true);
                                         data.enabledWorlds.Add("OC");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("OlympusColiseum");
                                         break;
                                     case "Agrabah":
                                         AgrabahToggle(true);
                                         data.enabledWorlds.Add("AG");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("Agrabah");
                                         break;
                                     case "Halloween Town":
                                         HalloweenTownToggle(true);
                                         data.enabledWorlds.Add("HT");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("HalloweenTown");
                                         break;
                                     case "Pride Lands":
                                         PrideLandsToggle(true);
                                         data.enabledWorlds.Add("PL");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("PrideLands");
                                         break;
                                     case "Disney Castle / Timeless River":
                                         DisneyCastleToggle(true);
                                         data.enabledWorlds.Add("DC");
+                                        data.WorldsEnabled++;
+                                        data.HintRevealOrder.Add("DisneyCastle");
                                         break;
                                     //settings
                                     case "better_stt":
@@ -1763,6 +1818,11 @@ namespace KhTracker
                                         break;
                                     case "ScoreMode":
                                         data.ScoreMode = true;
+                                        break;
+                                    //progression hints
+                                    case "ProgressionHints":
+                                        data.UsingProgressionHints = true;
+                                        Console.WriteLine("ENABLING PROGRESSION HINTS");
                                         break;
                                 }
                             }
@@ -1811,6 +1871,95 @@ namespace KhTracker
                                 break;
                         }
 
+                        if (hintObject.ContainsKey("ProgressionSettings"))
+                        {
+                            var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
+
+                            foreach (var setting in progressionSettings)
+                            {
+                                Console.WriteLine("progression setting found = " + setting.Key);
+
+                                switch (setting.Key)
+                                {
+                                    case "HintCosts":
+                                        data.HintCosts.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.HintCosts.Add(cost);
+                                        break;
+                                    case "SimulatedTwilightTown":
+                                        data.STT_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.STT_ProgressionValues.Add(cost);
+                                        break;
+                                    case "TwilightTown":
+                                        data.TT_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.TT_ProgressionValues.Add(cost);
+                                        break;
+                                    case "HollowBastion":
+                                        data.HB_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.HB_ProgressionValues.Add(cost);
+                                        break;
+                                    case "LandofDragons":
+                                        data.LoD_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.LoD_ProgressionValues.Add(cost);
+                                        break;
+                                    case "BeastsCastle":
+                                        data.BC_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.BC_ProgressionValues.Add(cost);
+                                        break;
+                                    case "OlympusColiseum":
+                                        data.OC_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.OC_ProgressionValues.Add(cost);
+                                        break;
+                                    case "DisneyCastle":
+                                        data.DC_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.DC_ProgressionValues.Add(cost);
+                                        break;
+                                    case "PortRoyal":
+                                        data.PR_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.PR_ProgressionValues.Add(cost);
+                                        break;
+                                    case "HalloweenTown":
+                                        data.HT_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.HT_ProgressionValues.Add(cost);
+                                        break;
+                                    case "PrideLands":
+                                        data.PL_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.PL_ProgressionValues.Add(cost);
+                                        break;
+                                    case "HundredAcreWood":
+                                        data.HAW_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.HAW_ProgressionValues.Add(cost);
+                                        break;
+                                    case "SpaceParanoids":
+                                        data.SP_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.SP_ProgressionValues.Add(cost);
+                                        break;
+                                    case "TWTNW":
+                                        data.TWTNW_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.TWTNW_ProgressionValues.Add(cost);
+                                        break;
+                                    case "Atlantica":
+                                        data.AT_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.AT_ProgressionValues.Add(cost);
+                                        break;
+                                }
+                            }
+                        }
+
                         reader.Close();
                     }
                 }
@@ -1832,6 +1981,7 @@ namespace KhTracker
             int final = (icon1 + icon2) * (icon3 + icon4) * (icon5 + icon6) - icon7;
 
             data.BossRandoSeed = final;
+            data.ProgressionHash = final;
         }
     }
 }

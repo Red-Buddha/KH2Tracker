@@ -445,6 +445,14 @@ namespace KhTracker
                     // show hint text on report hover
                     item.MouseEnter -= item.Report_Hover;
                     item.MouseEnter += item.Report_Hover;
+
+                    if (data.UsingProgressionHints)
+                    {
+                        if (data.reportLocations[index] != "GoA")
+                            window.AddProgressionPoints(data.ReportBonus);
+                        else
+                            window.AddProgressionPoints(data.HintCosts[data.ProgressionCurrentHint]);
+                    }
                 }
                 else
                 {
@@ -471,6 +479,51 @@ namespace KhTracker
         }
 
         private void Report_Jsmartee(int index, Item item)
+        {
+            Data data = MainWindow.data;
+            if (data.UsingProgressionHints)
+                return;
+
+            // hint text
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + " important checks", true, false, true);
+
+            // resetting fail icons
+            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+            data.reportAttempts[index] = 3;
+
+            // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
+            data.WorldsData[data.reportInformation[index].Item2].hinted = true;
+
+            if (data.WorldsData[data.reportLocations[index]].hinted == true)
+            {
+                data.WorldsData[data.reportInformation[index].Item2].hintedHint = true;
+            }
+
+            // loop through hinted world for reports to set their info as hinted hints
+            for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children.Count; ++i)
+            {
+                Item gridItem = data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children[i] as Item;
+                if (gridItem.Name.Contains("Report"))
+                {
+                    int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
+                    data.WorldsData[data.reportInformation[reportIndex].Item2].hintedHint = true;
+                    window.SetWorldValue(data.WorldsData[data.reportInformation[reportIndex].Item2].value, data.reportInformation[reportIndex].Item3);
+                }
+            }
+
+            // auto update world important check number
+            window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item2].value, data.reportInformation[index].Item3);
+
+            //put here to remind myself later
+            //else if (data.reportLocations[index] == "Joke")
+            //{
+            //    // hint text
+            //    //window.SetJokeText(data.reportInformation[index].Item2);
+            //    isreport = true;
+            //}
+        }
+
+        public void ProgressionReport_Jsmartee(int index)
         {
             Data data = MainWindow.data;
             // hint text
@@ -527,6 +580,21 @@ namespace KhTracker
         private void Report_Path(int index)
         {
             Data data = MainWindow.data;
+            if (data.UsingProgressionHints)
+                return;
+
+            // hint text and proof icon display
+            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
+            PathProofToggle(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
+
+            // resetting fail icons
+            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+            data.reportAttempts[index] = 3;
+        }
+
+        public void ProgressionReport_Path(int index)
+        {
+            Data data = MainWindow.data;
             // hint text and proof icon display
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             PathProofToggle(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
@@ -537,6 +605,51 @@ namespace KhTracker
         }
 
         private void Report_Spoiler(int index)
+        {
+            Data data = MainWindow.data;
+            if (data.UsingProgressionHints)
+                return;
+
+            // hint text
+            if (data.reportInformation[index].Item1 == "Empty") //normal reports
+            {
+                window.SetHintText("This report reveals nothing...");
+            }
+            else
+            {
+                //set alt text for a hinted world that has 0 checks
+                //(for when a world is toggled on, but happens to contain nothing)
+                if (data.reportInformation[index].Item3 == -1)
+                {
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has no Important Checks", "", true, false, false);
+                }
+                else if (data.reportInformation[index].Item3 == -12345)
+                {
+                    window.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
+                }
+                else
+                {
+                    window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has been revealed!", "", true, false, false);
+                    SpoilerWorldReveal(data.reportInformation[index].Item1, "Report" + index);
+                }
+            }
+
+            // resetting fail icons
+            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+            data.reportAttempts[index] = 3;
+
+            //change hinted world to use green numbers
+            //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
+            if (data.SpoilerReportMode)
+            {
+                data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
+
+                if (data.WorldsData[data.reportInformation[index].Item1].containsGhost)
+                    window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item1].value, int.Parse(data.WorldsData[data.reportInformation[index].Item1].value.Text));
+            }
+        }
+
+        public void ProgressionReport_Spoiler(int index)
         {
             Data data = MainWindow.data;
             // hint text
