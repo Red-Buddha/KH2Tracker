@@ -556,6 +556,9 @@ namespace KhTracker
             {"Secret Ansem's Report 11", "Report11"},
             {"Secret Ansem's Report 12", "Report12"},
             {"Secret Ansem's Report 13", "Report13"},
+            {"Secret Ansem's Report 14", "Report14"},
+            {"Secret Ansem's Report 15", "Report15"},
+            {"Secret Ansem's Report 16", "Report16"},
             {"Battlefields of War (Auron)", "AuronWep"},
             {"Sword of the Ancestor (Mulan)", "MulanWep"},
             {"Beast's Claw (Beast)", "BeastWep"},
@@ -1682,29 +1685,5 @@ namespace KhTracker
         "11D0BCB0",
         "11D0BCC0",
         "11D0BCD0"};
-
-        //Progression Hints Helper Functions
-        public static Dictionary<string, int> WorldNameToInt = new Dictionary<string, int>()
-        {
-            { "SorasHeart", 0 },
-            { "DriveForms", 1 },
-            { "SimulatedTwilightTown", 2 },
-            { "TwilightTown", 3 },
-            { "HollowBastion", 4 },
-            { "BeastsCastle", 5 },
-            { "OlympusColiseum", 6 },
-            { "Agrabah", 7 },
-            { "LandofDragons", 8 },
-            { "HundredAcreWood", 9 },
-            { "PrideLands", 10 },
-            { "DisneyCastle", 11 },
-            { "HalloweenTown", 12 },
-            { "PortRoyal", 13 },
-            { "SpaceParanoids", 14 },
-            { "TWTNW", 15 },
-            { "GoA", 16 },
-            { "Atlantica", 17 },
-            { "PuzzSynth", 18}
-        };
     }
 }

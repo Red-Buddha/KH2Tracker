@@ -1885,6 +1885,7 @@ namespace KhTracker
                                         data.HintCosts.Clear();
                                         foreach (int cost in setting.Value)
                                             data.HintCosts.Add(cost);
+                                        data.HintCosts.Add(data.HintCosts[data.HintCosts.Count - 1]); //duplicates the last cost for logic reasons
                                         break;
                                     case "SimulatedTwilightTown":
                                         data.STT_ProgressionValues.Clear();
@@ -1921,6 +1922,11 @@ namespace KhTracker
                                         foreach (int cost in setting.Value)
                                             data.DC_ProgressionValues.Add(cost);
                                         break;
+                                    case "Agrabah":
+                                        data.AG_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.AG_ProgressionValues.Add(cost);
+                                        break;
                                     case "PortRoyal":
                                         data.PR_ProgressionValues.Clear();
                                         foreach (int cost in setting.Value)
@@ -1956,8 +1962,22 @@ namespace KhTracker
                                         foreach (int cost in setting.Value)
                                             data.AT_ProgressionValues.Add(cost);
                                         break;
+                                    case "ReportBonus":
+                                        data.ReportBonus = setting.Value[0];
+                                        break;
+                                    case "WorldCompleteBonus":
+                                        data.WorldCompleteBonus = setting.Value[0];
+                                        break;
+                                    case "Levels":
+                                        data.Levels_ProgressionValues.Clear();
+                                        data.Levels_ProgressionValues.AddRange(setting.Value);
+                                        break;
                                 }
                             }
+                            data.NumOfHints = data.HintCosts.Count;
+                            //set text correctly
+                            ProgressionCollectedValue.Text = "0";
+                            ProgressionTotalValue.Text = data.HintCosts[0].ToString();
                         }
 
                         reader.Close();

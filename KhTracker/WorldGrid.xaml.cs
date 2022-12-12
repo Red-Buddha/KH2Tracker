@@ -442,16 +442,20 @@ namespace KhTracker
                             return false;
                     }
 
-                    // show hint text on report hover
-                    item.MouseEnter -= item.Report_Hover;
-                    item.MouseEnter += item.Report_Hover;
-
                     if (data.UsingProgressionHints)
                     {
+                        //handle bonus points for getting a report tracked
                         if (data.reportLocations[index] != "GoA")
                             window.AddProgressionPoints(data.ReportBonus);
+                        //when starting with a report, give a freebie hint
                         else
                             window.AddProgressionPoints(data.HintCosts[data.ProgressionCurrentHint]);
+                    }
+                    else
+                    {
+                        // show hint text on report hover
+                        item.MouseEnter -= item.Report_Hover;
+                        item.MouseEnter += item.Report_Hover;
                     }
                 }
                 else
@@ -530,8 +534,11 @@ namespace KhTracker
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + " important checks", true, false, true);
 
             // resetting fail icons
-            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
-            data.reportAttempts[index] = 3;
+            if (index < 13)
+            {
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                data.reportAttempts[index] = 3;
+            }
 
             // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
             data.WorldsData[data.reportInformation[index].Item2].hinted = true;
@@ -541,17 +548,17 @@ namespace KhTracker
                 data.WorldsData[data.reportInformation[index].Item2].hintedHint = true;
             }
 
-            // loop through hinted world for reports to set their info as hinted hints
-            for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children.Count; ++i)
-            {
-                Item gridItem = data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children[i] as Item;
-                if (gridItem.Name.Contains("Report"))
-                {
-                    int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
-                    data.WorldsData[data.reportInformation[reportIndex].Item2].hintedHint = true;
-                    window.SetWorldValue(data.WorldsData[data.reportInformation[reportIndex].Item2].value, data.reportInformation[reportIndex].Item3);
-                }
-            }
+            //// loop through hinted world for reports to set their info as hinted hints
+            //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children.Count; ++i)
+            //{
+            //    Item gridItem = data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children[i] as Item;
+            //    if (gridItem.Name.Contains("Report"))
+            //    {
+            //        int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
+            //        data.WorldsData[data.reportInformation[reportIndex].Item2].hintedHint = true;
+            //        window.SetWorldValue(data.WorldsData[data.reportInformation[reportIndex].Item2].value, data.reportInformation[reportIndex].Item3);
+            //    }
+            //}
 
             // auto update world important check number
             window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item2].value, data.reportInformation[index].Item3);
@@ -676,9 +683,12 @@ namespace KhTracker
                 }
             }
 
-            // resetting fail icons
-            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
-            data.reportAttempts[index] = 3;
+            // resetting fail icons for the actual reports
+            if (index < 13)
+            {
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                data.reportAttempts[index] = 3;
+            }
 
             //change hinted world to use green numbers
             //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
@@ -1380,6 +1390,50 @@ namespace KhTracker
             if (tempItems.Count == 0)
             {
                 data.WorldsData[worldName].complete = true;
+                //when a world is found as complete, give the stored bonuses
+                window.AddProgressionPoints(data.StoredWorldCompleteBonus[worldName]);
+            }
+        }
+
+        public void WorldCompleteProgressionBonus()
+        {
+            Data data = MainWindow.data;
+            //run a check for current world to check if all checks have been found
+
+            //get worldname by rmoving "Grid" from the end of the current worldgrid name
+            string worldName = Name.Substring(0, Name.Length - 4);
+
+            //if GoA or if the complete flag has been set. if so just return
+            if (worldName == "GoA")
+                return;
+
+            //create a temp list for what checks a world should have
+            List<string> tempItems = new List<string>();
+            tempItems.AddRange(data.WorldsData[worldName].checkCount);
+
+            //for each item currently tracked to worldgrid we remove it from the temp list
+            char[] numbers = { '1', '2', '3', '4', '5' };
+            foreach (var child in Children)
+            {
+                Item item = child as Item;
+
+                //just skip if item is a ghost. checkCount should never contain ghosts anyway
+                if (item.Name.StartsWith("Ghost_"))
+                    continue;
+
+                //do not trim numbers if report
+                if (item.Name.Contains("Report") && tempItems.Contains(item.Name))
+                    tempItems.Remove(item.Name);
+                else if (tempItems.Contains(item.Name.TrimEnd(numbers)))
+                {
+                    tempItems.Remove(item.Name.TrimEnd(numbers));
+                }
+            }
+
+            //if Templist is empty then world can store the bonus points
+            if (tempItems.Count == 0)
+            {
+                data.StoredWorldCompleteBonus[worldName] += data.WorldCompleteBonus;
             }
         }
 

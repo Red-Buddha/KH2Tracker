@@ -507,8 +507,10 @@ namespace KhTracker
                 UpdateWorldProgress(world);  //progression update
                 UpdateFormProgression();
                 DeathCheck(pcsx2tracking);   //update deathcounter
+                LevelsProgressionBonus();
+                DrivesProgressionBonus();
 
-                if(data.mode == Mode.DAHints || data.ScoreMode)
+                if (data.mode == Mode.DAHints || data.ScoreMode)
                 {
                     UpdatePointScore(0); //update score
                     GetBoss(world);
@@ -775,6 +777,51 @@ namespace KhTracker
                 TornPage page = new TornPage(null, 0, 0, "TornPage" + tornPageCount.ToString());
                 newChecks.Add(page);
                 collectedChecks.Add(page);
+            }
+        }
+
+        //progression hints level bonus
+        private void LevelsProgressionBonus()
+        {
+            //if sora's current level is great than the max specified level (usually 50), then do nothing
+            if (stats.Level > (data.Levels_ProgressionValues.Count * 10))
+                return;
+
+            //every 10 levels, reward the player the progression points for that part
+            while (stats.Level > data.NextLevelMilestone)
+            {
+                data.NextLevelMilestone += 10;
+                AddProgressionPoints(data.Levels_ProgressionValues[data.LevelsPreviousIndex++]);
+            }
+        }
+
+        private void DrivesProgressionBonus()
+        {
+            //check valor
+            while (valor.Level > data.DriveLevels[0])
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
+                data.DriveLevels[0]++;
+            }
+            while (wisdom.Level > data.DriveLevels[1])
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[1] - 1]);
+                data.DriveLevels[1]++;
+            }
+            while (limit.Level > data.DriveLevels[2])
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[2] - 1]);
+                data.DriveLevels[2]++;
+            }
+            while (master.Level > data.DriveLevels[3])
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[3] - 1]);
+                data.DriveLevels[3]++;
+            }
+            while (final.Level > data.DriveLevels[4])
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[4] - 1]);
+                data.DriveLevels[4]++;
             }
         }
 
@@ -1058,11 +1105,11 @@ namespace KhTracker
                         case 0:
                         case 4:
                             if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Agrabah (Ag1) || The Vault (Ag2)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                                UpdateProgressionPoints(world.worldName, curProg = 1);
                             break;
                         case 9:
                             if (world.eventID1 == 2 && world.eventComplete == 1) // Abu finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                UpdateProgressionPoints(world.worldName, curProg = 2);
                             break;
                         case 13:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Chasm fight finish
