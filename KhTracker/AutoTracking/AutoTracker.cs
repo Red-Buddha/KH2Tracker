@@ -784,7 +784,7 @@ namespace KhTracker
         private void LevelsProgressionBonus()
         {
             //if sora's current level is great than the max specified level (usually 50), then do nothing
-            if (stats.Level > (data.Levels_ProgressionValues.Count * 10))
+            if (stats.Level > (data.Levels_ProgressionValues.Count * 10) || !data.UsingProgressionHints)
                 return;
 
             //every 10 levels, reward the player the progression points for that part
@@ -797,6 +797,9 @@ namespace KhTracker
 
         private void DrivesProgressionBonus()
         {
+            if (!data.UsingProgressionHints)
+                return;
+
             //check valor
             while (valor.Level > data.DriveLevels[0])
             {
@@ -2256,9 +2259,9 @@ namespace KhTracker
         public void UpdateProgressionPoints(string worldName, int prog)
         {
             //if event is current, skip
-            if (world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
-                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum
-                && data.UsingProgressionHints)
+            if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
+                || !data.UsingProgressionHints)
                 return;
 
             AddProgressionPoints(GetProgressionPointsReward(worldName, prog));
