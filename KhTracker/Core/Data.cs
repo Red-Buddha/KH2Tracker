@@ -95,34 +95,19 @@ namespace KhTracker
         public int PrevEventID3 = 0;
         public string PrevWorld = "";
         public int PrevRoomNum = 0;
+        //public List<int> HintCosts = new List<int>();
         public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
         public int NumOfHints = 20;
         public int ProgressionCurrentHint = 0;
         public int ReportBonus = 1;
         public List<string> HintRevealOrder = new List<string>();
+        //                                    Sora   Drive   STT    TT     HB     BC     OC     AG     LoD   100AW   PL     DC     HT     PR     SP   TWTNW    GoA    AT
+        //                                      0      1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17
+        //public int[] worldStoredHintCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        //public int[] worldStoredOrigCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
+        //public int[] worldHintNumber      = {  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1   };
+        //future - add sora leveling and drives here
         public int WorldCompleteBonus = 0;
-        //                                              Sora Level - 10 20 30 40 50
-        public List<int> Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
-        public int LevelsPreviousIndex = 0;
-        public int NextLevelMilestone = 9;
-        //                                             Drive Level -  2  3  4  5  6  7
-        public List<int> Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
-        public List<int> DriveLevels = new List<int>() { 0, 0, 0, 0, 0 };
-        public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-        public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-        public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-        public List<int> BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-        public List<int> OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        public List<int> AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-        public List<int> LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        public List<int> HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
-        public List<int> PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-        public List<int> AT_ProgressionValues = new List<int>() { 1, 2, 3 };
-        public List<int> DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        public List<int> HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-        public List<int> PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
-        public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         public Dictionary<string, int> StoredWorldCompleteBonus = new Dictionary<string, int>()
         {
             { "SorasHeart", 0 },
@@ -145,6 +130,28 @@ namespace KhTracker
             { "Atlantica", 0 },
             { "PuzzSynth", 0 }
         };
+        //                                              Sora Level - 10 20 30 40 50
+        public List<int> Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
+        public int LevelsPreviousIndex = 0;
+        public int NextLevelMilestone = 9;
+        //                                             Drive Level -  2  3  4  5  6  7
+        public List<int> Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
+        public List<int> DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
+        public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        public List<int> BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> AT_ProgressionValues = new List<int>() { 1, 2, 3 };
+        public List<int> DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
     }
 
     public class WorldData
