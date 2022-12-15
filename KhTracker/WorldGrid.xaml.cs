@@ -444,12 +444,14 @@ namespace KhTracker
 
                     if (data.UsingProgressionHints)
                     {
-                        //handle bonus points for getting a report tracked
-                        if (data.reportLocations[index] != "GoA")
-                            window.AddProgressionPoints(data.ReportBonus);
-                        //when starting with a report, give a freebie hint
-                        else
-                            window.AddProgressionPoints(data.HintCosts[data.ProgressionCurrentHint]);
+                        //Fix this later lol
+                        ////handle bonus points for getting a report tracked
+                        //if (data.reportLocations[index] != "GoA")
+                        //    window.AddProgressionPoints(data.ReportBonus);
+                        ////when starting with a report, give a freebie hint
+                        //else
+                        //    window.AddProgressionPoints(data.HintCosts[data.ProgressionCurrentHint]);
+                        window.AddProgressionPoints(data.ReportBonus);
                     }
                     else
                     {
@@ -541,12 +543,12 @@ namespace KhTracker
             }
 
             // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
-            data.WorldsData[data.reportInformation[index].Item2].hinted = true;
-
-            if (data.WorldsData[data.reportLocations[index]].hinted == true)
-            {
-                data.WorldsData[data.reportInformation[index].Item2].hintedHint = true;
-            }
+            //data.WorldsData[data.reportInformation[index].Item2].hinted = true;
+            //
+            //if (data.WorldsData[data.reportLocations[index]].hinted == true)
+            //{
+            //    data.WorldsData[data.reportInformation[index].Item2].hintedHint = true;
+            //}
 
             //// loop through hinted world for reports to set their info as hinted hints
             //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children.Count; ++i)
@@ -602,13 +604,20 @@ namespace KhTracker
         public void ProgressionReport_Path(int index)
         {
             Data data = MainWindow.data;
+
+            Console.WriteLine("INDEX = " + index);
+            Console.WriteLine("data.reportInformation[index].Item1 = " + data.reportInformation[index].Item1);
+
             // hint text and proof icon display
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             PathProofToggle(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
 
             // resetting fail icons
-            data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
-            data.reportAttempts[index] = 3;
+            if (index < 13)
+            {
+                data.ReportAttemptVisual[index].SetResourceReference(ContentControl.ContentProperty, "Fail0");
+                data.reportAttempts[index] = 3;
+            }
         }
 
         private void Report_Spoiler(int index)

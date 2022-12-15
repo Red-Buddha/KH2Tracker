@@ -963,10 +963,18 @@ namespace KhTracker
             data.enabledWorlds.Clear();
 
             //clear progression hints stuff
-            data.WorldsEnabled = 0;
-            data.HintRevealOrder.Clear();
-            data.ProgressionCurrentHint = 0;
+            data.UsingProgressionHints = false;
             data.ProgressionPoints = 0;
+            data.TotalProgressionPoints = 0;
+            data.WorldsEnabled = 0;
+            data.PrevEventID1 = 0;
+            data.PrevEventID3 = 0;
+            data.PrevWorld = "";
+            data.PrevRoomNum = 0;
+            data.ProgressionCurrentHint = 0;
+            data.HintRevealOrder.Clear();
+            data.LevelsPreviousIndex = 0;
+            data.NextLevelMilestone = 9;
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1235,6 +1243,7 @@ namespace KhTracker
 
             CollectionGrid.Visibility = Visibility.Visible;
             ScoreGrid.Visibility = Visibility.Hidden;
+            ProgressionCollectionGrid.Visibility = Visibility.Hidden;
 
             //reset settings row
             SettingsText.Text = "";
@@ -1885,7 +1894,7 @@ namespace KhTracker
                                         data.HintCosts.Clear();
                                         foreach (int cost in setting.Value)
                                             data.HintCosts.Add(cost);
-                                        data.HintCosts.Add(data.HintCosts[data.HintCosts.Count - 1]); //duplicates the last cost for logic reasons
+                                        data.HintCosts.Add(data.HintCosts[data.HintCosts.Count - 1] + 1); //duplicates the last cost for logic reasons
                                         break;
                                     case "SimulatedTwilightTown":
                                         data.STT_ProgressionValues.Clear();
@@ -1970,7 +1979,13 @@ namespace KhTracker
                                         break;
                                     case "Levels":
                                         data.Levels_ProgressionValues.Clear();
-                                        data.Levels_ProgressionValues.AddRange(setting.Value);
+                                        foreach (int cost in setting.Value)
+                                            data.Levels_ProgressionValues.Add(cost);
+                                        break;
+                                    case "Drives":
+                                        data.Drives_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.Drives_ProgressionValues.Add(cost);
                                         break;
                                 }
                             }

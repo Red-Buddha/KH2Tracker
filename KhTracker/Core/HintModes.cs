@@ -126,7 +126,7 @@ namespace KhTracker
         private void ProgressionJsmarteeHints(Dictionary<string, object> hintObject)
         {
             data.ShouldResetHash = true;
-            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["ProgressionHints"].ToString());
+            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> progHintsKeys = progHints.Keys.Select(int.Parse).ToList();
             progHintsKeys.Sort();
 
@@ -257,7 +257,7 @@ namespace KhTracker
         {
             data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["ProgressionHints"].ToString());
+            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> progHintsKeys = progHints.Keys.Select(int.Parse).ToList();
             progHintsKeys.Sort();
 
@@ -590,7 +590,7 @@ namespace KhTracker
             data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
             List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
-            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["ProgressionHints"].ToString());
+            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
             reportKeys.Sort();
 
@@ -1315,12 +1315,12 @@ namespace KhTracker
 
         public void AddProgressionPoints(int points)
         {
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine("Current Hint Cost = " + data.HintCosts[data.ProgressionCurrentHint]);
-            Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
-            Console.WriteLine("Points added = " + points);
-            Console.WriteLine("New Points at = " + (data.ProgressionPoints + points));
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
+            //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
+            //Console.WriteLine("Current Hint Cost = " + data.HintCosts[data.ProgressionCurrentHint]);
+            //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
+            //Console.WriteLine("Points added = " + points);
+            //Console.WriteLine("New Points at = " + (data.ProgressionPoints + points));
+            //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
 
             data.ProgressionPoints += points;
             data.TotalProgressionPoints += points;
@@ -1336,6 +1336,8 @@ namespace KhTracker
             //loop in the event that one progression point rewards a lot
             while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count)
             {
+                //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
+                //Console.WriteLine("data.HintCosts.count = " + data.HintCosts.Count);
                 //Console.WriteLine("PROGRESSION CURRENT HINT = " + data.ProgressionCurrentHint);
                 //update points and current hint
                 data.ProgressionPoints -= data.HintCosts[data.ProgressionCurrentHint];
@@ -1377,7 +1379,7 @@ namespace KhTracker
 
             else if (data.mode == Mode.OpenKHHints) //jsmartee
             {
-                string RealWorldName = data.reportInformation[hintNum].Item1;
+                string RealWorldName = data.reportInformation[hintNum].Item2;
                 Console.WriteLine("Jsmartee Revealing " + RealWorldName);
                 data.WorldsData[RealWorldName].hintedProgression = true;
 
@@ -1400,12 +1402,12 @@ namespace KhTracker
             else if (data.mode == Mode.DAHints) //points
             {
                 //potential problem
-                string RealWorldName = data.reportInformation[hintNum].Item1;
+                string RealWorldName = data.HintRevealOrder[hintNum];
                 Console.WriteLine("Points Revealing " + RealWorldName);
                 data.WorldsData[RealWorldName].hintedProgression = true;
-
+                Console.WriteLine("1");
                 data.WorldsData[RealWorldName].worldGrid.WorldComplete();
-
+                Console.WriteLine("2");
                 if (WorldPoints.Keys.Contains(RealWorldName))
                 {
                     SetWorldValue(data.WorldsData[RealWorldName].value, WorldPoints[RealWorldName]);
@@ -1414,8 +1416,9 @@ namespace KhTracker
                 {
                     Console.WriteLine($"Something went wrong in setting world point numbers. error: {RealWorldName}");
                 }
-
+                Console.WriteLine("3");
                 SetHintText(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false);
+                Console.WriteLine("4");
             }
             else if (data.mode == Mode.PathHints) //path
             {

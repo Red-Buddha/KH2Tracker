@@ -800,6 +800,8 @@ namespace KhTracker
             //check valor
             while (valor.Level > data.DriveLevels[0])
             {
+                //Console.WriteLine("data.DriveLevels[0] Current = " + data.DriveLevels[0]);
+                //Console.WriteLine("data.Drives_ProgressionValues[data.DriveLevels[0]] = " + data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
                 AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
                 data.DriveLevels[0]++;
             }
