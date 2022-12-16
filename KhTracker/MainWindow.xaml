@@ -747,6 +747,11 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- world value -->
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                                <local:OutlinedTextBlock x:Name="GoAHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFFFE435" Text="?" Margin="0,-5,0,2"/>
+                            </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="GoAProgression" Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
                         </Grid>

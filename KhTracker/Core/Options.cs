@@ -975,6 +975,8 @@ namespace KhTracker
             data.HintRevealOrder.Clear();
             data.LevelsPreviousIndex = 0;
             data.NextLevelMilestone = 9;
+            data.HintRevealsStored.Clear();
+            data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1618,6 +1620,9 @@ namespace KhTracker
                             PuzzleToggle(false);
                             SynthToggle(false);
 
+                            //progression hints GoA Current Hint Count
+                            data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+
                             //settings visuals
                             SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
                             Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
@@ -1831,6 +1836,8 @@ namespace KhTracker
                                     //progression hints
                                     case "ProgressionHints":
                                         data.UsingProgressionHints = true;
+                                        data.WorldsData["GoA"].value.Visibility = Visibility.Visible;
+                                        data.WorldsData["GoA"].value.Text = "0";
                                         Console.WriteLine("ENABLING PROGRESSION HINTS");
                                         break;
                                 }

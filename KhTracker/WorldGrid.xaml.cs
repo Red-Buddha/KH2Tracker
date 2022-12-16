@@ -533,6 +533,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             // hint text
+            data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + " important checks", true, false, true));
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item2), "has", data.reportInformation[index].Item3 + " important checks", true, false, true);
 
             // resetting fail icons
@@ -609,6 +610,7 @@ namespace KhTracker
             Console.WriteLine("data.reportInformation[index].Item1 = " + data.reportInformation[index].Item1);
 
             // hint text and proof icon display
+            data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(Codes.GetHintTextName(data.reportInformation[index].Item1), "", "", false, false, false));
             window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1));
             PathProofToggle(data.reportInformation[index].Item2, data.reportInformation[index].Item3);
 

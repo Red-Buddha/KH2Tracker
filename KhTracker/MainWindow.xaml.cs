@@ -116,7 +116,7 @@ namespace KhTracker
             data.WorldsData.Add("PortRoyal",                new WorldData(PortRoyalTop, PortRoyal, PortRoyalProgression, PortRoyalHint, PortRoyalGrid, false, 0));
             data.WorldsData.Add("SpaceParanoids",           new WorldData(SpaceParanoidsTop, SpaceParanoids, SpaceParanoidsProgression, SpaceParanoidsHint, SpaceParanoidsGrid, false, 0));
             data.WorldsData.Add("TWTNW",                    new WorldData(TWTNWTop, TWTNW, TWTNWProgression, TWTNWHint, TWTNWGrid, false, 0));
-            data.WorldsData.Add("GoA",                      new WorldData(GoATop, GoA, GoAProgression, null, GoAGrid, true, 0));
+            data.WorldsData.Add("GoA",                      new WorldData(GoATop, GoA, GoAProgression, GoAHint, GoAGrid, true, 0));
             data.WorldsData.Add("Atlantica",                new WorldData(AtlanticaTop, Atlantica, AtlanticaProgression, AtlanticaHint, AtlanticaGrid, false, 0));
             data.WorldsData.Add("PuzzSynth",                new WorldData(PuzzSynthTop, PuzzSynth, null, PuzzSynthHint, PuzzSynthGrid, false, 0));
 
@@ -411,8 +411,7 @@ namespace KhTracker
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             Button button = sender as Button;
-
-            switch(e.ChangedButton)
+            switch (e.ChangedButton)
             {
                 case MouseButton.Left: //for changing world selection visuals
                     if (data.selected != null) //set previousl selected world to default colors
@@ -464,7 +463,7 @@ namespace KhTracker
         private void OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
             Button button = sender as Button;
-
+            
             if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null)
             {
                 ManualWorldValue(data.WorldsData[button.Name].value, e.Delta);
@@ -529,7 +528,7 @@ namespace KhTracker
         private void ManualWorldValue(OutlinedTextBlock Hint, int delta)
         {
             //return if the a hint mode is loaded
-            if (data.mode != Mode.None)
+            if (data.mode != Mode.None && !Hint.Name.Contains("GoA"))
                 return;
 
             int num;
@@ -537,7 +536,7 @@ namespace KhTracker
             //get current number
             if (Hint.Text == "?")
             {
-                if (delta > 0) 
+                if (delta > 0 && Hint.Name.Contains("GoA")) 
                     num = -1; // if adding then start at -1 so next number is 0
                 else
                     num = 0; //if subtracting start at 0 so next number is -1
@@ -550,12 +549,35 @@ namespace KhTracker
             else
                 --num;
 
+            if (data.UsingProgressionHints)
+            {
+                if (num <= 0 && data.ProgressionCurrentHint >= 0 && Hint.Name.Contains("GoA"))
+                {
+                    if (data.ProgressionCurrentHint == 0)
+                        num = 0;
+                    else
+                        num = 1;
+                }
+                else if (num > data.HintCosts.Count && data.ProgressionCurrentHint > 0 && Hint.Name.Contains("GoA"))
+                    if (data.HintCosts.Count > data.ProgressionCurrentHint)
+                        num = data.ProgressionCurrentHint;
+                if (num > data.ProgressionCurrentHint && Hint.Name.Contains("GoA"))
+                    num = data.ProgressionCurrentHint;
+
+                if (num > 0)
+                {
+                    Tuple<string, string, string, bool, bool, bool> temp = data.HintRevealsStored[num - 1];
+                    SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
+                }
+            }
+
             Hint.Text = num.ToString();
         }
 
         public void SetWorldValue(OutlinedTextBlock worldValue, int value)
         {
-            if (worldValue == null || (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
+            if (worldValue == null || worldValue.Name.Contains("GoA") ||
+                (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
                 return;
 
             string location = worldValue.Name.Substring(0, worldValue.Name.Length - 4);

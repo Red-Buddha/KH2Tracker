@@ -1364,6 +1364,7 @@ namespace KhTracker
                 ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             }
+            data.WorldsData["GoA"].value.Text = data.ProgressionCurrentHint.ToString();
         }
 
         public void ProgressionReveal(int hintNum)
@@ -1396,7 +1397,9 @@ namespace KhTracker
                 data.WorldsData[RealWorldName].worldGrid.WorldComplete();
                 SetWorldValue(data.WorldsData[RealWorldName].value, data.WorldsData[RealWorldName].worldGrid.Children.Count);
 
-                SetHintText(Codes.GetHintTextName(RealWorldName), "is now unhidden!", "", true, false, false);
+                string codesRealWorldName = Codes.GetHintTextName(RealWorldName);
+                SetHintText(codesRealWorldName, "is now unhidden!", "", true, false, false);
+                data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(codesRealWorldName, "is now unhidden!", "", true, false, false));
                 //Console.WriteLine("SOME CHECK COUNT THING = " + data.WorldsData[RealWorldName].worldGrid.Children.Count);
             }
             else if (data.mode == Mode.DAHints) //points
@@ -1405,9 +1408,9 @@ namespace KhTracker
                 string RealWorldName = data.HintRevealOrder[hintNum];
                 Console.WriteLine("Points Revealing " + RealWorldName);
                 data.WorldsData[RealWorldName].hintedProgression = true;
-                Console.WriteLine("1");
+
                 data.WorldsData[RealWorldName].worldGrid.WorldComplete();
-                Console.WriteLine("2");
+
                 if (WorldPoints.Keys.Contains(RealWorldName))
                 {
                     SetWorldValue(data.WorldsData[RealWorldName].value, WorldPoints[RealWorldName]);
@@ -1416,9 +1419,9 @@ namespace KhTracker
                 {
                     Console.WriteLine($"Something went wrong in setting world point numbers. error: {RealWorldName}");
                 }
-                Console.WriteLine("3");
+
+                data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false));
                 SetHintText(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false);
-                Console.WriteLine("4");
             }
             else if (data.mode == Mode.PathHints) //path
             {
@@ -1437,6 +1440,7 @@ namespace KhTracker
                 SetWorldValue(data.WorldsData[RealWorldName].value, data.WorldsData[RealWorldName].worldGrid.Children.Count);
                 data.WorldsData[RealWorldName].worldGrid.ProgressionReport_Spoiler(hintNum);
 
+                data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false));
                 SetHintText(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false);
             }
         }

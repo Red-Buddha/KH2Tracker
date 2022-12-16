@@ -101,6 +101,7 @@ namespace KhTracker
         public int ProgressionCurrentHint = 0;
         public int ReportBonus = 1;
         public List<string> HintRevealOrder = new List<string>();
+        public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
         //                                    Sora   Drive   STT    TT     HB     BC     OC     AG     LoD   100AW   PL     DC     HT     PR     SP   TWTNW    GoA    AT
         //                                      0      1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17
         //public int[] worldStoredHintCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
