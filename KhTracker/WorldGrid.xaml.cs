@@ -442,23 +442,21 @@ namespace KhTracker
                             return false;
                     }
 
-                    if (data.UsingProgressionHints)
+                    if (data.UsingProgressionHints && data.mode != Mode.DAHints && !data.reportLocationsUsed[index])
                     {
-                        //Fix this later lol
-                        ////handle bonus points for getting a report tracked
-                        //if (data.reportLocations[index] != "GoA")
-                        //    window.AddProgressionPoints(data.ReportBonus);
-                        ////when starting with a report, give a freebie hint
-                        //else
-                        //    window.AddProgressionPoints(data.HintCosts[data.ProgressionCurrentHint]);
                         window.AddProgressionPoints(data.ReportBonus);
                     }
                     else
                     {
+                        //check if the report was already obtained before giving points
+                        if (data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
+                            window.AddProgressionPoints(data.ReportBonus);
                         // show hint text on report hover
                         item.MouseEnter -= item.Report_Hover;
                         item.MouseEnter += item.Report_Hover;
                     }
+
+                    data.reportLocationsUsed[index] = true;
                 }
                 else
                 {
@@ -1400,6 +1398,7 @@ namespace KhTracker
             //if Templist is empty then worl can be marked as complete
             if (tempItems.Count == 0)
             {
+                Console.WriteLine("~~~~~ MARKING WORLD AS COMPLETE");
                 data.WorldsData[worldName].complete = true;
                 //when a world is found as complete, give the stored bonuses
                 window.AddProgressionPoints(data.StoredWorldCompleteBonus[worldName]);
@@ -1418,31 +1417,8 @@ namespace KhTracker
             if (worldName == "GoA")
                 return;
 
-            //create a temp list for what checks a world should have
-            List<string> tempItems = new List<string>();
-            tempItems.AddRange(data.WorldsData[worldName].checkCount);
-
-            //for each item currently tracked to worldgrid we remove it from the temp list
-            char[] numbers = { '1', '2', '3', '4', '5' };
-            foreach (var child in Children)
-            {
-                Item item = child as Item;
-
-                //just skip if item is a ghost. checkCount should never contain ghosts anyway
-                if (item.Name.StartsWith("Ghost_"))
-                    continue;
-
-                //do not trim numbers if report
-                if (item.Name.Contains("Report") && tempItems.Contains(item.Name))
-                    tempItems.Remove(item.Name);
-                else if (tempItems.Contains(item.Name.TrimEnd(numbers)))
-                {
-                    tempItems.Remove(item.Name.TrimEnd(numbers));
-                }
-            }
-
-            //if Templist is empty then world can store the bonus points
-            if (tempItems.Count == 0)
+            //if world was marked at some point as complete
+            if (data.WorldsData[worldName].complete)
             {
                 data.StoredWorldCompleteBonus[worldName] += data.WorldCompleteBonus;
             }

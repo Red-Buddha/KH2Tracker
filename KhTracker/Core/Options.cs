@@ -963,6 +963,7 @@ namespace KhTracker
             data.enabledWorlds.Clear();
 
             //clear progression hints stuff
+            data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
             data.UsingProgressionHints = false;
             data.ProgressionPoints = 0;
             data.TotalProgressionPoints = 0;

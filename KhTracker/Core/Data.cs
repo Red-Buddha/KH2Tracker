@@ -32,6 +32,7 @@ namespace KhTracker
 
         public List<Tuple<string, string, int>> reportInformation = new List<Tuple<string, string, int>>();
         public List<string> reportLocations = new List<string>();
+        public List<bool> reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
         public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
