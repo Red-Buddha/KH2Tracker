@@ -976,8 +976,31 @@ namespace KhTracker
             data.HintRevealOrder.Clear();
             data.LevelsPreviousIndex = 0;
             data.NextLevelMilestone = 9;
+            data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+            data.StoredWorldCompleteBonus = new Dictionary<string, int>()
+            {
+                { "SorasHeart", 0 },
+                { "DriveForms", 0 },
+                { "SimulatedTwilightTown", 0 },
+                { "TwilightTown", 0 },
+                { "HollowBastion", 0 },
+                { "BeastsCastle", 0 },
+                { "OlympusColiseum", 0 },
+                { "Agrabah", 0 },
+                { "LandofDragons", 0 },
+                { "HundredAcreWood", 0 },
+                { "PrideLands", 0 },
+                { "DisneyCastle", 0 },
+                { "HalloweenTown", 0 },
+                { "PortRoyal", 0 },
+                { "SpaceParanoids", 0 },
+                { "TWTNW", 0 },
+                { "GoA", 0 },
+                { "Atlantica", 0 },
+                { "PuzzSynth", 0 }
+            };
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1997,7 +2020,7 @@ namespace KhTracker
                                         break;
                                 }
                             }
-                            data.NumOfHints = data.HintCosts.Count;
+                            //data.NumOfHints = data.HintCosts.Count;
                             //set text correctly
                             ProgressionCollectedValue.Text = "0";
                             ProgressionTotalValue.Text = data.HintCosts[0].ToString();

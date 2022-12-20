@@ -95,7 +95,7 @@ namespace KhTracker
 
         private void JsmarteeHints(Dictionary<string, object> hintObject)
         {
-            if (!data.UsingProgressionHints)
+            if (data.UsingProgressionHints)
             {
                 ProgressionJsmarteeHints(hintObject);
                 return;
@@ -1202,19 +1202,11 @@ namespace KhTracker
 
         public void SetProgressionHints(bool usingProgHints)
         {
-            if (!usingProgHints)
+            //if it calls here and not in progression or using outdated seed methods somehow
+            if (!usingProgHints || data.mode == Mode.Hints || data.mode == Mode.AltHints)
                 return;
 
             //Per Hint Mode Changes
-            if (data.mode == Mode.Hints)
-            {
-                return;
-            }
-            else if (data.mode == Mode.AltHints)
-            {
-                return;
-            }
-
             else if (data.mode == Mode.OpenKHHints)
             {
                 //Need to shuffle the hints given so there is no metagaming
@@ -1315,12 +1307,14 @@ namespace KhTracker
 
         public void AddProgressionPoints(int points)
         {
+            #region Debug stuff
             //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
             //Console.WriteLine("Current Hint Cost = " + data.HintCosts[data.ProgressionCurrentHint]);
             //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
             //Console.WriteLine("Points added = " + points);
             //Console.WriteLine("New Points at = " + (data.ProgressionPoints + points));
             //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
+            #endregion
 
             data.ProgressionPoints += points;
             data.TotalProgressionPoints += points;
@@ -1336,13 +1330,14 @@ namespace KhTracker
             //loop in the event that one progression point rewards a lot
             while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count)
             {
+                #region More Debug
                 //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
                 //Console.WriteLine("data.HintCosts.count = " + data.HintCosts.Count);
                 //Console.WriteLine("PROGRESSION CURRENT HINT = " + data.ProgressionCurrentHint);
                 //update points and current hint
+                #endregion
                 data.ProgressionPoints -= data.HintCosts[data.ProgressionCurrentHint];
                 data.ProgressionCurrentHint++;
-                //update main window numbers
 
                 //reveal hints/world
                 ProgressionReveal(data.ProgressionCurrentHint - 1);
@@ -1356,7 +1351,7 @@ namespace KhTracker
                 //update points
                 ProgressionCollectedValue.Text = data.TotalProgressionPoints.ToString();
                 ProgressionTotalValue.Text = "X";
-                Console.WriteLine("Revealed last hint!");
+                //Console.WriteLine("Revealed last hint!");
             }
             else
             {
@@ -1369,14 +1364,9 @@ namespace KhTracker
 
         public void ProgressionReveal(int hintNum)
         {
-            if (data.mode == Mode.Hints)
-            {
+            //shouldn't ever get here but break in case
+            if (data.mode == Mode.Hints || data.mode == Mode.AltHints)
                 return;
-            }
-            else if (data.mode == Mode.AltHints)
-            {
-                return;
-            }
 
             else if (data.mode == Mode.OpenKHHints) //jsmartee
             {
@@ -1452,92 +1442,93 @@ namespace KhTracker
             {
                 case "SimulatedTwilightTown":
                     //if the world is done, give the bonus point right away
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        //if the progression marker was > 0, give the bonus - no bonus for 0 at prog point
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.STT_ProgressionValues[prog - 1] > 0) //store the bonus point for later
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.STT_ProgressionValues[prog - 1] + temp;
                 case "TwilightTown":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.TT_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.TT_ProgressionValues[prog - 1] + temp;
                 case "HollowBastion":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.HB_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.HB_ProgressionValues[prog - 1] + temp;
                 case "BeastsCastle":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.BC_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.BC_ProgressionValues[prog - 1] + temp;
                 case "OlympusColiseum":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.OC_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.OC_ProgressionValues[prog - 1] + temp;
                 case "Agrabah":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.AG_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.AG_ProgressionValues[prog - 1] + temp;
                 case "LandofDragons":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.LoD_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.LoD_ProgressionValues[prog - 1] + temp;
                 case "HundredAcreWood":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.HAW_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.HAW_ProgressionValues[prog - 1] + temp;
                 case "PrideLands":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.PL_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.PL_ProgressionValues[prog - 1] + temp;
                 case "Atlantica":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.AT_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.AT_ProgressionValues[prog - 1] + temp;
                 case "DisneyCastle":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.DC_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.DC_ProgressionValues[prog - 1] + temp;
                 case "HalloweenTown":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.HT_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.HT_ProgressionValues[prog - 1] + temp;
                 case "PortRoyal":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.PR_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.PR_ProgressionValues[prog - 1] + temp;
                 case "SpaceParanoids":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.SP_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.SP_ProgressionValues[prog - 1] + temp;
                 case "TWTNW":
-                    if (data.WorldsData[worldName].complete)
-                        temp = data.WorldCompleteBonus;
+                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                        temp = (data.STT_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.TWTNW_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.TWTNW_ProgressionValues[prog - 1] + temp;

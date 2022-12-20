@@ -92,23 +92,24 @@ namespace KhTracker
         public int TotalProgressionPoints = 0;
         public int WorldsEnabled = 0;
         public int ProgressionHash = 0;
+
+        #region Progression Tracking
         public int PrevEventID1 = 0;
         public int PrevEventID3 = 0;
         public string PrevWorld = "";
         public int PrevRoomNum = 0;
-        //public List<int> HintCosts = new List<int>();
+        #endregion
+
+        #region Hint Order Logic
         public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
-        public int NumOfHints = 20;
+        //public int NumOfHints = 20;
         public int ProgressionCurrentHint = 0;
-        public int ReportBonus = 1;
         public List<string> HintRevealOrder = new List<string>();
         public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
-        //                                    Sora   Drive   STT    TT     HB     BC     OC     AG     LoD   100AW   PL     DC     HT     PR     SP   TWTNW    GoA    AT
-        //                                      0      1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17
-        //public int[] worldStoredHintCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
-        //public int[] worldStoredOrigCount = {   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0  ,   0   };
-        //public int[] worldHintNumber      = {  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1  ,  -1   };
-        //future - add sora leveling and drives here
+        #endregion
+
+        #region Bonuses and Sora/Drive Levels
+        public int ReportBonus = 1;
         public int WorldCompleteBonus = 0;
         public Dictionary<string, int> StoredWorldCompleteBonus = new Dictionary<string, int>()
         {
@@ -139,6 +140,9 @@ namespace KhTracker
         //                                             Drive Level -  2  3  4  5  6  7
         public List<int> Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
         public List<int> DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
+        #endregion
+
+        #region World Progression Values
         public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
         public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
@@ -154,6 +158,7 @@ namespace KhTracker
         public List<int> PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
         public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        #endregion
     }
 
     public class WorldData
