@@ -1307,6 +1307,9 @@ namespace KhTracker
 
         public void AddProgressionPoints(int points)
         {
+            if (!data.UsingProgressionHints)
+                return;
+
             #region Debug stuff
             //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
             //Console.WriteLine("Current Hint Cost = " + data.HintCosts[data.ProgressionCurrentHint]);
@@ -1365,7 +1368,7 @@ namespace KhTracker
         public void ProgressionReveal(int hintNum)
         {
             //shouldn't ever get here but break in case
-            if (data.mode == Mode.Hints || data.mode == Mode.AltHints)
+            if (!data.UsingProgressionHints || data.mode == Mode.Hints || data.mode == Mode.AltHints)
                 return;
 
             else if (data.mode == Mode.OpenKHHints) //jsmartee

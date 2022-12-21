@@ -449,7 +449,7 @@ namespace KhTracker
                     else
                     {
                         //check if the report was already obtained before giving points
-                        if (data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
+                        if (data.UsingProgressionHints && data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
                             window.AddProgressionPoints(data.ReportBonus);
                         // show hint text on report hover
                         item.MouseEnter -= item.Report_Hover;
