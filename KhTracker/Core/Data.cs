@@ -32,6 +32,7 @@ namespace KhTracker
 
         public List<Tuple<string, string, int>> reportInformation = new List<Tuple<string, string, int>>();
         public List<string> reportLocations = new List<string>();
+        public List<bool> reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
         public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
@@ -84,12 +85,88 @@ namespace KhTracker
         public int BossRandoSeed;
 
         public List<string> enabledWorlds = new List<string>();
+
+        //Progression Hints stuff
+        public bool UsingProgressionHints = false;
+        public int ProgressionPoints = 0;
+        public int TotalProgressionPoints = 0;
+        public int WorldsEnabled = 0;
+        public int ProgressionHash = 0;
+
+        #region Progression Tracking
+        public int PrevEventID1 = 0;
+        public int PrevEventID3 = 0;
+        public string PrevWorld = "";
+        public int PrevRoomNum = 0;
+        #endregion
+
+        #region Hint Order Logic
+        public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
+        //public int NumOfHints = 20;
+        public int ProgressionCurrentHint = 0;
+        public List<string> HintRevealOrder = new List<string>();
+        public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
+        #endregion
+
+        #region Bonuses and Sora/Drive Levels
+        public int ReportBonus = 1;
+        public int WorldCompleteBonus = 0;
+        public Dictionary<string, int> StoredWorldCompleteBonus = new Dictionary<string, int>()
+        {
+            { "SorasHeart", 0 },
+            { "DriveForms", 0 },
+            { "SimulatedTwilightTown", 0 },
+            { "TwilightTown", 0 },
+            { "HollowBastion", 0 },
+            { "BeastsCastle", 0 },
+            { "OlympusColiseum", 0 },
+            { "Agrabah", 0 },
+            { "LandofDragons", 0 },
+            { "HundredAcreWood", 0 },
+            { "PrideLands", 0 },
+            { "DisneyCastle", 0 },
+            { "HalloweenTown", 0 },
+            { "PortRoyal", 0 },
+            { "SpaceParanoids", 0 },
+            { "TWTNW", 0 },
+            { "GoA", 0 },
+            { "Atlantica", 0 },
+            { "PuzzSynth", 0 }
+        };
+        //                                              Sora Level - 10 20 30 40 50
+        public List<int> Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
+        public int LevelsPreviousIndex = 0;
+        public int NextLevelMilestone = 9;
+        //                                             Drive Level -  2  3  4  5  6  7
+        public List<int> Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
+        public List<int> DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
+        #endregion
+
+        #region World Progression Values
+        public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        public List<int> BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        public List<int> AT_ProgressionValues = new List<int>() { 1, 2, 3 };
+        public List<int> DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public List<int> HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public List<int> PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+        #endregion
     }
 
     public class WorldData
     {
         public bool hinted;         //currently hinted? (for hinted hint logic)
         public bool hintedHint;     //currently hinted hint?
+        //Progression Hints
+        public bool hintedProgression;
         public bool complete;       //are all checks found?
         public int progress;        //current world progression
         public bool containsGhost;  //contains ghost item?

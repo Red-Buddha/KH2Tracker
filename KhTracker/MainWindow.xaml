@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v6.5)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v7.0 w/ Progression Hints)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -747,6 +747,11 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- world value -->
+                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
+                                <local:OutlinedTextBlock x:Name="GoAHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
+                                                         StrokeThickness="7" Fill="#FFFFE435" Text="?" Margin="0,-5,0,2"/>
+                            </Viewbox>
                             <!-- progression -->
                             <ContentControl x:Name="GoAProgression" Panel.ZIndex="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
                         </Grid>
@@ -1772,6 +1777,80 @@
                             </Viewbox.RenderTransform>
                             <local:OutlinedTextBlock x:Name="TotalValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
                                                      AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="50">
+                                <local:OutlinedTextBlock.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
+                                    </LinearGradientBrush>
+                                </local:OutlinedTextBlock.Fill>
+                            </local:OutlinedTextBlock>
+                        </Viewbox>
+                    </Grid>
+                    <!-- Progression Points Count -->
+                    <Grid Grid.Column="11" x:Name="ProgressionCollectionGrid" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="1.15*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="0.05*"/>
+                        </Grid.RowDefinitions>
+                        <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
+                        <!-- Collected -->
+                        <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,3">
+                            <Viewbox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="0" X="-2"/>
+                                </TransformGroup>
+                            </Viewbox.RenderTransform>
+                            <local:OutlinedTextBlock x:Name="ProgressionCollectedValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="5">
+                                <local:OutlinedTextBlock.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
+                                    </LinearGradientBrush>
+                                </local:OutlinedTextBlock.Fill>
+                            </local:OutlinedTextBlock>
+                        </Viewbox>
+                        <!-- Separator-->
+                        <Viewbox  Grid.Row="1"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,-1,1,-1" RenderTransformOrigin="0.5,0.5">
+                            <Viewbox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.75" ScaleY="1.25"/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="8"/>
+                                    <TranslateTransform X="0" Y="-2"/>
+                                </TransformGroup>
+                            </Viewbox.RenderTransform>
+                            <local:OutlinedTextBlock x:Name="ProgressionCollectedBar" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="|">
+                                <local:OutlinedTextBlock.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE47606" Offset="0.836"/>
+                                        <GradientStop Color="#FFFFE435" Offset="0.237"/>
+                                    </LinearGradientBrush>
+                                </local:OutlinedTextBlock.Fill>
+                            </local:OutlinedTextBlock>
+                        </Viewbox>
+                        <!-- Total -->
+                        <Viewbox  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,3">
+                            <Viewbox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="0" X="2"/>
+                                </TransformGroup>
+                            </Viewbox.RenderTransform>
+                            <local:OutlinedTextBlock x:Name="ProgressionTotalValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="7">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="0.836"/>
