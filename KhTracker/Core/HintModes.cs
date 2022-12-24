@@ -285,6 +285,10 @@ namespace KhTracker
                 SetWorldValue(data.WorldsData[key].value, 0);
             }
 
+            //locally track the worlds that are empty and contain the "has nothing, sorry" text
+            //then place these at the end of the hint list
+            List<Tuple<string, string, int>> tempReportInformation = new List<Tuple<string, string, int>>();
+            List<string> tempReportLocations = new List<string>();
             foreach (int hint in progHintsKeys)
             {
                 var hinttext = progHints[hint.ToString()]["Text"].ToString();
@@ -310,8 +314,24 @@ namespace KhTracker
                     }
                 }
 
-                data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
-                data.reportLocations.Add(location);
+                if (hinttext.Contains("has nothing, sorry"))
+                {
+                    tempReportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
+                    tempReportLocations.Add(location);
+                }
+                else
+                {
+                    data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
+                    data.reportLocations.Add(location);
+                }
+            }
+
+            if (tempReportInformation.Count > 0)
+            {
+                foreach (var loc in tempReportInformation)
+                    data.reportInformation.Add(loc);
+                foreach (var loc in tempReportLocations)
+                    data.reportLocations.Add(loc);
             }
 
             //set pathproof defaults
