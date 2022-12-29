@@ -1942,6 +1942,11 @@ namespace KhTracker
                                         foreach (int cost in setting.Value)
                                             data.HB_ProgressionValues.Add(cost);
                                         break;
+                                    case "CavernofRememberance":
+                                        data.CoR_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.CoR_ProgressionValues.Add(cost);
+                                        break;
                                     case "LandofDragons":
                                         data.LoD_ProgressionValues.Clear();
                                         foreach (int cost in setting.Value)
