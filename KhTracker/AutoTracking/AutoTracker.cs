@@ -994,7 +994,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][5];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 5;
-                                UpdateProgressionPoints("CavernofRemembrance", 1);
+                                UpdateProgressionPoints("CavernofRemembrance", 2);
                                 return;
                             }
                             break;
@@ -1004,7 +1004,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][2];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 2;
-                                UpdateProgressionPoints("CavernofRemembrance", 2);
+                                UpdateProgressionPoints("CavernofRemembrance", 1);
                                 return;
                             }
                             if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
