@@ -315,15 +315,10 @@ namespace KhTracker
                 }
 
                 if (hinttext.Contains("has nothing, sorry"))
-                {
                     tempReportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
-                    tempReportLocations.Add(location);
-                }
                 else
-                {
                     data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
-                    data.reportLocations.Add(location);
-                }
+                data.reportLocations.Add(location);
             }
 
             if (tempReportInformation.Count > 0)
