@@ -1557,14 +1557,11 @@ namespace KhTracker
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.TWTNW_ProgressionValues[prog - 1] + temp;
                 case "GoA":
-                    if (world.roomNumber == 32)
-                    {
-                        if (HashGrid.Visibility == Visibility.Visible)
-                        {
-                            HashGrid.Visibility = Visibility.Collapsed;
-                        }
-                    }
-                    return 0;
+                    if (data.WorldsData["HollowBastion"].complete && data.WorldsData["HollowBastion"].hintedProgression)
+                        temp = (data.HB_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
+                    else if (data.HB_ProgressionValues[prog - 1] > 0)
+                        data.WorldsData["HollowBastion"].worldGrid.WorldCompleteProgressionBonus();
+                    return data.CoR_ProgressionValues[prog - 1] + temp;
                 default: //return if any other world
                     return 0;
             }
