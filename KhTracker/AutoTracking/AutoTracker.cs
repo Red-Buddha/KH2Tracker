@@ -1201,23 +1201,23 @@ namespace KhTracker
                                 UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 4:
-                            if (world.eventID3 == 1) // Piglet's house
+                            if (world.eventID3 == 4) // Piglet's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
-                            if (world.eventID3 == 1) // Rabbit's house
+                            if (world.eventID3 == 4) // Rabbit's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
-                            if (world.eventID3 == 1) // Kanga's house
+                            if (world.eventID3 == 4) // Kanga's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
-                            if (world.eventID3 == 1) // Spooky Cave
+                            if (world.eventID3 == 3D) // Spooky Cave
                                 UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
-                            if (world.eventID3 == 1) // Starry Hill
+                            if (world.eventID3 == 34) // Starry Hill
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
