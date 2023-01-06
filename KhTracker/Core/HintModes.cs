@@ -1479,10 +1479,10 @@ namespace KhTracker
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.HB_ProgressionValues[prog - 1] + temp;
                 case "CavernofRemembrance":
-                    if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
+                    if (data.WorldsData["HollowBastion"].complete && data.WorldsData["HollowBastion"].hintedProgression)
                         temp = (data.CoR_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.CoR_ProgressionValues[prog - 1] > 0)
-                        data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
+                        data.WorldsData["HollowBastion"].worldGrid.WorldCompleteProgressionBonus();
                     return data.CoR_ProgressionValues[prog - 1] + temp;
                 case "BeastsCastle":
                     if (data.WorldsData[worldName].complete && data.WorldsData[worldName].hintedProgression)
@@ -1557,11 +1557,12 @@ namespace KhTracker
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
                     return data.TWTNW_ProgressionValues[prog - 1] + temp;
                 case "GoA":
-                    if (data.WorldsData["HollowBastion"].complete && data.WorldsData["HollowBastion"].hintedProgression)
-                        temp = (data.HB_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
-                    else if (data.HB_ProgressionValues[prog - 1] > 0)
-                        data.WorldsData["HollowBastion"].worldGrid.WorldCompleteProgressionBonus();
-                    return data.CoR_ProgressionValues[prog - 1] + temp;
+                    //if (data.WorldsData["HollowBastion"].complete && data.WorldsData["HollowBastion"].hintedProgression)
+                    //    temp = (data.HB_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
+                    //else if (data.HB_ProgressionValues[prog - 1] > 0)
+                    //    data.WorldsData["HollowBastion"].worldGrid.WorldCompleteProgressionBonus();
+                    //return data.CoR_ProgressionValues[prog - 1] + temp;
+                    return 0;
                 default: //return if any other world
                     return 0;
             }
