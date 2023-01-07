@@ -92,6 +92,7 @@ namespace KhTracker
         public int TotalProgressionPoints = 0;
         public int WorldsEnabled = 0;
         public int ProgressionHash = 0;
+        public bool revealFinalXemnas = false;
 
         #region Progression Tracking
         public int PrevEventID1 = 0;

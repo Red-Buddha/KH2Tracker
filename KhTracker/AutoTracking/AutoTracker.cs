@@ -1506,7 +1506,9 @@ namespace KhTracker
                             break;
                         case 20:
                             if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                UpdateProgressionPoints(world.worldName, curProg = 7);
+                            else if (world.eventID1 == 74 && world.eventComplete == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
+                                UpdateProgressionPointsTWTNW(world.worldName);
                             break;
                         default:
                             return;
@@ -2281,6 +2283,22 @@ namespace KhTracker
                 return;
 
             AddProgressionPoints(GetProgressionPointsReward(worldName, prog));
+            data.PrevEventID1 = world.eventID1;
+            data.PrevEventID3 = world.eventID3;
+            data.PrevWorld = world.worldName;
+            data.PrevRoomNum = world.roomNumber;
+        }
+        public void UpdateProgressionPointsTWTNW(string worldName)
+        {
+            //if event is current, skip
+            if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
+                || !data.UsingProgressionHints)
+                return;
+            Console.WriteLine("Defeated Final Xemnas");
+            data.TWTNW_ProgressionValues.Add(200);
+            AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
+            data.TotalProgressionPoints -= 200;
             data.PrevEventID1 = world.eventID1;
             data.PrevEventID3 = world.eventID3;
             data.PrevWorld = world.worldName;
