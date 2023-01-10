@@ -576,15 +576,22 @@ namespace KhTracker
 
         public void SetWorldValue(OutlinedTextBlock worldValue, int value)
         {
-            if (worldValue == null || worldValue.Name.Contains("GoA") ||
-                (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
-                return;
-
             string location = worldValue.Name.Substring(0, worldValue.Name.Length - 4);
             SolidColorBrush Color = (SolidColorBrush)FindResource("DefaultWhite"); //default
 
             if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
                 Color = (SolidColorBrush)FindResource("GhostHint");
+
+            if (worldValue == null || worldValue.Name.Contains("GoA") ||
+                (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
+            {
+                if (data.mode == Mode.DAHints)
+                {
+                    worldValue.Fill = Color;
+                }
+
+                return;
+            }
 
             if (data.WorldsData[location].complete) //turn blue if it's marked as hinted hint or complete
                 Color = (SolidColorBrush)FindResource("HintedHint");

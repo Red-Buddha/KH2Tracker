@@ -92,6 +92,7 @@ namespace KhTracker
         public int TotalProgressionPoints = 0;
         public int WorldsEnabled = 0;
         public int ProgressionHash = 0;
+        public bool revealFinalXemnas = false;
 
         #region Progression Tracking
         public int PrevEventID1 = 0;
@@ -146,6 +147,7 @@ namespace KhTracker
         public List<int> STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
         public List<int> TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         public List<int> HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        public List<int> CoR_ProgressionValues = new List<int>() { 0, 0, 0, 0, 0 };
         public List<int> BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         public List<int> OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         public List<int> AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };

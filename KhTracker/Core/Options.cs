@@ -687,6 +687,8 @@ namespace KhTracker
                 data.WorldsData[key].hinted = false;
                 data.WorldsData[key].hintedHint = false;
                 data.WorldsData[key].containsGhost = false;
+                //progression hints per world
+                data.WorldsData[key].hintedProgression = false;
             }
             data.WorldsData["GoA"].hinted = true;
 
@@ -1001,6 +1003,7 @@ namespace KhTracker
                 { "Atlantica", 0 },
                 { "PuzzSynth", 0 }
             };
+
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -1942,6 +1945,11 @@ namespace KhTracker
                                         foreach (int cost in setting.Value)
                                             data.HB_ProgressionValues.Add(cost);
                                         break;
+                                    case "CavernofRemembrance":
+                                        data.CoR_ProgressionValues.Clear();
+                                        foreach (int cost in setting.Value)
+                                            data.CoR_ProgressionValues.Add(cost);
+                                        break;
                                     case "LandofDragons":
                                         data.LoD_ProgressionValues.Clear();
                                         foreach (int cost in setting.Value)
@@ -2017,6 +2025,9 @@ namespace KhTracker
                                         data.Drives_ProgressionValues.Clear();
                                         foreach (int cost in setting.Value)
                                             data.Drives_ProgressionValues.Add(cost);
+                                        break;
+                                    case "FinalXemnasReveal":
+                                        data.revealFinalXemnas = (setting.Value[0] == 0 ? false : true);
                                         break;
                                 }
                             }

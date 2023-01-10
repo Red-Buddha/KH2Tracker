@@ -984,6 +984,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][1];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 1;
+                                UpdateProgressionPoints("CavernofRemembrance", 1);
                                 return;
                             }
                             break;
@@ -993,6 +994,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][5];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 5;
+                                UpdateProgressionPoints("CavernofRemembrance", 3);
                                 return;
                             }
                             break;
@@ -1002,6 +1004,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][2];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 2;
+                                UpdateProgressionPoints("CavernofRemembrance", 2);
                                 return;
                             }
                             if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
@@ -1009,6 +1012,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][3];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 3;
+                                UpdateProgressionPoints("CavernofRemembrance", 4);
                                 return;
                             }
                             break;
@@ -1018,6 +1022,7 @@ namespace KhTracker
                                 curKey = data.ProgressKeys["GoA"][4];
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["GoA"].progress = 4;
+                                UpdateProgressionPoints("CavernofRemembrance", 5);
                                 return;
                             }
                             break;
@@ -1100,7 +1105,7 @@ namespace KhTracker
                             if ((world.eventID1 == 151) && world.eventComplete == 1) // AS Zexion finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 9);
                             else if ((world.eventID1 == 152) && world.eventComplete == 1) // Data Zexion finish
-                                UpdateProgressionPoints(world.worldName, 9);
+                                UpdateProgressionPoints(world.worldName, 10);
                             break;
                         default:
                             return;
@@ -1142,7 +1147,7 @@ namespace KhTracker
                             if ((world.eventID1 == 142) && world.eventComplete == 1) // AS Lexaeus finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 8);
                             else if ((world.eventID1 == 147) && world.eventComplete == 1) // Data Lexaeus
-                                UpdateProgressionPoints(world.worldName,  8);
+                                UpdateProgressionPoints(world.worldName,  9);
                             break;
                         default:
                             return;
@@ -1196,23 +1201,23 @@ namespace KhTracker
                                 UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
                         case 4:
-                            if (world.eventID3 == 1) // Piglet's house
+                            if (world.eventID3 == 4) // Piglet's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
                         case 3:
-                            if (world.eventID3 == 1) // Rabbit's house
+                            if (world.eventID3 == 4) // Rabbit's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
                         case 5:
-                            if (world.eventID3 == 1) // Kanga's house
+                            if (world.eventID3 == 4) // Kanga's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
-                            if (world.eventID3 == 1) // Spooky Cave
+                            if (world.eventID3 == 3D) // Spooky Cave
                                 UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
-                            if (world.eventID3 == 1) // Starry Hill
+                            if (world.eventID3 == 34) // Starry Hill
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
@@ -1305,7 +1310,7 @@ namespace KhTracker
                                 if (world.eventID1 == 145)
                                     UpdateProgressionPoints(world.worldName, 7); // AS
                                 else
-                                    UpdateProgressionPoints(world.worldName, 7); // Data
+                                    UpdateProgressionPoints(world.worldName, 8); // Data
                             }
                             break;
                         case 7:
@@ -1315,7 +1320,7 @@ namespace KhTracker
                                     curProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
                                     curProg = 8;
-                                UpdateProgressionPoints(world.worldName,  8);
+                                UpdateProgressionPoints(world.worldName,  9);
                             }
                             break;
                         default:
@@ -1356,7 +1361,7 @@ namespace KhTracker
                             if ((world.eventID1 == 115) && world.eventComplete == 1) // AS Vexen finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 8);
                             else if ((world.eventID1 == 146) && world.eventComplete == 1) // Data Vexen finish
-                                UpdateProgressionPoints(world.worldName, 8);
+                                UpdateProgressionPoints(world.worldName, 9);
                             break;
                         default:
                             return;
@@ -1434,7 +1439,7 @@ namespace KhTracker
                             if ((world.eventID1 == 143) && world.eventComplete == 1) // AS Larxene finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             else if ((world.eventID1 == 148) && world.eventComplete == 1) // Data Larxene finish
-                                UpdateProgressionPoints(world.worldName,  6);
+                                UpdateProgressionPoints(world.worldName,  7);
                             break;
                         default:
                             return;
@@ -1501,7 +1506,9 @@ namespace KhTracker
                             break;
                         case 20:
                             if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                UpdateProgressionPoints(world.worldName, curProg = 7);
+                            else if (world.eventID1 == 74 && world.eventComplete == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
+                                UpdateProgressionPointsTWTNW(world.worldName);
                             break;
                         default:
                             return;
@@ -2276,6 +2283,22 @@ namespace KhTracker
                 return;
 
             AddProgressionPoints(GetProgressionPointsReward(worldName, prog));
+            data.PrevEventID1 = world.eventID1;
+            data.PrevEventID3 = world.eventID3;
+            data.PrevWorld = world.worldName;
+            data.PrevRoomNum = world.roomNumber;
+        }
+        public void UpdateProgressionPointsTWTNW(string worldName)
+        {
+            //if event is current, skip
+            if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
+                || !data.UsingProgressionHints)
+                return;
+            Console.WriteLine("Defeated Final Xemnas");
+            data.TWTNW_ProgressionValues.Add(200);
+            AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
+            data.TotalProgressionPoints -= 200;
             data.PrevEventID1 = world.eventID1;
             data.PrevEventID3 = world.eventID3;
             data.PrevWorld = world.worldName;
