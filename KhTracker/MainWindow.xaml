@@ -2880,7 +2880,8 @@
                         <ColumnDefinition Name="Setting_Level_50" Width="0*"/>
                         <ColumnDefinition Name="Setting_Level_99" Width="0*"/>
                         <ColumnDefinition Name="Setting_BetterSTT" Width="1.1*"/>
-                        <ColumnDefinition Name="Setting_Absent" Width="1.1*"/>
+                        <ColumnDefinition Name="Setting_Absent" Width="0*"/>
+                        <ColumnDefinition Name="Setting_Absent_Split" Width="1.1*"/>
                         <ColumnDefinition Name="Setting_Datas" Width="1*"/>
                         <ColumnDefinition Name="Setting_Sephiroth" Width="1*"/>
                         <ColumnDefinition Name="Setting_Terra" Width="1*"/>
@@ -2901,13 +2902,14 @@
                     <Image Grid.Column="2" Source="Images/System/settings/Level_99.png"                 ToolTip="Level 99 Checks"/>
                     <Image Grid.Column="3" Source="Images/System/settings/better_stt.png"               ToolTip="Roxas STT Improvements" Margin="0,-4,0,-4"/>
                     <Image Grid.Column="4" Source="Images/System/settings/absent_silhouette.png"        ToolTip="Absent Silhouettes"/>
-                    <Image Grid.Column="5" Source="Images/System/settings/data_organization.png"        ToolTip="Data Organization"/>
-                    <Image Grid.Column="6" Source="Images/System/settings/sephiroth.png"                ToolTip="Sephiroth"/>
-                    <Image Grid.Column="7" Source="Images/System/settings/lingering_will.png"           ToolTip="Lingering Will (Terra)"/>
-                    <Image Grid.Column="8" Source="Images/System/settings/underdrome_cups.png"          ToolTip="Underdrome Cups"/>
-                    <Image Grid.Column="9" Source="Images/System/settings/paradox_cup.png"              ToolTip="Hades Paradox Cup"/>
-                    <Image Grid.Column="10" Source="Images/System/settings/cavern_of_remembrance.png"   ToolTip="Cavern of Rememberance"/>
-                    <Image Grid.Column="11" Source="Images/System/settings/transport.png"               ToolTip="Transport to Rememberance"/>
+                    <Image Grid.Column="5" Source="Images/System/settings/absent_silhouette_split.png"  ToolTip="Absent Silhouettes (Data Split on)"/>
+                    <Image Grid.Column="6" Source="Images/System/settings/data_organization.png"        ToolTip="Data Organization"/>
+                    <Image Grid.Column="7" Source="Images/System/settings/sephiroth.png"                ToolTip="Sephiroth"/>
+                    <Image Grid.Column="8" Source="Images/System/settings/lingering_will.png"           ToolTip="Lingering Will (Terra)"/>
+                    <Image Grid.Column="9" Source="Images/System/settings/underdrome_cups.png"          ToolTip="Underdrome Cups"/>
+                    <Image Grid.Column="10" Source="Images/System/settings/paradox_cup.png"             ToolTip="Hades Paradox Cup"/>
+                    <Image Grid.Column="11" Source="Images/System/settings/cavern_of_remembrance.png"   ToolTip="Cavern of Rememberance"/>
+                    <Image Grid.Column="12" Source="Images/System/settings/transport.png"               ToolTip="Transport to Rememberance"/>
 
                 </Grid>
 

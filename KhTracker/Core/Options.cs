@@ -1445,19 +1445,19 @@ namespace KhTracker
 
             if (mode == Mode.AltHints || mode == Mode.OpenKHAltHints)
             {
-                ModeDisplay.Header = "Alt Hints Mode";
+                ModeDisplay.Header = "Shan Hints";
                 data.mode = mode;
                 ReportsToggle(false);
             }
             else if (mode == Mode.Hints || mode == Mode.OpenKHHints)
             {
-                ModeDisplay.Header = "Hints Mode";
+                ModeDisplay.Header = "Jsmartee Hints";
                 data.mode = mode;
                 ReportsToggle(true);
             }
             else if (mode == Mode.DAHints)
             {
-                ModeDisplay.Header = "Points Mode";
+                ModeDisplay.Header = "Points Hints";
                 data.mode = mode;
                 ReportsToggle(true);
 
@@ -1491,6 +1491,9 @@ namespace KhTracker
                 ProgressionCollectionGrid.Visibility = Visibility.Visible;
 
                 ModeDisplay.Header += " | Progression";
+
+                //probably always want reports to be on for progression hints.
+                ReportsToggle(true);
             }
         }
 
@@ -1521,6 +1524,8 @@ namespace KhTracker
                 ZipArchiveEntry hashfile = null;
                 ZipArchiveEntry enemyfile = null;
 
+                //get and temp store these files to grab data from later.
+                //we used to just read them as we wnt along, but things got more complicated as time went on..
                 foreach (var entry in archive.Entries)
                 {
                     if (entry.FullName.Equals("HintFile.Hints"))
@@ -1657,6 +1662,7 @@ namespace KhTracker
                             Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
                             Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
                             Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+                            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
                             Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
                             Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
                             Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
@@ -1669,6 +1675,7 @@ namespace KhTracker
 
                             //to be safe about this i guess
                             bool abilitiesOn = true;
+                            bool dataSplitOn = false;
 
                             //load settings from hints
                             foreach (string setting in settings)
@@ -1829,9 +1836,17 @@ namespace KhTracker
                                         Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
-                                    case "Absent Silhouettes":
-                                        Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+                                    case "Data Split":
+                                        Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
                                         SpacerValue--;
+                                        dataSplitOn = true;
+                                        break;
+                                    case "Absent Silhouettes":
+                                        if (!dataSplitOn) //only use if we didn't already set the data split version
+                                        {
+                                            Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+                                            SpacerValue--;
+                                        }
                                         break;
                                     case "Sephiroth":
                                         Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
@@ -2045,6 +2060,7 @@ namespace KhTracker
             }
         }
     
+        //Turns the zip seed icon hash to a numerical based seed
         private void HashToSeed(string[] hash)
         {
             int icon1 = Codes.HashInt[hash[0]];

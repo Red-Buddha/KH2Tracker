@@ -1215,7 +1215,7 @@ namespace KhTracker
             }
 
             //simplier icon opacity change for non pages/magic
-            if (type != "magic" && type != "page" && !item.StartsWith("Munny"))
+            if (type != "magic" && type != "page" && !item.Contains("Munny"))
             {
                 //check if a ghost item was tracked
                 if (item.StartsWith("Ghost_"))
