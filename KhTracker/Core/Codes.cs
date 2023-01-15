@@ -253,7 +253,23 @@ namespace KhTracker
             {"Proud Fang (Simba)", "Proud Fang"},
             {"Skill and Crossbones (Jack Sparrow)", "Skill and Crossbones"},
             {"Scimitar (Aladdin)", "Scimitar"},
-            {"Identity Disk (Tron)", "Identity Disk"}
+            {"Identity Disk (Tron)", "Identity Disk"},
+            {"Sora's Heart",            "Levels" },
+            {"Drive Forms",             "Drives" },
+            {"Simulated Twilight Town", "STT" },
+            {"Twilight Town",           "TT" },
+            {"Hollow Bastion",          "HB" },
+            {"Beast's Castle",          "BC" },
+            {"Olympus Coliseum",        "OC" },
+            {"Agrabah",                 "AG" },
+            {"Land of Dragons",         "LoD" },
+            {"Hundred Acre Wood",       "100AW" },
+            {"Pride Lands",             "PL" },
+            {"Disney Castle",           "DC" },
+            {"Halloween Town",          "HT" },
+            {"Port Royal",              "PR" },
+            {"Space Paranoids",         "SP" },
+            {"Atlantica",               "AT" }
         };
 
         public static Dictionary<string, string> itemTypes = new Dictionary<string, string>()

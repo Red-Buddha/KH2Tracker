@@ -1931,7 +1931,18 @@ namespace KhTracker
 
                         if (hintObject.ContainsKey("ProgressionSettings"))
                         {
-                            var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
+                            Dictionary<string, List<int>> progressionSettings = null;
+
+                            try
+                            {
+                                progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
+                            }
+                            catch 
+                            { 
+
+
+                            }
+
 
                             foreach (var setting in progressionSettings)
                             {

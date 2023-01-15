@@ -39,6 +39,14 @@
         <GradientStop Color="#FFD73435" Offset="1"/>
         <GradientStop Color="#FFFF9546" Offset="0.4"/>
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_CountProg" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF4780c8" Offset="0.836"/>
+        <GradientStop Color="#FF63eaff" Offset="0.237"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Count" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE47606" Offset="0.836"/>
+        <GradientStop Color="#FFFFE435" Offset="0.237"/>
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="Color_Black" Color="Black"/>
     <SolidColorBrush x:Key="Color_Trans" Color="Transparent"/>
     
@@ -135,7 +143,7 @@
     <Image x:Key="Sword"		        Source="Images\System\stats\sword.png"    x:Shared="false"/>
     <Image x:Key="Shield"  	            Source="Images\System\stats\shield.png"   x:Shared="false"/>
     <Image x:Key="Staff"  	            Source="Images\System\stats\staff.png"    x:Shared="false"/>
-    <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"    x:Shared="false"/>
+    <Image x:Key="Chest" 		        Source="Images\System\stats\ProgPoints.png"    x:Shared="false"/>
     <Image x:Key="Score" 		        Source="Images\System\stats\limit.png"    x:Shared="false"/>
     <Image x:Key="HighJump" 		    Source="Images\System\drive_growth\high_jump.png"    x:Shared="false"/>
     <Image x:Key="QuickRun" 		    Source="Images\System\drive_growth\quick_run.png"    x:Shared="false"/>

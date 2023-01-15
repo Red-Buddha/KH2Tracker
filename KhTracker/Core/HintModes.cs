@@ -395,7 +395,7 @@ namespace KhTracker
             {
                 {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
                 {"Cure", 1 }, {"Magnet", 1 }, {"Reflect", 1},
-                {"TornPage", 1},
+                {"TornPage", 1}, {"MunnyPouch", 1},
             };
 
             foreach (var world in worlds)
@@ -636,7 +636,7 @@ namespace KhTracker
             {
                 {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
                 {"Cure", 1 }, {"Magnet", 1 }, {"Reflect", 1},
-                {"TornPage", 1},
+                {"TornPage", 1}, {"MunnyPouch", 1},
             };
 
             foreach (var world in worlds)

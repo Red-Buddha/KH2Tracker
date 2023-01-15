@@ -55,6 +55,7 @@ namespace KhTracker
         public Dictionary<string, Item> GhostItems = new Dictionary<string, Item>();
         public Dictionary<string, int> PointsDatanew = new Dictionary<string, int>()
         {
+            //items
             { "proof", 0 },
             { "form", 0 },
             { "magic", 0 },
@@ -62,18 +63,30 @@ namespace KhTracker
             { "ability", 0 },
             { "page", 0 },
             { "report", 0 },
-            { "complete", 0 },
-            { "bonus", 0 },
-            { "formlv", 0 },
             { "other", 0},
             { "visit", 0},
+            //bossrelated
             { "boss_as", 0 },
             { "boss_datas", 0 },
             { "boss_sephi", 0 },
             { "boss_terra", 0 },
             { "boss_other", 0 },
             { "boss_final", 0 },
-            { "deaths", 0 }
+            //other
+            { "complete", 0 },
+            { "bonus", 0 },
+            { "formlv", 0 },
+            { "deaths", 0 },
+            //collection bonus
+            { "collection_proof", 0 },
+            { "collection_form", 0 },
+            { "collection_magic", 0 },
+            { "collection_summon", 0 },
+            { "collection_ability", 0 },
+            { "collection_page", 0 },
+            { "collection_report", 0 },
+            { "collection_pouches", 0},
+            { "collection_visit", 0},
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();
         public List<string> TrackedReports = new List<string>();
