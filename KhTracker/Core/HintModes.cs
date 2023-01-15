@@ -1346,7 +1346,7 @@ namespace KhTracker
             }
 
             //loop in the event that one progression point rewards a lot
-            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count)
+            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count && data.ProgressionCurrentHint < data.WorldsEnabled)
             {
                 #region More Debug
                 //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
