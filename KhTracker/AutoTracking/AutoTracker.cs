@@ -1793,7 +1793,7 @@ namespace KhTracker
                             break;
                         case 5:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
-                                boss = "Genie Jafar";
+                                boss = "Jafar";
                             break;
                         case 33:
                             if (world.eventID1 == 142 && world.eventComplete == 1) // Lexaeus finish
@@ -1848,7 +1848,7 @@ namespace KhTracker
                             break;
                         case 3:
                             if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
-                                boss = "Future Pete";
+                                boss = "Pete TR";
                             break;
                         case 38:
                             if (world.eventID1 == 145 && world.eventComplete == 1) // Marluxia finish
@@ -1990,11 +1990,11 @@ namespace KhTracker
                 return;
 
             //if the boss was found and beaten then set flag
+            //we do this to stop things happening every frame
             if (world.eventComplete == 1)
                 eventInProgress = true;
 
-            if (App.logger != null)
-                App.logger.Record("Beaten Boss: " + boss);
+            App.logger?.Record("Beaten Boss: " + boss);
 
             //get points for boss kills
             GetBossPoints(boss);
@@ -2100,13 +2100,10 @@ namespace KhTracker
                         case "boss_datas":
                         case "boss_sephi":
                         case "boss_terra":
+                        case "boss_final":
                             bonuspoints += data.PointsDatanew[bossType];
                             break;
                     }
-
-                    //arena bonus is full boss points of that arena / 2
-                    //if (bonuspoints > 1)
-                    //    bonuspoints /= 2;
 
                     points += bonuspoints;
                 }
@@ -2116,8 +2113,8 @@ namespace KhTracker
 
                     //temp fix. might change if final xemnas gets randomized
                     //for now this just makes worth data points * 2
-                    if (boss == "Final Xemnas (Data)")
-                        points += data.PointsDatanew["boss_datas"];
+                    //if (boss == "Final Xemnas (Data)")
+                    //    points += data.PointsDatanew["boss_datas"];
 
                     //logging
                     if(data.BossRandoFound)

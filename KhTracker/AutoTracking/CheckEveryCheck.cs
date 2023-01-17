@@ -541,7 +541,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x155BE, Save + 0x1E55, 1));   // Present
             checksList.Add(new Check(this, Sys3 + 0x155CA, Save + 0x1E55, 4));   // Decoy Presents
             checksList.Add(new Check(this, Sys3 + 0x155D6, Save + 0x1E56, 0));   // Decisive Pumpkin
-            checksList.Add(new Check(this, Sys3 + 0x1538A, Save + 0x3DA9, 7));   // Marketplace Map (Random flag? PS2:32F8D9(80))
+            checksList.Add(new Check(this, Sys3 + 0x1538A, Save + 0x1D17, 4));   // Marketplace Map
             checksList.Add(new Check(this, Sys3 + 0x15396, Save + 0x1D10, 6));   // Membership Card
             checksList.Add(new Check(this, Sys3 + 0x153A2, Save + 0x1D10, 6));   // Merlin Blizzard
             checksList.Add(new Check(this, Sys3 + 0x156EA, Save + 0x1D18, 3));   // Ansem Report 7 (late)

@@ -464,9 +464,6 @@
     <Content Include="CustomImages\Worlds\the_world_that_never_was.png" />
     <Content Include="CustomImages\Worlds\twilight_town.png" />
     <Resource Include="Images\System\stats\ProgPoints.png" />
-    <Resource Include="Images\System\stats\Pchest.png" />
-    <Resource Include="Images\System\stats\ProgressChest.png" />
-    <Resource Include="Images\System\stats\ProgressScore.png" />
     <Resource Include="Images\System\settings\absent_silhouette_split.png" />
     <Resource Include="Images\Progression\Min\port_royal\medallions.png" />
     <Resource Include="Images\Progression\Old\port_royal\medallions.png" />

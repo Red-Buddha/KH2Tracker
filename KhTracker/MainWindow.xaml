@@ -2613,20 +2613,26 @@
                 <!-- Row 4 -->
                 <Grid Grid.Row="3" Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition x:Name="HadesCupCol" Width="1*"/>
                         <ColumnDefinition x:Name="OlympusStoneCol" Width="1*"/>
                         <ColumnDefinition x:Name="UnknownDiskCol" Width="1*"/>
+                        <ColumnDefinition x:Name="OnceMoreAlt" Width="0*"/>
+                        <ColumnDefinition x:Name="SecondChanceAlt" Width="0*"/>
+                        <ColumnDefinition x:Name="ConAlt" Width="0*"/>
+                        <ColumnDefinition x:Name="NonAlt" Width="0*"/>
+                        <ColumnDefinition x:Name="PeaAlt" Width="0*"/>
+                        <ColumnDefinition x:Name="PromiseAlt" Width="0*"/>
                     </Grid.ColumnDefinitions>
 
                     <local:Item x:Name="BeastWep" 	    Content="{DynamicResource Min-BeastWep}"        Grid.Column="0"/>
@@ -2640,9 +2646,9 @@
                     <local:Item x:Name="MembershipCard" Content="{DynamicResource Min-MembershipCard}"  Grid.Column="8"/>
                     <local:Item x:Name="Picture" 	    Content="{DynamicResource Min-Picture}"         Grid.Column="9"/>
                     <local:Item x:Name="IceCream" 	    Content="{DynamicResource Min-IceCream}"        Grid.Column="10"/>
-                    <local:Item x:Name="HadesCup"     Content="{DynamicResource Min-HadesCup}"          Grid.Column="11"/>
-                    <local:Item x:Name="OlympusStone" Content="{DynamicResource Min-OlympusStone}"      Grid.Column="12"/>
-                    <local:Item x:Name="UnknownDisk"  Content="{DynamicResource Min-UnknownDisk}"       Grid.Column="13"/>
+                    <local:Item x:Name="HadesCup"       Content="{DynamicResource Min-HadesCup}"          Grid.Column="11"/>
+                    <local:Item x:Name="OlympusStone"   Content="{DynamicResource Min-OlympusStone}"      Grid.Column="12"/>
+                    <local:Item x:Name="UnknownDisk"    Content="{DynamicResource Min-UnknownDisk}"       Grid.Column="13"/>
 
                     <!-- silhouettes -->
                     <ContentControl x:Name="S_BeastWep" Content="{DynamicResource Min-BeastWep}"        Grid.Column="0" Panel.ZIndex="-2" Opacity="1">

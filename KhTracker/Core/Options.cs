@@ -1931,18 +1931,7 @@ namespace KhTracker
 
                         if (hintObject.ContainsKey("ProgressionSettings"))
                         {
-                            Dictionary<string, List<int>> progressionSettings = null;
-
-                            try
-                            {
-                                progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
-                            }
-                            catch 
-                            { 
-
-
-                            }
-
+                            var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
 
                             foreach (var setting in progressionSettings)
                             {
@@ -2053,7 +2042,7 @@ namespace KhTracker
                                             data.Drives_ProgressionValues.Add(cost);
                                         break;
                                     case "FinalXemnasReveal":
-                                        data.revealFinalXemnas = (setting.Value[0] == 0 ? false : true);
+                                        data.revealFinalXemnas = setting.Value[0] == 0 ? false : true;
                                         break;
                                 }
                             }

@@ -485,11 +485,14 @@ namespace KhTracker
                 //Remove bosses for worlds not enabled and remove "duplicates"
                 foreach (var key in data.BossList.Keys)
                 {
+                    //remove duplicates
+                    if (Codes.bossDups.Contains(key))
+                    {
+                        keyList.Remove(key);
+                        continue;
+                    }
+                        
                     if (!data.enabledWorlds.Contains(Codes.bossLocations[key]))
-                        keyList.Remove(key);
-                    else if (key.Contains("Cups"))
-                        keyList.Remove(key);
-                    else if (key == "Hades II")
                         keyList.Remove(key);
                     else if (key.Contains("(Data)"))
                     {
@@ -544,7 +547,7 @@ namespace KhTracker
                     if (boss == data.BossList[boss])
                     {
                         string tmp_origBoss = boss;
-                        if (tmp_origBoss == "Hades II (1)")
+                        if (tmp_origBoss == "Hades II (1)" || tmp_origBoss == "Hades II" || tmp_origBoss == "Hades I")
                         {
                             tmp_origBoss = "Hades";
                         }
@@ -560,7 +563,7 @@ namespace KhTracker
                         string tmp_origBoss = boss;
                         string tmp_replBoss = data.BossList[boss];
 
-                        if (tmp_origBoss == "Hades II (1)")
+                        if (tmp_origBoss == "Hades II (1)" || tmp_origBoss == "Hades II" || tmp_origBoss == "Hades I")
                         {
                             tmp_origBoss = "Hades";
                         }
@@ -569,7 +572,7 @@ namespace KhTracker
                             tmp_origBoss = "Pete";
                         }
 
-                        if (tmp_replBoss == "Hades II (1)")
+                        if (tmp_replBoss == "Hades II (1)" || tmp_replBoss == "Hades II" || tmp_replBoss == "Hades I")
                         {
                             tmp_replBoss = "Hades";
                         }
@@ -950,6 +953,27 @@ namespace KhTracker
             if (!points.Keys.Contains("other"))
                 data.PointsDatanew["other"] = data.PointsDatanew["ability"];
 
+            if (!points.Keys.Contains("collection_proof"))
+                data.PointsDatanew["collection_proof"] = 0;
+            if (!points.Keys.Contains("collection_form"))
+                data.PointsDatanew["collection_form"] = 0;
+            if (!points.Keys.Contains("collection_magic"))
+                data.PointsDatanew["collection_magic"] = data.PointsDatanew["magic"];
+            if (!points.Keys.Contains("collection_summon"))
+                data.PointsDatanew["collection_summon"] = 0;
+            if (!points.Keys.Contains("collection_ability"))
+                data.PointsDatanew["collection_ability"] = 0;
+            if (!points.Keys.Contains("collection_page"))
+                data.PointsDatanew["collection_page"] = data.PointsDatanew["collection_page"] * 5;
+            if (!points.Keys.Contains("collection_report"))
+                data.PointsDatanew["collection_report"] = 0;
+            if (!points.Keys.Contains("collection_pouches"))
+                data.PointsDatanew["collection_pouches"] = data.PointsDatanew["other"];
+            if (!points.Keys.Contains("collection_visit"))
+                data.PointsDatanew["collection_visit"] = 0;
+
+
+
             //get point totals for each world
             foreach (var world in worldsP)
             {
@@ -1076,7 +1100,7 @@ namespace KhTracker
             num += WorldBlue;
 
             //add bonus points for collecting all multis in a set
-            if (data.PointsDatanew["magic"] > 0)
+            if (data.PointsDatanew["collection_magic"] > 0)
             {
                 if (WorldGrid.Real_Fire == 3)
                     num += data.PointsDatanew["magic"];
@@ -1091,15 +1115,15 @@ namespace KhTracker
                 if (WorldGrid.Real_Reflect == 3)
                     num += data.PointsDatanew["magic"];
             }
-            if (data.PointsDatanew["page"] > 0)
+            if (data.PointsDatanew["collection_page"] > 0)
             {
                 if (WorldGrid.Real_Pages == 5)
-                    num += data.PointsDatanew["page"] * 5;
+                    num += data.PointsDatanew["collection_page"] * 5;
             }
-            if (data.PointsDatanew["other"] > 0)
+            if (data.PointsDatanew["collection_pouches"] > 0)
             {
                 if (WorldGrid.Real_Pouches == 2)
-                    num += data.PointsDatanew["other"];
+                    num += data.PointsDatanew["collection_pouches"];
             }
 
             ScoreValue.Text = num.ToString();
@@ -1346,7 +1370,7 @@ namespace KhTracker
             }
 
             //loop in the event that one progression point rewards a lot
-            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count)
+            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count && data.ProgressionCurrentHint < data.WorldsEnabled)
             {
                 #region More Debug
                 //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
