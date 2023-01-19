@@ -36,11 +36,7 @@ namespace KhTracker
         public int eventID3;
         public int eventComplete;
         public int inStt;
-
-        public int test1;
-        public int test2;
-        public int test3;
-        public int test4;
+        public int cupRound;
 
         public int ADDRESS_OFFSET;
 
@@ -91,11 +87,7 @@ namespace KhTracker
             eventID1 = worldData[4];
             eventID2 = worldData[6];
             eventID3 = worldData[8];
-
-            test1 = worldData[2];
-            test2 = worldData[3];
-            test3 = worldData[5];
-            test4 = worldData[7];
+            cupRound = worldData[2];
 
             byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
             eventComplete = eventData[0];

@@ -524,47 +524,37 @@ namespace KhTracker
                 });
 
                 #region For Debugging
-                temp[0] = world.roomNumber;
-                temp[1] = world.worldNum;
-                temp[2] = world.eventID1;
-                temp[3] = world.eventID2;
-                temp[4] = world.eventID3;
-                temp[5] = world.eventComplete;
-                temp[6] = world.test1;
-                temp[7] = world.test2;
-                temp[8] = world.test3;
-                temp[9] = world.test4;
-                if (!Enumerable.SequenceEqual(temp, tempPre))
-                {
-                    Console.WriteLine("room num = " + world.roomNumber);
-                    Console.WriteLine("world num = " + world.worldNum);
-                    Console.WriteLine("event id1 = " + world.eventID1);
-                    //Console.WriteLine("event id2 = " + world.eventID2);
-                    //Console.WriteLine("event id3 = " + world.eventID3);
-                    Console.WriteLine("event cpl = " + world.eventComplete);
-
-                    Console.WriteLine("test 1 = " + world.test1);
-                    Console.WriteLine("test 2 = " + world.test2);
-                    Console.WriteLine("test 3 = " + world.test3);
-                    Console.WriteLine("test 4 = " + world.test4);
-
-                    tempPre[0] = temp[0];
-                    tempPre[1] = temp[1];
-                    tempPre[2] = temp[2];
-                    tempPre[3] = temp[3];
-                    tempPre[4] = temp[4];
-                    tempPre[5] = temp[5];
-                    tempPre[6] = temp[6];
-                    tempPre[7] = temp[7];
-                    tempPre[8] = temp[8];
-                    tempPre[9] = temp[9];
-                }
+                //Modified to only update if any of these actually change instead of updating every tick
+                //temp[0] = world.roomNumber;
+                //temp[1] = world.worldNum;
+                //temp[2] = world.eventID1;
+                //temp[3] = world.eventID2;
+                //temp[4] = world.eventID3;
+                //temp[5] = world.eventComplete;
+                //temp[6] = world.cupRound;
+                //if (!Enumerable.SequenceEqual(temp, tempPre))
+                //{
+                //    Console.WriteLine("world num = " + world.worldNum);
+                //    Console.WriteLine("room num  = " + world.roomNumber);
+                //    Console.WriteLine("event id1 = " + world.eventID1);
+                //    Console.WriteLine("event id2 = " + world.eventID2);
+                //    Console.WriteLine("event id3 = " + world.eventID3);
+                //    Console.WriteLine("event cpl = " + world.eventComplete);
+                //    Console.WriteLine("Cup Round = " + world.cupRound);
+                //    tempPre[0] = temp[0];
+                //    tempPre[1] = temp[1];
+                //    tempPre[2] = temp[2];
+                //    tempPre[3] = temp[3];
+                //    tempPre[4] = temp[4];
+                //    tempPre[5] = temp[5];
+                //    tempPre[6] = temp[6];
+                //}
 
                 //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
                 //Console.WriteLine(cntrl);
                 #endregion
             }
-           catch
+            catch
             {
                 aTimer.Stop();
                 //isWorking = false;
@@ -1841,6 +1831,44 @@ namespace KhTracker
                             else if (world.eventID1 == 152) // Data Zexion finish
                                 boss = "Zexion (Data)";
                             break;
+                        case 9: //Cups
+                            if (world.eventID1 == 189 && world.cupRound == 10)
+                                boss = "FF Team 1"; //Leon & Yuffie
+                            if (world.eventID1 == 190 && world.cupRound == 10)
+                                boss = "Cerberus (Cups)";
+                            if (world.eventID1 == 191 && world.cupRound == 10)
+                                boss = "Hercules";
+                            if (world.eventID1 == 192 && world.cupRound == 10)
+                                boss = "Hades Cups";
+                            //paradox cups
+                            if (world.eventID1 == 193 && world.cupRound == 10)
+                                boss = "FF Team 2"; //Leon (3) & Yuffie (3)
+                            if (world.eventID1 == 194 && world.cupRound == 10)
+                                boss = "Cerberus (Cups)";
+                            if (world.eventID1 == 195 && world.cupRound == 10)
+                                boss = "Hercules";
+                            //hades paradox
+                            if (world.eventID1 == 196 && world.cupRound == 5)
+                                boss = "Volcano Lord (Cups)";
+                            if (world.eventID1 == 196 && world.cupRound == 10)
+                                boss = "FF Team 3"; // Yuffie (1) & Tifa
+                            if (world.eventID1 == 196 && world.cupRound == 15)
+                                boss = "Blizzard Lord (Cups)";
+                            if (world.eventID1 == 196 && world.cupRound == 20)
+                                boss = "Pete Cups";
+                            if (world.eventID1 == 196 && world.cupRound == 25)
+                                boss = "FF Team 4"; // Cloud & Tifa (1)
+                            if (world.eventID1 == 196 && world.cupRound == 30)
+                                boss = "Hades Cups";
+                            if (world.eventID1 == 196 && world.cupRound == 40)
+                                boss = "FF Team 5"; // Leon (1) & Cloud (1)
+                            if (world.eventID1 == 196 && world.cupRound == 48)
+                                boss = "Cerberus (Cups)";
+                            if (world.eventID1 == 196 && world.cupRound == 49)
+                                boss = "FF Team 6"; // Leon (2), Cloud (2), Yuffie (2), & Tifa (2)
+                            if (world.eventID1 == 196 && world.cupRound == 50)
+                                boss = "Hades II";
+                            break;
                         default:
                             return;
                     }
@@ -2122,6 +2150,121 @@ namespace KhTracker
                 {
                     points = data.PointsDatanew["boss_other"] * 2;
                 }
+            }
+            else if (boss.StartsWith("FF Team"))
+            {
+                string[] test = { "Unknown", "Unknown", "Unknown", "Unknown" };
+
+                if (boss == "FF Team 6")
+                {
+                    test[0] = "Leon (2)";
+                    test[1] = "Cloud (2)";
+                    test[2] = "Yuffie (2)";
+                    test[3] = "Tifa (2)";
+
+                    replacementType = Codes.FindBossType(data.BossList[test[0]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
+
+                    points = data.PointsDatanew[replacementType];
+
+                    replacementType = Codes.FindBossType(data.BossList[test[1]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
+
+                    points += data.PointsDatanew[replacementType];
+
+                    replacementType = Codes.FindBossType(data.BossList[test[2]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[2] + " Replacement: " + data.BossList[test[2]]);
+
+                    points += data.PointsDatanew[replacementType];
+
+                    replacementType = Codes.FindBossType(data.BossList[test[3]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[3] + " Replacement: " + data.BossList[test[3]]);
+
+                    points += data.PointsDatanew[replacementType];
+
+                    //bonus points here should be sum of both boss types / 2
+                    if (points > 1)
+                        points += points / 2;
+                }
+                else
+                {
+                    if (boss == "FF Team 1")
+                    {
+                        test[0] = "Leon";
+                        test[1] = "Yuffie";
+                    }
+                    if (boss == "FF Team 2")
+                    {
+                        test[0] = "Leon (3)";
+                        test[1] = "Yuffie (3)";
+                    }
+                    if (boss == "FF Team 3")
+                    {
+                        test[0] = "Yuffie (1)";
+                        test[1] = "Tifa";
+                    }
+                    if (boss == "FF Team 4")
+                    {
+                        test[0] = "Cloud";
+                        test[1] = "Tifa (1)";
+                    }
+                    if (boss == "FF Team 5")
+                    {
+                        test[0] = "Leon (1)";
+                        test[1] = "Cloud (1)";
+                    }
+
+                    replacementType = Codes.FindBossType(data.BossList[test[0]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
+
+                    points = data.PointsDatanew[replacementType];
+
+                    replacementType = Codes.FindBossType(data.BossList[test[1]]);
+                    if (replacementType == "Unknown")
+                    {
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                        replacementType = "boss_other";
+                    }
+                    else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
+
+                    points += data.PointsDatanew[replacementType];
+
+                    //bonus points here should be sum of both boss types / 2
+                    if (points > 1)
+                        points += points / 2;
+                }
+
             }
             else
             {
