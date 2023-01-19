@@ -763,10 +763,11 @@ namespace KhTracker
             {"Vivi", "STT"},
             {"Setzer", "STT"},
             //
+            {"Seifer", "STT"},
             {"Seifer (1)", "STT"},
             {"Seifer (2)", "STT"},
-            {"Seifer (3)", "STT"},
-            {"Seifer (4)", "STT"},
+            {"Seifer (3)", "TT"},
+            {"Seifer (4)", "TT"},
             //
             {"Sephiroth", "HB"},
             {"Terra", "DC"},

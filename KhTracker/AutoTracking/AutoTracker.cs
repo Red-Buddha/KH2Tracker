@@ -83,6 +83,8 @@ namespace KhTracker
         private bool onContinue = false; //for death counter
         private bool eventInProgress = false; //boss detection
 
+        private int[] temp = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        private int[] tempPre = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         ///Auto-Detect Control Stuff
         //private bool autoDetected = false; 
@@ -522,12 +524,42 @@ namespace KhTracker
                 });
 
                 #region For Debugging
-                //Console.WriteLine("room num = " + world.roomNumber);
-                //Console.WriteLine("world num = " + world.worldNum);
-                //Console.WriteLine("event id1 = " + world.eventID1);
-                //Console.WriteLine("event id2 = " + world.eventID2);
-                //Console.WriteLine("event id3 = " + world.eventID3);
-                //Console.WriteLine("event cpl = " + world.eventComplete);
+                temp[0] = world.roomNumber;
+                temp[1] = world.worldNum;
+                temp[2] = world.eventID1;
+                temp[3] = world.eventID2;
+                temp[4] = world.eventID3;
+                temp[5] = world.eventComplete;
+                temp[6] = world.test1;
+                temp[7] = world.test2;
+                temp[8] = world.test3;
+                temp[9] = world.test4;
+                if (!Enumerable.SequenceEqual(temp, tempPre))
+                {
+                    Console.WriteLine("room num = " + world.roomNumber);
+                    Console.WriteLine("world num = " + world.worldNum);
+                    Console.WriteLine("event id1 = " + world.eventID1);
+                    //Console.WriteLine("event id2 = " + world.eventID2);
+                    //Console.WriteLine("event id3 = " + world.eventID3);
+                    Console.WriteLine("event cpl = " + world.eventComplete);
+
+                    Console.WriteLine("test 1 = " + world.test1);
+                    Console.WriteLine("test 2 = " + world.test2);
+                    Console.WriteLine("test 3 = " + world.test3);
+                    Console.WriteLine("test 4 = " + world.test4);
+
+                    tempPre[0] = temp[0];
+                    tempPre[1] = temp[1];
+                    tempPre[2] = temp[2];
+                    tempPre[3] = temp[3];
+                    tempPre[4] = temp[4];
+                    tempPre[5] = temp[5];
+                    tempPre[6] = temp[6];
+                    tempPre[7] = temp[7];
+                    tempPre[8] = temp[8];
+                    tempPre[9] = temp[9];
+                }
+
                 //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
                 //Console.WriteLine(cntrl);
                 #endregion
@@ -1681,21 +1713,38 @@ namespace KhTracker
                 eventInProgress = false;
 
             //boss beaten events (taken mostly from progression code)
+
             switch (world.worldName)
             {
                 case "SimulatedTwilightTown":
                     switch (world.roomNumber) //check based on room number now, then based on events in each room
                     {
                         case 34:
-                            if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
+                            if (world.eventID1 == 157) // Twilight Thorn finish
                                 boss = "Twilight Thorn";
                             break;
+                        case 3:
+                            if (world.eventID1 == 180) // Seifer Battle (Day 4)
+                                boss = "Seifer";
+                            break;
+                        case 4:
+                            if (world.eventID1 == 77) // Tutorial 4 - Fighting
+                                boss = "Seifer (1)";
+                            if (world.eventID1 == 78) // Seifer I Battle
+                                boss = "Seifer (2)";
+                            break;
                         case 5:
-                            if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
+                            if (world.eventID1 == 84) // Hayner Struggle
+                                boss = "Hayner";
+                            if (world.eventID1 == 85) // Vivi Struggle
+                                boss = "Vivi";
+                            if (world.eventID1 == 87) // Axel 1 Finish
                                 boss = "Axel I";
+                            if (world.eventID1 == 88) // Setzer Struggle
+                                boss = "Setzer";
                             break;
                         case 20:
-                            if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
+                            if (world.eventID1 == 137) // Axel 2 finish
                                 boss = "Axel II";
                             break;
                         default:
@@ -1706,8 +1755,18 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 20:
-                            if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
+                            if (world.eventID1 == 213) // Data Axel finish
                                 boss = "Axel (Data)";
+                            break;
+                        case 4:
+                            if (world.eventID1 == 181) // Seifer II Battle
+                                boss = "Seifer (3)";
+                            if (world.eventID1 == 182) // Hayner Battle (Struggle Competition)
+                                boss = "Hayner (SR)";
+                            if (world.eventID1 == 183) // Setzer Battle (Struggle Competition)
+                                boss = "Setzer (SR)";
+                            if (world.eventID1 == 184) // Seifer Battle (Struggle Competition)
+                                boss = "Seifer (4)";
                             break;
                         default:
                             return;
@@ -1717,13 +1776,13 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 4:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
+                            if (world.eventID1 == 55) // HB Demyx finish
                                 boss = "Demyx";
-                            else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
+                            else if (world.eventID1 == 114) // Data Demyx finish
                                 boss = "Demyx (Data)";
                             break;
                         case 1:
-                            if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
+                            if (world.eventID1 == 75) // Sephiroth finish
                                 boss = "Sephiroth";
                             break;
                         default:
@@ -1734,21 +1793,23 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 11:
-                            if (world.eventID1 == 72 && world.eventComplete == 1) // Thresholder finish
+                            if (world.eventID1 == 72) // Thresholder finish
                                 boss = "Thresholder";
                             break;
                         case 3:
-                            if (world.eventID1 == 69 && world.eventComplete == 1) // Beast finish
+                            if (world.eventID1 == 69) // Beast finish
                                 boss = "The Beast";
                             break;
                         case 5:
-                            if (world.eventID1 == 79 && world.eventComplete == 1) // Dark Thorn finish
+                            if (world.eventID1 == 78) // Shadow Stalker
+                                boss = "Shadow Stalker";
+                            if (world.eventID1 == 79) // Dark Thorn finish
                                 boss = "Dark Thorn";
                             break;
                         case 15:
-                            if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
+                            if (world.eventID1 == 82) // Xaldin finish
                                 boss = "Xaldin";
-                            else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
+                            else if (world.eventID1 == 97) // Data Xaldin finish
                                 boss = "Xaldin (Data)";
                             break;
                         default:
@@ -1759,25 +1820,25 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 7:
-                            if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
+                            if (world.eventID1 == 114) // Cerberus finish
                                 boss = "Cerberus";
                             break;
                         case 8:
-                            if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
+                            if (world.eventID1 == 116) // OC Pete finish
                                 boss = "Pete OC II";
                             break;
                         case 18:
-                            if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
+                            if (world.eventID1 == 171) // Hydra finish
                                 boss = "Hydra";
                             break;
                         case 19:
-                            if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
+                            if (world.eventID1 == 202) // Hades finish
                                 boss = "Hades II (1)";
                             break;
                         case 34:
-                            if (world.eventID1 == 151 && world.eventComplete == 1) // Zexion finish
+                            if (world.eventID1 == 151) // Zexion finish
                                 boss = "Zexion";
-                            else if (world.eventID1 == 152 && world.eventComplete == 1) // Data Zexion finish
+                            else if (world.eventID1 == 152) // Data Zexion finish
                                 boss = "Zexion (Data)";
                             break;
                         default:
@@ -1788,17 +1849,17 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 3:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Lords finish
+                            if (world.eventID1 == 59) // Lords finish
                                 boss = "Twin Lords";
                             break;
                         case 5:
-                            if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
+                            if (world.eventID1 == 62) // Genie Jafar finish
                                 boss = "Jafar";
                             break;
                         case 33:
-                            if (world.eventID1 == 142 && world.eventComplete == 1) // Lexaeus finish
+                            if (world.eventID1 == 142) // Lexaeus finish
                                 boss = "Lexaeus";
-                            else if (world.eventID1 == 147 && world.eventComplete == 1) // Data Lexaeus finish
+                            else if (world.eventID1 == 147) // Data Lexaeus finish
                                 boss = "Lexaeus (Data)";
                             break;
                         default:
@@ -1809,11 +1870,15 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 9:
-                            if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
+                            if (world.eventID1 == 75) // Shan Yu finish
                                 boss = "Shan-Yu";
                             break;
+                        case 7:
+                            if (world.eventID1 == 76) // Riku
+                                boss = "Riku";
+                            break;
                         case 8:
-                            if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
+                            if (world.eventID1 == 79) // Storm Rider finish
                                 boss = "Storm Rider";
                             break;
                         default:
@@ -1824,11 +1889,11 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 14:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
+                            if (world.eventID1 == 55) // Scar finish
                                 boss = "Scar";
                             break;
                         case 15:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
+                            if (world.eventID1 == 59) // Groundshaker finish
                                 boss = "Groundshaker";
                             break;
                         default:
@@ -1839,25 +1904,25 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 1:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Old Pete finish
+                            if (world.eventID1 == 58) // Old Pete finish
                                 boss = "Past Pete";
                             break;
                         case 2:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) // Boat Pete finish
+                            if (world.eventID1 == 52) // Boat Pete finish
                                 boss = "Boat Pete";
                             break;
                         case 3:
-                            if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
+                            if (world.eventID1 == 53) // DC Pete finish
                                 boss = "Pete TR";
                             break;
                         case 38:
-                            if (world.eventID1 == 145 && world.eventComplete == 1) // Marluxia finish
+                            if (world.eventID1 == 145) // Marluxia finish
                                 boss = "Marluxia";
-                            else if (world.eventID1 == 150 && world.eventComplete == 1) // Data Marluxia finish
+                            else if (world.eventID1 == 150) // Data Marluxia finish
                                 boss = "Marluxia (Data)";
                             break;
                         case 7:
-                            if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
+                            if (world.eventID1 == 67) // Lingering Will finish
                                 boss = "Terra";
                             break;
                         default:
@@ -1868,21 +1933,21 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 3:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) // Prison Keeper finish
+                            if (world.eventID1 == 52) // Prison Keeper finish
                                 boss = "Prison Keeper";
                             break;
                         case 9:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Oogie Boogie finish
+                            if (world.eventID1 == 55) // Oogie Boogie finish
                                 boss = "Oogie Boogie";
                             break;
                         case 7:
-                            if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
+                            if (world.eventID1 == 64) // Experiment finish
                                 boss = "The Experiment";
                             break;
                         case 32:
-                            if (world.eventID1 == 115 && world.eventComplete == 1) // Vexen finish
+                            if (world.eventID1 == 115) // Vexen finish
                                 boss = "Vexen";
-                            if (world.eventID1 == 146 && world.eventComplete == 1) // Data Vexen finish
+                            if (world.eventID1 == 146) // Data Vexen finish
                                 boss = "Vexen (Data)";
                             break;
                         default:
@@ -1893,15 +1958,15 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 10:
-                            if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
+                            if (world.eventID1 == 60) // Barbossa finish
                                 boss = "Barbossa";
                             break;
                         case 18:
-                            if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
+                            if (world.eventID1 == 85) // Grim Reaper 1 finish
                                 boss = "Grim Reaper I";
                             break;
                         case 1:
-                            if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
+                            if (world.eventID1 == 54) // Grim Reaper 2 finish
                                 boss = "Grim Reaper II";
                             break;
                         default:
@@ -1912,19 +1977,19 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 4:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Hostile Program finish
+                            if (world.eventID1 == 55) // Hostile Program finish
                                 boss = "Hostile Program";
                             break;
                         case 9:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Sark finish
+                            if (world.eventID1 == 58) // Sark finish
                                 boss = "Sark";
-                            else if (world.eventID1 == 59 && world.eventComplete == 1) // MCP finish
+                            else if (world.eventID1 == 59) // MCP finish
                                 boss = "MCP";
                             break;
                         case 33:
-                            if (world.eventID1 == 143 && world.eventComplete == 1) // Larxene finish
+                            if (world.eventID1 == 143) // Larxene finish
                                 boss = "Larxene";
-                            else if (world.eventID1 == 148 && world.eventComplete == 1) // Data Larxene finish
+                            else if (world.eventID1 == 148) // Data Larxene finish
                                 boss = "Larxene (Data)";
                             break;
                         default:
@@ -1935,47 +2000,47 @@ namespace KhTracker
                     switch (world.roomNumber)
                     {
                         case 21:
-                            if (world.eventID1 == 65 && world.eventComplete == 1) // Roxas finish
+                            if (world.eventID1 == 65) // Roxas finish
                                 boss = "Roxas";
-                            else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
+                            else if (world.eventID1 == 99) // Data Roxas finish
                                 boss = "Roxas (Data)";
                             break;
                         case 10:
-                            if (world.eventID1 == 57 && world.eventComplete == 1) // Xigbar finish
+                            if (world.eventID1 == 57) // Xigbar finish
                                 boss = "Xigbar";
-                            else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
+                            else if (world.eventID1 == 100) // Data Xigbar finish
                                 boss = "Xigbar (Data)";
                             break;
                         case 14:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
+                            if (world.eventID1 == 58) // Luxord finish
                                 boss = "Luxord";
-                            else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
+                            else if (world.eventID1 == 101) // Data Luxord finish
                                 boss = "Luxord (Data)";
                             break;
                         case 15:
-                            if (world.eventID1 == 56 && world.eventComplete == 1) // Saix finish
+                            if (world.eventID1 == 56) // Saix finish
                                 boss = "Saix";
-                            else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
+                            else if (world.eventID1 == 102) // Data Saix finish
                                 boss = "Saix (Data)";
                             break;
                         case 19:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Xemnas 1 finish
+                            if (world.eventID1 == 59) // Xemnas 1 finish
                                 boss = "Xemnas";
-                            else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xemnas I finish
+                            else if (world.eventID1 == 97) // Data Xemnas I finish
                                 boss = "Xemnas (Data)";
                             break;
                         case 20:
-                            if (world.eventID1 == 74 && world.eventComplete == 1) // Final Xemnas finish
+                            if (world.eventID1 == 74) // Final Xemnas finish
                                 boss = "Final Xemnas";
-                            else if (world.eventID1 == 98 && world.eventComplete == 1) // Data Final Xemnas finish
+                            else if (world.eventID1 == 98) // Data Final Xemnas finish
                                 boss = "Final Xemnas (Data)";
                             break;
                         case 23:
-                            if (world.eventID1 == 73 && world.eventComplete == 1) // Armor Xemnas II
+                            if (world.eventID1 == 73) // Armor Xemnas II
                                 boss = "Armor Xemnas II";
                             break;
                         case 24:
-                            if (world.eventID1 == 71 && world.eventComplete == 1) // Armor Xemnas I
+                            if (world.eventID1 == 71) // Armor Xemnas I
                                 boss = "Armor Xemnas I";
                             break;
                         default:
@@ -1986,7 +2051,7 @@ namespace KhTracker
                     return;
             }
 
-            if (boss == "None")
+            if (world.eventComplete != 1 || boss == "None")
                 return;
 
             //if the boss was found and beaten then set flag
