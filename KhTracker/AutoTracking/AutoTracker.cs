@@ -1718,8 +1718,9 @@ namespace KhTracker
                                 boss = "Seifer";
                             break;
                         case 4:
-                            if (world.eventID1 == 77) // Tutorial 4 - Fighting
-                                boss = "Seifer (1)";
+                            //Tutorial Seifer shouldn't give points
+                            //if (world.eventID1 == 77) // Tutorial 4 - Fighting
+                            //    boss = "Seifer (1)";
                             if (world.eventID1 == 78) // Seifer I Battle
                                 boss = "Seifer (2)";
                             break;

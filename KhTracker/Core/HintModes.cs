@@ -1172,7 +1172,6 @@ namespace KhTracker
                     num += data.PointsDatanew["collection_report"];
             }
 
-
             ScoreValue.Text = num.ToString();
         }
 

@@ -1199,6 +1199,13 @@ namespace KhTracker
             WorldGrid.Real_Magnet = 0;
             WorldGrid.Real_Pages = 0;
             WorldGrid.Real_Pouches = 0;
+            WorldGrid.Proof_Count = 0;
+            WorldGrid.Form_Count = 0;
+            WorldGrid.Summon_Count = 0;
+            WorldGrid.Ability_Count = 0;
+            WorldGrid.Report_Count = 0;
+            WorldGrid.Visit_Count = 0;
+
             FireCount.Text = "3";
             BlizzardCount.Text = "3";
             ThunderCount.Text = "3";
