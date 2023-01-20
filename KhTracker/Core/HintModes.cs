@@ -553,7 +553,7 @@ namespace KhTracker
                         }
                         if (tmp_origBoss == "Pete OC II")
                         {
-                            tmp_origBoss = "Pete";
+                            tmp_origBoss = "Pete OC";
                         }
 
                         worldhint = tmp_origBoss + " is unchanged";
@@ -569,7 +569,7 @@ namespace KhTracker
                         }
                         if (tmp_origBoss == "Pete OC II")
                         {
-                            tmp_origBoss = "Pete";
+                            tmp_origBoss = "Pete OC";
                         }
 
                         if (tmp_replBoss == "Hades II (1)" || tmp_replBoss == "Hades II" || tmp_replBoss == "Hades I")
@@ -578,7 +578,7 @@ namespace KhTracker
                         }
                         if (tmp_replBoss == "Pete OC II")
                         {
-                            tmp_replBoss = "Pete";
+                            tmp_replBoss = "Pete OC";
                         }
 
                         worldhint = tmp_origBoss + " became " + tmp_replBoss;
@@ -1103,28 +1103,75 @@ namespace KhTracker
             if (data.PointsDatanew["collection_magic"] > 0)
             {
                 if (WorldGrid.Real_Fire == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
                 if (WorldGrid.Real_Blizzard == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
                 if (WorldGrid.Real_Thunder == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
                 if (WorldGrid.Real_Cure == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
                 if (WorldGrid.Real_Magnet == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
                 if (WorldGrid.Real_Reflect == 3)
-                    num += data.PointsDatanew["magic"];
+                    num += data.PointsDatanew["collection_magic"];
             }
             if (data.PointsDatanew["collection_page"] > 0)
             {
                 if (WorldGrid.Real_Pages == 5)
-                    num += data.PointsDatanew["collection_page"] * 5;
+                    num += data.PointsDatanew["collection_page"];
             }
             if (data.PointsDatanew["collection_pouches"] > 0)
             {
                 if (WorldGrid.Real_Pouches == 2)
                     num += data.PointsDatanew["collection_pouches"];
             }
+            if (data.PointsDatanew["collection_form"] > 0)
+            {
+                if (AntiFormOption.IsChecked)
+                {
+                    if (WorldGrid.Form_Count == 6)
+                        num += data.PointsDatanew["collection_form"];
+                }
+                else
+                {
+                    if (WorldGrid.Form_Count == 5)
+                        num += data.PointsDatanew["collection_form"];
+                }
+            }
+            if (data.PointsDatanew["collection_proof"] > 0)
+            {
+                if (PromiseCharmOption.IsChecked)
+                {
+                    if (WorldGrid.Proof_Count == 4)
+                        num += data.PointsDatanew["collection_proof"];
+                }
+                else
+                {
+                    if (WorldGrid.Proof_Count == 3)
+                        num += data.PointsDatanew["collection_proof"];
+                }
+            }
+            if (data.PointsDatanew["collection_summon"] > 0)
+            {
+                if (WorldGrid.Summon_Count == 4)
+                    num += data.PointsDatanew["collection_summon"];
+            }
+            if (data.PointsDatanew["collection_ability"] > 0)
+            {
+                if (WorldGrid.Ability_Count == 2)
+                    num += data.PointsDatanew["collection_ability"];
+            }
+            if (data.PointsDatanew["collection_visit"] > 0)
+            {
+                if (WorldGrid.Visit_Count == 11)
+                    num += data.PointsDatanew["collection_visit"];
+            }
+            if (data.PointsDatanew["collection_report"] > 0)
+            {
+                if (WorldGrid.Report_Count == 13)
+                    num += data.PointsDatanew["collection_report"];
+            }
+
 
             ScoreValue.Text = num.ToString();
         }

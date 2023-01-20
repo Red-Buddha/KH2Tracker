@@ -47,6 +47,14 @@ namespace KhTracker
         public static int Ghost_Pages_obtained = 0;
         public static int Ghost_Pouches_obtained = 0;
 
+        //track other types of collections
+        public static int Proof_Count = 0;
+        public static int Form_Count = 0;
+        public static int Summon_Count = 0;
+        public static int Ability_Count = 0;
+        public static int Report_Count = 0;
+        public static int Visit_Count = 0;
+
         //A single spot to have referenced for the opacity of the ghost checks idk where to put this
         public static double universalOpacity = 0.5;
 
@@ -256,13 +264,46 @@ namespace KhTracker
 
         public void UpdateMulti(Item item, bool add)
         {
-            if (Codes.FindItemType(item.Name) != "magic" && Codes.FindItemType(item.Name) != "page" && Codes.FindItemType(item.Name) != "other")
+            //do nothing for ghost items
+            if (item.Name.StartsWith("Ghost_"))
                 return;
 
-            //int multi = 0;
             int addRemove = 1;
             if (!add)
                 addRemove = -1;
+
+            if (Codes.FindItemType(item.Name) != "magic" && Codes.FindItemType(item.Name) != "page" && !item.Name.Contains("Munny"))    //Codes.FindItemType(item.Name) != "other")
+            {
+                //yeah just gonna do things here..
+                //track collection for things that aren't multi's
+                switch(Codes.FindItemType(item.Name))
+                {
+                    case "proof":
+                        Proof_Count += addRemove;
+                        return;
+                    case "form":
+                        Form_Count += addRemove;
+                        return;
+                    case "ability":
+                        Ability_Count += addRemove;
+                        return;
+                    case "summon":
+                        Summon_Count += addRemove;
+                        return;
+                    case "visit":
+                        Visit_Count += addRemove;
+                        return;
+                    case "report":
+                        Report_Count += addRemove;
+                        return;
+                    //collecting the other aux checks does nothing for now. maybe someday
+                    //case "other":
+                    //    Aux_Count += addRemove;
+                    //    return;
+                    default:
+                        return;
+                }
+            }
 
             char[] numbers = { '1', '2', '3', '4', '5' };
             string itemname = item.Name.TrimEnd(numbers);

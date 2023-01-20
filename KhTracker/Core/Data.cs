@@ -78,14 +78,15 @@ namespace KhTracker
             { "formlv", 0 },
             { "deaths", 0 },
             //collection bonus
+            { "collection_magic", 0 },
+            { "collection_page", 0 },
+            { "collection_pouches", 0},
+
             { "collection_proof", 0 },
             { "collection_form", 0 },
-            { "collection_magic", 0 },
             { "collection_summon", 0 },
             { "collection_ability", 0 },
-            { "collection_page", 0 },
             { "collection_report", 0 },
-            { "collection_pouches", 0},
             { "collection_visit", 0},
         };
         public static Dictionary<string, List<string>> WorldItems = new Dictionary<string, List<string>>();

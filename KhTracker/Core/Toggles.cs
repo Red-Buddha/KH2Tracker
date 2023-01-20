@@ -536,6 +536,10 @@ namespace KhTracker
             if (data.mode != Mode.DAHints && !data.ScoreMode)
                 return;
 
+            //don't do anything if progression hints
+            if (data.UsingProgressionHints)
+                return;
+
             //if check count should be shown and replace the score IN POINTS MODE
             if (toggle)
             {

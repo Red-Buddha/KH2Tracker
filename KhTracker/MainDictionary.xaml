@@ -137,6 +137,7 @@
     <Image x:Key="Staff"  	            Source="Images\System\stats\staff.png"    x:Shared="false"/>
     <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"    x:Shared="false"/>
     <Image x:Key="Score" 		        Source="Images\System\stats\limit.png"    x:Shared="false"/>
+    <Image x:Key="ProgPoints" 		    Source="Images\System\stats\ProgPoints2.png"    x:Shared="false"/>
     <Image x:Key="HighJump" 		    Source="Images\System\drive_growth\high_jump.png"    x:Shared="false"/>
     <Image x:Key="QuickRun" 		    Source="Images\System\drive_growth\quick_run.png"    x:Shared="false"/>
     <Image x:Key="DodgeRoll" 		    Source="Images\System\drive_growth\dodge_roll.png"   x:Shared="false"/>

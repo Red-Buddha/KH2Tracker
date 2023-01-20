@@ -1490,6 +1490,8 @@ namespace KhTracker
                 ScoreGrid.Visibility = Visibility.Collapsed;
                 ProgressionCollectionGrid.Visibility = Visibility.Visible;
 
+                ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
+
                 ModeDisplay.Header += " | Progression";
 
                 //probably always want reports to be on for progression hints.
