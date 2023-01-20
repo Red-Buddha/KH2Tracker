@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.0 (Beta v7.1 w/ Progression Hints)" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.0 (Beta v8)" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -55,6 +55,7 @@
             </MenuItem>
             <MenuItem Header="Display Toggles" Focusable="False">
                 <MenuItem Header="Ansem Reports" 			 Click="ReportsToggle"		x:Name="ReportsOption"      IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Torn Pages" 			     Click="TornPagesToggle"	x:Name="TornPagesOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Promise Charm"			 Click="PromiseCharmToggle" x:Name="PromiseCharmOption" IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Once More / Second Chance" Click="AbilitiesToggle" 	x:Name="AbilitiesOption"    IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Anti Form" 				 Click="AntiFormToggle"		x:Name="AntiFormOption"     IsCheckable="True" IsChecked="False"/>
@@ -2166,50 +2167,35 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
+                        <ColumnDefinition Width="0.1*"/>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
+                        <ColumnDefinition Width="0.1*"/>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
+                        <ColumnDefinition Width="0.1*"/>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
+                        <ColumnDefinition Width="0.1*"/>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
+                        <ColumnDefinition Width="0.1*"/>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.1*"/>
 
-                        <ColumnDefinition Width="0.6*"/>
-                        <ColumnDefinition Width="1.*"/>
+                        <ColumnDefinition Width="0.1*" Name="PageSep"/>
+                        <ColumnDefinition Width="0.6*" Name="PageNum"/>
+                        <ColumnDefinition Width="1.0*" Name="PageImg"/>
 
                         <ColumnDefinition Width="0.1*" Name="MunnySep"/>
                         <ColumnDefinition Width="0.6*" Name="MunnyNum"/>
                         <ColumnDefinition Width="1.0*" Name="MunnyImg"/>
                     </Grid.ColumnDefinitions>
-
-                    
-                    
-                    
-                    <!-- Spacers -->
-
-
-                    <!--Rectangle Grid.Column="2" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-2,5,4,5"/>
-                    <Rectangle Grid.Column="5" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-1,5,3,5"/>
-                    <Rectangle Grid.Column="8" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
-                    <Rectangle Grid.Column="11" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
-                    <Rectangle Grid.Column="14" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-1,5,3,5"/>
-                    <Rectangle Grid.Column="17" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-3,5,5,5"/>
-                    <Rectangle Grid.Column="20" Fill="#D81E1E1E" Panel.ZIndex="-1" Margin="-0,5,2,5"/-->
-
 
                     <!-- Numbers -->
                     <Viewbox Grid.Column="0" MaxHeight="70">

@@ -211,6 +211,9 @@ namespace KhTracker
             VisitLockOption.IsChecked = Properties.Settings.Default.WorldVisitLock;
             VisitLockToggle(VisitLockOption.IsChecked);
 
+            TornPagesOption.IsChecked = Properties.Settings.Default.TornPages;
+            TornPagesToggle(TornPagesOption.IsChecked);
+
             ExtraChecksOption.IsChecked = Properties.Settings.Default.ExtraChecks;
             ExtraChecksToggle(ExtraChecksOption.IsChecked);
 

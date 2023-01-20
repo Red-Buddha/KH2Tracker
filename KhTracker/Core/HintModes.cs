@@ -60,7 +60,7 @@ namespace KhTracker
                     ScoreModifier(hintObject);
 
                 //turn reports back on
-                ReportsToggle(true);
+                //ReportsToggle(true);
                 data.hintsLoaded = true;
             }
 
@@ -119,7 +119,7 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            ReportsToggle(true);
+            //ReportsToggle(true);
             data.hintsLoaded = true;
         }
 
@@ -157,7 +157,7 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            ReportsToggle(true);
+            //ReportsToggle(true);
             data.hintsLoaded = true;
 
             //Console.WriteLine("data.worldReportPairs = " + data.worldReportPairs["HollowBastion"]);
@@ -249,7 +249,7 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            ReportsToggle(true);
+            //ReportsToggle(true);
             data.hintsLoaded = true;
         }
 
@@ -348,7 +348,7 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            ReportsToggle(true);
+            //ReportsToggle(true);
             data.hintsLoaded = true;
         }
 
@@ -378,18 +378,18 @@ namespace KhTracker
             if (reveals.Contains("reportmode"))
             {
                 data.SpoilerReportMode = true;
-                ReportsToggle(true);
+                //ReportsToggle(true);
             }
 
             //reports reveal bosses
             if(reveals.Contains("bossreports"))
             {
-                ReportsToggle(true);
+                //ReportsToggle(true);
                 TMP_bossReports = true;
             }
 
-            if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
-                ReportsToggle(false);
+            //if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
+            //    ReportsToggle(false);
 
             Dictionary<string, int> counts = new Dictionary<string, int>
             {
@@ -622,18 +622,18 @@ namespace KhTracker
             if (reveals.Contains("reportmode"))
             {
                 data.SpoilerReportMode = true;
-                ReportsToggle(true);
+                //ReportsToggle(true);
             }
 
             //reports reveal bosses
             if (reveals.Contains("bossreports"))
             {
-                ReportsToggle(true);
+                //ReportsToggle(true);
                 TMP_bossReports = true;
             }
 
-            if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
-                ReportsToggle(false);
+            //if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
+            //    ReportsToggle(false);
 
             Dictionary<string, int> counts = new Dictionary<string, int>
             {
@@ -939,6 +939,7 @@ namespace KhTracker
                 }
             }
 
+            #region Points fallback and other stuff
             //Fallback values for older seeds
             if (!points.Keys.Contains("report"))
                 data.PointsDatanew["report"] = data.PointsDatanew["page"];
@@ -971,8 +972,7 @@ namespace KhTracker
                 data.PointsDatanew["collection_pouches"] = data.PointsDatanew["other"];
             if (!points.Keys.Contains("collection_visit"))
                 data.PointsDatanew["collection_visit"] = 0;
-
-
+            #endregion
 
             //get point totals for each world
             foreach (var world in worldsP)
@@ -1037,7 +1037,7 @@ namespace KhTracker
                 data.reportLocations.Add(locationP);
             }
 
-            ReportsToggle(true);
+            //ReportsToggle(true);
             data.hintsLoaded = true;
             WorldPoints_c = WorldPoints;
             SetProgressionHints(data.UsingProgressionHints);

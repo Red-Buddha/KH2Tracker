@@ -360,6 +360,36 @@ namespace KhTracker
             VisitLockCheck();
         }
 
+        private void TornPagesToggle(object sender, RoutedEventArgs e)
+        {
+            TornPagesToggle(TornPagesOption.IsChecked);
+        }
+
+        private void TornPagesToggle(bool toggle)
+        {
+            Properties.Settings.Default.TornPages = toggle;
+            TornPagesOption.IsChecked = toggle;
+
+            if (toggle)
+            {
+                PageSep.Width = new GridLength(0.1, GridUnitType.Star);
+                PageNum.Width = new GridLength(0.6, GridUnitType.Star);
+                PageImg.Width = new GridLength(1.0, GridUnitType.Star);
+            }
+            else
+            {
+                PageSep.Width = new GridLength(0, GridUnitType.Star);
+                PageNum.Width = new GridLength(0, GridUnitType.Star);
+                PageImg.Width = new GridLength(0, GridUnitType.Star);
+            }
+
+            HandleItemToggle(toggle, TornPage1, false);
+            HandleItemToggle(toggle, TornPage2, false);
+            HandleItemToggle(toggle, TornPage3, false);
+            HandleItemToggle(toggle, TornPage4, false);
+            HandleItemToggle(toggle, TornPage5, false);
+        }
+
         private void ExtraChecksToggle(object sender, RoutedEventArgs e)
         {
             ExtraChecksToggle(ExtraChecksOption.IsChecked);

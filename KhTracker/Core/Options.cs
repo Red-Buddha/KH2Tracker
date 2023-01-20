@@ -105,6 +105,8 @@ namespace KhTracker
                 settings += "Score Mode - ";
             if (data.BossRandoFound)
                 settings += "Boss Rando - ";
+            if (TornPagesOption.IsChecked)
+                settings += "Torn Pages - ";
             #endregion
 
             // save hint state (hint info, hints, track attempts)
@@ -245,6 +247,10 @@ namespace KhTracker
                 if (Setting_Absent.Width.Value != 0)
                 {
                     settings += "Setting_Absent - ";
+                }
+                if (Setting_Absent_Split.Width.Value != 0)
+                {
+                    settings += "Setting_Absent_Split - ";
                 }
                 if (Setting_Datas.Width.Value != 0)
                 {
@@ -543,57 +549,6 @@ namespace KhTracker
                 data.WorldsData[world].progression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world][data.WorldsData[world].progress]);
                 data.WorldsData[world].progression.ToolTip = data.ProgressKeys[world + "Desc"][data.WorldsData[world].progress];
             }
-
-            //////////
-            //string STTkey = Prog + data.ProgressKeys["SimulatedTwilightTown"][data.WorldsData["SimulatedTwilightTown"].progress];
-            //string STTDes = data.ProgressKeys["SimulatedTwilightTownDesc"][data.WorldsData["SimulatedTwilightTown"].progress];
-            //data.WorldsData["SimulatedTwilightTown"].progression.SetResourceReference(ContentProperty, STTkey);
-            //data.WorldsData["SimulatedTwilightTown"].progression.ToolTip = STTDes;
-            //
-            //string TTkey = Prog + data.ProgressKeys["TwilightTown"][data.WorldsData["TwilightTown"].progress];
-            //data.WorldsData["TwilightTown"].progression.SetResourceReference(ContentProperty, TTkey);
-            //
-            //string HBkey = Prog + data.ProgressKeys["HollowBastion"][data.WorldsData["HollowBastion"].progress];
-            //data.WorldsData["HollowBastion"].progression.SetResourceReference(ContentProperty, HBkey);
-            //
-            //string BCkey = Prog + data.ProgressKeys["BeastsCastle"][data.WorldsData["BeastsCastle"].progress];
-            //data.WorldsData["BeastsCastle"].progression.SetResourceReference(ContentProperty, BCkey);
-            //
-            //string OCkey = Prog + data.ProgressKeys["OlympusColiseum"][data.WorldsData["OlympusColiseum"].progress];
-            //data.WorldsData["OlympusColiseum"].progression.SetResourceReference(ContentProperty, OCkey);
-            //
-            //string AGkey = Prog + data.ProgressKeys["Agrabah"][data.WorldsData["Agrabah"].progress];
-            //data.WorldsData["Agrabah"].progression.SetResourceReference(ContentProperty, AGkey);
-            //
-            //string LoDkey = Prog + data.ProgressKeys["LandofDragons"][data.WorldsData["LandofDragons"].progress];
-            //data.WorldsData["LandofDragons"].progression.SetResourceReference(ContentProperty, LoDkey);
-            //
-            //string HAWkey = Prog + data.ProgressKeys["HundredAcreWood"][data.WorldsData["HundredAcreWood"].progress];
-            //data.WorldsData["HundredAcreWood"].progression.SetResourceReference(ContentProperty, HAWkey);
-            //
-            //string PLkey = Prog + data.ProgressKeys["PrideLands"][data.WorldsData["PrideLands"].progress];
-            //data.WorldsData["PrideLands"].progression.SetResourceReference(ContentProperty, PLkey);
-            //
-            //string DCkey = Prog + data.ProgressKeys["DisneyCastle"][data.WorldsData["DisneyCastle"].progress];
-            //data.WorldsData["DisneyCastle"].progression.SetResourceReference(ContentProperty, DCkey);
-            //
-            //string HTkey = Prog + data.ProgressKeys["HalloweenTown"][data.WorldsData["HalloweenTown"].progress];
-            //data.WorldsData["HalloweenTown"].progression.SetResourceReference(ContentProperty, HTkey);
-            //
-            //string PRkey = Prog + data.ProgressKeys["PortRoyal"][data.WorldsData["PortRoyal"].progress];
-            //data.WorldsData["PortRoyal"].progression.SetResourceReference(ContentProperty, PRkey);
-            //
-            //string SPkey = Prog + data.ProgressKeys["SpaceParanoids"][data.WorldsData["SpaceParanoids"].progress];
-            //data.WorldsData["SpaceParanoids"].progression.SetResourceReference(ContentProperty, SPkey);
-            //
-            //string TWTNWkey = Prog + data.ProgressKeys["TWTNW"][data.WorldsData["TWTNW"].progress];
-            //data.WorldsData["TWTNW"].progression.SetResourceReference(ContentProperty, TWTNWkey);
-            //
-            //string ATkey = Prog + data.ProgressKeys["Atlantica"][data.WorldsData["Atlantica"].progress];
-            //data.WorldsData["Atlantica"].progression.SetResourceReference(ContentProperty, ATkey);
-            //
-            //string CoRkey = Prog + data.ProgressKeys["GoA"][data.WorldsData["GoA"].progress];
-            //data.WorldsData["GoA"].progression.SetResourceReference(ContentProperty, CoRkey);
         }
 
         private void DropFile(object sender, DragEventArgs e)
@@ -718,6 +673,7 @@ namespace KhTracker
             VisitLockToggle(false);
             ExtraChecksToggle(false);
             AntiFormToggle(false);
+            TornPagesToggle(false);
 
             //world settings
             SoraHeartToggle(true);
@@ -850,6 +806,9 @@ namespace KhTracker
                     case "Boss Rando":
                         data.BossRandoFound = true;
                         break;
+                    case "Torn Pages":
+                        TornPagesToggle(true);
+                        break;
                 }
             }
         }
@@ -862,6 +821,7 @@ namespace KhTracker
             Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
             Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
             Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
             Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
             Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
             Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
@@ -904,6 +864,10 @@ namespace KhTracker
                         break;
                     case "Setting_Absent":
                         Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+                        SpacerValue--;
+                        break;
+                    case "Setting_Absent_Split":
+                        Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
                         SpacerValue--;
                         break;
                     case "Setting_Sephiroth":
@@ -1321,6 +1285,7 @@ namespace KhTracker
 
             UpdatePointScore(0);
             ReportsToggle(true);
+            TornPagesToggle(true);
             ResetHints();
             VisitLockToggle(VisitLockOption.IsChecked);
 
@@ -1454,19 +1419,19 @@ namespace KhTracker
             {
                 ModeDisplay.Header = "Shan Hints";
                 data.mode = mode;
-                ReportsToggle(false);
+                //ReportsToggle(false);
             }
             else if (mode == Mode.Hints || mode == Mode.OpenKHHints)
             {
                 ModeDisplay.Header = "Jsmartee Hints";
                 data.mode = mode;
-                ReportsToggle(true);
+                //ReportsToggle(true);
             }
             else if (mode == Mode.DAHints)
             {
                 ModeDisplay.Header = "Points Hints";
                 data.mode = mode;
-                ReportsToggle(true);
+                //ReportsToggle(true);
 
                 UpdatePointScore(0);
                 ShowCheckCountToggle(null, null);
@@ -1475,7 +1440,7 @@ namespace KhTracker
             {
                 ModeDisplay.Header = "Path Hints";
                 data.mode = mode;
-                ReportsToggle(true);
+                //ReportsToggle(true);
             }
             else if (mode == Mode.SpoilerHints)
             {
@@ -1500,9 +1465,6 @@ namespace KhTracker
                 ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
 
                 ModeDisplay.Header += " | Progression";
-
-                //probably always want reports to be on for progression hints.
-                ReportsToggle(true);
             }
         }
 
@@ -1624,6 +1586,7 @@ namespace KhTracker
                         var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                         var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                         var settings = new List<string>();
+                        List<string> hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
 
                         data.ShouldResetHash = false;
 
@@ -1633,9 +1596,24 @@ namespace KhTracker
 
                             #region Settings
 
+                            if (hintableItems.Contains("report"))
+                                ReportsToggle(true);
+                            else
+                                ReportsToggle(false);
+
+                            if (hintableItems.Contains("page"))
+                                TornPagesToggle(true);
+                            else
+                                TornPagesToggle(false);
+
+                            if (hintableItems.Contains("ability"))
+                                AbilitiesToggle(true);
+                            else
+                                AbilitiesToggle(false);
+
                             //item settings
                             PromiseCharmToggle(false);
-                            AbilitiesToggle(false);
+                            //AbilitiesToggle(false);
                             VisitLockToggle(false);
                             ExtraChecksToggle(false);
                             AntiFormToggle(false);
@@ -1683,7 +1661,7 @@ namespace KhTracker
                             #endregion
 
                             //to be safe about this i guess
-                            bool abilitiesOn = true;
+                            //bool abilitiesOn = true;
                             bool dataSplitOn = false;
 
                             //load settings from hints
@@ -1697,9 +1675,9 @@ namespace KhTracker
                                     case "PromiseCharm":
                                         PromiseCharmToggle(true);
                                         break;
-                                    case "Level1Mode":
-                                        abilitiesOn = false;
-                                        break;
+                                    //case "Level1Mode":
+                                    //    abilitiesOn = false;
+                                    //    break;
                                     case "visit_locking":
                                         VisitLockToggle(true);
                                         break;
@@ -1894,8 +1872,8 @@ namespace KhTracker
                                 }
                             }
 
-                            if (abilitiesOn == false)
-                                AbilitiesToggle(false);
+                            //if (abilitiesOn == false)
+                            //    AbilitiesToggle(false);
 
                             Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
                             SettingsText.Text = "Settings:";
