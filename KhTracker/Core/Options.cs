@@ -1663,6 +1663,8 @@ namespace KhTracker
                             //to be safe about this i guess
                             //bool abilitiesOn = true;
                             bool dataSplitOn = false;
+                            bool puzzleOn = false;
+                            bool synthOn = false;
 
                             //load settings from hints
                             foreach (string setting in settings)
@@ -1729,13 +1731,15 @@ namespace KhTracker
                                         break;
                                     case "Puzzle":
                                         PuzzleToggle(true);
-                                        data.WorldsEnabled++;
-                                        data.HintRevealOrder.Add("PuzzSynth");
+                                        //data.WorldsEnabled++;
+                                        //data.HintRevealOrder.Add("PuzzSynth");
+                                        puzzleOn = true;
                                         break;
                                     case "Synthesis":
                                         SynthToggle(true);
-                                        data.WorldsEnabled++;
-                                        data.HintRevealOrder.Add("PuzzSynth");
+                                        //data.WorldsEnabled++;
+                                        //data.HintRevealOrder.Add("PuzzSynth");
+                                        synthOn = true;
                                         break;
                                     case "Form Levels":
                                         DrivesToggle(true);
@@ -1874,6 +1878,13 @@ namespace KhTracker
 
                             //if (abilitiesOn == false)
                             //    AbilitiesToggle(false);
+
+                            //prevent creations hinting twice for progression
+                            if (puzzleOn || synthOn)
+                            {
+                                data.WorldsEnabled++;
+                                data.HintRevealOrder.Add("PuzzSynth");
+                            }
 
                             Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
                             SettingsText.Text = "Settings:";
