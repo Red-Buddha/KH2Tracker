@@ -1586,7 +1586,12 @@ namespace KhTracker
                         var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                         var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                         var settings = new List<string>();
-                        List<string> hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
+                        var hintableItems = new List<string>();
+                        try
+                        {
+                            hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
+                        }
+                        catch { }
 
                         data.ShouldResetHash = false;
 
@@ -1610,6 +1615,13 @@ namespace KhTracker
                                 AbilitiesToggle(true);
                             else
                                 AbilitiesToggle(false);
+
+                            if (hintableItems.Count == 0)
+                            {
+                                ReportsToggle(true);
+                                TornPagesToggle(true);
+                                AbilitiesToggle(true);
+                            }
 
                             //item settings
                             PromiseCharmToggle(false);
