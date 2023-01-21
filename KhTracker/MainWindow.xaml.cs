@@ -585,8 +585,20 @@ namespace KhTracker
             if (data.WorldsData[location].containsGhost) //turn green if it conains ghost item
                 Color = (SolidColorBrush)FindResource("GhostHint");
 
-            if (worldValue == null || worldValue.Name.Contains("GoA") ||
-                (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
+            if (worldValue.Name.Contains("GoA"))
+            {
+                worldValue.Fill = (SolidColorBrush)FindResource("ClassicYellow");
+
+                if (value == -999999)
+                {
+                    worldValue.Text = "?";
+                }
+                else
+                    worldValue.Text = value.ToString();
+                return;
+            }
+
+            if (worldValue == null || (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
             {
                 if (data.mode == Mode.DAHints)
                 {

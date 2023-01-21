@@ -124,17 +124,23 @@ namespace KhTracker
                     MainW.SetHintText(Codes.GetHintTextName(repStr1), "has", Codes.FindShortName(Codes.GetHintTextName(repStr2)), true, false, true);
                     break;
                 case Mode.PathHints:
+                    if (data.UsingProgressionHints)
+                        return;
                     MainW.SetHintText(Codes.GetHintTextName(repStr1));
                     break;
                 case Mode.SpoilerHints:
                     if (repStr1 == "Empty")
                     {
+                        if (data.UsingProgressionHints)
+                            return;
                         MainW.SetHintText("This report looks too faded to read...");
                     }
                     else
                     {
                         if (repInt == -1)
                         {
+                            if (data.UsingProgressionHints)
+                                return;
                             MainW.SetHintText(Codes.GetHintTextName(repStr1), "has no Important Checks", "", true, false, false);
                         }
                         else if (repInt == -12345)
@@ -143,6 +149,8 @@ namespace KhTracker
                         }
                         else
                         {
+                            if (data.UsingProgressionHints)
+                                return;
                             MainW.SetHintText(Codes.GetHintTextName(repStr1), "has been revealed!", "", true, false, false);
                         }
                     }
@@ -154,6 +162,8 @@ namespace KhTracker
                     }
                     else
                     {
+                        if (data.UsingProgressionHints)
+                            return;
                         MainW.SetHintText(Codes.GetHintTextName(repStr2), "has", repInt + " important checks", true, false, true);
                     }
                     break;
