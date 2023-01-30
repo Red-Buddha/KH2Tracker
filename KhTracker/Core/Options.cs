@@ -1587,6 +1587,7 @@ namespace KhTracker
                         var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                         var settings = new List<string>();
                         var hintableItems = new List<string>();
+                        //fallback for older seeds
                         try
                         {
                             hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
