@@ -924,6 +924,7 @@ namespace KhTracker
             data.ScoreMode = false;
             data.forcedFinal = false;
             data.BossRandoFound = false;
+            data.dataSplit = false;
             data.BossList.Clear();
             data.BossRandoSeed = 0;
             data.enabledWorlds.Clear();
@@ -1675,7 +1676,6 @@ namespace KhTracker
 
                             //to be safe about this i guess
                             //bool abilitiesOn = true;
-                            bool dataSplitOn = false;
                             bool puzzleOn = false;
                             bool synthOn = false;
 
@@ -1843,10 +1843,10 @@ namespace KhTracker
                                     case "Data Split":
                                         Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
                                         SpacerValue--;
-                                        dataSplitOn = true;
+                                        data.dataSplit = true;
                                         break;
                                     case "Absent Silhouettes":
-                                        if (!dataSplitOn) //only use if we didn't already set the data split version
+                                        if (!data.dataSplit) //only use if we didn't already set the data split version
                                         {
                                             Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
                                             SpacerValue--;

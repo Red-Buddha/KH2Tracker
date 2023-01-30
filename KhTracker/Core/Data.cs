@@ -18,6 +18,7 @@ namespace KhTracker
         public bool ScoreMode = false;
         public int usedPages = 0;
         public bool forcedFinal;
+        public bool dataSplit = false;
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to

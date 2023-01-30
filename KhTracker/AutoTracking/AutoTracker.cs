@@ -709,15 +709,14 @@ namespace KhTracker
 
         private void TrackItem(string itemName, WorldGrid world)
         {
-            Grid ItemRow = null;
+            Grid ItemRow;
             try //try getting itemrow grid from dictionary
             {
                 ItemRow = data.Items[itemName].Item2;
             }
             catch //if item is not from pool (growth) then log the item and return
             {
-                if (App.logger != null)
-                    App.logger.Record(itemName + " tracked");
+                App.logger?.Record(itemName + " tracked");
                 return;
             }
 
@@ -729,26 +728,12 @@ namespace KhTracker
 
                 if (validItem)
                 {
-                    //string LogText;
-                    ////check torn pages
-                    //if (CheckTornPage(item) == false)
-                    //{
-                    //    LogText = "Attempted to track a page past 5?";
-                    //}
-                    //else
-                    //{
-                    //    
-                    //    LogText = item.Name + " tracked";
-                    //}
-
                     world.Add_Item(item);
-                    if (App.logger != null)
-                        App.logger.Record(item.Name + " tracked");
-
-
+                    App.logger?.Record(item.Name + " tracked");
                 }
             }
         }
+        
 
         private void TrackQuantities()
         {
@@ -1223,24 +1208,24 @@ namespace KhTracker
                             if ((world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22) && data.WorldsData[world.worldName].progress == 0) // Pooh's house
                                 UpdateProgressionPoints(world.worldName,  curProg = 1);
                             break;
-                        case 4:
-                            if (world.eventID3 == 4) // Piglet's house
+                        case 6:
+                            if (world.eventID1 == 55 && world.eventComplete == 1) //A Blustery Rescue Complete
                                 UpdateProgressionPoints(world.worldName,  curProg = 2);
                             break;
-                        case 3:
-                            if (world.eventID3 == 4) // Rabbit's house
+                        case 7:
+                            if (world.eventID1 == 57 && world.eventComplete == 1) //Hunny Slider Complete
                                 UpdateProgressionPoints(world.worldName,  curProg = 3);
                             break;
-                        case 5:
-                            if (world.eventID3 == 4) // Kanga's house
+                        case 8:
+                            if (world.eventID1 == 59 && world.eventComplete == 1) //Balloon Bounce Complete
                                 UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
-                            if (world.eventID3 == 3D) // Spooky Cave
+                            if (world.eventID1 == 61 && world.eventComplete == 1) //The Expotition Complete
                                 UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
-                            if (world.eventID3 == 34) // Starry Hill
+                            if (world.eventID1 == 52 && world.eventComplete == 1) //The Hunny Pot Complete
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:

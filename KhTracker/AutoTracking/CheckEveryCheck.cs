@@ -612,15 +612,28 @@ namespace KhTracker
 
             // Popup for Absent Silhouette and Data (using defeat cutscene IDs) (18)
             checksList.Add(new Check(this, Sys3 + 0x1573E, World, "HalloweenTown",          0x20, 0x79));   // AS Vexen
-            checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x79));   // Data Vexen
             checksList.Add(new Check(this, Sys3 + 0x1574A, World, "Agrabah",                0x21, 0x7B));   // AS Lexaeus
-            checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x7B));   // Data Lexaeus
             checksList.Add(new Check(this, Sys3 + 0x15756, World, "OlympusColiseum",        0x22, 0x7D));   // AS Zexion
-            checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x7D));   // Data Zexion
             checksList.Add(new Check(this, Sys3 + 0x1576E, World, "DisneyCastle",           0x26, 0x7F));   // AS Marluxia
-            checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x7F));   // Data Marluxia
             checksList.Add(new Check(this, Sys3 + 0x15762, World, "SpaceParanoids",         0x21, 0x81));   // AS Larxene
-            checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x81));   // Data Larxene
+
+            if (!MainWindow.data.dataSplit) //data split off
+            {
+                checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x79));   // Data Vexen
+                checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x7B));   // Data Lexaeus
+                checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x7D));   // Data Zexion
+                checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x7F));   // Data Marluxia
+                checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x81));   // Data Larxene
+            }
+            else //data split on
+            {
+                checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x83));   // Data Vexen
+                checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x85));   // Data Lexaeus
+                checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x87));   // Data Zexion
+                checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x89));   // Data Marluxia
+                checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x8B));   // Data Larxene
+            }
+
             checksList.Add(new Check(this, Sys3 + 0x157DA, World, "TWTNW",                  0x14, 0x6A));   // Data Xemnas
             checksList.Add(new Check(this, Sys3 + 0x157E6, World, "LandofDragons",          0x0A, 0x6C));   // Data Xigbar
             checksList.Add(new Check(this, Sys3 + 0x157C2, World, "BeastsCastle",           0x0F, 0x63));   // Data Xaldin
@@ -629,6 +642,11 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x157B6, World, "HollowBastion",          0x04, 0x8D));   // Data Demyx
             checksList.Add(new Check(this, Sys3 + 0x157FE, World, "PortRoyal",              0x0E, 0x70));   // Data Luxord
             checksList.Add(new Check(this, Sys3 + 0x1580A, World, "SimulatedTwilightTown",  0x15, 0x72));   // Data Roxas
+
+
+
+
+
 
             // Handle Sora levels and Drive levels separately, since Rewards already scans through them
         }
