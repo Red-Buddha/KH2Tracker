@@ -2272,17 +2272,14 @@ namespace KhTracker
 
                     if (replacementType == "Unknown")
                     {
-                        Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss] + ". Using default points.");
-
-                        if (App.logger != null)
-                            App.logger.Record("Unknown Replacement Boss: " + data.BossList[boss] + ". Using default points.");
+                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[boss] + ". Using default points.");
+                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[boss] + ". Using default points.");
 
                         replacementType = "boss_other";
                     }
                     else
                     {
-                        if (App.logger != null)
-                            App.logger.Record(boss + " Replacement: " + data.BossList[boss]);
+                        App.logger?.Record(boss + " Replacement: " + data.BossList[boss]);
                     }
 
                     points = data.PointsDatanew[replacementType];
@@ -2295,8 +2292,12 @@ namespace KhTracker
                         case "boss_datas":
                         case "boss_sephi":
                         case "boss_terra":
-                        case "boss_final":
+                        //case "boss_final":
                             bonuspoints += data.PointsDatanew[bossType];
+                            break;
+                        case "boss_other":
+                            if (boss == "Final Xemnas")
+                                bonuspoints += data.PointsDatanew["boss_final"];
                             break;
                     }
 
@@ -2306,16 +2307,10 @@ namespace KhTracker
                 {
                     points = data.PointsDatanew[bossType];
 
-                    //temp fix. might change if final xemnas gets randomized
-                    //for now this just makes worth data points * 2
-                    //if (boss == "Final Xemnas (Data)")
-                    //    points += data.PointsDatanew["boss_datas"];
-
                     //logging
                     if(data.BossRandoFound)
                     {
-                        if (App.logger != null)
-                            App.logger.Record("No replacement found? Boss: " + boss);
+                        App.logger?.Record("No replacement found? Boss: " + boss);
                     }
                 }
             }
