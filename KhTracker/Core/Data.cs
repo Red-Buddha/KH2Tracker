@@ -121,6 +121,8 @@ namespace KhTracker
         public int ProgressionCurrentHint = 0;
         public List<string> HintRevealOrder = new List<string>();
         public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
+        public bool synthOn = false;
+        public bool puzzlesOn = false;
         #endregion
 
         #region Bonuses and Sora/Drive Levels

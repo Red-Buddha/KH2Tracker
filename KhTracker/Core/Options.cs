@@ -1746,12 +1746,14 @@ namespace KhTracker
                                         //data.WorldsEnabled++;
                                         //data.HintRevealOrder.Add("PuzzSynth");
                                         puzzleOn = true;
+                                        data.puzzlesOn = true;
                                         break;
                                     case "Synthesis":
                                         SynthToggle(true);
                                         //data.WorldsEnabled++;
                                         //data.HintRevealOrder.Add("PuzzSynth");
                                         synthOn = true;
+                                        data.synthOn = true;
                                         break;
                                     case "Form Levels":
                                         DrivesToggle(true);
@@ -1892,7 +1894,7 @@ namespace KhTracker
                             //    AbilitiesToggle(false);
 
                             //prevent creations hinting twice for progression
-                            if (puzzleOn || synthOn)
+                            if (puzzleOn)
                             {
                                 data.WorldsEnabled++;
                                 data.HintRevealOrder.Add("PuzzSynth");

@@ -1388,6 +1388,13 @@ namespace KhTracker
                 ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             }
+
+            //creations specific changes
+            if (!data.puzzlesOn && data.synthOn)
+            {
+                Console.WriteLine("Trying something here");
+                data.WorldsData["PuzzSynth"].value.Text = "";
+            }
         }
 
         public void AddProgressionPoints(int points)
@@ -1407,11 +1414,12 @@ namespace KhTracker
             data.ProgressionPoints += points;
             data.TotalProgressionPoints += points;
 
-            if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1)
+            if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled)
             {
                 //update points anyway
-                ProgressionCollectedValue.Text = data.TotalProgressionPoints.ToString();
-                ProgressionTotalValue.Text = "X";
+                ProgressionCollectedValue.Visibility = Visibility.Hidden;
+                ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                ProgressionTotalValue.Text = data.TotalProgressionPoints.ToString();
                 return;
             }
 
@@ -1430,15 +1438,16 @@ namespace KhTracker
                 //reveal hints/world
                 ProgressionReveal(data.ProgressionCurrentHint - 1);
 
-                if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1) //revealed last hint
+                if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled) //revealed last hint
                     break;
             }
 
-            if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1)
+            if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled)
             {
                 //update points
-                ProgressionCollectedValue.Text = data.TotalProgressionPoints.ToString();
-                ProgressionTotalValue.Text = "X";
+                ProgressionCollectedValue.Visibility = Visibility.Hidden;
+                ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                ProgressionTotalValue.Text = data.TotalProgressionPoints.ToString();
                 //Console.WriteLine("Revealed last hint!");
             }
             else
