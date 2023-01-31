@@ -535,35 +535,34 @@ namespace KhTracker
 
                 #region For Debugging
                 //Modified to only update if any of these actually change instead of updating every tick
-                temp[0] = world.roomNumber;
-                temp[1] = world.worldNum;
-                temp[2] = world.eventID1;
-                temp[3] = world.eventID2;
-                temp[4] = world.eventID3;
-                temp[5] = world.eventComplete;
-                temp[6] = world.cupRound;
-                if (!Enumerable.SequenceEqual(temp, tempPre))
-                {
-                    Console.WriteLine("world num = " + world.worldNum);
-                    Console.WriteLine("room num  = " + world.roomNumber);
-                    Console.WriteLine("event id1 = " + world.eventID1);
-                    Console.WriteLine("event id2 = " + world.eventID2);
-                    Console.WriteLine("event id3 = " + world.eventID3);
-                    Console.WriteLine("event cpl = " + world.eventComplete);
-                    Console.WriteLine("Cup Round = " + world.cupRound);
-                    Console.WriteLine("===========================");
-                    tempPre[0] = temp[0];
-                    tempPre[1] = temp[1];
-                    tempPre[2] = temp[2];
-                    tempPre[3] = temp[3];
-                    tempPre[4] = temp[4];
-                    tempPre[5] = temp[5];
-                    tempPre[6] = temp[6];
-                }
+                //temp[0] = world.roomNumber;
+                //temp[1] = world.worldNum;
+                //temp[2] = world.eventID1;
+                //temp[3] = world.eventID2;
+                //temp[4] = world.eventID3;
+                //temp[5] = world.eventComplete;
+                //temp[6] = world.cupRound;
+                //if (!Enumerable.SequenceEqual(temp, tempPre))
+                //{
+                //    Console.WriteLine("world num = " + world.worldNum);
+                //    Console.WriteLine("room num  = " + world.roomNumber);
+                //    Console.WriteLine("event id1 = " + world.eventID1);
+                //    Console.WriteLine("event id2 = " + world.eventID2);
+                //    Console.WriteLine("event id3 = " + world.eventID3);
+                //    Console.WriteLine("event cpl = " + world.eventComplete);
+                //    Console.WriteLine("Cup Round = " + world.cupRound);
+                //    Console.WriteLine("===========================");
+                //    tempPre[0] = temp[0];
+                //    tempPre[1] = temp[1];
+                //    tempPre[2] = temp[2];
+                //    tempPre[3] = temp[3];
+                //    tempPre[4] = temp[4];
+                //    tempPre[5] = temp[5];
+                //    tempPre[6] = temp[6];
+                //}
 
-                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
-                string menu = BytesToHex(memory.ReadMemory(0x0B62798, 2)); //in a menu
-                Console.WriteLine(menu);
+                //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                //Console.WriteLine(cntrl);
                 #endregion
             }
             catch

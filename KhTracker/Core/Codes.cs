@@ -817,8 +817,6 @@ namespace KhTracker
 
         public static List<string> bossDups = new List<string>()
         {
-            {"Seifer (3)"},
-            {"Seifer (4)"},
             {"Hades Escape"},
             {"Hades I"},
             {"Hades II"},
@@ -836,7 +834,14 @@ namespace KhTracker
             {"Tifa (2)"},
             {"Yuffie (1)"},
             {"Yuffie (2)"},
-            {"Yuffie (3)"}
+            {"Yuffie (3)"},
+            //NOTE: temp solution, just don't hint seifer at all for now.
+            //seifer 1 is always shadow roxas as of this note and all other seifers except tutorial don't work
+            {"Seifer"},
+            {"Seifer (1)"},
+            {"Seifer (2)"},
+            {"Seifer (3)"},
+            {"Seifer (4)"},
         };
 
         public static Dictionary<string, string> getColors = new Dictionary<string, string>()
