@@ -241,6 +241,19 @@ namespace KhTracker
 
         public static Dictionary<string, string> shortNames = new Dictionary<string, string>()
         {
+            {"Secret Ansem's Report 1", "Ansem's Report"},
+            {"Secret Ansem's Report 2", "Ansem's Report"},
+            {"Secret Ansem's Report 3", "Ansem's Report"},
+            {"Secret Ansem's Report 4", "Ansem's Report"},
+            {"Secret Ansem's Report 5", "Ansem's Report"},
+            {"Secret Ansem's Report 6", "Ansem's Report"},
+            {"Secret Ansem's Report 7", "Ansem's Report"},
+            {"Secret Ansem's Report 8", "Ansem's Report"},
+            {"Secret Ansem's Report 9", "Ansem's Report"},
+            {"Secret Ansem's Report 10", "Ansem's Report"},
+            {"Secret Ansem's Report 11", "Ansem's Report"},
+            {"Secret Ansem's Report 12", "Ansem's Report"},
+            {"Secret Ansem's Report 13", "Ansem's Report"},
             {"Baseball Charm (Chicken Little)", "Baseball Charm"},
             {"Lamp Charm (Genie)", "Lamp Charm"},
             {"Ukulele Charm (Stitch)", "Ukulele Charm"},

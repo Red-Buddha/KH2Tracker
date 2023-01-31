@@ -98,12 +98,13 @@ namespace KhTracker
         private int statsAddress;
         private int formAddress;
         private int bonusAddress;
+        private int nextSlotNum;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr, int bonusLvl)
+        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr, int bonusLvl, int nextSlot)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
@@ -111,6 +112,7 @@ namespace KhTracker
             statsAddress = statsAddr;
             formAddress = formAddr;
             bonusAddress = bonusLvl;
+            nextSlotNum = nextSlot;
         }
 
         // this is not working
@@ -125,7 +127,7 @@ namespace KhTracker
             }
         }
 
-        public void UpdateMemory()
+        public void UpdateMemory(int correctSlot)
         {
             byte[] levelData = memory.ReadMemory(levelAddress + ADDRESS_OFFSET, 2);
 
@@ -143,7 +145,7 @@ namespace KhTracker
             if (Level != levelData[1])
                 Level = levelData[1];
 
-            byte[] statsData = memory.ReadMemory(statsAddress + ADDRESS_OFFSET, 5);
+            byte[] statsData = memory.ReadMemory(statsAddress - (nextSlotNum * correctSlot) + ADDRESS_OFFSET, 5);
             if (Strength != statsData[0])
                 Strength = statsData[0];
             if (Magic != statsData[2])

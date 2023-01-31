@@ -239,6 +239,7 @@ namespace KhTracker
             int Bt10 = 0x2A74880;
             int BtlEnd = 0x2A0D3E0;
             int Slot1 = 0x2A20C98;
+            int NextSlot = 0x278;
 
             if (PCSX2 == false)
             {
@@ -247,7 +248,7 @@ namespace KhTracker
                 Connect.Visibility = Visibility.Collapsed;
                 Connect2.Source = data.AD_PCred;
                 Connect2.Visibility = Visibility.Visible;
-                FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+                FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
             }
             else
             {
@@ -279,12 +280,13 @@ namespace KhTracker
                 Bt10 = 0x1CE5D80;
                 BtlEnd = 0x1D490C0;
                 Slot1 = 0x1C6C750;
+                NextSlot = 0x268;
 
                 //change connection icon visual and start final setup
                 Connect.Visibility = Visibility.Collapsed;
                 Connect2.Source = data.AD_PS2;
                 Connect2.Visibility = Visibility.Visible;
-                FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+                FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
             }
         }
 
@@ -324,7 +326,7 @@ namespace KhTracker
             }
         }
 
-        private void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
+        private void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
             //PC needs some slight changing to make sure auto-detect works
             //delay continuing for a short time to avoid connecting too early
@@ -358,10 +360,10 @@ namespace KhTracker
             Connect.Visibility = Visibility.Collapsed;
             Connect2.Source = data.AD_PC;
             Connect2.Visibility = Visibility.Visible;
-            FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1);
+            FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
         }
 
-        private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1)
+        private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
             #region Add ICs
 
@@ -456,7 +458,7 @@ namespace KhTracker
             else
                 world = new World(memory, ADDRESS_OFFSET, Now, BtlEnd + 0x820, Save + 0x1CFF);
 
-            stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700);
+            stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700, NextSlot);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
 
             //forcedfinal = flase;
@@ -499,11 +501,19 @@ namespace KhTracker
             previousChecks.Clear();
             previousChecks.AddRange(newChecks);
             newChecks.Clear();
+            int correctSlot = 0;
 
             try
             {
-                stats.UpdateMemory();        //updatestats
                 world.UpdateMemory();        //current world
+                //stop any kind of tracking if title movie is playing
+                //if (world.worldNum == 1 && world.roomNumber == 1)
+                //    return;
+
+                if (world.worldNum == 16 && world.roomNumber == 1 && (world.eventID1 == 0x33 || world.eventID1 == 0x34))
+                    correctSlot = 2; //move forward this number of slots
+
+                stats.UpdateMemory(correctSlot);        //updatestats
                 HighlightWorld(world);
                 UpdateStatValues();          //set stat values
                 UpdateWorldProgress(world);  //progression update
@@ -551,8 +561,9 @@ namespace KhTracker
                     tempPre[6] = temp[6];
                 }
 
-                //string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
-                //Console.WriteLine(cntrl);
+                string cntrl = BytesToHex(memory.ReadMemory(0x2A148E8, 1)); //sora controlable
+                string menu = BytesToHex(memory.ReadMemory(0x0B62798, 2)); //in a menu
+                Console.WriteLine(menu);
                 #endregion
             }
             catch

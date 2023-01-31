@@ -20,8 +20,7 @@ namespace KhTracker
                 if (world != value)
                 {
                     world = value;
-                    if (App.logger != null)
-                        App.logger.RecordWorld(value);
+                    App.logger?.RecordWorld(value);
                 }
             }
         }
