@@ -1248,7 +1248,7 @@ namespace KhTracker
                                 UpdateProgressionPoints(world.worldName,  curProg = 4);
                             break;
                         case 9:
-                            if (world.eventID3 == 3D) // Spooky Cave
+                            if (world.eventID3 == 61) // Spooky Cave
                                 UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
@@ -2534,7 +2534,10 @@ namespace KhTracker
             Console.WriteLine("Defeated Final Xemnas");
             data.TWTNW_ProgressionValues.Add(200);
             AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
-            data.TotalProgressionPoints -= 200;
+            data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
+            data.TWTNW_ProgressionValues.Add(-200);
+            AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
+            data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
             data.PrevEventID1 = world.eventID1;
             data.PrevEventID3 = world.eventID3;
             data.PrevWorld = world.worldName;
