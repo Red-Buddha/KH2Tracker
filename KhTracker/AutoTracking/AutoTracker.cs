@@ -1252,7 +1252,7 @@ namespace KhTracker
                                 UpdateProgressionPoints(world.worldName,  curProg = 5);
                             break;
                         case 1:
-                            if (world.eventID3 == 34) // Starry Hill
+                            if (world.eventID3 == 52) // Starry Hill
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             break;
                         default:
