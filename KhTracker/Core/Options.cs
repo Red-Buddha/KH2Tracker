@@ -945,6 +945,7 @@ namespace KhTracker
             data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+            data.previousWorldHinted = "";
             data.StoredWorldCompleteBonus = new Dictionary<string, int>()
             {
                 { "SorasHeart", 0 },
@@ -2060,6 +2061,8 @@ namespace KhTracker
                             }
                             //data.NumOfHints = data.HintCosts.Count;
                             //set text correctly
+                            ProgressionCollectedValue.Visibility = Visibility.Visible;
+                            ProgressionCollectedBar.Visibility = Visibility.Visible;
                             ProgressionCollectedValue.Text = "0";
                             ProgressionTotalValue.Text = data.HintCosts[0].ToString();
                         }
