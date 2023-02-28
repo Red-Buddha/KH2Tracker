@@ -814,5 +814,17 @@ namespace KhTracker.Properties {
                 this["UsingProgressionHints"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WorldHintHighlight {
+            get {
+                return ((bool)(this["WorldHintHighlight"]));
+            }
+            set {
+                this["WorldHintHighlight"] = value;
+            }
+        }
     }
 }

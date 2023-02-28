@@ -87,10 +87,10 @@ namespace KhTracker
         private int[] tempPre = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         ///Auto-Detect Control Stuff
-        //private bool autoDetected = false; 
+        //private bool autoDetected = false;
         //public int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
         //private bool isWorking = false;
-        //private bool firstRun = true;       
+        //private bool firstRun = true;
 
         ///
         /// Autotracking Startup
@@ -365,6 +365,13 @@ namespace KhTracker
 
         private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
+            //check seedgen version
+            bool altFinalTracking = true;
+            //{
+            //    if (data.seedgenVersion == "" || data.seedgenVersion == "3.0.0-beta" || data.seedgenVersion == "3.0.0-beta-v2")
+            //        altFinalTracking = false;
+            //}
+
             #region Add ICs
 
             importantChecks = new List<ImportantCheck>();
@@ -381,8 +388,13 @@ namespace KhTracker
             importantChecks.Add(wisdom = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 2, Save + 0x332E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, Save + 0x36CA, ADDRESS_OFFSET, 3, Save + 0x3366, "Limit"));
             importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
-            importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
             importantChecks.Add(anti = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 5, Save + 0x340C, "Anti"));
+
+            if (!altFinalTracking)
+                importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
+            else
+                importantChecks.Add(final = new DriveForm(memory, Save + 0x36C2, ADDRESS_OFFSET, 1, Save + 0x33D6, "Final"));
+
 
             int fireCount = fire != null ? fire.Level : 0;
             int blizzardCount = blizzard != null ? blizzard.Level : 0;
@@ -935,7 +947,10 @@ namespace KhTracker
                             break;
                         case 20:
                             if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                            {
+                                UpdateProgressionPoints(world.worldName, curProg = 7);
+                                data.TT_ProgressionValues[7 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -975,6 +990,7 @@ namespace KhTracker
                                 else if (curProg != 11)
                                     curProg = 10;
                                 UpdateProgressionPoints(world.worldName,  10);
+                                data.HB_ProgressionValues[10 - 1] = 0;
                             }
                             break;
                         case 16:
@@ -1076,7 +1092,10 @@ namespace KhTracker
                             if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                            {
+                                UpdateProgressionPoints(world.worldName, curProg = 7);
+                                data.BC_ProgressionValues[7 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -1123,7 +1142,10 @@ namespace KhTracker
                             if ((world.eventID1 == 151) && world.eventComplete == 1) // AS Zexion finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 9);
                             else if ((world.eventID1 == 152) && world.eventComplete == 1) // Data Zexion finish
-                                UpdateProgressionPoints(world.worldName, 10);
+                                {
+                                    UpdateProgressionPoints(world.worldName, 10);
+                                    data.OC_ProgressionValues[10 - 1] = 0;
+                                }
                             break;
                         default:
                             return;
@@ -1165,7 +1187,10 @@ namespace KhTracker
                             if ((world.eventID1 == 142) && world.eventComplete == 1) // AS Lexaeus finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 8);
                             else if ((world.eventID1 == 147) && world.eventComplete == 1) // Data Lexaeus
-                                UpdateProgressionPoints(world.worldName,  9);
+                            {
+                                UpdateProgressionPoints(world.worldName, 9);
+                                data.AG_ProgressionValues[9 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -1328,7 +1353,10 @@ namespace KhTracker
                                 if (world.eventID1 == 145)
                                     UpdateProgressionPoints(world.worldName, 7); // AS
                                 else
+                                {
                                     UpdateProgressionPoints(world.worldName, 8); // Data
+                                    data.DC_ProgressionValues[8 - 1] = 0;
+                                }
                             }
                             break;
                         case 7:
@@ -1339,6 +1367,7 @@ namespace KhTracker
                                 else if (curProg != 9)
                                     curProg = 8;
                                 UpdateProgressionPoints(world.worldName,  9);
+                                data.DC_ProgressionValues[9 - 1] = 0;
                             }
                             break;
                         default:
@@ -1379,7 +1408,10 @@ namespace KhTracker
                             if ((world.eventID1 == 115) && world.eventComplete == 1) // AS Vexen finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 8);
                             else if ((world.eventID1 == 146) && world.eventComplete == 1) // Data Vexen finish
+                            {
                                 UpdateProgressionPoints(world.worldName, 9);
+                                data.HT_ProgressionValues[9 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -1457,7 +1489,10 @@ namespace KhTracker
                             if ((world.eventID1 == 143) && world.eventComplete == 1) // AS Larxene finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 6);
                             else if ((world.eventID1 == 148) && world.eventComplete == 1) // Data Larxene finish
-                                UpdateProgressionPoints(world.worldName,  7);
+                            {
+                                UpdateProgressionPoints(world.worldName, 7);
+                                data.SP_ProgressionValues[7 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -1491,6 +1526,7 @@ namespace KhTracker
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["LandofDragons"].progress = 9;
                                 UpdateProgressionPoints("LandofDragons", 9);
+                                data.LoD_ProgressionValues[9 - 1] = 0;
                                 return;
                             }
                             break;
@@ -1503,6 +1539,7 @@ namespace KhTracker
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PortRoyal"].progress = 10;
                                 UpdateProgressionPoints("PortRoyal", 10);
+                                data.PR_ProgressionValues[10 - 1] = 0;
                                 return;
                             }
                             break;
@@ -1515,6 +1552,7 @@ namespace KhTracker
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["PrideLands"].progress = 7;
                                 UpdateProgressionPoints("PrideLands", 7);
+                                data.PL_ProgressionValues[7 - 1] = 0;
                                 return;
                             }
                             break;
@@ -1524,7 +1562,10 @@ namespace KhTracker
                             break;
                         case 20:
                             if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
+                            {
                                 UpdateProgressionPoints(world.worldName, curProg = 7);
+                                data.TWTNW_ProgressionValues[7 - 1] = 0;
+                            }
                             else if (world.eventID1 == 74 && world.eventComplete == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
                                 UpdateProgressionPointsTWTNW(world.worldName);
                             break;
@@ -2150,118 +2191,131 @@ namespace KhTracker
             }
             else if (boss.StartsWith("FF Team"))
             {
-                string[] test = { "Unknown", "Unknown", "Unknown", "Unknown" };
-
-                if (boss == "FF Team 6")
+                if (data.BossRandoFound)
                 {
-                    test[0] = "Leon (2)";
-                    test[1] = "Cloud (2)";
-                    test[2] = "Yuffie (2)";
-                    test[3] = "Tifa (2)";
+                    string[] test = { "Unknown", "Unknown", "Unknown", "Unknown" };
 
-                    replacementType = Codes.FindBossType(data.BossList[test[0]]);
-                    if (replacementType == "Unknown")
+                    if (boss == "FF Team 6")
                     {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
-                        replacementType = "boss_other";
+                        test[0] = "Leon (2)";
+                        test[1] = "Cloud (2)";
+                        test[2] = "Yuffie (2)";
+                        test[3] = "Tifa (2)";
+
+                        replacementType = Codes.FindBossType(data.BossList[test[0]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
+
+                        points = data.PointsDatanew[replacementType];
+
+                        replacementType = Codes.FindBossType(data.BossList[test[1]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
+
+                        points += data.PointsDatanew[replacementType];
+
+                        replacementType = Codes.FindBossType(data.BossList[test[2]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[2] + " Replacement: " + data.BossList[test[2]]);
+
+                        points += data.PointsDatanew[replacementType];
+
+                        replacementType = Codes.FindBossType(data.BossList[test[3]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[3] + " Replacement: " + data.BossList[test[3]]);
+
+                        points += data.PointsDatanew[replacementType];
+
+                        //bonus points here should be sum of both boss types / 2
+                        if (points > 1)
+                            points += points / 2;
                     }
-                    else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
-
-                    points = data.PointsDatanew[replacementType];
-
-                    replacementType = Codes.FindBossType(data.BossList[test[1]]);
-                    if (replacementType == "Unknown")
+                    else
                     {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
-                        replacementType = "boss_other";
+                        if (boss == "FF Team 1")
+                        {
+                            test[0] = "Leon";
+                            test[1] = "Yuffie";
+                        }
+                        if (boss == "FF Team 2")
+                        {
+                            test[0] = "Leon (3)";
+                            test[1] = "Yuffie (3)";
+                        }
+                        if (boss == "FF Team 3")
+                        {
+                            test[0] = "Yuffie (1)";
+                            test[1] = "Tifa";
+                        }
+                        if (boss == "FF Team 4")
+                        {
+                            test[0] = "Cloud";
+                            test[1] = "Tifa (1)";
+                        }
+                        if (boss == "FF Team 5")
+                        {
+                            test[0] = "Leon (1)";
+                            test[1] = "Cloud (1)";
+                        }
+
+                        replacementType = Codes.FindBossType(data.BossList[test[0]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
+
+                        points = data.PointsDatanew[replacementType];
+
+                        replacementType = Codes.FindBossType(data.BossList[test[1]]);
+                        if (replacementType == "Unknown")
+                        {
+                            //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                            App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
+                            replacementType = "boss_other";
+                        }
+                        else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
+
+                        points += data.PointsDatanew[replacementType];
+
+                        //bonus points here should be sum of both boss types / 2
+                        if (points > 1)
+                            points += points / 2;
                     }
-                    else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
-
-                    points += data.PointsDatanew[replacementType];
-
-                    replacementType = Codes.FindBossType(data.BossList[test[2]]);
-                    if (replacementType == "Unknown")
-                    {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[2]] + ". Using default points.");
-                        replacementType = "boss_other";
-                    }
-                    else App.logger?.Record(test[2] + " Replacement: " + data.BossList[test[2]]);
-
-                    points += data.PointsDatanew[replacementType];
-
-                    replacementType = Codes.FindBossType(data.BossList[test[3]]);
-                    if (replacementType == "Unknown")
-                    {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[3]] + ". Using default points.");
-                        replacementType = "boss_other";
-                    }
-                    else App.logger?.Record(test[3] + " Replacement: " + data.BossList[test[3]]);
-
-                    points += data.PointsDatanew[replacementType];
-
-                    //bonus points here should be sum of both boss types / 2
-                    if (points > 1)
-                        points += points / 2;
                 }
                 else
                 {
-                    if (boss == "FF Team 1")
+                    if (boss == "FF Team 6")
                     {
-                        test[0] = "Leon";
-                        test[1] = "Yuffie";
+                        points = data.PointsDatanew["boss_other"] * 4;
                     }
-                    if (boss == "FF Team 2")
+                    else
                     {
-                        test[0] = "Leon (3)";
-                        test[1] = "Yuffie (3)";
+                        points = data.PointsDatanew["boss_other"] * 2;
                     }
-                    if (boss == "FF Team 3")
-                    {
-                        test[0] = "Yuffie (1)";
-                        test[1] = "Tifa";
-                    }
-                    if (boss == "FF Team 4")
-                    {
-                        test[0] = "Cloud";
-                        test[1] = "Tifa (1)";
-                    }
-                    if (boss == "FF Team 5")
-                    {
-                        test[0] = "Leon (1)";
-                        test[1] = "Cloud (1)";
-                    }
-
-                    replacementType = Codes.FindBossType(data.BossList[test[0]]);
-                    if (replacementType == "Unknown")
-                    {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[0]] + ". Using default points.");
-                        replacementType = "boss_other";
-                    }
-                    else App.logger?.Record(test[0] + " Replacement: " + data.BossList[test[0]]);
-
-                    points = data.PointsDatanew[replacementType];
-
-                    replacementType = Codes.FindBossType(data.BossList[test[1]]);
-                    if (replacementType == "Unknown")
-                    {
-                        //Console.WriteLine("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
-                        App.logger?.Record("Unknown Replacement Boss: " + data.BossList[test[1]] + ". Using default points.");
-                        replacementType = "boss_other";
-                    }
-                    else App.logger?.Record(test[1] + " Replacement: " + data.BossList[test[1]]);
-
-                    points += data.PointsDatanew[replacementType];
-
-                    //bonus points here should be sum of both boss types / 2
-                    if (points > 1)
-                        points += points / 2;
                 }
-
             }
             else
             {
@@ -2492,10 +2546,13 @@ namespace KhTracker
                 && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
                 || !data.UsingProgressionHints)
                 return;
-            Console.WriteLine("Defeated Final Xemnas");
+            //Console.WriteLine("Defeated Final Xemnas");
             data.TWTNW_ProgressionValues.Add(200);
             AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
-            data.TotalProgressionPoints -= 200;
+            data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
+            data.TWTNW_ProgressionValues.Add(-200);
+            AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
+            data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
             data.PrevEventID1 = world.eventID1;
             data.PrevEventID3 = world.eventID3;
             data.PrevWorld = world.worldName;

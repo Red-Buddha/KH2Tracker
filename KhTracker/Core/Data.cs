@@ -19,6 +19,7 @@ namespace KhTracker
         public int usedPages = 0;
         public bool forcedFinal;
         public bool dataSplit = false;
+        public string seedgenVersion = "";
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to
@@ -122,6 +123,9 @@ namespace KhTracker
         public int ProgressionCurrentHint = 0;
         public List<string> HintRevealOrder = new List<string>();
         public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
+        public bool synthOn = false;
+        public bool puzzlesOn = false;
+        public string previousWorldHinted = "";
         #endregion
 
         #region Bonuses and Sora/Drive Levels

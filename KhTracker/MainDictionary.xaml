@@ -48,6 +48,8 @@
     <SolidColorBrush x:Key="HintedHint" Color="#29F"/>
     <!--Ghosted Hints-->
     <SolidColorBrush x:Key="GhostHint" Color="#6D3"/>
+    <!--Progression Hinted-->
+    <SolidColorBrush x:Key="ProgressionHinted" Color="#2a732e"/>
     <!--Drive / AG / 100AW / Thunder / Torn Page / Master / Chicken Little / Olympus Stone / Scimitar / Puzzle-->
     <SolidColorBrush x:Key="Gold" Color="#FD0"/>
     <!--DC / Wisdom / Stitch / Ice Cream / Once More-->

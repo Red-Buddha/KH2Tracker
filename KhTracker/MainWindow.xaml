@@ -64,10 +64,11 @@
                 <Separator/>
                 <MenuItem Header="Show Seed Hash"			    Click="SeedHashToggle"		x:Name="SeedHashOption"			IsCheckable="True" IsChecked="True"/>
                 <!--MenuItem Header="Show Seed Settings"			Click="SeedSettingsToggle"	x:Name="SeedSettingsOption"	    IsCheckable="True" IsChecked="True"/-->
-                <MenuItem Header="Show World Progression Icons" Click="WorldProgressToggle"	x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Form and Growth Levels" 	Click="FormsGrowthToggle"   x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Show Death Counter" 	 		Click="DeathCounterToggle"  x:Name="DeathCounterOption"     IsCheckable="True" IsChecked="False"/>
-                <MenuItem Header="Auto Highlight Current World" Click="WorldHighlightToggle" x:Name="WorldHighlightOption"  IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show World Progression Icons" Click="WorldProgressToggle"	 x:Name="WorldProgressOption"	IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Form and Growth Levels" 	Click="FormsGrowthToggle"    x:Name="FormsGrowthOption"		IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Show Death Counter" 	 		Click="DeathCounterToggle"   x:Name="DeathCounterOption"    IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Highlight Current World"      Click="WorldHighlightToggle" x:Name="WorldHighlightOption"  IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Highlight Hinted World (Progression Hints)" Click="WorldHintHighlightToggle" x:Name="WorldHintHighlightOption"  IsCheckable="True" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Track Ghost Items" 	                Click="GhostItemToggle"		  x:Name="GhostItemOption"	IsCheckable="True" IsChecked="True"/>
                 <MenuItem Header="Ghost Item Auto-Math (Points Hints)"  Click="GhostMathToggle" 	  x:Name="GhostMathOption"	IsCheckable="True" IsChecked="True"/>

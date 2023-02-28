@@ -256,6 +256,8 @@ namespace KhTracker
 
             WorldHighlightOption.IsChecked = Properties.Settings.Default.WorldHighlight;
 
+            WorldHintHighlightOption.IsChecked = Properties.Settings.Default.WorldHintHighlight;
+
             #endregion
 
             #region Visual
@@ -414,11 +416,13 @@ namespace KhTracker
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             Button button = sender as Button;
+            Button preButton = null;
             switch (e.ChangedButton)
             {
                 case MouseButton.Left: //for changing world selection visuals
                     if (data.selected != null) //set previousl selected world to default colors
                     {
+                        preButton= data.selected;
                         foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
                         {
                             if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
@@ -429,13 +433,28 @@ namespace KhTracker
                         }
                     }
                     data.selected = button;
-                    foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>()) //set currently selected world colors
+                    if (preButton != null && preButton == button)
                     {
-                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
-                            Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
+                        foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
+                        {
+                            if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                                Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
 
-                        if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
-                            Box.Visibility = Visibility.Visible;
+                            if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                                Box.Visibility = Visibility.Collapsed;
+                        }
+                        data.selected = null;
+                    }
+                    else
+                    {
+                        foreach (var Box in data.WorldsData[button.Name].top.Children.OfType<Rectangle>()) //set currently selected world colors
+                        {
+                            if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                                Box.Fill = (SolidColorBrush)FindResource("SelectedRec");
+
+                            if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                                Box.Visibility = Visibility.Visible;
+                        }
                     }
                     break;
                 case MouseButton.Right: //for setting world cross icon

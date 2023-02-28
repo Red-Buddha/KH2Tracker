@@ -928,6 +928,7 @@ namespace KhTracker
             data.BossList.Clear();
             data.BossRandoSeed = 0;
             data.enabledWorlds.Clear();
+            data.seedgenVersion = "";
 
             //clear progression hints stuff
             data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
@@ -946,6 +947,7 @@ namespace KhTracker
             data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+            data.previousWorldHinted = "";
             data.StoredWorldCompleteBonus = new Dictionary<string, int>()
             {
                 { "SorasHeart", 0 },
@@ -1049,6 +1051,12 @@ namespace KhTracker
                 if (data.WorldsData[key].top.FindName(crossname) is Image Cross)
                 {
                     Cross.Visibility = Visibility.Collapsed;
+                }
+
+                //reset highlighted world
+                foreach (Rectangle Box in data.WorldsData[key].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
+                {
+                    Box.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -1253,6 +1261,7 @@ namespace KhTracker
             Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
             Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
             Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
             Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
             Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
             Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
@@ -1597,6 +1606,11 @@ namespace KhTracker
 
                         data.ShouldResetHash = false;
 
+                        if (hintObject.ContainsKey("generatorVersion"))
+                        {
+                            data.seedgenVersion = hintObject["generatorVersion"].ToString();
+                        }
+
                         if (hintObject.ContainsKey("settings"))
                         {
                             settings = JsonSerializer.Deserialize<List<string>>(hintObject["settings"].ToString());
@@ -1747,12 +1761,14 @@ namespace KhTracker
                                         //data.WorldsEnabled++;
                                         //data.HintRevealOrder.Add("PuzzSynth");
                                         puzzleOn = true;
+                                        data.puzzlesOn = true;
                                         break;
                                     case "Synthesis":
                                         SynthToggle(true);
                                         //data.WorldsEnabled++;
                                         //data.HintRevealOrder.Add("PuzzSynth");
                                         synthOn = true;
+                                        data.synthOn = true;
                                         break;
                                     case "Form Levels":
                                         DrivesToggle(true);
@@ -1884,7 +1900,7 @@ namespace KhTracker
                                         data.UsingProgressionHints = true;
                                         data.WorldsData["GoA"].value.Visibility = Visibility.Visible;
                                         data.WorldsData["GoA"].value.Text = "0";
-                                        Console.WriteLine("ENABLING PROGRESSION HINTS");
+                                        //Console.WriteLine("ENABLING PROGRESSION HINTS");
                                         break;
                                 }
                             }
@@ -1893,7 +1909,7 @@ namespace KhTracker
                             //    AbilitiesToggle(false);
 
                             //prevent creations hinting twice for progression
-                            if (puzzleOn || synthOn)
+                            if (puzzleOn)
                             {
                                 data.WorldsEnabled++;
                                 data.HintRevealOrder.Add("PuzzSynth");
@@ -1946,7 +1962,7 @@ namespace KhTracker
 
                             foreach (var setting in progressionSettings)
                             {
-                                Console.WriteLine("progression setting found = " + setting.Key);
+                                //Console.WriteLine("progression setting found = " + setting.Key);
 
                                 switch (setting.Key)
                                 {
@@ -2059,6 +2075,8 @@ namespace KhTracker
                             }
                             //data.NumOfHints = data.HintCosts.Count;
                             //set text correctly
+                            ProgressionCollectedValue.Visibility = Visibility.Visible;
+                            ProgressionCollectedBar.Visibility = Visibility.Visible;
                             ProgressionCollectedValue.Text = "0";
                             ProgressionTotalValue.Text = data.HintCosts[0].ToString();
                         }

@@ -760,8 +760,26 @@ namespace KhTracker
                         Box.Visibility = Visibility.Collapsed;
                 }
             }
+        }
 
+        private void WorldHintHighlightToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.WorldHintHighlight = WorldHintHighlightOption.IsChecked;
 
+            if (!WorldHintHighlightOption.IsChecked)
+            {
+                if (data.previousWorldHinted != "")
+                {
+                    foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                    {
+                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                            Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                        if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                            Box.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }
 
         private void NewWorldLayoutToggle(object sender, RoutedEventArgs e)
