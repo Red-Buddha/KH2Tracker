@@ -366,7 +366,7 @@ namespace KhTracker
         private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
             //check seedgen version
-            if (data.seedgenVersion == "" || data.seedgenVersion == "3.0.0-beta" || data.seedgenVersion == "3.0.0-beta-v2")
+            if (data.seedgenVersion == "" || data.seedgenVersion.Contains("beta"))
             {
                 data.altFinalTracking = false;
                 checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
@@ -384,16 +384,22 @@ namespace KhTracker
             importantChecks.Add(secondChance = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "SecondChance", Save));
             importantChecks.Add(onceMore = new Ability(memory, Save + 0x2544, ADDRESS_OFFSET, "OnceMore", Save));
 
-            importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, Save + 0x06B2, "Valor"));
             importantChecks.Add(wisdom = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 2, Save + 0x332E, "Wisdom"));
             importantChecks.Add(limit = new DriveForm(memory, Save + 0x36CA, ADDRESS_OFFSET, 3, Save + 0x3366, "Limit"));
             importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
             importantChecks.Add(anti = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 5, Save + 0x340C, "Anti"));
 
             if (!data.altFinalTracking)
+            {
+                importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, Save + 0x06B2, "Valor"));
                 importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
+            }
             else
+            {
+                importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 7, Save + 0x32F6, "Valor"));
                 importantChecks.Add(final = new DriveForm(memory, Save + 0x36C2, ADDRESS_OFFSET, 1, Save + 0x33D6, "Final"));
+            }
+                
 
 
             int fireCount = fire != null ? fire.Level : 0;
