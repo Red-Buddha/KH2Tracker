@@ -369,7 +369,6 @@ namespace KhTracker
             if (data.seedgenVersion == "" || data.seedgenVersion.Contains("beta"))
             {
                 data.altFinalTracking = false;
-                checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
             }
 
             #region Add ICs
@@ -478,6 +477,10 @@ namespace KhTracker
 
             stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700, NextSlot);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
+
+            if(!data.altFinalTracking)
+                checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
+
 
             // set stat info visibiliy
             Level.Visibility = Visibility.Visible;
@@ -1702,7 +1705,7 @@ namespace KhTracker
                 if (check.Obtained && collectedChecks.Contains(check) == false)
                 {
                     // skip auto tracking final if it was forced and valor
-                    if (check.Name == "Valor" && valor.genieFix == true)
+                    if (check.Name == "Valor" && valor.genieFix == true && !data.altFinalTracking)
                     {
                         valor.Obtained = false;
                     }
