@@ -20,6 +20,7 @@ namespace KhTracker
         public bool forcedFinal;
         public bool dataSplit = false;
         public string seedgenVersion = "";
+        public bool altFinalTracking = true;
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to

@@ -929,6 +929,7 @@ namespace KhTracker
             data.BossRandoSeed = 0;
             data.enabledWorlds.Clear();
             data.seedgenVersion = "";
+            data.altFinalTracking = true;
 
             //clear progression hints stuff
             data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };

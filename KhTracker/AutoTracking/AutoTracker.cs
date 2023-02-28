@@ -366,11 +366,11 @@ namespace KhTracker
         private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
             //check seedgen version
-            bool altFinalTracking = true;
-            //{
-            //    if (data.seedgenVersion == "" || data.seedgenVersion == "3.0.0-beta" || data.seedgenVersion == "3.0.0-beta-v2")
-            //        altFinalTracking = false;
-            //}
+            if (data.seedgenVersion == "" || data.seedgenVersion == "3.0.0-beta" || data.seedgenVersion == "3.0.0-beta-v2")
+            {
+                data.altFinalTracking = false;
+                checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
+            }
 
             #region Add ICs
 
@@ -390,7 +390,7 @@ namespace KhTracker
             importantChecks.Add(master = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 6, Save + 0x339E, "Master"));
             importantChecks.Add(anti = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 5, Save + 0x340C, "Anti"));
 
-            if (!altFinalTracking)
+            if (!data.altFinalTracking)
                 importantChecks.Add(final = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "Final"));
             else
                 importantChecks.Add(final = new DriveForm(memory, Save + 0x36C2, ADDRESS_OFFSET, 1, Save + 0x33D6, "Final"));
@@ -472,9 +472,6 @@ namespace KhTracker
 
             stats = new Stats(memory, ADDRESS_OFFSET, Save + 0x24FE, Slot1 + 0x188, Save + 0x3524, Save + 0x3700, NextSlot);
             rewards = new Rewards(memory, ADDRESS_OFFSET, Bt10);
-
-            //forcedfinal = flase;
-            checkEveryCheck = new CheckEveryCheck(memory, ADDRESS_OFFSET, Save, Sys3, Bt10, world, stats, rewards, valor, wisdom, limit, master, final);
 
             // set stat info visibiliy
             Level.Visibility = Visibility.Visible;
@@ -1703,7 +1700,7 @@ namespace KhTracker
                     {
                         valor.Obtained = false;
                     }
-                    else if (check.Name == "Final")
+                    else if (check.Name == "Final" && !data.altFinalTracking)
                     {
                         // if forced Final, start tracking the Final Form check
                         if (!data.forcedFinal && stats.form == 5)
