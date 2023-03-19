@@ -48,10 +48,12 @@
                 <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
                 <MenuItem Header="Auto-Save Tracker Progress on Exit" Click="AutoSaveProgressToggle" x:Name="AutoSaveProgressOption" IsCheckable="True"/>
                 <Separator/>
-                <MenuItem Header="Reset Window Size" Click="ResetSize"/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>
                 <MenuItem Header="Always on Top" 	 Click="TopMostToggle"  x:Name="TopMostOption"     IsCheckable="True" IsChecked="False"/>
                 <MenuItem Header="Drag and Drop" 	 Click="DragDropToggle" x:Name="DragAndDropOption" IsCheckable="True" IsChecked="True"/>
+                <Separator/>
+                <MenuItem Header="Reset Window Size" Click="ResetSize"/>
+                <MenuItem Header="Show Disconnect Message" Click="DisconnectToggle" x:Name="Disconnect" IsCheckable="True" IsChecked="True"/>
             </MenuItem>
             <MenuItem Header="Display Toggles" Focusable="False">
                 <MenuItem Header="Ansem Reports" 			 Click="ReportsToggle"		x:Name="ReportsOption"      IsCheckable="True" IsChecked="True"/>
@@ -202,6 +204,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SorasHeartQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25" VerticalAlignment="Top">
                                 <local:OutlinedTextBlock x:Name="SorasHeartHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -260,6 +270,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="SimulatedTwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-SimulatedImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SimulatedTwilightTownQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -325,6 +343,14 @@
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionCross" Source="Images/System/crossworld.png" Visibility="Collapsed" 
                                    IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HollowBastionQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -405,6 +431,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="BeastsCastleQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- lock icon -->
                             <Image x:Name="BeastsCastleLock" Source="Images/Worlds/Locks/BC.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
@@ -477,6 +511,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DisneyCastleQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DisneyCastleHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -535,6 +577,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="Agrabah" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-AgrabahImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AgrabahQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -613,6 +663,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PrideLandsQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- lock icon -->
                             <Image x:Name="PrideLandsLock" Source="Images/Worlds/Locks/PL.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
@@ -685,6 +743,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HundredAcreWoodQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="HundredAcreWoodHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -743,6 +809,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="GoA" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-GardenofAssemblageImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoACross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="GoAQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -830,6 +904,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="DriveFormsQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="DriveFormsHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -888,6 +970,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="TwilightTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-TwilightTownImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TwilightTownQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -973,6 +1063,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="LandofDragonsQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- lock icon -->
                             <Image x:Name="LandofDragonsLock" Source="Images/Worlds/Locks/LD.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
@@ -1039,6 +1137,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="OlympusColiseum" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-OlympusImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="OlympusColiseumQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1117,6 +1223,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PortRoyalQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- lock icon -->
                             <Image x:Name="PortRoyalLock" Source="Images/Worlds/Locks/PR.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
@@ -1183,6 +1297,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="HalloweenTown" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-HalloweenTownImage}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="HalloweenTownQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -1261,6 +1383,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="SpaceParanoidsQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- lock icon -->
                             <Image x:Name="SpaceParanoidsLock" Source="Images/Worlds/Locks/SP.png" Grid.RowSpan="2" Grid.ColumnSpan="3" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
                                 <Image.RenderTransform>
@@ -1333,6 +1463,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="TWTNWQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="TWTNWHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -1397,6 +1535,14 @@
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="AtlanticaQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
                             <!-- world value -->
                             <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Panel.ZIndex="3" Margin="0,2,5,0" HorizontalAlignment="Right" MaxHeight="25">
                                 <local:OutlinedTextBlock x:Name="AtlanticaHint" FontFamily="{StaticResource Gummi}" FontSize="25pt" 
@@ -1455,6 +1601,14 @@
                             <Button Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name ="PuzzSynth" Background="Transparent" PreviewMouseDown="OnMouseDown" MouseWheel="OnMouseWheel" Template="{StaticResource DefaultButton}" FocusVisualStyle="{x:Null}" Content="{DynamicResource Min-PuzzSynth}"/>
                             <!-- cross icon -->
                             <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthCross" Source="Images/System/crossworld.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <!-- question mark -->
+                            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" x:Name="PuzzSynthQuestion" Source="Images/System/question.png" Visibility="Collapsed" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Opacity="0.9" Panel.ZIndex="2">
                                 <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>

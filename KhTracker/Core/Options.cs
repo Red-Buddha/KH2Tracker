@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Path = System.IO.Path;
+using KhTracker.Hotkeys;
+using System.Windows.Input;
 
 //using System.Text.Json.Serialization;
 //using YamlDotNet.Serialization;
@@ -972,6 +974,8 @@ namespace KhTracker
                 { "PuzzSynth", 0 }
             };
 
+            //hotkey stuff
+            data.usedHotkey = false;
 
             //unselect any currently selected world grid
             if (data.selected != null)
@@ -2105,6 +2109,281 @@ namespace KhTracker
 
             data.BossRandoSeed = final;
             data.ProgressionHash = final;
+        }
+
+        //Hotkey stuff
+        private void LoadHotkeyBind()
+        {
+            if (File.Exists("./AutoTrackerKeybinds.txt"))
+                Console.WriteLine("Found file");
+            else
+            {
+                Console.WriteLine("File not found, making");
+                using (FileStream fs = File.Create("./AutoTrackerKeybinds.txt"))
+                {
+                    // Add some text to file    
+                    Byte[] title = new UTF8Encoding(true).GetBytes("Control\n");
+                    fs.Write(title, 0, title.Length);
+                    byte[] author = new UTF8Encoding(true).GetBytes("F12");
+                    fs.Write(author, 0, author.Length);
+                }
+            }
+            string[] lines = System.IO.File.ReadAllLines("./AutoTrackerKeybinds.txt");
+            string mod1 = "";
+            ModifierKeys _mod1 = ModifierKeys.None;
+            string mod2 = "";
+            ModifierKeys _mod2 = ModifierKeys.None;
+            string mod3 = "";
+            ModifierKeys _mod3 = ModifierKeys.None;
+            string key = "";
+            int modsUsed = 0;
+            Key _key;
+
+            Console.WriteLine(lines[1]);
+
+            //break out early if empty file
+            if (lines.Length == 0)
+            {
+                Console.WriteLine("No keybind set");
+                data.startAutoTracker1 = null;
+                return;
+            }
+
+            if (lines.Length > 1)
+                key = lines[1];
+
+            //get first line, split around +'s
+            string modifiers = lines[0].ToLower();
+            if (modifiers.IndexOf('+') > 0)
+            {
+                mod1 = modifiers.Substring(0, modifiers.IndexOf('+'));
+                modifiers = modifiers.Substring(modifiers.IndexOf('+') + 1);
+                modsUsed++;
+            }
+            else
+            {
+                mod1 = modifiers;
+            }
+            if (modifiers.IndexOf('+') > 0)
+            {
+                mod2 = modifiers.Substring(0, modifiers.IndexOf('+'));
+                modifiers = modifiers.Substring(modifiers.IndexOf('+') + 1);
+                modsUsed++;
+            }
+            else
+            {
+                mod2 = modifiers;
+            }
+            if (modifiers.Length > 0)
+            {
+                mod3 = modifiers;
+                modsUsed++;
+            }
+
+            if (mod1.Contains("ctrl"))
+                mod1 = "control";
+            if (mod2.Contains("ctrl"))
+                mod2 = "control";
+            if (mod3.Contains("ctrl"))
+                mod3 = "control";
+
+            //capitalize all letters
+            mod1 = UpperCaseFirst(mod1);
+            mod2 = UpperCaseFirst(mod2);
+            mod3 = UpperCaseFirst(mod3);
+            key = UpperCaseFirst(key);
+
+            //if no modifiers, only 1 key
+            if (key == "")
+            {
+                Enum.TryParse(mod1, out _key);
+                data.startAutoTracker1 = new GlobalHotkey(ModifierKeys.None, _key, StartHotkey);
+                HotkeysManager.AddHotkey(data.startAutoTracker1);
+                return;
+            }
+
+            //check for modifiers, however many
+            if (mod1 != "")
+                Enum.TryParse(mod1, out _mod1);
+            if (mod2 != "")
+                Enum.TryParse(mod2, out _mod2);
+            if (mod3 != "")
+                Enum.TryParse(mod3, out _mod3);
+
+            //per used amount
+            if (modsUsed == 3)
+            {
+                Console.WriteLine("idk = " + mod1 + " " + mod2 + " " + mod3 + " " + key);
+                if (key == "1" || key == "2" || key == "3" || key == "4" || key == "5"
+                     || key == "6" || key == "7" || key == "8" || key == "9" || key == "0")
+                {
+                    Enum.TryParse(ConvertKeyNumber(key, true), out _key);
+                    data.startAutoTracker1 = new GlobalHotkey((_mod1 | _mod2 | _mod3), _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker1);
+
+                    Enum.TryParse(ConvertKeyNumber(key, false), out _key);
+                    data.startAutoTracker2 = new GlobalHotkey((_mod1 | _mod2 | _mod3), _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker2);
+                    return;
+                }
+                Enum.TryParse(key, out _key);
+                data.startAutoTracker1 = new GlobalHotkey((_mod1 | _mod2 | _mod3), _key, StartHotkey);
+                HotkeysManager.AddHotkey(data.startAutoTracker1);
+                return;
+            }
+            else if (modsUsed == 2)
+            {
+                Console.WriteLine("idk = " + mod1 + " " + mod2 + " " + key);
+                if (key == "1" || key == "2" || key == "3" || key == "4" || key == "5"
+                     || key == "6" || key == "7" || key == "8" || key == "9" || key == "0")
+                {
+                    Enum.TryParse(ConvertKeyNumber(key, true), out _key);
+                    data.startAutoTracker1 = new GlobalHotkey((_mod1 | _mod2), _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker1);
+
+                    Enum.TryParse(ConvertKeyNumber(key, false), out _key);
+                    data.startAutoTracker2 = new GlobalHotkey((_mod1 | _mod2), _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker2);
+                    return;
+                }
+                Enum.TryParse(key, out _key);
+                data.startAutoTracker1 = new GlobalHotkey((_mod1 | _mod2), _key, StartHotkey);
+                HotkeysManager.AddHotkey(data.startAutoTracker1);
+                return;
+            }
+            else
+            {
+                Console.WriteLine("idk = " + mod1 + " " + key);
+                if (key == "1" || key == "2" || key == "3" || key == "4" || key == "5"
+                     || key == "6" || key == "7" || key == "8" || key == "9" || key == "0")
+                {
+                    Enum.TryParse(ConvertKeyNumber(key, true), out _key);
+                    data.startAutoTracker1 = new GlobalHotkey(_mod1, _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker1);
+
+                    Enum.TryParse(ConvertKeyNumber(key, false), out _key);
+                    data.startAutoTracker2 = new GlobalHotkey(_mod1, _key, StartHotkey);
+                    HotkeysManager.AddHotkey(data.startAutoTracker2);
+                    return;
+                }
+                Enum.TryParse(ConvertKey(key), out _key);
+                data.startAutoTracker1 = new GlobalHotkey(_mod1, _key, StartHotkey);
+                HotkeysManager.AddHotkey(data.startAutoTracker1);
+                return;
+            }
+        }
+
+        private string UpperCaseFirst(string word)
+        {
+            if (word.Length <= 0)
+                return "";
+
+            string firstLetter1 = word.Substring(0, 1);
+            string firstLetter2 = firstLetter1.ToUpper();
+            string rest = word.Substring(1);
+
+            return firstLetter2 + rest;
+        }
+
+        private string ConvertKey(string key)
+        {
+            switch (key)
+            {
+                case ".":
+                    return "OemPeriod";
+                case ",":
+                    return "OemComma";
+                case "?":
+                    return "OemPeriod";
+                case "\"":
+                    return "OemQuestion";
+                case "'":
+                    return "OemQuotes";
+                case "[":
+                    return "OemOpenBrackets";
+                case "{":
+                    return "OemOpenBrackets";
+                case "]":
+                    return "OemCloseBrackets";
+                case "}":
+                    return "OemCloseBrackets";
+                case "\\":
+                    return "OemBackslash";
+                case ":":
+                    return "OemSemicolon";
+                case ";":
+                    return "OemSemicolon";
+                case "-":
+                    return "OemMinus";
+                case "_":
+                    return "OemMinus";
+                case "+":
+                    return "OemPlus";
+                case "=":
+                    return "OemPlus";
+                case "|":
+                    return "OemPipe";
+
+                default:
+                    return key;
+            }
+        }
+
+        private string ConvertKeyNumber(string num, bool type)
+        {
+            switch (num)
+            {
+                case "1":
+                    if (type)
+                        return "D1";
+                    else
+                        return "NumPad1";
+                case "2":
+                    if (type)
+                        return "D2";
+                    else
+                        return "NumPad2";
+                case "3":
+                    if (type)
+                        return "D3";
+                    else
+                        return "NumPad3";
+                case "4":
+                    if (type)
+                        return "D4";
+                    else
+                        return "NumPad4";
+                case "5":
+                    if (type)
+                        return "D5";
+                    else
+                        return "NumPad5";
+                case "6":
+                    if (type)
+                        return "D6";
+                    else
+                        return "NumPad6";
+                case "7":
+                    if (type)
+                        return "D7";
+                    else
+                        return "NumPad7";
+                case "8":
+                    if (type)
+                        return "D8";
+                    else
+                        return "NumPad8";
+                case "9":
+                    if (type)
+                        return "D9";
+                    else
+                        return "NumPad9";
+                default:
+                    if (type)
+                        return "D0";
+                    else
+                        return "NumPad0";
+            }
         }
     }
 }

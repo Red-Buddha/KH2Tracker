@@ -26,7 +26,7 @@ namespace KhTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        MemoryReader memory;
+        MemoryReader memory, testMemory;
 
         private Int32 ADDRESS_OFFSET;
         private static DispatcherTimer aTimer;//, autoTimer;
@@ -95,6 +95,69 @@ namespace KhTracker
         ///
         /// Autotracking Startup
         ///
+
+        //HOTKEY STUFF WOO
+        public void StartHotkey()
+        {
+            if (data.usedHotkey)
+                return;
+
+            bool pcsx2Success = true;
+            bool pcSuccess = true;
+            int tries = 0;
+            //check emulator
+            do
+            {
+                testMemory = new MemoryReader(true);
+                if (tries < 20)
+                {
+                    tries++;
+                }
+                else
+                {
+                    testMemory = null;
+                    Console.WriteLine("No PCSX2 Version Detected");
+                    pcsx2Success = false;
+                    break;
+                }
+            } while (!testMemory.Hooked);
+            if (pcsx2Success)
+            {
+                data.usedHotkey = true;
+                InitAutoTracker(true);
+                return;
+            }
+
+            //check pc now
+            tries = 0;
+            do
+            {
+                testMemory = new MemoryReader(false);
+                if (tries < 20)
+                {
+                    tries++;
+                }
+                else
+                {
+                    testMemory = null;
+                    Console.WriteLine("No PC Version Detected");
+                    pcSuccess = false;
+                    break;
+                }
+            } while (!testMemory.Hooked);
+            if (pcSuccess)
+            {
+                data.usedHotkey = true;
+                InitAutoTracker(false);
+                return;
+            }
+
+            if (!pcsx2Success && !pcSuccess)
+            {
+                MessageBox.Show("No version detected.");
+                data.usedHotkey = false;
+            }
+        }
 
         public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
         {
@@ -599,7 +662,11 @@ namespace KhTracker
                     Connect.Visibility = Visibility.Collapsed;
                     Connect2.Visibility = Visibility.Visible;
                     Connect2.Source = data.AD_Cross;
-                    MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
+                    if (Disconnect.IsChecked)
+                    {
+                        MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
+                    }
+                    data.usedHotkey = false;
                 //}
             
                 return;

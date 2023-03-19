@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Button = System.Windows.Controls.Button;
+using KhTracker.Hotkeys;
 
 namespace KhTracker
 {
@@ -48,6 +49,14 @@ namespace KhTracker
             //Init auto-detect
             //AutoDetectOption.IsChecked = Properties.Settings.Default.AutoDetect;
             //AutoDetectToggle(null, null);
+
+            //hotkey stuff
+            HotkeysManager.SetupSystemHook();
+
+            LoadHotkeyBind();
+
+            //GlobalHotkey startAutoTracker1 = new GlobalHotkey(ModifierKeys.Control, Key.F7, StartHotkey);
+            //HotkeysManager.AddHotkey(startAutoTracker1);
         }
 
         private void InitData()
@@ -258,6 +267,10 @@ namespace KhTracker
 
             WorldHintHighlightOption.IsChecked = Properties.Settings.Default.WorldHintHighlight;
 
+            //message box
+            Disconnect.IsChecked = Properties.Settings.Default.Disconnect;
+            DisconnectToggle(Disconnect.IsChecked);
+
             #endregion
 
             #region Visual
@@ -460,14 +473,38 @@ namespace KhTracker
                 case MouseButton.Right: //for setting world cross icon
                     if (data.WorldsData.ContainsKey(button.Name))
                     {
-                        string crossname = button.Name + "Cross";
+                        //string crossname = button.Name + "Cross";
+                        //
+                        //if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
+                        //{
+                        //    if (Cross.Visibility == Visibility.Collapsed)
+                        //        Cross.Visibility = Visibility.Visible;
+                        //    else
+                        //        Cross.Visibility = Visibility.Collapsed;
+                        //}
 
-                        if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross)
+                        string crossname = button.Name + "Cross";
+                        string questionname = button.Name + "Question";
+
+                        if (data.WorldsData[button.Name].top.FindName(crossname) is Image Cross
+                            && data.WorldsData[button.Name].top.FindName(questionname) is Image Question)
                         {
-                            if (Cross.Visibility == Visibility.Collapsed)
+                            //if it's nothing, set to the cross
+                            if (Cross.Visibility == Visibility.Collapsed && Question.Visibility == Visibility.Collapsed)
+                            {
                                 Cross.Visibility = Visibility.Visible;
-                            else
+                                Question.Visibility = Visibility.Collapsed;
+                            }
+                            else if (Cross.Visibility == Visibility.Visible && Question.Visibility == Visibility.Collapsed)
+                            {
+                                Question.Visibility = Visibility.Visible;
                                 Cross.Visibility = Visibility.Collapsed;
+                            }
+                            else
+                            {
+                                Cross.Visibility = Visibility.Collapsed;
+                                Question.Visibility = Visibility.Collapsed;
+                            }
                         }
                     }
                     break;

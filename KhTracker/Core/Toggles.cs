@@ -1399,5 +1399,19 @@ namespace KhTracker
         //    Properties.Settings.Default.Legacy = toggle;
         //    LegacyOption.IsChecked = toggle;
         //}
+
+        //toggle for Disconnect message
+        private void DisconnectToggle(object sender, RoutedEventArgs e)
+        {
+            DisconnectToggle(Disconnect.IsChecked);
+        }
+
+        private void DisconnectToggle(bool toggle)
+        {
+            Properties.Settings.Default.Disconnect = toggle;
+            Disconnect.IsChecked = toggle;
+
+            //logic
+        }
     }
 }
