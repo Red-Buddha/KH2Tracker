@@ -950,6 +950,18 @@ namespace KhTracker
             data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+            //clear last hinted green world
+            if (data.previousWorldHinted != "")
+            {
+                foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                {
+                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                    if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                        Box.Visibility = Visibility.Collapsed;
+                }
+            }
             data.previousWorldHinted = "";
             data.StoredWorldCompleteBonus = new Dictionary<string, int>()
             {

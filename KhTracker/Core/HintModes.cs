@@ -1468,7 +1468,6 @@ namespace KhTracker
         public void ProgressionReveal(int hintNum)
         {
             string RealWorldName = "";
-
             //shouldn't ever get here but break in case
             if (!data.UsingProgressionHints || data.mode == Mode.Hints || data.mode == Mode.AltHints)
                 return;

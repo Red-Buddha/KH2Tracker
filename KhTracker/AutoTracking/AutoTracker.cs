@@ -1215,10 +1215,10 @@ namespace KhTracker
                             if ((world.eventID1 == 151) && world.eventComplete == 1) // AS Zexion finish
                                 UpdateProgressionPoints(world.worldName,  curProg = 9);
                             else if ((world.eventID1 == 152) && world.eventComplete == 1) // Data Zexion finish
-                                {
-                                    UpdateProgressionPoints(world.worldName, 10);
-                                    data.OC_ProgressionValues[10 - 1] = 0;
-                                }
+                            {
+                                UpdateProgressionPoints(world.worldName, 10);
+                                data.OC_ProgressionValues[10 - 1] = 0;
+                            }
                             break;
                         default:
                             return;
@@ -1587,6 +1587,7 @@ namespace KhTracker
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 8;
                                 UpdateProgressionPoints("SimulatedTwilightTown", 8);
+                                data.STT_ProgressionValues[8 - 1] = 0;
                                 return;
                             }
                             break;
