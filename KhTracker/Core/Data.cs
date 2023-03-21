@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
+using KhTracker.Hotkeys;
 
 namespace KhTracker
 {
@@ -181,6 +182,10 @@ namespace KhTracker
         public List<int> SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
         public List<int> TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         #endregion
+
+        //Hotkey stuff
+        public bool usedHotkey = false;
+        public GlobalHotkey startAutoTracker1, startAutoTracker2;
     }
 
     public class WorldData

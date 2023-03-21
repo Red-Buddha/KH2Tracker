@@ -459,6 +459,20 @@ namespace KhTracker
                 // check for correct report location then run report hint logic based on current hint mode
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
+                    if (data.UsingProgressionHints && data.mode != Mode.DAHints && !data.reportLocationsUsed[index])
+                    {
+                        window.AddProgressionPoints(data.ReportBonus);
+                    }
+                    else
+                    {
+                        //check if the report was already obtained before giving points
+                        if (data.UsingProgressionHints && data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
+                            window.AddProgressionPoints(data.ReportBonus);
+                        // show hint text on report hover
+                        item.MouseEnter -= item.Report_Hover;
+                        item.MouseEnter += item.Report_Hover;
+                    }
+
                     switch (data.mode)
                     {
                         case Mode.Hints:
@@ -481,20 +495,6 @@ namespace KhTracker
                         default:
                             window.SetHintText("Impossible Report Error! How are you seeing this?");
                             return false;
-                    }
-
-                    if (data.UsingProgressionHints && data.mode != Mode.DAHints && !data.reportLocationsUsed[index])
-                    {
-                        window.AddProgressionPoints(data.ReportBonus);
-                    }
-                    else
-                    {
-                        //check if the report was already obtained before giving points
-                        if (data.UsingProgressionHints && data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
-                            window.AddProgressionPoints(data.ReportBonus);
-                        // show hint text on report hover
-                        item.MouseEnter -= item.Report_Hover;
-                        item.MouseEnter += item.Report_Hover;
                     }
 
                     data.reportLocationsUsed[index] = true;
@@ -697,7 +697,7 @@ namespace KhTracker
 
             //change hinted world to use green numbers
             //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
-            if (data.SpoilerReportMode)
+            if (data.SpoilerReportMode && data.reportInformation[index].Item1 != "Empty")
             {
                 data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
 
@@ -742,7 +742,7 @@ namespace KhTracker
 
             //change hinted world to use green numbers
             //(we do this here instead of using SetWorldGhost cause we want world numbers to stay green until they are actually complete)
-            if (data.SpoilerReportMode)
+            if (data.SpoilerReportMode && data.reportInformation[index].Item1 != "Empty")
             {
                 data.WorldsData[data.reportInformation[index].Item1].containsGhost = true;
 

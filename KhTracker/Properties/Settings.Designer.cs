@@ -826,5 +826,17 @@ namespace KhTracker.Properties {
                 this["WorldHintHighlight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Disconnect {
+            get {
+                return ((bool)(this["Disconnect"]));
+            }
+            set {
+                this["Disconnect"] = value;
+            }
+        }
     }
 }
