@@ -525,7 +525,7 @@ namespace KhTracker
         {
             Properties.Settings.Default.GhostMath = GhostMathOption.IsChecked;
 
-            if (GhostItemOption.IsChecked && (data.mode == Mode.DAHints || data.ScoreMode))
+            if (GhostItemOption.IsChecked && (data.mode == Mode.PointsHints || data.ScoreMode))
             {
                 int add = -1;
 
@@ -563,7 +563,7 @@ namespace KhTracker
             CheckCountOption.IsChecked = toggle;
 
             //don't do anything if not in points mode
-            if (data.mode != Mode.DAHints && !data.ScoreMode)
+            if (data.mode != Mode.PointsHints && !data.ScoreMode)
                 return;
 
             //don't do anything if progression hints

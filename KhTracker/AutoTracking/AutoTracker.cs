@@ -603,7 +603,7 @@ namespace KhTracker
                 LevelsProgressionBonus();
                 DrivesProgressionBonus();
 
-                if (data.mode == Mode.DAHints || data.ScoreMode)
+                if (data.mode == Mode.PointsHints || data.ScoreMode)
                 {
                     UpdatePointScore(0); //update score
                     GetBoss(world);

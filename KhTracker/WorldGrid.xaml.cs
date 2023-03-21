@@ -125,7 +125,7 @@ namespace KhTracker
                 SetVisitLock(button.Name, addRemove);
             }
 
-            if (data.mode == Mode.AltHints || data.mode == Mode.OpenKHAltHints || data.mode == Mode.PathHints)
+            if (data.mode == Mode.ShanHints || data.mode == Mode.OpenKHShanHints || data.mode == Mode.PathHints)
             {
                 WorldComplete();
 
@@ -135,7 +135,7 @@ namespace KhTracker
                 }
             }
 
-            if (data.mode == Mode.DAHints)
+            if (data.mode == Mode.PointsHints)
             {
                 if (button.Name.StartsWith("Ghost_"))
                     SetWorldGhost(worldName);
@@ -459,14 +459,14 @@ namespace KhTracker
                 // check for correct report location then run report hint logic based on current hint mode
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
-                    if (data.UsingProgressionHints && data.mode != Mode.DAHints && !data.reportLocationsUsed[index])
+                    if (data.UsingProgressionHints && data.mode != Mode.PointsHints && !data.reportLocationsUsed[index])
                     {
                         window.AddProgressionPoints(data.ReportBonus);
                     }
                     else
                     {
                         //check if the report was already obtained before giving points
-                        if (data.UsingProgressionHints && data.mode == Mode.DAHints && !data.reportLocationsUsed[index])
+                        if (data.UsingProgressionHints && data.mode == Mode.PointsHints && !data.reportLocationsUsed[index])
                             window.AddProgressionPoints(data.ReportBonus);
                         // show hint text on report hover
                         item.MouseEnter -= item.Report_Hover;
@@ -475,15 +475,15 @@ namespace KhTracker
 
                     switch (data.mode)
                     {
-                        case Mode.Hints:
-                        case Mode.OpenKHHints:                            
+                        case Mode.JsmarteeHints:
+                        case Mode.OpenKHJsmarteeHints:                            
                             Report_Jsmartee(index, item);
                             break;
-                        case Mode.AltHints:
-                        case Mode.OpenKHAltHints:
+                        case Mode.ShanHints:
+                        case Mode.OpenKHShanHints:
                             //setup joke logic later
                             break;
-                        case Mode.DAHints:
+                        case Mode.PointsHints:
                             Report_Points(index);
                             break;
                         case Mode.PathHints:
@@ -810,8 +810,8 @@ namespace KhTracker
             Data data = MainWindow.data;
             //check to see if world currently contains a ghost
 
-            //if Points Hints and world doesn't contain a ghost yet, do nothing and return
-            if (!data.WorldsData[world].containsGhost && data.mode == Mode.DAHints)
+            //if Points JsmarteeHints and world doesn't contain a ghost yet, do nothing and return
+            if (!data.WorldsData[world].containsGhost && data.mode == Mode.PointsHints)
                 return;
 
             //If spoiler hints, check if ANY currently tracked item in this world is a ghost
@@ -1160,7 +1160,7 @@ namespace KhTracker
         {
             Data data = MainWindow.data;
             //return if mod isn't either of these
-            if (data.mode != Mode.DAHints && data.mode != Mode.SpoilerHints)
+            if (data.mode != Mode.PointsHints && data.mode != Mode.SpoilerHints)
             {
                 return;
             }

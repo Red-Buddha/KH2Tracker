@@ -104,7 +104,7 @@ namespace KhTracker
 
         public List<string> enabledWorlds = new List<string>();
 
-        //Progression Hints stuff
+        //Progression JsmarteeHints stuff
         public bool UsingProgressionHints = false;
         public int ProgressionPoints = 0;
         public int TotalProgressionPoints = 0;
@@ -192,7 +192,7 @@ namespace KhTracker
     {
         public bool hinted;         //currently hinted? (for hinted hint logic)
         public bool hintedHint;     //currently hinted hint?
-        //Progression Hints
+        //Progression JsmarteeHints
         public bool hintedProgression;
         public bool complete;       //are all checks found?
         public int progress;        //current world progression
@@ -225,11 +225,11 @@ namespace KhTracker
 
     public enum Mode
     {
-        Hints,
-        AltHints,
-        OpenKHHints,
-        OpenKHAltHints,
-        DAHints,
+        JsmarteeHints,
+        ShanHints,
+        OpenKHJsmarteeHints,
+        OpenKHShanHints,
+        PointsHints,
         PathHints,
         SpoilerHints,
         None

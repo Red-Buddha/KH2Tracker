@@ -656,7 +656,7 @@ namespace KhTracker
 
             if (worldValue == null || (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
             {
-                if (data.mode == Mode.DAHints)
+                if (data.mode == Mode.PointsHints)
                 {
                     worldValue.Fill = Color;
                 }

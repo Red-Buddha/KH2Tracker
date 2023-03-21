@@ -31,7 +31,7 @@ namespace KhTracker
             data.ShouldResetHash = true;
             var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
 
-            //Joke Hints test
+            //Joke JsmarteeHints test
             bool debug = false;
             if (debug)
             {
@@ -1068,7 +1068,7 @@ namespace KhTracker
 
         public void UpdatePointScore(int points)
         {
-            if (data.mode != Mode.DAHints && !data.ScoreMode)
+            if (data.mode != Mode.PointsHints && !data.ScoreMode)
                 return;
 
             int WorldBlue = 0;
@@ -1291,11 +1291,11 @@ namespace KhTracker
         public void SetProgressionHints(bool usingProgHints)
         {
             //if it calls here and not in progression or using outdated seed methods somehow
-            if (!usingProgHints || data.mode == Mode.Hints || data.mode == Mode.AltHints)
+            if (!usingProgHints || data.mode == Mode.JsmarteeHints || data.mode == Mode.ShanHints)
                 return;
 
             //Per Hint Mode Changes
-            else if (data.mode == Mode.OpenKHHints)
+            else if (data.mode == Mode.OpenKHJsmarteeHints)
             {
                 //Need to shuffle the hints given so there is no metagaming
                 //Random random = new Random(data.ProgressionHash);
@@ -1315,7 +1315,7 @@ namespace KhTracker
                 ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             }
-            else if (data.mode == Mode.OpenKHAltHints)
+            else if (data.mode == Mode.OpenKHShanHints)
             {
                 // get world count from options/ data, use a hash from options / data
                 Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
@@ -1346,7 +1346,7 @@ namespace KhTracker
                 ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             } //DONE
-            else if (data.mode == Mode.DAHints) //points
+            else if (data.mode == Mode.PointsHints) //points
             {
                 //get world count from options/data, use a hash from options/data
                 Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
@@ -1469,10 +1469,10 @@ namespace KhTracker
         {
             string RealWorldName = "";
             //shouldn't ever get here but break in case
-            if (!data.UsingProgressionHints || data.mode == Mode.Hints || data.mode == Mode.AltHints)
+            if (!data.UsingProgressionHints || data.mode == Mode.JsmarteeHints || data.mode == Mode.ShanHints)
                 return;
 
-            else if (data.mode == Mode.OpenKHHints) //jsmartee
+            else if (data.mode == Mode.OpenKHJsmarteeHints) //jsmartee
             {
                 RealWorldName = data.reportInformation[hintNum].Item2;
                 //Console.WriteLine("Jsmartee Revealing " + RealWorldName);
@@ -1480,7 +1480,7 @@ namespace KhTracker
 
                 data.WorldsData[RealWorldName].worldGrid.ProgressionReport_Jsmartee(hintNum);
             }
-            else if (data.mode == Mode.OpenKHAltHints) //shans
+            else if (data.mode == Mode.OpenKHShanHints) //shans
             {
                 //Console.WriteLine("data.reportInformation.count = " + data.HintRevealOrder.Count);
                 //Console.WriteLine("hintNum = " + hintNum);
@@ -1496,7 +1496,7 @@ namespace KhTracker
                 data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(codesRealWorldName, "is now unhidden!", "", true, false, false));
                 //Console.WriteLine("SOME CHECK COUNT THING = " + data.WorldsData[RealWorldName].worldGrid.Children.Count);
             }
-            else if (data.mode == Mode.DAHints) //points
+            else if (data.mode == Mode.PointsHints) //points
             {
                 //potential problem
                 RealWorldName = data.HintRevealOrder[hintNum];

@@ -120,7 +120,7 @@ namespace KhTracker
 
             switch (data.mode)
             {
-                case Mode.DAHints:
+                case Mode.PointsHints:
                     MainW.SetHintText(Codes.GetHintTextName(repStr1), "has", Codes.FindShortName(Codes.GetHintTextName(repStr2)), true, false, true);
                     break;
                 case Mode.PathHints:
