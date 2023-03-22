@@ -155,9 +155,11 @@ namespace KhTracker
 
             //BossInfo
             string bosseslist = "";
+            int bossSeed = 0;
             if (data.BossRandoFound)
             {
                 bosseslist = JsonSerializer.Serialize(data.BossList);
+                bossSeed = data.BossRandoSeed;
             }
 
             FileStream file = File.Create(filename);
@@ -172,13 +174,18 @@ namespace KhTracker
                 Attemps = attempsInfo,
                 Reports = reportInfo,
                 Worlds = worldvalueInfo,
-                Bosses = bosseslist
+                Bosses = bosseslist,
+                BossRandoSeed = bossSeed
             };
+
+            //NOTES:
+            //need to add info used for progression hints (forgot about this)
+            //need to add info for original seed hint data (forgot this too.)
+
 
             var saveFinal = JsonSerializer.Serialize(saveInfo);
             string saveFinal64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(saveFinal));
-
-            writer.WriteLine(saveFinal);
+            writer.WriteLine(saveFinal64);
             writer.Close();
         }
 

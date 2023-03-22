@@ -86,12 +86,6 @@ namespace KhTracker
         private int[] temp = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private int[] tempPre = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        ///Auto-Detect Control Stuff
-        //private bool autoDetected = false;
-        //public int storedDetectedVersion = 0; // 0 = nothing detected, 1 = PC, 2 = PCSX2
-        //private bool isWorking = false;
-        //private bool firstRun = true;
-
         ///
         /// Autotracking Startup
         ///
@@ -829,7 +823,6 @@ namespace KhTracker
             }
         }
         
-
         private void TrackQuantities()
         {
             while (fire.Level > fireLevel)
@@ -938,6 +931,11 @@ namespace KhTracker
             if (world.worldName == "DestinyIsland" || world.worldName == "Unknown")
                 return;
 
+            //check event
+            var eventTuple = new Tuple<string, int, int, int, int, int>(world.worldName, world.roomNumber, world.eventID1, world.eventID2, world.eventID3, 0);
+            if (data.eventLog.Contains(eventTuple))
+                return;
+
             //check for valid progression Content Controls first
             ContentControl progressionM = data.WorldsData[world.worldName].progression;
 
@@ -952,81 +950,81 @@ namespace KhTracker
 
             //progression defaults
             int curProg = data.WorldsData[world.worldName].progress; //current world progress int
-            string curKey; //current world progression icon name
-            string curDes;
+            int newProg = 99;
+            bool updateProgression = true;
+            bool updateProgressionPoints = true;
 
-            //get current world progress key
+            //get current world's new progress key
             switch (world.worldName)
             {
                 case "SimulatedTwilightTown":
                     switch (world.roomNumber) //check based on room number now, then based on events in each room
                     {
                         case 1:
-                            if ((world.eventID3 == 56 || world.eventID3 == 55) && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)/(Day 6)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 56 || world.eventID3 == 55) && curProg == 0) // Roxas' Room (Day 1)/(Day 6)
+                                newProg = 1;
                             break;
                         case 8:
                             if (world.eventID1 == 110 || world.eventID1 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 34:
                             if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 5:
                             if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             if (world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 21:
                             if (world.eventID3 == 1) // Mansion: Computer Room
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 20:
                             if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         default: //if not in any of the above rooms then just leave
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "TwilightTown":
                     switch (world.roomNumber)
                     {
                         case 9:
-                            if (world.eventID3 == 117 && data.WorldsData[world.worldName].progress == 0) // Roxas' Room (Day 1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if (world.eventID3 == 117 && curProg == 0) // Roxas' Room (Day 1)
+                                newProg = 1;
                             break;
                         case 8:
                             if (world.eventID3 == 108 && world.eventComplete == 1) // Station Nobodies
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 27:
                             if (world.eventID3 == 4) // Yen Sid after new clothes
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 4:
                             if (world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 41:
                             if (world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 40:
                             if (world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 20:
                             if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
-                            {
-                                UpdateProgressionPoints(world.worldName, curProg = 7);
-                                data.TT_ProgressionValues[7 - 1] = 0;
-                            }
+                                newProg = 7;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "HollowBastion":
@@ -1034,107 +1032,120 @@ namespace KhTracker
                     {
                         case 0:
                         case 10:
-                            if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData[world.worldName].progress == 0) // Villain's Vale (HB1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 2) && curProg == 0) // Villain's Vale (HB1)
+                                newProg = 1;
                             break;
                         case 8:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Bailey finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 5:
                             if (world.eventID3 == 20) // Ansem Study post Computer
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 20:
                             if (world.eventID1 == 86 && world.eventComplete == 1) // Corridor finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 18:
                             if (world.eventID1 == 73 && world.eventComplete == 1) // Dancers finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 4:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
                             {
-                                if (curProg == 9)
-                                    curProg = 11; //data demyx + sephi finished
-                                else if (curProg != 11)
-                                    curProg = 10;
-                                UpdateProgressionPoints(world.worldName,  10);
-                                data.HB_ProgressionValues[10 - 1] = 0;
+                                if (curProg == 9) //sephi finished
+                                    newProg = 11; //data demyx + sephi finished
+                                else if (curProg != 11) //just demyx
+                                    newProg = 10;
+                                if (data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(world.worldName, 10);
+                                    updateProgressionPoints = false;
+                                }
                             }
                             break;
                         case 16:
                             if (world.eventID1 == 65 && world.eventComplete == 1) // FF Cloud finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 17:
                             if (world.eventID1 == 66 && world.eventComplete == 1) // 1k Heartless finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
+                                newProg = 8;
                             break;
                         case 1:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
                             {
-                                if (curProg == 10)
-                                    curProg = 11; //data demyx + sephi finished
-                                else if (curProg != 11)
-                                    curProg = 9;
-                                UpdateProgressionPoints(world.worldName,  9);
+                                if (curProg == 10) //demyx finish
+                                    newProg = 11; //data demyx + sephi finished
+                                else if (curProg != 11) //just sephi
+                                    newProg = 9;
+                                if(data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(world.worldName, 9);
+                                    updateProgressionPoints = false;
+                                }
                             }
                             break;
                         //CoR
                         case 21:
                             if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
                             {
-                                curKey = data.ProgressKeys["GoA"][1];
-                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][1]);
                                 data.WorldsData["GoA"].progress = 1;
-                                UpdateProgressionPoints("CavernofRemembrance", 1);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 1);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 22:
                             if (world.eventID3 == 1 && data.WorldsData["GoA"].progress <= 1 && world.eventComplete == 1) //valves after skip
                             {
-                                curKey = data.ProgressKeys["GoA"][5];
-                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][5]);
                                 data.WorldsData["GoA"].progress = 5;
-                                UpdateProgressionPoints("CavernofRemembrance", 3);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 3);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 24:
                             if (world.eventID3 == 1 && world.eventComplete == 1) //first fight
                             {
-                                curKey = data.ProgressKeys["GoA"][2];
-                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][2]);
                                 data.WorldsData["GoA"].progress = 2;
-                                UpdateProgressionPoints("CavernofRemembrance", 2);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 2);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
                             {
-                                curKey = data.ProgressKeys["GoA"][3];
-                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][3]);
                                 data.WorldsData["GoA"].progress = 3;
-                                UpdateProgressionPoints("CavernofRemembrance", 4);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 4);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 25:
                             if (world.eventID3 == 3 && world.eventComplete == 1) //transport
                             {
-                                curKey = data.ProgressKeys["GoA"][4];
-                                GoAProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][4]);
                                 data.WorldsData["GoA"].progress = 4;
-                                UpdateProgressionPoints("CavernofRemembrance", 5);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 5);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "BeastsCastle":
@@ -1142,86 +1153,87 @@ namespace KhTracker
                     {
                         case 0:
                         case 2:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Entrance Hall (BC1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Entrance Hall (BC1)
+                                newProg = 1;
                             break;
                         case 11:
                             if (world.eventID1 == 72 && world.eventComplete == 1) // Thresholder finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 3:
                             if (world.eventID1 == 69 && world.eventComplete == 1) // Beast finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 5:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Dark Thorn finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 4:
                             if (world.eventID1 == 74 && world.eventComplete == 1) // Dragoons finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 15:
                             if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
-                            {
-                                UpdateProgressionPoints(world.worldName, curProg = 7);
-                                data.BC_ProgressionValues[7 - 1] = 0;
-                            }
+                                newProg = 7;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "OlympusColiseum":
                     switch (world.roomNumber)
                     {
                         case 3:
-                            if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 12) && curProg == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
+                                newProg = 1;
                             break;
                         case 7:
                             if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 0:
-                            if ((world.eventID3 == 1 || world.eventID3 == 12) && data.WorldsData[world.worldName].progress == 0) // (reverse rando)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 12) && curProg == 0) // (reverse rando)
+                                newProg = 1;
                             if (world.eventID1 == 141 && world.eventComplete == 1) // Urns finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 17:
                             if (world.eventID1 == 123 && world.eventComplete == 1) // OC Demyx finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 8:
                             if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 18:
                             if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 6:
                             if (world.eventID1 == 126 && world.eventComplete == 1) // Auron Statue fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 19:
                             if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
+                                newProg = 8;
                             break;
                         case 34:
                             if ((world.eventID1 == 151) && world.eventComplete == 1) // AS Zexion finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 9);
+                                newProg = 9;
                             else if ((world.eventID1 == 152) && world.eventComplete == 1) // Data Zexion finish
                             {
-                                UpdateProgressionPoints(world.worldName, 10);
-                                data.OC_ProgressionValues[10 - 1] = 0;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(world.worldName, 10);
+                                data.eventLog.Add(eventTuple);
+                                return;
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "Agrabah":
@@ -1229,44 +1241,47 @@ namespace KhTracker
                     {
                         case 0:
                         case 4:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Agrabah (Ag1) || The Vault (Ag2)
-                                UpdateProgressionPoints(world.worldName, curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Agrabah (Ag1) || The Vault (Ag2)
+                                newProg = 1;
                             break;
                         case 9:
                             if (world.eventID1 == 2 && world.eventComplete == 1) // Abu finish
-                                UpdateProgressionPoints(world.worldName, curProg = 2);
+                                newProg = 2;
                             break;
                         case 13:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Chasm fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 10:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Treasure Room finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 3:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Lords finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 14:
                             if (world.eventID1 == 100 && world.eventComplete == 1) // Carpet finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 5:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 33:
                             if ((world.eventID1 == 142) && world.eventComplete == 1) // AS Lexaeus finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
+                                newProg = 8;
                             else if ((world.eventID1 == 147) && world.eventComplete == 1) // Data Lexaeus
                             {
-                                UpdateProgressionPoints(world.worldName, 9);
-                                data.AG_ProgressionValues[9 - 1] = 0;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(world.worldName, 9);
+                                data.eventLog.Add(eventTuple);
+                                return;
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "LandofDragons":
@@ -1274,70 +1289,72 @@ namespace KhTracker
                     {
                         case 0:
                         case 12:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Bamboo Grove (LoD1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Bamboo Grove (LoD1)
+                                newProg = 1;
                             break;
                         case 1:
                             if (world.eventID1 == 70 && world.eventComplete == 1) // Mission 3 (Search) finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 3:
                             if (world.eventID1 == 71 && world.eventComplete == 1) // Mountain Climb finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 5:
                             if (world.eventID1 == 72 && world.eventComplete == 1) // Cave finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 7:
                             if (world.eventID1 == 73 && world.eventComplete == 1) // Summit finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 9:
                             if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 10:
                             if (world.eventID1 == 78 && world.eventComplete == 1) // Antechamber fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 8:
                             if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
+                                newProg = 8;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "HundredAcreWood":
                     switch (world.roomNumber)
                     {
                         case 2:
-                            if ((world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22) && data.WorldsData[world.worldName].progress == 0) // Pooh's house
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22) && curProg == 0) // Pooh's house
+                                newProg = 1;
                             break;
                         case 6:
                             if (world.eventID1 == 55 && world.eventComplete == 1) //A Blustery Rescue Complete
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 7:
                             if (world.eventID1 == 57 && world.eventComplete == 1) //Hunny Slider Complete
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 8:
                             if (world.eventID1 == 59 && world.eventComplete == 1) //Balloon Bounce Complete
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 9:
                             if (world.eventID1 == 61 && world.eventComplete == 1) //The Expotition Complete
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 1:
                             if (world.eventID1 == 52 && world.eventComplete == 1) //The Hunny Pot Complete
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "PrideLands":
@@ -1345,31 +1362,32 @@ namespace KhTracker
                     {
                         case 4:
                         case 16:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Wildebeest Valley (PL1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Wildebeest Valley (PL1)
+                                newProg = 1;
                             break;
                         case 12:
                             if (world.eventID3 == 1) // Oasis after talking to Simba
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 2:
                             if (world.eventID1 == 51 && world.eventComplete == 1) // Hyenas 1 Finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 14:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 5:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Hyenas 2 Finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 15:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "Atlantica":
@@ -1377,58 +1395,61 @@ namespace KhTracker
                     {
                         case 2:
                             if (world.eventID1 == 63) // Tutorial
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                                newProg = 1;
                             break;
                         case 9:
                             if (world.eventID1 == 65) // Ursula's Revenge
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 4:
                             if (world.eventID1 == 55) // A New Day is Dawning
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "DisneyCastle":
                     switch (world.roomNumber)
                     {
                         case 0:
-                            if (world.eventID3 == 22 && data.WorldsData[world.worldName].progress == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
-                                curProg = 0;
+                            if (world.eventID3 == 22 && curProg == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
+                                newProg = 0;
                             else if (world.eventID1 == 51 && world.eventComplete == 1) // Minnie Escort finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             else if (world.eventID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 1:
-                            if (world.eventID1 == 53 && data.WorldsData[world.worldName].progress == 0) // Library (DC)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if (world.eventID1 == 53 && curProg == 0) // Library (DC)
+                                newProg = 1;
                             else if (world.eventID1 == 58 && world.eventComplete == 1) // Old Pete finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 2:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Boat Pete finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 3:
                             if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 38:
                             if ((world.eventID1 == 145 || world.eventID1 == 150) && world.eventComplete == 1) // Marluxia finish
                             {
                                 if (curProg == 8)
-                                    curProg = 9; //marluxia + LW finished
+                                    newProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
-                                    curProg = 7;
-                                if (world.eventID1 == 145)
-                                    UpdateProgressionPoints(world.worldName, 7); // AS
-                                else
+                                    newProg = 7;
+                                if(data.UsingProgressionHints) 
                                 {
-                                    UpdateProgressionPoints(world.worldName, 8); // Data
-                                    data.DC_ProgressionValues[8 - 1] = 0;
+                                    if (world.eventID1 == 145)
+                                        UpdateProgressionPoints(world.worldName, 7); // AS
+                                    else
+                                        UpdateProgressionPoints(world.worldName, 8); // Data
+
+                                    updateProgressionPoints = false;
                                 }
                             }
                             break;
@@ -1436,15 +1457,19 @@ namespace KhTracker
                             if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
                             {
                                 if (curProg == 7)
-                                    curProg = 9; //marluxia + LW finished
+                                    newProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
-                                    curProg = 8;
-                                UpdateProgressionPoints(world.worldName,  9);
-                                data.DC_ProgressionValues[9 - 1] = 0;
+                                    newProg = 8;
+                                if (data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(world.worldName, 9);
+                                    updateProgressionPoints = false;
+                                }
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "HalloweenTown":
@@ -1452,123 +1477,130 @@ namespace KhTracker
                     {
                         case 1:
                         case 4:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Hinterlands (HT1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Hinterlands (HT1)
+                                newProg = 1;
                             break;
                         case 6:
                             if (world.eventID1 == 53 && world.eventComplete == 1) // Candy Cane Lane fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 3:
                             if (world.eventID1 == 52 && world.eventComplete == 1) // Prison Keeper finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 9:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Oogie Boogie finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 10:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Children Fight
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             if (world.eventID1 == 63 && world.eventComplete == 1) // Presents minigame
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 7:
                             if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 32:
-                            if ((world.eventID1 == 115) && world.eventComplete == 1) // AS Vexen finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
-                            else if ((world.eventID1 == 146) && world.eventComplete == 1) // Data Vexen finish
+                            if (world.eventID1 == 115 && world.eventComplete == 1) // AS Vexen finish
+                                newProg = 8;
+                            else if (world.eventID1 == 146 && world.eventComplete == 1) // Data Vexen finish
                             {
-                                UpdateProgressionPoints(world.worldName, 9);
-                                data.HT_ProgressionValues[9 - 1] = 0;
+                                if(data.UsingProgressionHints)
+                                    UpdateProgressionPoints(world.worldName, 9);
+                                data.eventLog.Add(eventTuple);
+                                return;
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "PortRoyal":
                     switch (world.roomNumber)
                     {
                         case 0:
-                            if (world.eventID3 == 1 && data.WorldsData[world.worldName].progress == 0) // Rampart (PR1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if (world.eventID3 == 1 && curProg == 0) // Rampart (PR1)
+                                newProg = 1;
                             break;
                         case 10:
-                            if (world.eventID3 == 10 && data.WorldsData[world.worldName].progress == 0) // Treasure Heap (PR2)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if (world.eventID3 == 10 && curProg == 0) // Treasure Heap (PR2)
+                                newProg = 1;
                             if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 2:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Town finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 9:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // 1min pirates finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 7:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 3:
                             if (world.eventID1 == 56 && world.eventComplete == 1) // barrels finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 18:
                             if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 7);
+                                newProg = 7;
                             break;
                         case 14:
                             if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 8);
+                                newProg = 8;
                             break;
                         case 1:
                             if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 9);
+                                newProg = 9;
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "SpaceParanoids":
                     switch (world.roomNumber)
                     {
                         case 1:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && data.WorldsData[world.worldName].progress == 0) // Canyon (SP1)
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Canyon (SP1)
+                                newProg = 1;
                             break;
                         case 3:
                             if (world.eventID1 == 54 && world.eventComplete == 1) // Screens finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             break;
                         case 4:
                             if (world.eventID1 == 55 && world.eventComplete == 1) // Hostile Program finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             break;
                         case 7:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Solar Sailer finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             break;
                         case 9:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // MCP finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             break;
                         case 33:
-                            if ((world.eventID1 == 143) && world.eventComplete == 1) // AS Larxene finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
-                            else if ((world.eventID1 == 148) && world.eventComplete == 1) // Data Larxene finish
+                            if (world.eventID1 == 143 && world.eventComplete == 1) // AS Larxene finish
+                                newProg = 6;
+                            else if (world.eventID1 == 148 && world.eventComplete == 1) // Data Larxene finish
                             {
-                                UpdateProgressionPoints(world.worldName, 7);
-                                data.SP_ProgressionValues[7 - 1] = 0;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(world.worldName, 7);
+                                data.eventLog.Add(eventTuple);
+                                return;
                             }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "TWTNW":
@@ -1576,75 +1608,77 @@ namespace KhTracker
                     {
                         case 1:
                             if (world.eventID3 == 1) // Alley to Between
-                                UpdateProgressionPoints(world.worldName,  curProg = 1);
+                                newProg = 1;
                             break;
                         case 21:
                             if (world.eventID1 == 65 && world.eventComplete == 1) // Roxas finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 2);
+                                newProg = 2;
                             else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
                             {
-                                curKey = data.ProgressKeys["SimulatedTwilightTown"][8];
-                                SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["SimulatedTwilightTown"][8]);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 8;
-                                UpdateProgressionPoints("SimulatedTwilightTown", 8);
-                                data.STT_ProgressionValues[8 - 1] = 0;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("SimulatedTwilightTown", 8);
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 10:
                             if (world.eventID1 == 57 && world.eventComplete == 1) // Xigbar finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 3);
+                                newProg = 3;
                             else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
                             {
-                                curKey = data.ProgressKeys["LandofDragons"][9];
-                                LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["LandofDragons"][9]);
                                 data.WorldsData["LandofDragons"].progress = 9;
                                 UpdateProgressionPoints("LandofDragons", 9);
-                                data.LoD_ProgressionValues[9 - 1] = 0;
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 14:
                             if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 4);
+                                newProg = 4;
                             else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
                             {
-                                curKey = data.ProgressKeys["PortRoyal"][10];
-                                PortRoyalProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                PortRoyalProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PortRoyal"][10]);
                                 data.WorldsData["PortRoyal"].progress = 10;
                                 UpdateProgressionPoints("PortRoyal", 10);
-                                data.PR_ProgressionValues[10 - 1] = 0;
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 15:
                             if (world.eventID1 == 56 && world.eventComplete == 1) // Saix finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 5);
+                                newProg = 5;
                             else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
                             {
-                                curKey = data.ProgressKeys["PrideLands"][7];
-                                PrideLandsProgression.SetResourceReference(ContentProperty, Prog + curKey);
+                                PrideLandsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PrideLands"][7]);
                                 data.WorldsData["PrideLands"].progress = 7;
                                 UpdateProgressionPoints("PrideLands", 7);
-                                data.PL_ProgressionValues[7 - 1] = 0;
+                                data.eventLog.Add(eventTuple);
                                 return;
                             }
                             break;
                         case 19:
                             if (world.eventID1 == 59 && world.eventComplete == 1) // Xemnas 1 finish
-                                UpdateProgressionPoints(world.worldName,  curProg = 6);
+                                newProg = 6;
                             break;
                         case 20:
                             if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
                             {
-                                UpdateProgressionPoints(world.worldName, curProg = 7);
-                                data.TWTNW_ProgressionValues[7 - 1] = 0;
+                                newProg = 7;
                             }
                             else if (world.eventID1 == 74 && world.eventComplete == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
-                                UpdateProgressionPointsTWTNW(world.worldName);
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPointsTWTNW(world.worldName);
+                                data.eventLog.Add(eventTuple);
+                                return;
+                            }
                             break;
                         default:
-                            return;
+                            updateProgression = false;
+                            break;
                     }
                     break;
                 case "GoA":
@@ -1660,12 +1694,21 @@ namespace KhTracker
                     return;
             }
 
-            //made it this far, now just set the progression icon based on the new curProg
-            curKey = data.ProgressKeys[world.worldName][curProg];
-            curDes = data.ProgressKeys[world.worldName + "Desc"][curProg];
-            progressionM.SetResourceReference(ContentProperty, Prog + curKey);
-            data.WorldsData[world.worldName].progress = curProg;
-            data.WorldsData[world.worldName].progression.ToolTip = curDes;
+            //progression wasn't updated
+            if (newProg == 99 || updateProgression == false)
+                return;
+
+            //progression points
+            if (updateProgressionPoints == true && data.UsingProgressionHints)
+                UpdateProgressionPoints(world.worldName, newProg);
+
+            //made it this far, now just set the progression icon based on newProg
+            progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world.worldName][newProg]);
+            data.WorldsData[world.worldName].progress = newProg;
+            data.WorldsData[world.worldName].progression.ToolTip = data.ProgressKeys[world.worldName + "Desc"][newProg];
+
+            //log event
+            data.eventLog.Add(eventTuple);
         }
 
         // Sometimes level rewards and levels dont update on the same tick
@@ -2602,35 +2645,39 @@ namespace KhTracker
         public void UpdateProgressionPoints(string worldName, int prog)
         {
             //if event is current, skip
-            if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
-                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
-                || !data.UsingProgressionHints)
-                return;
+            //if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+            //    && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
+            //    || !data.UsingProgressionHints)
+            //    return;
 
             AddProgressionPoints(GetProgressionPointsReward(worldName, prog));
-            data.PrevEventID1 = world.eventID1;
-            data.PrevEventID3 = world.eventID3;
-            data.PrevWorld = world.worldName;
-            data.PrevRoomNum = world.roomNumber;
+
+            //data.PrevEventID1 = world.eventID1;
+            //data.PrevEventID3 = world.eventID3;
+            //data.PrevWorld = world.worldName;
+            //data.PrevRoomNum = world.roomNumber;
         }
         public void UpdateProgressionPointsTWTNW(string worldName)
         {
             //if event is current, skip
-            if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
-                && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
-                || !data.UsingProgressionHints)
-                return;
+            //if ((world.eventID1 == data.PrevEventID1 && world.eventID3 == data.PrevEventID3
+            //    && world.worldName == data.PrevWorld && world.roomNumber == data.PrevRoomNum)
+            //    || !data.UsingProgressionHints)
+            //    return;
             //Console.WriteLine("Defeated Final Xemnas");
+
             data.TWTNW_ProgressionValues.Add(200);
             AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
             data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
+
             data.TWTNW_ProgressionValues.Add(-200);
             AddProgressionPoints(GetProgressionPointsReward(worldName, data.TWTNW_ProgressionValues.Count));
             data.TWTNW_ProgressionValues.RemoveAt(data.TWTNW_ProgressionValues.Count - 1);
-            data.PrevEventID1 = world.eventID1;
-            data.PrevEventID3 = world.eventID3;
-            data.PrevWorld = world.worldName;
-            data.PrevRoomNum = world.roomNumber;
+
+            //data.PrevEventID1 = world.eventID1;
+            //data.PrevEventID3 = world.eventID3;
+            //data.PrevWorld = world.worldName;
+            //data.PrevRoomNum = world.roomNumber;
         }
     }
 }

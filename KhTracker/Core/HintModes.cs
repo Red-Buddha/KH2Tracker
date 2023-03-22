@@ -480,7 +480,7 @@ namespace KhTracker
             else if (data.BossRandoFound && TMP_bossReports)
             {
                 //get random based on seed hash
-                Random rand = new Random(data.BossRandoSeed);
+                Random rand = new Random(data.convertedSeedHash);
                 
                 //setup lists
                 List<string> keyList = new List<string>(data.BossList.Keys);
@@ -729,7 +729,7 @@ namespace KhTracker
             else if (data.BossRandoFound && TMP_bossReports)
             {
                 //get random based on seed hash
-                Random rand = new Random(data.BossRandoSeed);
+                Random rand = new Random(data.convertedSeedHash);
 
                 //setup lists
                 List<string> keyList = new List<string>(data.BossList.Keys);
@@ -1318,9 +1318,9 @@ namespace KhTracker
             else if (data.mode == Mode.OpenKHShanHints)
             {
                 // get world count from options/ data, use a hash from options / data
-                Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
+                //Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
                 //set the seed of math.random with progressionhash
-                Random random = new Random(data.ProgressionHash);
+                Random random = new Random(data.convertedSeedHash);
                 //Console.WriteLine("RNG TEST = " + random.Next(data.WorldsEnabled));
                 //shuffle list created from shananas function change
                 int nextIndex = 0;
@@ -1334,11 +1334,11 @@ namespace KhTracker
                     data.HintRevealOrder[i] = tempTuple;
                 }
 
-                Console.WriteLine("~~~~~~~~~~~~~~~~~");
-                foreach (string name in data.HintRevealOrder)
-                    Console.WriteLine(name);
-                Console.WriteLine("data.HintRevealOrder.count = " + data.HintRevealOrder.Count);
-                Console.WriteLine("~~~~~~~~~~~~~~~~~");
+                //Console.WriteLine("~~~~~~~~~~~~~~~~~");
+                //foreach (string name in data.HintRevealOrder)
+                //    Console.WriteLine(name);
+                //Console.WriteLine("data.HintRevealOrder.count = " + data.HintRevealOrder.Count);
+                //Console.WriteLine("~~~~~~~~~~~~~~~~~");
 
                 //set progression points display
                 data.ProgressionPoints = 0;
@@ -1349,9 +1349,9 @@ namespace KhTracker
             else if (data.mode == Mode.PointsHints) //points
             {
                 //get world count from options/data, use a hash from options/data
-                Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
+                //Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
                 //set the seed of math.random with progressionhash
-                Random random = new Random(data.ProgressionHash);
+                Random random = new Random(data.convertedSeedHash);
                 //Console.WriteLine("RNG TEST = " + random.Next(data.WorldsEnabled));
                 //shuffle already created list from Options
                 string temp = "";

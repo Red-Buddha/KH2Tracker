@@ -22,6 +22,8 @@ namespace KhTracker
         public bool dataSplit = false;
         public string seedgenVersion = "";
         public bool altFinalTracking = true;
+        public int convertedSeedHash = 0;
+        public string[] seedHashVisual = null;
 
         //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
         //this is here as a toggle to only reset the hash when i want it to
@@ -47,6 +49,9 @@ namespace KhTracker
         public List<Item> TornPages = new List<Item>();
         public List<Item> VisitLocks = new List<Item>();
         public Dictionary<string, Tuple<Item, Grid>> Items = new Dictionary<string, Tuple<Item, Grid>>();
+
+        //event tracking
+        public List<Tuple<string, int, int, int, int, int>> eventLog = new List<Tuple<string, int, int, int, int, int>>();
 
         //auto-detect
         public BitmapImage AD_Connect;
@@ -100,7 +105,7 @@ namespace KhTracker
         //for boss rando points
         public bool BossRandoFound = false;
         public Dictionary<string, string> BossList = new Dictionary<string, string>();
-        public int BossRandoSeed;
+        //public int BossRandoSeed;
 
         public List<string> enabledWorlds = new List<string>();
 
@@ -109,15 +114,15 @@ namespace KhTracker
         public int ProgressionPoints = 0;
         public int TotalProgressionPoints = 0;
         public int WorldsEnabled = 0;
-        public int ProgressionHash = 0;
+        //public int ProgressionHash = 0;
         public bool revealFinalXemnas = false;
 
-        #region Progression Tracking
-        public int PrevEventID1 = 0;
-        public int PrevEventID3 = 0;
-        public string PrevWorld = "";
-        public int PrevRoomNum = 0;
-        #endregion
+        //#region Progression Tracking
+        //public int PrevEventID1 = 0;
+        //public int PrevEventID3 = 0;
+        //public string PrevWorld = "";
+        //public int PrevRoomNum = 0;
+        //#endregion
 
         #region Hint Order Logic
         public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
