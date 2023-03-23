@@ -47,16 +47,14 @@ namespace KhTracker
         {
             #region Header
             var headerInfo = new string[6];
-            //headerInfo[0] = Title; //for tracker version. might wanna put load warning for loading older saves
-            //headerInfo[1] = data.mode.ToString(); //current hint mode
             headerInfo[0] = data.UsingProgressionHints ? "True" : "False"; //using progression hints?
             headerInfo[1] = (data.ScoreMode && data.mode != Mode.PointsHints) ? "True" : "False"; //using high sore mode?
-            headerInfo[2] = data.BossRandoFound ? "True" : "False";
-            headerInfo[3] = data.hintsLoaded ? "True" : "False";
-            headerInfo[4] = DeathCounter.ToString();
-            headerInfo[5] = data.usedPages.ToString();
+            headerInfo[2] = data.BossRandoFound ? "True" : "False"; //using boss rando?
+            headerInfo[3] = data.forcedFinal ? "True" : "False"; //was final forced?
+            //headerInfo[3] = data.hintsLoaded ? "True" : "False"; //were hints loaded?
+            headerInfo[4] = DeathCounter.ToString(); //current death count
+            headerInfo[5] = data.usedPages.ToString(); //current used pages (do i even use this?)
             #endregion
-            //var saveHeader = new {Info = headerInfo};
 
             #region Settings
             var settingInfo = new bool[31];
@@ -95,31 +93,18 @@ namespace KhTracker
             settingInfo[29] = GhostItemOption.IsChecked;
             settingInfo[30] = GhostMathOption.IsChecked;
             #endregion
-            //var saveSettings = new {Settings = settingInfo};
 
             #region ReportInfo
             var attempsInfo = new int[13];
-            Dictionary<int, object> reportInfo = new Dictionary<int, object>();
-            if (data.hintsLoaded)
+            for (int i = 0; i < 13; ++i)
             {
-                for (int i = 0; i < 13; ++i)
-                {
-                    reportInfo.Add(i+1, data.reportInformation[i]);
-                    attempsInfo[i] = data.reportAttempts[i];
-                }
-            }
-            else
-            {
-                var fillerData = new {Item1 = "", Item2 = "", Item3 = 0};
-                for (int i = 0; i < 13; ++i)
-                {
-                    reportInfo.Add(i + 1, fillerData);
-                    attempsInfo[i] = 3;
-                }
+                int attempts = 3;
+                if (data.hintsLoaded)
+                    attempts = data.reportAttempts[i];
+
+                attempsInfo[i] = attempts;
             }
             #endregion
-            //var saveReportAttempts = new {Attemps = attempsInfo};
-            //var saveReports = new {Reports = reportInfo};
 
             #region WorldInfo
             Dictionary<string, object> worldvalueInfo = new Dictionary<string, object>();
@@ -135,12 +120,12 @@ namespace KhTracker
                 {
                     Value = worldData.value.Text,
                     Progression = worldData.progress,
-                    Hinted = worldData.hinted,
-                    HintedHint = worldData.hintedHint,
-                    GhostHint = worldData.containsGhost,
-                    Complete = worldData.complete,
-                    Locks = worldData.visitLocks,
                     Items = worldItems
+                    //Hinted = worldData.hinted,
+                    //HintedHint = worldData.hintedHint,
+                    //GhostHint = worldData.containsGhost,
+                    //Complete = worldData.complete,
+                    //Locks = worldData.visitLocks,
                 };
                 worldvalueInfo.Add(worldKey, testingthing);
             };
@@ -153,35 +138,35 @@ namespace KhTracker
             //    num += GetGhostPoints(worldData.worldGrid);
             //}
 
-            //BossInfo
-            string bosseslist = "";
-            int bossSeed = 0;
-            if (data.BossRandoFound)
+            List<Tuple<string, string, int>> legacyReportInfo = null;
+            if (data.legacyJsmartee)
             {
-                bosseslist = JsonSerializer.Serialize(data.BossList);
-                bossSeed = data.BossRandoSeed;
+                legacyReportInfo = data.reportInformation;
             }
 
             FileStream file = File.Create(filename);
             StreamWriter writer = new StreamWriter(file);
-
             var saveInfo = new
             {
                 Version = Title,
-                HintMode = data.mode.ToString(),
+                //HintMode = data.mode.ToString(), //not needed since we grab it from SeedHints anyway?
+                SeedHash = data.seedHashVisual,
                 Info = headerInfo,
-                Settings = settingInfo,
+                //Settings = settingInfo, //also not needed since we set most of this while reading SeedHints?
                 Attemps = attempsInfo,
-                Reports = reportInfo,
                 Worlds = worldvalueInfo,
-                Bosses = bosseslist,
-                BossRandoSeed = bossSeed
+                SeedHints = data.openKHHintText,
+                BossHints = data.openKHBossText,
+                RandomSeed = data.convertedSeedHash,
+                LegacyJsmartee = data.legacyJsmartee,
+                LegacyJHints = data.hintFileText,
+                LegacyJReports = legacyReportInfo,
+                LegacyShan = data.legacyShan,
+                LegacySHints = data.shanHintFileText
             };
 
             //NOTES:
             //need to add info used for progression hints (forgot about this)
-            //need to add info for original seed hint data (forgot this too.)
-
 
             var saveFinal = JsonSerializer.Serialize(saveInfo);
             string saveFinal64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(saveFinal));
@@ -193,8 +178,8 @@ namespace KhTracker
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                DefaultExt = ".txt",
-                Filter = "txt files (*.txt)|*.txt",
+                DefaultExt = ".tsv",
+                Filter = "Tracker Save File (*.tsv)|*.tsv",
                 FileName = "kh2fm-tracker-save",
                 InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
             };
@@ -205,6 +190,48 @@ namespace KhTracker
         }
 
         private void Load(string filename)
+        {
+            // reset tracker
+            //OnReset(null, null);
+
+            //open file
+            Stream savefile = File.Open(filename, FileMode.Open);
+            StreamReader reader = new StreamReader(savefile);
+
+            //start reading save
+            var save64 = reader.ReadToEnd();
+            var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
+            var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
+
+            //check save version
+            if (saveObject.ContainsKey("Version"))
+            {
+                string saveVer = saveObject["Version"].ToString();
+                if (saveVer != Title)
+                {
+                    Console.WriteLine("Different save version!");
+                    //write popup here that contains if save should still try to be loaded
+                }
+                else
+                {
+                    Console.WriteLine("save versions match");
+                }
+            }
+
+            //check legacy hint styles
+
+
+
+            //check if enemy rando data exists
+            if (saveObject.ContainsKey("Version"))
+            {
+
+            }
+
+            reader.Close();
+        }
+
+        private void LoadOld(string filename)
         {
             // reset tracker
             OnReset(null, null);
@@ -526,6 +553,7 @@ namespace KhTracker
             }
 
             data.hintsLoaded = true;
+            data.legacyJsmartee = true;
             //HintText.Text = "JsmarteeHints Loaded";
         }
 
@@ -825,25 +853,32 @@ namespace KhTracker
             data.BossRandoFound = false;
             data.dataSplit = false;
             data.BossList.Clear();
-            data.BossRandoSeed = 0;
+            data.convertedSeedHash = 0;
             data.enabledWorlds.Clear();
             data.seedgenVersion = "";
             data.altFinalTracking = true;
+            data.eventLog.Clear();
+            data.openKHHintText = "None";
+            data.openKHBossText = "None";
+            data.legacyJsmartee = false;
+            data.hintFileText = null;
+            data.legacyShan = false;
+            data.shanHintFileText = null;
 
             //clear progression hints stuff
             data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
             data.UsingProgressionHints = false;
             data.ProgressionPoints = 0;
             data.TotalProgressionPoints = 0;
-            data.WorldsEnabled = 0;
-            data.PrevEventID1 = 0;
-            data.PrevEventID3 = 0;
-            data.PrevWorld = "";
-            data.PrevRoomNum = 0;
+            data.ReportBonus = 1;
+            data.WorldCompleteBonus = 0;
             data.ProgressionCurrentHint = 0;
+            data.WorldsEnabled = 0;
             data.HintRevealOrder.Clear();
             data.LevelsPreviousIndex = 0;
             data.NextLevelMilestone = 9;
+            data.Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
+            data.Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
             data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
@@ -882,6 +917,23 @@ namespace KhTracker
                 { "Atlantica", 0 },
                 { "PuzzSynth", 0 }
             };
+            data.STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            data.CoR_ProgressionValues = new List<int>() { 0, 0, 0, 0, 0 };
+            data.BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            data.PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.AT_ProgressionValues = new List<int>() { 1, 2, 3 };
+            data.DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            data.SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            data.TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
 
             //hotkey stuff
             data.usedHotkey = false;
@@ -1263,6 +1315,11 @@ namespace KhTracker
             //FixDictionary();
             SetMode(Mode.ShanHints);
 
+            if (data.shanHintFileText != null)
+            {
+                data.shanHintFileText = null;
+            }
+
             foreach (string world in data.WorldsData.Keys.ToList())
             {
                 data.WorldsData[world].checkCount.Clear();
@@ -1272,9 +1329,11 @@ namespace KhTracker
             bool check1 = false;
             bool check2 = false;
 
+            int lineNum = 0;
             while (streamReader.EndOfStream == false)
             {
                 string line = streamReader.ReadLine();
+                data.shanHintFileText[lineNum] = line;
 
                 // ignore comment lines
                 if (line.Length >= 2 && line[0] == '/' && line[1] == '/')
@@ -1306,8 +1365,11 @@ namespace KhTracker
                         check2 = true;
                     }
                 }
+                
+                lineNum++;
             }
             streamReader.Close();
+            data.legacyShan = true;
 
             if (check1 == true && check2 == false)
             {
@@ -1408,10 +1470,10 @@ namespace KhTracker
         {
             OnReset(null, null);
 
-            foreach (string world in data.WorldsData.Keys.ToList())
-            {
-                data.WorldsData[world].checkCount.Clear();
-            }
+            //foreach (string world in data.WorldsData.Keys.ToList())
+            //{
+            //    data.WorldsData[world].checkCount.Clear();
+            //}
 
             using (ZipArchive archive = ZipFile.OpenRead(filename))
             {
@@ -1420,7 +1482,7 @@ namespace KhTracker
                 ZipArchiveEntry enemyfile = null;
 
                 //get and temp store these files to grab data from later.
-                //we used to just read them as we wnt along, but things got more complicated as time went on..
+                //we used to just read them as we went along, but things got more complicated as time went on..
                 foreach (var entry in archive.Entries)
                 {
                     if (entry.FullName.Equals("HintFile.Hints"))
@@ -1442,8 +1504,8 @@ namespace KhTracker
                     using (var reader3 = new StreamReader(enemyfile.Open()))
                     {
                         data.BossRandoFound = true;
-                        string enemyText64 = reader3.ReadToEnd();
-                        var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(enemyText64));
+                        data.openKHBossText = reader3.ReadToEnd();
+                        var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHBossText));
                         try 
                         {
                             var enemyObject = JsonSerializer.Deserialize<Dictionary<string, object>>(enemyText);
@@ -1460,9 +1522,8 @@ namespace KhTracker
                         catch 
                         {
                             data.BossRandoFound = false;
-
-                            if (App.logger != null)
-                                App.logger.Record("error while trying to parse bosses.");
+                            data.openKHBossText = "None";
+                            App.logger?.Record("error while trying to parse bosses.");
                         }
                         
                         reader3.Close();
@@ -1478,6 +1539,7 @@ namespace KhTracker
                         string text2 = reader2.ReadLine();
                         string text = text1 + text2;
                         string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+                        data.seedHashVisual = hash;
 
                         //Set Icons
                         HashIcon1.SetResourceReference(ContentProperty, hash[0]);
@@ -1643,7 +1705,6 @@ namespace KhTracker
                                         AbilitiesToggle(true);
                                         Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("SorasHeart");
                                         break;
                                     case "ExcludeFrom99":
@@ -1651,114 +1712,95 @@ namespace KhTracker
                                         AbilitiesToggle(true);
                                         Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("SorasHeart");
                                         break;
                                     case "Simulated Twilight Town":
                                         SimulatedToggle(true);
                                         data.enabledWorlds.Add("STT");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("SimulatedTwilightTown");
                                         break;
                                     case "Hundred Acre Wood":
                                         HundredAcreWoodToggle(true);
-                                        data.WorldsEnabled++;
+                                        data.enabledWorlds.Add("HundredAcreWood");
                                         data.HintRevealOrder.Add("HundredAcreWood");
                                         break;
                                     case "Atlantica":
                                         AtlanticaToggle(true);
-                                        data.WorldsEnabled++;
+                                        data.enabledWorlds.Add("Atlantica");
                                         data.HintRevealOrder.Add("Atlantica");
                                         break;
                                     case "Puzzle":
                                         PuzzleToggle(true);
-                                        //data.WorldsEnabled++;
-                                        //data.HintRevealOrder.Add("PuzzSynth");
                                         puzzleOn = true;
                                         data.puzzlesOn = true;
                                         break;
                                     case "Synthesis":
                                         SynthToggle(true);
-                                        //data.WorldsEnabled++;
-                                        //data.HintRevealOrder.Add("PuzzSynth");
                                         synthOn = true;
                                         data.synthOn = true;
                                         break;
                                     case "Form Levels":
                                         DrivesToggle(true);
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("DriveForms");
                                         break;
                                     case "Land of Dragons":
                                         LandofDragonsToggle(true);
                                         data.enabledWorlds.Add("LoD");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("LandofDragons");
                                         break;
                                     case "Beast's Castle":
                                         BeastCastleToggle(true);
                                         data.enabledWorlds.Add("BC");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("BeastsCastle");
                                         break;
                                     case "Hollow Bastion":
                                         HollowBastionToggle(true);
                                         data.enabledWorlds.Add("HB");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("HollowBastion");
                                         break;
                                     case "Twilight Town":
                                         TwilightTownToggle(true);
                                         data.enabledWorlds.Add("TT");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("TwilightTown");
                                         break;
                                     case "The World That Never Was":
                                         TWTNWToggle(true);
                                         data.enabledWorlds.Add("TWTNW");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("TWTNW");
                                         break;
                                     case "Space Paranoids":
                                         SpaceParanoidsToggle(true);
                                         data.enabledWorlds.Add("SP");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("SpaceParanoids");
                                         break;
                                     case "Port Royal":
                                         PortRoyalToggle(true);
                                         data.enabledWorlds.Add("PR");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("PortRoyal");
                                         break;
                                     case "Olympus Coliseum":
                                         OlympusToggle(true);
                                         data.enabledWorlds.Add("OC");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("OlympusColiseum");
                                         break;
                                     case "Agrabah":
                                         AgrabahToggle(true);
                                         data.enabledWorlds.Add("AG");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("Agrabah");
                                         break;
                                     case "Halloween Town":
                                         HalloweenTownToggle(true);
                                         data.enabledWorlds.Add("HT");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("HalloweenTown");
                                         break;
                                     case "Pride Lands":
                                         PrideLandsToggle(true);
                                         data.enabledWorlds.Add("PL");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("PrideLands");
                                         break;
                                     case "Disney Castle / Timeless River":
                                         DisneyCastleToggle(true);
                                         data.enabledWorlds.Add("DC");
-                                        data.WorldsEnabled++;
                                         data.HintRevealOrder.Add("DisneyCastle");
                                         break;
                                     //settings
@@ -1825,7 +1867,6 @@ namespace KhTracker
                             //prevent creations hinting twice for progression
                             if (puzzleOn)
                             {
-                                data.WorldsEnabled++;
                                 data.HintRevealOrder.Add("PuzzSynth");
                             }
 
@@ -2015,9 +2056,7 @@ namespace KhTracker
             int icon7 = Codes.HashInt[hash[6]];
 
             int final = (icon1 + icon2) * (icon3 + icon4) * (icon5 + icon6) - icon7;
-
-            data.BossRandoSeed = final;
-            data.ProgressionHash = final;
+            data.convertedSeedHash = final;
         }
 
         //Hotkey stuff

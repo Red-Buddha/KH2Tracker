@@ -1630,7 +1630,8 @@ namespace KhTracker
                             {
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["LandofDragons"][9]);
                                 data.WorldsData["LandofDragons"].progress = 9;
-                                UpdateProgressionPoints("LandofDragons", 9);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("LandofDragons", 9);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1642,7 +1643,8 @@ namespace KhTracker
                             {
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PortRoyal"][10]);
                                 data.WorldsData["PortRoyal"].progress = 10;
-                                UpdateProgressionPoints("PortRoyal", 10);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("PortRoyal", 10);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1654,7 +1656,8 @@ namespace KhTracker
                             {
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PrideLands"][7]);
                                 data.WorldsData["PrideLands"].progress = 7;
-                                UpdateProgressionPoints("PrideLands", 7);
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("PrideLands", 7);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }

@@ -24,28 +24,32 @@ namespace KhTracker
         public bool altFinalTracking = true;
         public int convertedSeedHash = 0;
         public string[] seedHashVisual = null;
-
-        //this is stupid. Hash kept auto reseting because of SetMode during hint loading.
-        //this is here as a toggle to only reset the hash when i want it to
         public bool ShouldResetHash = true;
         public bool SeedHashLoaded = false;
         public bool SpoilerWorldCompletion = false;
         public bool SpoilerReportMode = false;
-
-        public string openKHHintText = "";
+        public string openKHHintText = "None";
+        public string openKHBossText = "None";
         public string[] hintFileText = new string[2];
+        public bool legacyJsmartee = false;
+        public bool legacyShan = false;
+        public string[] shanHintFileText = null;
         public Codes codes = new Codes();
 
+        //Report stuff      
         public List<Tuple<string, string, int>> reportInformation = new List<Tuple<string, string, int>>();
         public List<string> reportLocations = new List<string>();
         public List<bool> reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
         public List<int> reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+        public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
+
+        //extra world stuff
         public Dictionary<string, List<string>> ProgressKeys = new Dictionary<string, List<string>>();
         public Dictionary<string, Grid> WorldsTop = new Dictionary<string, Grid>();
         public Dictionary<string, WorldData> WorldsData = new Dictionary<string, WorldData>();
 
+        //Item lists
         public List<Item> Reports = new List<Item>();
-        public List<ContentControl> ReportAttemptVisual = new List<ContentControl>();
         public List<Item> TornPages = new List<Item>();
         public List<Item> VisitLocks = new List<Item>();
         public Dictionary<string, Tuple<Item, Grid>> Items = new Dictionary<string, Tuple<Item, Grid>>();
@@ -105,8 +109,6 @@ namespace KhTracker
         //for boss rando points
         public bool BossRandoFound = false;
         public Dictionary<string, string> BossList = new Dictionary<string, string>();
-        //public int BossRandoSeed;
-
         public List<string> enabledWorlds = new List<string>();
 
         //Progression JsmarteeHints stuff
@@ -114,15 +116,7 @@ namespace KhTracker
         public int ProgressionPoints = 0;
         public int TotalProgressionPoints = 0;
         public int WorldsEnabled = 0;
-        //public int ProgressionHash = 0;
         public bool revealFinalXemnas = false;
-
-        //#region Progression Tracking
-        //public int PrevEventID1 = 0;
-        //public int PrevEventID3 = 0;
-        //public string PrevWorld = "";
-        //public int PrevRoomNum = 0;
-        //#endregion
 
         #region Hint Order Logic
         public List<int> HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };

@@ -78,7 +78,7 @@ namespace KhTracker
                     data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
                 }
                 //for progression hints
-                data.reportInformation.Add(new Tuple<string, string, int>(world.Key, null, 0));
+                //data.reportInformation.Add(new Tuple<string, string, int>(world.Key, null, 0));
             }
 
             if (!data.UsingProgressionHints)
@@ -100,8 +100,9 @@ namespace KhTracker
         {
             if (data.UsingProgressionHints)
             {
-                ProgressionJsmarteeHints(hintObject);
-                return;
+                //clear the reveal order since it assumes shans/points
+                data.WorldsEnabled = data.HintRevealOrder.Count;
+                data.HintRevealOrder.Clear();
             }
 
             data.ShouldResetHash = true;
@@ -124,46 +125,6 @@ namespace KhTracker
 
             //ReportsToggle(true);
             data.hintsLoaded = true;
-        }
-
-        private void ProgressionJsmarteeHints(Dictionary<string, object> hintObject)
-        {
-            data.ShouldResetHash = true;
-            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-            List<int> progHintsKeys = progHints.Keys.Select(int.Parse).ToList();
-            progHintsKeys.Sort();
-
-            if (data.UsingProgressionHints) //clear the reveal order since it assumes shans/points
-                data.HintRevealOrder.Clear();
-
-            //int i = 0;
-            foreach (var hint in progHintsKeys)
-            {
-                var world = Codes.ConvertSeedGenName(progHints[hint.ToString()]["World"].ToString());
-                var count = progHints[hint.ToString()]["Count"].ToString();
-                var location = Codes.ConvertSeedGenName(progHints[hint.ToString()]["Location"].ToString());
-                data.reportInformation.Add(new Tuple<string, string, int>(null, world, int.Parse(count)));
-                data.reportLocations.Add(location);
-
-                //Console.WriteLine("WORLD | LOCATION = " + world + " | " + location);
-
-                //data.HintRevealOrder.Add(world);
-
-                //data.worldStoredHintCount[Codes.WorldNameToInt[data.reportLocations[i]]]++; //counts how many reports are in a world
-                //data.worldStoredOrigCount[Codes.WorldNameToInt[world]] = int.Parse(count); //tracks the original check count of a world, used later for original - stored
-                //data.worldHintNumber[Codes.WorldNameToInt[world]] = i + 1; //tracks which world contains which report - used for OnMouseDown
-                //data.worldReportPairs.Add(world, i);
-                //i++;
-            }
-
-            //start adding score data
-            if (data.ScoreMode)
-                ScoreModifier(hintObject);
-
-            //ReportsToggle(true);
-            data.hintsLoaded = true;
-
-            //Console.WriteLine("data.worldReportPairs = " + data.worldReportPairs["HollowBastion"]);
 
             SetProgressionHints(data.UsingProgressionHints);
         }
@@ -1288,6 +1249,10 @@ namespace KhTracker
             "ARC, Reload!"
         };
 
+        /// <summary>
+        /// progression hints and logic
+        /// </summary>
+
         public void SetProgressionHints(bool usingProgHints)
         {
             //if it calls here and not in progression or using outdated seed methods somehow
@@ -1295,20 +1260,8 @@ namespace KhTracker
                 return;
 
             //Per Hint Mode Changes
-            else if (data.mode == Mode.OpenKHJsmarteeHints)
+            if (data.mode == Mode.OpenKHJsmarteeHints)
             {
-                //Need to shuffle the hints given so there is no metagaming
-                //Random random = new Random(data.ProgressionHash);
-                //string temp = "";
-                //int tempIndex = 0;
-                //for (int i = 0; i < data.HintRevealOrder.Count; i++)
-                //{
-                //    tempIndex = random.Next(data.HintRevealOrder.Count);
-                //    temp = data.HintRevealOrder[i];
-                //    data.HintRevealOrder[i] = data.HintRevealOrder[tempIndex];
-                //    data.HintRevealOrder[tempIndex] = temp;
-                //}
-
                 //set progression points display
                 data.ProgressionPoints = 0;
                 data.ProgressionCurrentHint = 0;
@@ -1319,12 +1272,13 @@ namespace KhTracker
             {
                 // get world count from options/ data, use a hash from options / data
                 //Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
+
                 //set the seed of math.random with progressionhash
                 Random random = new Random(data.convertedSeedHash);
                 //Console.WriteLine("RNG TEST = " + random.Next(data.WorldsEnabled));
+
                 //shuffle list created from shananas function change
                 int nextIndex = 0;
-                //Tuple<string, string, int> tempTuple;
                 string tempTuple;
                 for (int i = 0; i < data.HintRevealOrder.Count; i++)
                 {
@@ -1350,15 +1304,17 @@ namespace KhTracker
             {
                 //get world count from options/data, use a hash from options/data
                 //Console.WriteLine("WORLDS ENABLED COUNT = " + data.WorldsEnabled + "\nPROGRESSION HASH = " + data.ProgressionHash);
+
                 //set the seed of math.random with progressionhash
                 Random random = new Random(data.convertedSeedHash);
                 //Console.WriteLine("RNG TEST = " + random.Next(data.WorldsEnabled));
+
                 //shuffle already created list from Options
                 string temp = "";
                 int tempIndex = 0;
-                for (int i = 0; i < data.WorldsEnabled; i++)
+                for (int i = 0; i < data.HintRevealOrder.Count; i++)
                 {
-                    tempIndex = random.Next(data.WorldsEnabled);
+                    tempIndex = random.Next(data.HintRevealOrder.Count);
                     temp = data.HintRevealOrder[i];
                     data.HintRevealOrder[i] = data.HintRevealOrder[tempIndex];
                     data.HintRevealOrder[tempIndex] = temp;
@@ -1395,7 +1351,6 @@ namespace KhTracker
             //creations specific changes
             if (!data.puzzlesOn && data.synthOn)
             {
-                //Console.WriteLine("Trying something here");
                 data.WorldsData["PuzzSynth"].value.Text = "";
             }
         }
@@ -1404,6 +1359,9 @@ namespace KhTracker
         {
             if (!data.UsingProgressionHints)
                 return;
+
+            if (data.WorldsEnabled == 0)
+                data.WorldsEnabled = data.HintRevealOrder.Count;
 
             #region Debug stuff
             //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
