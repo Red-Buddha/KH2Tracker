@@ -46,14 +46,14 @@ namespace KhTracker
         public void Save(string filename)
         {
             #region Header
-            var headerInfo = new string[6];
+            var headerInfo = new string[4];
             headerInfo[0] = data.UsingProgressionHints ? "True" : "False"; //using progression hints?
             headerInfo[1] = (data.ScoreMode && data.mode != Mode.PointsHints) ? "True" : "False"; //using high sore mode?
             headerInfo[2] = data.BossRandoFound ? "True" : "False"; //using boss rando?
             headerInfo[3] = data.forcedFinal ? "True" : "False"; //was final forced?
             //headerInfo[3] = data.hintsLoaded ? "True" : "False"; //were hints loaded?
-            headerInfo[4] = DeathCounter.ToString(); //current death count
-            headerInfo[5] = data.usedPages.ToString(); //current used pages (do i even use this?)
+            //headerInfo[4] = DeathCounter.ToString(); //current death count
+            //headerInfo[5] = data.usedPages.ToString(); //current used pages (do i even use this?)
             #endregion
 
             #region Settings
@@ -130,8 +130,7 @@ namespace KhTracker
                 worldvalueInfo.Add(worldKey, testingthing);
             };
             #endregion
-            //var saveWorlds = new {Worlds = worldvalueInfo};
-            //May need this later?? need to see how things pan out
+            //(((May need vthisv later?? need to see how things pan out))))
             //need to recaculate correct values if ghost items and automath are toggled
             //if (worldData.containsGhost && GhostMathOption.IsChecked) 
             //{
@@ -143,6 +142,21 @@ namespace KhTracker
             {
                 legacyReportInfo = data.reportInformation;
             }
+
+            #region Autotracking Extra
+            var counterInfo = new int[8]{1,1,1,1,1,1,0,0};
+            if (aTimer != null)
+            {
+                counterInfo[0] = valor.Level;
+                counterInfo[1] = wisdom.Level;
+                counterInfo[2] = limit.Level;
+                counterInfo[3] = master.Level;
+                counterInfo[4] = final.Level;
+                counterInfo[5] = stats.Level;
+                counterInfo[6] = DeathCounter;
+                counterInfo[7] = data.usedPages;
+            }
+            #endregion
 
             FileStream file = File.Create(filename);
             StreamWriter writer = new StreamWriter(file);
@@ -158,6 +172,8 @@ namespace KhTracker
                 SeedHints = data.openKHHintText,
                 BossHints = data.openKHBossText,
                 RandomSeed = data.convertedSeedHash,
+                Counters = counterInfo,
+                Events = data.eventLog,
                 LegacyJsmartee = data.legacyJsmartee,
                 LegacyJHints = data.hintFileText,
                 LegacyJReports = legacyReportInfo,
@@ -191,15 +207,15 @@ namespace KhTracker
 
         private void Load(string filename)
         {
-            // reset tracker
-            //OnReset(null, null);
+            //reset tracker
+            OnReset(null, null);
 
             //open file
-            Stream savefile = File.Open(filename, FileMode.Open);
-            StreamReader reader = new StreamReader(savefile);
+            StreamReader reader = new StreamReader(File.Open(filename, FileMode.Open));
+            var save64 = reader.ReadToEnd();
+            reader.Close();
 
             //start reading save
-            var save64 = reader.ReadToEnd();
             var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
             var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
 
@@ -219,16 +235,53 @@ namespace KhTracker
             }
 
             //check legacy hint styles
+            if (saveObject.ContainsKey("LegacyJsmartee"))
+            {
+                if ((bool)saveObject["LegacyJsmartee"] == true)
+                {
+                    LoadLegacy(saveObject, "Jsmartee");
+                    return;
+                }
+            }
+            else if (saveObject.ContainsKey("LegacyShan"))
+            {
+                if ((bool)saveObject["LegacyShan"] == true)
+                {
+                    LoadLegacy(saveObject, "Shan");
+                    return;
+                }
+            }
 
+            //check if openkh seed was ever loaded
 
 
             //check if enemy rando data exists
-            if (saveObject.ContainsKey("Version"))
+            if (saveObject.ContainsKey("BossHints"))
             {
 
             }
 
-            reader.Close();
+            //check hash
+
+            //check hintsdata
+
+            //track obtained items
+
+            //track events/progression
+
+            //fix counters/report attempts
+        }
+
+        private void LoadLegacy(Dictionary<string, object> Savefile, string LegacyType)
+        {
+            if (LegacyType == "Jsmartee")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private void LoadOld(string filename)
