@@ -1351,7 +1351,12 @@ namespace KhTracker
             //creations specific changes
             if (!data.puzzlesOn && data.synthOn)
             {
-                data.WorldsData["PuzzSynth"].value.Text = "";
+                //data.WorldsData["PuzzSynth"].value.Text = "";
+                //let's just make the value invisible
+                if (data.WorldsData["PuzzSynth"].value.Visibility == Visibility.Visible)
+                {
+                    data.WorldsData["PuzzSynth"].value.Visibility = Visibility.Hidden;
+                }
             }
         }
 
