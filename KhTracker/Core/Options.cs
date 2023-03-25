@@ -163,9 +163,8 @@ namespace KhTracker
 
             var saveFinal = JsonSerializer.Serialize(saveInfo);
             string saveFinal64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(saveFinal));
-            //string saveScrambled = ScrambleText(saveFinal64, true);
-            //writer.WriteLine(saveScrambled);
-            writer.WriteLine(saveFinal);
+            string saveScrambled = ScrambleText(saveFinal64, true);
+            writer.WriteLine(saveScrambled);
             writer.Close();
         }
 
@@ -192,11 +191,9 @@ namespace KhTracker
             reader.Close();
 
             //start reading save
-            //var save64 = ScrambleText(savescrambled, false);
-            //var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
-            //var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
-
-            var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(savescrambled);
+            var save64 = ScrambleText(savescrambled, false);
+            var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
+            var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
 
             //check save version
             if (saveObject.ContainsKey("Version"))
@@ -1024,232 +1021,6 @@ namespace KhTracker
                     InitAutoTracker(ps2tracking);
                 }
             }
-        }
-
-        private void LoadOld(string filename)
-        {
-            // reset tracker
-            OnReset(null, null);
-
-            Stream file = File.Open(filename, FileMode.Open);
-            StreamReader reader = new StreamReader(file);
-
-            // set settings
-            string mode = reader.ReadLine().Substring(6);
-            LoadSettings(reader.ReadLine().Substring(10)); //load setting first, then mode
-            if (mode == "Hints")
-                SetMode(Mode.JsmarteeHints);
-            else if (mode == "ShanHints")
-                SetMode(Mode.ShanHints);
-            else if (mode == "OpenKHHints")
-                SetMode(Mode.OpenKHJsmarteeHints);
-            else if (mode == "OpenKHShanHints")
-                SetMode(Mode.OpenKHShanHints);
-            else if (mode == "PointsHints")
-                SetMode(Mode.PointsHints);
-            else if (mode == "PathHints")
-                SetMode(Mode.PathHints);
-            else if (mode == "SpoilerHints")
-                SetMode(Mode.SpoilerHints);
-
-            if (data.BossRandoFound)
-            {
-                string tempList = reader.ReadLine();
-                var bossText = Encoding.UTF8.GetString(Convert.FromBase64String(tempList));
-                data.BossList = JsonSerializer.Deserialize<Dictionary<string, string>>(bossText);
-            }
-
-            // set hint state
-            if (data.mode != Mode.None && data.mode != Mode.ShanHints)
-            {
-                //report info
-                if (data.mode != Mode.OpenKHShanHints)
-                {
-                    string attempts = reader.ReadLine();
-                    if (attempts.Length > 13)
-                    {
-                        attempts = attempts.Substring(13);
-                        string[] attemptsArray = attempts.Split('-');
-                        for (int i = 0; i < attemptsArray.Length; ++i)
-                        {
-                            data.reportAttempts[i] = int.Parse(attemptsArray[i]);
-                        }
-                    }
-                }
-
-                //openkh .hints data
-                if (data.mode != Mode.JsmarteeHints)
-                {
-                    data.openKHHintText = reader.ReadLine();
-                    var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
-                    var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
-
-                    switch (data.mode)
-                    {
-                        case Mode.OpenKHJsmarteeHints:
-                            JsmarteeHints(hintObject);
-                            break;
-                        case Mode.OpenKHShanHints:
-                            ShanHints(hintObject);
-                            break;
-                        case Mode.PathHints:
-                            PathHints(hintObject);
-                            break;
-                        case Mode.SpoilerHints:
-                            SpoilerHints(hintObject);
-                            break;
-                        case Mode.PointsHints:
-                            PointsHints(hintObject);
-
-                            var witemlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
-                            var witemlist = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(witemlist64);
-                            Data.WorldItems = witemlist;
-
-                            var reportlist64 = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
-                            var reportlist = JsonSerializer.Deserialize<List<string>>(reportlist64);
-                            data.TrackedReports = reportlist;
-                            break;
-                    }
-                }
-                //pnach jmartee hints
-                else
-                {
-                    data.hintFileText[0] = reader.ReadLine();
-                    string[] reportvalues = data.hintFileText[0].Split('.');
-
-                    data.hintFileText[1] = reader.ReadLine();
-                    string line2 = data.hintFileText[1].TrimEnd('.');
-                    string[] reportorder = line2.Split('.');
-
-                    for (int i = 0; i < reportorder.Length; ++i)
-                    {
-                        data.reportLocations.Add(data.codes.FindCode(reportorder[i]));
-                        string[] temp = reportvalues[i].Split(',');
-                        data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
-                    }
-                    data.hintsLoaded = true;
-                }
-            }
-            //shan hints (pnach)
-            else if (data.mode == Mode.ShanHints)
-            {
-                var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadLine()));
-                var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintText);
-        
-                foreach (var world in worlds)
-                {
-                    if (world.Key == "GoA")
-                    {
-                        continue;
-                    }
-                    foreach (var item in world.Value)
-                    {
-                        data.WorldsData[world.Key].checkCount.Add(item);
-                    }
-                }
-                foreach (var key in data.WorldsData.Keys.ToList())
-                {
-                    if (key == "GoA")
-                        continue;
-        
-                    data.WorldsData[key].worldGrid.WorldComplete();
-                    SetWorldValue(data.WorldsData[key].value, 0);
-                }
-            }
-
-            // set hint values (DUMB)
-            if (data.hintsLoaded)
-            {
-                string[] hintValues = reader.ReadLine().Substring(12).Split(' ');
-                SetWorldValue(data.WorldsData["SorasHeart"].value, int.Parse(hintValues[0]));
-                SetWorldValue(data.WorldsData["DriveForms"].value, int.Parse(hintValues[1]));
-                SetWorldValue(data.WorldsData["SimulatedTwilightTown"].value, int.Parse(hintValues[2]));
-                SetWorldValue(data.WorldsData["TwilightTown"].value, int.Parse(hintValues[3]));
-                SetWorldValue(data.WorldsData["HollowBastion"].value, int.Parse(hintValues[4]));
-                SetWorldValue(data.WorldsData["BeastsCastle"].value, int.Parse(hintValues[5]));
-                SetWorldValue(data.WorldsData["OlympusColiseum"].value, int.Parse(hintValues[6]));
-                SetWorldValue(data.WorldsData["Agrabah"].value, int.Parse(hintValues[7]));
-                SetWorldValue(data.WorldsData["LandofDragons"].value, int.Parse(hintValues[8]));
-                SetWorldValue(data.WorldsData["HundredAcreWood"].value, int.Parse(hintValues[9]));
-                SetWorldValue(data.WorldsData["PrideLands"].value, int.Parse(hintValues[10]));
-                SetWorldValue(data.WorldsData["DisneyCastle"].value, int.Parse(hintValues[11]));
-                SetWorldValue(data.WorldsData["HalloweenTown"].value, int.Parse(hintValues[12]));
-                SetWorldValue(data.WorldsData["PortRoyal"].value, int.Parse(hintValues[13]));
-                SetWorldValue(data.WorldsData["SpaceParanoids"].value, int.Parse(hintValues[14]));
-                SetWorldValue(data.WorldsData["TWTNW"].value, int.Parse(hintValues[15]));
-                SetWorldValue(data.WorldsData["Atlantica"].value, int.Parse(hintValues[16]));
-                SetWorldValue(data.WorldsData["PuzzSynth"].value, int.Parse(hintValues[17]));
-            }
-            else if (mode == "SpoilerHints") //we need to do this for spoiler hints because of the optional report mode
-                reader.ReadLine();
-        
-            string[] progress = reader.ReadLine().Substring(10).Split(' ');
-            data.WorldsData["SimulatedTwilightTown"].progress = int.Parse(progress[0]);
-            data.WorldsData["TwilightTown"].progress = int.Parse(progress[1]);
-            data.WorldsData["HollowBastion"].progress = int.Parse(progress[2]);
-            data.WorldsData["BeastsCastle"].progress = int.Parse(progress[3]);
-            data.WorldsData["OlympusColiseum"].progress = int.Parse(progress[4]);
-            data.WorldsData["Agrabah"].progress = int.Parse(progress[5]);
-            data.WorldsData["LandofDragons"].progress = int.Parse(progress[6]);
-            data.WorldsData["HundredAcreWood"].progress = int.Parse(progress[7]);
-            data.WorldsData["PrideLands"].progress = int.Parse(progress[8]);
-            data.WorldsData["DisneyCastle"].progress = int.Parse(progress[9]);
-            data.WorldsData["HalloweenTown"].progress = int.Parse(progress[10]);
-            data.WorldsData["PortRoyal"].progress = int.Parse(progress[11]);
-            data.WorldsData["SpaceParanoids"].progress = int.Parse(progress[12]);
-            data.WorldsData["TWTNW"].progress = int.Parse(progress[13]);
-            data.WorldsData["Atlantica"].progress = int.Parse(progress[14]);
-            data.WorldsData["GoA"].progress = int.Parse(progress[15]);
-
-            SetProgressIcons();
-
-            // add items to worlds
-            for (int i = 0; i < data.WorldsData.Count; ++i)
-            {
-                string world = reader.ReadLine();
-                string worldName = world.Substring(0, world.IndexOf(':'));
-                string items = world.Substring(world.IndexOf(':') + 1).Trim();
-
-                if (items != string.Empty)
-                {
-                    foreach (string item in items.Split(' '))
-                    {
-                        WorldGrid grid = FindName(worldName + "Grid") as WorldGrid;
-                        Item importantCheck = FindName(item) as Item;
-
-                        if (grid.ReportHandler(importantCheck))
-                        {
-                            switch (data.mode)
-                            {
-                                case Mode.PointsHints:
-                                    if (item.StartsWith("Ghost_"))
-                                        grid.Add_Ghost(importantCheck);
-                                    else
-                                        grid.Add_Item(importantCheck);
-                                    break;
-                                case Mode.SpoilerHints:
-                                    if (!item.StartsWith("Ghost_"))
-                                        grid.Add_Item(importantCheck);
-                                    break;
-                                case Mode.PathHints:
-                                default:
-                                    grid.Add_Item(importantCheck);
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            //set extra data stuff
-            string UsedPages = reader.ReadLine();
-            string Deaths = reader.ReadLine();
-            data.usedPages = int.Parse(UsedPages);
-            DeathCounter = int.Parse(Deaths);
-
-            LoadSettingBar(reader.ReadLine().Substring(13));
-
-            reader.Close();
         }
 
         private void SetProgressIcons()
