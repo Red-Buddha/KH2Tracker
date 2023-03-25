@@ -18,6 +18,7 @@ using System.Xml.Linq;
 using System.Text.Json.Serialization;
 using System.Security.Policy;
 using System.Linq.Expressions;
+using System.Windows.Markup;
 
 //using System.Text.Json.Serialization;
 //using YamlDotNet.Serialization;
@@ -109,8 +110,8 @@ namespace KhTracker
                 }
                 var testingthing = new
                 {
-                    Value = worldData.value.Text,
-                    Progression = worldData.progress,
+                    Value = worldData.value.Text, //do i need this?
+                    Progression = worldData.progress, //or this?
                     Items = worldItems
                     //Hinted = worldData.hinted,
                     //HintedHint = worldData.hintedHint,
@@ -167,7 +168,9 @@ namespace KhTracker
 
             var saveFinal = JsonSerializer.Serialize(saveInfo);
             string saveFinal64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(saveFinal));
-            writer.WriteLine(saveFinal64);
+            //string saveScrambled = ScrambleText(saveFinal64, true);
+            //writer.WriteLine(saveScrambled);
+            writer.WriteLine(saveFinal);
             writer.Close();
         }
 
@@ -190,12 +193,15 @@ namespace KhTracker
         {
             //open file
             StreamReader reader = new StreamReader(File.Open(filename, FileMode.Open));
-            var save64 = reader.ReadToEnd();
+            var savescrambled = reader.ReadLine();
             reader.Close();
 
             //start reading save
-            var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
-            var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
+            //var save64 = ScrambleText(savescrambled, false);
+            //var saveData = Encoding.UTF8.GetString(Convert.FromBase64String(save64));
+            //var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(saveData);
+
+            var saveObject = JsonSerializer.Deserialize<Dictionary<string, object>>(savescrambled);
 
             //check save version
             if (saveObject.ContainsKey("Version"))
@@ -215,16 +221,15 @@ namespace KhTracker
             //check legacy hint styles
             if (saveObject.ContainsKey("LegacyJsmartee"))
             {
-                if ((bool)saveObject["LegacyJsmartee"] == true)
+                if (saveObject["LegacyJsmartee"].ToString().ToLower() == "true")
                 {
                     LoadLegacy(saveObject, "Jsmartee");
                     return;
                 }
             }
-
             if (saveObject.ContainsKey("LegacyShan"))
             {
-                if ((bool)saveObject["LegacyShan"] == true)
+                if (saveObject["LegacyShan"].ToString().ToLower() == "true")
                 {
                     LoadLegacy(saveObject, "Shan");
                     return;
@@ -234,7 +239,7 @@ namespace KhTracker
             //check if openkh seed was ever loaded
             if (saveObject.ContainsKey("SeedHints"))
             {
-                if ((string)saveObject["SeedHints"] != "None")
+                if (saveObject["SeedHints"].ToString() != "None")
                 {
                     LoadOpenKH(saveObject);
                     return;
@@ -257,10 +262,10 @@ namespace KhTracker
             //check if enemy rando data exists
             if (Savefile.ContainsKey("BossHints"))
             {
-                if ((string)Savefile["BossHints"] != "None")
+                if (Savefile["BossHints"].ToString() != "None")
                 {
                     data.BossRandoFound = true;
-                    data.openKHBossText = (string)Savefile["BossHints"];
+                    data.openKHBossText = Savefile["BossHints"].ToString();
 
                     var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHBossText));
                     try
@@ -292,16 +297,17 @@ namespace KhTracker
                 {
                     try
                     {
-                        data.seedHashVisual = (string[])Savefile["SeedHash"];
+                        var hash = JsonSerializer.Deserialize<string[]>(Savefile["SeedHash"].ToString());
+                        data.seedHashVisual = hash;
 
                         //Set Icons
-                        HashIcon1.SetResourceReference(ContentProperty, data.seedHashVisual[0]);
-                        HashIcon2.SetResourceReference(ContentProperty, data.seedHashVisual[1]);
-                        HashIcon3.SetResourceReference(ContentProperty, data.seedHashVisual[2]);
-                        HashIcon4.SetResourceReference(ContentProperty, data.seedHashVisual[3]);
-                        HashIcon5.SetResourceReference(ContentProperty, data.seedHashVisual[4]);
-                        HashIcon6.SetResourceReference(ContentProperty, data.seedHashVisual[5]);
-                        HashIcon7.SetResourceReference(ContentProperty, data.seedHashVisual[6]);
+                        HashIcon1.SetResourceReference(ContentProperty, hash[0]);
+                        HashIcon2.SetResourceReference(ContentProperty, hash[1]);
+                        HashIcon3.SetResourceReference(ContentProperty, hash[2]);
+                        HashIcon4.SetResourceReference(ContentProperty, hash[3]);
+                        HashIcon5.SetResourceReference(ContentProperty, hash[4]);
+                        HashIcon6.SetResourceReference(ContentProperty, hash[5]);
+                        HashIcon7.SetResourceReference(ContentProperty, hash[6]);
                         data.SeedHashLoaded = true;
 
                         //make visible
@@ -326,13 +332,14 @@ namespace KhTracker
             {
                 if (Savefile["RandomSeed"] != null)
                 {
-                    data.convertedSeedHash = (int)Savefile["RandomSeed"];
+                    var seednumber = JsonSerializer.Deserialize<int>(Savefile["RandomSeed"].ToString());
+                    data.convertedSeedHash = seednumber;
                 }
             }
 
             //check hintsdata (no need to check key, we wouldn't be here if it didn't exist)
             {
-                data.openKHHintText = (string)Savefile["SeedHints"];
+                data.openKHHintText = Savefile["SeedHints"].ToString();
                 var hintText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHHintText));
                 var hintObject = JsonSerializer.Deserialize<Dictionary<string, object>>(hintText);
                 var settings = new List<string>();
@@ -809,25 +816,92 @@ namespace KhTracker
             //why? i dunno might be important incase the way i gen boss hints changes or somethin
             if (Savefile.ContainsKey("Reports"))
             {
-                data.reportInformation = (List<Tuple<string, string, int>>)Savefile["Reports"];
+                var reportInfo = JsonSerializer.Deserialize<List<Tuple<string, string, int>>>(Savefile["Reports"].ToString());
+                data.reportInformation = reportInfo;
             }
 
             //forced final check (unsure if this will actually help with it not mistracking)
             if (Savefile.ContainsKey("ForcedFinal"))
             {
-                data.forcedFinal = (bool)Savefile["ForcedFinal"];
+                string forced = Savefile["ForcedFinal"].ToString().ToLower();
+                if (forced == "true")
+                    data.forcedFinal = true;
+                else
+                    data.forcedFinal = false;
             }
 
             //track obtained items
             if (Savefile.ContainsKey("Worlds"))
             {
-
+                var worlds = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(Savefile["Worlds"].ToString());
+                foreach (var world in worlds)
+                {
+                    var itemlist = JsonSerializer.Deserialize<List<string>>(world.Value["Items"].ToString());
+                    foreach (string item in itemlist)
+                    {
+                        WorldGrid grid = FindName(world.Key + "Grid") as WorldGrid;
+                        Item importantCheck = FindName(item) as Item;
+                        if (grid.ReportHandler(importantCheck))
+                        {
+                            //add items, skip ghosts. ghosts are always added by reports anyway
+                            if (!item.StartsWith("Ghost_"))
+                                grid.Add_Item(importantCheck);
+                        }
+                    }
+                }
             }
 
-
             //track events/progression
+            if (Savefile.ContainsKey("Events"))
+            {
+                var eventlist = JsonSerializer.Deserialize<List<Tuple<string, int, int, int, int, int>>>(Savefile["Events"].ToString());
+                for (int i = 0; i < eventlist.Count; ++i)
+                {
+                    FakeEvents(eventlist[i]);
+                }
+            }
 
             //fix counters/report attempts
+            if (Savefile.ContainsKey("Counters"))
+            {
+                var counters = JsonSerializer.Deserialize<int[]>(Savefile["Counters"].ToString());
+
+                //NOTE: this doesn't work cause autotracking never started.
+                //need to store the highest levels for levels in data then make progression read that?
+                //hmmm...
+
+                //add levels one at a time to make sure progression triggers correctly.
+                //valor.Level = 1;
+                //wisdom.Level = 1;
+                //limit.Level = 1;
+                //master.Level = 1;
+                //final.Level = 1;
+                //stats.Level = 1;
+                DeathCounter = 0;
+                data.usedPages = 0;
+                for (int i = 0; i < counters.Length; ++i)
+                {
+                    for (int n = 0; n < counters[i]; ++n)
+                    {
+                        //if (i == 0)
+                        //    valor.Level++;
+                        //if (i == 1)
+                        //    wisdom.Level++;
+                        //if (i == 2)
+                        //    limit.Level++;
+                        //if (i == 3)
+                        //    master.Level++;
+                        //if (i == 4)
+                        //    final.Level++;
+                        //if (i == 5)
+                        //    stats.Level++;
+                        if (i == 6)
+                            DeathCounter++;
+                        if (i == 7)
+                            data.usedPages++;
+                    }
+                }
+            }
         }
 
         private void LoadLegacy(Dictionary<string, object> Savefile, string LegacyType)
@@ -2660,7 +2734,820 @@ namespace KhTracker
                 archive.Dispose();
             }
         }
-    
+   
+        private string ScrambleText(string input, bool scramble)
+        {
+            //scrambles/unscrambles input text based on a seed
+            //why have this? i dunno i suppose to make saves more "secure"
+            //figure if people really want to cheat they would have to look at this code
+            Random r = new Random(16964);
+            if(scramble)
+            {
+                char[] chars = input.ToArray();
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    int randomIndex = r.Next(0, chars.Length);
+                    char temp = chars[randomIndex];
+                    chars[randomIndex] = chars[i];
+                    chars[i] = temp;
+                }
+                return new string(chars);
+            }
+            else
+            {
+                char[] scramChars = input.ToArray();
+                List<int> swaps = new List<int>();
+                for (int i = 0; i < scramChars.Length; i++)
+                {
+                    swaps.Add(r.Next(0, scramChars.Length));
+                }
+                for (int i = scramChars.Length - 1; i >= 0; i--)
+                {
+                    char temp = scramChars[swaps[i]];
+                    scramChars[swaps[i]] = scramChars[i];
+                    scramChars[i] = temp;
+                }
+                return new string(scramChars);
+            }
+        }
+
+        private void FakeEvents(Tuple<string, int, int, int, int, int> evententry)
+        {
+
+            //check event
+            //var eventTuple = new Tuple<string, int, int, int, int, int>(world.worldName, world.roomNumber, world.eventID1, world.eventID2, world.eventID3, 0);
+            if (data.eventLog.Contains(evententry))
+                return;
+
+            //check for valid progression Content Controls first
+            ContentControl progressionM = data.WorldsData[evententry.Item1].progression;
+
+            //Get current icon prefixes (simple, game, or custom icons)
+            bool OldToggled = Properties.Settings.Default.OldProg;
+            bool CustomToggled = Properties.Settings.Default.CustomIcons;
+            string Prog = "Min-"; //Default
+            if (OldToggled)
+                Prog = "Old-";
+            if (CustomProgFound && CustomToggled)
+                Prog = "Cus-";
+
+            //progression defaults
+            int curProg = data.WorldsData[evententry.Item1].progress; //current world progress int
+            int newProg = 99;
+            bool updateProgression = true;
+            bool updateProgressionPoints = true;
+
+            //get current world's new progress key
+            switch (evententry.Item1)
+            {
+                case "SimulatedTwilightTown":
+                    switch (evententry.Item2) //check based on room number now, then based on events in each room
+                    {
+                        case 1:
+                            if ((evententry.Item5 == 56 || evententry.Item5 == 55) && curProg == 0) // Roxas' Room (Day 1)/(Day 6)
+                                newProg = 1;
+                            break;
+                        case 8:
+                            if (evententry.Item3 == 110 || evententry.Item3 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
+                                newProg = 2;
+                            break;
+                        case 34:
+                            if (evententry.Item3 == 157) // Twilight Thorn finish
+                                newProg = 3;
+                            break;
+                        case 5:
+                            if (evententry.Item3 == 87) // Axel 1 Finish
+                                newProg = 4;
+                            if (evententry.Item3 == 88) // Setzer finish
+                                newProg = 5;
+                            break;
+                        case 21:
+                            if (evententry.Item5 == 1) // Mansion: Computer Room
+                                newProg = 6;
+                            break;
+                        case 20:
+                            if (evententry.Item3 == 137) // Axel 2 finish
+                                newProg = 7;
+                            break;
+                        default: //if not in any of the above rooms then just leave
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "TwilightTown":
+                    switch (evententry.Item2)
+                    {
+                        case 9:
+                            if (evententry.Item5 == 117 && curProg == 0) // Roxas' Room (Day 1)
+                                newProg = 1;
+                            break;
+                        case 8:
+                            if (evententry.Item5 == 108) // Station Nobodies
+                                newProg = 2;
+                            break;
+                        case 27:
+                            if (evententry.Item5 == 4) // Yen Sid after new clothes
+                                newProg = 3;
+                            break;
+                        case 4:
+                            if (evententry.Item3 == 80) // Sandlot finish
+                                newProg = 4;
+                            break;
+                        case 41:
+                            if (evententry.Item3 == 186) // Mansion fight finish
+                                newProg = 5;
+                            break;
+                        case 40:
+                            if (evententry.Item3 == 161) // Betwixt and Between finish
+                                newProg = 6;
+                            break;
+                        case 20:
+                            if (evententry.Item3 == 213) // Data Axel finish
+                                newProg = 7;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "HollowBastion":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                        case 10:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 2) && curProg == 0) // Villain's Vale (HB1)
+                                newProg = 1;
+                            break;
+                        case 8:
+                            if (evententry.Item3 == 52) // Bailey finish
+                                newProg = 2;
+                            break;
+                        case 5:
+                            if (evententry.Item5 == 20) // Ansem Study post Computer
+                                newProg = 3;
+                            break;
+                        case 20:
+                            if (evententry.Item3 == 86) // Corridor finish
+                                newProg = 4;
+                            break;
+                        case 18:
+                            if (evententry.Item3 == 73) // Dancers finish
+                                newProg = 5;
+                            break;
+                        case 4:
+                            if (evententry.Item3 == 55) // HB Demyx finish
+                                newProg = 6;
+                            else if (evententry.Item3 == 114) // Data Demyx finish
+                            {
+                                if (curProg == 9) //sephi finished
+                                    newProg = 11; //data demyx + sephi finished
+                                else if (curProg != 11) //just demyx
+                                    newProg = 10;
+                                if (data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(evententry.Item1, 10);
+                                    updateProgressionPoints = false;
+                                }
+                            }
+                            break;
+                        case 16:
+                            if (evententry.Item3 == 65) // FF Cloud finish
+                                newProg = 7;
+                            break;
+                        case 17:
+                            if (evententry.Item3 == 66) // 1k Heartless finish
+                                newProg = 8;
+                            break;
+                        case 1:
+                            if (evententry.Item3 == 75) // Sephiroth finish
+                            {
+                                if (curProg == 10) //demyx finish
+                                    newProg = 11; //data demyx + sephi finished
+                                else if (curProg != 11) //just sephi
+                                    newProg = 9;
+                                if (data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(evententry.Item1, 9);
+                                    updateProgressionPoints = false;
+                                }
+                            }
+                            break;
+                        //CoR
+                        case 21:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
+                            {
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][1]);
+                                data.WorldsData["GoA"].progress = 1;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 1);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 22:
+                            if (evententry.Item5 == 1 && data.WorldsData["GoA"].progress <= 1) //valves after skip
+                            {
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][5]);
+                                data.WorldsData["GoA"].progress = 5;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 3);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 24:
+                            if (evententry.Item5 == 1) //first fight
+                            {
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][2]);
+                                data.WorldsData["GoA"].progress = 2;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 2);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            if (evententry.Item5 == 2) //second fight
+                            {
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][3]);
+                                data.WorldsData["GoA"].progress = 3;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 4);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 25:
+                            if (evententry.Item5 == 3) //transport
+                            {
+                                GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][4]);
+                                data.WorldsData["GoA"].progress = 4;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("CavernofRemembrance", 5);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "BeastsCastle":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                        case 2:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Entrance Hall (BC1)
+                                newProg = 1;
+                            break;
+                        case 11:
+                            if (evententry.Item3 == 72) // Thresholder finish
+                                newProg = 2;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 69) // Beast finish
+                                newProg = 3;
+                            break;
+                        case 5:
+                            if (evententry.Item3 == 79) // Dark Thorn finish
+                                newProg = 4;
+                            break;
+                        case 4:
+                            if (evententry.Item3 == 74) // Dragoons finish
+                                newProg = 5;
+                            break;
+                        case 15:
+                            if (evententry.Item3 == 82) // Xaldin finish
+                                newProg = 6;
+                            else if (evententry.Item3 == 97) // Data Xaldin finish
+                                newProg = 7;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "OlympusColiseum":
+                    switch (evententry.Item2)
+                    {
+                        case 3:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 12) && curProg == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
+                                newProg = 1;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 114) // Cerberus finish
+                                newProg = 2;
+                            break;
+                        case 0:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 12) && curProg == 0) // (reverse rando)
+                                newProg = 1;
+                            if (evententry.Item3 == 141) // Urns finish
+                                newProg = 3;
+                            break;
+                        case 17:
+                            if (evententry.Item3 == 123) // OC Demyx finish
+                                newProg = 4;
+                            break;
+                        case 8:
+                            if (evententry.Item3 == 116) // OC Pete finish
+                                newProg = 5;
+                            break;
+                        case 18:
+                            if (evententry.Item3 == 171) // Hydra finish
+                                newProg = 6;
+                            break;
+                        case 6:
+                            if (evententry.Item3 == 126) // Auron Statue fight finish
+                                newProg = 7;
+                            break;
+                        case 19:
+                            if (evententry.Item2 == 19 && evententry.Item3 == 202) // Hades finish
+                                newProg = 8;
+                            break;
+                        case 34:
+                            if ((evententry.Item3 == 151)) // AS Zexion finish
+                                newProg = 9;
+                            else if ((evententry.Item3 == 152)) // Data Zexion finish
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(evententry.Item1, 10);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "Agrabah":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                        case 4:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Agrabah (Ag1) || The Vault (Ag2)
+                                newProg = 1;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 2) // Abu finish
+                                newProg = 2;
+                            break;
+                        case 13:
+                            if (evententry.Item3 == 79) // Chasm fight finish
+                                newProg = 3;
+                            break;
+                        case 10:
+                            if (evententry.Item3 == 58) // Treasure Room finish
+                                newProg = 4;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 59) // Lords finish
+                                newProg = 5;
+                            break;
+                        case 14:
+                            if (evententry.Item3 == 100) // Carpet finish
+                                newProg = 6;
+                            break;
+                        case 5:
+                            if (evententry.Item3 == 62) // Genie Jafar finish
+                                newProg = 7;
+                            break;
+                        case 33:
+                            if ((evententry.Item3 == 142)) // AS Lexaeus finish
+                                newProg = 8;
+                            else if ((evententry.Item3 == 147)) // Data Lexaeus
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(evententry.Item1, 9);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "LandofDragons":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                        case 12:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Bamboo Grove (LoD1)
+                                newProg = 1;
+                            break;
+                        case 1:
+                            if (evententry.Item3 == 70) // Mission 3 (Search) finish
+                                newProg = 2;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 71) // Mountain Climb finish
+                                newProg = 3;
+                            break;
+                        case 5:
+                            if (evententry.Item3 == 72) // Cave finish
+                                newProg = 4;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 73) // Summit finish
+                                newProg = 5;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 75) // Shan Yu finish
+                                newProg = 6;
+                            break;
+                        case 10:
+                            if (evententry.Item3 == 78) // Antechamber fight finish
+                                newProg = 7;
+                            break;
+                        case 8:
+                            if (evententry.Item3 == 79) // Storm Rider finish
+                                newProg = 8;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "HundredAcreWood":
+                    switch (evententry.Item2)
+                    {
+                        case 2:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 21 || evententry.Item5 == 22) && curProg == 0) // Pooh's house
+                                newProg = 1;
+                            break;
+                        case 6:
+                            if (evententry.Item3 == 55) //A Blustery Rescue Complete
+                                newProg = 2;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 57) //Hunny Slider Complete
+                                newProg = 3;
+                            break;
+                        case 8:
+                            if (evententry.Item3 == 59) //Balloon Bounce Complete
+                                newProg = 4;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 61) //The Expotition Complete
+                                newProg = 5;
+                            break;
+                        case 1:
+                            if (evententry.Item3 == 52) //The Hunny Pot Complete
+                                newProg = 6;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "PrideLands":
+                    switch (evententry.Item2)
+                    {
+                        case 4:
+                        case 16:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Wildebeest Valley (PL1)
+                                newProg = 1;
+                            break;
+                        case 12:
+                            if (evententry.Item5 == 1) // Oasis after talking to Simba
+                                newProg = 2;
+                            break;
+                        case 2:
+                            if (evententry.Item3 == 51) // Hyenas 1 Finish
+                                newProg = 3;
+                            break;
+                        case 14:
+                            if (evententry.Item3 == 55) // Scar finish
+                                newProg = 4;
+                            break;
+                        case 5:
+                            if (evententry.Item3 == 57) // Hyenas 2 Finish
+                                newProg = 5;
+                            break;
+                        case 15:
+                            if (evententry.Item3 == 59) // Groundshaker finish
+                                newProg = 6;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "Atlantica":
+                    switch (evententry.Item2)
+                    {
+                        case 2:
+                            if (evententry.Item3 == 63) // Tutorial
+                                newProg = 1;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 65) // Ursula's Revenge
+                                newProg = 2;
+                            break;
+                        case 4:
+                            if (evententry.Item3 == 55) // A New Day is Dawning
+                                newProg = 3;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "DisneyCastle":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                            if (evententry.Item5 == 22 && curProg == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
+                                newProg = 0;
+                            else if (evententry.Item3 == 51) // Minnie Escort finish
+                                newProg = 2;
+                            else if (evententry.Item5 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
+                                newProg = 4;
+                            break;
+                        case 1:
+                            if (evententry.Item3 == 53 && curProg == 0) // Library (DC)
+                                newProg = 1;
+                            else if (evententry.Item3 == 58) // Old Pete finish
+                                newProg = 3;
+                            break;
+                        case 2:
+                            if (evententry.Item3 == 52) // Boat Pete finish
+                                newProg = 5;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 53) // DC Pete finish
+                                newProg = 6;
+                            break;
+                        case 38:
+                            if ((evententry.Item3 == 145 || evententry.Item3 == 150)) // Marluxia finish
+                            {
+                                if (curProg == 8)
+                                    newProg = 9; //marluxia + LW finished
+                                else if (curProg != 9)
+                                    newProg = 7;
+                                if (data.UsingProgressionHints)
+                                {
+                                    if (evententry.Item3 == 145)
+                                        UpdateProgressionPoints(evententry.Item1, 7); // AS
+                                    else
+                                        UpdateProgressionPoints(evententry.Item1, 8); // Data
+
+                                    updateProgressionPoints = false;
+                                }
+                            }
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 67) // Lingering Will finish
+                            {
+                                if (curProg == 7)
+                                    newProg = 9; //marluxia + LW finished
+                                else if (curProg != 9)
+                                    newProg = 8;
+                                if (data.UsingProgressionHints)
+                                {
+                                    UpdateProgressionPoints(evententry.Item1, 9);
+                                    updateProgressionPoints = false;
+                                }
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "HalloweenTown":
+                    switch (evententry.Item2)
+                    {
+                        case 1:
+                        case 4:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Hinterlands (HT1)
+                                newProg = 1;
+                            break;
+                        case 6:
+                            if (evententry.Item3 == 53) // Candy Cane Lane fight finish
+                                newProg = 2;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 52) // Prison Keeper finish
+                                newProg = 3;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 55) // Oogie Boogie finish
+                                newProg = 4;
+                            break;
+                        case 10:
+                            if (evententry.Item3 == 62) // Children Fight
+                                newProg = 5;
+                            if (evententry.Item3 == 63) // Presents minigame
+                                newProg = 6;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 64) // Experiment finish
+                                newProg = 7;
+                            break;
+                        case 32:
+                            if (evententry.Item3 == 115) // AS Vexen finish
+                                newProg = 8;
+                            else if (evententry.Item3 == 146) // Data Vexen finish
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(evententry.Item1, 9);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "PortRoyal":
+                    switch (evententry.Item2)
+                    {
+                        case 0:
+                            if (evententry.Item5 == 1 && curProg == 0) // Rampart (PR1)
+                                newProg = 1;
+                            break;
+                        case 10:
+                            if (evententry.Item5 == 10 && curProg == 0) // Treasure Heap (PR2)
+                                newProg = 1;
+                            if (evententry.Item3 == 60) // Barbossa finish
+                                newProg = 6;
+                            break;
+                        case 2:
+                            if (evententry.Item3 == 55) // Town finish
+                                newProg = 2;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 59) // 1min pirates finish
+                                newProg = 3;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 58) // Medalion fight finish
+                                newProg = 4;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 56) // barrels finish
+                                newProg = 5;
+                            break;
+                        case 18:
+                            if (evententry.Item3 == 85) // Grim Reaper 1 finish
+                                newProg = 7;
+                            break;
+                        case 14:
+                            if (evententry.Item3 == 62) // Gambler finish
+                                newProg = 8;
+                            break;
+                        case 1:
+                            if (evententry.Item3 == 54) // Grim Reaper 2 finish
+                                newProg = 9;
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "SpaceParanoids":
+                    switch (evententry.Item2)
+                    {
+                        case 1:
+                            if ((evententry.Item5 == 1 || evententry.Item5 == 10) && curProg == 0) // Canyon (SP1)
+                                newProg = 1;
+                            break;
+                        case 3:
+                            if (evententry.Item3 == 54) // Screens finish
+                                newProg = 2;
+                            break;
+                        case 4:
+                            if (evententry.Item3 == 55) // Hostile Program finish
+                                newProg = 3;
+                            break;
+                        case 7:
+                            if (evententry.Item3 == 57) // Solar Sailer finish
+                                newProg = 4;
+                            break;
+                        case 9:
+                            if (evententry.Item3 == 59) // MCP finish
+                                newProg = 5;
+                            break;
+                        case 33:
+                            if (evententry.Item3 == 143) // AS Larxene finish
+                                newProg = 6;
+                            else if (evententry.Item3 == 148) // Data Larxene finish
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints(evententry.Item1, 7);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                case "TWTNW":
+                    switch (evententry.Item2)
+                    {
+                        case 1:
+                            if (evententry.Item5 == 1) // Alley to Between
+                                newProg = 1;
+                            break;
+                        case 21:
+                            if (evententry.Item3 == 65) // Roxas finish
+                                newProg = 2;
+                            else if (evententry.Item3 == 99) // Data Roxas finish
+                            {
+                                SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["SimulatedTwilightTown"][8]);
+                                data.WorldsData["SimulatedTwilightTown"].progress = 8;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("SimulatedTwilightTown", 8);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 10:
+                            if (evententry.Item3 == 57) // Xigbar finish
+                                newProg = 3;
+                            else if (evententry.Item3 == 100) // Data Xigbar finish
+                            {
+                                LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["LandofDragons"][9]);
+                                data.WorldsData["LandofDragons"].progress = 9;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("LandofDragons", 9);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 14:
+                            if (evententry.Item3 == 58) // Luxord finish
+                                newProg = 4;
+                            else if (evententry.Item3 == 101) // Data Luxord finish
+                            {
+                                PortRoyalProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PortRoyal"][10]);
+                                data.WorldsData["PortRoyal"].progress = 10;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("PortRoyal", 10);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 15:
+                            if (evententry.Item3 == 56) // Saix finish
+                                newProg = 5;
+                            else if (evententry.Item3 == 102) // Data Saix finish
+                            {
+                                PrideLandsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PrideLands"][7]);
+                                data.WorldsData["PrideLands"].progress = 7;
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPoints("PrideLands", 7);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        case 19:
+                            if (evententry.Item3 == 59) // Xemnas 1 finish
+                                newProg = 6;
+                            break;
+                        case 20:
+                            if (evententry.Item3 == 98) // Data Xemnas finish
+                            {
+                                newProg = 7;
+                            }
+                            else if (evententry.Item3 == 74 && data.revealFinalXemnas) // Regular Final Xemnas finish
+                            {
+                                if (data.UsingProgressionHints)
+                                    UpdateProgressionPointsTWTNW(evententry.Item1);
+                                data.eventLog.Add(evententry);
+                                return;
+                            }
+                            break;
+                        default:
+                            updateProgression = false;
+                            break;
+                    }
+                    break;
+                default: //return if any other world
+                    return;
+            }
+
+            //progression wasn't updated
+            if (newProg == 99 || updateProgression == false)
+                return;
+
+            //progression points
+            if (updateProgressionPoints == true && data.UsingProgressionHints)
+                UpdateProgressionPoints(evententry.Item1, newProg);
+
+            //made it this far, now just set the progression icon based on newProg
+            progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[evententry.Item1][newProg]);
+            data.WorldsData[evententry.Item1].progress = newProg;
+            data.WorldsData[evententry.Item1].progression.ToolTip = data.ProgressKeys[evententry.Item1 + "Desc"][newProg];
+
+            //log event
+            data.eventLog.Add(evententry);
+        }
+
         //Turns the zip seed icon hash to a numerical based seed
         private void HashToSeed(string[] hash)
         {
