@@ -30,7 +30,7 @@ namespace KhTracker
         public bool SpoilerReportMode = false;
         public string openKHHintText = "None";
         public string openKHBossText = "None";
-        public string[] hintFileText = new string[2];
+        public string[] hintFileText = new string[3];
         public bool legacyJsmartee = false;
         public bool legacyShan = false;
         public string[] shanHintFileText = null;

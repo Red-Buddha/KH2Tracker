@@ -21,6 +21,7 @@ using System.Linq.Expressions;
 using System.Windows.Markup;
 using System.Reflection;
 using System.Diagnostics.PerformanceData;
+using MessageForm = System.Windows.Forms;
 
 //using System.Text.Json.Serialization;
 //using YamlDotNet.Serialization;
@@ -112,8 +113,8 @@ namespace KhTracker
                 }
                 var testingthing = new
                 {
-                    Value = worldData.value.Text, //do i need this?
-                    Progression = worldData.progress, //or this?
+                    //Value = worldData.value.Text, //do i need this?
+                    //Progression = worldData.progress, //or this?
                     Items = worldItems
                     //Hinted = worldData.hinted,
                     //HintedHint = worldData.hintedHint,
@@ -124,26 +125,18 @@ namespace KhTracker
                 worldvalueInfo.Add(worldKey, testingthing);
             };
             #endregion
-            //(((May need vthisv later?? need to see how things pan out))))
-            //need to recaculate correct values if ghost items and automath are toggled
-            //if (worldData.containsGhost && GhostMathOption.IsChecked) 
-            //{
-            //    num += GetGhostPoints(worldData.worldGrid);
-            //}
 
             #region Counters
             var counterInfo = new int[8]{1,1,1,1,1,1,0,0};
-            if (aTimer != null)
-            {
-                counterInfo[0] = valor.Level;
-                counterInfo[1] = wisdom.Level;
-                counterInfo[2] = limit.Level;
-                counterInfo[3] = master.Level;
-                counterInfo[4] = final.Level;
+            counterInfo[0] = data.DriveLevels[0];
+            counterInfo[1] = data.DriveLevels[1];
+            counterInfo[2] = data.DriveLevels[2];
+            counterInfo[3] = data.DriveLevels[3];
+            counterInfo[4] = data.DriveLevels[4];
+            if(stats != null)
                 counterInfo[5] = stats.Level;
-                counterInfo[6] = DeathCounter;
-                counterInfo[7] = data.usedPages;
-            }
+            counterInfo[6] = DeathCounter;
+            counterInfo[7] = data.usedPages;
             #endregion
 
             FileStream file = File.Create(filename);
@@ -211,8 +204,19 @@ namespace KhTracker
                 string saveVer = saveObject["Version"].ToString();
                 if (saveVer != Title)
                 {
-                    Console.WriteLine("Different save version!");
-                    //write popup here that contains if save should still try to be loaded
+                    //Console.WriteLine("Different save version!");
+                    string message = "This save was made with a different version of the tracker. " +
+                        "\n Loading this may cause unintended effects. " +
+                        "\n Do you still want to continue loading?";
+                    string caption = "Save Version Mismatch";
+                    MessageForm.MessageBoxButtons buttons = MessageForm.MessageBoxButtons.YesNo;
+                    MessageForm.DialogResult result;
+            
+                    result = MessageForm.MessageBox.Show(message, caption, buttons);
+                    if (result == MessageForm.DialogResult.No)
+                    {
+                        return;
+                    }
                 }
                 else
                 {
@@ -896,15 +900,129 @@ namespace KhTracker
         {
             if (LegacyType == "Jsmartee")
             {
+                OnReset(null, null);
+                SetMode(Mode.JsmarteeHints);
+
+                var hintStrings = JsonSerializer.Deserialize<string[]>(Savefile["LegacyJHints"].ToString());
+                string line1 = hintStrings[0];
+                data.hintFileText[0] = line1;
+                string[] reportvalues = line1.Split('.');
+
+                string line2 = hintStrings[1];
+                data.hintFileText[1] = line2;
+                line2 = line2.TrimEnd('.');
+                string[] reportorder = line2.Split('.');
+
+                string line3 = hintStrings[2];
+                data.hintFileText[2] = line3;
+                LoadSettings(line3);
+
+                for (int i = 0; i < reportorder.Length; ++i)
+                {
+                    string location = data.codes.FindCode(reportorder[i]);
+                    if (location == "")
+                        location = data.codes.GetDefault(i);
+
+                    data.reportLocations.Add(location);
+                    string[] temp = reportvalues[i].Split(',');
+                    data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+                }
 
                 //end of loading
+                data.hintsLoaded = true;
+                data.legacyJsmartee = true;
                 data.saveFileLoaded = true;
             }
             else
             {
+                bool autotrackeron = false;
+                bool ps2tracking = false;
+                //check for autotracking on and which version
+                if (aTimer != null)
+                    autotrackeron = true;
+
+                if (pcsx2tracking)
+                    ps2tracking = true;
+
+                //FixDictionary();
+                SetMode(Mode.ShanHints);
+
+                var hintStrings = JsonSerializer.Deserialize<string[]>(Savefile["LegacySHints"].ToString());
+
+                if (data.shanHintFileText != null)
+                {
+                    data.shanHintFileText = null;
+                }
+
+                foreach (string world in data.WorldsData.Keys.ToList())
+                {
+                    data.WorldsData[world].checkCount.Clear();
+                }
+
+                bool check1 = false;
+                bool check2 = false;
+                for (int i = 0; i < hintStrings.Length; ++i)
+                {
+                    string line = hintStrings[i];
+                    data.shanHintFileText[i] = line;
+
+                    // ignore comment lines
+                    if (line.Length >= 2 && line[0] == '/' && line[1] == '/')
+                        continue;
+
+                    string[] codes = line.Split(',');
+                    if (codes.Length == 5)
+                    {
+                        string world = data.codes.FindCode(codes[2]);
+
+                        //stupid fix
+                        string[] idCode = codes[4].Split('/', ' ');
+
+                        int id = Convert.ToInt32(idCode[0], 16);
+                        if (world == "" || world == "GoA" || data.codes.itemCodes.ContainsKey(id) == false || (id >= 226 && id <= 238))
+                            continue;
+
+                        string item = data.codes.itemCodes[Convert.ToInt32(codes[4], 16)];
+                        data.WorldsData[world].checkCount.Add(item);
+                    }
+                    else if (codes.Length == 1)
+                    {
+                        if (codes[0] == "//Remove High Jump LVl" || codes[0] == "//Remove Quick Run LVl")
+                        {
+                            check1 = true;
+                        }
+                        else if (codes[0] == "//Remove Dodge Roll LVl")
+                        {
+                            check2 = true;
+                        }
+                    }
+                }
+                data.legacyShan = true;
+
+                if (check1 == true && check2 == false)
+                {
+                    foreach (string world in data.WorldsData.Keys.ToList())
+                    {
+                        data.WorldsData[world].checkCount.Clear();
+                    }
+                }
+
+                foreach (var key in data.WorldsData.Keys.ToList())
+                {
+                    if (key == "GoA")
+                        continue;
+
+                    data.WorldsData[key].worldGrid.WorldComplete();
+                    SetWorldValue(data.WorldsData[key].value, 0);
+                }
 
                 //end of loading
                 data.saveFileLoaded = true;
+
+                if (autotrackeron)
+                {
+                    InitAutoTracker(ps2tracking);
+                }
             }
         }
 
@@ -1214,7 +1332,9 @@ namespace KhTracker
             line2 = line2.TrimEnd('.');
             string[] reportorder = line2.Split('.');
 
-            LoadSettings(streamReader.ReadLine().Substring(24));
+            string line3 = streamReader.ReadLine().Substring(24);
+            data.hintFileText[2] = line3;
+            LoadSettings(line3);
 
             streamReader.Close();
 
