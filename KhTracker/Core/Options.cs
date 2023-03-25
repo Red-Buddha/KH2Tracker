@@ -865,11 +865,6 @@ namespace KhTracker
             if (Savefile.ContainsKey("Counters"))
             {
                 var counters = JsonSerializer.Deserialize<int[]>(Savefile["Counters"].ToString());
-
-                //NOTE: this doesn't work cause autotracking never started.
-                //need to store the highest levels for levels in data then make progression read that?
-                //hmmm...
-
                 //add levels one at a time to make sure progression triggers correctly.
                 //valor.Level = 1;
                 //wisdom.Level = 1;
@@ -877,30 +872,23 @@ namespace KhTracker
                 //master.Level = 1;
                 //final.Level = 1;
                 //stats.Level = 1;
-                DeathCounter = 0;
-                data.usedPages = 0;
                 for (int i = 0; i < counters.Length; ++i)
                 {
-                    for (int n = 0; n < counters[i]; ++n)
+                    if (i < 5)
                     {
-                        //if (i == 0)
-                        //    valor.Level++;
-                        //if (i == 1)
-                        //    wisdom.Level++;
-                        //if (i == 2)
-                        //    limit.Level++;
-                        //if (i == 3)
-                        //    master.Level++;
-                        //if (i == 4)
-                        //    final.Level++;
-                        //if (i == 5)
-                        //    stats.Level++;
-                        if (i == 6)
-                            DeathCounter++;
-                        if (i == 7)
-                            data.usedPages++;
+                        FakeDrivesProgressionBonus(i, counters[i]);
+                    }
+                    else if (i == 5)
+                    {
+                        for (int l = 0; l < counters[i]; ++l)
+                        {
+                            FakeLevelsProgressionBonus(l+1);
+                        }
                     }
                 }
+
+                DeathCounter = counters[6];
+                data.usedPages = counters[7];
             }
         }
 
@@ -3546,6 +3534,52 @@ namespace KhTracker
 
             //log event
             data.eventLog.Add(evententry);
+        }
+
+        private void FakeDrivesProgressionBonus(int drive, int level)
+        {
+            if (!data.UsingProgressionHints)
+                return;
+
+            while (drive == 0 && (level > data.DriveLevels[0]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
+                data.DriveLevels[0]++;
+            }
+            while (drive == 1 && (level > data.DriveLevels[1]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[1] - 1]);
+                data.DriveLevels[1]++;
+            }
+            while (drive == 2 && (level > data.DriveLevels[2]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[2] - 1]);
+                data.DriveLevels[2]++;
+            }
+            while (drive == 3 && (level > data.DriveLevels[3]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[3] - 1]);
+                data.DriveLevels[3]++;
+            }
+            while (drive == 4 && (level > data.DriveLevels[4]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[4] - 1]);
+                data.DriveLevels[4]++;
+            }
+        }
+
+        private void FakeLevelsProgressionBonus(int level)
+        {
+            //if sora's current level is great than the max specified level (usually 50), then do nothing
+            if (level > (data.Levels_ProgressionValues.Count * 10) || !data.UsingProgressionHints)
+                return;
+
+            //every 10 levels, reward the player the progression points for that part
+            while (level > data.NextLevelMilestone)
+            {
+                data.NextLevelMilestone += 10;
+                AddProgressionPoints(data.Levels_ProgressionValues[data.LevelsPreviousIndex++]);
+            }
         }
 
         //Turns the zip seed icon hash to a numerical based seed

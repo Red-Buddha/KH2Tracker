@@ -34,6 +34,7 @@ namespace KhTracker
         public bool legacyJsmartee = false;
         public bool legacyShan = false;
         public string[] shanHintFileText = null;
+        public bool saveFileLoaded = false;
         public Codes codes = new Codes();
 
         //Report stuff      
