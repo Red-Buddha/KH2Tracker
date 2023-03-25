@@ -1308,93 +1308,94 @@ namespace KhTracker
             }
         }
 
-        private void LoadSettingBar(string settingbar)
-        {
-            SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-            Double SpacerValue = 10;
-
-            string[] settinglist = settingbar.Split('-');
-            foreach (string setting in settinglist)
-            {
-                string trimmed = setting.Trim();
-                switch (trimmed)
-                {
-                    case "None":
-                        SettingRow.Height = new GridLength(0, GridUnitType.Star);
-                        Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
-                        SettingsText.Text = "";
-                        return;
-                    case "Setting_Level_01":
-                        Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Level_50":
-                        Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Level_99":
-                        Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_BetterSTT":
-                        Setting_BetterSTT.Width = new GridLength(1.1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Cavern":
-                        Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Absent":
-                        Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Absent_Split":
-                        Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Sephiroth":
-                        Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Terra":
-                        Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Datas":
-                        Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Transport":
-                        Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_Cups":
-                        Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                    case "Setting_HadesCup":
-                        Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
-                        SpacerValue--;
-                        break;
-                }
-
-                Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
-                SettingsText.Text = "Settings:";
-            }
-        }
+        //guess this isn't needed anymore
+        //private void LoadSettingBar(string settingbar)
+        //{
+        //    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+        //    Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+        //    Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+        //    Double SpacerValue = 10;
+        //
+        //    string[] settinglist = settingbar.Split('-');
+        //    foreach (string setting in settinglist)
+        //    {
+        //        string trimmed = setting.Trim();
+        //        switch (trimmed)
+        //        {
+        //            case "None":
+        //                SettingRow.Height = new GridLength(0, GridUnitType.Star);
+        //                Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
+        //                SettingsText.Text = "";
+        //                return;
+        //            case "Setting_Level_01":
+        //                Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Level_50":
+        //                Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Level_99":
+        //                Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_BetterSTT":
+        //                Setting_BetterSTT.Width = new GridLength(1.1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Cavern":
+        //                Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Absent":
+        //                Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Absent_Split":
+        //                Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Sephiroth":
+        //                Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Terra":
+        //                Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Datas":
+        //                Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Transport":
+        //                Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_Cups":
+        //                Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //            case "Setting_HadesCup":
+        //                Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
+        //                SpacerValue--;
+        //                break;
+        //        }
+        //
+        //        Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
+        //        SettingsText.Text = "Settings:";
+        //    }
+        //}
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
