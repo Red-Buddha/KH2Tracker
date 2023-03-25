@@ -582,36 +582,8 @@ namespace KhTracker
                 data.reportAttempts[index] = 3;
             }
 
-            // set world report hints to as hinted then checks if the report location was hinted to set if its a hinted hint
-            //data.WorldsData[data.reportInformation[index].Item2].hinted = true;
-            //
-            //if (data.WorldsData[data.reportLocations[index]].hinted == true)
-            //{
-            //    data.WorldsData[data.reportInformation[index].Item2].hintedHint = true;
-            //}
-
-            //// loop through hinted world for reports to set their info as hinted hints
-            //for (int i = 0; i < data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children.Count; ++i)
-            //{
-            //    Item gridItem = data.WorldsData[data.reportInformation[index].Item2].worldGrid.Children[i] as Item;
-            //    if (gridItem.Name.Contains("Report"))
-            //    {
-            //        int reportIndex = int.Parse(gridItem.Name.Substring(6)) - 1;
-            //        data.WorldsData[data.reportInformation[reportIndex].Item2].hintedHint = true;
-            //        window.SetWorldValue(data.WorldsData[data.reportInformation[reportIndex].Item2].value, data.reportInformation[reportIndex].Item3);
-            //    }
-            //}
-
             // auto update world important check number
             window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item2].value, data.reportInformation[index].Item3);
-
-            //put here to remind myself later
-            //else if (data.reportLocations[index] == "Joke")
-            //{
-            //    // hint text
-            //    //window.SetJokeText(data.reportInformation[index].Item2);
-            //    isreport = true;
-            //}
         }
 
         private void Report_Points(int index)
