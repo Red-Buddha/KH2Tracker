@@ -591,7 +591,7 @@ namespace KhTracker
                 stats.UpdateMemory(correctSlot);        //updatestats
                 HighlightWorld(world);
                 UpdateStatValues();          //set stat values
-                UpdateWorldProgress(world);  //progression update
+                UpdateWorldProgress(world, false, null);  //progression update
                 UpdateFormProgression();
                 DeathCheck(pcsx2tracking);   //update deathcounter
                 LevelsProgressionBonus();
@@ -600,7 +600,7 @@ namespace KhTracker
                 if (data.mode == Mode.PointsHints || data.ScoreMode)
                 {
                     UpdatePointScore(0); //update score
-                    GetBoss(world);
+                    GetBoss(world, false, null);
                 }
 
                 importantChecks.ForEach(delegate (ImportantCheck importantCheck)
@@ -926,18 +926,43 @@ namespace KhTracker
             }
         }
 
-        private void UpdateWorldProgress(World world)
+        private void UpdateWorldProgress(World world, bool usingSave, Tuple<string, int, int, int, int, int> saveTuple)
         {
-            if (world.worldName == "DestinyIsland" || world.worldName == "Unknown")
+            string wName;
+            int wRoom;
+            int wID1;
+            int wID2;
+            int wID3;
+            int wCom;
+            if (!usingSave)
+            {
+                wName = world.worldName;
+                wRoom = world.roomNumber;
+                wID1 = world.eventID1;
+                wID2 = world.eventID2;
+                wID3 = world.eventID3;
+                wCom = world.eventComplete;
+            }
+            else
+            {
+                wName = saveTuple.Item1;
+                wRoom = saveTuple.Item2;
+                wID1 = saveTuple.Item3;
+                wID2 = saveTuple.Item4;
+                wID3 = saveTuple.Item5;
+                wCom = 1;
+            }
+
+            if (wName == "DestinyIsland" || wName == "Unknown")
                 return;
 
             //check event
-            var eventTuple = new Tuple<string, int, int, int, int, int>(world.worldName, world.roomNumber, world.eventID1, world.eventID2, world.eventID3, 0);
+            var eventTuple = new Tuple<string, int, int, int, int, int>(wName, wRoom, wID1, wID2, wID3, 0);
             if (data.eventLog.Contains(eventTuple))
                 return;
 
             //check for valid progression Content Controls first
-            ContentControl progressionM = data.WorldsData[world.worldName].progression;
+            ContentControl progressionM = data.WorldsData[wName].progression;
 
             //Get current icon prefixes (simple, game, or custom icons)
             bool OldToggled = Properties.Settings.Default.OldProg;
@@ -949,41 +974,41 @@ namespace KhTracker
                 Prog = "Cus-";
 
             //progression defaults
-            int curProg = data.WorldsData[world.worldName].progress; //current world progress int
+            int curProg = data.WorldsData[wName].progress; //current world progress int
             int newProg = 99;
             bool updateProgression = true;
             bool updateProgressionPoints = true;
 
             //get current world's new progress key
-            switch (world.worldName)
+            switch (wName)
             {
                 case "SimulatedTwilightTown":
-                    switch (world.roomNumber) //check based on room number now, then based on events in each room
+                    switch (wRoom) //check based on room number now, then based on events in each room
                     {
                         case 1:
-                            if ((world.eventID3 == 56 || world.eventID3 == 55) && curProg == 0) // Roxas' Room (Day 1)/(Day 6)
+                            if ((wID3 == 56 || wID3 == 55) && curProg == 0) // Roxas' Room (Day 1)/(Day 6)
                                 newProg = 1;
                             break;
                         case 8:
-                            if (world.eventID1 == 110 || world.eventID1 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
+                            if (wID1 == 110 || wID1 == 111) // Get Ollete Munny Pouch (min/max munny cutscenes)
                                 newProg = 2;
                             break;
                         case 34:
-                            if (world.eventID1 == 157 && world.eventComplete == 1) // Twilight Thorn finish
+                            if (wID1 == 157 && wCom == 1) // Twilight Thorn finish
                                 newProg = 3;
                             break;
                         case 5:
-                            if (world.eventID1 == 87 && world.eventComplete == 1) // Axel 1 Finish
+                            if (wID1 == 87 && wCom == 1) // Axel 1 Finish
                                 newProg = 4;
-                            if (world.eventID1 == 88 && world.eventComplete == 1) // Setzer finish
+                            if (wID1 == 88 && wCom == 1) // Setzer finish
                                 newProg = 5;
                             break;
                         case 21:
-                            if (world.eventID3 == 1) // Mansion: Computer Room
+                            if (wID3 == 1) // Mansion: Computer Room
                                 newProg = 6;
                             break;
                         case 20:
-                            if (world.eventID1 == 137 && world.eventComplete == 1) // Axel 2 finish
+                            if (wID1 == 137 && wCom == 1) // Axel 2 finish
                                 newProg = 7;
                             break;
                         default: //if not in any of the above rooms then just leave
@@ -992,34 +1017,34 @@ namespace KhTracker
                     }
                     break;
                 case "TwilightTown":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 9:
-                            if (world.eventID3 == 117 && curProg == 0) // Roxas' Room (Day 1)
+                            if (wID3 == 117 && curProg == 0) // Roxas' Room (Day 1)
                                 newProg = 1;
                             break;
                         case 8:
-                            if (world.eventID3 == 108 && world.eventComplete == 1) // Station Nobodies
+                            if (wID3 == 108 && wCom == 1) // Station Nobodies
                                 newProg = 2;
                             break;
                         case 27:
-                            if (world.eventID3 == 4) // Yen Sid after new clothes
+                            if (wID3 == 4) // Yen Sid after new clothes
                                 newProg = 3;
                             break;
                         case 4:
-                            if (world.eventID1 == 80 && world.eventComplete == 1) // Sandlot finish
+                            if (wID1 == 80 && wCom == 1) // Sandlot finish
                                 newProg = 4;
                             break;
                         case 41:
-                            if (world.eventID1 == 186 && world.eventComplete == 1) // Mansion fight finish
+                            if (wID1 == 186 && wCom == 1) // Mansion fight finish
                                 newProg = 5;
                             break;
                         case 40:
-                            if (world.eventID1 == 161 && world.eventComplete == 1) // Betwixt and Between finish
+                            if (wID1 == 161 && wCom == 1) // Betwixt and Between finish
                                 newProg = 6;
                             break;
                         case 20:
-                            if (world.eventID1 == 213 && world.eventComplete == 1) // Data Axel finish
+                            if (wID1 == 213 && wCom == 1) // Data Axel finish
                                 newProg = 7;
                             break;
                         default:
@@ -1028,33 +1053,33 @@ namespace KhTracker
                     }
                     break;
                 case "HollowBastion":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
                         case 10:
-                            if ((world.eventID3 == 1 || world.eventID3 == 2) && curProg == 0) // Villain's Vale (HB1)
+                            if ((wID3 == 1 || wID3 == 2) && curProg == 0) // Villain's Vale (HB1)
                                 newProg = 1;
                             break;
                         case 8:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) // Bailey finish
+                            if (wID1 == 52 && wCom == 1) // Bailey finish
                                 newProg = 2;
                             break;
                         case 5:
-                            if (world.eventID3 == 20) // Ansem Study post Computer
+                            if (wID3 == 20) // Ansem Study post Computer
                                 newProg = 3;
                             break;
                         case 20:
-                            if (world.eventID1 == 86 && world.eventComplete == 1) // Corridor finish
+                            if (wID1 == 86 && wCom == 1) // Corridor finish
                                 newProg = 4;
                             break;
                         case 18:
-                            if (world.eventID1 == 73 && world.eventComplete == 1) // Dancers finish
+                            if (wID1 == 73 && wCom == 1) // Dancers finish
                                 newProg = 5;
                             break;
                         case 4:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // HB Demyx finish
+                            if (wID1 == 55 && wCom == 1) // HB Demyx finish
                                 newProg = 6;
-                            else if (world.eventID1 == 114 && world.eventComplete == 1) // Data Demyx finish
+                            else if (wID1 == 114 && wCom == 1) // Data Demyx finish
                             {
                                 if (curProg == 9) //sephi finished
                                     newProg = 11; //data demyx + sephi finished
@@ -1062,21 +1087,21 @@ namespace KhTracker
                                     newProg = 10;
                                 if (data.UsingProgressionHints)
                                 {
-                                    UpdateProgressionPoints(world.worldName, 10);
+                                    UpdateProgressionPoints(wName, 10);
                                     updateProgressionPoints = false;
                                 }
                             }
                             break;
                         case 16:
-                            if (world.eventID1 == 65 && world.eventComplete == 1) // FF Cloud finish
+                            if (wID1 == 65 && wCom == 1) // FF Cloud finish
                                 newProg = 7;
                             break;
                         case 17:
-                            if (world.eventID1 == 66 && world.eventComplete == 1) // 1k Heartless finish
+                            if (wID1 == 66 && wCom == 1) // 1k Heartless finish
                                 newProg = 8;
                             break;
                         case 1:
-                            if (world.eventID1 == 75 && world.eventComplete == 1) // Sephiroth finish
+                            if (wID1 == 75 && wCom == 1) // Sephiroth finish
                             {
                                 if (curProg == 10) //demyx finish
                                     newProg = 11; //data demyx + sephi finished
@@ -1084,14 +1109,14 @@ namespace KhTracker
                                     newProg = 9;
                                 if(data.UsingProgressionHints)
                                 {
-                                    UpdateProgressionPoints(world.worldName, 9);
+                                    UpdateProgressionPoints(wName, 9);
                                     updateProgressionPoints = false;
                                 }
                             }
                             break;
                         //CoR
                         case 21:
-                            if ((world.eventID3 == 1 || world.eventID3 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
+                            if ((wID3 == 1 || wID3 == 2) && data.WorldsData["GoA"].progress == 0) //Enter CoR
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][1]);
                                 data.WorldsData["GoA"].progress = 1;
@@ -1102,7 +1127,7 @@ namespace KhTracker
                             }
                             break;
                         case 22:
-                            if (world.eventID3 == 1 && data.WorldsData["GoA"].progress <= 1 && world.eventComplete == 1) //valves after skip
+                            if (wID3 == 1 && data.WorldsData["GoA"].progress <= 1 && wCom == 1) //valves after skip
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][5]);
                                 data.WorldsData["GoA"].progress = 5;
@@ -1113,7 +1138,7 @@ namespace KhTracker
                             }
                             break;
                         case 24:
-                            if (world.eventID3 == 1 && world.eventComplete == 1) //first fight
+                            if (wID3 == 1 && wCom == 1) //first fight
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][2]);
                                 data.WorldsData["GoA"].progress = 2;
@@ -1122,7 +1147,7 @@ namespace KhTracker
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
-                            if (world.eventID3 == 2 && world.eventComplete == 1) //second fight
+                            if (wID3 == 2 && wCom == 1) //second fight
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][3]);
                                 data.WorldsData["GoA"].progress = 3;
@@ -1133,7 +1158,7 @@ namespace KhTracker
                             }
                             break;
                         case 25:
-                            if (world.eventID3 == 3 && world.eventComplete == 1) //transport
+                            if (wID3 == 3 && wCom == 1) //transport
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][4]);
                                 data.WorldsData["GoA"].progress = 4;
@@ -1149,33 +1174,33 @@ namespace KhTracker
                     }
                     break;
                 case "BeastsCastle":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
                         case 2:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Entrance Hall (BC1)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Entrance Hall (BC1)
                                 newProg = 1;
                             break;
                         case 11:
-                            if (world.eventID1 == 72 && world.eventComplete == 1) // Thresholder finish
+                            if (wID1 == 72 && wCom == 1) // Thresholder finish
                                 newProg = 2;
                             break;
                         case 3:
-                            if (world.eventID1 == 69 && world.eventComplete == 1) // Beast finish
+                            if (wID1 == 69 && wCom == 1) // Beast finish
                                 newProg = 3;
                             break;
                         case 5:
-                            if (world.eventID1 == 79 && world.eventComplete == 1) // Dark Thorn finish
+                            if (wID1 == 79 && wCom == 1) // Dark Thorn finish
                                 newProg = 4;
                             break;
                         case 4:
-                            if (world.eventID1 == 74 && world.eventComplete == 1) // Dragoons finish
+                            if (wID1 == 74 && wCom == 1) // Dragoons finish
                                 newProg = 5;
                             break;
                         case 15:
-                            if (world.eventID1 == 82 && world.eventComplete == 1) // Xaldin finish
+                            if (wID1 == 82 && wCom == 1) // Xaldin finish
                                 newProg = 6;
-                            else if (world.eventID1 == 97 && world.eventComplete == 1) // Data Xaldin finish
+                            else if (wID1 == 97 && wCom == 1) // Data Xaldin finish
                                 newProg = 7;
                             break;
                         default:
@@ -1184,49 +1209,49 @@ namespace KhTracker
                     }
                     break;
                 case "OlympusColiseum":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 3:
-                            if ((world.eventID3 == 1 || world.eventID3 == 12) && curProg == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
+                            if ((wID3 == 1 || wID3 == 12) && curProg == 0) // The Coliseum (OC1) | Underworld Entrance (OC2)
                                 newProg = 1;
                             break;
                         case 7:
-                            if (world.eventID1 == 114 && world.eventComplete == 1) // Cerberus finish
+                            if (wID1 == 114 && wCom == 1) // Cerberus finish
                                 newProg = 2;
                             break;
                         case 0:
-                            if ((world.eventID3 == 1 || world.eventID3 == 12) && curProg == 0) // (reverse rando)
+                            if ((wID3 == 1 || wID3 == 12) && curProg == 0) // (reverse rando)
                                 newProg = 1;
-                            if (world.eventID1 == 141 && world.eventComplete == 1) // Urns finish
+                            if (wID1 == 141 && wCom == 1) // Urns finish
                                 newProg = 3;
                             break;
                         case 17:
-                            if (world.eventID1 == 123 && world.eventComplete == 1) // OC Demyx finish
+                            if (wID1 == 123 && wCom == 1) // OC Demyx finish
                                 newProg = 4;
                             break;
                         case 8:
-                            if (world.eventID1 == 116 && world.eventComplete == 1) // OC Pete finish
+                            if (wID1 == 116 && wCom == 1) // OC Pete finish
                                 newProg = 5;
                             break;
                         case 18:
-                            if (world.eventID1 == 171 && world.eventComplete == 1) // Hydra finish
+                            if (wID1 == 171 && wCom == 1) // Hydra finish
                                 newProg = 6;
                             break;
                         case 6:
-                            if (world.eventID1 == 126 && world.eventComplete == 1) // Auron Statue fight finish
+                            if (wID1 == 126 && wCom == 1) // Auron Statue fight finish
                                 newProg = 7;
                             break;
                         case 19:
-                            if (world.roomNumber == 19 && world.eventID1 == 202 && world.eventComplete == 1) // Hades finish
+                            if (wRoom == 19 && wID1 == 202 && wCom == 1) // Hades finish
                                 newProg = 8;
                             break;
                         case 34:
-                            if ((world.eventID1 == 151) && world.eventComplete == 1) // AS Zexion finish
+                            if ((wID1 == 151) && wCom == 1) // AS Zexion finish
                                 newProg = 9;
-                            else if ((world.eventID1 == 152) && world.eventComplete == 1) // Data Zexion finish
+                            else if ((wID1 == 152) && wCom == 1) // Data Zexion finish
                             {
                                 if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(world.worldName, 10);
+                                    UpdateProgressionPoints(wName, 10);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1237,44 +1262,44 @@ namespace KhTracker
                     }
                     break;
                 case "Agrabah":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
                         case 4:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Agrabah (Ag1) || The Vault (Ag2)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Agrabah (Ag1) || The Vault (Ag2)
                                 newProg = 1;
                             break;
                         case 9:
-                            if (world.eventID1 == 2 && world.eventComplete == 1) // Abu finish
+                            if (wID1 == 2 && wCom == 1) // Abu finish
                                 newProg = 2;
                             break;
                         case 13:
-                            if (world.eventID1 == 79 && world.eventComplete == 1) // Chasm fight finish
+                            if (wID1 == 79 && wCom == 1) // Chasm fight finish
                                 newProg = 3;
                             break;
                         case 10:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Treasure Room finish
+                            if (wID1 == 58 && wCom == 1) // Treasure Room finish
                                 newProg = 4;
                             break;
                         case 3:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Lords finish
+                            if (wID1 == 59 && wCom == 1) // Lords finish
                                 newProg = 5;
                             break;
                         case 14:
-                            if (world.eventID1 == 100 && world.eventComplete == 1) // Carpet finish
+                            if (wID1 == 100 && wCom == 1) // Carpet finish
                                 newProg = 6;
                             break;
                         case 5:
-                            if (world.eventID1 == 62 && world.eventComplete == 1) // Genie Jafar finish
+                            if (wID1 == 62 && wCom == 1) // Genie Jafar finish
                                 newProg = 7;
                             break;
                         case 33:
-                            if ((world.eventID1 == 142) && world.eventComplete == 1) // AS Lexaeus finish
+                            if ((wID1 == 142) && wCom == 1) // AS Lexaeus finish
                                 newProg = 8;
-                            else if ((world.eventID1 == 147) && world.eventComplete == 1) // Data Lexaeus
+                            else if ((wID1 == 147) && wCom == 1) // Data Lexaeus
                             {
                                 if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(world.worldName, 9);
+                                    UpdateProgressionPoints(wName, 9);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1285,39 +1310,39 @@ namespace KhTracker
                     }
                     break;
                 case "LandofDragons":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
                         case 12:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Bamboo Grove (LoD1)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Bamboo Grove (LoD1)
                                 newProg = 1;
                             break;
                         case 1:
-                            if (world.eventID1 == 70 && world.eventComplete == 1) // Mission 3 (Search) finish
+                            if (wID1 == 70 && wCom == 1) // Mission 3 (Search) finish
                                 newProg = 2;
                             break;
                         case 3:
-                            if (world.eventID1 == 71 && world.eventComplete == 1) // Mountain Climb finish
+                            if (wID1 == 71 && wCom == 1) // Mountain Climb finish
                                 newProg = 3;
                             break;
                         case 5:
-                            if (world.eventID1 == 72 && world.eventComplete == 1) // Cave finish
+                            if (wID1 == 72 && wCom == 1) // Cave finish
                                 newProg = 4;
                             break;
                         case 7:
-                            if (world.eventID1 == 73 && world.eventComplete == 1) // Summit finish
+                            if (wID1 == 73 && wCom == 1) // Summit finish
                                 newProg = 5;
                             break;
                         case 9:
-                            if (world.eventID1 == 75 && world.eventComplete == 1) // Shan Yu finish
+                            if (wID1 == 75 && wCom == 1) // Shan Yu finish
                                 newProg = 6;
                             break;
                         case 10:
-                            if (world.eventID1 == 78 && world.eventComplete == 1) // Antechamber fight finish
+                            if (wID1 == 78 && wCom == 1) // Antechamber fight finish
                                 newProg = 7;
                             break;
                         case 8:
-                            if (world.eventID1 == 79 && world.eventComplete == 1) // Storm Rider finish
+                            if (wID1 == 79 && wCom == 1) // Storm Rider finish
                                 newProg = 8;
                             break;
                         default:
@@ -1326,30 +1351,30 @@ namespace KhTracker
                     }
                     break;
                 case "HundredAcreWood":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 2:
-                            if ((world.eventID3 == 1 || world.eventID3 == 21 || world.eventID3 == 22) && curProg == 0) // Pooh's house
+                            if ((wID3 == 1 || wID3 == 21 || wID3 == 22) && curProg == 0) // Pooh's house
                                 newProg = 1;
                             break;
                         case 6:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) //A Blustery Rescue Complete
+                            if (wID1 == 55 && wCom == 1) //A Blustery Rescue Complete
                                 newProg = 2;
                             break;
                         case 7:
-                            if (world.eventID1 == 57 && world.eventComplete == 1) //Hunny Slider Complete
+                            if (wID1 == 57 && wCom == 1) //Hunny Slider Complete
                                 newProg = 3;
                             break;
                         case 8:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) //Balloon Bounce Complete
+                            if (wID1 == 59 && wCom == 1) //Balloon Bounce Complete
                                 newProg = 4;
                             break;
                         case 9:
-                            if (world.eventID1 == 61 && world.eventComplete == 1) //The Expotition Complete
+                            if (wID1 == 61 && wCom == 1) //The Expotition Complete
                                 newProg = 5;
                             break;
                         case 1:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) //The Hunny Pot Complete
+                            if (wID1 == 52 && wCom == 1) //The Hunny Pot Complete
                                 newProg = 6;
                             break;
                         default:
@@ -1358,31 +1383,31 @@ namespace KhTracker
                     }
                     break;
                 case "PrideLands":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 4:
                         case 16:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Wildebeest Valley (PL1)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Wildebeest Valley (PL1)
                                 newProg = 1;
                             break;
                         case 12:
-                            if (world.eventID3 == 1) // Oasis after talking to Simba
+                            if (wID3 == 1) // Oasis after talking to Simba
                                 newProg = 2;
                             break;
                         case 2:
-                            if (world.eventID1 == 51 && world.eventComplete == 1) // Hyenas 1 Finish
+                            if (wID1 == 51 && wCom == 1) // Hyenas 1 Finish
                                 newProg = 3;
                             break;
                         case 14:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Scar finish
+                            if (wID1 == 55 && wCom == 1) // Scar finish
                                 newProg = 4;
                             break;
                         case 5:
-                            if (world.eventID1 == 57 && world.eventComplete == 1) // Hyenas 2 Finish
+                            if (wID1 == 57 && wCom == 1) // Hyenas 2 Finish
                                 newProg = 5;
                             break;
                         case 15:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Groundshaker finish
+                            if (wID1 == 59 && wCom == 1) // Groundshaker finish
                                 newProg = 6;
                             break;
                         default:
@@ -1391,18 +1416,18 @@ namespace KhTracker
                     }
                     break;
                 case "Atlantica":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 2:
-                            if (world.eventID1 == 63) // Tutorial
+                            if (wID1 == 63) // Tutorial
                                 newProg = 1;
                             break;
                         case 9:
-                            if (world.eventID1 == 65) // Ursula's Revenge
+                            if (wID1 == 65) // Ursula's Revenge
                                 newProg = 2;
                             break;
                         case 4:
-                            if (world.eventID1 == 55) // A New Day is Dawning
+                            if (wID1 == 55) // A New Day is Dawning
                                 newProg = 3;
                             break;
                         default:
@@ -1411,32 +1436,32 @@ namespace KhTracker
                     }
                     break;
                 case "DisneyCastle":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
-                            if (world.eventID3 == 22 && curProg == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
+                            if (wID3 == 22 && curProg == 0) // Cornerstone Hill (TR) (Audience Chamber has no Evt 0x16)
                                 newProg = 0;
-                            else if (world.eventID1 == 51 && world.eventComplete == 1) // Minnie Escort finish
+                            else if (wID1 == 51 && wCom == 1) // Minnie Escort finish
                                 newProg = 2;
-                            else if (world.eventID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
+                            else if (wID3 == 6) // Windows popup (Audience Chamber has no Evt 0x06)
                                 newProg = 4;
                             break;
                         case 1:
-                            if (world.eventID1 == 53 && curProg == 0) // Library (DC)
+                            if (wID1 == 53 && curProg == 0) // Library (DC)
                                 newProg = 1;
-                            else if (world.eventID1 == 58 && world.eventComplete == 1) // Old Pete finish
+                            else if (wID1 == 58 && wCom == 1) // Old Pete finish
                                 newProg = 3;
                             break;
                         case 2:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) // Boat Pete finish
+                            if (wID1 == 52 && wCom == 1) // Boat Pete finish
                                 newProg = 5;
                             break;
                         case 3:
-                            if (world.eventID1 == 53 && world.eventComplete == 1) // DC Pete finish
+                            if (wID1 == 53 && wCom == 1) // DC Pete finish
                                 newProg = 6;
                             break;
                         case 38:
-                            if ((world.eventID1 == 145 || world.eventID1 == 150) && world.eventComplete == 1) // Marluxia finish
+                            if ((wID1 == 145 || wID1 == 150) && wCom == 1) // Marluxia finish
                             {
                                 if (curProg == 8)
                                     newProg = 9; //marluxia + LW finished
@@ -1444,17 +1469,17 @@ namespace KhTracker
                                     newProg = 7;
                                 if(data.UsingProgressionHints) 
                                 {
-                                    if (world.eventID1 == 145)
-                                        UpdateProgressionPoints(world.worldName, 7); // AS
+                                    if (wID1 == 145)
+                                        UpdateProgressionPoints(wName, 7); // AS
                                     else
-                                        UpdateProgressionPoints(world.worldName, 8); // Data
+                                        UpdateProgressionPoints(wName, 8); // Data
 
                                     updateProgressionPoints = false;
                                 }
                             }
                             break;
                         case 7:
-                            if (world.eventID1 == 67 && world.eventComplete == 1) // Lingering Will finish
+                            if (wID1 == 67 && wCom == 1) // Lingering Will finish
                             {
                                 if (curProg == 7)
                                     newProg = 9; //marluxia + LW finished
@@ -1462,7 +1487,7 @@ namespace KhTracker
                                     newProg = 8;
                                 if (data.UsingProgressionHints)
                                 {
-                                    UpdateProgressionPoints(world.worldName, 9);
+                                    UpdateProgressionPoints(wName, 9);
                                     updateProgressionPoints = false;
                                 }
                             }
@@ -1473,42 +1498,42 @@ namespace KhTracker
                     }
                     break;
                 case "HalloweenTown":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 1:
                         case 4:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Hinterlands (HT1)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Hinterlands (HT1)
                                 newProg = 1;
                             break;
                         case 6:
-                            if (world.eventID1 == 53 && world.eventComplete == 1) // Candy Cane Lane fight finish
+                            if (wID1 == 53 && wCom == 1) // Candy Cane Lane fight finish
                                 newProg = 2;
                             break;
                         case 3:
-                            if (world.eventID1 == 52 && world.eventComplete == 1) // Prison Keeper finish
+                            if (wID1 == 52 && wCom == 1) // Prison Keeper finish
                                 newProg = 3;
                             break;
                         case 9:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Oogie Boogie finish
+                            if (wID1 == 55 && wCom == 1) // Oogie Boogie finish
                                 newProg = 4;
                             break;
                         case 10:
-                            if (world.eventID1 == 62 && world.eventComplete == 1) // Children Fight
+                            if (wID1 == 62 && wCom == 1) // Children Fight
                                 newProg = 5;
-                            if (world.eventID1 == 63 && world.eventComplete == 1) // Presents minigame
+                            if (wID1 == 63 && wCom == 1) // Presents minigame
                                 newProg = 6;
                             break;
                         case 7:
-                            if (world.eventID1 == 64 && world.eventComplete == 1) // Experiment finish
+                            if (wID1 == 64 && wCom == 1) // Experiment finish
                                 newProg = 7;
                             break;
                         case 32:
-                            if (world.eventID1 == 115 && world.eventComplete == 1) // AS Vexen finish
+                            if (wID1 == 115 && wCom == 1) // AS Vexen finish
                                 newProg = 8;
-                            else if (world.eventID1 == 146 && world.eventComplete == 1) // Data Vexen finish
+                            else if (wID1 == 146 && wCom == 1) // Data Vexen finish
                             {
                                 if(data.UsingProgressionHints)
-                                    UpdateProgressionPoints(world.worldName, 9);
+                                    UpdateProgressionPoints(wName, 9);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1519,44 +1544,44 @@ namespace KhTracker
                     }
                     break;
                 case "PortRoyal":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 0:
-                            if (world.eventID3 == 1 && curProg == 0) // Rampart (PR1)
+                            if (wID3 == 1 && curProg == 0) // Rampart (PR1)
                                 newProg = 1;
                             break;
                         case 10:
-                            if (world.eventID3 == 10 && curProg == 0) // Treasure Heap (PR2)
+                            if (wID3 == 10 && curProg == 0) // Treasure Heap (PR2)
                                 newProg = 1;
-                            if (world.eventID1 == 60 && world.eventComplete == 1) // Barbossa finish
+                            if (wID1 == 60 && wCom == 1) // Barbossa finish
                                 newProg = 6;
                             break;
                         case 2:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Town finish
+                            if (wID1 == 55 && wCom == 1) // Town finish
                                 newProg = 2;
                             break;
                         case 9:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // 1min pirates finish
+                            if (wID1 == 59 && wCom == 1) // 1min pirates finish
                                 newProg = 3;
                             break;
                         case 7:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Medalion fight finish
+                            if (wID1 == 58 && wCom == 1) // Medalion fight finish
                                 newProg = 4;
                             break;
                         case 3:
-                            if (world.eventID1 == 56 && world.eventComplete == 1) // barrels finish
+                            if (wID1 == 56 && wCom == 1) // barrels finish
                                 newProg = 5;
                             break;
                         case 18:
-                            if (world.eventID1 == 85 && world.eventComplete == 1) // Grim Reaper 1 finish
+                            if (wID1 == 85 && wCom == 1) // Grim Reaper 1 finish
                                 newProg = 7;
                             break;
                         case 14:
-                            if (world.eventID1 == 62 && world.eventComplete == 1) // Gambler finish
+                            if (wID1 == 62 && wCom == 1) // Gambler finish
                                 newProg = 8;
                             break;
                         case 1:
-                            if (world.eventID1 == 54 && world.eventComplete == 1) // Grim Reaper 2 finish
+                            if (wID1 == 54 && wCom == 1) // Grim Reaper 2 finish
                                 newProg = 9;
                             break;
                         default:
@@ -1565,35 +1590,35 @@ namespace KhTracker
                     }
                     break;
                 case "SpaceParanoids":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 1:
-                            if ((world.eventID3 == 1 || world.eventID3 == 10) && curProg == 0) // Canyon (SP1)
+                            if ((wID3 == 1 || wID3 == 10) && curProg == 0) // Canyon (SP1)
                                 newProg = 1;
                             break;
                         case 3:
-                            if (world.eventID1 == 54 && world.eventComplete == 1) // Screens finish
+                            if (wID1 == 54 && wCom == 1) // Screens finish
                                 newProg = 2;
                             break;
                         case 4:
-                            if (world.eventID1 == 55 && world.eventComplete == 1) // Hostile Program finish
+                            if (wID1 == 55 && wCom == 1) // Hostile Program finish
                                 newProg = 3;
                             break;
                         case 7:
-                            if (world.eventID1 == 57 && world.eventComplete == 1) // Solar Sailer finish
+                            if (wID1 == 57 && wCom == 1) // Solar Sailer finish
                                 newProg = 4;
                             break;
                         case 9:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // MCP finish
+                            if (wID1 == 59 && wCom == 1) // MCP finish
                                 newProg = 5;
                             break;
                         case 33:
-                            if (world.eventID1 == 143 && world.eventComplete == 1) // AS Larxene finish
+                            if (wID1 == 143 && wCom == 1) // AS Larxene finish
                                 newProg = 6;
-                            else if (world.eventID1 == 148 && world.eventComplete == 1) // Data Larxene finish
+                            else if (wID1 == 148 && wCom == 1) // Data Larxene finish
                             {
                                 if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(world.worldName, 7);
+                                    UpdateProgressionPoints(wName, 7);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1604,16 +1629,16 @@ namespace KhTracker
                     }
                     break;
                 case "TWTNW":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 1:
-                            if (world.eventID3 == 1) // Alley to Between
+                            if (wID3 == 1) // Alley to Between
                                 newProg = 1;
                             break;
                         case 21:
-                            if (world.eventID1 == 65 && world.eventComplete == 1) // Roxas finish
+                            if (wID1 == 65 && wCom == 1) // Roxas finish
                                 newProg = 2;
-                            else if (world.eventID1 == 99 && world.eventComplete == 1) // Data Roxas finish
+                            else if (wID1 == 99 && wCom == 1) // Data Roxas finish
                             {
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["SimulatedTwilightTown"][8]);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 8;
@@ -1624,9 +1649,9 @@ namespace KhTracker
                             }
                             break;
                         case 10:
-                            if (world.eventID1 == 57 && world.eventComplete == 1) // Xigbar finish
+                            if (wID1 == 57 && wCom == 1) // Xigbar finish
                                 newProg = 3;
-                            else if (world.eventID1 == 100 && world.eventComplete == 1) // Data Xigbar finish
+                            else if (wID1 == 100 && wCom == 1) // Data Xigbar finish
                             {
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["LandofDragons"][9]);
                                 data.WorldsData["LandofDragons"].progress = 9;
@@ -1637,9 +1662,9 @@ namespace KhTracker
                             }
                             break;
                         case 14:
-                            if (world.eventID1 == 58 && world.eventComplete == 1) // Luxord finish
+                            if (wID1 == 58 && wCom == 1) // Luxord finish
                                 newProg = 4;
-                            else if (world.eventID1 == 101 && world.eventComplete == 1) // Data Luxord finish
+                            else if (wID1 == 101 && wCom == 1) // Data Luxord finish
                             {
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PortRoyal"][10]);
                                 data.WorldsData["PortRoyal"].progress = 10;
@@ -1650,9 +1675,9 @@ namespace KhTracker
                             }
                             break;
                         case 15:
-                            if (world.eventID1 == 56 && world.eventComplete == 1) // Saix finish
+                            if (wID1 == 56 && wCom == 1) // Saix finish
                                 newProg = 5;
-                            else if (world.eventID1 == 102 && world.eventComplete == 1) // Data Saix finish
+                            else if (wID1 == 102 && wCom == 1) // Data Saix finish
                             {
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PrideLands"][7]);
                                 data.WorldsData["PrideLands"].progress = 7;
@@ -1663,18 +1688,18 @@ namespace KhTracker
                             }
                             break;
                         case 19:
-                            if (world.eventID1 == 59 && world.eventComplete == 1) // Xemnas 1 finish
+                            if (wID1 == 59 && wCom == 1) // Xemnas 1 finish
                                 newProg = 6;
                             break;
                         case 20:
-                            if (world.eventID1 == 98 && world.eventComplete == 1) // Data Xemnas finish
+                            if (wID1 == 98 && wCom == 1) // Data Xemnas finish
                             {
                                 newProg = 7;
                             }
-                            else if (world.eventID1 == 74 && world.eventComplete == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
+                            else if (wID1 == 74 && wCom == 1 && data.revealFinalXemnas) // Regular Final Xemnas finish
                             {
                                 if (data.UsingProgressionHints)
-                                    UpdateProgressionPointsTWTNW(world.worldName);
+                                    UpdateProgressionPointsTWTNW(wName);
                                 data.eventLog.Add(eventTuple);
                                 return;
                             }
@@ -1685,7 +1710,7 @@ namespace KhTracker
                     }
                     break;
                 case "GoA":
-                    if (world.roomNumber == 32)
+                    if (wRoom == 32)
                     {
                         if (HashGrid.Visibility == Visibility.Visible)
                         {
@@ -1703,12 +1728,12 @@ namespace KhTracker
 
             //progression points
             if (updateProgressionPoints == true && data.UsingProgressionHints)
-                UpdateProgressionPoints(world.worldName, newProg);
+                UpdateProgressionPoints(wName, newProg);
 
             //made it this far, now just set the progression icon based on newProg
-            progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world.worldName][newProg]);
-            data.WorldsData[world.worldName].progress = newProg;
-            data.WorldsData[world.worldName].progression.ToolTip = data.ProgressKeys[world.worldName + "Desc"][newProg];
+            progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[wName][newProg]);
+            data.WorldsData[wName].progress = newProg;
+            data.WorldsData[wName].progression.ToolTip = data.ProgressKeys[wName + "Desc"][newProg];
 
             //log event
             data.eventLog.Add(eventTuple);
@@ -1849,407 +1874,450 @@ namespace KhTracker
             TrackQuantities();
         }
 
-        private void GetBoss(World world)
+        private void GetBoss(World world, bool usingSave, Tuple<string, int, int, int, int, int> saveTuple)
         {
+            //temp values
             string boss = "None";
+            string wName;
+            int wRoom;
+            int wID1;
+            int wID2;
+            int wID3;
+            int wCup;
+            if (!usingSave)
+            {
+                wName = world.worldName;
+                wRoom = world.roomNumber;
+                wID1 = world.eventID1;
+                wID2 = world.eventID2;
+                wID3 = world.eventID3;
+                wCup = world.cupRound;
+            }
+            else
+            {
+                wName = saveTuple.Item1;
+                wRoom = saveTuple.Item2;
+                wID1 = saveTuple.Item3;
+                wID2 = saveTuple.Item4;
+                wID3 = saveTuple.Item5;
+                wCup = saveTuple.Item6;
+            }
 
             //stops awarding points for a single boss each tick
-            if (world.eventComplete == 1 && eventInProgress)
+            if (!usingSave)
+            {
+                if (world.eventComplete == 1 && eventInProgress)
+                    return;
+                else
+                    eventInProgress = false;
+            }
+
+            //eventlog check
+            var eventTuple = new Tuple<string, int, int, int, int, int>(wName, wRoom, wID1, wID2, wID3, wCup);
+            if (data.bossEventLog.Contains(eventTuple))
                 return;
-            else
-                eventInProgress = false;
+
 
             //boss beaten events (taken mostly from progression code)
-
-            switch (world.worldName)
+            switch (wName)
             {
                 case "SimulatedTwilightTown":
-                    switch (world.roomNumber) //check based on room number now, then based on events in each room
+                    switch (wRoom) //check based on room number now, then based on events in each room
                     {
                         case 34:
-                            if (world.eventID1 == 157) // Twilight Thorn finish
+                            if (wID1 == 157) // Twilight Thorn finish
                                 boss = "Twilight Thorn";
                             break;
                         case 3:
-                            if (world.eventID1 == 180) // Seifer Battle (Day 4)
+                            if (wID1 == 180) // Seifer Battle (Day 4)
                                 boss = "Seifer";
                             break;
                         case 4:
                             //Tutorial Seifer shouldn't give points
-                            //if (world.eventID1 == 77) // Tutorial 4 - Fighting
+                            //if (wID1 == 77) // Tutorial 4 - Fighting
                             //    boss = "Seifer (1)";
-                            if (world.eventID1 == 78) // Seifer I Battle
+                            if (wID1 == 78) // Seifer I Battle
                                 boss = "Seifer (2)";
                             break;
                         case 5:
-                            if (world.eventID1 == 84) // Hayner Struggle
+                            if (wID1 == 84) // Hayner Struggle
                                 boss = "Hayner";
-                            if (world.eventID1 == 85) // Vivi Struggle
+                            if (wID1 == 85) // Vivi Struggle
                                 boss = "Vivi";
-                            if (world.eventID1 == 87) // Axel 1 Finish
+                            if (wID1 == 87) // Axel 1 Finish
                                 boss = "Axel I";
-                            if (world.eventID1 == 88) // Setzer Struggle
+                            if (wID1 == 88) // Setzer Struggle
                                 boss = "Setzer";
                             break;
                         case 20:
-                            if (world.eventID1 == 137) // Axel 2 finish
+                            if (wID1 == 137) // Axel 2 finish
                                 boss = "Axel II";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "TwilightTown":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 20:
-                            if (world.eventID1 == 213) // Data Axel finish
+                            if (wID1 == 213) // Data Axel finish
                                 boss = "Axel (Data)";
                             break;
                         case 4:
-                            if (world.eventID1 == 181) // Seifer II Battle
+                            if (wID1 == 181) // Seifer II Battle
                                 boss = "Seifer (3)";
-                            if (world.eventID1 == 182) // Hayner Battle (Struggle Competition)
+                            if (wID1 == 182) // Hayner Battle (Struggle Competition)
                                 boss = "Hayner (SR)";
-                            if (world.eventID1 == 183) // Setzer Battle (Struggle Competition)
+                            if (wID1 == 183) // Setzer Battle (Struggle Competition)
                                 boss = "Setzer (SR)";
-                            if (world.eventID1 == 184) // Seifer Battle (Struggle Competition)
+                            if (wID1 == 184) // Seifer Battle (Struggle Competition)
                                 boss = "Seifer (4)";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "HollowBastion":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 4:
-                            if (world.eventID1 == 55) // HB Demyx finish
+                            if (wID1 == 55) // HB Demyx finish
                                 boss = "Demyx";
-                            else if (world.eventID1 == 114) // Data Demyx finish
+                            else if (wID1 == 114) // Data Demyx finish
                                 boss = "Demyx (Data)";
                             break;
                         case 1:
-                            if (world.eventID1 == 75) // Sephiroth finish
+                            if (wID1 == 75) // Sephiroth finish
                                 boss = "Sephiroth";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "BeastsCastle":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 11:
-                            if (world.eventID1 == 72) // Thresholder finish
+                            if (wID1 == 72) // Thresholder finish
                                 boss = "Thresholder";
                             break;
                         case 3:
-                            if (world.eventID1 == 69) // Beast finish
+                            if (wID1 == 69) // Beast finish
                                 boss = "The Beast";
                             break;
                         case 5:
-                            if (world.eventID1 == 78) // Shadow Stalker
+                            if (wID1 == 78) // Shadow Stalker
                                 boss = "Shadow Stalker";
-                            if (world.eventID1 == 79) // Dark Thorn finish
+                            if (wID1 == 79) // Dark Thorn finish
                                 boss = "Dark Thorn";
                             break;
                         case 15:
-                            if (world.eventID1 == 82) // Xaldin finish
+                            if (wID1 == 82) // Xaldin finish
                                 boss = "Xaldin";
-                            else if (world.eventID1 == 97) // Data Xaldin finish
+                            else if (wID1 == 97) // Data Xaldin finish
                                 boss = "Xaldin (Data)";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "OlympusColiseum":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 7:
-                            if (world.eventID1 == 114) // Cerberus finish
+                            if (wID1 == 114) // Cerberus finish
                                 boss = "Cerberus";
                             break;
                         case 8:
-                            if (world.eventID1 == 116) // OC Pete finish
+                            if (wID1 == 116) // OC Pete finish
                                 boss = "Pete OC II";
                             break;
                         case 18:
-                            if (world.eventID1 == 171) // Hydra finish
+                            if (wID1 == 171) // Hydra finish
                                 boss = "Hydra";
                             break;
                         case 19:
-                            if (world.eventID1 == 202) // Hades finish
+                            if (wID1 == 202) // Hades finish
                                 boss = "Hades II (1)";
                             break;
                         case 34:
-                            if (world.eventID1 == 151) // Zexion finish
+                            if (wID1 == 151) // Zexion finish
                                 boss = "Zexion";
-                            else if (world.eventID1 == 152) // Data Zexion finish
+                            else if (wID1 == 152) // Data Zexion finish
                                 boss = "Zexion (Data)";
                             break;
                         case 9: //Cups
-                            if (world.eventID1 == 189 && world.cupRound == 10)
+                            if (wID1 == 189 && wCup == 10)
                                 boss = "FF Team 1"; //Leon & Yuffie
-                            if (world.eventID1 == 190 && world.cupRound == 10)
+                            if (wID1 == 190 && wCup == 10)
                                 boss = "Cerberus (Cups)";
-                            if (world.eventID1 == 191 && world.cupRound == 10)
+                            if (wID1 == 191 && wCup == 10)
                                 boss = "Hercules";
-                            if (world.eventID1 == 192 && world.cupRound == 10)
+                            if (wID1 == 192 && wCup == 10)
                                 boss = "Hades Cups";
                             //paradox cups
-                            if (world.eventID1 == 193 && world.cupRound == 10)
+                            if (wID1 == 193 && wCup == 10)
                                 boss = "FF Team 2"; //Leon (3) & Yuffie (3)
-                            if (world.eventID1 == 194 && world.cupRound == 10)
+                            if (wID1 == 194 && wCup == 10)
                                 boss = "Cerberus (Cups)";
-                            if (world.eventID1 == 195 && world.cupRound == 10)
+                            if (wID1 == 195 && wCup == 10)
                                 boss = "Hercules";
                             //hades paradox
-                            if (world.eventID1 == 196 && world.cupRound == 5)
+                            if (wID1 == 196 && wCup == 5)
                                 boss = "Volcano Lord (Cups)";
-                            if (world.eventID1 == 196 && world.cupRound == 10)
+                            if (wID1 == 196 && wCup == 10)
                                 boss = "FF Team 3"; // Yuffie (1) & Tifa
-                            if (world.eventID1 == 196 && world.cupRound == 15)
+                            if (wID1 == 196 && wCup == 15)
                                 boss = "Blizzard Lord (Cups)";
-                            if (world.eventID1 == 196 && world.cupRound == 20)
+                            if (wID1 == 196 && wCup == 20)
                                 boss = "Pete Cups";
-                            if (world.eventID1 == 196 && world.cupRound == 25)
+                            if (wID1 == 196 && wCup == 25)
                                 boss = "FF Team 4"; // Cloud & Tifa (1)
-                            if (world.eventID1 == 196 && world.cupRound == 30)
+                            if (wID1 == 196 && wCup == 30)
                                 boss = "Hades Cups";
-                            if (world.eventID1 == 196 && world.cupRound == 40)
+                            if (wID1 == 196 && wCup == 40)
                                 boss = "FF Team 5"; // Leon (1) & Cloud (1)
-                            if (world.eventID1 == 196 && world.cupRound == 48)
+                            if (wID1 == 196 && wCup == 48)
                                 boss = "Cerberus (Cups)";
-                            if (world.eventID1 == 196 && world.cupRound == 49)
+                            if (wID1 == 196 && wCup == 49)
                                 boss = "FF Team 6"; // Leon (2), Cloud (2), Yuffie (2), & Tifa (2)
-                            if (world.eventID1 == 196 && world.cupRound == 50)
+                            if (wID1 == 196 && wCup == 50)
                                 boss = "Hades II";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "Agrabah":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 3:
-                            if (world.eventID1 == 59) // Lords finish
+                            if (wID1 == 59) // Lords finish
                                 boss = "Twin Lords";
                             break;
                         case 5:
-                            if (world.eventID1 == 62) // Genie Jafar finish
+                            if (wID1 == 62) // Genie Jafar finish
                                 boss = "Jafar";
                             break;
                         case 33:
-                            if (world.eventID1 == 142) // Lexaeus finish
+                            if (wID1 == 142) // Lexaeus finish
                                 boss = "Lexaeus";
-                            else if (world.eventID1 == 147) // Data Lexaeus finish
+                            else if (wID1 == 147) // Data Lexaeus finish
                                 boss = "Lexaeus (Data)";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "LandofDragons":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 9:
-                            if (world.eventID1 == 75) // Shan Yu finish
+                            if (wID1 == 75) // Shan Yu finish
                                 boss = "Shan-Yu";
                             break;
                         case 7:
-                            if (world.eventID1 == 76) // Riku
+                            if (wID1 == 76) // Riku
                                 boss = "Riku";
                             break;
                         case 8:
-                            if (world.eventID1 == 79) // Storm Rider finish
+                            if (wID1 == 79) // Storm Rider finish
                                 boss = "Storm Rider";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "PrideLands":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 14:
-                            if (world.eventID1 == 55) // Scar finish
+                            if (wID1 == 55) // Scar finish
                                 boss = "Scar";
                             break;
                         case 15:
-                            if (world.eventID1 == 59) // Groundshaker finish
+                            if (wID1 == 59) // Groundshaker finish
                                 boss = "Groundshaker";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "DisneyCastle":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 1:
-                            if (world.eventID1 == 58) // Old Pete finish
+                            if (wID1 == 58) // Old Pete finish
                                 boss = "Past Pete";
                             break;
                         case 2:
-                            if (world.eventID1 == 52) // Boat Pete finish
+                            if (wID1 == 52) // Boat Pete finish
                                 boss = "Boat Pete";
                             break;
                         case 3:
-                            if (world.eventID1 == 53) // DC Pete finish
+                            if (wID1 == 53) // DC Pete finish
                                 boss = "Pete TR";
                             break;
                         case 38:
-                            if (world.eventID1 == 145) // Marluxia finish
+                            if (wID1 == 145) // Marluxia finish
                                 boss = "Marluxia";
-                            else if (world.eventID1 == 150) // Data Marluxia finish
+                            else if (wID1 == 150) // Data Marluxia finish
                                 boss = "Marluxia (Data)";
                             break;
                         case 7:
-                            if (world.eventID1 == 67) // Lingering Will finish
+                            if (wID1 == 67) // Lingering Will finish
                                 boss = "Terra";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "HalloweenTown":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 3:
-                            if (world.eventID1 == 52) // Prison Keeper finish
+                            if (wID1 == 52) // Prison Keeper finish
                                 boss = "Prison Keeper";
                             break;
                         case 9:
-                            if (world.eventID1 == 55) // Oogie Boogie finish
+                            if (wID1 == 55) // Oogie Boogie finish
                                 boss = "Oogie Boogie";
                             break;
                         case 7:
-                            if (world.eventID1 == 64) // Experiment finish
+                            if (wID1 == 64) // Experiment finish
                                 boss = "The Experiment";
                             break;
                         case 32:
-                            if (world.eventID1 == 115) // Vexen finish
+                            if (wID1 == 115) // Vexen finish
                                 boss = "Vexen";
-                            if (world.eventID1 == 146) // Data Vexen finish
+                            if (wID1 == 146) // Data Vexen finish
                                 boss = "Vexen (Data)";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "PortRoyal":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 10:
-                            if (world.eventID1 == 60) // Barbossa finish
+                            if (wID1 == 60) // Barbossa finish
                                 boss = "Barbossa";
                             break;
                         case 18:
-                            if (world.eventID1 == 85) // Grim Reaper 1 finish
+                            if (wID1 == 85) // Grim Reaper 1 finish
                                 boss = "Grim Reaper I";
                             break;
                         case 1:
-                            if (world.eventID1 == 54) // Grim Reaper 2 finish
+                            if (wID1 == 54) // Grim Reaper 2 finish
                                 boss = "Grim Reaper II";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "SpaceParanoids":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 4:
-                            if (world.eventID1 == 55) // Hostile Program finish
+                            if (wID1 == 55) // Hostile Program finish
                                 boss = "Hostile Program";
                             break;
                         case 9:
-                            if (world.eventID1 == 58) // Sark finish
+                            if (wID1 == 58) // Sark finish
                                 boss = "Sark";
-                            else if (world.eventID1 == 59) // MCP finish
+                            else if (wID1 == 59) // MCP finish
                                 boss = "MCP";
                             break;
                         case 33:
-                            if (world.eventID1 == 143) // Larxene finish
+                            if (wID1 == 143) // Larxene finish
                                 boss = "Larxene";
-                            else if (world.eventID1 == 148) // Data Larxene finish
+                            else if (wID1 == 148) // Data Larxene finish
                                 boss = "Larxene (Data)";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
                 case "TWTNW":
-                    switch (world.roomNumber)
+                    switch (wRoom)
                     {
                         case 21:
-                            if (world.eventID1 == 65) // Roxas finish
+                            if (wID1 == 65) // Roxas finish
                                 boss = "Roxas";
-                            else if (world.eventID1 == 99) // Data Roxas finish
+                            else if (wID1 == 99) // Data Roxas finish
                                 boss = "Roxas (Data)";
                             break;
                         case 10:
-                            if (world.eventID1 == 57) // Xigbar finish
+                            if (wID1 == 57) // Xigbar finish
                                 boss = "Xigbar";
-                            else if (world.eventID1 == 100) // Data Xigbar finish
+                            else if (wID1 == 100) // Data Xigbar finish
                                 boss = "Xigbar (Data)";
                             break;
                         case 14:
-                            if (world.eventID1 == 58) // Luxord finish
+                            if (wID1 == 58) // Luxord finish
                                 boss = "Luxord";
-                            else if (world.eventID1 == 101) // Data Luxord finish
+                            else if (wID1 == 101) // Data Luxord finish
                                 boss = "Luxord (Data)";
                             break;
                         case 15:
-                            if (world.eventID1 == 56) // Saix finish
+                            if (wID1 == 56) // Saix finish
                                 boss = "Saix";
-                            else if (world.eventID1 == 102) // Data Saix finish
+                            else if (wID1 == 102) // Data Saix finish
                                 boss = "Saix (Data)";
                             break;
                         case 19:
-                            if (world.eventID1 == 59) // Xemnas 1 finish
+                            if (wID1 == 59) // Xemnas 1 finish
                                 boss = "Xemnas";
-                            else if (world.eventID1 == 97) // Data Xemnas I finish
+                            else if (wID1 == 97) // Data Xemnas I finish
                                 boss = "Xemnas (Data)";
                             break;
                         case 20:
-                            if (world.eventID1 == 74) // Final Xemnas finish
+                            if (wID1 == 74) // Final Xemnas finish
                                 boss = "Final Xemnas";
-                            else if (world.eventID1 == 98) // Data Final Xemnas finish
+                            else if (wID1 == 98) // Data Final Xemnas finish
                                 boss = "Final Xemnas (Data)";
                             break;
                         case 23:
-                            if (world.eventID1 == 73) // Armor Xemnas II
+                            if (wID1 == 73) // Armor Xemnas II
                                 boss = "Armor Xemnas II";
                             break;
                         case 24:
-                            if (world.eventID1 == 71) // Armor Xemnas I
+                            if (wID1 == 71) // Armor Xemnas I
                                 boss = "Armor Xemnas I";
                             break;
                         default:
-                            return;
+                            break;
                     }
                     break;
-                default: //return if any other world
+                default:
+                    break;
+            }
+
+            //return if bo boss beaten found
+
+
+            if (!usingSave)
+            {
+                //if the boss was found and beaten then set flag
+                //we do this to stop things happening every frame
+                if (world.eventComplete == 1)
+                    eventInProgress = true;
+                else
                     return;
             }
 
-            if (world.eventComplete != 1 || boss == "None")
+            if (boss == "None")
                 return;
-
-            //if the boss was found and beaten then set flag
-            //we do this to stop things happening every frame
-            if (world.eventComplete == 1)
-                eventInProgress = true;
-
+                
             App.logger?.Record("Beaten Boss: " + boss);
 
             //get points for boss kills
             GetBossPoints(boss);
 
+            //add to log
+            data.bossEventLog.Add(eventTuple);
         }
 
         private void GetBossPoints(string boss)

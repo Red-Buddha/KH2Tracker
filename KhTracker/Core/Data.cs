@@ -57,6 +57,7 @@ namespace KhTracker
 
         //event tracking
         public List<Tuple<string, int, int, int, int, int>> eventLog = new List<Tuple<string, int, int, int, int, int>>();
+        public List<Tuple<string, int, int, int, int, int>> bossEventLog = new List<Tuple<string, int, int, int, int, int>>();
 
         //auto-detect
         public BitmapImage AD_Connect;
