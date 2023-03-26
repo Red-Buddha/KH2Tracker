@@ -556,7 +556,7 @@ namespace KhTracker
                     Directory.CreateDirectory("KhTrackerAutoSaves\\");
                 }
 
-                Save("KhTrackerAutoSaves\\" + "Tracker-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".txt");
+                Save("KhTrackerAutoSaves\\" + "Tracker-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
             }
             Properties.Settings.Default.Save();
         }
