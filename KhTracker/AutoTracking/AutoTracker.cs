@@ -1735,13 +1735,13 @@ namespace KhTracker
             if (!updateProgression)
                 return;
 
+            //progression points
+            if (updateProgressionPoints == true && data.UsingProgressionHints)
+                UpdateProgressionPoints(wName, newProg);
+
+            //made it this far, now just set the progression icon based on newProg
             if (newProg != 99)
             {
-                //progression points
-                if (updateProgressionPoints == true && data.UsingProgressionHints)
-                    UpdateProgressionPoints(wName, newProg);
-
-                //progression icon change
                 progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[wName][newProg]);
                 data.WorldsData[wName].progress = newProg;
                 data.WorldsData[wName].progression.ToolTip = data.ProgressKeys[wName + "Desc"][newProg];
