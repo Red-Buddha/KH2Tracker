@@ -280,6 +280,43 @@ namespace KhTracker
                 }
             }
 
+            //check hash
+            if (Savefile.ContainsKey("SeedHash"))
+            {
+                if(Savefile["SeedHash"] != null)
+                {
+                    try
+                    {
+                        var hash = JsonSerializer.Deserialize<string[]>(Savefile["SeedHash"].ToString());
+                        data.seedHashVisual = hash;
+
+                        //Set Icons
+                        HashIcon1.SetResourceReference(ContentProperty, hash[0]);
+                        HashIcon2.SetResourceReference(ContentProperty, hash[1]);
+                        HashIcon3.SetResourceReference(ContentProperty, hash[2]);
+                        HashIcon4.SetResourceReference(ContentProperty, hash[3]);
+                        HashIcon5.SetResourceReference(ContentProperty, hash[4]);
+                        HashIcon6.SetResourceReference(ContentProperty, hash[5]);
+                        HashIcon7.SetResourceReference(ContentProperty, hash[6]);
+                        data.SeedHashLoaded = true;
+
+                        //make visible
+                        if (SeedHashOption.IsChecked)
+                        {
+                            SetHintText("");
+                            HashGrid.Visibility = Visibility.Visible;
+                        }
+                    }
+                    catch
+                    {
+                        data.seedHashVisual = null;
+                        HashGrid.Visibility = Visibility.Hidden;
+                        App.logger?.Record("error while trying to parse seed hash. text corrupted?");
+                    }
+                }
+                
+            }
+
             //use random seed from save
             if(Savefile.ContainsKey("RandomSeed"))
             {
@@ -861,43 +898,6 @@ namespace KhTracker
                     data.ReportAttemptVisual[i].SetResourceReference(ContentControl.ContentProperty, failNames[attempts[i]]);
                     data.reportAttempts[i] = attempts[i];
                 }
-            }
-
-            //check hash
-            if (Savefile.ContainsKey("SeedHash"))
-            {
-                if (Savefile["SeedHash"] != null)
-                {
-                    try
-                    {
-                        var hash = JsonSerializer.Deserialize<string[]>(Savefile["SeedHash"].ToString());
-                        data.seedHashVisual = hash;
-
-                        //Set Icons
-                        HashIcon1.SetResourceReference(ContentProperty, hash[0]);
-                        HashIcon2.SetResourceReference(ContentProperty, hash[1]);
-                        HashIcon3.SetResourceReference(ContentProperty, hash[2]);
-                        HashIcon4.SetResourceReference(ContentProperty, hash[3]);
-                        HashIcon5.SetResourceReference(ContentProperty, hash[4]);
-                        HashIcon6.SetResourceReference(ContentProperty, hash[5]);
-                        HashIcon7.SetResourceReference(ContentProperty, hash[6]);
-                        data.SeedHashLoaded = true;
-
-                        //make visible
-                        if (SeedHashOption.IsChecked)
-                        {
-                            SetHintText("");
-                            HashGrid.Visibility = Visibility.Visible;
-                        }
-                    }
-                    catch
-                    {
-                        data.seedHashVisual = null;
-                        HashGrid.Visibility = Visibility.Hidden;
-                        App.logger?.Record("error while trying to parse seed hash. text corrupted?");
-                    }
-                }
-
             }
 
             //end of loading
@@ -2065,29 +2065,23 @@ namespace KhTracker
             {
                 ZipArchiveEntry hintsfile = null;
                 ZipArchiveEntry hashfile = null;
-                ZipArchiveEntry hashfileBackup = null;
                 ZipArchiveEntry enemyfile = null;
 
                 //get and temp store these files to grab data from later.
                 //we used to just read them as we went along, but things got more complicated as time went on..
                 foreach (var entry in archive.Entries)
                 {
-                    switch(entry.Name)
+                    if (entry.FullName.Equals("HintFile.Hints"))
                     {
-                        case "HintFile.Hints":
-                            hintsfile = entry;
-                            break;
-                        case "enemies.rando":
-                            enemyfile = entry;
-                            break;
-                        case "randoseed-hash-icons.csv":
-                            hashfile = entry;
-                            break;
-                        case "sys.yml":
-                            hashfileBackup = entry;
-                            break;
-                        default:
-                            break;
+                        hintsfile = entry;
+                    }
+                    if (entry.FullName.Equals("sys.yml"))
+                    {
+                        hashfile = entry;
+                    }
+                    if (entry.FullName.Equals("enemies.rando"))
+                    {
+                        enemyfile = entry;
                     }
                 }
 
@@ -2122,36 +2116,17 @@ namespace KhTracker
                     }
                 }
 
-                if (hashfile != null || hashfileBackup != null)
+                if (hashfile != null)
                 {
-                    string[] hash = null;
-                    //new method
-                    if (hashfile != null)
+                    using (var reader2 = new StreamReader(hashfile.Open()))
                     {
-                        using (var reader = new StreamReader(hashfile.Open()))
-                        {
-                            string[] separatingStrings = { "," };
-                            string text = reader.ReadToEnd();
-                            hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-                            reader.Close();
-                        }
-                    }
-                    //old method
-                    else if (hashfileBackup != null)
-                    {
-                        using (var readerB = new StreamReader(hashfileBackup.Open()))
-                        {
-                            string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
-                            string text1 = readerB.ReadLine();
-                            string text2 = readerB.ReadLine();
-                            string text = text1 + text2;
-                            hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-                            readerB.Close();
-                        }
-                    }
-                    //load hash visual
-                    if (hash != null)
-                    {
+                        string[] separatingStrings = { "- en: ", " ", "'", "{", "}", ":", "icon" };
+                        string text1 = reader2.ReadLine();
+                        string text2 = reader2.ReadLine();
+                        string text = text1 + text2;
+                        string[] hash = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+                        data.seedHashVisual = hash;
+
                         //Set Icons
                         HashIcon1.SetResourceReference(ContentProperty, hash[0]);
                         HashIcon2.SetResourceReference(ContentProperty, hash[1]);
@@ -2161,7 +2136,6 @@ namespace KhTracker
                         HashIcon6.SetResourceReference(ContentProperty, hash[5]);
                         HashIcon7.SetResourceReference(ContentProperty, hash[6]);
                         data.SeedHashLoaded = true;
-                        data.seedHashVisual = hash;
 
                         //make visible
                         if (SeedHashOption.IsChecked)
@@ -2171,6 +2145,8 @@ namespace KhTracker
                         }
 
                         HashToSeed(hash);
+
+                        reader2.Close();
                     }
                 }
 
