@@ -1472,7 +1472,11 @@ namespace KhTracker
                                     if (wID1 == 145)
                                         UpdateProgressionPoints(wName, 7); // AS
                                     else
+                                    {
                                         UpdateProgressionPoints(wName, 8); // Data
+                                        data.eventLog.Add(eventTuple);
+                                        return;
+                                    }
 
                                     updateProgressionPoints = false;
                                 }
