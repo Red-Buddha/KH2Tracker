@@ -1091,8 +1091,6 @@ namespace KhTracker
                                     updateProgressionPoints = false;
                                 }
                             }
-                            else
-                                updateProgression = false;
                             break;
                         case 16:
                             if (wID1 == 65 && wCom == 1) // FF Cloud finish
@@ -1115,8 +1113,6 @@ namespace KhTracker
                                     updateProgressionPoints = false;
                                 }
                             }
-                            else
-                                updateProgression = false;
                             break;
                         //CoR
                         case 21:
@@ -1471,7 +1467,6 @@ namespace KhTracker
                                     newProg = 9; //marluxia + LW finished
                                 else if (curProg != 9)
                                     newProg = 7;
-
                                 if(data.UsingProgressionHints) 
                                 {
                                     if (wID1 == 145)
@@ -1482,8 +1477,6 @@ namespace KhTracker
                                     updateProgressionPoints = false;
                                 }
                             }
-                            else
-                                updateProgression = false;
                             break;
                         case 7:
                             if (wID1 == 67 && wCom == 1) // Lingering Will finish
@@ -1498,8 +1491,6 @@ namespace KhTracker
                                     updateProgressionPoints = false;
                                 }
                             }
-                            else
-                                updateProgression = false;
                             break;
                         default:
                             updateProgression = false;
@@ -1732,7 +1723,7 @@ namespace KhTracker
             }
 
             //progression wasn't updated
-            if (!updateProgression)
+            if (newProg == 99 || updateProgression == false)
                 return;
 
             //progression points
@@ -1740,12 +1731,9 @@ namespace KhTracker
                 UpdateProgressionPoints(wName, newProg);
 
             //made it this far, now just set the progression icon based on newProg
-            if (newProg != 99)
-            {
-                progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[wName][newProg]);
-                data.WorldsData[wName].progress = newProg;
-                data.WorldsData[wName].progression.ToolTip = data.ProgressKeys[wName + "Desc"][newProg];
-            }
+            progressionM.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[wName][newProg]);
+            data.WorldsData[wName].progress = newProg;
+            data.WorldsData[wName].progression.ToolTip = data.ProgressKeys[wName + "Desc"][newProg];
 
             //log event
             data.eventLog.Add(eventTuple);
