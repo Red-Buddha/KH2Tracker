@@ -331,6 +331,14 @@ namespace KhTracker
             var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
             List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
             reportKeys.Sort();
+            var hintableItems = new List<string>();
+            //fallback for older seeds
+            try
+            {
+                hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["hintableItems"].ToString()));
+            }
+            catch { }
+
 
             //set if world value should change color on completion
             if (reveals.Contains("complete"))
@@ -374,8 +382,8 @@ namespace KhTracker
                     //if (!data.SpoilerReportMode && item.Contains("Report"))
                     //    continue;
 
-                    if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
-                        continue;
+                    //if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
+                    //    continue;
 
                     string worldname = Codes.ConvertSeedGenName(world.Key);
                     string checkname = Codes.ConvertSeedGenName(item);
@@ -556,6 +564,20 @@ namespace KhTracker
                     keyList.Remove(boss);
                 }
                 
+                data.hintsLoaded = true;
+            }
+            else if (hintableItems.Contains("report"))
+            {
+                //dummy blank text for reports
+                foreach (var report in reportKeys)
+                {
+                    string worldstring = reports[report.ToString()]["World"].ToString();
+                    var worldhint = Codes.ConvertSeedGenName(worldstring);
+                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+
+                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, "", -999));
+                    data.reportLocations.Add(location);
+                }
                 data.hintsLoaded = true;
             }
 

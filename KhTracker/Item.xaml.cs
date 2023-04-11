@@ -145,6 +145,10 @@ namespace KhTracker
                         {
                             MainW.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
                         }
+                        else if (repInt == -999)
+                        {
+                            //nothing
+                        }
                         else
                         {
                             MainW.SetHintText(Codes.GetHintTextName(repStr1), "has been revealed!", "", true, false, false);

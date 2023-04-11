@@ -656,6 +656,10 @@ namespace KhTracker
                 {
                     window.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
                 }
+                else if (data.reportInformation[index].Item3 == -999)
+                {
+                    ///nothing...
+                }
                 else
                 {
                     window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1), "has been revealed!", "", true, false, false);
@@ -697,6 +701,10 @@ namespace KhTracker
                 else if (data.reportInformation[index].Item3 == -12345)
                 {
                     window.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
+                }
+                else if (data.reportInformation[index].Item3 == -999)
+                {
+                    //nothing...
                 }
                 else
                 {

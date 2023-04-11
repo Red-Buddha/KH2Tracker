@@ -2186,7 +2186,7 @@ namespace KhTracker
                         //fallback for older seeds
                         try
                         {
-                            hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
+                            hintableItems = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["hintableItems"].ToString()));
                         }
                         catch { }
 
@@ -2203,33 +2203,68 @@ namespace KhTracker
 
                             #region Settings
 
-                            if (hintableItems.Contains("report"))
-                                ReportsToggle(true);
-                            else
-                                ReportsToggle(false);
-
-                            if (hintableItems.Contains("page"))
-                                TornPagesToggle(true);
-                            else
-                                TornPagesToggle(false);
-
-                            if (hintableItems.Contains("ability"))
-                                AbilitiesToggle(true);
-                            else
-                                AbilitiesToggle(false);
-
-                            if (hintableItems.Count == 0)
+                            TornPagesToggle(false);
+                            AbilitiesToggle(false);
+                            ReportsToggle(false);
+                            ExtraChecksToggle(false);
+                            VisitLockToggle(false);
+                            foreach (string item in hintableItems)
                             {
-                                ReportsToggle(true);
-                                TornPagesToggle(true);
-                                AbilitiesToggle(true);
+                                switch (item)
+                                {
+                                    case "magic":
+                                        break;
+                                    case "form":
+                                        break;
+                                    case "summon":
+                                        break;
+                                    case "page":
+                                        TornPagesToggle(true);
+                                        break;
+                                    case "ability":
+                                        AbilitiesToggle(true);
+                                        break;
+                                    case "report":
+                                        ReportsToggle(true);
+                                        break;
+                                    case "other":
+                                        ExtraChecksToggle(true);
+                                        break;
+                                    case "visit":
+                                        VisitLockToggle(true);
+                                        break;
+                                    case "proof":
+                                        break;
+                                }
                             }
+
+                            //if (hintableItems.Contains("report"))
+                            //    ReportsToggle(true);
+                            //else
+                            //    ReportsToggle(false);
+                            //
+                            //if (hintableItems.Contains("page"))
+                            //    TornPagesToggle(true);
+                            //else
+                            //    TornPagesToggle(false);
+                            //
+                            //if (hintableItems.Contains("ability"))
+                            //    AbilitiesToggle(true);
+                            //else
+                            //    AbilitiesToggle(false);
+                            //
+                            //if (hintableItems.Count == 0)
+                            //{
+                            //    ReportsToggle(true);
+                            //    TornPagesToggle(true);
+                            //    AbilitiesToggle(true);
+                            //}
 
                             //item settings
                             PromiseCharmToggle(false);
                             //AbilitiesToggle(false);
-                            VisitLockToggle(false);
-                            ExtraChecksToggle(false);
+                            //VisitLockToggle(false);
+                            //ExtraChecksToggle(false);
                             AntiFormToggle(false);
 
                             //world settings
@@ -2296,9 +2331,9 @@ namespace KhTracker
                                     case "visit_locking":
                                         VisitLockToggle(true);
                                         break;
-                                    case "extra_ics":
-                                        ExtraChecksToggle(true);
-                                        break;
+                                    //case "extra_ics":
+                                    //    ExtraChecksToggle(true);
+                                    //    break;
                                     case "Anti-Form":
                                         AntiFormToggle(true);
                                         break;
@@ -2306,20 +2341,20 @@ namespace KhTracker
                                     case "Level":
                                         SoraHeartToggle(false);
                                         SoraLevel01Toggle(true);
-                                        AbilitiesToggle(true);
+                                        //AbilitiesToggle(true);
                                         Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         break;
                                     case "ExcludeFrom50":
                                         SoraLevel50Toggle(true);
-                                        AbilitiesToggle(true);
+                                        //AbilitiesToggle(true);
                                         Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         data.HintRevealOrder.Add("SorasHeart");
                                         break;
                                     case "ExcludeFrom99":
                                         SoraLevel99Toggle(true);
-                                        AbilitiesToggle(true);
+                                        //AbilitiesToggle(true);
                                         Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
                                         SpacerValue--;
                                         data.HintRevealOrder.Add("SorasHeart");
