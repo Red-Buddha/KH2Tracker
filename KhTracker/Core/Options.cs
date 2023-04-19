@@ -595,7 +595,7 @@ namespace KhTracker
                         //    AbilitiesToggle(false);
 
                         //prevent creations hinting twice for progression
-                        if (puzzleOn)
+                        if ((puzzleOn || hintObject["hintsType"].ToString() == "Path") && !data.HintRevealOrder.Contains("PuzzSynth"))
                         {
                             data.HintRevealOrder.Add("PuzzSynth");
                         }
@@ -2510,7 +2510,7 @@ namespace KhTracker
                             //    AbilitiesToggle(false);
 
                             //prevent creations hinting twice for progression
-                            if (puzzleOn)
+                            if ((puzzleOn || hintObject["hintsType"].ToString() == "Path") && !data.HintRevealOrder.Contains("PuzzSynth"))
                             {
                                 data.HintRevealOrder.Add("PuzzSynth");
                             }
