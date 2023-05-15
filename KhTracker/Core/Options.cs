@@ -216,10 +216,10 @@ namespace KhTracker
                         return;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("save versions match");
-                }
+                //else
+                //{
+                //    Console.WriteLine("save versions match");
+                //}
             }
 
             //check legacy hint styles
@@ -248,6 +248,49 @@ namespace KhTracker
         {
             //reset tracker
             OnReset(null, null);
+
+            //Check Settings
+            if (Savefile.ContainsKey("Settings"))
+            {
+                var setting = JsonSerializer.Deserialize<bool[]>(Savefile["Settings"].ToString());
+                //Display toggles
+                ReportsToggle(setting[0]);
+                TornPagesToggle(setting[1]);
+                PromiseCharmToggle(setting[2]);
+                AbilitiesToggle(setting[3]);
+                AntiFormToggle(setting[4]);
+                VisitLockToggle(setting[5]);
+                ExtraChecksToggle(setting[6]);
+                if (setting[7])
+                    SoraLevel01Toggle(true);
+                else if (setting[8])
+                    SoraLevel50Toggle(true);
+                else if (setting[9])
+                    SoraLevel99Toggle(true);
+                //World toggles
+                SoraHeartToggle(setting[10]);
+                DrivesToggle(setting[11]);
+                SimulatedToggle(setting[12]);
+                TwilightTownToggle(setting[13]);
+                HollowBastionToggle(setting[14]);
+                BeastCastleToggle(setting[15]);
+                OlympusToggle(setting[16]);
+                AgrabahToggle(setting[17]);
+                LandofDragonsToggle(setting[18]);
+                DisneyCastleToggle(setting[19]);
+                PrideLandsToggle(setting[20]);
+                PortRoyalToggle(setting[21]);
+                HalloweenTownToggle(setting[22]);
+                SpaceParanoidsToggle(setting[23]);
+                TWTNWToggle(setting[24]);
+                HundredAcreWoodToggle(setting[25]);
+                AtlanticaToggle(setting[26]);
+                SynthToggle(setting[27]);
+                PuzzleToggle(setting[28]);
+                ////other
+                //settingInfo[29] = GhostItemOption.IsChecked;
+                //settingInfo[30] = GhostMathOption.IsChecked;
+            }
 
             //check if enemy rando data exists
             if (Savefile.ContainsKey("BossHints"))
