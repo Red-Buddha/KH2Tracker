@@ -1943,21 +1943,20 @@
                         </Viewbox>
                     </Grid>
                     <!-- Progression Points Count -->
-                    <Grid Grid.Column="11" x:Name="ProgressionCollectionGrid" Visibility="Hidden">
+                    <Grid Grid.Column="11" x:Name="ProgressionCollectionGrid" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="1.15*"/>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Name="PPCount" Width="1.15*"/>
+                            <ColumnDefinition Name="PPSep" Width="0.3*"/>
+                            <ColumnDefinition Name="PPTotal" Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.15*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="0.05*"/>
                         </Grid.RowDefinitions>
-                        <!--ContentControl Content="{DynamicResource Min-Chest}" Name="ChestIcon"/-->
                         <!-- Collected -->
-                        <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,3">
+                        <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,3" >
                             <Viewbox.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>

@@ -385,7 +385,7 @@
     <Image x:Key="Cus-Hyenas1"      Source="pack://application:,,,/CustomImages/Progression/pride_lands/timon_and_pumba.png" x:Shared="False"/>
     <Image x:Key="Cus-Scar"         Source="pack://application:,,,/CustomImages/Progression/pride_lands/scar.png" x:Shared="False"/>
     <Image x:Key="Cus-Hyenas2"      Source="pack://application:,,,/CustomImages/Progression/pride_lands/hyenas.png" x:Shared="False"/>
-    <Image x:Key="Cus-Groundshaker" Source="pack://application:,,,/CustomImages/Progression/pride_lands/groundshaker.png" x:Shared="False"/>
+    <Image x:Key="Cus-GroundShaker" Source="pack://application:,,,/CustomImages/Progression/pride_lands/groundshaker.png" x:Shared="False"/>
     <Image x:Key="Cus-DataSaix"     Source="pack://application:,,,/CustomImages/Progression/pride_lands/saix.png" x:Shared="False"/>
     <!--Simulated Twilight Town-->
     <Image x:Key="Cus-Minigame"         Source="pack://application:,,,/CustomImages/Progression/simulated_twilight_town/munny_pouch.png" x:Shared="False"/>

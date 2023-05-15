@@ -355,9 +355,15 @@ namespace KhTracker
 
                     data.ShouldResetHash = false;
 
-                    if (hintObject.ContainsKey("generatorVersion"))
+                    //if (hintObject.ContainsKey("generatorVersion"))
+                    //{
+                    //    data.seedgenVersion = hintObject["generatorVersion"].ToString();
+                    //}
+
+                    if (hintObject.ContainsKey("dummy_forms"))
                     {
-                        data.seedgenVersion = hintObject["generatorVersion"].ToString();
+                        if (hintObject["dummy_forms"].ToString() == "true")
+                            data.altFinalTracking = true;
                     }
 
                     if (hintObject.ContainsKey("settings"))
@@ -1479,7 +1485,7 @@ namespace KhTracker
             data.convertedSeedHash = 0;
             data.enabledWorlds.Clear();
             data.seedgenVersion = "";
-            data.altFinalTracking = true;
+            data.altFinalTracking = false;
             data.eventLog.Clear();
             data.openKHHintText = "None";
             data.openKHBossText = "None";
@@ -1914,6 +1920,10 @@ namespace KhTracker
             //SetAutoDetectTimer();
             NextLevelDisplay();
             //DeathCounterDisplay();
+
+            //reset progression visuals
+            PPCount.Width = new GridLength(1.15, GridUnitType.Star);
+            PPSep.Width = new GridLength(0.3, GridUnitType.Star);
         }
 
         private void ParseSeed(object sender, RoutedEventArgs e)
@@ -2737,7 +2747,7 @@ namespace KhTracker
             //scrambles/unscrambles input text based on a seed
             //why have this? i dunno i suppose to make saves more "secure"
             //figure if people really want to cheat they would have to look at this code
-            Random r = new Random(16964);
+            Random r = new Random(16964); //why this number? who knows... (let me know if you figure it out lol)
             if(scramble)
             {
                 char[] chars = input.ToArray();
@@ -2833,12 +2843,15 @@ namespace KhTracker
         //Hotkey stuff
         private void LoadHotkeyBind()
         {
-            if (File.Exists("./AutoTrackerKeybinds.txt"))
-                Console.WriteLine("Found file");
-            else
+            if (!Directory.Exists("./KhTrackerSettings"))
             {
-                Console.WriteLine("File not found, making");
-                using (FileStream fs = File.Create("./AutoTrackerKeybinds.txt"))
+                Directory.CreateDirectory("./KhTrackerSettings");
+            }
+
+            if (!File.Exists("./KhTrackerSettings/AutoTrackerKeybinds.txt"))
+            {
+                //Console.WriteLine("File not found, making");
+                using (FileStream fs = File.Create("./KhTrackerSettings/AutoTrackerKeybinds.txt"))
                 {
                     // Add some text to file    
                     Byte[] title = new UTF8Encoding(true).GetBytes("Control\n");
@@ -2847,7 +2860,7 @@ namespace KhTracker
                     fs.Write(author, 0, author.Length);
                 }
             }
-            string[] lines = System.IO.File.ReadAllLines("./AutoTrackerKeybinds.txt");
+            string[] lines = System.IO.File.ReadAllLines("./KhTrackerSettings/AutoTrackerKeybinds.txt");
             string mod1 = "";
             ModifierKeys _mod1 = ModifierKeys.None;
             string mod2 = "";

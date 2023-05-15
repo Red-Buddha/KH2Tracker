@@ -119,6 +119,7 @@ namespace KhTracker
             if (pcsx2Success)
             {
                 data.usedHotkey = true;
+                pcsx2tracking = true;
                 InitAutoTracker(true);
                 return;
             }
@@ -142,6 +143,7 @@ namespace KhTracker
             } while (!testMemory.Hooked);
             if (pcSuccess)
             {
+                pcsx2tracking = false;
                 data.usedHotkey = true;
                 InitAutoTracker(false);
                 return;
@@ -424,10 +426,10 @@ namespace KhTracker
         private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
             //check seedgen version
-            if (data.seedgenVersion == "" || data.seedgenVersion.Contains("beta"))
-            {
-                data.altFinalTracking = false;
-            }
+            //if (data.seedgenVersion == "" || data.seedgenVersion.Contains("beta"))
+            //{
+            //    data.altFinalTracking = false;
+            //}
 
             #region Add ICs
 

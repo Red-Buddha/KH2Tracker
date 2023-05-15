@@ -21,7 +21,7 @@ namespace KhTracker
         public bool forcedFinal;
         public bool dataSplit = false;
         public string seedgenVersion = "";
-        public bool altFinalTracking = true;
+        public bool altFinalTracking = false;
         public int convertedSeedHash = 0;
         public string[] seedHashVisual = null;
         public bool ShouldResetHash = true;

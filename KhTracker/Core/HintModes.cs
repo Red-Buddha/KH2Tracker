@@ -1406,8 +1406,10 @@ namespace KhTracker
                 data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled)
             {
                 //update points anyway
-                ProgressionCollectedValue.Visibility = Visibility.Hidden;
-                ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                //ProgressionCollectedValue.Visibility = Visibility.Hidden;
+                //ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                PPCount.Width = new GridLength(0, GridUnitType.Star);
+                PPSep.Width = new GridLength(0, GridUnitType.Star);
                 ProgressionTotalValue.Text = data.TotalProgressionPoints.ToString();
                 return;
             }
@@ -1436,8 +1438,10 @@ namespace KhTracker
                 data.ProgressionCurrentHint == data.WorldsEnabled)
             {
                 //update points
-                ProgressionCollectedValue.Visibility = Visibility.Hidden;
-                ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                //ProgressionCollectedValue.Visibility = Visibility.Hidden;
+                //ProgressionCollectedBar.Visibility = Visibility.Hidden;
+                PPCount.Width = new GridLength(0, GridUnitType.Star);
+                PPSep.Width = new GridLength(0, GridUnitType.Star);
                 ProgressionTotalValue.Text = data.TotalProgressionPoints.ToString();
                 //Console.WriteLine("Revealed last hint!");
             }
