@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Security.Cryptography;
 //using System.IO;
 
 namespace KhTracker
@@ -1120,6 +1121,7 @@ namespace KhTracker
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][1]);
                                 data.WorldsData["GoA"].progress = 1;
+                                data.WorldsData["GoA"].progression.ToolTip = data.ProgressKeys["GoADesc"][1];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("CavernofRemembrance", 1);
                                 data.eventLog.Add(eventTuple);
@@ -1131,6 +1133,7 @@ namespace KhTracker
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][5]);
                                 data.WorldsData["GoA"].progress = 5;
+                                data.WorldsData["GoA"].progression.ToolTip = data.ProgressKeys["GoADesc"][5];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("CavernofRemembrance", 3);
                                 data.eventLog.Add(eventTuple);
@@ -1142,6 +1145,7 @@ namespace KhTracker
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][2]);
                                 data.WorldsData["GoA"].progress = 2;
+                                data.WorldsData["GoA"].progression.ToolTip = data.ProgressKeys["GoADesc"][2];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("CavernofRemembrance", 2);
                                 data.eventLog.Add(eventTuple);
@@ -1151,6 +1155,7 @@ namespace KhTracker
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][3]);
                                 data.WorldsData["GoA"].progress = 3;
+                                data.WorldsData["GoA"].progression.ToolTip = data.ProgressKeys["GoADesc"][3];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("CavernofRemembrance", 4);
                                 data.eventLog.Add(eventTuple);
@@ -1162,6 +1167,7 @@ namespace KhTracker
                             {
                                 GoAProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["GoA"][4]);
                                 data.WorldsData["GoA"].progress = 4;
+                                data.WorldsData["GoA"].progression.ToolTip = data.ProgressKeys["GoADesc"][4];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("CavernofRemembrance", 5);
                                 data.eventLog.Add(eventTuple);
@@ -1246,15 +1252,17 @@ namespace KhTracker
                                 newProg = 8;
                             break;
                         case 34:
-                            if ((wID1 == 151) && wCom == 1) // AS Zexion finish
+                            if (wID1 == 151 && wCom == 1) // AS Zexion finish
                                 newProg = 9;
-                            else if ((wID1 == 152) && wCom == 1) // Data Zexion finish
-                            {
-                                if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(wName, 10);
-                                data.eventLog.Add(eventTuple);
-                                return;
-                            }
+                            if (wID1 == 152 && wCom == 1) // Data Zexion finish
+                                newProg = 10;
+                            //else if ((wID1 == 152) && wCom == 1) // Data Zexion finish
+                            //{
+                            //    if (data.UsingProgressionHints)
+                            //        UpdateProgressionPoints(wName, 10);
+                            //    data.eventLog.Add(eventTuple);
+                            //    return;
+                            //}
                             break;
                         default:
                             updateProgression = false;
@@ -1294,15 +1302,17 @@ namespace KhTracker
                                 newProg = 7;
                             break;
                         case 33:
-                            if ((wID1 == 142) && wCom == 1) // AS Lexaeus finish
+                            if (wID1 == 142 && wCom == 1) // AS Lexaeus finish
                                 newProg = 8;
-                            else if ((wID1 == 147) && wCom == 1) // Data Lexaeus
-                            {
-                                if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(wName, 9);
-                                data.eventLog.Add(eventTuple);
-                                return;
-                            }
+                            if (wID1 == 147 && wCom == 1) // Data Lexaeus finish
+                                newProg = 9;
+                            //else if ((wID1 == 147) && wCom == 1) // Data Lexaeus
+                            //{
+                            //    if (data.UsingProgressionHints)
+                            //        UpdateProgressionPoints(wName, 9);
+                            //    data.eventLog.Add(eventTuple);
+                            //    return;
+                            //}
                             break;
                         default:
                             updateProgression = false;
@@ -1460,14 +1470,52 @@ namespace KhTracker
                             if (wID1 == 53 && wCom == 1) // DC Pete finish
                                 newProg = 6;
                             break;
+                        //case 38:
+                        //    if ((wID1 == 145 || wID1 == 150) && wCom == 1) // Marluxia finish
+                        //    {
+                        //        if (curProg == 8)
+                        //            newProg = 9; //marluxia + LW finished
+                        //        else if (curProg != 9)
+                        //            newProg = 7;
+                        //        if(data.UsingProgressionHints) 
+                        //        {
+                        //            if (wID1 == 145)
+                        //                UpdateProgressionPoints(wName, 7); // AS
+                        //            else
+                        //            {
+                        //                UpdateProgressionPoints(wName, 8); // Data
+                        //                data.eventLog.Add(eventTuple);
+                        //                return;
+                        //            }
+                        //
+                        //            updateProgressionPoints = false;
+                        //        }
+                        //    }
+                        //    break;
                         case 38:
+                        case 7:
                             if ((wID1 == 145 || wID1 == 150) && wCom == 1) // Marluxia finish
                             {
-                                if (curProg == 8)
-                                    newProg = 9; //marluxia + LW finished
-                                else if (curProg != 9)
-                                    newProg = 7;
-                                if(data.UsingProgressionHints) 
+                                //Marluxia
+                                if (curProg != 9 && curProg != 10 && curProg != 11)
+                                {
+                                    //check if as/data
+                                    if (wID1 == 145)
+                                        newProg = 7;
+                                    if (wID1 == 150)
+                                        newProg = 8;
+                                }
+                                //check for LW
+                                else if (curProg == 9 || curProg == 10)
+                                {
+                                    //check if as/data
+                                    if (wID1 == 145)
+                                        newProg = 10;
+                                    if (wID1 == 150)
+                                        newProg = 11;
+                                }
+                                //progression
+                                if (data.UsingProgressionHints)
                                 {
                                     if (wID1 == 145)
                                         UpdateProgressionPoints(wName, 7); // AS
@@ -1477,25 +1525,48 @@ namespace KhTracker
                                         data.eventLog.Add(eventTuple);
                                         return;
                                     }
-
                                     updateProgressionPoints = false;
                                 }
                             }
-                            break;
-                        case 7:
                             if (wID1 == 67 && wCom == 1) // Lingering Will finish
                             {
-                                if (curProg == 7)
-                                    newProg = 9; //marluxia + LW finished
-                                else if (curProg != 9)
-                                    newProg = 8;
+                                //LW
+                                if (curProg != 7 && curProg != 8)
+                                {
+                                    newProg = 9;
+                                }
+                                //as marluxia beaten
+                                else if (curProg == 7)
+                                {
+                                    newProg = 10;
+                                }
+                                //data marluxia
+                                else if (curProg == 8)
+                                {
+                                    newProg = 11;
+                                }
+                                //progression
                                 if (data.UsingProgressionHints)
                                 {
                                     UpdateProgressionPoints(wName, 9);
                                     updateProgressionPoints = false;
                                 }
+
                             }
                             break;
+                            //if (wID1 == 67 && wCom == 1) // Lingering Will finish
+                            //{
+                            //    if (curProg == 7)
+                            //        newProg = 9; //marluxia + LW finished
+                            //    else if (curProg != 9)
+                            //        newProg = 8;
+                            //    if (data.UsingProgressionHints)
+                            //    {
+                            //        UpdateProgressionPoints(wName, 9);
+                            //        updateProgressionPoints = false;
+                            //    }
+                            //}
+                            //break;
                         default:
                             updateProgression = false;
                             break;
@@ -1534,13 +1605,15 @@ namespace KhTracker
                         case 32:
                             if (wID1 == 115 && wCom == 1) // AS Vexen finish
                                 newProg = 8;
-                            else if (wID1 == 146 && wCom == 1) // Data Vexen finish
-                            {
-                                if(data.UsingProgressionHints)
-                                    UpdateProgressionPoints(wName, 9);
-                                data.eventLog.Add(eventTuple);
-                                return;
-                            }
+                            if (wID1 == 146 && wCom == 1) // Data Vexen finish
+                                newProg = 9;
+                            //else if (wID1 == 146 && wCom == 1) // Data Vexen finish
+                            //{
+                            //    if(data.UsingProgressionHints)
+                            //        UpdateProgressionPoints(wName, 9);
+                            //    data.eventLog.Add(eventTuple);
+                            //    return;
+                            //}
                             break;
                         default:
                             updateProgression = false;
@@ -1619,13 +1692,15 @@ namespace KhTracker
                         case 33:
                             if (wID1 == 143 && wCom == 1) // AS Larxene finish
                                 newProg = 6;
-                            else if (wID1 == 148 && wCom == 1) // Data Larxene finish
-                            {
-                                if (data.UsingProgressionHints)
-                                    UpdateProgressionPoints(wName, 7);
-                                data.eventLog.Add(eventTuple);
-                                return;
-                            }
+                            if (wID1 == 148 && wCom == 1) // Data Larxene finish
+                                newProg = 7;
+                            //else if (wID1 == 148 && wCom == 1) // Data Larxene finish
+                            //{
+                            //    if (data.UsingProgressionHints)
+                            //        UpdateProgressionPoints(wName, 7);
+                            //    data.eventLog.Add(eventTuple);
+                            //    return;
+                            //}
                             break;
                         default:
                             updateProgression = false;

@@ -1893,7 +1893,7 @@
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
                             <local:OutlinedTextBlock x:Name="CollectedValue" FontFamily="{StaticResource Gummi}" FontSize="20" FontStretch="Medium" 
-                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="0">
+                                                     AllowDrop="False" IsHitTestVisible="False" StrokeThickness="1" Text="00">
                                 <local:OutlinedTextBlock.Fill>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE47606" Offset="0.836"/>

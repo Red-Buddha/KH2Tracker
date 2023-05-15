@@ -23,7 +23,8 @@
     <Image x:Key="Min-Lords"        Source="Images\Progression\Min\agrabah\elemental_lords.png" x:Shared="False"/>
     <Image x:Key="Min-Carpet"       Source="Images\Progression\Min\agrabah\magic_switches.png" x:Shared="False"/>
     <Image x:Key="Min-GenieJafar"   Source="Images\Progression\Min\agrabah\jafar.png" x:Shared="False"/>
-    <Image x:Key="Min-Lexaeus"      Source="Images\Progression\Min\agrabah\lexaeus.png" x:Shared="False"/>
+    <Image x:Key="Min-Lexaeus"      Source="Images\Progression\Min\absent.png" x:Shared="False"/>
+    <Image x:Key="Min-LexaeusData"  Source="Images\Progression\Min\agrabah\lexaeus.png" x:Shared="False"/>
     <!--Atlantica-->
     <Image x:Key="Min-Tutorial"     Source="Images\Progression\Min\atlantica\tutorial.png" x:Shared="False"/>
     <Image x:Key="Min-Ursula"       Source="Images\Progression\Min\atlantica\ursula.png" x:Shared="False"/>
@@ -41,9 +42,11 @@
     <Image x:Key="Min-Windows"                  Source="Images\Progression\Min\disney_castle\windows_of_time.png" x:Shared="False"/>
     <Image x:Key="Min-BoatPete"                 Source="Images\Progression\Min\disney_castle\steamboat_pete.png" x:Shared="False"/>
     <Image x:Key="Min-DCPete"                   Source="Images\Progression\Min\disney_castle\pete.png" x:Shared="False"/>
-    <Image x:Key="Min-Marluxia"                 Source="Images\Progression\Min\disney_castle\marluxia.png" x:Shared="False"/>
+    <Image x:Key="Min-Marluxia"                 Source="Images\Progression\Min\absent.png" x:Shared="False"/>
+    <Image x:Key="Min-MarluxiaData"             Source="Images\Progression\Min\disney_castle\marluxia.png" x:Shared="False"/>
     <Image x:Key="Min-LingeringWill"            Source="Images\Progression\Min\disney_castle\lingering_will.png" x:Shared="False"/>
     <Image x:Key="Min-Marluxia_LingeringWill"   Source="Images\Progression\Min\disney_castle\marluxia_and_lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Min-MarluxiaData_LingeringWill"   Source="Images\Progression\Min\disney_castle\marluxiadata_and_lingering_will.png" x:Shared="False"/>
     <!--Halloween Town-->
     <Image x:Key="Min-CandyCaneLane"    Source="Images\Progression\Min\halloween_town\candy_cane_lane.png" x:Shared="False"/>
     <Image x:Key="Min-PrisonKeeper"     Source="Images\Progression\Min\halloween_town\prison_keeper.png" x:Shared="False"/>
@@ -51,7 +54,8 @@
     <Image x:Key="Min-Children"         Source="Images\Progression\Min\halloween_town\children.png" x:Shared="False"/>
     <Image x:Key="Min-Presents"         Source="Images\Progression\Min\halloween_town\presents.png" x:Shared="False"/>
     <Image x:Key="Min-Experiment"       Source="Images\Progression\Min\halloween_town\experiment.png" x:Shared="False"/>
-    <Image x:Key="Min-Vexen"            Source="Images\Progression\Min\halloween_town\vexen.png" x:Shared="False"/>
+    <Image x:Key="Min-Vexen"            Source="Images\Progression\Min\absent.png" x:Shared="False"/>
+    <Image x:Key="Min-VexenData"        Source="Images\Progression\Min\halloween_town\vexen.png" x:Shared="False"/>
     <!--Hollow Bastion-->
     <Image x:Key="Min-Bailey"           Source="Images\Progression\Min\hollow_bastion\bailey.png" x:Shared="False"/>
     <Image x:Key="Min-AnsemStudy"       Source="Images\Progression\Min\hollow_bastion\ansem's_study.png" x:Shared="False"/>
@@ -85,7 +89,8 @@
     <Image x:Key="Min-Hydra"        Source="Images\Progression\Min\olympus_coliseum\hydra.png" x:Shared="False"/>
     <Image x:Key="Min-AuronStatue"  Source="Images\Progression\Min\olympus_coliseum\dusks.png" x:Shared="False"/>
     <Image x:Key="Min-Hades"        Source="Images\Progression\Min\olympus_coliseum\hades.png" x:Shared="False"/>
-    <Image x:Key="Min-Zexion"       Source="Images\Progression\Min\olympus_coliseum\zexion.png" x:Shared="False"/>
+    <Image x:Key="Min-Zexion"       Source="Images\Progression\Min\absent.png" x:Shared="False"/>
+    <Image x:Key="Min-ZexionData"   Source="Images\Progression\Min\olympus_coliseum\zexion.png" x:Shared="False"/>
     <!--Port Royal-->
     <Image x:Key="Min-Town"         Source="Images\Progression\Min\port_royal\town.png" x:Shared="False"/>
     <Image x:Key="Min-1Minute"      Source="Images\Progression\Min\port_royal\isla_de_muerta.png" x:Shared="False"/>
@@ -117,7 +122,8 @@
     <Image x:Key="Min-SolarSailer"      Source="Images\Progression\Min\space_paranoids\solar_sailer.png" x:Shared="False"/>
     <Image x:Key="Min-Sark"             Source="Images\Progression\Min\space_paranoids\sark.png" x:Shared="False"/>
     <Image x:Key="Min-MCP"              Source="Images\Progression\Min\space_paranoids\master_control_program.png" x:Shared="False"/>
-    <Image x:Key="Min-Larxene"          Source="Images\Progression\Min\space_paranoids\larxene.png" x:Shared="False"/>
+    <Image x:Key="Min-Larxene"          Source="Images\Progression\Min\absent.png" x:Shared="False"/>
+    <Image x:Key="Min-LarxeneData"          Source="Images\Progression\Min\space_paranoids\larxene.png" x:Shared="False"/>
     <!--TWTNW-->
     <Image x:Key="Min-Roxas"            Source="Images\Progression\Min\the_world_that_never_was\roxas.png" x:Shared="False"/>
     <Image x:Key="Min-Xigbar"           Source="Images\Progression\Min\the_world_that_never_was\xigbar.png" x:Shared="False"/>
@@ -158,6 +164,7 @@
     <Image x:Key="Old-Carpet"       Source="Images\Progression\Old\agrabah\magic_switches.png" x:Shared="False"/>
     <Image x:Key="Old-GenieJafar"   Source="Images\Progression\Old\agrabah\jafar.png" x:Shared="False"/>
     <Image x:Key="Old-Lexaeus"      Source="Images\Progression\Old\agrabah\lexaeus.png" x:Shared="False"/>
+    <Image x:Key="Old-LexaeusData"      Source="Images\Progression\Old\agrabah\lexaeus.png" x:Shared="False"/>
     <!--Atlantica-->
     <Image x:Key="Old-Tutorial"     Source="Images\Progression\Old\atlantica\tutorial.png" x:Shared="False"/>
     <Image x:Key="Old-Ursula"       Source="Images\Progression\Old\atlantica\ursula.png" x:Shared="False"/>
@@ -176,8 +183,10 @@
     <Image x:Key="Old-BoatPete"                 Source="Images\Progression\Old\disney_castle\steamboat_pete.png" x:Shared="False"/>
     <Image x:Key="Old-DCPete"                   Source="Images\Progression\Old\disney_castle\pete.png" x:Shared="False"/>
     <Image x:Key="Old-Marluxia"                 Source="Images\Progression\Old\disney_castle\marluxia.png" x:Shared="False"/>
+    <Image x:Key="Old-MarluxiaData"                 Source="Images\Progression\Old\disney_castle\marluxia.png" x:Shared="False"/>
     <Image x:Key="Old-LingeringWill"            Source="Images\Progression\Old\disney_castle\lingering_will.png" x:Shared="False"/>
     <Image x:Key="Old-Marluxia_LingeringWill"   Source="Images\Progression\Old\disney_castle\marluxia_and_lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Old-MarluxiaData_LingeringWill"   Source="Images\Progression\Old\disney_castle\marluxia_and_lingering_will.png" x:Shared="False"/>
     <!--Halloween Town-->
     <Image x:Key="Old-CandyCaneLane"    Source="Images\Progression\Old\halloween_town\candy_cane_lane.png" x:Shared="False"/>
     <Image x:Key="Old-PrisonKeeper"     Source="Images\Progression\Old\halloween_town\prison_keeper.png" x:Shared="False"/>
@@ -186,6 +195,7 @@
     <Image x:Key="Old-Presents"         Source="Images\Progression\Old\halloween_town\presents.png" x:Shared="False"/>
     <Image x:Key="Old-Experiment"       Source="Images\Progression\Old\halloween_town\experiment.png" x:Shared="False"/>
     <Image x:Key="Old-Vexen"            Source="Images\Progression\Old\halloween_town\vexen.png" x:Shared="False"/>
+    <Image x:Key="Old-VexenData"            Source="Images\Progression\Old\halloween_town\vexen.png" x:Shared="False"/>
     <!--Hollow Bastion-->
     <Image x:Key="Old-Bailey"           Source="Images\Progression\Old\hollow_bastion\bailey.png" x:Shared="False"/>
     <Image x:Key="Old-AnsemStudy"       Source="Images\Progression\Old\hollow_bastion\ansem's_study.png" x:Shared="False"/>
@@ -220,6 +230,7 @@
     <Image x:Key="Old-AuronStatue"  Source="Images\Progression\Old\olympus_coliseum\dusks.png" x:Shared="False"/>
     <Image x:Key="Old-Hades"        Source="Images\Progression\Old\olympus_coliseum\hades.png" x:Shared="False"/>
     <Image x:Key="Old-Zexion"       Source="Images\Progression\Old\olympus_coliseum\zexion.png" x:Shared="False"/>
+    <Image x:Key="Old-ZexionData"       Source="Images\Progression\Old\olympus_coliseum\zexion.png" x:Shared="False"/>
     <!--Port Royal-->
     <Image x:Key="Old-Town"         Source="Images\Progression\Old\port_royal\town.png" x:Shared="False"/>
     <Image x:Key="Old-1Minute"      Source="Images\Progression\Old\port_royal\isla_de_muerta.png" x:Shared="False"/>
@@ -252,6 +263,7 @@
     <Image x:Key="Old-Sark"             Source="Images\Progression\Old\space_paranoids\sark.png" x:Shared="False"/>
     <Image x:Key="Old-MCP"              Source="Images\Progression\Old\space_paranoids\master_control_program.png" x:Shared="False"/>
     <Image x:Key="Old-Larxene"          Source="Images\Progression\Old\space_paranoids\larxene.png" x:Shared="False"/>
+    <Image x:Key="Old-LarxeneData"          Source="Images\Progression\Old\space_paranoids\larxene.png" x:Shared="False"/>
     <!--TWTNW-->
     <Image x:Key="Old-Roxas"            Source="Images\Progression\Old\the_world_that_never_was\roxas.png" x:Shared="False"/>
     <Image x:Key="Old-Xigbar"           Source="Images\Progression\Old\the_world_that_never_was\xigbar.png" x:Shared="False"/>
@@ -291,6 +303,7 @@
     <Image x:Key="Cus-Carpet"       Source="pack://application:,,,/CustomImages/Progression/agrabah/magic_switches.png" x:Shared="False"/>
     <Image x:Key="Cus-GenieJafar"   Source="pack://application:,,,/CustomImages/Progression/agrabah/jafar.png" x:Shared="False"/>
     <Image x:Key="Cus-Lexaeus"      Source="pack://application:,,,/CustomImages/Progression/agrabah/lexaeus.png" x:Shared="False"/>
+    <Image x:Key="Cus-LexaeusData"  Source="pack://application:,,,/CustomImages/Progression/agrabah/lexaeusdata.png" x:Shared="False"/>
     <!--Atlantica-->
     <Image x:Key="Cus-Tutorial"     Source="pack://application:,,,/CustomImages/Progression/atlantica/tutorial.png" x:Shared="False"/>
     <Image x:Key="Cus-Ursula"       Source="pack://application:,,,/CustomImages/Progression/atlantica/ursula.png" x:Shared="False"/>
@@ -309,8 +322,10 @@
     <Image x:Key="Cus-BoatPete"                 Source="pack://application:,,,/CustomImages/Progression/disney_castle/steamboat_pete.png" x:Shared="False"/>
     <Image x:Key="Cus-DCPete"                   Source="pack://application:,,,/CustomImages/Progression/disney_castle/pete.png" x:Shared="False"/>
     <Image x:Key="Cus-Marluxia"                 Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxia.png" x:Shared="False"/>
+    <Image x:Key="Cus-MarluxiaData"             Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxiadata.png" x:Shared="False"/>
     <Image x:Key="Cus-LingeringWill"            Source="pack://application:,,,/CustomImages/Progression/disney_castle/lingering_will.png" x:Shared="False"/>
     <Image x:Key="Cus-Marluxia_LingeringWill"   Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxia_and_lingering_will.png" x:Shared="False"/>
+    <Image x:Key="Cus-MarluxiaData_LingeringWill"   Source="pack://application:,,,/CustomImages/Progression/disney_castle/marluxiadata_and_lingering_will.png" x:Shared="False"/>
     <!--Halloween Town-->
     <Image x:Key="Cus-CandyCaneLane"    Source="pack://application:,,,/CustomImages/Progression/halloween_town/candy_cane_lane.png" x:Shared="False"/>
     <Image x:Key="Cus-PrisonKeeper"     Source="pack://application:,,,/CustomImages/Progression/halloween_town/prison_keeper.png" x:Shared="False"/>
@@ -319,6 +334,7 @@
     <Image x:Key="Cus-Presents"         Source="pack://application:,,,/CustomImages/Progression/halloween_town/presents.png" x:Shared="False"/>
     <Image x:Key="Cus-Experiment"       Source="pack://application:,,,/CustomImages/Progression/halloween_town/experiment.png" x:Shared="False"/>
     <Image x:Key="Cus-Vexen"            Source="pack://application:,,,/CustomImages/Progression/halloween_town/vexen.png" x:Shared="False"/>
+    <Image x:Key="Cus-VexenData"            Source="pack://application:,,,/CustomImages/Progression/halloween_town/vexendata.png" x:Shared="False"/>
     <!--Hollow Bastion-->
     <Image x:Key="Cus-Bailey"           Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/bailey.png" x:Shared="False"/>
     <Image x:Key="Cus-AnsemStudy"       Source="pack://application:,,,/CustomImages/Progression/hollow_bastion/ansem's_study.png" x:Shared="False"/>
@@ -353,6 +369,7 @@
     <Image x:Key="Cus-AuronStatue"  Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/dusks.png" x:Shared="False"/>
     <Image x:Key="Cus-Hades"        Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/hades.png" x:Shared="False"/>
     <Image x:Key="Cus-Zexion"       Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/zexion.png" x:Shared="False"/>
+    <Image x:Key="Cus-ZexionData"       Source="pack://application:,,,/CustomImages/Progression/olympus_coliseum/zexiondata.png" x:Shared="False"/>
     <!--Port Royal-->
     <Image x:Key="Cus-Town"         Source="pack://application:,,,/CustomImages/Progression/port_royal/town.png" x:Shared="False"/>
     <Image x:Key="Cus-1Minute"      Source="pack://application:,,,/CustomImages/Progression/port_royal/isla_de_muerta.png" x:Shared="False"/>
@@ -385,6 +402,7 @@
     <Image x:Key="Cus-Sark"             Source="pack://application:,,,/CustomImages/Progression/space_paranoids/sark.png" x:Shared="False"/>
     <Image x:Key="Cus-MCP"              Source="pack://application:,,,/CustomImages/Progression/space_paranoids/master_control_program.png" x:Shared="False"/>
     <Image x:Key="Cus-Larxene"          Source="pack://application:,,,/CustomImages/Progression/space_paranoids/larxene.png" x:Shared="False"/>
+    <Image x:Key="Cus-LarxeneData"          Source="pack://application:,,,/CustomImages/Progression/space_paranoids/larxenedata.png" x:Shared="False"/>
     <!--TWTNW-->
     <Image x:Key="Cus-Roxas"            Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/roxas.png" x:Shared="False"/>
     <Image x:Key="Cus-Xigbar"           Source="pack://application:,,,/CustomImages/Progression/the_world_that_never_was/xigbar.png" x:Shared="False"/>
