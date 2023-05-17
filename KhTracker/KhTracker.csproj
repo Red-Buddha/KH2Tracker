@@ -308,6 +308,8 @@
     <Content Include="CustomImages\Progression\agrabah\elemental_lords.png" />
     <Content Include="CustomImages\Progression\agrabah\jafar.png" />
     <Content Include="CustomImages\Progression\agrabah\lexaeus.png" />
+    <Resource Include="Images\Progression\Min\absent.png" />
+    <Content Include="CustomImages\Progression\agrabah\lexaeusdata.png" />
     <Content Include="CustomImages\Progression\agrabah\magic_switches.png" />
     <Content Include="CustomImages\Progression\agrabah\treasure_room.png" />
     <Content Include="CustomImages\Progression\atlantica\concert.png" />
@@ -322,6 +324,8 @@
     <Content Include="CustomImages\Progression\chest.png" />
     <Content Include="CustomImages\Progression\disney_castle\lingering_will.png" />
     <Content Include="CustomImages\Progression\disney_castle\marluxia.png" />
+    <Content Include="CustomImages\Progression\disney_castle\marluxiadata.png" />
+    <Content Include="CustomImages\Progression\disney_castle\marluxiadata_and_lingering_will.png" />
     <Content Include="CustomImages\Progression\disney_castle\marluxia_and_lingering_will.png" />
     <Content Include="CustomImages\Progression\disney_castle\minnie.png" />
     <Content Include="CustomImages\Progression\disney_castle\old_pete.png" />
@@ -342,6 +346,7 @@
     <Content Include="CustomImages\Progression\halloween_town\presents.png" />
     <Content Include="CustomImages\Progression\halloween_town\prison_keeper.png" />
     <Content Include="CustomImages\Progression\halloween_town\vexen.png" />
+    <Content Include="CustomImages\Progression\halloween_town\vexendata.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\1000_heartless.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\ansem%27s_study.png" />
     <Content Include="CustomImages\Progression\hollow_bastion\bailey.png" />
@@ -372,6 +377,7 @@
     <Content Include="CustomImages\Progression\olympus_coliseum\the_lock.png" />
     <Content Include="CustomImages\Progression\olympus_coliseum\urns.png" />
     <Content Include="CustomImages\Progression\olympus_coliseum\zexion.png" />
+    <Content Include="CustomImages\Progression\olympus_coliseum\zexiondata.png" />
     <Content Include="CustomImages\Progression\port_royal\barbossa.png" />
     <Content Include="CustomImages\Progression\port_royal\cursed_reaper.png" />
     <Content Include="CustomImages\Progression\port_royal\explosives.png" />
@@ -397,6 +403,7 @@
     <Content Include="CustomImages\Progression\space_paranoids\dataspace.png" />
     <Content Include="CustomImages\Progression\space_paranoids\hostile_program.png" />
     <Content Include="CustomImages\Progression\space_paranoids\larxene.png" />
+    <Content Include="CustomImages\Progression\space_paranoids\larxenedata.png" />
     <Content Include="CustomImages\Progression\space_paranoids\master_control_program.png" />
     <Content Include="CustomImages\Progression\space_paranoids\sark.png" />
     <Content Include="CustomImages\Progression\space_paranoids\solar_sailer.png" />

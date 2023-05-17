@@ -1723,6 +1723,7 @@ namespace KhTracker
                             {
                                 SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["SimulatedTwilightTown"][8]);
                                 data.WorldsData["SimulatedTwilightTown"].progress = 8;
+                                data.WorldsData["SimulatedTwilightTown"].progression.ToolTip = data.ProgressKeys["SimulatedTwilightTownDesc"][8];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("SimulatedTwilightTown", 8);
                                 data.eventLog.Add(eventTuple);
@@ -1736,6 +1737,7 @@ namespace KhTracker
                             {
                                 LandofDragonsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["LandofDragons"][9]);
                                 data.WorldsData["LandofDragons"].progress = 9;
+                                data.WorldsData["LandofDragons"].progression.ToolTip = data.ProgressKeys["LandofDragonsDesc"][9];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("LandofDragons", 9);
                                 data.eventLog.Add(eventTuple);
@@ -1749,6 +1751,7 @@ namespace KhTracker
                             {
                                 PortRoyalProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PortRoyal"][10]);
                                 data.WorldsData["PortRoyal"].progress = 10;
+                                data.WorldsData["PortRoyal"].progression.ToolTip = data.ProgressKeys["PortRoyalDesc"][10];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("PortRoyal", 10);
                                 data.eventLog.Add(eventTuple);
@@ -1762,6 +1765,7 @@ namespace KhTracker
                             {
                                 PrideLandsProgression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys["PrideLands"][7]);
                                 data.WorldsData["PrideLands"].progress = 7;
+                                data.WorldsData["PrideLands"].progression.ToolTip = data.ProgressKeys["PrideLandsDesc"][7];
                                 if (data.UsingProgressionHints)
                                     UpdateProgressionPoints("PrideLands", 7);
                                 data.eventLog.Add(eventTuple);

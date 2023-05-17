@@ -123,7 +123,7 @@
     <Image x:Key="Min-Sark"             Source="Images\Progression\Min\space_paranoids\sark.png" x:Shared="False"/>
     <Image x:Key="Min-MCP"              Source="Images\Progression\Min\space_paranoids\master_control_program.png" x:Shared="False"/>
     <Image x:Key="Min-Larxene"          Source="Images\Progression\Min\absent.png" x:Shared="False"/>
-    <Image x:Key="Min-LarxeneData"          Source="Images\Progression\Min\space_paranoids\larxene.png" x:Shared="False"/>
+    <Image x:Key="Min-LarxeneData"      Source="Images\Progression\Min\space_paranoids\larxene.png" x:Shared="False"/>
     <!--TWTNW-->
     <Image x:Key="Min-Roxas"            Source="Images\Progression\Min\the_world_that_never_was\roxas.png" x:Shared="False"/>
     <Image x:Key="Min-Xigbar"           Source="Images\Progression\Min\the_world_that_never_was\xigbar.png" x:Shared="False"/>
