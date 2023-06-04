@@ -20,12 +20,11 @@ namespace KhTracker
                 if (world != value)
                 {
                     world = value;
-                    if (App.logger != null)
-                        App.logger.RecordWorld(value);
+                    App.logger?.RecordWorld(value);
                 }
             }
         }
-        private int worldNum;
+        public int worldNum;
         private int worldAddress;
         private int eventCompleteAddress;
         private int SttAddress;
@@ -36,6 +35,7 @@ namespace KhTracker
         public int eventID3;
         public int eventComplete;
         public int inStt;
+        public int cupRound;
 
         public int ADDRESS_OFFSET;
 
@@ -49,29 +49,36 @@ namespace KhTracker
             eventCompleteAddress = completeAddress;
             SttAddress = sttAddress;
 
-            worldCodes = new Dictionary<int, string>();
-            worldCodes.Add(02, "TwilightTown");
-            worldCodes.Add(03, "DestinyIsland");
-            worldCodes.Add(04, "HollowBastion");
-            worldCodes.Add(05, "BeastsCastle");
-            worldCodes.Add(06, "OlympusColiseum");
-            worldCodes.Add(07, "Agrabah");
-            worldCodes.Add(08, "LandofDragons");
-            worldCodes.Add(09, "HundredAcreWood");
-            worldCodes.Add(10, "PrideLands");
-            worldCodes.Add(11, "Atlantica");
-            worldCodes.Add(12, "DisneyCastle");
-            worldCodes.Add(13, "DisneyCastle"); // Timeless River
-            worldCodes.Add(14, "HalloweenTown");
-            worldCodes.Add(16, "PortRoyal");
-            worldCodes.Add(17, "SpaceParanoids");
-            worldCodes.Add(18, "TWTNW");
-            worldCodes.Add(255, "GoA");
+            worldCodes = new Dictionary<int, string>
+            {
+                { 01, "GoA" }, // Title Demo
+                { 02, "TwilightTown" },
+                { 03, "DestinyIsland" },
+                { 04, "HollowBastion" },
+                { 05, "BeastsCastle" },
+                { 06, "OlympusColiseum" },
+                { 07, "Agrabah" },
+                { 08, "LandofDragons" },
+                { 09, "HundredAcreWood" },
+                { 10, "PrideLands" },
+                { 11, "Atlantica" },
+                { 12, "DisneyCastle" },
+                { 13, "DisneyCastle" }, // Timeless River
+                { 14, "HalloweenTown" },
+                { 16, "PortRoyal" },
+                { 17, "SpaceParanoids" },
+                { 18, "TWTNW" },
+                { 255, "GoA" }
+            };
         }
 
         public void UpdateMemory()
         {
             previousworldName = worldName;
+
+            //this shouldn't happen, but use unknown as the world in case it ever does
+            if (worldName == null)
+                worldName = "Unknown";
 
             byte[] worldData = memory.ReadMemory(worldAddress + ADDRESS_OFFSET, 9);
             worldNum = worldData[0];
@@ -79,6 +86,7 @@ namespace KhTracker
             eventID1 = worldData[4];
             eventID2 = worldData[6];
             eventID3 = worldData[8];
+            cupRound = worldData[2];
 
             byte[] eventData = memory.ReadMemory(eventCompleteAddress + ADDRESS_OFFSET, 1);
             eventComplete = eventData[0];

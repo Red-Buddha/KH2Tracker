@@ -6,9 +6,14 @@
              Exit="App_Exit">
     <Application.Resources>
         <ResourceDictionary>
-            <FontFamily x:Key="HVD_Comic_Serif_Pro">pack://application:,,,/Fonts/#HVD Comic Serif Pro</FontFamily>
+            <FontFamily x:Key="Classic">pack://application:,,,/Fonts/#HVD Comic Serif Pro</FontFamily>
+            <FontFamily x:Key="Gummi">pack://application:,,,/Fonts/#KHGummi</FontFamily>
+            <FontFamily x:Key="Menu">pack://application:,,,/Fonts/#KHMenu</FontFamily>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionary1.xaml" />
+                <ResourceDictionary Source="MainDictionary.xaml" />
+                <ResourceDictionary Source="ItemDictionary.xaml" />
+                <ResourceDictionary Source="WorldDictionary.xaml" /> 
+                <ResourceDictionary Source="ProgressionDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

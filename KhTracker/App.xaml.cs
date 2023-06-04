@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace KhTracker
@@ -34,7 +29,7 @@ namespace KhTracker
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            (MainWindow as MainWindow).Save("kh2fm-tracker-autosave.txt");
+            (MainWindow as MainWindow).Save("KhTrackerAutoSaves\\" + "Tracker-CrashBackup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
         }
     }
 }

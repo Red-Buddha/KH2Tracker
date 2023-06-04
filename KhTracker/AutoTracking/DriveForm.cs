@@ -11,6 +11,7 @@ namespace KhTracker
     {
         public int[] previousLevels = new int[3];
         private int level = 0;
+        private int visualLevel = 0;
         public int Level
         {
             get { return level; }
@@ -18,6 +19,15 @@ namespace KhTracker
             {
                 level = value;
                 OnPropertyChanged("Level");
+            }
+        }
+        public int VisualLevel
+        {
+            get { return visualLevel; }
+            set
+            {
+                visualLevel = value;
+                OnPropertyChanged("VisualLevel");
             }
         }
         private int byteNum;
@@ -55,6 +65,8 @@ namespace KhTracker
             previousLevels[0] = previousLevels[1];
             previousLevels[1] = previousLevels[2];
             previousLevels[2] = Level;
+
+            VisualLevel = levelData[0];
 
             if (Level < levelData[0])
             {

@@ -10,7 +10,6 @@ namespace KhTracker
     /* Author: Coraccio aka Racci
      * Implemented to track Final Form after being forced
      * (Searches all checks except for Sora/Drive levels, where it only looks through the important checks already scanned by Rewards)
-     * (Skips searching through Drive levels since forms cannot be on other forms as per rando logic)
      */
     class CheckEveryCheck
     {
@@ -22,8 +21,19 @@ namespace KhTracker
         public World World;
         public Stats Stats;
         public Rewards Rewards;
+        public DriveForm Valor;
+        public DriveForm Wisdom;
+        public DriveForm Limit;
+        public DriveForm Master;
+        public DriveForm Final;
         private bool onLevels = false;
         private Dictionary<string, int> targetLevel;
+        private bool onValor = false;
+        private bool onWisdom = false;
+        private bool onLimit = false;
+        private bool onMaster = false;
+        private bool onFinal = false;
+        private Dictionary<string, int> targetDriveLevel;
 
         private int target;
         public int Target
@@ -38,7 +48,8 @@ namespace KhTracker
             get { return targetObtained; }
         }
 
-        public CheckEveryCheck(MemoryReader mem, int offset, int saveAnchor, int sysAnchor, int battleAnchor, World world, Stats stats, Rewards rewards)
+        public CheckEveryCheck(MemoryReader mem, int offset, int saveAnchor, int sysAnchor, int battleAnchor, World world, Stats stats, Rewards rewards,
+            DriveForm valor, DriveForm wisdom, DriveForm limit, DriveForm master, DriveForm final)
         {
             memory = mem;
             ADDRESS_OFFSET = offset;
@@ -48,8 +59,15 @@ namespace KhTracker
             World = world;
             Stats = stats;
             Rewards = rewards;
+            Valor = valor;
+            Wisdom = wisdom;
+            Limit = limit;
+            Master = master;
+            Final = final;
+
             checksList = new List<Check>();
 
+            #region Chest
             // Chest (317)
             checksList.Add(new Check(this, Sys3 + 0x1442A, Save + 0x23AC, 1));   // Bamboo Grove
             checksList.Add(new Check(this, Sys3 + 0x14436, Save + 0x23D9, 7));   // Bamboo Grove
@@ -122,9 +140,11 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x1475A, Save + 0x23CA, 0));   // Rabbit's House
             checksList.Add(new Check(this, Sys3 + 0x14766, Save + 0x23B5, 7));   // Rabbit's House
             checksList.Add(new Check(this, Sys3 + 0x14772, Save + 0x23B6, 0));   // Rabbit's House
+
             checksList.Add(new Check(this, Sys3 + 0x1477E, Save + 0x23B6, 5));   // Kanga's House
             checksList.Add(new Check(this, Sys3 + 0x1478A, Save + 0x23B6, 6));   // Kanga's House
             checksList.Add(new Check(this, Sys3 + 0x14796, Save + 0x23B6, 7));   // Kanga's House
+
             checksList.Add(new Check(this, Sys3 + 0x147A2, Save + 0x23B7, 1));   // The Spooky Cave
             checksList.Add(new Check(this, Sys3 + 0x147AE, Save + 0x23B7, 2));   // The Spooky Cave
             checksList.Add(new Check(this, Sys3 + 0x147BA, Save + 0x23B7, 3));   // The Spooky Cave
@@ -368,44 +388,133 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x152E2, Save + 0x23DF, 1));   // Garden of Assemblage
             checksList.Add(new Check(this, Sys3 + 0x152EE, Save + 0x23DF, 2));   // Garden of Assemblage
             checksList.Add(new Check(this, Sys3 + 0x152FA, Save + 0x23DF, 3));   // Garden of Assemblage
+            #endregion
 
-            // Bonus (35)
-            checksList.Add(new Check(this, Btl0 + 0x2A9D8, Save + 0x3704, 2));   // Thresholder
-            checksList.Add(new Check(this, Btl0 + 0x2AA08, Save + 0x3704, 3));   // Dark Thorn
-            checksList.Add(new Check(this, Btl0 + 0x2AA48, Save + 0x3704, 4));   // Xaldin
-            checksList.Add(new Check(this, Btl0 + 0x2AA88, Save + 0x3704, 5));   // Cerberus
-            checksList.Add(new Check(this, Btl0 + 0x2AAA8, Save + 0x3704, 6));   // Pete I
-            checksList.Add(new Check(this, Btl0 + 0x2AAD8, Save + 0x3704, 7));   // Hydra
-            checksList.Add(new Check(this, Btl0 + 0x2AB08, Save + 0x3705, 0));   // Hades
-            checksList.Add(new Check(this, Btl0 + 0x2AB48, Save + 0x3705, 1));   // Shan Yu
-            checksList.Add(new Check(this, Btl0 + 0x2AB88, Save + 0x3705, 2));   // Storm Rider
-            checksList.Add(new Check(this, Btl0 + 0x2ABF8, Save + 0x3705, 7));   // Genie Jafar
-            checksList.Add(new Check(this, Btl0 + 0x2AC08, Save + 0x3706, 0));   // Boat Pete
-            checksList.Add(new Check(this, Btl0 + 0x2AC38, Save + 0x3706, 1));   // Pete II
-            checksList.Add(new Check(this, Btl0 + 0x2AC68, Save + 0x3706, 2));   // Prison Keeper
-            checksList.Add(new Check(this, Btl0 + 0x2AD28, Save + 0x3706, 5));   // Barbossa
-            checksList.Add(new Check(this, Btl0 + 0x2AD68, Save + 0x3706, 6));   // Grim Reaper II
-            checksList.Add(new Check(this, Btl0 + 0x2ADD8, Save + 0x3707, 0));   // Luxord
-            checksList.Add(new Check(this, Btl0 + 0x2AE28, Save + 0x3707, 4));   // Demyx II
-            checksList.Add(new Check(this, Btl0 + 0x2AE98, Save + 0x3707, 6));   // Groundshaker
-            checksList.Add(new Check(this, Btl0 + 0x2AEB8, Save + 0x3707, 7));   // Hostile Program
-            checksList.Add(new Check(this, Btl0 + 0x2AEF8, Save + 0x3708, 0));   // MCP
-            checksList.Add(new Check(this, Btl0 + 0x2AF38, Save + 0x3708, 1));   // Twilight Thorn
-            checksList.Add(new Check(this, Btl0 + 0x2AF68, Save + 0x3708, 5));   // Volcanic Lord & Blizzard Lord
-            checksList.Add(new Check(this, Btl0 + 0x2AFA8, Save + 0x3708, 6));   // Queen Minnie Escort
-            checksList.Add(new Check(this, Btl0 + 0x2B038, Save + 0x3709, 2));   // Abu Escort
-            checksList.Add(new Check(this, Btl0 + 0x2B078, Save + 0x3709, 3));   // Village Cave Heartless
-            checksList.Add(new Check(this, Btl0 + 0x2B118, Save + 0x3709, 7));   // Bailey Nobodies
-            checksList.Add(new Check(this, Btl0 + 0x2B228, Save + 0x370A, 6));   // Station of Serenity Nobodies
-            checksList.Add(new Check(this, Btl0 + 0x2B268, Save + 0x370B, 1));   // Phil's Training
-            checksList.Add(new Check(this, Btl0 + 0x2B2A8, Save + 0x370B, 3));   // Grim Reaper I
-            checksList.Add(new Check(this, Btl0 + 0x2B2E8, Save + 0x370B, 4));   // 1000 Heartless
-            checksList.Add(new Check(this, Btl0 + 0x2B2F8, Save + 0x370B, 5));   // Solar Sailer Heartless
-            checksList.Add(new Check(this, Btl0 + 0x2B338, Save + 0x370B, 6));   // The Interceptor Pirates
-            checksList.Add(new Check(this, Btl0 + 0x2B368, Save + 0x370B, 7));   // Betwixt and Between Nobodies
-            checksList.Add(new Check(this, Btl0 + 0x2B468, Save + 0x370C, 5));   // Roxas
-            checksList.Add(new Check(this, Btl0 + 0x2B4F8, Save + 0x370D, 1));   // Axel I
+            #region Bonus
+            // Bonus (120)
+            checksList.Add(new Check(this, Btl0 + 0x2A9D8, Save + 0x3704, 2));   // Thresholder - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2A9DA, Save + 0x3704, 2));   // Thresholder - Slot 2    (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AA08, Save + 0x3704, 3));   // Dark Thorn - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AA0A, Save + 0x3704, 3));   // Dark Thorn - Slot 2     (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AA48, Save + 0x3704, 4));   // Xaldin - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AA4A, Save + 0x3704, 4));   // Xaldin - Slot 2         (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AA88, Save + 0x3704, 5));   // Cerberus - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AA8A, Save + 0x3704, 5));   // Cerberus - Slot 2       (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AAA8, Save + 0x3704, 6));   // Pete I - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AAAA, Save + 0x3704, 6));   // Pete I - Slot 2         (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AAD8, Save + 0x3704, 7));   // Hydra - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AADA, Save + 0x3704, 7));   // Hydra - Slot 2          (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AB08, Save + 0x3705, 0));   // Hades - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AB0A, Save + 0x3705, 0));   // Hades - Slot 2          (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AB48, Save + 0x3705, 1));   // Shan Yu - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AB48, Save + 0x3705, 1));   // Shan Yu - Slot 2        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AB88, Save + 0x3705, 2));   // Storm Rider - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AB8A, Save + 0x3705, 2));   // Storm Rider - Slot 2    (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ABC8, Save + 0x3705, 4));   // Beast - Slot 1          (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ABCA, Save + 0x3705, 4));   // Beast - Slot 2          (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ABF8, Save + 0x3705, 7));   // Genie Jafar - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2ABFA, Save + 0x3705, 7));   // Genie Jafar - Slot 2    (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AC08, Save + 0x3706, 0));   // Boat Pete - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AC0A, Save + 0x3706, 0));   // Boat Pete - Slot 2      (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AC38, Save + 0x3706, 1));   // Pete II - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AC3A, Save + 0x3706, 1));   // Pete II - Slot 2        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AC68, Save + 0x3706, 2));   // Prison Keeper - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AC6A, Save + 0x3706, 2));   // Prison Keeper - Slot 2  (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ACA8, Save + 0x3706, 3));   // Oogie Boogie - Slot 1   (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ACAA, Save + 0x3706, 3));   // Oogie Boogie - Slot 2   (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ACE8, Save + 0x3706, 4));   // The Experiment - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ACEA, Save + 0x3706, 4));   // The Experiment - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AD28, Save + 0x3706, 5));   // Barbossa - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AD2A, Save + 0x3706, 5));   // Barbossa - Slot 2       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AD68, Save + 0x3706, 6));   // Grim Reaper II - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AD6A, Save + 0x3706, 6));   // Grim Reaper II - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ADA8, Save + 0x3706, 7));   // Xigbar - Slot 1         (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ADAA, Save + 0x3706, 7));   // Xigbar - Slot 2         (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2ADD8, Save + 0x3707, 0));   // Luxord - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2ADDA, Save + 0x3707, 0));   // Luxord - Slot 2         (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ADE8, Save + 0x3707, 1));   // Saïx - Slot 1           (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2ADEA, Save + 0x3707, 1));   // Saïx - Slot 2           (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AE18, Save + 0x3707, 2));   // Xemnas I - Slot 1       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AE1A, Save + 0x3707, 2));   // Xemnas I - Slot 2       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AE28, Save + 0x3707, 4));   // Demyx II - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AE2A, Save + 0x3707, 4));   // Demyx II - Slot 2       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AE58, Save + 0x3707, 5));   // Scar - Slot 1           (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AE5A, Save + 0x3707, 5));   // Scar - Slot 2           (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AE98, Save + 0x3707, 6));   // Groundshaker - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AE9A, Save + 0x3707, 6));   // Groundshaker - Slot 2   (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AEB8, Save + 0x3707, 7));   // Hostile Program - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AEBA, Save + 0x3707, 7));   // Hostile Program - Slot 2 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AEF8, Save + 0x3708, 0));   // MCP - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AEFA, Save + 0x3708, 0));   // MCP - Slot 2            (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AF38, Save + 0x3708, 1));   // Twilight Thorn - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AF3A, Save + 0x3708, 1));   // Twilight Thorn - Slot 2 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AF48, Save + 0x3708, 2));   // Axel II - Slot 1        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AF4A, Save + 0x3708, 2));   // Axel II - Slot 2        (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AF58, Save + 0x3708, 3));   // Sephiroth - Slot 1      (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AF5A, Save + 0x3708, 3));   // Sephiroth - Slot 2      (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AF68, Save + 0x3708, 5));   // Volcanic Lord & Blizzard Lord - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AF6A, Save + 0x3708, 5));   // Volcanic Lord & Blizzard Lord - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AFA8, Save + 0x3708, 6));   // Queen Minnie Escort - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2AFAA, Save + 0x3708, 6));   // Queen Minnie Escort - Slot 2 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AFB8, Save + 0x3708, 7));   // The Interceptor Barrels - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AFBA, Save + 0x3708, 7));   // The Interceptor Barrels - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2AFF8, Save + 0x3709, 0));   // Lock, Shock & Barrel - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2AFFA, Save + 0x3709, 0));   // Lock, Shock & Barrel - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B038, Save + 0x3709, 2));   // Abu Escort - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B03A, Save + 0x3709, 2));   // Abu Escort - Slot 2     (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B078, Save + 0x3709, 3));   // Village Cave Heartless - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B07A, Save + 0x3709, 3));   // Village Cave Heartless - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B098, Save + 0x3709, 5));   // Dataspace Monitors - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B09A, Save + 0x3709, 5));   // Dataspace Monitors - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B0D8, Save + 0x3709, 6));   // Treasure Room Heartless - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B0DA, Save + 0x3709, 6));   // Treasure Room Heartless - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B118, Save + 0x3709, 7));   // Bailey Nobodies - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B11A, Save + 0x3709, 7));   // Bailey Nobodies - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B128, Save + 0x370A, 1));   // Hyenas I - Slot 1       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B12A, Save + 0x370A, 1));   // Hyenas I - Slot 2       (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B158, Save + 0x370A, 2));   // Hyenas II - Slot 1      (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B15A, Save + 0x370A, 2));   // Hyenas II - Slot 2      (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B228, Save + 0x370A, 6));   // Station of Serenity Nobodies - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B22A, Save + 0x370A, 6));   // Station of Serenity Nobodies - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B238, Save + 0x370B, 0));   // The Old Mansion Nobodies - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B23A, Save + 0x370B, 0));   // The Old Mansion Nobodies - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B268, Save + 0x370B, 1));   // Phil's Training - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B26A, Save + 0x370B, 1));   // Phil's Training - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B278, Save + 0x370B, 2));   // Demyx I - Slot 1        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B27A, Save + 0x370B, 2));   // Demyx I - Slot 2        (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B2A8, Save + 0x370B, 3));   // Grim Reaper I - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B2AA, Save + 0x370B, 3));   // Grim Reaper I - Slot 2  (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B2E8, Save + 0x370B, 4));   // 1000 Heartless - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B2EA, Save + 0x370B, 4));   // 1000 Heartless - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B2F8, Save + 0x370B, 5));   // Solar Sailer Heartless - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B2FA, Save + 0x370B, 5));   // Solar Sailer Heartless - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B338, Save + 0x370B, 6));   // The Interceptor Pirates - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B33A, Save + 0x370B, 6));   // The Interceptor Pirates - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B368, Save + 0x370B, 7));   // Betwixt and Between Nobodies - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B36A, Save + 0x370B, 7));   // Betwixt and Between Nobodies - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B378, Save + 0x370C, 0));   // Vexen - Slot 1          (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B37A, Save + 0x370C, 0));   // Vexen - Slot 2          (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B3A8, Save + 0x370C, 1));   // Lexaeus - Slot 1        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B3AA, Save + 0x370C, 1));   // Lexaeus - Slot 2        (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B3D8, Save + 0x370C, 2));   // Zexion - Slot 1         (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B3DA, Save + 0x370C, 2));   // Zexion - Slot 2         (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B408, Save + 0x370C, 3));   // Marluxia - Slot 1       (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B40A, Save + 0x370C, 3));   // Marluxia - Slot 2       (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B438, Save + 0x370C, 4));   // Larxene - Slot 1        (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B43A, Save + 0x370C, 4));   // Larxene - Slot 2        (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B468, Save + 0x370C, 5));   // Roxas - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B46A, Save + 0x370C, 5));   // Roxas - Slot 2          (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B478, Save + 0x370C, 6));   // Lingering Will - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B47A, Save + 0x370C, 6));   // Lingering Will - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B4A8, Save + 0x370C, 7));   // Xemnas II - Slot 1      (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B4AA, Save + 0x370C, 7));   // Xemnas II - Slot 2      (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B4C8, Save + 0x370D, 0));   // Transport to Remembrance Nobodies III - Slot 1 (Statsanity)
+            checksList.Add(new Check(this, Btl0 + 0x2B4CA, Save + 0x370D, 0));   // Transport to Remembrance Nobodies III - Slot 2 (Plando)
+            checksList.Add(new Check(this, Btl0 + 0x2B4F8, Save + 0x370D, 1));   // Axel I - Slot 1
+            checksList.Add(new Check(this, Btl0 + 0x2B4FA, Save + 0x370D, 1));   // Axel I - Slot 2         (Plando)
+            #endregion
 
+            #region popup
             // Popup (92, excluding AS and Data) (using corresponding progress flags)
             checksList.Add(new Check(this, Sys3 + 0x15606, Save + 0x1DB4, 6));   // Sweet Memories
             checksList.Add(new Check(this, Sys3 + 0x15612, Save + 0x1DB4, 6));   // Spooky Cave Map
@@ -432,7 +541,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x155BE, Save + 0x1E55, 1));   // Present
             checksList.Add(new Check(this, Sys3 + 0x155CA, Save + 0x1E55, 4));   // Decoy Presents
             checksList.Add(new Check(this, Sys3 + 0x155D6, Save + 0x1E56, 0));   // Decisive Pumpkin
-            checksList.Add(new Check(this, Sys3 + 0x1538A, Save + 0x3DA9, 7));   // Marketplace Map (Random flag? PS2:32F8D9(80))
+            checksList.Add(new Check(this, Sys3 + 0x1538A, Save + 0x1D17, 4));   // Marketplace Map
             checksList.Add(new Check(this, Sys3 + 0x15396, Save + 0x1D10, 6));   // Membership Card
             checksList.Add(new Check(this, Sys3 + 0x153A2, Save + 0x1D10, 6));   // Merlin Blizzard
             checksList.Add(new Check(this, Sys3 + 0x156EA, Save + 0x1D18, 3));   // Ansem Report 7 (late)
@@ -465,7 +574,7 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x1564E, Save + 0x1D58, 4));   // Goddess of Fate Cup Fatal Crest (slightly early)
             checksList.Add(new Check(this, Sys3 + 0x1565A, Save + 0x1D58, 4));   // Goddess of Fate Cup Orichalcum+ (slightly early)
             checksList.Add(new Check(this, Sys3 + 0x15696, Save + 0x1D5A, 1));   // Hades Cup Trophy (slightly early)
-            checksList.Add(new Check(this, Sys3 + 0x15474, Save + 0x1E92, 4));   // Isla de Muerta Map
+            checksList.Add(new Check(this, Sys3 + 0x1547A, Save + 0x1E92, 4));   // Isla de Muerta Map
             checksList.Add(new Check(this, Sys3 + 0x15486, Save + 0x1E93, 6));   // Follow the Wind
             checksList.Add(new Check(this, Sys3 + 0x1556A, Save + 0x1E95, 2));   // Cursed Medallion
             checksList.Add(new Check(this, Sys3 + 0x15576, Save + 0x1E95, 2));   // Ship Graveyard Map
@@ -499,18 +608,32 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x15726, Save + 0x1ED3, 2));   // Ansem Report 12 (early)
             checksList.Add(new Check(this, Sys3 + 0x1571A, Save + 0x1ED3, 6));   // Ansem Report 11
             checksList.Add(new Check(this, Sys3 + 0x15732, Save + 0x1ED4, 5));   // Ansem Report 13
+            #endregion
 
             // Popup for Absent Silhouette and Data (using defeat cutscene IDs) (18)
             checksList.Add(new Check(this, Sys3 + 0x1573E, World, "HalloweenTown",          0x20, 0x79));   // AS Vexen
-            checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x79));   // Data Vexen
             checksList.Add(new Check(this, Sys3 + 0x1574A, World, "Agrabah",                0x21, 0x7B));   // AS Lexaeus
-            checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x7B));   // Data Lexaeus
             checksList.Add(new Check(this, Sys3 + 0x15756, World, "OlympusColiseum",        0x22, 0x7D));   // AS Zexion
-            checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x7D));   // Data Zexion
             checksList.Add(new Check(this, Sys3 + 0x1576E, World, "DisneyCastle",           0x26, 0x7F));   // AS Marluxia
-            checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x7F));   // Data Marluxia
             checksList.Add(new Check(this, Sys3 + 0x15762, World, "SpaceParanoids",         0x21, 0x81));   // AS Larxene
-            checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x81));   // Data Larxene
+
+            if (!MainWindow.data.dataSplit) //data split off
+            {
+                checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x79));   // Data Vexen
+                checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x7B));   // Data Lexaeus
+                checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x7D));   // Data Zexion
+                checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x7F));   // Data Marluxia
+                checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x81));   // Data Larxene
+            }
+            else //data split on
+            {
+                checksList.Add(new Check(this, Sys3 + 0x1577A, World, "HalloweenTown",          0x20, 0x83));   // Data Vexen
+                checksList.Add(new Check(this, Sys3 + 0x15786, World, "Agrabah",                0x21, 0x85));   // Data Lexaeus
+                checksList.Add(new Check(this, Sys3 + 0x15792, World, "OlympusColiseum",        0x22, 0x87));   // Data Zexion
+                checksList.Add(new Check(this, Sys3 + 0x157AA, World, "DisneyCastle",           0x26, 0x89));   // Data Marluxia
+                checksList.Add(new Check(this, Sys3 + 0x1579E, World, "SpaceParanoids",         0x21, 0x8B));   // Data Larxene
+            }
+
             checksList.Add(new Check(this, Sys3 + 0x157DA, World, "TWTNW",                  0x14, 0x6A));   // Data Xemnas
             checksList.Add(new Check(this, Sys3 + 0x157E6, World, "LandofDragons",          0x0A, 0x6C));   // Data Xigbar
             checksList.Add(new Check(this, Sys3 + 0x157C2, World, "BeastsCastle",           0x0F, 0x63));   // Data Xaldin
@@ -520,8 +643,12 @@ namespace KhTracker
             checksList.Add(new Check(this, Sys3 + 0x157FE, World, "PortRoyal",              0x0E, 0x70));   // Data Luxord
             checksList.Add(new Check(this, Sys3 + 0x1580A, World, "SimulatedTwilightTown",  0x15, 0x72));   // Data Roxas
 
-            // Handle Sora levels separately, since Rewards already scans through them
-            // Skip Drive levels, since forms cannot be on other forms
+
+
+
+
+
+            // Handle Sora levels and Drive levels separately, since Rewards already scans through them
         }
 
         public bool TrackCheck(int targetValue)
@@ -543,14 +670,24 @@ namespace KhTracker
                     targetCheck.Add(check);
                 }
             }
+
             // Search through levels, handled separately using Rewards
             onLevels = false;
+            onValor = false;
+            onWisdom = false;
+            onLimit = false;
+            onMaster = false;
+            onFinal = false;
+            targetLevel = null;
+            targetDriveLevel = null;
             if (MainWindow.data.codes.itemCodes.ContainsKey(target))
             {
+                string checkName = MainWindow.data.codes.itemCodes[target];
+
+                // Sora levels
                 int swordLevel = 100;
                 int shieldLevel = 100;
                 int staffLevel = 100;
-                string checkName = MainWindow.data.codes.itemCodes[target];
                 Tuple<int, string> swordReward = Rewards.GetLevelRewards("Sword").FirstOrDefault(reward => reward.Item2 == checkName);
                 Tuple<int, string> shieldReward = Rewards.GetLevelRewards("Shield").FirstOrDefault(reward => reward.Item2 == checkName);
                 Tuple<int, string> staffReward = Rewards.GetLevelRewards("Staff").FirstOrDefault(reward => reward.Item2 == checkName);
@@ -576,13 +713,92 @@ namespace KhTracker
                     };
                     onLevels = true;
                 }
+
+                // Drive levels
+                Tuple<int, string> valorReward = Rewards.valorChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> wisdomReward = Rewards.wisdomChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> limitReward = Rewards.limitChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> masterReward = Rewards.masterChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                Tuple<int, string> finalReward = Rewards.finalChecks.FirstOrDefault(reward => reward.Item2 == checkName);
+                if (!(valorReward == null && wisdomReward == null && limitReward == null && masterReward == null && finalReward == null))
+                {
+                    targetDriveLevel = new Dictionary<string, int>();
+                    if (valorReward != null)
+                    {
+                        onValor = true;
+                        targetDriveLevel.Add("Valor", valorReward.Item1);
+                    }
+                    if (wisdomReward != null)
+                    {
+                        onWisdom = true;
+                        targetDriveLevel.Add("Wisdom", wisdomReward.Item1);
+                    }
+                    if (limitReward != null)
+                    {
+                        onLimit = true;
+                        targetDriveLevel.Add("Limit", limitReward.Item1);
+                    }
+                    if (masterReward != null)
+                    {
+                        onMaster = true;
+                        targetDriveLevel.Add("Master", masterReward.Item1);
+                    }
+                    if (finalReward != null)
+                    {
+                        onFinal = true;
+                        targetDriveLevel.Add("Final", finalReward.Item1);
+                    }
+                }
             }
         }
 
         public bool UpdateTargetMemory()
         {
             targetObtained = false;
-            if (targetCheck != null)
+            if (onLevels)
+            {
+                if (Stats.Level >= targetLevel[Stats.Weapon])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onValor)
+            {
+                if (Valor.Level >= targetDriveLevel["Valor"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onWisdom)
+            {
+                if (Wisdom.Level >= targetDriveLevel["Wisdom"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onLimit)
+            {
+                if (Limit.Level >= targetDriveLevel["Limit"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onMaster)
+            {
+                if (Master.Level >= targetDriveLevel["Master"])
+                {
+                    targetObtained = true;
+                }
+            }
+            if (onFinal)
+            {
+                if (Final.Level >= targetDriveLevel["Final"])
+                {
+                    targetObtained = true;
+                }
+            }
+
+            if (!targetObtained && targetCheck != null)
             {
                 foreach (Check check in targetCheck)
                 {
@@ -593,17 +809,8 @@ namespace KhTracker
                     }
                 }
             }
-            if (!targetObtained && onLevels)
-            {
-                if (Stats.Level >= targetLevel[Stats.Weapon])
-                {
-                    targetObtained = true;
-                }
-            }
             return targetObtained;
         }
-
-
 
         class Check
         {

@@ -9,6 +9,13 @@ namespace KhTracker
 {
     class Stats : INotifyPropertyChanged
     {
+        //next level check stuff
+        private int[] levelChecks1 = { 1, 1 };
+        private int[] levelChecks50 = { 0, 2, 4, 7, 9, 10, 12, 14, 15, 17, 20, 23, 25, 28, 30, 32, 34, 36, 39, 41, 44, 46, 48, 50 };
+        private int[] levelChecks99 = { 0, 7, 9, 12, 15, 17, 20, 23, 25, 28, 31, 33, 36, 39, 41, 44, 47, 49, 53, 59, 65, 73, 85, 99 };
+        private int[] currentCheckArray;
+        private int nextLevelCheck = 0;
+
         public int[] previousLevels = new int[3];
         private int level;
         public int Level
@@ -60,24 +67,52 @@ namespace KhTracker
                 OnPropertyChanged("Defense");
             }
         }
+        private int bonuslevel;
+        public int BonusLevel
+        {
+            get { return bonuslevel; }
+            set
+            {
+                bonuslevel = value;
+                OnPropertyChanged("BonusLevel");
+            }
+        }
+
+        //show next level check
+        MainWindow window = (MainWindow)App.Current.MainWindow;
+        private int levelCheck;
+        public int LevelCheck
+        {
+            get { return levelCheck; }
+            set
+            {
+                levelCheck = value;
+                window.NextLevelValue.Text = ">" + value;
+                OnPropertyChanged("LevelCheck");
+            }
+        }
 
         public int form;
 
         private int levelAddress;
         private int statsAddress;
         private int formAddress;
+        private int bonusAddress;
+        private int nextSlotNum;
 
         public int ADDRESS_OFFSET;
 
         MemoryReader memory;
 
-        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr)
+        public Stats(MemoryReader mem, int offset, int lvlAddress, int statsAddr, int formAddr, int bonusLvl, int nextSlot)
         {
             ADDRESS_OFFSET = offset;
             memory = mem;
             levelAddress = lvlAddress;
             statsAddress = statsAddr;
             formAddress = formAddr;
+            bonusAddress = bonusLvl;
+            nextSlotNum = nextSlot;
         }
 
         // this is not working
@@ -92,7 +127,7 @@ namespace KhTracker
             }
         }
 
-        public void UpdateMemory()
+        public void UpdateMemory(int correctSlot)
         {
             byte[] levelData = memory.ReadMemory(levelAddress + ADDRESS_OFFSET, 2);
 
@@ -110,7 +145,7 @@ namespace KhTracker
             if (Level != levelData[1])
                 Level = levelData[1];
 
-            byte[] statsData = memory.ReadMemory(statsAddress + ADDRESS_OFFSET, 5);
+            byte[] statsData = memory.ReadMemory(statsAddress - (nextSlotNum * correctSlot) + ADDRESS_OFFSET, 5);
             if (Strength != statsData[0])
                 Strength = statsData[0];
             if (Magic != statsData[2])
@@ -120,6 +155,51 @@ namespace KhTracker
 
             byte[] modelData = memory.ReadMemory(formAddress + ADDRESS_OFFSET, 1);
             form = modelData[0];
+
+            byte[] BonusData = memory.ReadMemory(bonusAddress + ADDRESS_OFFSET, 1);
+            BonusLevel = BonusData[0];
+
+            //change levelreward number
+            if (level >= currentCheckArray[currentCheckArray.Length - 1])
+            {
+                LevelCheck = currentCheckArray[currentCheckArray.Length - 1];
+                return;
+            }
+
+            if (Level >= currentCheckArray[nextLevelCheck])
+            {
+                nextLevelCheck++;
+                LevelCheck = currentCheckArray[nextLevelCheck];
+            }
+        }
+
+        public void SetMaxLevelCheck(int lvl)
+        {
+            switch(lvl)
+            {
+                case 50:
+                    currentCheckArray = levelChecks50;
+                    break;
+                case 99:
+                    currentCheckArray = levelChecks99;
+                    break;
+                default:
+                    currentCheckArray = levelChecks1;
+                    break;
+            }
+        }
+
+        public void SetNextLevelCheck(int lvl)
+        {
+            for (int i = 0; i < currentCheckArray.Length; i++)
+            {
+                if (lvl < currentCheckArray[i])
+                {
+                    nextLevelCheck = i;
+                    LevelCheck = currentCheckArray[nextLevelCheck];
+                    break;
+                }
+            }
         }
     }
 }

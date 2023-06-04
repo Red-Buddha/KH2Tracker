@@ -23,12 +23,8 @@ namespace KhTracker
     public partial class Item : ContentControl
     {
         bool selected = false;
+        MainWindow MainW = (MainWindow)App.Current.MainWindow;
 
-        public delegate void TotalHandler(string world, int checks);
-        public delegate void FoundHandler(string item, string world, bool add);
-
-        public event TotalHandler UpdateTotal;
-        public event FoundHandler UpdateFound;
         public Item()
         {
             InitializeComponent();
@@ -82,6 +78,26 @@ namespace KhTracker
         private ItemAdorner myAdornment;
         private PInPoint pointRef = new PInPoint();
 
+        public void Item_Click(object sender, RoutedEventArgs e)
+        {
+            Data data = MainWindow.data;
+            if (data.selected != null && data.WorldsData[data.selected.Name].worldGrid.ReportHandler(this))
+            {
+                data.WorldsData[data.selected.Name].worldGrid.Add_Item(this);
+            }
+        }
+
+        public void Item_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (selected)
+                Item_Click(sender, e);
+        }
+
+        public void Item_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            selected = true;
+        }
+
         public void Item_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -93,38 +109,73 @@ namespace KhTracker
                 adLayer.Remove(myAdornment);
             }
         }
-
-        public void Item_Click(object sender, RoutedEventArgs e)
-        {
-            Data data = MainWindow.data;
-            MainWindow window = ((MainWindow)Application.Current.MainWindow);
-
-            if (data.selected != null)
-            {
-                if (data.WorldsData[data.selected.Name].worldGrid.Handle_Report(this, window, data))
-                {
-                    data.WorldsData[data.selected.Name].worldGrid.Add_Item(this, window);
-                }
-            }
-        }
-
+ 
         public void Report_Hover(object sender, RoutedEventArgs e)
         {
             Data data = MainWindow.data;
-            MainWindow window = ((MainWindow)Application.Current.MainWindow);
+
+            if (data.UsingProgressionHints && data.mode != Mode.PointsHints)
+                return;
+
             int index = (int)GetValue(Grid.ColumnProperty);
+            var repStr1 = data.reportInformation[index].Item1;
+            var repStr2 = data.reportInformation[index].Item2;
+            var repInt = data.reportInformation[index].Item3;
 
-            window.SetHintText(Codes.GetHintTextName(data.reportInformation[index].Item1) + " has " + data.reportInformation[index].Item2 + " important checks");
+            switch (data.mode)
+            {
+                case Mode.PointsHints:
+                    MainW.SetHintText(Codes.GetHintTextName(repStr1), "has", Codes.FindShortName(Codes.GetHintTextName(repStr2)), true, false, true);
+                    break;
+                case Mode.PathHints:
+                    MainW.SetHintText(Codes.GetHintTextName(repStr1));
+                    break;
+                case Mode.SpoilerHints:
+                    if (repStr1 == "Empty")
+                    {
+                        MainW.SetHintText("This report looks too faded to read...");
+                    }
+                    else
+                    {
+                        if (repInt == -1)
+                        {
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1), "has no Important Checks", "", true, false, false);
+                        }
+                        else if (repInt == -12345)
+                        {
+                            MainW.SetHintText(data.reportInformation[index].Item1, "", "", false, false, false);
+                        }
+                        else if (repInt == -999)
+                        {
+                            //nothing
+                        }
+                        else
+                        {
+                            MainW.SetHintText(Codes.GetHintTextName(repStr1), "has been revealed!", "", true, false, false);
+                        }
+                    }
+                    break;
+                default:
+                    if (repInt == -99)
+                    {
+                        //MainW.SetJokeText(repStr1);
+                    }
+                    else
+                    {
+                        MainW.SetHintText(Codes.GetHintTextName(repStr2), "has", repInt + " important checks", true, false, true);
+                    }
+                    break;
+            }
         }
 
-        public void DragDropEventFire(string item, string world, bool add)
+        private void Item_PreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
-            UpdateFound(item, world, add);
-        }
+            GetCursorPos(ref pointRef);
+            Point relPos = this.PointFromScreen(pointRef.GetPoint(myAdornment.CenterOffset));
+            myAdornment.Arrange(new Rect(relPos, myAdornment.DesiredSize));
 
-        public void DragDropEventFire(string world, int value)
-        {
-            UpdateTotal(world, value);
+            Mouse.SetCursor(Cursors.None);
+            e.Handled = true;
         }
 
         public void Item_Return(object sender, RoutedEventArgs e)
@@ -135,15 +186,34 @@ namespace KhTracker
         public void HandleItemReturn()
         {
             Data data = MainWindow.data;
-            if (Parent != ((MainWindow)Application.Current.MainWindow).ItemPool)
+
+            if (this.Name.StartsWith("Ghost_"))
+            {
+                Grid GhostRow = VisualTreeHelper.GetChild(MainW.ItemPool, 4) as Grid; //ghost grid always at this position
+                if (Parent != GhostRow)
+                {
+                    WorldGrid parent = this.Parent as WorldGrid;
+                    ((WorldGrid)Parent).Handle_WorldGrid(this, false);
+
+                    GhostRow.Children.Add(this);
+                    parent.Children.Remove(this);
+                }
+                return;
+            }
+
+            //int index = data.Items.IndexOf(this);
+            //Grid ItemRow = data.ItemsGrid[index];
+            Grid ItemRow = data.Items[this.Name].Item2;
+
+            if (Parent != ItemRow)
             {
                 WorldGrid parent = this.Parent as WorldGrid;
 
                 ((WorldGrid)Parent).Handle_WorldGrid(this, false);
 
-                ((MainWindow)Application.Current.MainWindow).ItemPool.Children.Add(this);
+                ItemRow.Children.Add(this);
 
-                ((MainWindow)Application.Current.MainWindow).DecrementCollected();
+                MainW.SetCollected(false);
 
                 MouseDown -= Item_Return;
 
@@ -163,30 +233,7 @@ namespace KhTracker
                 }
 
                 MouseEnter -= Report_Hover;
-
-                UpdateFound(this.Name, parent.Name.Remove(parent.Name.Length - 4, 4), false);
             }
-        }
-
-        private void Item_PreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            GetCursorPos(ref pointRef);
-            Point relPos = this.PointFromScreen(pointRef.GetPoint(myAdornment.CenterOffset));
-            myAdornment.Arrange(new Rect(relPos, myAdornment.DesiredSize));
-
-            Mouse.SetCursor(Cursors.None);
-            e.Handled = true;
-        }
-
-        public void Item_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            selected = true;
-        }
-
-        public void Item_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (selected)
-                Item_Click(sender, e);
         }
     }
 }

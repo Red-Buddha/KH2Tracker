@@ -1,0 +1,181 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:KhTracker">
+
+    <ControlTemplate x:Key="DefaultButton" TargetType="{x:Type ButtonBase}">
+        <ContentPresenter Content="{TemplateBinding Content}"/>
+    </ControlTemplate>
+
+    <!--brush colors-->
+    <LinearGradientBrush x:Key="Color_Fire" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF5A1A" Offset="1"/>
+        <GradientStop Color="#FFFFAA3B" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Blizzard" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF6F50EF" Offset="1"/>
+        <GradientStop Color="#FFA4C8FF" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Thunder" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE17606" Offset="1"/>
+        <GradientStop Color="#FFFFE437" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Cure" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF62B055" Offset="1"/>
+        <GradientStop Color="#FFECFF5B" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Reflect" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFACECFF" Offset="1"/>
+        <GradientStop Color="#FFE6FFFF" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Magnet" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF58C0" Offset="1"/>
+        <GradientStop Color="#FFFFA5CA" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Page" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE16902" Offset="1"/>
+        <GradientStop Color="#FFFFF64A" Offset="0.4"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color_Pouch" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFD73435" Offset="1"/>
+        <GradientStop Color="#FFFF9546" Offset="0.4"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Color_Black" Color="Black"/>
+    <SolidColorBrush x:Key="Color_Trans" Color="Transparent"/>
+    
+    <!--Classic-->
+    <SolidColorBrush x:Key="ClassicYellow" Color="#FFE500"/>
+    <!--Hinted Hints-->
+    <SolidColorBrush x:Key="HintedHint" Color="#29F"/>
+    <!--Ghosted Hints-->
+    <SolidColorBrush x:Key="GhostHint" Color="#6D3"/>
+    <!--Progression Hinted-->
+    <SolidColorBrush x:Key="ProgressionHinted" Color="#2a732e"/>
+    <!--Drive / AG / 100AW / Thunder / Torn Page / Master / Chicken Little / Olympus Stone / Scimitar / Puzzle-->
+    <SolidColorBrush x:Key="Gold" Color="#FD0"/>
+    <!--DC / Wisdom / Stitch / Ice Cream / Once More-->
+    <SolidColorBrush x:Key="LightBlue" Color="#5EF"/>
+    <!--PR / Blizzard / Anti-Form / Identity Disk Skill and Crossbones-->
+    <SolidColorBrush x:Key="DarkBlue" Color="#8AF"/>
+    <!--OC / Defence / Cure / Battlefields of War / Second Chance-->
+    <SolidColorBrush x:Key="Green" Color="#CF4"/>
+    <!--STT / GoA / Reflect / Proof of Nonexistence-->
+    <SolidColorBrush x:Key="WhiteBlue" Color="#CFF"/>
+    <!--HT / Magic / Genie / Membership Card / Bone Fist-->
+    <SolidColorBrush x:Key="Purple" Color="#D8F"/>
+    <!--TWTNW / Report / Final / Proof of Peace / Unknown Disc-->
+    <SolidColorBrush x:Key="White" Color="#DDF"/>
+    <!--LoD / PL / Valor / Peter Pan / Proud Fang / Moogle-->
+    <SolidColorBrush x:Key="Red" Color="#F63"/>
+    <!--HB / BC / Magnet / Beast’s Claw / Promise Charm / Moogle&Puzzle-->
+    <SolidColorBrush x:Key="Pink" Color="#F7C"/>
+    <!--TT / Strength / Fire / Limit / Picture / Sword of the Ancestor-->
+    <SolidColorBrush x:Key="Orange" Color="#F84"/>
+    <!--Proof of Connection-->
+    <SolidColorBrush x:Key="OffWhite" Color="#FDC"/>
+    <!--default-->
+    <SolidColorBrush x:Key="DefWhite" Color="White"/>
+    <!-- selection hilights -->
+    <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
+    <SolidColorBrush x:Key="DefaultRec" Color="#D81E1E1E"/>
+    <SolidColorBrush x:Key="SelectedRec" Color="#D8466482"/>
+    <!-- Window Background default -->
+    <SolidColorBrush x:Key="BG-Default" Color="#303030"/>
+    <ImageBrush x:Key="BG-ImageDef1"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile"/>
+    <ImageBrush x:Key="BG-ImageDef2"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-ImageDef3"    ImageSource="Images\System\background\final_mix.png" TileMode="Tile" Stretch="None"/>
+
+    <!--auto-detect icons-->
+    <Image x:Key="Min-Connect" Source="Images\System\Config\searching.png"      x:Shared="false"/>
+    <Image x:Key="Min-PC"	   Source="Images\System\Config\pc_connected.png"   x:Shared="false"/>
+    <Image x:Key="Min-PCred"   Source="Images\System\Config\pc_detected.png"    x:Shared="false"/>
+    <Image x:Key="Min-PS2"	   Source="Images\System\Config\pcsx2.png"          x:Shared="false"/>
+                                 
+    <!--Seed Hash Icons-->
+    <Image x:Key="ability-unequip"  Source="Images\HashIcons\ability-unequip.png" x:Shared="false"/>
+    <Image x:Key="accessory"        Source="Images\HashIcons\accessory.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-frequent" Source="Images\HashIcons\ai-mode-frequent.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-moderate" Source="Images\HashIcons\ai-mode-moderate.png" x:Shared="false"/>
+    <Image x:Key="ai-mode-rare"     Source="Images\HashIcons\ai-mode-rare.png" x:Shared="false"/>
+    <Image x:Key="ai-settings"      Source="Images\HashIcons\ai-settings.png" x:Shared="false"/>
+    <Image x:Key="armor"            Source="Images\HashIcons\armor.png" x:Shared="false"/>
+    <Image x:Key="button-circle"    Source="Images\HashIcons\button-circle.png" x:Shared="false"/>
+    <Image x:Key="button-cross"     Source="Images\HashIcons\button-cross.png" x:Shared="false"/>
+    <Image x:Key="button-l1"        Source="Images\HashIcons\button-l1.png" x:Shared="false"/>
+    <Image x:Key="button-l2"        Source="Images\HashIcons\button-l2.png" x:Shared="false"/>
+    <Image x:Key="button-r1"        Source="Images\HashIcons\button-r1.png" x:Shared="false"/>
+    <Image x:Key="button-r2"        Source="Images\HashIcons\button-r2.png" x:Shared="false"/>
+    <Image x:Key="button-square"    Source="Images\HashIcons\button-square.png" x:Shared="false"/>
+    <Image x:Key="button-triangle"  Source="Images\HashIcons\button-triangle.png" x:Shared="false"/>
+    <Image x:Key="exclamation-mark" Source="Images\HashIcons\exclamation-mark.png" x:Shared="false"/>
+    <Image x:Key="form"             Source="Images\HashIcons\form.png" x:Shared="false"/>
+    <Image x:Key="gumi-block"       Source="Images\HashIcons\gumi-block.png" x:Shared="false"/>
+    <Image x:Key="gumi-blueprint"   Source="Images\HashIcons\gumi-blueprint.png" x:Shared="false"/>
+    <Image x:Key="gumi-brush"       Source="Images\HashIcons\gumi-brush.png" x:Shared="false"/>
+    <Image x:Key="gumi-gear"        Source="Images\HashIcons\gumi-gear.png" x:Shared="false"/>
+    <Image x:Key="gumi-ship"        Source="Images\HashIcons\gumi-ship.png" x:Shared="false"/>
+    <Image x:Key="item-consumable"  Source="Images\HashIcons\item-consumable.png" x:Shared="false"/>
+    <Image x:Key="item-key"         Source="Images\HashIcons\item-key.png" x:Shared="false"/>
+    <Image x:Key="item-tent"        Source="Images\HashIcons\item-tent.png" x:Shared="false"/>
+    <Image x:Key="magic"            Source="Images\HashIcons\magic.png" x:Shared="false"/>
+    <Image x:Key="material"         Source="Images\HashIcons\material.png" x:Shared="false"/>
+    <Image x:Key="party"            Source="Images\HashIcons\party.png" x:Shared="false"/>
+    <Image x:Key="question-mark"    Source="Images\HashIcons\question-mark.png" x:Shared="false"/>
+    <Image x:Key="rank-a"           Source="Images\HashIcons\rank-a.png" x:Shared="false"/>
+    <Image x:Key="rank-b"           Source="Images\HashIcons\rank-b.png" x:Shared="false"/>
+    <Image x:Key="rank-c"           Source="Images\HashIcons\rank-c.png" x:Shared="false"/>
+    <Image x:Key="rank-s"           Source="Images\HashIcons\rank-s.png" x:Shared="false"/>
+    <Image x:Key="weapon-keyblade"  Source="Images\HashIcons\weapon-keyblade.png" x:Shared="false"/>
+    <Image x:Key="weapon-shield"    Source="Images\HashIcons\weapon-shield.png" x:Shared="false"/>
+    <Image x:Key="weapon-staff"     Source="Images\HashIcons\weapon-staff.png" x:Shared="false"/>
+
+    <!--Stat UI-->
+    <Image x:Key="LevelIcon"  		    Source="Images\System\stats\level.png"    x:Shared="false"/>
+    <Image x:Key="StrengthIcon"		    Source="Images\System\stats\strength.png" x:Shared="false"/>
+    <Image x:Key="MagicIcon"  		    Source="Images\System\stats\magic.png"    x:Shared="false"/>
+    <Image x:Key="DefenseIcon"  	    Source="Images\System\stats\defence.png"  x:Shared="false"/>
+    <Image x:Key="DeathIcon" 		    Source="Images\System\stats\deaths.png"   x:Shared="false"/>
+    <Image x:Key="Sword"		        Source="Images\System\stats\sword.png"    x:Shared="false"/>
+    <Image x:Key="Shield"  	            Source="Images\System\stats\shield.png"   x:Shared="false"/>
+    <Image x:Key="Staff"  	            Source="Images\System\stats\staff.png"    x:Shared="false"/>
+    <Image x:Key="Chest" 		        Source="Images\System\stats\chest.png"    x:Shared="false"/>
+    <Image x:Key="Score" 		        Source="Images\System\stats\limit.png"    x:Shared="false"/>
+    <Image x:Key="ProgPoints" 		    Source="Images\System\stats\ProgPoints2.png"    x:Shared="false"/>
+    <Image x:Key="HighJump" 		    Source="Images\System\drive_growth\high_jump.png"    x:Shared="false"/>
+    <Image x:Key="QuickRun" 		    Source="Images\System\drive_growth\quick_run.png"    x:Shared="false"/>
+    <Image x:Key="DodgeRoll" 		    Source="Images\System\drive_growth\dodge_roll.png"   x:Shared="false"/>
+    <Image x:Key="AerialDodge" 		    Source="Images\System\drive_growth\aerial_dodge.png" x:Shared="false"/>
+    <Image x:Key="Glide" 			    Source="Images\System\drive_growth\glide.png"        x:Shared="false"/>
+    <Image x:Key="Valor" 		        Source="Images\System\drive_growth\valor.png"        x:Shared="false"/>
+    <Image x:Key="Wisdom" 		        Source="Images\System\drive_growth\Wisdom.png"       x:Shared="false"/>
+    <Image x:Key="Limit" 		        Source="Images\System\drive_growth\Limit.png"        x:Shared="false"/>
+    <Image x:Key="Master" 		        Source="Images\System\drive_growth\Master.png"       x:Shared="false"/>
+    <Image x:Key="Final" 			    Source="Images\System\drive_growth\Final.png"        x:Shared="false"/>
+
+    <!--Custom Stat UI-->
+    <Image x:Key="Cus-LevelIcon"  		Source="pack://application:,,,/CustomImages/System/stats/level.png"    x:Shared="false"/>
+    <Image x:Key="Cus-StrengthIcon"		Source="pack://application:,,,/CustomImages/System/stats/strength.png" x:Shared="false"/>
+    <Image x:Key="Cus-MagicIcon"  		Source="pack://application:,,,/CustomImages/System/stats/magic.png"    x:Shared="false"/>
+    <Image x:Key="Cus-DefenseIcon"  	Source="pack://application:,,,/CustomImages/System/stats/defence.png"  x:Shared="false"/>
+    <Image x:Key="Cus-DeathIcon" 		Source="pack://application:,,,/CustomImages/System/stats/deaths.png"   x:Shared="false"/>
+    <Image x:Key="Cus-Sword"		    Source="pack://application:,,,/CustomImages/System/stats/sword.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Shield"  	        Source="pack://application:,,,/CustomImages/System/stats/shield.png"   x:Shared="false"/>
+    <Image x:Key="Cus-Staff"  	        Source="pack://application:,,,/CustomImages/System/stats/staff.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Chest" 		    Source="pack://application:,,,/CustomImages/System/stats/chest.png"    x:Shared="false"/>
+    <Image x:Key="Cus-Score" 		    Source="pack://application:,,,/CustomImages/System/stats/limit.png"    x:Shared="false"/>
+    <Image x:Key="Cus-HighJump" 		Source="pack://application:,,,/CustomImages/System/drive_growth/high_jump.png"    x:Shared="false"/>
+    <Image x:Key="Cus-QuickRun" 		Source="pack://application:,,,/CustomImages/System/drive_growth/quick_run.png"    x:Shared="false"/>
+    <Image x:Key="Cus-DodgeRoll" 		Source="pack://application:,,,/CustomImages/System/drive_growth/dodge_roll.png"   x:Shared="false"/>
+    <Image x:Key="Cus-AerialDodge" 		Source="pack://application:,,,/CustomImages/System/drive_growth/aerial_dodge.png" x:Shared="false"/>
+    <Image x:Key="Cus-Glide" 			Source="pack://application:,,,/CustomImages/System/drive_growth/glide.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Valor" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/valor.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Wisdom" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Wisdom.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Limit" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Limit.png"        x:Shared="false"/>
+    <Image x:Key="Cus-Master" 		    Source="pack://application:,,,/CustomImages/System/drive_growth/Master.png"       x:Shared="false"/>
+    <Image x:Key="Cus-Final" 			Source="pack://application:,,,/CustomImages/System/drive_growth/Final.png"        x:Shared="false"/>
+    
+    <!-- main window custom image-->
+    <ImageBrush x:Key="BG-Image1"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" />
+    <ImageBrush x:Key="BG-Image2"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="BG-Image3"       ImageSource="pack://application:,,,/CustomImages/background.png" TileMode="Tile" Stretch="None"/>
+
+</ResourceDictionary>

@@ -46,7 +46,7 @@ namespace KhTracker
             }
             else
             {
-                return 0.25;
+                return 0.45;
             }
         }
 
@@ -63,88 +63,40 @@ namespace KhTracker
         }
     }
 
-    public class LevelConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((int)value == 2)
-            {
-                return "Images/Numbers/2.png";
-            }
-            else if ((int)value == 3)
-            {
-                return "Images/Numbers/3.png";
-            }
-            else if ((int)value == 4)
-            {
-                return "Images/Numbers/4.png";
-            }
-            else if ((int)value == 5)
-            {
-                return "Images/Numbers/5.png";
-            }
-            else if ((int)value == 6)
-            {
-                return "Images/Numbers/6.png";
-            }
-            else if ((int)value == 7)
-            {
-                return "Images/Numbers/7.png";
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((string)value == "Images/Numbers/2.png")
-            {
-                return 2;
-            }
-            else if ((string)value == "Images/Numbers/3.png")
-            {
-                return 3;
-            }
-            else if ((string)value == "Images/Numbers/4.png")
-            {
-                return 4;
-            }
-            else if ((string)value == "Images/Numbers/5.png")
-            {
-                return 5;
-            }
-            else if ((string)value == "Images/Numbers/6.png")
-            {
-                return 6;
-            }
-            else if ((string)value == "Images/Numbers/7.png")
-            {
-                return 7;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-    }
-
     public class WeaponConverter : IValueConverter
     {
+        private string CusPath = "pack://application:,,,/CustomImages/System/stats/";
+        private string EnabledPath1 = "Images/System/stats/"; //sword
+        private string EnabledPath2 = "Images/System/stats/"; //shield
+        private string EnabledPath3 = "Images/System/stats/"; //staff
+        private bool CusMode = Properties.Settings.Default.CustomIcons;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //get the correct path
+            {
+                if (CusMode)
+                {
+                    if (MainWindow.CustomSwordFound)
+                        EnabledPath1 = CusPath;
+                    if (MainWindow.CustomShieldFound)
+                        EnabledPath2 = CusPath;
+                    if (MainWindow.CustomStaffFound)
+                        EnabledPath3 = CusPath;
+                }
+            }
+
             if ((string)value == "Sword")
             {
-                return "Images/Simple/sword.png";
+                return EnabledPath1 + "sword.png";
             }
             else if ((string)value == "Shield")
             {
-                return "Images/Simple/shield.png";
+                return EnabledPath2 + "shield.png";
             }
             else if ((string)value == "Staff")
             {
-                return "Images/Simple/staff.png";
+                return EnabledPath3 + "staff.png";
             }
             else
             {
@@ -154,15 +106,28 @@ namespace KhTracker
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((string)value == "Images/Simple/sword.png")
+            //get the correct path
+            {
+                if (CusMode)
+                {
+                    if (MainWindow.CustomSwordFound)
+                        EnabledPath1 = CusPath;
+                    if (MainWindow.CustomShieldFound)
+                        EnabledPath2 = CusPath;
+                    if (MainWindow.CustomStaffFound)
+                        EnabledPath3 = CusPath;
+                }
+            }
+
+            if ((string)value == EnabledPath1 + "sword.png")
             {
                 return "Sword";
             }
-            else if ((string)value == "Images/Simple/shield.png")
+            else if ((string)value == EnabledPath2 + "shield.png")
             {
                 return "Shield";
             }
-            else if ((string)value == "Images/Simple/staff.png")
+            else if ((string)value == EnabledPath3 + "staff.png")
             {
                 return "Staff";
             }
@@ -173,86 +138,4 @@ namespace KhTracker
         }
     }
 
-    public class GrowthAbilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((int)value == 1)
-            {
-                return "";
-            }
-            else if ((int)value == 2)
-            {
-                return "Images/Numbers/2.png";
-            }
-            else if ((int)value == 3)
-            {
-                return "Images/Numbers/3.png";
-            }
-            else if ((int)value == 4)
-            {
-                return "Images/Numbers/4.png";
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((string)value == "")
-            {
-                return 1;
-            }
-            else if ((string)value == "Images/Numbers/2.png")
-            {
-                return 2;
-            }
-            else if ((string)value == "Images/Numbers/3.png")
-            {
-                return 3;
-            }
-            else if ((string)value == "Images/Numbers/4.png")
-            {
-                return 4;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
-
-    public class NumberConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((int)value >= 0)
-            {
-                if ((int)value > 99)
-                    value = 99;
-
-                return "Images/Numbers/" + (value).ToString() + ".png";
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((string)value != null)
-            {
-                string val = (string)value;
-                val = val.Substring(val.LastIndexOf('/'));
-                return int.Parse(val.Substring(0, val.IndexOf('.')));
-            }
-            else
-            {
-                return 1;
-            }
-        }
-    }
 }
