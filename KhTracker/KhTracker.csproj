@@ -182,6 +182,7 @@
     <Resource Include="Fonts\KHMenu-BoldItalic.otf" />
     <Resource Include="Fonts\KHMenu-Italic.otf" />
     <Resource Include="Fonts\KHTitle.otf" />
+    <Resource Include="Fonts\KHIcon.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

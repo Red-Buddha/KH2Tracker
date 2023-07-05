@@ -138,6 +138,11 @@ namespace KhTracker
             }
         }
 
+        private void AutoConnectToggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.AutoDetect = AutoConnectOption.IsChecked;
+        }
+
         //private void AutoDetectToggle(object sender, RoutedEventArgs e)
         //{
         //    Properties.Settings.Default.AutoDetect = AutoDetectOption.IsChecked;

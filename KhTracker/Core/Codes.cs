@@ -360,6 +360,7 @@ namespace KhTracker
             {"HadesCup", "other"},
             {"OlympusStone", "other"},
             {"UnknownDisk", "other"},
+            {"MunnyPouch", "other"},
             {"MunnyPouch1", "other"},
             {"MunnyPouch2", "other"},           
             //ghost versions

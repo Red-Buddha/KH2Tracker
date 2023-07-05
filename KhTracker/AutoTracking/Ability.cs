@@ -66,11 +66,13 @@ namespace KhTracker
                 }
 
                 int curLevel = convertedData - levelOffset - equipped;
-                if (curLevel > Level)
+                //if (curLevel > Level)
                 {
                     Level = curLevel;
-                    if (App.logger != null)
-                        App.logger.Record(Name + " level " + Level.ToString() + " obtained");
+                    if (curLevel > Level)
+                        App.logger?.Record(Name + " level " + Level.ToString() + " obtained");
+                    else if (curLevel < Level)
+                        App.logger?.Record(Name + " level " + Level.ToString() + " removed");
                 }
             }
             else

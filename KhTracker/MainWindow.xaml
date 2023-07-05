@@ -12,7 +12,7 @@
         LocationChanged="Window_LocationChanged"
         SizeChanged="Window_SizeChanged"
         AllowDrop="True" Drop="DropFile"
-        Title="KH2 Tracker 2.24" Height="880" Width="570" Background="#303030"
+        Title="KH2 Tracker 2.30" Height="880" Width="570" Background="#303030"
         MinHeight="440" MinWidth="300">
 
     <Window.Resources>
@@ -41,8 +41,11 @@
                     <MenuItem Header="Load KH2Randomizer Seed (*.zip)" 	Click="OpenKHSeed"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker" x:Name="TrackPCSX2Toggle"/>
-                <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"    x:Name="TrackPCToggle"/>
+                <MenuItem Header="Start Auto-Tracking" Click="InitTracker" x:Name="TrackToggle"/>
+                <MenuItem Header="Enable Auto-Connect/Reconnect" Click="AutoConnectToggle" x:Name="AutoConnectOption" IsCheckable="True" IsChecked="False" 
+                          ToolTip="Automatically search and connect to the game on tracker start-up or if game closes."/>
+                <!--MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker" x:Name="TrackPCSX2Toggle"/>
+                <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"    x:Name="TrackPCToggle"/-->
                 <Separator/>
                 <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
@@ -1675,10 +1678,11 @@
                         <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
 
-                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="White" FontSize="20pt">
-                            <TextBlock.Effect>
-                                <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
-                            </TextBlock.Effect>
+                        <TextBlock FontFamily="{StaticResource KHIcon}" FontSize="20pt" Text="ABCD">
+                            <TextBlock.Foreground>
+                                <ImageBrush/>
+                            </TextBlock.Foreground> 
+
                             <Run Name="HintTextBegin"/>
                             <Run Name="HintTextMiddle" xml:space="preserve"/>
                             <Run Name="HintTextEnd" xml:space="preserve"/>

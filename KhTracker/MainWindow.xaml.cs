@@ -200,6 +200,10 @@ namespace KhTracker
 
             AutoSaveProgressOption.IsChecked = Properties.Settings.Default.AutoSaveProgress;
 
+            AutoConnectOption.IsChecked = Properties.Settings.Default.AutoConnect;
+            if (AutoConnectOption.IsChecked)
+                InitTracker();
+
             #endregion
 
             #region Toggles
@@ -526,6 +530,11 @@ namespace KhTracker
             if (data.WorldsData.ContainsKey(button.Name) && data.WorldsData[button.Name].value != null)
             {
                 ManualWorldValue(data.WorldsData[button.Name].value, e.Delta);
+            }
+            //DEBUG REMOVE LATER
+            if (button.Name == "SorasHeart")
+            {
+                AddProgressionPoints(e.Delta);
             }
         }
 
