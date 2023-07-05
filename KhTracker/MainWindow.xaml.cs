@@ -531,11 +531,6 @@ namespace KhTracker
             {
                 ManualWorldValue(data.WorldsData[button.Name].value, e.Delta);
             }
-            //DEBUG REMOVE LATER
-            if (button.Name == "SorasHeart")
-            {
-                AddProgressionPoints(e.Delta);
-            }
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

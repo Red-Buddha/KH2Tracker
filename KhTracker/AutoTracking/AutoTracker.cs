@@ -27,7 +27,8 @@ namespace KhTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        MemoryReader memory, testMemory;
+        #region Variables
+        MemoryReader memory;//, testMemory;
 
         private Int32 ADDRESS_OFFSET;
         private static DispatcherTimer aTimer, checkTimer;
@@ -87,82 +88,56 @@ namespace KhTracker
         private bool eventInProgress = false; //boss detection
 
         private int lastVersion = 0;
-        bool shouldAutoDetect = false;
 
         private int[] temp = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private int[] tempPre = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        #endregion
 
         ///
         /// Autotracking Startup
         ///
 
-        //HOTKEY STUFF WOO
         public void StartHotkey()
         {
             if (data.usedHotkey)
                 return;
 
-            bool pcsx2Success = true;
-            bool pcSuccess = true;
-            int tries = 0;
-            //check emulator
-            do
-            {
-                testMemory = new MemoryReader(true);
-                if (tries < 20)
-                {
-                    tries++;
-                }
-                else
-                {
-                    testMemory = null;
-                    Console.WriteLine("No PCSX2 Version Detected");
-                    pcsx2Success = false;
-                    break;
-                }
-            } while (!testMemory.Hooked);
-            if (pcsx2Success)
-            {
-                data.usedHotkey = true;
-                pcsx2tracking = true;
+            data.usedHotkey = true;
+            int vercheck = CheckVersion();
+            if (vercheck == 1)
+            {             
                 InitAutoTracker(true);
                 return;
             }
-
-            //check pc now
-            tries = 0;
-            do
+            else if (vercheck == 2)
             {
-                testMemory = new MemoryReader(false);
-                if (tries < 20)
-                {
-                    tries++;
-                }
-                else
-                {
-                    testMemory = null;
-                    Console.WriteLine("No PC Version Detected");
-                    pcSuccess = false;
-                    break;
-                }
-            } while (!testMemory.Hooked);
-            if (pcSuccess)
-            {
-                pcsx2tracking = false;
-                data.usedHotkey = true;
                 InitAutoTracker(false);
                 return;
             }
-
-            if (!pcsx2Success && !pcSuccess)
+            else
             {
-                MessageBox.Show("No version detected.");
+                MessageBox.Show("No game detected.\nPlease start KH2 before using Hotkey.");
                 data.usedHotkey = false;
             }
         }
 
+        //buttons merged so no need for both of these anymore
+        //public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
+        //{
+        //    pcsx2tracking = true;
+        //    InitAutoTracker(true);
+        //}
+        //
+        //public void InitPCTracker(object sender, RoutedEventArgs e)
+        //{
+        //    pcsx2tracking = false;
+        //    InitAutoTracker(false);
+        //}
+
         public void InitTracker(object sender, RoutedEventArgs e)
         {
+            //just don't do anything if the "start auto-tracking button was clicked"
+            //if the auto-connect option is enabled if the game was connected to once before.
             if (AutoConnectOption.IsChecked && lastVersion != 0)
             {
                 return;
@@ -175,27 +150,28 @@ namespace KhTracker
             //reset timer if already running
             aTimer?.Stop();
 
-            //Console.WriteLine("Started search");
             //connection trying visual
             Connect.Visibility = Visibility.Visible;
             Connect2.Visibility = Visibility.Collapsed;
 
+            //start timer for checking game version
             checkTimer = new DispatcherTimer();
-            checkTimer.Tick += searchVersion;
+            checkTimer.Tick += InitSearch;
             checkTimer.Interval = new TimeSpan(0, 0, 0, 5, 0);
             checkTimer.Start();
         }
 
-        public void searchVersion(object sender, EventArgs e)
+        public void InitSearch(object sender, EventArgs e)
         {
             //NOTE: connected version
             //0 = none | 1 = ps2 | 2 = pc
             int checkedVer = CheckVersion();
-            if (checkedVer == 0)
+
+            if (checkedVer == 0) //no game was detected.
             {
-                if (AutoConnectOption.IsChecked)
+                //return and keep trying to connect if auto-connect is enabled.
+                if (AutoConnectOption.IsChecked) 
                 {
-                    //if version returned none for some reason, then return to try again
                     return;
                 }
                 else
@@ -217,23 +193,26 @@ namespace KhTracker
                     OnReset(null, null);
                 }
 
-                //stop time for checking version
+                //stop timer for checking game version
                 checkTimer.Stop();
 
+                //set correct connect visual
                 if (lastVersion == 1)
                 {
-                    Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
+                    //Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
                     Connect2.Source = data.AD_PS2;
                 }
                 else
                 {
-                    Console.WriteLine("PC Found, starting Auto-Tracker");
+                    //Console.WriteLine("PC Found, starting Auto-Tracker");
                     Connect2.Source = data.AD_PCred;
                 }
 
+                //make visual visible
                 Connect.Visibility = Visibility.Collapsed;
                 Connect2.Visibility = Visibility.Visible;
 
+                //finally start auto-tracking process
                 InitAutoTracker(pcsx2tracking);
             }
         }
@@ -255,7 +234,7 @@ namespace KhTracker
                 else
                 {
                     memory = null;
-                    Console.WriteLine("No PCSX2 Version Detected");
+                    //Console.WriteLine("No PCSX2 Version Detected");
                     pcsx2Success = false;
                     break;
                 }
@@ -280,7 +259,7 @@ namespace KhTracker
                 else
                 {
                     memory = null;
-                    Console.WriteLine("No PC Version Detected");
+                    //Console.WriteLine("No PC Version Detected");
                     pcSuccess = false;
                     break;
                 }
@@ -297,37 +276,8 @@ namespace KhTracker
             return 0;
         }
 
-        //public void InitPCSX2Tracker(object sender, RoutedEventArgs e)
-        //{
-        //    pcsx2tracking = true;
-        //    InitAutoTracker(true);
-        //}
-        //
-        //public void InitPCTracker(object sender, RoutedEventArgs e)
-        //{
-        //    pcsx2tracking = false;
-        //    InitAutoTracker(false);
-        //}
-
         public async void InitAutoTracker(bool PCSX2)
         {
-            //int tries = 0;
-            ////try at least 20 times before giving error.
-            //do
-            //{
-            //    memory = new MemoryReader(PCSX2);
-            //    if (tries < 20)
-            //    {
-            //        tries++;
-            //    }
-            //    else
-            //    {
-            //        memory = null;
-            //        MessageBox.Show("Please start KH2 before loading the Auto Tracker.");
-            //        return;
-            //    }
-            //} while (!memory.Hooked);
-
             // PC Address anchors
             int Now = 0x0714DB8;
             int Save = 0x09A70B0;
@@ -339,12 +289,17 @@ namespace KhTracker
 
             if (!PCSX2)
             {
+                //check for if the system files are loaded every 1/2 second.
+                //this helps ensure that ICs on levels/drives never mistrack
+                //(this was a rare instance that could happen on pc because
+                //the data takes a small bit of time to fully load.)
                 while (!pcFilesLoaded)
                 {
                     pcFilesLoaded = CheckPCLoaded();
                     await Task.Delay(500);
                 }
 
+                //the pc files are fully loaded so we can change the connect icon.
                 Connect2.Source = data.AD_PC;
 
                 try
@@ -367,21 +322,18 @@ namespace KhTracker
                 }
 
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
-                //FinishSetupPC(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
             }
             else
             {
                 try
                 {
-                    findAddressOffset();
+                    CheckPS2Offset();
                 }
                 catch (Win32Exception)
                 {
                     memory = null;
                     Connect2.Source = data.AD_Cross;
                     MessageBox.Show("Unable to access PCSX2 try running KHTracker as admin");
-                    //isWorking = false;
-                    //SetAutoDetectTimer();
                     return;
                 }
                 catch
@@ -389,8 +341,6 @@ namespace KhTracker
                     memory = null;
                     Connect2.Source = data.AD_Cross;
                     MessageBox.Show("Error connecting to PCSX2");
-                    //isWorking = false;
-                    //SetAutoDetectTimer();
                     return;
                 }
 
@@ -403,15 +353,11 @@ namespace KhTracker
                 Slot1 = 0x1C6C750;
                 NextSlot = 0x268;
 
-                //change connection icon visual and start final setup
-                Connect.Visibility = Visibility.Collapsed;
-                Connect2.Source = data.AD_PS2;
-                Connect2.Visibility = Visibility.Visible;
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
             }
         }
 
-        private void findAddressOffset()
+        private void CheckPS2Offset()
         {
             bool found = false;
             Int32 offset = 0x00000000;
@@ -460,37 +406,9 @@ namespace KhTracker
                 return true;
             }
 
-            Console.WriteLine("Not yet");
+            //Console.WriteLine("Not yet");
             return false;
         }
-
-        //private void FinishSetupPC(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
-        //{
-        //    try
-        //    {
-        //        CheckPCOffset();
-        //    }
-        //    catch (Win32Exception)
-        //    {
-        //        memory = null;
-        //        MessageBox.Show("Unable to access KH2FM try running KHTracker as admin");
-        //        //isWorking = false;
-        //        return;
-        //    }
-        //    catch
-        //    {
-        //        memory = null;
-        //        MessageBox.Show("Error connecting to KH2FM");
-        //        //isWorking = false;
-        //        return;
-        //    }
-        //
-        //    //change connection icon visual and start final setup
-        //    Connect.Visibility = Visibility.Collapsed;
-        //    Connect2.Source = data.AD_PC;
-        //    Connect2.Visibility = Visibility.Visible;
-        //    FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
-        //}
 
         private void FinishSetup(bool PCSX2, Int32 Now, Int32 Save, Int32 Sys3, Int32 Bt10, Int32 BtlEnd, Int32 Slot1, Int32 NextSlot)
         {
@@ -621,6 +539,10 @@ namespace KhTracker
             OnTimedEvent(null, null);
         }
 
+        ///
+        /// Autotracking general
+        ///
+
         private void SetTimer()
         {
             if (aTimer != null)
@@ -632,10 +554,6 @@ namespace KhTracker
             aTimer.Start();
         }
 
-        ///
-        /// Autotracking general
-        ///
-
         private void OnTimedEvent(object sender, EventArgs e)
         {
             previousChecks.Clear();
@@ -645,20 +563,20 @@ namespace KhTracker
 
             try
             {
-                world.UpdateMemory();        //current world
-                //stop any kind of tracking if title movie is playing
-                //if (world.worldNum == 1 && world.roomNumber == 1)
-                //    return;
+                //current world
+                world.UpdateMemory();        
 
+                //test displaying sora's correct stats for PR 1st forsed fight
                 if (world.worldNum == 16 && world.roomNumber == 1 && (world.eventID1 == 0x33 || world.eventID1 == 0x34))
                     correctSlot = 2; //move forward this number of slots
 
-                stats.UpdateMemory(correctSlot);        //updatestats
+                //updates
+                stats.UpdateMemory(correctSlot);        
                 HighlightWorld(world);
-                UpdateStatValues();          //set stat values
-                UpdateWorldProgress(world, false, null);  //progression update
+                UpdateStatValues();
+                UpdateWorldProgress(world, false, null);
                 UpdateFormProgression();
-                DeathCheck(pcsx2tracking);   //update deathcounter
+                DeathCheck();
                 LevelsProgressionBonus();
                 DrivesProgressionBonus();
 
@@ -730,7 +648,6 @@ namespace KhTracker
                         MessageBox.Show("KH2FM has exited. Stopping Auto Tracker.");
                     }
                     data.usedHotkey = false;
-
                 }
                 return;
             }
@@ -739,9 +656,9 @@ namespace KhTracker
             DetermineItemLocations();
         }
 
-        private bool CheckSynthPuzzle(bool ps2)
+        private bool CheckSynthPuzzle()
         {
-            if (ps2)
+            if (pcsx2tracking)
             {
                 //reminder: FFFF = unloaded)
                 string Jounal = BytesToHex(memory.ReadMemory(0x035F144 + ADDRESS_OFFSET, 2)); //in journal
@@ -802,7 +719,7 @@ namespace KhTracker
         //    return true;
         //}
 
-        private void DeathCheck(bool ps2)
+        private void DeathCheck()
         {
             //Note: 04 = dying, 05 = continue screen.
             //note: if i try tracking a death when pausecheck is "0400" then that should give a
@@ -810,7 +727,7 @@ namespace KhTracker
 
             string PauseCheck;
 
-            if (ps2)
+            if (pcsx2tracking)
             {
                 PauseCheck = BytesToHex(memory.ReadMemory(0x0347E08 + ADDRESS_OFFSET, 2));
             }
@@ -819,7 +736,7 @@ namespace KhTracker
                 PauseCheck = BytesToHex(memory.ReadMemory(0xAB9078, 2));
             }
 
-            //if oncontinue is try true then we want to check if the values for sora is currently dying or on continue screen.
+            //if oncontinue is true then we want to check if the values for sora is currently dying or on continue screen.
             //we need to chck this to prevent the counter rapidly counting up every frame adnd such
             if (onContinue)
             {
@@ -1968,7 +1885,7 @@ namespace KhTracker
                 else
                 {
                     //check if user is currently in shop or puzzle and track item to Creations if so
-                    if (CheckSynthPuzzle(pcsx2tracking))
+                    if (CheckSynthPuzzle())
                     {
                         TrackItem(check.Name + count, data.WorldsData["PuzzSynth"].worldGrid);
                     }
