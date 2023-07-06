@@ -1678,10 +1678,10 @@
                         <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
 
-                        <TextBlock FontFamily="{StaticResource KHIcon}" FontSize="20pt" Text="ABCD">
-                            <TextBlock.Foreground>
-                                <ImageBrush/>
-                            </TextBlock.Foreground> 
+                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="White" FontSize="20pt">
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
+                            </TextBlock.Effect>
 
                             <Run Name="HintTextBegin"/>
                             <Run Name="HintTextMiddle" xml:space="preserve"/>
