@@ -29,12 +29,6 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="Options" Focusable="False">
-                <!--MenuItem Header="Auto Tracking...">
-                    <MenuItem Header="Use Auto-Detect Game Version" Click="AutoDetectToggle" x:Name="AutoDetectOption" IsCheckable="True" IsChecked="False"/>
-                    <MenuItem Header="Start PCSX2 Tracking" 	    Click="InitPCSX2Tracker" x:Name="TrackPCSX2Toggle"/>
-                    <MenuItem Header="Start PC Port Tracking" 	    Click="InitPCTracker"    x:Name="TrackPCToggle"/>
-                </MenuItem>
-                <Separator/-->
                 <MenuItem Header="Load Hints...">
                     <MenuItem Header="Load JSmartee Hints (*.hints)" 	Click="LoadHints"/>
                     <MenuItem Header="Load Shan Hints (*.pnach)" 		Click="ParseSeed"/>
@@ -49,7 +43,8 @@
                 <Separator/>
                 <MenuItem Header="Save Current Progress" Click="SaveProgress"/>
                 <MenuItem Header="Load Tracker Progress" Click="LoadProgress"/>
-                <MenuItem Header="Auto-Save Tracker Progress on Exit" Click="AutoSaveProgressToggle" x:Name="AutoSaveProgressOption" IsCheckable="True"/>
+                <MenuItem Header="Auto-Save Tracker Progress on Tracker Exit" Click="AutoSaveProgressToggle" x:Name="AutoSaveProgressOption" IsCheckable="True" IsChecked="False"/>
+                <MenuItem Header="Auto-Save Tracker Progress on Connection Loss" Click="AutoSaveProgress2Toggle" x:Name="AutoSaveProgress2Option" IsCheckable="True" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="Reset Tracker" 	 Click="OnReset"/>
                 <MenuItem Header="Always on Top" 	 Click="TopMostToggle"  x:Name="TopMostOption"     IsCheckable="True" IsChecked="False"/>

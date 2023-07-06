@@ -415,7 +415,7 @@
     <Image x:Key="Cus-MysteriousTower"   Source="pack://application:,,,/CustomImages/Progression/twilight_town/mysterious_tower.png" x:Shared="False"/>
     <Image x:Key="Cus-Sandlot"           Source="pack://application:,,,/CustomImages/Progression/twilight_town/berserkers.png" x:Shared="False"/>
     <Image x:Key="Cus-Mansion"           Source="pack://application:,,,/CustomImages/Progression/twilight_town/mickey.png" x:Shared="False"/>
-    <Image x:Key="Cus-BetwixtandBetween" Source="pack://application:,,,/CustomImages/Progression/twilight_town/betwixt_and_between.png" x:Shared="False"/>
+    <Image x:Key="Cus-BetwixtAndBetween" Source="pack://application:,,,/CustomImages/Progression/twilight_town/betwixt_and_between.png" x:Shared="False"/>
     <Image x:Key="Cus-DataAxel"          Source="pack://application:,,,/CustomImages/Progression/twilight_town/axel.png" x:Shared="False"/>
 
     <!--Drive Forms-->

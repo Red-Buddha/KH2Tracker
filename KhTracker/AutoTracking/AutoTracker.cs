@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Collections;
 using System.Security.Cryptography;
+using System.IO;
 //using System.IO;
 
 namespace KhTracker
@@ -649,6 +650,13 @@ namespace KhTracker
                     }
                     data.usedHotkey = false;
                 }
+
+                if (!Directory.Exists("KhTrackerAutoSaves"))
+                {
+                    Directory.CreateDirectory("KhTrackerAutoSaves\\");
+                }
+                Save("KhTrackerAutoSaves\\" + "ConnectionLost-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
+
                 return;
             }
 

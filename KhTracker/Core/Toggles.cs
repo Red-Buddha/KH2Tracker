@@ -92,6 +92,11 @@ namespace KhTracker
             Properties.Settings.Default.AutoSaveProgress = AutoSaveProgressOption.IsChecked;
         }
 
+        private void AutoSaveProgress2Toggle(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.AutoSaveProgress2 = AutoSaveProgress2Option.IsChecked;
+        }
+
         private void TopMostToggle(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.TopMost = TopMostOption.IsChecked;
