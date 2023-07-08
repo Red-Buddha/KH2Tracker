@@ -2255,6 +2255,7 @@ namespace KhTracker
             {
                 aTimer.Stop();
                 aTimer = null;
+                pcFilesLoaded = false;
             }
 
             if (sender != null && !AutoConnectOption.IsChecked)

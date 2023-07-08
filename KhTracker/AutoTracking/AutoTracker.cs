@@ -635,7 +635,9 @@ namespace KhTracker
             }
             catch
             {
+
                 aTimer.Stop();
+                pcFilesLoaded = false;
 
                 if (AutoConnectOption.IsChecked)
                 {
@@ -653,11 +655,14 @@ namespace KhTracker
                     data.usedHotkey = false;
                 }
 
-                if (!Directory.Exists("KhTrackerAutoSaves"))
+                if(AutoSaveProgress2Option.IsChecked)
                 {
-                    Directory.CreateDirectory("KhTrackerAutoSaves\\");
+                    if (!Directory.Exists("KhTrackerAutoSaves"))
+                    {
+                        Directory.CreateDirectory("KhTrackerAutoSaves\\");
+                    }
+                    Save("KhTrackerAutoSaves\\" + "ConnectionLost-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
                 }
-                Save("KhTrackerAutoSaves\\" + "ConnectionLost-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
 
                 return;
             }
