@@ -206,15 +206,15 @@ namespace KhTracker
                 if (ReportHandler(item))
                     Add_Item(item);
             }
-            else if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".TXT")
-                    window.LoadHints(files[0]);
-                else if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".PNACH")
-                    window.ParseSeed(files[0]);
-            }
+            //else if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+            //    string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            //
+            //    if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".TXT")
+            //        window.LoadHints(files[0]);
+            //    else if (System.IO.Path.GetExtension(files[0]).ToUpper() == ".PNACH")
+            //        window.ParseSeed(files[0]);
+            //}
         }
 
         public void Add_Item(Item item)

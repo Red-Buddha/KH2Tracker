@@ -35,6 +35,9 @@ namespace KhTracker
         public bool legacyShan = false;
         public string[] shanHintFileText = null;
         public bool saveFileLoaded = false;
+        public bool seedLoaded = false;
+        public int lastVersion = 0;
+        public bool wasTracking = false;
         public Codes codes = new Codes();
 
         //Report stuff      

@@ -88,7 +88,7 @@ namespace KhTracker
         private bool onContinue = false; //for death counter
         private bool eventInProgress = false; //boss detection
 
-        private int lastVersion = 0;
+        //private int lastVersion = 0;
 
         private int[] temp = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private int[] tempPre = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -136,13 +136,10 @@ namespace KhTracker
         //}
 
         public void InitTracker(object sender, RoutedEventArgs e)
-        {
-            //just don't do anything if the "start auto-tracking button was clicked"
-            //if the auto-connect option is enabled if the game was connected to once before.
-            if (AutoConnectOption.IsChecked && lastVersion != 0)
-            {
-                return;
-            }
+        {       
+           if (aTimer!= null)
+               return;
+        
             InitTracker();
         }
 
@@ -158,7 +155,7 @@ namespace KhTracker
             //start timer for checking game version
             checkTimer = new DispatcherTimer();
             checkTimer.Tick += InitSearch;
-            checkTimer.Interval = new TimeSpan(0, 0, 0, 5, 0);
+            checkTimer.Interval = new TimeSpan(0, 0, 0, 2, 5);
             checkTimer.Start();
         }
 
@@ -181,6 +178,7 @@ namespace KhTracker
                     Connect2.Visibility = Visibility.Visible;
                     Connect2.Source = data.AD_Cross;
                     checkTimer.Stop();
+                    checkTimer = null;
                     memory = null;
                     MessageBox.Show("Please start KH2 before starting the Auto Tracker.");
                 }
@@ -188,17 +186,21 @@ namespace KhTracker
             else
             {
                 //if for some reason user starts playing an different version
-                if (lastVersion !=0 && lastVersion != checkedVer)
+                if (data.lastVersion !=0 && data.lastVersion != checkedVer)
                 {
                     //reset tracker
                     OnReset(null, null);
                 }
 
                 //stop timer for checking game version
-                checkTimer.Stop();
+                if (checkTimer!= null)
+                {
+                    checkTimer.Stop();
+                    checkTimer = null;
+                }
 
                 //set correct connect visual
-                if (lastVersion == 1)
+                if (data.lastVersion == 1)
                 {
                     //Console.WriteLine("PCSX2 Found, starting Auto-Tracker");
                     Connect2.Source = data.AD_PS2;
@@ -243,8 +245,8 @@ namespace KhTracker
             if (pcsx2Success)
             {
                 pcsx2tracking = true;
-                if (lastVersion == 0)
-                    lastVersion = 1;
+                if (data.lastVersion == 0)
+                    data.lastVersion = 1;
                 return 1;
             }
 
@@ -268,8 +270,8 @@ namespace KhTracker
             if (pcSuccess)
             {
                 pcsx2tracking = false;
-                if (lastVersion == 0)
-                    lastVersion = 2;
+                if (data.lastVersion == 0)
+                    data.lastVersion = 2;
                 return 2;
             }
 
@@ -537,7 +539,7 @@ namespace KhTracker
             DeathCounterDisplay();
             SetBindings();
             SetTimer();
-            OnTimedEvent(null, null);
+            //OnTimedEvent(null, null);
         }
 
         ///
@@ -546,13 +548,13 @@ namespace KhTracker
 
         private void SetTimer()
         {
-            if (aTimer != null)
-                aTimer.Stop();
-
+            aTimer?.Stop();
             aTimer = new DispatcherTimer();
             aTimer.Tick += OnTimedEvent;
-            aTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            aTimer.Interval = new TimeSpan(0, 0, 0, 0, 200);
             aTimer.Start();
+
+            data.wasTracking = true;
         }
 
         private void OnTimedEvent(object sender, EventArgs e)
@@ -1899,7 +1901,7 @@ namespace KhTracker
                     }
                     else
                     {
-                        if (data.WorldsData.ContainsKey(world.previousworldName))
+                        if (world.previousworldName != null && data.WorldsData.ContainsKey(world.previousworldName))
                         {
                             // add check to current world
                             TrackItem(check.Name + count, data.WorldsData[world.previousworldName].worldGrid);

@@ -31,8 +31,25 @@ namespace KhTracker
     public partial class MainWindow : Window
     {
         /// 
-        /// Options
+        /// Save/load progress
         ///
+
+        private void DropFile(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                if (Path.GetExtension(files[0]).ToUpper() == ".HINT")
+                    LoadHints(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
+                    ParseSeed(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".ZIP")
+                    OpenKHSeed(files[0]);
+                else if (Path.GetExtension(files[0]).ToUpper() == ".TSV")
+                    Load(files[0]);
+            }
+        }
 
         private void SaveProgress(object sender, RoutedEventArgs e)
         {
@@ -186,6 +203,9 @@ namespace KhTracker
 
         private void Load(string filename)
         {
+            if (!InProgressCheck("tsv"))
+                return;
+
             //open file
             StreamReader reader = new StreamReader(File.Open(filename, FileMode.Open));
             var savescrambled = reader.ReadLine();
@@ -216,11 +236,10 @@ namespace KhTracker
                         return;
                     }
                 }
-                //else
-                //{
-                //    Console.WriteLine("save versions match");
-                //}
             }
+
+            //reset
+            OnReset(null, null);
 
             //check legacy hint styles
             if (saveObject.ContainsKey("LegacyJsmartee"))
@@ -242,13 +261,15 @@ namespace KhTracker
 
             //continue to loading normally
             LoadNormal(saveObject);
+
+            if (data.wasTracking)
+            {
+                InitTracker();
+            }
         }
 
         private void LoadNormal(Dictionary<string, object> Savefile)
         {
-            //reset tracker
-            OnReset(null, null);
-
             //Check Settings
             if (Savefile.ContainsKey("Settings"))
             {
@@ -957,7 +978,6 @@ namespace KhTracker
         {
             if (LegacyType == "Jsmartee")
             {
-                OnReset(null, null);
                 SetMode(Mode.JsmarteeHints);
 
                 var hintStrings = JsonSerializer.Deserialize<string[]>(Savefile["LegacyJHints"].ToString());
@@ -992,14 +1012,14 @@ namespace KhTracker
             }
             else
             {
-                bool autotrackeron = false;
-                bool ps2tracking = false;
-                //check for autotracking on and which version
-                if (aTimer != null)
-                    autotrackeron = true;
-
-                if (pcsx2tracking)
-                    ps2tracking = true;
+                //bool autotrackeron = false;
+                //bool ps2tracking = false;
+                ////check for autotracking on and which version
+                //if (aTimer != null)
+                //    autotrackeron = true;
+                //
+                //if (pcsx2tracking)
+                //    ps2tracking = true;
 
                 //FixDictionary();
                 SetMode(Mode.ShanHints);
@@ -1076,856 +1096,103 @@ namespace KhTracker
                 //end of loading
                 data.saveFileLoaded = true;
 
-                if (autotrackeron)
+                //if (autotrackeron)
+                //{
+                //    InitAutoTracker(ps2tracking);
+                //}
+            }
+        }
+
+        //progress helpers
+
+        private string ScrambleText(string input, bool scramble)
+        {
+            //scrambles/unscrambles input text based on a seed
+            //why have this? i dunno i suppose to make saves more "secure"
+            //figure if people really want to cheat they would have to look at this code
+            Random r = new Random(16964); //why this number? who knows... (let me know if you figure it out lol)
+            if (scramble)
+            {
+                char[] chars = input.ToArray();
+                for (int i = 0; i < chars.Length; i++)
                 {
-                    InitAutoTracker(ps2tracking);
+                    int randomIndex = r.Next(0, chars.Length);
+                    char temp = chars[randomIndex];
+                    chars[randomIndex] = chars[i];
+                    chars[i] = temp;
                 }
+                return new string(chars);
+            }
+            else
+            {
+                char[] scramChars = input.ToArray();
+                List<int> swaps = new List<int>();
+                for (int i = 0; i < scramChars.Length; i++)
+                {
+                    swaps.Add(r.Next(0, scramChars.Length));
+                }
+                for (int i = scramChars.Length - 1; i >= 0; i--)
+                {
+                    char temp = scramChars[swaps[i]];
+                    scramChars[swaps[i]] = scramChars[i];
+                    scramChars[i] = temp;
+                }
+                return new string(scramChars);
             }
         }
 
-        private void SetProgressIcons()
+        //trigger autotracker specific stuff with save loading
+        private void FakeDrivesProgressionBonus(int drive, int level)
         {
-            bool OldToggled = Properties.Settings.Default.OldProg;
-            bool CustomToggled = Properties.Settings.Default.CustomIcons;
-            string Prog = "Min-"; //Default
-            if (OldToggled)
-                Prog = "Old-";
-            if (CustomProgFound && CustomToggled)
-                Prog = "Cus-";
-
-            foreach (string world in data.WorldsData.Keys.ToList())
-            {
-                if (world == "SorasHeart" || world == "DriveForms" || world == "PuzzSynth")
-                    continue;
-
-                data.WorldsData[world].progression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world][data.WorldsData[world].progress]);
-                data.WorldsData[world].progression.ToolTip = data.ProgressKeys[world + "Desc"][data.WorldsData[world].progress];
-            }
-        }
-
-        private void DropFile(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                if (Path.GetExtension(files[0]).ToUpper() == ".HINT")
-                    LoadHints(files[0]);
-                else if (Path.GetExtension(files[0]).ToUpper() == ".PNACH")
-                    ParseSeed(files[0]);
-                else if (Path.GetExtension(files[0]).ToUpper() == ".ZIP")
-                    OpenKHSeed(files[0]);
-            }
-        }
-
-        private void LoadHints(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                DefaultExt = ".hint",
-                Filter = "Jsmartee hint file (*.hint)|*.hint",
-                Title = "Select Hint File"
-            };
-            if (openFileDialog.ShowDialog() == true)
-            {
-                LoadHints(openFileDialog.FileName);
-            }
-        }
-
-        public void LoadHints(string filename)
-        {
-            OnReset(null, null);
-            SetMode(Mode.JsmarteeHints);
-            //ResetHints();
-
-            StreamReader streamReader = new StreamReader(filename);
-
-            if (streamReader.EndOfStream)
-            {
-                SetHintText("Error loading hints");
-                streamReader.Close();
+            if (!data.UsingProgressionHints)
                 return;
-            }
 
-            string line1 = streamReader.ReadLine();
-            data.hintFileText[0] = line1;
-            string[] reportvalues = line1.Split('.');
-
-            if (streamReader.EndOfStream)
+            while (drive == 0 && (level > data.DriveLevels[0]))
             {
-                SetHintText("Error loading hints");
-                streamReader.Close();
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
+                data.DriveLevels[0]++;
+            }
+            while (drive == 1 && (level > data.DriveLevels[1]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[1] - 1]);
+                data.DriveLevels[1]++;
+            }
+            while (drive == 2 && (level > data.DriveLevels[2]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[2] - 1]);
+                data.DriveLevels[2]++;
+            }
+            while (drive == 3 && (level > data.DriveLevels[3]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[3] - 1]);
+                data.DriveLevels[3]++;
+            }
+            while (drive == 4 && (level > data.DriveLevels[4]))
+            {
+                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[4] - 1]);
+                data.DriveLevels[4]++;
+            }
+        }
+
+        private void FakeLevelsProgressionBonus(int level)
+        {
+            //if sora's current level is great than the max specified level (usually 50), then do nothing
+            if (level > (data.Levels_ProgressionValues.Count * 10) || !data.UsingProgressionHints)
                 return;
-            }
 
-            string line2 = streamReader.ReadLine();
-            data.hintFileText[1] = line2;
-            line2 = line2.TrimEnd('.');
-            string[] reportorder = line2.Split('.');
-
-            string line3 = streamReader.ReadLine().Substring(24);
-            data.hintFileText[2] = line3;
-            LoadSettings(line3);
-
-            streamReader.Close();
-
-            for (int i = 0; i < reportorder.Length; ++i)
+            //every 10 levels, reward the player the progression points for that part
+            while (level > data.NextLevelMilestone)
             {
-                string location = data.codes.FindCode(reportorder[i]);
-                if (location == "")
-                    location = data.codes.GetDefault(i);
-
-                data.reportLocations.Add(location);
-                string[] temp = reportvalues[i].Split(',');
-                data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
-            }
-
-            data.hintsLoaded = true;
-            data.legacyJsmartee = true;
-            //HintText.Text = "JsmarteeHints Loaded";
-        }
-
-        private void ResetHints()
-        {
-            data.hintsLoaded = false;
-            data.reportLocations.Clear();
-            data.reportInformation.Clear();
-            data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
-                data.WorldsData[key].hinted = false;
-                data.WorldsData[key].hintedHint = false;
-                data.WorldsData[key].containsGhost = false;
-                //progression hints per world
-                data.WorldsData[key].hintedProgression = false;
-            }
-            data.WorldsData["GoA"].hinted = true;
-
-            foreach (ContentControl report in data.ReportAttemptVisual)
-            {
-                report.SetResourceReference(ContentProperty, "Fail0");
-            }
-            
-            foreach (WorldData worldData in data.WorldsData.Values.ToList())
-            {
-                if (worldData.value != null)
-                    SetWorldValue(worldData.value, -999999);
-            }
-
-            for (int i = 0; i < data.Reports.Count; ++i)
-            {
-                data.Reports[i].HandleItemReturn();
+                data.NextLevelMilestone += 10;
+                AddProgressionPoints(data.Levels_ProgressionValues[data.LevelsPreviousIndex++]);
             }
         }
 
-        private void LoadSettings(string settings)
-        {
-            //item settings
-            ReportsToggle(false);
-            PromiseCharmToggle(false);
-            AbilitiesToggle(false);
-            VisitLockToggle(false);
-            ExtraChecksToggle(false);
-            AntiFormToggle(false);
-            TornPagesToggle(false);
+        /// 
+        /// Load hints
+        ///
 
-            //world settings
-            SoraHeartToggle(true);
-            DrivesToggle(false);
-            SimulatedToggle(false);
-            TwilightTownToggle(false);
-            HollowBastionToggle(false);
-            BeastCastleToggle(false);
-            OlympusToggle(false);
-            AgrabahToggle(false);
-            LandofDragonsToggle(false);
-            DisneyCastleToggle(false);
-            PrideLandsToggle(false);
-            PortRoyalToggle(false);
-            HalloweenTownToggle(false);
-            SpaceParanoidsToggle(false);
-            TWTNWToggle(false);
-            HundredAcreWoodToggle(false);
-            AtlanticaToggle(false);
-            PuzzleToggle(false);
-            SynthToggle(false);
-
-            string[] settinglist = settings.Split('-');
-        
-            foreach (string setting in settinglist)
-            {
-                string trimmed = setting.Trim();
-                switch (trimmed)
-                {
-                    case "Secret Ansem Reports":
-                        ReportsToggle(true);
-                        break;
-                    case "Promise Charm":
-                        PromiseCharmToggle(true);
-                        break;
-                    case "Second Chance & Once More":
-                        AbilitiesToggle(true);
-                        break;
-                    case "AntiForm":
-                        AntiFormToggle(true);
-                        break;
-                    case "Visit Locks":
-                        VisitLockToggle(true);
-                        break;
-                    case "Extra Checks":
-                        ExtraChecksToggle(true);
-                        break;
-                    case "Level01":
-                        SoraLevel01Toggle(true);
-                        break;
-                    case "Level50":
-                        SoraLevel50Toggle(true);
-                        break;
-                    case "Level99":
-                        SoraLevel99Toggle(true);
-                        break;
-                    case "Sora's Heart":
-                        SoraHeartToggle(true);
-                        break;
-                    case "Drive Forms":
-                        DrivesToggle(true);
-                        break;
-                    case "Simulated Twilight Town":
-                        SimulatedToggle(true);
-                        data.enabledWorlds.Add("STT");
-                        break;
-                    case "Twilight Town":
-                        TwilightTownToggle(true);
-                        data.enabledWorlds.Add("TT");
-                        break;
-                    case "Hollow Bastion":
-                        HollowBastionToggle(true);
-                        data.enabledWorlds.Add("HB");
-                        break;
-                    case "Beast Castle":
-                        BeastCastleToggle(true);
-                        data.enabledWorlds.Add("BC");
-                        break;
-                    case "Olympus":
-                        OlympusToggle(true);
-                        data.enabledWorlds.Add("OC");
-                        break;
-                    case "Agrabah":
-                        AgrabahToggle(true);
-                        data.enabledWorlds.Add("AG");
-                        break;
-                    case "Land of Dragons":
-                        LandofDragonsToggle(true);
-                        data.enabledWorlds.Add("LoD");
-                        break;
-                    case "Disney Castle":
-                        DisneyCastleToggle(true);
-                        data.enabledWorlds.Add("DC");
-                        break;
-                    case "Pride Lands":
-                        PrideLandsToggle(true);
-                        data.enabledWorlds.Add("PL");
-                        break;
-                    case "Port Royal":
-                        PortRoyalToggle(true);
-                        data.enabledWorlds.Add("PR");
-                        break;
-                    case "Halloween Town":
-                        HalloweenTownToggle(true);
-                        data.enabledWorlds.Add("HT");
-                        break;
-                    case "Space Paranoids":
-                        SpaceParanoidsToggle(true);
-                        data.enabledWorlds.Add("SP");
-                        break;
-                    case "TWTNW":
-                        TWTNWToggle(true);
-                        data.enabledWorlds.Add("TWTNW");
-                        break;
-                    case "100 Acre Wood":
-                        HundredAcreWoodToggle(true);
-                        break;
-                    case "Atlantica":
-                        AtlanticaToggle(true);
-                        break;
-                    case "Puzzles":
-                        PuzzleToggle(true);
-                        break;
-                    case "Synthesis":
-                        SynthToggle(true);
-                        break;
-                    case "Score Mode":
-                        data.ScoreMode = true;
-                        break;
-                    case "Boss Rando":
-                        data.BossRandoFound = true;
-                        break;
-                    case "Torn Pages":
-                        TornPagesToggle(true);
-                        break;
-                }
-            }
-        }
-
-        //guess this isn't needed anymore
-        //private void LoadSettingBar(string settingbar)
-        //{
-        //    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-        //    Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-        //    Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-        //    Double SpacerValue = 10;
-        //
-        //    string[] settinglist = settingbar.Split('-');
-        //    foreach (string setting in settinglist)
-        //    {
-        //        string trimmed = setting.Trim();
-        //        switch (trimmed)
-        //        {
-        //            case "None":
-        //                SettingRow.Height = new GridLength(0, GridUnitType.Star);
-        //                Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
-        //                SettingsText.Text = "";
-        //                return;
-        //            case "Setting_Level_01":
-        //                Setting_Level_01.Width = new GridLength(1.5, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Level_50":
-        //                Setting_Level_50.Width = new GridLength(1.5, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Level_99":
-        //                Setting_Level_99.Width = new GridLength(1.5, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_BetterSTT":
-        //                Setting_BetterSTT.Width = new GridLength(1.1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Cavern":
-        //                Setting_Cavern.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Absent":
-        //                Setting_Absent.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Absent_Split":
-        //                Setting_Absent_Split.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Sephiroth":
-        //                Setting_Sephiroth.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Terra":
-        //                Setting_Terra.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Datas":
-        //                Setting_Datas.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Transport":
-        //                Setting_Transport.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_Cups":
-        //                Setting_Cups.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //            case "Setting_HadesCup":
-        //                Setting_HadesCup.Width = new GridLength(1, GridUnitType.Star);
-        //                SpacerValue--;
-        //                break;
-        //        }
-        //
-        //        Setting_Spacer.Width = new GridLength(SpacerValue, GridUnitType.Star);
-        //        SettingsText.Text = "Settings:";
-        //    }
-        //}
-
-        private void OnReset(object sender, RoutedEventArgs e)
-        {
-            if (aTimer != null)
-                aTimer.Stop();
-
-            //isWorking = false;
-            collectedChecks.Clear();
-            newChecks.Clear();
-            ModeDisplay.Header = "";
-            HintTextMiddle.Text = "";
-            HintTextBegin.Text = "";
-            HintTextEnd.Text = "";
-            data.mode = Mode.None;
-            collected = 0;
-            PointTotal = 0;
-            data.SpoilerRevealTypes.Clear();
-            data.SpoilerReportMode = false;
-            data.SpoilerWorldCompletion = false;
-            data.usedPages = 0;
-            CollectedValue.Text = "0";
-            data.ScoreMode = false;
-            data.forcedFinal = false;
-            data.BossRandoFound = false;
-            data.dataSplit = false;
-            data.BossList.Clear();
-            data.convertedSeedHash = 0;
-            data.enabledWorlds.Clear();
-            data.seedgenVersion = "";
-            data.altFinalTracking = false;
-            data.eventLog.Clear();
-            data.openKHHintText = "None";
-            data.openKHBossText = "None";
-            data.legacyJsmartee = false;
-            data.hintFileText = null;
-            data.legacyShan = false;
-            data.shanHintFileText = null;
-
-            //clear progression hints stuff
-            data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
-            data.UsingProgressionHints = false;
-            data.ProgressionPoints = 0;
-            data.TotalProgressionPoints = 0;
-            data.ReportBonus = 1;
-            data.WorldCompleteBonus = 0;
-            data.ProgressionCurrentHint = 0;
-            data.WorldsEnabled = 0;
-            data.HintRevealOrder.Clear();
-            data.LevelsPreviousIndex = 0;
-            data.NextLevelMilestone = 9;
-            data.Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
-            data.Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
-            data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
-            data.HintRevealsStored.Clear();
-            data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
-            //clear last hinted green world
-            if (data.previousWorldHinted != "")
-            {
-                foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
-                {
-                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
-                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
-
-                    if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
-                        Box.Visibility = Visibility.Collapsed;
-                }
-            }
-            data.previousWorldHinted = "";
-            data.StoredWorldCompleteBonus = new Dictionary<string, int>()
-            {
-                { "SorasHeart", 0 },
-                { "DriveForms", 0 },
-                { "SimulatedTwilightTown", 0 },
-                { "TwilightTown", 0 },
-                { "HollowBastion", 0 },
-                { "BeastsCastle", 0 },
-                { "OlympusColiseum", 0 },
-                { "Agrabah", 0 },
-                { "LandofDragons", 0 },
-                { "HundredAcreWood", 0 },
-                { "PrideLands", 0 },
-                { "DisneyCastle", 0 },
-                { "HalloweenTown", 0 },
-                { "PortRoyal", 0 },
-                { "SpaceParanoids", 0 },
-                { "TWTNW", 0 },
-                { "GoA", 0 },
-                { "Atlantica", 0 },
-                { "PuzzSynth", 0 }
-            };
-            data.STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-            data.TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-            data.HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-            data.CoR_ProgressionValues = new List<int>() { 0, 0, 0, 0, 0 };
-            data.BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-            data.OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            data.AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-            data.LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            data.HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            data.PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-            data.AT_ProgressionValues = new List<int>() { 1, 2, 3 };
-            data.DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            data.HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-            data.PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            data.SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            data.TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-            data.HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
-
-            //hotkey stuff
-            data.usedHotkey = false;
-
-            //unselect any currently selected world grid
-            if (data.selected != null)
-            {
-                foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
-                {
-                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
-                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
-
-                    if (Box.Name.EndsWith("SelWG"))
-                        Box.Visibility = Visibility.Collapsed;
-                }
-            }
-            data.selected = null;
-
-            //return items to itempool
-            foreach (WorldData worldData in data.WorldsData.Values.ToList())
-            {
-                for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
-                {
-                    Item item = worldData.worldGrid.Children[j] as Item;
-                    Grid pool;
-
-                    if(item.Name.StartsWith("Ghost_"))
-                        pool = VisualTreeHelper.GetChild(ItemPool, 4) as Grid;
-                    else
-                        pool = data.Items[item.Name].Item2;
-            
-                    worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
-                    pool.Children.Add(item);
-            
-                    item.MouseDown -= item.Item_Return;
-                    item.MouseEnter -= item.Report_Hover;
-                    if (data.dragDrop)
-                    {
-                        item.MouseDoubleClick -= item.Item_Click;
-                        item.MouseDoubleClick += item.Item_Click;
-                        item.MouseMove -= item.Item_MouseMove;
-                        item.MouseMove += item.Item_MouseMove;
-                    }
-                    else
-                    {
-                        item.MouseDown -= item.Item_MouseDown;
-                        item.MouseDown += item.Item_MouseDown;
-                        item.MouseUp -= item.Item_MouseUp;
-                        item.MouseUp += item.Item_MouseUp;
-                    }
-                }
-            }
-
-            // Reset 1st column row heights
-            RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            foreach (RowDefinition row in rows1)
-            {
-                // don't reset turned off worlds
-                if (row.Height.Value != 0)
-                    row.Height = new GridLength(1, GridUnitType.Star);
-            }
-            
-            // Reset 2nd column row heights
-            RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
-            foreach (RowDefinition row in rows2)
-            {
-                // don't reset turned off worlds
-                if (row.Height.Value != 0)
-                    row.Height = new GridLength(1, GridUnitType.Star);
-            }
-
-            //fix puzzsynth value if it was hidden (progression hints)
-            if (data.WorldsData["PuzzSynth"].value.Visibility == Visibility.Hidden)
-            {
-                data.WorldsData["PuzzSynth"].value.Visibility = Visibility.Visible;
-            }
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
-                data.WorldsData[key].complete = false;
-                data.WorldsData[key].checkCount.Clear();
-                data.WorldsData[key].progress = 0;
-
-                //world cross reset
-                string crossname = key + "Cross";
-
-                if (data.WorldsData[key].top.FindName(crossname) is Image Cross)
-                {
-                    Cross.Visibility = Visibility.Collapsed;
-                }
-
-                //reset highlighted world
-                foreach (Rectangle Box in data.WorldsData[key].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
-                {
-                    Box.Visibility = Visibility.Collapsed;
-                }
-            }
-
-            TwilightTownProgression.SetResourceReference(ContentProperty, "");
-            HollowBastionProgression.SetResourceReference(ContentProperty, "");
-            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
-            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
-            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
-            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
-            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
-            PortRoyalProgression.SetResourceReference(ContentProperty, "");
-            AgrabahProgression.SetResourceReference(ContentProperty, "");
-            PrideLandsProgression.SetResourceReference(ContentProperty, "");
-            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
-            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
-            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
-            TWTNWProgression.SetResourceReference(ContentProperty, "");
-            AtlanticaProgression.SetResourceReference(ContentProperty, "");
-            GoAProgression.SetResourceReference(ContentProperty, "");
-            DriveFormsCap.SetResourceReference(ContentProperty, "");
-            ChestIcon.SetResourceReference(ContentProperty, "Chest");
-
-            Level.Visibility = Visibility.Collapsed;
-            Strength.Visibility = Visibility.Collapsed;
-            Magic.Visibility = Visibility.Collapsed;
-            Defense.Visibility = Visibility.Collapsed;
-            //Connect.Visibility = AutoDetectOption.IsChecked ? Visibility.Visible : Visibility.Hidden;
-            SorasHeartWeapon.SetResourceReference(ContentProperty, "");
-
-            FormRow.Height = new GridLength(0, GridUnitType.Star);
-            NextLevelCol.Width = new GridLength(0, GridUnitType.Star);
-
-            ValorM.Opacity = .45;
-            WisdomM.Opacity = .45;
-            LimitM.Opacity = .45;
-            MasterM.Opacity = .45;
-            FinalM.Opacity = .45;
-            HighJump.Opacity = .45;
-            QuickRun.Opacity = .45;
-            DodgeRoll.Opacity = .45;
-            AerialDodge.Opacity = .45;
-            Glide.Opacity = .45;
-
-            ValorLevel.Text = "1";
-            WisdomLevel.Text = "1";
-            LimitLevel.Text = "1";
-            MasterLevel.Text = "1";
-            FinalLevel.Text = "1";
-            HighJumpLevel.Text = "";
-            QuickRunLevel.Text = "";
-            DodgeRollLevel.Text = "";
-            AerialDodgeLevel.Text = "";
-            GlideLevel.Text = "";
-
-            fireLevel = 0;
-            blizzardLevel = 0;
-            thunderLevel = 0;
-            cureLevel = 0;
-            reflectLevel = 0;
-            magnetLevel = 0;
-            tornPageCount = 0;
-
-            if (fire != null)
-                fire.Level = 0;
-            if (blizzard != null)
-                blizzard.Level = 0;
-            if (thunder != null)
-                thunder.Level = 0;
-            if (cure != null)
-                cure.Level = 0;
-            if (reflect != null)
-                reflect.Level = 0;
-            if (magnet != null)
-                magnet.Level = 0;
-            if (pages != null)
-                pages.Quantity = 0;
-
-            if (highJump != null)
-                highJump.Level = 0;
-            if (quickRun != null)
-                quickRun.Level = 0;
-            if (dodgeRoll != null)
-                dodgeRoll.Level = 0;
-            if (aerialDodge != null)
-                aerialDodge.Level = 0;
-            if (glide != null)
-                glide.Level = 0;
-
-            //hide & reset seed hash
-            if (data.ShouldResetHash)
-            {
-                HashGrid.Visibility = Visibility.Collapsed;
-                data.SeedHashLoaded = false;
-                //data.SeedHashVisible = false;
-            }
-
-            foreach (string value in data.PointsDatanew.Keys.ToList())
-            {
-                data.PointsDatanew[value] = 0;
-            }
-
-            foreach (string world in WorldPoints.Keys.ToList())
-            {
-                WorldPoints[world] = 0;
-                WorldPoints_c[world] = 0;
-            }
-
-            WorldGrid.Real_Fire = 0;
-            WorldGrid.Real_Blizzard = 0;
-            WorldGrid.Real_Thunder = 0;
-            WorldGrid.Real_Cure = 0;
-            WorldGrid.Real_Reflect = 0;
-            WorldGrid.Real_Magnet = 0;
-            WorldGrid.Real_Pages = 0;
-            WorldGrid.Real_Pouches = 0;
-            WorldGrid.Proof_Count = 0;
-            WorldGrid.Form_Count = 0;
-            WorldGrid.Summon_Count = 0;
-            WorldGrid.Ability_Count = 0;
-            WorldGrid.Report_Count = 0;
-            WorldGrid.Visit_Count = 0;
-
-            FireCount.Text = "3";
-            BlizzardCount.Text = "3";
-            ThunderCount.Text = "3";
-            CureCount.Text = "3";
-            ReflectCount.Text = "3";
-            MagnetCount.Text = "3";
-            PageCount.Text = "5";
-            MunnyCount.Text = "2";
-
-            WorldGrid.Ghost_Fire = 0;
-            WorldGrid.Ghost_Blizzard = 0;
-            WorldGrid.Ghost_Thunder = 0;
-            WorldGrid.Ghost_Cure = 0;
-            WorldGrid.Ghost_Reflect = 0;
-            WorldGrid.Ghost_Magnet = 0;
-            WorldGrid.Ghost_Pages = 0;
-            WorldGrid.Ghost_Pouches = 0;
-            WorldGrid.Ghost_Fire_obtained = 0;
-            WorldGrid.Ghost_Blizzard_obtained = 0;
-            WorldGrid.Ghost_Thunder_obtained = 0;
-            WorldGrid.Ghost_Cure_obtained = 0;
-            WorldGrid.Ghost_Reflect_obtained = 0;
-            WorldGrid.Ghost_Magnet_obtained = 0;
-            WorldGrid.Ghost_Pages_obtained = 0;
-            WorldGrid.Ghost_Pouches_obtained = 0;
-
-            Ghost_FireCount.Visibility = Visibility.Hidden;
-            Ghost_BlizzardCount.Visibility = Visibility.Hidden;
-            Ghost_ThunderCount.Visibility = Visibility.Hidden;
-            Ghost_CureCount.Visibility = Visibility.Hidden;
-            Ghost_ReflectCount.Visibility = Visibility.Hidden;
-            Ghost_MagnetCount.Visibility = Visibility.Hidden;
-            Ghost_PageCount.Visibility = Visibility.Hidden;
-            Ghost_MunnyCount.Visibility = Visibility.Hidden;
-
-            FireCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            FireCount.Fill = (LinearGradientBrush)FindResource("Color_Fire");
-            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            BlizzardCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            BlizzardCount.Fill = (LinearGradientBrush)FindResource("Color_Blizzard");
-            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            ThunderCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            ThunderCount.Fill = (LinearGradientBrush)FindResource("Color_Thunder");
-            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            CureCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            CureCount.Fill = (LinearGradientBrush)FindResource("Color_Cure");
-            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            MagnetCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            MagnetCount.Fill = (LinearGradientBrush)FindResource("Color_Magnet");
-            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            ReflectCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            ReflectCount.Fill = (LinearGradientBrush)FindResource("Color_Reflect");
-            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            PageCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            PageCount.Fill = (LinearGradientBrush)FindResource("Color_Page");
-            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-            MunnyCount.Fill = (SolidColorBrush)FindResource("Color_Black");
-            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
-            MunnyCount.Fill = (LinearGradientBrush)FindResource("Color_Pouch");
-            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
-
-            Data.WorldItems.Clear();
-            data.TrackedReports.Clear();
-
-            CollectionGrid.Visibility = Visibility.Visible;
-            ScoreGrid.Visibility = Visibility.Hidden;
-            ProgressionCollectionGrid.Visibility = Visibility.Hidden;
-
-            //reset settings row
-            SettingsText.Text = "";
-            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
-            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
-            Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
-            
-            //if (AutoDetectOption.IsChecked)
-            //{
-            //    SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
-            //}
-            //else
-            SettingRow.Height = new GridLength(0, GridUnitType.Star);
-
-            //reset pathhints edits
-            foreach (string key in data.WorldsData.Keys.ToList())
-            {
-                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
-            
-                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
-                pathgrid.Visibility = Visibility.Hidden;
-                foreach (Image child in pathgrid.Children)
-                {
-                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
-                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
-                    child.Visibility = Visibility.Hidden;
-                }
-            }
-
-            UpdatePointScore(0);
-            ReportsToggle(true);
-            TornPagesToggle(true);
-            ResetHints();
-            VisitLockToggle(VisitLockOption.IsChecked);
-
-            DeathCounter = 0;
-            DeathValue.Text = "0";
-            
-            //DeathCounterGrid.Visibility = Visibility.Collapsed;
-            DeathCol.Width = new GridLength(0, GridUnitType.Star);
-
-            foreach (Grid itempool in ItemPool.Children)
-            {
-                foreach (var item in itempool.Children)
-                {
-                    ContentControl check = item as ContentControl;
-
-                    if (check != null && !check.Name.Contains("Ghost"))
-                        check.Opacity = 1.0;
-                }
-            }
-
-            //SetAutoDetectTimer();
-            NextLevelDisplay();
-            //DeathCounterDisplay();
-
-            //reset progression visuals
-            PPCount.Width = new GridLength(1.15, GridUnitType.Star);
-            PPSep.Width = new GridLength(0.3, GridUnitType.Star);
-        }
-
+        //Shans Classic
         private void ParseSeed(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -1942,14 +1209,17 @@ namespace KhTracker
 
         public void ParseSeed(string filename)
         {
-            bool autotrackeron = false;
-            bool ps2tracking = false;
-            //check for autotracking on and which version
-            if (aTimer != null)
-                autotrackeron = true;
+            if (!InProgressCheck("seed"))
+                return;
 
-            if (pcsx2tracking)
-                ps2tracking = true;
+            //bool autotrackeron = false;
+            //bool ps2tracking = false;
+            //check for autotracking on and which version
+            //if (aTimer != null)
+            //    autotrackeron = true;
+            //
+            //if (pcsx2tracking)
+            //    ps2tracking = true;
 
             //FixDictionary();
             SetMode(Mode.ShanHints);
@@ -2004,7 +1274,7 @@ namespace KhTracker
                         check2 = true;
                     }
                 }
-                
+
                 lineNum++;
             }
             streamReader.Close();
@@ -2027,72 +1297,85 @@ namespace KhTracker
                 SetWorldValue(data.WorldsData[key].value, 0);
             }
 
-            if (autotrackeron)
-            {
-                InitAutoTracker(ps2tracking);
-            }
+            data.seedLoaded = true;
+
+            if (data.wasTracking)
+                InitTracker();
         }
 
-        private void SetMode(Mode mode)
+        //Jsmartee Classic
+        private void LoadHints(object sender, RoutedEventArgs e)
         {
-            //if ((data.mode != mode && data.mode != Mode.None) || mode == Mode.ShanHints || mode == Mode.OpenKHShanHints || mode == Mode.PointsHints || mode == Mode.PathHints || mode == Mode.SpoilerHints)
-            //{
-            //    OnReset(null, null);
-            //}
-
-            if (mode == Mode.ShanHints || mode == Mode.OpenKHShanHints)
+            OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                ModeDisplay.Header = "Shan Hints";
-                data.mode = mode;
-                //ReportsToggle(false);
-            }
-            else if (mode == Mode.JsmarteeHints || mode == Mode.OpenKHJsmarteeHints)
+                DefaultExt = ".hint",
+                Filter = "Jsmartee hint file (*.hint)|*.hint",
+                Title = "Select Hint File"
+            };
+            if (openFileDialog.ShowDialog() == true)
             {
-                ModeDisplay.Header = "Jsmartee Hints";
-                data.mode = mode;
-                //ReportsToggle(true);
-            }
-            else if (mode == Mode.PointsHints)
-            {
-                ModeDisplay.Header = "Points Hints";
-                data.mode = mode;
-                //ReportsToggle(true);
-
-                UpdatePointScore(0);
-                ShowCheckCountToggle(null, null);
-            }
-            else if (mode == Mode.PathHints)
-            {
-                ModeDisplay.Header = "Path Hints";
-                data.mode = mode;
-                //ReportsToggle(true);
-            }
-            else if (mode == Mode.SpoilerHints)
-            {
-                ModeDisplay.Header = "Spoiler Hints";
-                data.mode = mode;
-            }
-
-            if (data.ScoreMode && mode != Mode.PointsHints)
-            {
-                UpdatePointScore(0);
-                ShowCheckCountToggle(null, null);
-
-                ModeDisplay.Header += " | HSM";
-            }
-
-            if (data.UsingProgressionHints)
-            {
-                CollectionGrid.Visibility = Visibility.Collapsed;
-                ScoreGrid.Visibility = Visibility.Collapsed;
-                ProgressionCollectionGrid.Visibility = Visibility.Visible;
-
-                ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
-
-                ModeDisplay.Header += " | Progression";
+                LoadHints(openFileDialog.FileName);
             }
         }
 
+        public void LoadHints(string filename)
+        {
+            if (!InProgressCheck("hints"))
+                return;
+
+            SetMode(Mode.JsmarteeHints);
+            //ResetHints();
+
+            StreamReader streamReader = new StreamReader(filename);
+
+            if (streamReader.EndOfStream)
+            {
+                SetHintText("Error loading hints");
+                streamReader.Close();
+                return;
+            }
+
+            string line1 = streamReader.ReadLine();
+            data.hintFileText[0] = line1;
+            string[] reportvalues = line1.Split('.');
+
+            if (streamReader.EndOfStream)
+            {
+                SetHintText("Error loading hints");
+                streamReader.Close();
+                return;
+            }
+
+            string line2 = streamReader.ReadLine();
+            data.hintFileText[1] = line2;
+            line2 = line2.TrimEnd('.');
+            string[] reportorder = line2.Split('.');
+
+            string line3 = streamReader.ReadLine().Substring(24);
+            data.hintFileText[2] = line3;
+            LoadSettings(line3);
+
+            streamReader.Close();
+
+            for (int i = 0; i < reportorder.Length; ++i)
+            {
+                string location = data.codes.FindCode(reportorder[i]);
+                if (location == "")
+                    location = data.codes.GetDefault(i);
+
+                data.reportLocations.Add(location);
+                string[] temp = reportvalues[i].Split(',');
+                data.reportInformation.Add(new Tuple<string, string, int>(null, data.codes.FindCode(temp[0]), int.Parse(temp[1]) - 32));
+            }
+
+            data.hintsLoaded = true;
+            data.legacyJsmartee = true;
+
+            if (data.wasTracking)
+                InitTracker();
+        }
+
+        //Seed Gen
         private void OpenKHSeed(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -2107,12 +1390,8 @@ namespace KhTracker
 
         private void OpenKHSeed(string filename)
         {
-            OnReset(null, null);
-
-            //foreach (string world in data.WorldsData.Keys.ToList())
-            //{
-            //    data.WorldsData[world].checkCount.Clear();
-            //}
+            if (!InProgressCheck("seed"))
+                return;
 
             using (ZipArchive archive = ZipFile.OpenRead(filename))
             {
@@ -2125,7 +1404,7 @@ namespace KhTracker
                 //we used to just read them as we went along, but things got more complicated as time went on..
                 foreach (var entry in archive.Entries)
                 {
-                    switch(entry.Name)
+                    switch (entry.Name)
                     {
                         case "HintFile.Hints":
                             hintsfile = entry;
@@ -2151,7 +1430,7 @@ namespace KhTracker
                         data.BossRandoFound = true;
                         data.openKHBossText = reader3.ReadToEnd();
                         var enemyText = Encoding.UTF8.GetString(Convert.FromBase64String(data.openKHBossText));
-                        try 
+                        try
                         {
                             var enemyObject = JsonSerializer.Deserialize<Dictionary<string, object>>(enemyText);
                             var bosses = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(enemyObject["BOSSES"].ToString());
@@ -2164,13 +1443,13 @@ namespace KhTracker
                                 data.BossList.Add(bossOrig, bossRepl);
                             }
                         }
-                        catch 
+                        catch
                         {
                             data.BossRandoFound = false;
                             data.openKHBossText = "None";
                             App.logger?.Record("error while trying to parse bosses.");
                         }
-                        
+
                         reader3.Close();
                     }
                 }
@@ -2739,89 +2018,219 @@ namespace KhTracker
                 }
 
                 archive.Dispose();
+
+                data.seedLoaded = true;
             }
-        }
-   
-        private string ScrambleText(string input, bool scramble)
-        {
-            //scrambles/unscrambles input text based on a seed
-            //why have this? i dunno i suppose to make saves more "secure"
-            //figure if people really want to cheat they would have to look at this code
-            Random r = new Random(16964); //why this number? who knows... (let me know if you figure it out lol)
-            if(scramble)
+
+            if (data.wasTracking)
             {
-                char[] chars = input.ToArray();
-                for (int i = 0; i < chars.Length; i++)
-                {
-                    int randomIndex = r.Next(0, chars.Length);
-                    char temp = chars[randomIndex];
-                    chars[randomIndex] = chars[i];
-                    chars[i] = temp;
-                }
-                return new string(chars);
-            }
-            else
-            {
-                char[] scramChars = input.ToArray();
-                List<int> swaps = new List<int>();
-                for (int i = 0; i < scramChars.Length; i++)
-                {
-                    swaps.Add(r.Next(0, scramChars.Length));
-                }
-                for (int i = scramChars.Length - 1; i >= 0; i--)
-                {
-                    char temp = scramChars[swaps[i]];
-                    scramChars[swaps[i]] = scramChars[i];
-                    scramChars[i] = temp;
-                }
-                return new string(scramChars);
+                InitTracker();
             }
         }
 
-        //trigger autotracker specific stuff with save loading
-        private void FakeDrivesProgressionBonus(int drive, int level)
-        {
-            if (!data.UsingProgressionHints)
-                return;
+        //hint helpers
 
-            while (drive == 0 && (level > data.DriveLevels[0]))
+        private void SetMode(Mode mode)
+        {
+            if (mode == Mode.ShanHints || mode == Mode.OpenKHShanHints)
             {
-                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[0] - 1]);
-                data.DriveLevels[0]++;
+                ModeDisplay.Header = "Shan Hints";
+                data.mode = mode;
+                //ReportsToggle(false);
             }
-            while (drive == 1 && (level > data.DriveLevels[1]))
+            else if (mode == Mode.JsmarteeHints || mode == Mode.OpenKHJsmarteeHints)
             {
-                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[1] - 1]);
-                data.DriveLevels[1]++;
+                ModeDisplay.Header = "Jsmartee Hints";
+                data.mode = mode;
+                //ReportsToggle(true);
             }
-            while (drive == 2 && (level > data.DriveLevels[2]))
+            else if (mode == Mode.PointsHints)
             {
-                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[2] - 1]);
-                data.DriveLevels[2]++;
+                ModeDisplay.Header = "Points Hints";
+                data.mode = mode;
+                //ReportsToggle(true);
+
+                UpdatePointScore(0);
+                ShowCheckCountToggle(null, null);
             }
-            while (drive == 3 && (level > data.DriveLevels[3]))
+            else if (mode == Mode.PathHints)
             {
-                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[3] - 1]);
-                data.DriveLevels[3]++;
+                ModeDisplay.Header = "Path Hints";
+                data.mode = mode;
+                //ReportsToggle(true);
             }
-            while (drive == 4 && (level > data.DriveLevels[4]))
+            else if (mode == Mode.SpoilerHints)
             {
-                AddProgressionPoints(data.Drives_ProgressionValues[data.DriveLevels[4] - 1]);
-                data.DriveLevels[4]++;
+                ModeDisplay.Header = "Spoiler Hints";
+                data.mode = mode;
+            }
+
+            if (data.ScoreMode && mode != Mode.PointsHints)
+            {
+                UpdatePointScore(0);
+                ShowCheckCountToggle(null, null);
+
+                ModeDisplay.Header += " | HSM";
+            }
+
+            if (data.UsingProgressionHints)
+            {
+                CollectionGrid.Visibility = Visibility.Collapsed;
+                ScoreGrid.Visibility = Visibility.Collapsed;
+                ProgressionCollectionGrid.Visibility = Visibility.Visible;
+
+                ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
+
+                ModeDisplay.Header += " | Progression";
             }
         }
 
-        private void FakeLevelsProgressionBonus(int level)
+        private void LoadSettings(string settings)
         {
-            //if sora's current level is great than the max specified level (usually 50), then do nothing
-            if (level > (data.Levels_ProgressionValues.Count * 10) || !data.UsingProgressionHints)
-                return;
+            //item settings
+            ReportsToggle(false);
+            PromiseCharmToggle(false);
+            AbilitiesToggle(false);
+            VisitLockToggle(false);
+            ExtraChecksToggle(false);
+            AntiFormToggle(false);
+            TornPagesToggle(false);
 
-            //every 10 levels, reward the player the progression points for that part
-            while (level > data.NextLevelMilestone)
+            //world settings
+            SoraHeartToggle(true);
+            DrivesToggle(false);
+            SimulatedToggle(false);
+            TwilightTownToggle(false);
+            HollowBastionToggle(false);
+            BeastCastleToggle(false);
+            OlympusToggle(false);
+            AgrabahToggle(false);
+            LandofDragonsToggle(false);
+            DisneyCastleToggle(false);
+            PrideLandsToggle(false);
+            PortRoyalToggle(false);
+            HalloweenTownToggle(false);
+            SpaceParanoidsToggle(false);
+            TWTNWToggle(false);
+            HundredAcreWoodToggle(false);
+            AtlanticaToggle(false);
+            PuzzleToggle(false);
+            SynthToggle(false);
+
+            string[] settinglist = settings.Split('-');
+
+            foreach (string setting in settinglist)
             {
-                data.NextLevelMilestone += 10;
-                AddProgressionPoints(data.Levels_ProgressionValues[data.LevelsPreviousIndex++]);
+                string trimmed = setting.Trim();
+                switch (trimmed)
+                {
+                    case "Secret Ansem Reports":
+                        ReportsToggle(true);
+                        break;
+                    case "Promise Charm":
+                        PromiseCharmToggle(true);
+                        break;
+                    case "Second Chance & Once More":
+                        AbilitiesToggle(true);
+                        break;
+                    case "AntiForm":
+                        AntiFormToggle(true);
+                        break;
+                    case "Visit Locks":
+                        VisitLockToggle(true);
+                        break;
+                    case "Extra Checks":
+                        ExtraChecksToggle(true);
+                        break;
+                    case "Level01":
+                        SoraLevel01Toggle(true);
+                        break;
+                    case "Level50":
+                        SoraLevel50Toggle(true);
+                        break;
+                    case "Level99":
+                        SoraLevel99Toggle(true);
+                        break;
+                    case "Sora's Heart":
+                        SoraHeartToggle(true);
+                        break;
+                    case "Drive Forms":
+                        DrivesToggle(true);
+                        break;
+                    case "Simulated Twilight Town":
+                        SimulatedToggle(true);
+                        data.enabledWorlds.Add("STT");
+                        break;
+                    case "Twilight Town":
+                        TwilightTownToggle(true);
+                        data.enabledWorlds.Add("TT");
+                        break;
+                    case "Hollow Bastion":
+                        HollowBastionToggle(true);
+                        data.enabledWorlds.Add("HB");
+                        break;
+                    case "Beast Castle":
+                        BeastCastleToggle(true);
+                        data.enabledWorlds.Add("BC");
+                        break;
+                    case "Olympus":
+                        OlympusToggle(true);
+                        data.enabledWorlds.Add("OC");
+                        break;
+                    case "Agrabah":
+                        AgrabahToggle(true);
+                        data.enabledWorlds.Add("AG");
+                        break;
+                    case "Land of Dragons":
+                        LandofDragonsToggle(true);
+                        data.enabledWorlds.Add("LoD");
+                        break;
+                    case "Disney Castle":
+                        DisneyCastleToggle(true);
+                        data.enabledWorlds.Add("DC");
+                        break;
+                    case "Pride Lands":
+                        PrideLandsToggle(true);
+                        data.enabledWorlds.Add("PL");
+                        break;
+                    case "Port Royal":
+                        PortRoyalToggle(true);
+                        data.enabledWorlds.Add("PR");
+                        break;
+                    case "Halloween Town":
+                        HalloweenTownToggle(true);
+                        data.enabledWorlds.Add("HT");
+                        break;
+                    case "Space Paranoids":
+                        SpaceParanoidsToggle(true);
+                        data.enabledWorlds.Add("SP");
+                        break;
+                    case "TWTNW":
+                        TWTNWToggle(true);
+                        data.enabledWorlds.Add("TWTNW");
+                        break;
+                    case "100 Acre Wood":
+                        HundredAcreWoodToggle(true);
+                        break;
+                    case "Atlantica":
+                        AtlanticaToggle(true);
+                        break;
+                    case "Puzzles":
+                        PuzzleToggle(true);
+                        break;
+                    case "Synthesis":
+                        SynthToggle(true);
+                        break;
+                    case "Score Mode":
+                        data.ScoreMode = true;
+                        break;
+                    case "Boss Rando":
+                        data.BossRandoFound = true;
+                        break;
+                    case "Torn Pages":
+                        TornPagesToggle(true);
+                        break;
+                }
             }
         }
 
@@ -2840,7 +2249,573 @@ namespace KhTracker
             data.convertedSeedHash = final;
         }
 
-        //Hotkey stuff
+        private void OnReset(object sender, RoutedEventArgs e)
+        {
+            if (aTimer != null)
+            {
+                aTimer.Stop();
+                aTimer = null;
+            }
+
+            if (sender != null && !AutoConnectOption.IsChecked)
+                data.wasTracking = false;
+
+            //chnage visuals based on if autotracking was done before
+            if (data.wasTracking) 
+            {
+                //connection trying visual
+                Connect.Visibility = Visibility.Visible;
+                Connect2.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Connect.Visibility = Visibility.Collapsed;
+                Connect2.Visibility = Visibility.Collapsed;
+
+                SettingRow.Height = new GridLength(0, GridUnitType.Star);
+                FormRow.Height = new GridLength(0, GridUnitType.Star);
+                Level.Visibility = Visibility.Collapsed;
+                Strength.Visibility = Visibility.Collapsed;
+                Magic.Visibility = Visibility.Collapsed;
+                Defense.Visibility = Visibility.Collapsed;
+            }
+
+            collectedChecks.Clear();
+            newChecks.Clear();
+            ModeDisplay.Header = "";
+            HintTextMiddle.Text = "";
+            HintTextBegin.Text = "";
+            HintTextEnd.Text = "";
+            data.mode = Mode.None;
+            collected = 0;
+            PointTotal = 0;
+            data.SpoilerRevealTypes.Clear();
+            data.SpoilerReportMode = false;
+            data.SpoilerWorldCompletion = false;
+            data.usedPages = 0;
+            CollectedValue.Text = "0";
+            data.ScoreMode = false;
+            data.forcedFinal = false;
+            data.BossRandoFound = false;
+            data.dataSplit = false;
+            data.BossList.Clear();
+            data.convertedSeedHash = 0;
+            data.enabledWorlds.Clear();
+            data.seedgenVersion = "";
+            data.altFinalTracking = false;
+            data.eventLog.Clear();
+            data.openKHHintText = "None";
+            data.openKHBossText = "None";
+            data.legacyJsmartee = false;
+            data.hintFileText = null;
+            data.legacyShan = false;
+            data.shanHintFileText = null;
+            data.hintsLoaded = false;
+            data.seedLoaded = false;
+            data.saveFileLoaded = false;
+
+            //clear progression hints stuff
+            data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
+            data.UsingProgressionHints = false;
+            data.ProgressionPoints = 0;
+            data.TotalProgressionPoints = 0;
+            data.ReportBonus = 1;
+            data.WorldCompleteBonus = 0;
+            data.ProgressionCurrentHint = 0;
+            data.WorldsEnabled = 0;
+            data.HintRevealOrder.Clear();
+            data.LevelsPreviousIndex = 0;
+            data.NextLevelMilestone = 9;
+            data.Levels_ProgressionValues = new List<int>() { 1, 1, 1, 2, 4 };
+            data.Drives_ProgressionValues = new List<int>() { 0, 0, 0, 1, 0, 2 };
+            data.DriveLevels = new List<int>() { 1, 1, 1, 1, 1 };
+            data.HintRevealsStored.Clear();
+            data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
+            //clear last hinted green world
+            if (data.previousWorldHinted != "")
+            {
+                foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                {
+                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                    if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                        Box.Visibility = Visibility.Collapsed;
+                }
+            }
+            data.previousWorldHinted = "";
+            data.StoredWorldCompleteBonus = new Dictionary<string, int>()
+            {
+                { "SorasHeart", 0 },
+                { "DriveForms", 0 },
+                { "SimulatedTwilightTown", 0 },
+                { "TwilightTown", 0 },
+                { "HollowBastion", 0 },
+                { "BeastsCastle", 0 },
+                { "OlympusColiseum", 0 },
+                { "Agrabah", 0 },
+                { "LandofDragons", 0 },
+                { "HundredAcreWood", 0 },
+                { "PrideLands", 0 },
+                { "DisneyCastle", 0 },
+                { "HalloweenTown", 0 },
+                { "PortRoyal", 0 },
+                { "SpaceParanoids", 0 },
+                { "TWTNW", 0 },
+                { "GoA", 0 },
+                { "Atlantica", 0 },
+                { "PuzzSynth", 0 }
+            };
+            data.STT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.TT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.HB_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            data.CoR_ProgressionValues = new List<int>() { 0, 0, 0, 0, 0 };
+            data.BC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.OC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.AG_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.LoD_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.HAW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            data.PL_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.AT_ProgressionValues = new List<int>() { 1, 2, 3 };
+            data.DC_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            data.HT_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            data.PR_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            data.SP_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            data.TWTNW_ProgressionValues = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            data.HintCosts = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 };
+
+            //hotkey stuff
+            data.usedHotkey = false;
+
+            //unselect any currently selected world grid
+            if (data.selected != null)
+            {
+                foreach (var Box in data.WorldsData[data.selected.Name].top.Children.OfType<Rectangle>())
+                {
+                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                    if (Box.Name.EndsWith("SelWG"))
+                        Box.Visibility = Visibility.Collapsed;
+                }
+            }
+            data.selected = null;
+
+            //return items to itempool
+            foreach (WorldData worldData in data.WorldsData.Values.ToList())
+            {
+                for (int j = worldData.worldGrid.Children.Count - 1; j >= 0; --j)
+                {
+                    Item item = worldData.worldGrid.Children[j] as Item;
+                    Grid pool;
+
+                    if(item.Name.StartsWith("Ghost_"))
+                        pool = VisualTreeHelper.GetChild(ItemPool, 4) as Grid;
+                    else
+                        pool = data.Items[item.Name].Item2;
+            
+                    worldData.worldGrid.Children.Remove(worldData.worldGrid.Children[j]);
+                    pool.Children.Add(item);
+            
+                    item.MouseDown -= item.Item_Return;
+                    item.MouseEnter -= item.Report_Hover;
+                    if (data.dragDrop)
+                    {
+                        item.MouseDoubleClick -= item.Item_Click;
+                        item.MouseDoubleClick += item.Item_Click;
+                        item.MouseMove -= item.Item_MouseMove;
+                        item.MouseMove += item.Item_MouseMove;
+                    }
+                    else
+                    {
+                        item.MouseDown -= item.Item_MouseDown;
+                        item.MouseDown += item.Item_MouseDown;
+                        item.MouseUp -= item.Item_MouseUp;
+                        item.MouseUp += item.Item_MouseUp;
+                    }
+                }
+            }
+
+            // Reset 1st column row heights
+            RowDefinitionCollection rows1 = ((data.WorldsData["SorasHeart"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows1)
+            {
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
+            }
+            
+            // Reset 2nd column row heights
+            RowDefinitionCollection rows2 = ((data.WorldsData["DriveForms"].worldGrid.Parent as Grid).Parent as Grid).RowDefinitions;
+            foreach (RowDefinition row in rows2)
+            {
+                // don't reset turned off worlds
+                if (row.Height.Value != 0)
+                    row.Height = new GridLength(1, GridUnitType.Star);
+            }
+
+            //fix puzzsynth value if it was hidden (progression hints)
+            if (data.WorldsData["PuzzSynth"].value.Visibility == Visibility.Hidden)
+            {
+                data.WorldsData["PuzzSynth"].value.Visibility = Visibility.Visible;
+            }
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].complete = false;
+                data.WorldsData[key].checkCount.Clear();
+                data.WorldsData[key].progress = 0;
+
+                //world cross reset
+                string crossname = key + "Cross";
+
+                if (data.WorldsData[key].top.FindName(crossname) is Image Cross)
+                {
+                    Cross.Visibility = Visibility.Collapsed;
+                }
+
+                //reset highlighted world
+                foreach (Rectangle Box in data.WorldsData[key].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
+                {
+                    Box.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            TwilightTownProgression.SetResourceReference(ContentProperty, "");
+            HollowBastionProgression.SetResourceReference(ContentProperty, "");
+            LandofDragonsProgression.SetResourceReference(ContentProperty, "");
+            BeastsCastleProgression.SetResourceReference(ContentProperty, "");
+            OlympusColiseumProgression.SetResourceReference(ContentProperty, "");
+            SpaceParanoidsProgression.SetResourceReference(ContentProperty, "");
+            HalloweenTownProgression.SetResourceReference(ContentProperty, "");
+            PortRoyalProgression.SetResourceReference(ContentProperty, "");
+            AgrabahProgression.SetResourceReference(ContentProperty, "");
+            PrideLandsProgression.SetResourceReference(ContentProperty, "");
+            DisneyCastleProgression.SetResourceReference(ContentProperty, "");
+            HundredAcreWoodProgression.SetResourceReference(ContentProperty, "");
+            SimulatedTwilightTownProgression.SetResourceReference(ContentProperty, "");
+            TWTNWProgression.SetResourceReference(ContentProperty, "");
+            AtlanticaProgression.SetResourceReference(ContentProperty, "");
+            GoAProgression.SetResourceReference(ContentProperty, "");
+            DriveFormsCap.SetResourceReference(ContentProperty, "");
+            ChestIcon.SetResourceReference(ContentProperty, "Chest");
+
+            SorasHeartWeapon.SetResourceReference(ContentProperty, "");
+
+            NextLevelCol.Width = new GridLength(0, GridUnitType.Star);
+
+            ValorM.Opacity = .45;
+            WisdomM.Opacity = .45;
+            LimitM.Opacity = .45;
+            MasterM.Opacity = .45;
+            FinalM.Opacity = .45;
+            HighJump.Opacity = .45;
+            QuickRun.Opacity = .45;
+            DodgeRoll.Opacity = .45;
+            AerialDodge.Opacity = .45;
+            Glide.Opacity = .45;
+
+            ValorLevel.Text = "1";
+            WisdomLevel.Text = "1";
+            LimitLevel.Text = "1";
+            MasterLevel.Text = "1";
+            FinalLevel.Text = "1";
+            HighJumpLevel.Text = "";
+            QuickRunLevel.Text = "";
+            DodgeRollLevel.Text = "";
+            AerialDodgeLevel.Text = "";
+            GlideLevel.Text = "";
+
+            fireLevel = 0;
+            blizzardLevel = 0;
+            thunderLevel = 0;
+            cureLevel = 0;
+            reflectLevel = 0;
+            magnetLevel = 0;
+            tornPageCount = 0;
+
+            if (fire != null)
+                fire.Level = 0;
+            if (blizzard != null)
+                blizzard.Level = 0;
+            if (thunder != null)
+                thunder.Level = 0;
+            if (cure != null)
+                cure.Level = 0;
+            if (reflect != null)
+                reflect.Level = 0;
+            if (magnet != null)
+                magnet.Level = 0;
+            if (pages != null)
+                pages.Quantity = 0;
+
+            if (highJump != null)
+                highJump.Level = 0;
+            if (quickRun != null)
+                quickRun.Level = 0;
+            if (dodgeRoll != null)
+                dodgeRoll.Level = 0;
+            if (aerialDodge != null)
+                aerialDodge.Level = 0;
+            if (glide != null)
+                glide.Level = 0;
+
+            //hide & reset seed hash
+            if (data.ShouldResetHash)
+            {
+                HashGrid.Visibility = Visibility.Collapsed;
+                data.SeedHashLoaded = false;
+            }
+
+            foreach (string value in data.PointsDatanew.Keys.ToList())
+            {
+                data.PointsDatanew[value] = 0;
+            }
+
+            foreach (string world in WorldPoints.Keys.ToList())
+            {
+                WorldPoints[world] = 0;
+                WorldPoints_c[world] = 0;
+            }
+
+            WorldGrid.Real_Fire = 0;
+            WorldGrid.Real_Blizzard = 0;
+            WorldGrid.Real_Thunder = 0;
+            WorldGrid.Real_Cure = 0;
+            WorldGrid.Real_Reflect = 0;
+            WorldGrid.Real_Magnet = 0;
+            WorldGrid.Real_Pages = 0;
+            WorldGrid.Real_Pouches = 0;
+            WorldGrid.Proof_Count = 0;
+            WorldGrid.Form_Count = 0;
+            WorldGrid.Summon_Count = 0;
+            WorldGrid.Ability_Count = 0;
+            WorldGrid.Report_Count = 0;
+            WorldGrid.Visit_Count = 0;
+
+            FireCount.Text = "3";
+            BlizzardCount.Text = "3";
+            ThunderCount.Text = "3";
+            CureCount.Text = "3";
+            ReflectCount.Text = "3";
+            MagnetCount.Text = "3";
+            PageCount.Text = "5";
+            MunnyCount.Text = "2";
+
+            WorldGrid.Ghost_Fire = 0;
+            WorldGrid.Ghost_Blizzard = 0;
+            WorldGrid.Ghost_Thunder = 0;
+            WorldGrid.Ghost_Cure = 0;
+            WorldGrid.Ghost_Reflect = 0;
+            WorldGrid.Ghost_Magnet = 0;
+            WorldGrid.Ghost_Pages = 0;
+            WorldGrid.Ghost_Pouches = 0;
+            WorldGrid.Ghost_Fire_obtained = 0;
+            WorldGrid.Ghost_Blizzard_obtained = 0;
+            WorldGrid.Ghost_Thunder_obtained = 0;
+            WorldGrid.Ghost_Cure_obtained = 0;
+            WorldGrid.Ghost_Reflect_obtained = 0;
+            WorldGrid.Ghost_Magnet_obtained = 0;
+            WorldGrid.Ghost_Pages_obtained = 0;
+            WorldGrid.Ghost_Pouches_obtained = 0;
+
+            Ghost_FireCount.Visibility = Visibility.Hidden;
+            Ghost_BlizzardCount.Visibility = Visibility.Hidden;
+            Ghost_ThunderCount.Visibility = Visibility.Hidden;
+            Ghost_CureCount.Visibility = Visibility.Hidden;
+            Ghost_ReflectCount.Visibility = Visibility.Hidden;
+            Ghost_MagnetCount.Visibility = Visibility.Hidden;
+            Ghost_PageCount.Visibility = Visibility.Hidden;
+            Ghost_MunnyCount.Visibility = Visibility.Hidden;
+
+            FireCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            FireCount.Fill = (LinearGradientBrush)FindResource("Color_Fire");
+            FireCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            BlizzardCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            BlizzardCount.Fill = (LinearGradientBrush)FindResource("Color_Blizzard");
+            BlizzardCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            ThunderCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            ThunderCount.Fill = (LinearGradientBrush)FindResource("Color_Thunder");
+            ThunderCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            CureCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            CureCount.Fill = (LinearGradientBrush)FindResource("Color_Cure");
+            CureCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            MagnetCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            MagnetCount.Fill = (LinearGradientBrush)FindResource("Color_Magnet");
+            MagnetCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            ReflectCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            ReflectCount.Fill = (LinearGradientBrush)FindResource("Color_Reflect");
+            ReflectCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            PageCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            PageCount.Fill = (LinearGradientBrush)FindResource("Color_Page");
+            PageCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+            MunnyCount.Fill = (SolidColorBrush)FindResource("Color_Black");
+            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Trans");
+            MunnyCount.Fill = (LinearGradientBrush)FindResource("Color_Pouch");
+            MunnyCount.Stroke = (SolidColorBrush)FindResource("Color_Black");
+
+            Data.WorldItems.Clear();
+            data.TrackedReports.Clear();
+
+            CollectionGrid.Visibility = Visibility.Visible;
+            ScoreGrid.Visibility = Visibility.Hidden;
+            ProgressionCollectionGrid.Visibility = Visibility.Hidden;
+
+            //reset settings row
+            SettingsText.Text = "";
+            Setting_BetterSTT.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_01.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_50.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Level_99.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Absent_Split.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Datas.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Sephiroth.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Terra.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cups.Width = new GridLength(0, GridUnitType.Star);
+            Setting_HadesCup.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Cavern.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Transport.Width = new GridLength(0, GridUnitType.Star);
+            Setting_Spacer.Width = new GridLength(10, GridUnitType.Star);
+            
+            //reset pathhints edits
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0, GridUnitType.Star);
+            
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Hidden;
+                foreach (Image child in pathgrid.Children)
+                {
+                    if (child.Name.Contains(key + "Path_Non") && child.Source.ToString().Contains("cross.png")) //reset non icon to default image
+                        child.Source = new BitmapImage(new Uri("Images/Checks/Simple/proof_of_nonexistence.png", UriKind.Relative));
+                    child.Visibility = Visibility.Hidden;
+                }
+            }
+
+            UpdatePointScore(0);
+            ReportsToggle(true);
+            TornPagesToggle(true);
+            ResetHints();
+            VisitLockToggle(VisitLockOption.IsChecked);
+
+            DeathCounter = 0;
+            DeathValue.Text = "0";
+            DeathCol.Width = new GridLength(0, GridUnitType.Star);
+
+            foreach (Grid itempool in ItemPool.Children)
+            {
+                foreach (var item in itempool.Children)
+                {
+                    ContentControl check = item as ContentControl;
+
+                    if (check != null && !check.Name.Contains("Ghost"))
+                        check.Opacity = 1.0;
+                }
+            }
+
+            NextLevelDisplay();
+
+            //reset progression visuals
+            PPCount.Width = new GridLength(1.15, GridUnitType.Star);
+            PPSep.Width = new GridLength(0.3, GridUnitType.Star);
+
+            if (data.wasTracking && sender != null)
+                InitTracker();
+        }
+
+        private bool InProgressCheck(string type)
+        {
+            string message = "";
+            string caption = "";
+
+            if (data.seedLoaded | data.saveFileLoaded)
+            {
+                if(type == "tsv")
+                {
+                    message = "Hints were already loaded into the tracker!" +
+                        "\n Any progress made so far would be lost if you continue." +
+                        "\n Proceed anyway?";
+                    caption = "Progress Load Confirmation";
+                }
+                if (type == "seed")
+                {
+                    message = "A Randomizer Seed was already loaded into the tracker!" +
+                        "\n Any progress made so far would be lost if you continue." +
+                        "\n Proceed anyway?";
+                    caption = "Seed Load Confirmation";
+                }
+                if (type == "hints")
+                {
+                    message = "Hints were already loaded into the tracker!" +
+                        "\n Any progress made so far would be lost if you continue." +
+                        "\n Proceed anyway?";
+                    caption = "Hints Load Confirmation";
+
+                }
+
+                MessageForm.MessageBoxButtons buttons = MessageForm.MessageBoxButtons.OKCancel;
+                MessageForm.DialogResult result;
+
+                result = MessageForm.MessageBox.Show(message, caption, buttons);
+                if (result == MessageForm.DialogResult.Cancel)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+                return true;
+        }
+
+        private void ResetHints()
+        {
+            data.hintsLoaded = false;
+            data.reportLocations.Clear();
+            data.reportInformation.Clear();
+            data.reportAttempts = new List<int>() { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                data.WorldsData[key].hinted = false;
+                data.WorldsData[key].hintedHint = false;
+                data.WorldsData[key].containsGhost = false;
+                //progression hints per world
+                data.WorldsData[key].hintedProgression = false;
+            }
+            data.WorldsData["GoA"].hinted = true;
+
+            foreach (ContentControl report in data.ReportAttemptVisual)
+            {
+                report.SetResourceReference(ContentProperty, "Fail0");
+            }
+
+            foreach (WorldData worldData in data.WorldsData.Values.ToList())
+            {
+                if (worldData.value != null)
+                    SetWorldValue(worldData.value, -999999);
+            }
+
+            for (int i = 0; i < data.Reports.Count; ++i)
+            {
+                data.Reports[i].HandleItemReturn();
+            }
+        }
+
+        /// 
+        /// Hotkey logic
+        ///
+
         private void LoadHotkeyBind()
         {
             if (!Directory.Exists("./KhTrackerSettings"))

@@ -1135,6 +1135,26 @@ namespace KhTracker
             }
         }
 
+        private void SetProgressIcons()
+        {
+            bool OldToggled = Properties.Settings.Default.OldProg;
+            bool CustomToggled = Properties.Settings.Default.CustomIcons;
+            string Prog = "Min-"; //Default
+            if (OldToggled)
+                Prog = "Old-";
+            if (CustomProgFound && CustomToggled)
+                Prog = "Cus-";
+
+            foreach (string world in data.WorldsData.Keys.ToList())
+            {
+                if (world == "SorasHeart" || world == "DriveForms" || world == "PuzzSynth")
+                    continue;
+
+                data.WorldsData[world].progression.SetResourceReference(ContentProperty, Prog + data.ProgressKeys[world][data.WorldsData[world].progress]);
+                data.WorldsData[world].progression.ToolTip = data.ProgressKeys[world + "Desc"][data.WorldsData[world].progress];
+            }
+        }
+
         ///
         /// Worlds
         /// 
