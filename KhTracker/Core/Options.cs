@@ -2066,6 +2066,9 @@ namespace KhTracker
                 ModeDisplay.Header = "Points Hints";
                 data.mode = mode;
                 //ReportsToggle(true);
+                //high score mode should not be on if points hints is on
+                if (data.ScoreMode == true)
+                    data.ScoreMode = false;
 
                 UpdatePointScore(0);
                 ShowCheckCountToggle(null, null);
