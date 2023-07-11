@@ -624,7 +624,11 @@ namespace KhTracker
                 if (num > 0)
                 {
                     Tuple<string, string, string, bool, bool, bool> temp = data.HintRevealsStored[num - 1];
-                    SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
+
+                    if (data.progressionType == "Bosses")
+                        SetHintTextRow2(temp.Item1);
+                    else
+                        SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
                 }
             }
 
@@ -652,7 +656,9 @@ namespace KhTracker
                 return;
             }
 
-            if (worldValue == null || (data.UsingProgressionHints && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression))
+            if (worldValue == null || (data.UsingProgressionHints 
+                && !data.WorldsData[worldValue.Name.Substring(0, worldValue.Name.Length - 4)].hintedProgression 
+                && data.progressionType == "Reports"))
             {
                 if (data.mode == Mode.PointsHints)
                 {
@@ -748,6 +754,12 @@ namespace KhTracker
             HintTextBegin.Foreground = (SolidColorBrush)FindResource("DefWhite");
             HintTextMiddle.Foreground = (SolidColorBrush)FindResource("DefWhite");
             HintTextEnd.Foreground = (SolidColorBrush)FindResource("DefWhite");
+        }
+
+        //boss line 2
+        public void SetHintTextRow2(string text)
+        {
+            BossHintText.Text = text;
         }
 
         public void VisitLockCheck()

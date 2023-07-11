@@ -115,6 +115,9 @@ namespace KhTracker
         public bool BossRandoFound = false;
         public Dictionary<string, string> BossList = new Dictionary<string, string>();
         public List<string> enabledWorlds = new List<string>();
+        //for boss rando progression
+        public string progressionType = "DummyText";
+        public List<string> progBossInformation = new List<string>();
 
         //Progression JsmarteeHints stuff
         public bool UsingProgressionHints = false;

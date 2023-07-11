@@ -81,7 +81,7 @@ namespace KhTracker
                 //data.reportInformation.Add(new Tuple<string, string, int>(world.Key, null, 0));
             }
 
-            if (!data.UsingProgressionHints)
+            if (data.progressionType != "Reports")
             {
                 foreach (var key in data.WorldsData.Keys.ToList())
                 {
@@ -92,13 +92,13 @@ namespace KhTracker
                     SetWorldValue(data.WorldsData[key].value, 0);
                 }
             }
-
-            SetProgressionHints(data.UsingProgressionHints);
+            else
+                SetProgressionHints(data.UsingProgressionHints);
         }
 
         private void JsmarteeHints(Dictionary<string, object> hintObject)
         {
-            if (data.UsingProgressionHints)
+            if (data.progressionType == "Reports")
             {
                 //clear the reveal order since it assumes shans/points
                 data.WorldsEnabled = data.HintRevealOrder.Count;
@@ -123,7 +123,6 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            //ReportsToggle(true);
             data.hintsLoaded = true;
 
             SetProgressionHints(data.UsingProgressionHints);
@@ -131,7 +130,7 @@ namespace KhTracker
 
         private void PathHints(Dictionary<string, object> hintObject)
         {
-            if (data.UsingProgressionHints)
+            if (data.progressionType == "Reports")
             {
                 ProgressionPathHints(hintObject);
                 return;
@@ -213,112 +212,14 @@ namespace KhTracker
             if (data.ScoreMode)
                 ScoreModifier(hintObject);
 
-            //ReportsToggle(true);
             data.hintsLoaded = true;
-        }
 
-        private void ProgressionPathHints(Dictionary<string, object> hintObject)
-        {
-            data.ShouldResetHash = true;
-            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-            List<int> progHintsKeys = progHints.Keys.Select(int.Parse).ToList();
-            progHintsKeys.Sort();
-
-            foreach (var world in worlds)
-            {
-                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                {
-                    continue;
-                }
-                foreach (var item in world.Value)
-                {
-                    data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
-                }
-            }
-
-            //done here for timing
             SetProgressionHints(data.UsingProgressionHints);
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
-                if (key == "GoA")
-                    continue;
-
-                data.WorldsData[key].worldGrid.WorldComplete();
-                SetWorldValue(data.WorldsData[key].value, 0);
-            }
-
-            //locally track the worlds that are empty and contain the "has nothing, sorry" text
-            //then place these at the end of the hint list
-            List<Tuple<string, string, int>> tempReportInformation = new List<Tuple<string, string, int>>();
-            List<string> tempReportLocations = new List<string>();
-            foreach (int hint in progHintsKeys)
-            {
-                var hinttext = progHints[hint.ToString()]["Text"].ToString();
-                int hintproofs = 0;
-                var hintworld = Codes.ConvertSeedGenName(progHints[hint.ToString()]["HintedWorld"].ToString());
-                var location = Codes.ConvertSeedGenName(progHints[hint.ToString()]["Location"].ToString());
-
-                //turn proof names to value. con = 1 | non = 10 | peace = 100
-                List<string> hintprooflist = new List<string>(JsonSerializer.Deserialize<List<string>>(progHints[hint.ToString()]["ProofPath"].ToString()));
-                foreach (string proof in hintprooflist)
-                {
-                    switch (proof)
-                    {
-                        case "Connection":
-                            hintproofs += 1;
-                            break;
-                        case "Nonexistence":
-                            hintproofs += 10;
-                            break;
-                        case "Peace":
-                            hintproofs += 100;
-                            break;
-                    }
-                }
-
-                if (hinttext.Contains("has nothing, sorry"))
-                    tempReportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
-                else
-                    data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
-                data.reportLocations.Add(location);
-            }
-
-            if (tempReportInformation.Count > 0)
-            {
-                foreach (var loc in tempReportInformation)
-                    data.reportInformation.Add(loc);
-                foreach (var loc in tempReportLocations)
-                    data.reportLocations.Add(loc);
-            }
-
-            //set pathproof defaults
-            foreach (string key in data.WorldsData.Keys.ToList())
-            {
-                //adjust grid sizes for path proof icons
-                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0.1, GridUnitType.Star);
-
-                //get grid for path proof collumn and set visibility
-                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
-                pathgrid.Visibility = Visibility.Visible; //main grid
-                foreach (Image child in pathgrid.Children)
-                {
-                    child.Visibility = Visibility.Hidden; //each icon hidden by default
-                }
-            }
-
-            //start adding score data
-            if (data.ScoreMode)
-                ScoreModifier(hintObject);
-
-            //ReportsToggle(true);
-            data.hintsLoaded = true;
         }
 
         private void SpoilerHints(Dictionary<string, object> hintObject)
         {
-            if (data.UsingProgressionHints)
+            if (data.progressionType == "Reports")
             {
                 ProgressionSpoilerHints(hintObject);
                 return;
@@ -360,9 +261,6 @@ namespace KhTracker
                 TMP_bossReports = true;
             }
 
-            //if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
-            //    ReportsToggle(false);
-
             Dictionary<string, int> counts = new Dictionary<string, int>
             {
                 {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
@@ -378,13 +276,6 @@ namespace KhTracker
                 }
                 foreach (string item in world.Value)
                 {
-                    //Ignore reports as ICs if report mode is false
-                    //if (!data.SpoilerReportMode && item.Contains("Report"))
-                    //    continue;
-
-                    //if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
-                    //    continue;
-
                     string worldname = Codes.ConvertSeedGenName(world.Key);
                     string checkname = Codes.ConvertSeedGenName(item);
 
@@ -477,6 +368,7 @@ namespace KhTracker
                                 if (data.enabledWorlds.Contains("STT"))
                                     keyList.Remove(key);
                             break;
+                            case "Saix (Data)":
                             case "Luxord (Data)":
                             case "Roxas (Data)":
                             case "Xigbar (Data)":
@@ -578,252 +470,6 @@ namespace KhTracker
                     data.reportInformation.Add(new Tuple<string, string, int>(worldhint, "", -999));
                     data.reportLocations.Add(location);
                 }
-                data.hintsLoaded = true;
-            }
-
-            //start adding score data
-            if (data.ScoreMode)
-                ScoreModifier(hintObject);
-
-            SetProgressionHints(data.UsingProgressionHints);
-        }
-
-        private void ProgressionSpoilerHints(Dictionary<string, object> hintObject)
-        {
-            bool TMP_bossReports = false;
-            data.ShouldResetHash = true;
-            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
-            List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
-            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
-            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
-            reportKeys.Sort();
-
-            //set if world value should change color on completion
-            if (reveals.Contains("complete"))
-            {
-                data.SpoilerWorldCompletion = true;
-            }
-
-            //set if reports should reveal items or not
-            if (reveals.Contains("reportmode"))
-            {
-                data.SpoilerReportMode = true;
-                //ReportsToggle(true);
-            }
-
-            //reports reveal bosses
-            if (reveals.Contains("bossreports"))
-            {
-                //ReportsToggle(true);
-                TMP_bossReports = true;
-            }
-
-            //if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
-            //    ReportsToggle(false);
-
-            Dictionary<string, int> counts = new Dictionary<string, int>
-            {
-                {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
-                {"Cure", 1 }, {"Magnet", 1 }, {"Reflect", 1},
-                {"TornPage", 1}, {"MunnyPouch", 1},
-            };
-
-            foreach (var world in worlds)
-            {
-                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
-                {
-                    continue;
-                }
-                foreach (string item in world.Value)
-                {
-                    //Ignore reports as ICs if report mode is false
-                    //if (!data.SpoilerReportMode && item.Contains("Report"))
-                    //    continue;
-
-                    if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
-                        continue;
-
-                    string worldname = Codes.ConvertSeedGenName(world.Key);
-                    string checkname = Codes.ConvertSeedGenName(item);
-
-                    data.WorldsData[worldname].checkCount.Add(checkname);
-
-                    //add ghosts if report mode is off
-                    if (!data.SpoilerReportMode)
-                    {
-                        //Skip adding ghosts for item types that aren't in reveals list 
-                        if (!reveals.Contains(Codes.FindItemType(item)))
-                        {
-                            continue;
-                        }
-
-                        WorldGrid grid = data.WorldsData[worldname].worldGrid;
-                        if (counts.Keys.ToList().Contains(checkname))
-                        {
-                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname + counts[checkname]]);
-                            counts[checkname] += 1;
-                        }
-                        else
-                        {
-                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname]);
-                        }
-                    }
-                }
-            }
-
-            foreach (var key in data.WorldsData.Keys.ToList())
-            {
-                if (key == "GoA")
-                    continue;
-
-                if (data.SpoilerWorldCompletion)
-                    data.WorldsData[key].worldGrid.WorldComplete();
-                SetWorldValue(data.WorldsData[key].value, 0);
-            }
-
-            //add setup report info if report mode is on
-            if (data.SpoilerReportMode)
-            {
-                data.SpoilerRevealTypes.AddRange(reveals);
-
-                foreach (var report in reportKeys)
-                {
-                    string worldstring = reports[report.ToString()]["World"].ToString();
-                    int dummyvalue = 0;
-                    if (worldstring.StartsWith("Nothing_"))
-                    {
-                        worldstring = worldstring.Remove(0, 8);
-                        dummyvalue = -1;
-                    }
-
-                    var worldhint = Codes.ConvertSeedGenName(worldstring);
-                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
-
-
-                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
-                    data.reportLocations.Add(location);
-
-                    Console.WriteLine("WORLDSTRING = " + worldstring);
-                    Console.WriteLine("LOCATION = " + location);
-                    Console.WriteLine(data.reportInformation.Count);
-                }
-                data.hintsLoaded = true;
-            }
-            else if (data.BossRandoFound && TMP_bossReports)
-            {
-                //get random based on seed hash
-                Random rand = new Random(data.convertedSeedHash);
-
-                //setup lists
-                List<string> keyList = new List<string>(data.BossList.Keys);
-
-                //Remove bosses for worlds not enabled and remove "duplicates"
-                foreach (var key in data.BossList.Keys)
-                {
-                    if (!data.enabledWorlds.Contains(Codes.bossLocations[key]))
-                        keyList.Remove(key);
-                    else if (key.Contains("Cups"))
-                        keyList.Remove(key);
-                    else if (key == "Hades II")
-                        keyList.Remove(key);
-                    else if (key.Contains("(Data)"))
-                    {
-                        //special case for some datas. we normally don't want
-                        //to hint datas unless the world the normally are in is off
-                        // (only applies for datas where the data fight is in a different world)
-                        switch (key)
-                        {
-                            case "Axel (Data)":
-                                if (data.enabledWorlds.Contains("STT"))
-                                    keyList.Remove(key);
-                                break;
-                            case "Luxord (Data)":
-                            case "Roxas (Data)":
-                            case "Xigbar (Data)":
-                                if (data.enabledWorlds.Contains("TWTNW"))
-                                    keyList.Remove(key);
-                                break;
-                            default:
-                                keyList.Remove(key);
-                                break;
-                        }
-                    }
-                }
-
-                //get report info
-                foreach (var report in reportKeys)
-                {
-                    //get a boss
-                    string boss = keyList[rand.Next(0, keyList.Count)];
-                    //get boss types
-                    string origType = Codes.FindBossType(boss);
-                    string replaceType = Codes.FindBossType(data.BossList[boss]);
-
-                    //prioritize special arenas and bosses (50%?)
-                    while (origType == "boss_other" && replaceType == "boss_other")
-                    {
-                        int reroll = rand.Next(1, 10);
-                        if (reroll > 5) //50% chance to keep basic bosses
-                        {
-                            break;
-                        }
-
-                        boss = keyList[rand.Next(0, keyList.Count)];
-                        origType = Codes.FindBossType(boss);
-                        replaceType = Codes.FindBossType(data.BossList[boss]);
-                    }
-
-                    //report location and final hint string
-                    string worldhint;
-
-                    if (boss == data.BossList[boss])
-                    {
-                        string tmp_origBoss = boss;
-                        if (tmp_origBoss == "Hades II (1)")
-                        {
-                            tmp_origBoss = "Hades";
-                        }
-                        if (tmp_origBoss == "Pete OC II")
-                        {
-                            tmp_origBoss = "Pete";
-                        }
-
-                        worldhint = tmp_origBoss + " is unchanged";
-                    }
-                    else
-                    {
-                        string tmp_origBoss = boss;
-                        string tmp_replBoss = data.BossList[boss];
-
-                        if (tmp_origBoss == "Hades II (1)")
-                        {
-                            tmp_origBoss = "Hades";
-                        }
-                        if (tmp_origBoss == "Pete OC II")
-                        {
-                            tmp_origBoss = "Pete";
-                        }
-
-                        if (tmp_replBoss == "Hades II (1)")
-                        {
-                            tmp_replBoss = "Hades";
-                        }
-                        if (tmp_replBoss == "Pete OC II")
-                        {
-                            tmp_replBoss = "Pete";
-                        }
-
-                        worldhint = tmp_origBoss + " became " + tmp_replBoss;
-                    }
-
-                    int dummyvalue = -12345; //use this for boss reports i guess
-                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
-                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
-                    data.reportLocations.Add(location);
-
-                    keyList.Remove(boss);
-                }
-
                 data.hintsLoaded = true;
             }
 
@@ -1275,11 +921,382 @@ namespace KhTracker
         /// progression hints and logic
         /// </summary>
 
+        private void ProgressionPathHints(Dictionary<string, object> hintObject)
+        {
+            data.ShouldResetHash = true;
+            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+            var progHints = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+            List<int> progHintsKeys = progHints.Keys.Select(int.Parse).ToList();
+            progHintsKeys.Sort();
+
+            foreach (var world in worlds)
+            {
+                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                {
+                    continue;
+                }
+                foreach (var item in world.Value)
+                {
+                    data.WorldsData[Codes.ConvertSeedGenName(world.Key)].checkCount.Add(Codes.ConvertSeedGenName(item));
+                }
+            }
+
+            //done here for timing
+            SetProgressionHints(data.UsingProgressionHints);
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                data.WorldsData[key].worldGrid.WorldComplete();
+                SetWorldValue(data.WorldsData[key].value, 0);
+            }
+
+            //locally track the worlds that are empty and contain the "has nothing, sorry" text
+            //then place these at the end of the hint list
+            List<Tuple<string, string, int>> tempReportInformation = new List<Tuple<string, string, int>>();
+            List<string> tempReportLocations = new List<string>();
+            foreach (int hint in progHintsKeys)
+            {
+                var hinttext = progHints[hint.ToString()]["Text"].ToString();
+                int hintproofs = 0;
+                var hintworld = Codes.ConvertSeedGenName(progHints[hint.ToString()]["HintedWorld"].ToString());
+                var location = Codes.ConvertSeedGenName(progHints[hint.ToString()]["Location"].ToString());
+
+                //turn proof names to value. con = 1 | non = 10 | peace = 100
+                List<string> hintprooflist = new List<string>(JsonSerializer.Deserialize<List<string>>(progHints[hint.ToString()]["ProofPath"].ToString()));
+                foreach (string proof in hintprooflist)
+                {
+                    switch (proof)
+                    {
+                        case "Connection":
+                            hintproofs += 1;
+                            break;
+                        case "Nonexistence":
+                            hintproofs += 10;
+                            break;
+                        case "Peace":
+                            hintproofs += 100;
+                            break;
+                    }
+                }
+
+                if (hinttext.Contains("has nothing, sorry"))
+                    tempReportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
+                else
+                    data.reportInformation.Add(new Tuple<string, string, int>(hinttext, hintworld, hintproofs));
+                data.reportLocations.Add(location);
+            }
+
+            if (tempReportInformation.Count > 0)
+            {
+                foreach (var loc in tempReportInformation)
+                    data.reportInformation.Add(loc);
+                foreach (var loc in tempReportLocations)
+                    data.reportLocations.Add(loc);
+            }
+
+            //set pathproof defaults
+            foreach (string key in data.WorldsData.Keys.ToList())
+            {
+                //adjust grid sizes for path proof icons
+                data.WorldsData[key].top.ColumnDefinitions[1].Width = new GridLength(0.1, GridUnitType.Star);
+
+                //get grid for path proof collumn and set visibility
+                Grid pathgrid = data.WorldsData[key].top.FindName(key + "Path") as Grid;
+                pathgrid.Visibility = Visibility.Visible; //main grid
+                foreach (Image child in pathgrid.Children)
+                {
+                    child.Visibility = Visibility.Hidden; //each icon hidden by default
+                }
+            }
+
+            //start adding score data
+            if (data.ScoreMode)
+                ScoreModifier(hintObject);
+
+            //ReportsToggle(true);
+            data.hintsLoaded = true;
+        }
+
+        private void ProgressionSpoilerHints(Dictionary<string, object> hintObject)
+        {
+            bool TMP_bossReports = false;
+            data.ShouldResetHash = true;
+            var worlds = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(hintObject["world"].ToString());
+            List<string> reveals = new List<string>(JsonSerializer.Deserialize<List<string>>(hintObject["reveal"].ToString()));
+            var reports = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(hintObject["Reports"].ToString());
+            List<int> reportKeys = reports.Keys.Select(int.Parse).ToList();
+            reportKeys.Sort();
+
+            //set if world value should change color on completion
+            if (reveals.Contains("complete"))
+            {
+                data.SpoilerWorldCompletion = true;
+            }
+
+            //set if reports should reveal items or not
+            if (reveals.Contains("reportmode"))
+            {
+                data.SpoilerReportMode = true;
+                //ReportsToggle(true);
+            }
+
+            //reports reveal bosses
+            if (reveals.Contains("bossreports"))
+            {
+                //ReportsToggle(true);
+                TMP_bossReports = true;
+            }
+
+            //if (!reveals.Contains("reportmode") && !reveals.Contains("bossreports"))
+            //    ReportsToggle(false);
+
+            Dictionary<string, int> counts = new Dictionary<string, int>
+            {
+                {"Fire", 1 }, {"Blizzard", 1 }, {"Thunder", 1 },
+                {"Cure", 1 }, {"Magnet", 1 }, {"Reflect", 1},
+                {"TornPage", 1}, {"MunnyPouch", 1},
+            };
+
+            foreach (var world in worlds)
+            {
+                if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
+                {
+                    continue;
+                }
+                foreach (string item in world.Value)
+                {
+                    //Ignore reports as ICs if report mode is false
+                    //if (!data.SpoilerReportMode && item.Contains("Report"))
+                    //    continue;
+
+                    if (item.Contains("Report") && !data.SpoilerReportMode && !TMP_bossReports)
+                        continue;
+
+                    string worldname = Codes.ConvertSeedGenName(world.Key);
+                    string checkname = Codes.ConvertSeedGenName(item);
+
+                    data.WorldsData[worldname].checkCount.Add(checkname);
+
+                    //add ghosts if report mode is off
+                    if (!data.SpoilerReportMode)
+                    {
+                        //Skip adding ghosts for item types that aren't in reveals list 
+                        if (!reveals.Contains(Codes.FindItemType(item)))
+                        {
+                            continue;
+                        }
+
+                        WorldGrid grid = data.WorldsData[worldname].worldGrid;
+                        if (counts.Keys.ToList().Contains(checkname))
+                        {
+                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname + counts[checkname]]);
+                            counts[checkname] += 1;
+                        }
+                        else
+                        {
+                            grid.Add_Ghost(data.GhostItems["Ghost_" + checkname]);
+                        }
+                    }
+                }
+            }
+
+            foreach (var key in data.WorldsData.Keys.ToList())
+            {
+                if (key == "GoA")
+                    continue;
+
+                if (data.SpoilerWorldCompletion)
+                    data.WorldsData[key].worldGrid.WorldComplete();
+                SetWorldValue(data.WorldsData[key].value, 0);
+            }
+
+            //add setup report info if report mode is on
+            if (data.SpoilerReportMode)
+            {
+                data.SpoilerRevealTypes.AddRange(reveals);
+
+                foreach (var report in reportKeys)
+                {
+                    string worldstring = reports[report.ToString()]["World"].ToString();
+                    int dummyvalue = 0;
+                    if (worldstring.StartsWith("Nothing_"))
+                    {
+                        worldstring = worldstring.Remove(0, 8);
+                        dummyvalue = -1;
+                    }
+
+                    var worldhint = Codes.ConvertSeedGenName(worldstring);
+                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+
+
+                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
+                    data.reportLocations.Add(location);
+
+                    Console.WriteLine("WORLDSTRING = " + worldstring);
+                    Console.WriteLine("LOCATION = " + location);
+                    Console.WriteLine(data.reportInformation.Count);
+                }
+                data.hintsLoaded = true;
+            }
+            else if (data.BossRandoFound && TMP_bossReports)
+            {
+                //get random based on seed hash
+                Random rand = new Random(data.convertedSeedHash);
+
+                //setup lists
+                List<string> keyList = new List<string>(data.BossList.Keys);
+
+                //Remove bosses for worlds not enabled and remove "duplicates"
+                foreach (var key in data.BossList.Keys)
+                {
+                    if (!data.enabledWorlds.Contains(Codes.bossLocations[key]))
+                        keyList.Remove(key);
+                    else if (key.Contains("Cups"))
+                        keyList.Remove(key);
+                    else if (key == "Hades II")
+                        keyList.Remove(key);
+                    else if (key.Contains("(Data)"))
+                    {
+                        //special case for some datas. we normally don't want
+                        //to hint datas unless the world the normally are in is off
+                        // (only applies for datas where the data fight is in a different world)
+                        switch (key)
+                        {
+                            case "Axel (Data)":
+                                if (data.enabledWorlds.Contains("STT"))
+                                    keyList.Remove(key);
+                                break;
+                            case "Luxord (Data)":
+                            case "Roxas (Data)":
+                            case "Xigbar (Data)":
+                                if (data.enabledWorlds.Contains("TWTNW"))
+                                    keyList.Remove(key);
+                                break;
+                            default:
+                                keyList.Remove(key);
+                                break;
+                        }
+                    }
+                }
+
+                //get report info
+                foreach (var report in reportKeys)
+                {
+                    //get a boss
+                    string boss = keyList[rand.Next(0, keyList.Count)];
+                    //get boss types
+                    string origType = Codes.FindBossType(boss);
+                    string replaceType = Codes.FindBossType(data.BossList[boss]);
+
+                    //prioritize special arenas and bosses (50%?)
+                    while (origType == "boss_other" && replaceType == "boss_other")
+                    {
+                        int reroll = rand.Next(1, 10);
+                        if (reroll > 5) //50% chance to keep basic bosses
+                        {
+                            break;
+                        }
+
+                        boss = keyList[rand.Next(0, keyList.Count)];
+                        origType = Codes.FindBossType(boss);
+                        replaceType = Codes.FindBossType(data.BossList[boss]);
+                    }
+
+                    //report location and final hint string
+                    string worldhint;
+
+                    if (boss == data.BossList[boss])
+                    {
+                        string tmp_origBoss = boss;
+                        if (tmp_origBoss == "Hades II (1)")
+                        {
+                            tmp_origBoss = "Hades";
+                        }
+                        if (tmp_origBoss == "Pete OC II")
+                        {
+                            tmp_origBoss = "Pete";
+                        }
+
+                        worldhint = tmp_origBoss + " is unchanged";
+                    }
+                    else
+                    {
+                        string tmp_origBoss = boss;
+                        string tmp_replBoss = data.BossList[boss];
+
+                        if (tmp_origBoss == "Hades II (1)")
+                        {
+                            tmp_origBoss = "Hades";
+                        }
+                        if (tmp_origBoss == "Pete OC II")
+                        {
+                            tmp_origBoss = "Pete";
+                        }
+
+                        if (tmp_replBoss == "Hades II (1)")
+                        {
+                            tmp_replBoss = "Hades";
+                        }
+                        if (tmp_replBoss == "Pete OC II")
+                        {
+                            tmp_replBoss = "Pete";
+                        }
+
+                        worldhint = tmp_origBoss + " became " + tmp_replBoss;
+                    }
+
+                    int dummyvalue = -12345; //use this for boss reports i guess
+                    data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
+                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+                    data.reportLocations.Add(location);
+
+                    keyList.Remove(boss);
+                }
+
+                data.hintsLoaded = true;
+            }
+
+            //start adding score data
+            if (data.ScoreMode)
+                ScoreModifier(hintObject);
+
+            SetProgressionHints(data.UsingProgressionHints);
+        }
+
         public void SetProgressionHints(bool usingProgHints)
         {
             //if it calls here and not in progression or using outdated seed methods somehow
             if (!usingProgHints || data.mode == Mode.JsmarteeHints || data.mode == Mode.ShanHints)
                 return;
+
+            //creations specific changes
+            if (!data.puzzlesOn && data.synthOn && data.progressionType == "Reports")
+            {
+                //data.WorldsData["PuzzSynth"].value.Text = "";
+                //let's just make the value invisible
+                if (data.WorldsData["PuzzSynth"].value.Visibility == Visibility.Visible)
+                {
+                    data.WorldsData["PuzzSynth"].value.Visibility = Visibility.Hidden;
+                }
+            }
+
+            //fix later so if a specific variable/value from hint file was passed
+            if (data.progressionType == "Bosses")
+            {
+                //ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
+                //ProgressionTotalValue.Text = data.HintCosts[0].ToString();
+
+                InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
+                InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
+                BossTextRow.Height = new GridLength(1, GridUnitType.Star);
+
+                ProgressionBossHints();
+
+                return;
+            }
 
             //Per Hint Mode Changes
             if (data.mode == Mode.OpenKHJsmarteeHints)
@@ -1369,17 +1386,6 @@ namespace KhTracker
                 ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             }
-
-            //creations specific changes
-            if (!data.puzzlesOn && data.synthOn)
-            {
-                //data.WorldsData["PuzzSynth"].value.Text = "";
-                //let's just make the value invisible
-                if (data.WorldsData["PuzzSynth"].value.Visibility == Visibility.Visible)
-                {
-                    data.WorldsData["PuzzSynth"].value.Visibility = Visibility.Hidden;
-                }
-            }
         }
 
         public void AddProgressionPoints(int points)
@@ -1461,7 +1467,15 @@ namespace KhTracker
             if (!data.UsingProgressionHints || data.mode == Mode.JsmarteeHints || data.mode == Mode.ShanHints)
                 return;
 
-            else if (data.mode == Mode.OpenKHJsmarteeHints) //jsmartee
+            //fix later so if a specific variable/value from hint file was passed 
+            if (data.progressionType == "Bosses")
+            {
+                data.WorldsData["GoA"].worldGrid.ProgBossHint(hintNum);
+
+                return;
+            }
+
+            if (data.mode == Mode.OpenKHJsmarteeHints) //jsmartee
             {
                 RealWorldName = data.reportInformation[hintNum].Item2;
                 //Console.WriteLine("Jsmartee Revealing " + RealWorldName);
@@ -1669,5 +1683,118 @@ namespace KhTracker
                     return 0;
             }
         }
+    
+        public void ProgressionBossHints()
+        {
+            data.progBossInformation.Clear();
+            int TempCost = data.HintCosts[0];
+
+            //get random based on seed hash
+            Random rand = new Random(data.convertedSeedHash);
+
+            //setup lists
+            List<string> keyList = new List<string>(data.BossList.Keys);
+
+            //Remove bosses for worlds not enabled and remove "duplicates"
+            foreach (var key in data.BossList.Keys)
+            {
+                //remove duplicates
+                if (Codes.bossDups.Contains(key))
+                {
+                    keyList.Remove(key);
+                    continue;
+                }
+
+                if (!data.enabledWorlds.Contains(Codes.bossLocations[key]))
+                    keyList.Remove(key);
+                else if (key.Contains("(Data)"))
+                {
+                    //special case for some datas. we normally don't want
+                    //to hint datas unless the world they're normally in is off
+                    // (only applies for datas where the data fight is in a different world)
+                    switch (key)
+                    {
+                        case "Axel (Data)":
+                            if (data.enabledWorlds.Contains("STT"))
+                                keyList.Remove(key);
+                            break;
+                        case "Saix (Data)":
+                        case "Luxord (Data)":
+                        case "Roxas (Data)":
+                        case "Xigbar (Data)":
+                            if (data.enabledWorlds.Contains("TWTNW"))
+                                keyList.Remove(key);
+                            break;
+                        default:
+                            keyList.Remove(key);
+                            break;
+                    }
+                }
+            }
+
+            //set new hint cost length (do i need to do it this way? oh well i'm tired and this should work fine enough)
+            data.HintCosts = new List<int>();
+
+            //get hint info
+            data.WorldsEnabled = keyList.Count + 1;
+            while (keyList.Count > 0)
+            {
+                //get a boss
+                string boss = keyList[rand.Next(0, keyList.Count)];
+
+                //final hint string
+                string worldhint;
+
+                if (boss == data.BossList[boss])
+                {
+                    string tmp_origBoss = boss;
+                    if (tmp_origBoss == "Hades II (1)" || tmp_origBoss == "Hades II" || tmp_origBoss == "Hades I")
+                    {
+                        tmp_origBoss = "Hades";
+                    }
+                    if (tmp_origBoss == "Pete OC II")
+                    {
+                        tmp_origBoss = "Pete OC";
+                    }
+
+                    worldhint = tmp_origBoss + " is unchanged";
+                }
+                else
+                {
+                    string tmp_origBoss = boss;
+                    string tmp_replBoss = data.BossList[boss];
+
+                    if (tmp_origBoss == "Hades II (1)" || tmp_origBoss == "Hades II" || tmp_origBoss == "Hades I")
+                    {
+                        tmp_origBoss = "Hades";
+                    }
+                    if (tmp_origBoss == "Pete OC II")
+                    {
+                        tmp_origBoss = "Pete OC";
+                    }
+
+                    if (tmp_replBoss == "Hades II (1)" || tmp_replBoss == "Hades II" || tmp_replBoss == "Hades I")
+                    {
+                        tmp_replBoss = "Hades";
+                    }
+                    if (tmp_replBoss == "Pete OC II")
+                    {
+                        tmp_replBoss = "Pete OC";
+                    }
+
+                    worldhint = tmp_origBoss + " became " + tmp_replBoss;
+                }
+
+                data.progBossInformation.Add(worldhint);
+
+                keyList.Remove(boss);
+
+                data.HintCosts.Add(TempCost);
+            }
+
+            //add one more time
+            data.HintCosts.Add(TempCost);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -459,25 +460,36 @@ namespace KhTracker
                 // check for correct report location then run report hint logic based on current hint mode
                 if (data.reportLocations[index] == Name.Substring(0, Name.Length - 4))
                 {
-                    if (data.UsingProgressionHints && data.mode != Mode.PointsHints && !data.reportLocationsUsed[index])
+                    //for progression hints
+                    if (data.UsingProgressionHints)
                     {
+                        //return without doing anything else
+                        if (data.reportLocationsUsed[index])
+                            return true;
+
+                        //give points
                         window.AddProgressionPoints(data.ReportBonus);
                     }
-                    else
-                    {
-                        //check if the report was already obtained before giving points
-                        if (data.UsingProgressionHints && data.mode == Mode.PointsHints && !data.reportLocationsUsed[index])
-                            window.AddProgressionPoints(data.ReportBonus);
-                        // show hint text on report hover
-                        item.MouseEnter -= item.Report_Hover;
-                        item.MouseEnter += item.Report_Hover;
-                    }
+
+                    //if (data.UsingProgressionHints && data.mode != Mode.PointsHints && !data.reportLocationsUsed[index])
+                    //{
+                    //    window.AddProgressionPoints(data.ReportBonus);
+                    //}
+                    //else
+                    //{
+                    //    //check if the report was already obtained before giving points
+                    //    if (data.UsingProgressionHints && data.mode == Mode.PointsHints && !data.reportLocationsUsed[index])
+                    //        window.AddProgressionPoints(data.ReportBonus);
+                    //    // show hint text on report hover
+                    //    item.MouseEnter -= item.Report_Hover;
+                    //    item.MouseEnter += item.Report_Hover;
+                    //}
 
                     switch (data.mode)
                     {
                         case Mode.JsmarteeHints:
                         case Mode.OpenKHJsmarteeHints:                            
-                            Report_Jsmartee(index, item);
+                            Report_Jsmartee(index);
                             break;
                         case Mode.ShanHints:
                         case Mode.OpenKHShanHints:
@@ -495,6 +507,13 @@ namespace KhTracker
                         default:
                             window.SetHintText("Impossible Report Error! How are you seeing this?");
                             return false;
+                    }
+
+                    //report hover logic (with progression boss hitns reports should work as normal)
+                    if (data.mode != Mode.ShanHints || data.progressionType == "Bosses")
+                    {
+                        item.MouseEnter -= item.Report_Hover;
+                        item.MouseEnter += item.Report_Hover;
                     }
 
                     data.reportLocationsUsed[index] = true;
@@ -523,7 +542,15 @@ namespace KhTracker
             return true;
         }
 
-        private void Report_Jsmartee(int index, Item item)
+        private void Report_Shan(int index)
+        {
+
+
+
+
+        }
+
+        private void Report_Jsmartee(int index)
         {
             Data data = MainWindow.data;
             if (data.UsingProgressionHints)
@@ -729,6 +756,15 @@ namespace KhTracker
                 if (data.WorldsData[data.reportInformation[index].Item1].containsGhost)
                     window.SetWorldValue(data.WorldsData[data.reportInformation[index].Item1].value, int.Parse(data.WorldsData[data.reportInformation[index].Item1].value.Text));
             }
+        }
+
+        public void ProgBossHint(int index)
+        {
+            Data data = MainWindow.data;
+
+            // hint text
+            window.SetHintTextRow2(data.progBossInformation[index]);
+            data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(data.progBossInformation[index], "", "", false, false, false));
         }
 
         ///

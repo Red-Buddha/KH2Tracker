@@ -137,7 +137,7 @@
                 <!-- 6.6 -->
                 <RowDefinition x:Name="WorldRow" Height="6.6*"/>
                 <!-- 0.8 -->
-                <RowDefinition x:Name="InfoRow"  Height="0.8*"/>
+                <RowDefinition x:Name="InfoRow"  Height="1.2*"/>
                 <!-- 0.45 -->
                 <RowDefinition x:Name="FormRow"  Height="0.45*"/>
                 <!-- 2.2 -->
@@ -1651,7 +1651,7 @@
                     <!--padding-->
                     <RowDefinition Height="0.15*"/>
                     <!--hint text-->
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition x:Name="InfoTextRow" Height="2*"/>
                     <!--info/stats-->
                     <RowDefinition Height="1.115*"/>
                 </Grid.RowDefinitions>
@@ -1664,12 +1664,18 @@
                 <!-- Hint Text -->
                 <!--Rectangle Fill="#4C1E1E25" Grid.ColumnSpan="3" Panel.ZIndex="-1"/-->
                 <Grid Grid.Row="1"  Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="MainTextRow" Height="1*"/>
+                        <RowDefinition x:Name="BossTextRow" Height="1*"/>
+                    </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <!-- 0.2 when in use -->
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox>
+                    
+                    <Viewbox Grid.Row="0">
                         <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
 
@@ -1685,6 +1691,15 @@
 
                     </Viewbox>
 
+                    <Viewbox Grid.Row="1">
+                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="#FFF1A432" FontSize="20pt">
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
+                            </TextBlock.Effect>
+                            <Run Name="BossHintText"/>
+                        </TextBlock>
+                    </Viewbox>
+
                     <!--Viewbox>
                         <TextBlock FontFamily="{StaticResource Menu}" FontWeight="DemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-4,0" Foreground="White">
                             <TextBlock Text="Heart" Foreground="Red"/> 5 <TextBlock Text="Checks " Foreground="Blue"/>
@@ -1692,7 +1707,7 @@
                     </Viewbox-->
 
                     <!-- Death Counter-->
-                    <Grid x:Name="DeathCounterGrid" Grid.Column="1" >
+                    <Grid x:Name="DeathCounterGrid" Grid.Column="1" Grid.RowSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="0.5*"/>
@@ -1712,7 +1727,7 @@
                     </Grid>
 
 
-                    <Border Name="DeathCounterRec" Grid.Column="1" Panel.ZIndex="-1" Margin="4,-6,-20,-0.5">
+                    <Border Name="DeathCounterRec" Grid.Column="1" Panel.ZIndex="-1" Margin="4,-6,-20,-0.5"  Grid.RowSpan="2">
                         <Border.OpacityMask>
                             <VisualBrush>
                                 <VisualBrush.Visual>

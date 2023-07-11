@@ -665,7 +665,7 @@ namespace KhTracker
                         //    AbilitiesToggle(false);
 
                         //prevent creations hinting twice for progression
-                        if (puzzleOn)
+                        if ((puzzleOn || hintObject["hintsType"].ToString() == "Path") && !data.HintRevealOrder.Contains("PuzzSynth"))
                         {
                             data.HintRevealOrder.Add("PuzzSynth");
                         }
@@ -675,44 +675,16 @@ namespace KhTracker
 
                     }
 
-                    switch (hintObject["hintsType"].ToString())
+                    if (hintObject.ContainsKey("ProgressionType"))
                     {
-                        case "Shananas":
-                            {
-                                SetMode(Mode.OpenKHShanHints);
-                                ShanHints(hintObject);
-                            }
-                            break;
-                        case "JSmartee":
-                            {
-                                SetMode(Mode.OpenKHJsmarteeHints);
-                                JsmarteeHints(hintObject);
-                            }
-                            break;
-                        case "Points":
-                            {
-                                SetMode(Mode.PointsHints);
-                                PointsHints(hintObject);
-                            }
-                            break;
-                        case "Path":
-                            {
-                                SetMode(Mode.PathHints);
-                                PathHints(hintObject);
-                            }
-                            break;
-                        case "Spoiler":
-                            {
-                                SetMode(Mode.SpoilerHints);
-                                SpoilerHints(hintObject);
-                            }
-                            break;
-                        default:
-                            break;
+                        data.progressionType = hintObject["ProgressionType"].ToString();
                     }
 
                     if (hintObject.ContainsKey("ProgressionSettings"))
                     {
+                        if (data.progressionType == "DummyText")
+                            data.progressionType = "Reports";
+
                         var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
 
                         foreach (var setting in progressionSettings)
@@ -835,6 +807,43 @@ namespace KhTracker
                         ProgressionCollectedValue.Text = "0";
                         ProgressionTotalValue.Text = data.HintCosts[0].ToString();
                     }
+
+                    switch (hintObject["hintsType"].ToString())
+                    {
+                        case "Shananas":
+                            {
+                                SetMode(Mode.OpenKHShanHints);
+                                ShanHints(hintObject);
+                            }
+                            break;
+                        case "JSmartee":
+                            {
+                                SetMode(Mode.OpenKHJsmarteeHints);
+                                JsmarteeHints(hintObject);
+                            }
+                            break;
+                        case "Points":
+                            {
+                                SetMode(Mode.PointsHints);
+                                PointsHints(hintObject);
+                            }
+                            break;
+                        case "Path":
+                            {
+                                SetMode(Mode.PathHints);
+                                PathHints(hintObject);
+                            }
+                            break;
+                        case "Spoiler":
+                            {
+                                SetMode(Mode.SpoilerHints);
+                                SpoilerHints(hintObject);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             }
 
@@ -1842,7 +1851,7 @@ namespace KhTracker
                             //    AbilitiesToggle(false);
 
                             //prevent creations hinting twice for progression
-                            if (puzzleOn)
+                            if ((puzzleOn || hintObject["hintsType"].ToString() == "Path") && !data.HintRevealOrder.Contains("PuzzSynth"))
                             {
                                 data.HintRevealOrder.Add("PuzzSynth");
                             }
@@ -1852,45 +1861,17 @@ namespace KhTracker
 
                         }
 
-                        switch (hintObject["hintsType"].ToString())
+                        if (hintObject.ContainsKey("ProgressionType"))
                         {
-                            case "Shananas":
-                                {
-                                    SetMode(Mode.OpenKHShanHints);
-                                    ShanHints(hintObject);
-                                }
-                                break;
-                            case "JSmartee":
-                                {
-                                    SetMode(Mode.OpenKHJsmarteeHints);
-                                    JsmarteeHints(hintObject);
-                                }
-                                break;
-                            case "Points":
-                                {
-                                    SetMode(Mode.PointsHints);
-                                    PointsHints(hintObject);
-                                }
-                                break;
-                            case "Path":
-                                {
-                                    SetMode(Mode.PathHints);
-                                    PathHints(hintObject);
-                                }
-                                break;
-                            case "Spoiler":
-                                {
-                                    SetMode(Mode.SpoilerHints);
-                                    SpoilerHints(hintObject);
-                                }
-                                break;
-                            default:
-                                break;
+                            data.progressionType = hintObject["ProgressionType"].ToString();
                         }
 
                         if (hintObject.ContainsKey("ProgressionSettings"))
                         {
                             var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
+
+                            if (data.progressionType == "DummyText")
+                                data.progressionType = "Reports";
 
                             foreach (var setting in progressionSettings)
                             {
@@ -2013,6 +1994,42 @@ namespace KhTracker
                             ProgressionTotalValue.Text = data.HintCosts[0].ToString();
                         }
 
+                        switch (hintObject["hintsType"].ToString())
+                        {
+                            case "Shananas":
+                                {
+                                    SetMode(Mode.OpenKHShanHints);
+                                    ShanHints(hintObject);
+                                }
+                                break;
+                            case "JSmartee":
+                                {
+                                    SetMode(Mode.OpenKHJsmarteeHints);
+                                    JsmarteeHints(hintObject);
+                                }
+                                break;
+                            case "Points":
+                                {
+                                    SetMode(Mode.PointsHints);
+                                    PointsHints(hintObject);
+                                }
+                                break;
+                            case "Path":
+                                {
+                                    SetMode(Mode.PathHints);
+                                    PathHints(hintObject);
+                                }
+                                break;
+                            case "Spoiler":
+                                {
+                                    SetMode(Mode.SpoilerHints);
+                                    SpoilerHints(hintObject);
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
                         reader.Close();
                     }
                 }
@@ -2075,13 +2092,16 @@ namespace KhTracker
 
             if (data.UsingProgressionHints)
             {
-                CollectionGrid.Visibility = Visibility.Collapsed;
-                ScoreGrid.Visibility = Visibility.Collapsed;
-                ProgressionCollectionGrid.Visibility = Visibility.Visible;
-
-                ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
-
-                ModeDisplay.Header += " | Progression";
+                if (data.progressionType == "Reports")
+                {
+                    CollectionGrid.Visibility = Visibility.Collapsed;
+                    ScoreGrid.Visibility = Visibility.Collapsed;
+                    ProgressionCollectionGrid.Visibility = Visibility.Visible;
+                    ChestIcon.SetResourceReference(ContentProperty, "ProgPoints");
+                    ModeDisplay.Header += " | Progression";
+                }
+                else if (data.progressionType == "Bosses")
+                    ModeDisplay.Header += " | Prog. Bosses";
             }
         }
 
@@ -2314,6 +2334,14 @@ namespace KhTracker
             data.hintsLoaded = false;
             data.seedLoaded = false;
             data.saveFileLoaded = false;
+
+            //prog boss hint stuff
+            BossHintText.Text = "";
+            data.progBossInformation.Clear();
+            data.progressionType = "Disabled";
+            InfoRow.Height = new GridLength(0.8, GridUnitType.Star);
+            InfoTextRow.Height = new GridLength(1, GridUnitType.Star);
+            BossTextRow.Height = new GridLength(0, GridUnitType.Star);
 
             //clear progression hints stuff
             data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };

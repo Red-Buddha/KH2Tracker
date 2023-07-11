@@ -577,7 +577,7 @@ namespace KhTracker
                 return;
 
             //don't do anything if progression hints
-            if (data.UsingProgressionHints)
+            if (data.UsingProgressionHints && data.progressionType == "Reports")
                 return;
 
             //if check count should be shown and replace the score IN POINTS MODE
