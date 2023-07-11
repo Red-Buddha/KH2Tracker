@@ -553,7 +553,7 @@ namespace KhTracker
         private void Report_Jsmartee(int index)
         {
             Data data = MainWindow.data;
-            if (data.UsingProgressionHints)
+            if (data.UsingProgressionHints && data.progressionType == "Reports")
                 return;
 
             // hint text
@@ -628,7 +628,7 @@ namespace KhTracker
         private void Report_Path(int index)
         {
             Data data = MainWindow.data;
-            if (data.UsingProgressionHints)
+            if (data.UsingProgressionHints && data.progressionType == "Reports")
                 return;
 
             // hint text and proof icon display
@@ -663,7 +663,7 @@ namespace KhTracker
         private void Report_Spoiler(int index)
         {
             Data data = MainWindow.data;
-            if (data.UsingProgressionHints)
+            if (data.UsingProgressionHints && data.progressionType == "Reports")
                 return;
 
             // hint text
