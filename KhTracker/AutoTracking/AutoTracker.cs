@@ -136,10 +136,12 @@ namespace KhTracker
         //}
 
         public void InitTracker(object sender, RoutedEventArgs e)
-        {       
-           if (aTimer!= null)
-               return;
-        
+        {
+            if (aTimer != null && aTimer.IsEnabled)
+            {
+                return;
+            }
+
             InitTracker();
         }
 
@@ -637,6 +639,7 @@ namespace KhTracker
             {
 
                 aTimer.Stop();
+                //aTimer = null;
                 pcFilesLoaded = false;
 
                 if (AutoConnectOption.IsChecked)

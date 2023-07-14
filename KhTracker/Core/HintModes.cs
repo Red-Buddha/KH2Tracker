@@ -67,6 +67,29 @@ namespace KhTracker
                 data.hintsLoaded = true;
             }
 
+            //TEMP
+            SortedDictionary<int, string> TEMP = new SortedDictionary<int, string>();
+            foreach (var world in worlds)
+            {
+                foreach (var item in world.Value)
+                {
+                    if (item.StartsWith("Secret"))
+                    {
+                        int index = int.Parse(item.Remove(0, 21)) - 1;
+                        Console.WriteLine(index + " - " + Codes.ConvertSeedGenName(world.Key) + " _ " + item);
+                        TEMP.Add(index, Codes.ConvertSeedGenName(world.Key));
+                    }
+                }
+            }
+            if (TEMP.Count == 13 && data.progressionType != "Disabled")
+            {
+                foreach (var item in TEMP)
+                {
+                    Console.WriteLine(item.Value + " | " + item.Key);
+                    data.reportLocations.Add(item.Value);
+                }
+            }
+
             foreach (var world in worlds)
             {
                 if (world.Key == "Critical Bonuses" || world.Key == "Garden of Assemblage")
@@ -91,9 +114,20 @@ namespace KhTracker
                     data.WorldsData[key].worldGrid.WorldComplete();
                     SetWorldValue(data.WorldsData[key].value, 0);
                 }
+
+                SetProgressionHints(data.UsingProgressionHints);
             }
             else
                 SetProgressionHints(data.UsingProgressionHints);
+
+            data.hintsLoaded = true;
+        }
+
+        private void ShanReportLocation(List<string> items)
+        {
+
+
+
         }
 
         private void JsmarteeHints(Dictionary<string, object> hintObject)
@@ -638,7 +672,7 @@ namespace KhTracker
             }
 
             //set points for each world
-            if (!data.UsingProgressionHints)
+            if (data.progressionType != "Reports")
             {
                 foreach (var key in data.WorldsData.Keys.ToList())
                 {
@@ -1289,9 +1323,28 @@ namespace KhTracker
                 //ProgressionCollectedValue.Text = data.ProgressionPoints.ToString();
                 //ProgressionTotalValue.Text = data.HintCosts[0].ToString();
 
-                InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
-                InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
                 BossTextRow.Height = new GridLength(1, GridUnitType.Star);
+
+                if (data.mode != Mode.OpenKHShanHints)
+                {
+                    InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
+                    InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
+                    HashBossSpacer.Height = new GridLength(1, GridUnitType.Star);
+                    DC_Row1.Height = new GridLength(1, GridUnitType.Star);
+                    Grid.SetColumnSpan(MainTextVB, 2);
+                }
+                else if (data.mode == Mode.SpoilerHints && data.SpoilerReportMode)
+                {
+                    InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
+                    InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
+                    HashBossSpacer.Height = new GridLength(1, GridUnitType.Star);
+                    DC_Row1.Height = new GridLength(1, GridUnitType.Star);
+                    Grid.SetColumnSpan(MainTextVB, 2);
+                }
+                else
+                {
+                    MainTextRow.Height = new GridLength(0, GridUnitType.Star);
+                }
 
                 ProgressionBossHints();
 

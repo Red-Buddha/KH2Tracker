@@ -682,7 +682,7 @@ namespace KhTracker
 
                     if (hintObject.ContainsKey("ProgressionSettings"))
                     {
-                        if (data.progressionType == "DummyText")
+                        if (data.progressionType != "Bosses")
                             data.progressionType = "Reports";
 
                         var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
@@ -1870,7 +1870,7 @@ namespace KhTracker
                         {
                             var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
 
-                            if (data.progressionType == "DummyText")
+                            if (data.progressionType != "Bosses")
                                 data.progressionType = "Reports";
 
                             foreach (var setting in progressionSettings)
@@ -2341,10 +2341,14 @@ namespace KhTracker
             //prog boss hint stuff
             BossHintText.Text = "";
             data.progBossInformation.Clear();
-            data.progressionType = "Disabled";
+            data.progressionType = "DummyText";
             InfoRow.Height = new GridLength(0.8, GridUnitType.Star);
             InfoTextRow.Height = new GridLength(1, GridUnitType.Star);
             BossTextRow.Height = new GridLength(0, GridUnitType.Star);
+            MainTextRow.Height = new GridLength(1, GridUnitType.Star);
+            HashBossSpacer.Height = new GridLength(0, GridUnitType.Star);
+            DC_Row1.Height = new GridLength(0, GridUnitType.Star);
+            Grid.SetColumnSpan(MainTextVB, 1);
 
             //clear progression hints stuff
             data.reportLocationsUsed = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
@@ -2741,6 +2745,7 @@ namespace KhTracker
             DeathCounter = 0;
             DeathValue.Text = "0";
             DeathCol.Width = new GridLength(0, GridUnitType.Star);
+            DeathCounterGrid.Visibility = Visibility.Collapsed;
 
             foreach (Grid itempool in ItemPool.Children)
             {

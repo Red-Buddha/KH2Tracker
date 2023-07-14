@@ -759,6 +759,11 @@ namespace KhTracker
         //boss line 2
         public void SetHintTextRow2(string text)
         {
+            if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
+            {
+                HashGrid.Visibility = Visibility.Collapsed;
+            }
+
             BossHintText.Text = text;
         }
 

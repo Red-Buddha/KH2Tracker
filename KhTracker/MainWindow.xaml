@@ -1663,7 +1663,7 @@
 
                 <!-- Hint Text -->
                 <!--Rectangle Fill="#4C1E1E25" Grid.ColumnSpan="3" Panel.ZIndex="-1"/-->
-                <Grid Grid.Row="1"  Grid.Column="1">
+                <Grid Grid.Row="1"  Grid.Column="1" x:Name="HintTextGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition x:Name="MainTextRow" Height="1*"/>
                         <RowDefinition x:Name="BossTextRow" Height="1*"/>
@@ -1675,7 +1675,7 @@
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <Viewbox Grid.Row="0">
+                    <Viewbox Grid.Row="0" x:Name="MainTextVB" Grid.ColumnSpan="1">
                         <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
                                              TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
 
@@ -1699,15 +1699,24 @@
                             <Run Name="BossHintText"/>
                         </TextBlock>
                     </Viewbox>
+                
+                </Grid>
 
-                    <!--Viewbox>
-                        <TextBlock FontFamily="{StaticResource Menu}" FontWeight="DemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-4,0" Foreground="White">
-                            <TextBlock Text="Heart" Foreground="Red"/> 5 <TextBlock Text="Checks " Foreground="Blue"/>
-                        </TextBlock>
-                    </Viewbox-->
+                <!-- New Death Counter -->
+                <Grid Grid.Row="1"  Grid.Column="1" x:Name="DeathCounterGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="DC_Row1" Height="1*"/>
+                        <RowDefinition x:Name="DC_Row2" Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <!-- 0.2 when in use -->
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
 
                     <!-- Death Counter-->
-                    <Grid x:Name="DeathCounterGrid" Grid.Column="1" Grid.RowSpan="2">
+                    <Grid Grid.Column="1" Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="0.5*"/>
@@ -1725,9 +1734,7 @@
                             </local:OutlinedTextBlock>
                         </Viewbox>
                     </Grid>
-
-
-                    <Border Name="DeathCounterRec" Grid.Column="1" Panel.ZIndex="-1" Margin="4,-6,-20,-0.5"  Grid.RowSpan="2">
+                    <Border Name="DeathCounterRec" Grid.Column="1" Panel.ZIndex="-1" Margin="4,-6,-20,-0.5"  Grid.Row="1">
                         <Border.OpacityMask>
                             <VisualBrush>
                                 <VisualBrush.Visual>
@@ -1741,6 +1748,10 @@
 
                 <!-- Hash Text -->
                 <Grid Grid.Row="1" Grid.Column="1" Visibility="Collapsed" x:Name="HashGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition x:Name="HashBossSpacer" Height="0*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <!-- 0.75 | 0 w/deathcounter-->
                         <ColumnDefinition x:Name="HashSpacer1" Width="0.75*"/>
