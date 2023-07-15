@@ -82,10 +82,8 @@ namespace KhTracker
                 }
             }
 
-            //fix for weird seed gen bug (?)
-            //if a report wasn't found then assume it must go to GoA
-            //(not sure what even causes this
-            if (TEMP.Count < 13 && TEMP.Count != 0)
+            //fix for using starting reports option
+            if (TEMP.Count < 13 && data.progressionType != "Disabled")
             {
                 for (int i = 0; i < 13; ++i)
                 {
