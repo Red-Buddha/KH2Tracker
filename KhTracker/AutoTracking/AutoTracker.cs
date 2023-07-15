@@ -667,6 +667,15 @@ namespace KhTracker
                     Save("KhTrackerAutoSaves\\" + "ConnectionLost-Backup_" + DateTime.Now.ToString("yy-MM-dd_H-m") + ".tsv");
                 }
 
+                //reset currently highlighted world
+                if (WorldHighlightOption.IsChecked && world.previousworldName != null && data.WorldsData.ContainsKey(world.previousworldName))
+                {
+                    foreach (Rectangle Box in data.WorldsData[world.previousworldName].top.Children.OfType<Rectangle>().Where(Box => Box.Name.EndsWith("SelWG")))
+                    {
+                        Box.Visibility = Visibility.Collapsed;
+                    }
+                }
+
                 return;
             }
 
