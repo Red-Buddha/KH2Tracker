@@ -763,8 +763,8 @@ namespace KhTracker
             Data data = MainWindow.data;
 
             // hint text
-            window.SetHintTextRow2(data.progBossInformation[index]);
-            data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(data.progBossInformation[index], "", "", false, false, false));
+            window.SetHintTextRow2(data.progBossInformation[index].Item1, data.progBossInformation[index].Item2, data.progBossInformation[index].Item3);
+            data.HintRevealsStored.Add(new Tuple<string, string, string, bool, bool, bool>(data.progBossInformation[index].Item1, data.progBossInformation[index].Item2, data.progBossInformation[index].Item3, false, false, false));
         }
 
         ///

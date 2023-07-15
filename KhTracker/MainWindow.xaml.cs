@@ -626,7 +626,7 @@ namespace KhTracker
                     Tuple<string, string, string, bool, bool, bool> temp = data.HintRevealsStored[num - 1];
 
                     if (data.progressionType == "Bosses")
-                        SetHintTextRow2(temp.Item1);
+                        SetHintTextRow2(temp.Item1, temp.Item2, temp.Item3);
                     else
                         SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
                 }
@@ -756,15 +756,34 @@ namespace KhTracker
             HintTextEnd.Foreground = (SolidColorBrush)FindResource("DefWhite");
         }
 
-        //boss line 2
-        public void SetHintTextRow2(string text)
+        //boss text
+        public void SetHintTextRow2(string boss1, string middle, string boss2)
         {
             if (data.SeedHashLoaded && HashGrid.Visibility == Visibility.Visible)
             {
                 HashGrid.Visibility = Visibility.Collapsed;
             }
 
-            BossHintText.Text = text;
+            string colorMain = "DefWhite";
+            string colorBoss1 = "DefWhite";
+            string colorBoss2 = "DefWhite";
+
+            if (ColorHintOption.IsChecked)
+            {
+                colorBoss1 = "LightBlue";
+                colorBoss2 = "Orange";
+            }
+
+
+            BossHintTextBegin.Text = boss1;
+            BossHintTextBegin.Foreground = (SolidColorBrush)FindResource(colorBoss1);
+
+            BossHintTextMiddle.Text = middle;
+            BossHintTextMiddle.Foreground = (SolidColorBrush)FindResource(colorMain);
+
+            BossHintTextEnd.Text = boss2;
+            BossHintTextEnd.Foreground = (SolidColorBrush)FindResource(colorBoss2);
+
         }
 
         public void VisitLockCheck()

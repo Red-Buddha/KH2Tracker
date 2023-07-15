@@ -2339,7 +2339,9 @@ namespace KhTracker
             data.saveFileLoaded = false;
 
             //prog boss hint stuff
-            BossHintText.Text = "";
+            BossHintTextMiddle.Text = "";
+            BossHintTextBegin.Text = "";
+            BossHintTextEnd.Text = "";
             data.progBossInformation.Clear();
             data.progressionType = "DummyText";
             InfoRow.Height = new GridLength(0.8, GridUnitType.Star);
@@ -2348,6 +2350,7 @@ namespace KhTracker
             MainTextRow.Height = new GridLength(1, GridUnitType.Star);
             HashBossSpacer.Height = new GridLength(0, GridUnitType.Star);
             DC_Row1.Height = new GridLength(0, GridUnitType.Star);
+            TextRowSpacer.Height = new GridLength(0, GridUnitType.Star);
             Grid.SetColumnSpan(MainTextVB, 1);
 
             //clear progression hints stuff

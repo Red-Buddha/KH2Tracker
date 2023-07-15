@@ -117,7 +117,7 @@ namespace KhTracker
         public List<string> enabledWorlds = new List<string>();
         //for boss rando progression
         public string progressionType = "DummyText";
-        public List<string> progBossInformation = new List<string>();
+        public List<Tuple<string, string, string>> progBossInformation = new List<Tuple<string, string, string>>();
 
         //Progression JsmarteeHints stuff
         public bool UsingProgressionHints = false;

@@ -1662,44 +1662,45 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Hint Text -->
-                <!--Rectangle Fill="#4C1E1E25" Grid.ColumnSpan="3" Panel.ZIndex="-1"/-->
-                <Grid Grid.Row="1"  Grid.Column="1" x:Name="HintTextGrid">
+                <Grid Grid.Row="1"  Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition x:Name="MainTextRow" Height="1*"/>
+                        <RowDefinition x:Name="TextRowSpacer" Height="0.05*"/>
                         <RowDefinition x:Name="BossTextRow" Height="1*"/>
                     </Grid.RowDefinitions>
-                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <!-- 0.2 when in use -->
                         <ColumnDefinition x:Name="DeathCol" Width="0.2*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <Viewbox Grid.Row="0" x:Name="MainTextVB" Grid.ColumnSpan="1">
-                        <!--local:OutlinedTextBlock x:Name="HintText" FontFamily="{StaticResource Menu}" FontSize="20pt" FontWeight="DemiBold" 
-                                             TextWrapping="Wrap" StrokeThickness="4" Stroke="Black" Fill="White" TextAlignment="Center" Text="HAW is on the path to peace and Nonexistance."/-->
 
+                    <Viewbox Grid.Row="0" x:Name="MainTextVB" Grid.ColumnSpan="1">
                         <TextBlock FontFamily="{StaticResource Menu}" Foreground="White" FontSize="20pt">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
                             </TextBlock.Effect>
-
                             <Run Name="HintTextBegin"/>
                             <Run Name="HintTextMiddle" xml:space="preserve"/>
                             <Run Name="HintTextEnd" xml:space="preserve"/>
                         </TextBlock>
-
                     </Viewbox>
 
-                    <Viewbox Grid.Row="1">
-                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="#FFF1A432" FontSize="20pt">
+                    <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Fill="#D81E1E1E" >
+                        <Rectangle.Effect>
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="2" Color="#FF5F5F5F"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+
+                    <Viewbox Grid.Row="2">
+                        <TextBlock FontFamily="{StaticResource Menu}" Foreground="#FFD0D0D0" FontSize="20pt">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="3" BlurRadius="2" Direction="320"/>
                             </TextBlock.Effect>
-                            <Run Name="BossHintText"/>
+                            <Run Name="BossHintTextBegin"/>
+                            <Run Name="BossHintTextMiddle" xml:space="preserve"/>
+                            <Run Name="BossHintTextEnd" xml:space="preserve"/>
                         </TextBlock>
                     </Viewbox>
-                
                 </Grid>
 
                 <!-- New Death Counter -->
@@ -1747,7 +1748,7 @@
                 </Grid>
 
                 <!-- Hash Text -->
-                <Grid Grid.Row="1" Grid.Column="1" Visibility="Collapsed" x:Name="HashGrid">
+                <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible" x:Name="HashGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition x:Name="HashBossSpacer" Height="0*"/>

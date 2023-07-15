@@ -1325,25 +1325,28 @@ namespace KhTracker
 
                 BossTextRow.Height = new GridLength(1, GridUnitType.Star);
 
-                if (data.mode != Mode.OpenKHShanHints)
+                if (data.mode != Mode.OpenKHShanHints && data.mode != Mode.SpoilerHints)
                 {
                     InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
                     InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
-                    HashBossSpacer.Height = new GridLength(1, GridUnitType.Star);
+                    HashBossSpacer.Height = new GridLength(1.2, GridUnitType.Star);
                     DC_Row1.Height = new GridLength(1, GridUnitType.Star);
+                    TextRowSpacer.Height = new GridLength(0.05, GridUnitType.Star);
                     Grid.SetColumnSpan(MainTextVB, 2);
                 }
                 else if (data.mode == Mode.SpoilerHints && data.SpoilerReportMode)
                 {
                     InfoRow.Height = new GridLength(1.2, GridUnitType.Star);
                     InfoTextRow.Height = new GridLength(2, GridUnitType.Star);
-                    HashBossSpacer.Height = new GridLength(1, GridUnitType.Star);
+                    HashBossSpacer.Height = new GridLength(1.2, GridUnitType.Star);
                     DC_Row1.Height = new GridLength(1, GridUnitType.Star);
+                    TextRowSpacer.Height = new GridLength(0.05, GridUnitType.Star);
                     Grid.SetColumnSpan(MainTextVB, 2);
                 }
                 else
                 {
                     MainTextRow.Height = new GridLength(0, GridUnitType.Star);
+                    TextRowSpacer.Height = new GridLength(0, GridUnitType.Star);
                 }
 
                 ProgressionBossHints();
@@ -1796,7 +1799,10 @@ namespace KhTracker
                 string boss = keyList[rand.Next(0, keyList.Count)];
 
                 //final hint string
-                string worldhint;
+                //string worldhint;
+                string BossA;
+                string middle;
+                string BossB = "";
 
                 if (boss == data.BossList[boss])
                 {
@@ -1810,7 +1816,8 @@ namespace KhTracker
                         tmp_origBoss = "Pete OC";
                     }
 
-                    worldhint = tmp_origBoss + " is unchanged";
+                    BossA = tmp_origBoss;
+                    middle = "is unchanged";
                 }
                 else
                 {
@@ -1835,10 +1842,12 @@ namespace KhTracker
                         tmp_replBoss = "Pete OC";
                     }
 
-                    worldhint = tmp_origBoss + " became " + tmp_replBoss;
+                    BossA = tmp_origBoss;
+                    middle = "became";
+                    BossB = tmp_replBoss;
                 }
 
-                data.progBossInformation.Add(worldhint);
+                data.progBossInformation.Add(new Tuple<string, string, string>(BossA, middle, BossB));
 
                 keyList.Remove(boss);
 

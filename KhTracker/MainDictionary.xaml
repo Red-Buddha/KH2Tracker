@@ -76,6 +76,7 @@
     <SolidColorBrush x:Key="DefWhite" Color="White"/>
     <!-- selection hilights -->
     <SolidColorBrush x:Key="DefaultWhite" Color="#FFEFECE9"/>
+    <SolidColorBrush x:Key="BossWhite" Color="#FFD0D0D0"/>
     <SolidColorBrush x:Key="DefaultRec" Color="#D81E1E1E"/>
     <SolidColorBrush x:Key="SelectedRec" Color="#D8466482"/>
     <!-- Window Background default -->
