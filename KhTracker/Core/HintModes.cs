@@ -81,6 +81,22 @@ namespace KhTracker
                     }
                 }
             }
+
+            //fix for using starting reports option
+            if (TEMP.Count < 13 && data.progressionType != "Disabled")
+            {
+                for (int i = 0; i < 13; ++i)
+                {
+                    if (!ShanReportLocationFix(TEMP, i))
+                    {
+                        TEMP.Add(i, "GoA");
+                    }
+
+                    if (TEMP.Count == 13)
+                        break;
+                }
+            }
+
             if (TEMP.Count == 13 && data.progressionType != "Disabled")
             {
                 foreach (var item in TEMP)
@@ -88,6 +104,8 @@ namespace KhTracker
                     Console.WriteLine(item.Value + " | " + item.Key);
                     data.reportLocations.Add(item.Value);
                 }
+
+                data.hintsLoaded = true;
             }
 
             foreach (var world in worlds)
@@ -120,14 +138,21 @@ namespace KhTracker
             else
                 SetProgressionHints(data.UsingProgressionHints);
 
-            data.hintsLoaded = true;
+            
         }
 
-        private void ShanReportLocation(List<string> items)
+        private bool ShanReportLocationFix(SortedDictionary<int, string> TEMP, int number)
         {
+            try
+            {
+                string test = TEMP[number];
+            }
+            catch
+            {
+                return false;
+            }
 
-
-
+            return true;
         }
 
         private void JsmarteeHints(Dictionary<string, object> hintObject)
@@ -1588,7 +1613,7 @@ namespace KhTracker
 
                 data.WorldsData[RealWorldName].worldGrid.ProgressionReport_Path(hintNum);
             }
-            else if (data.mode == Mode.SpoilerHints) //spoiler
+            else if (data.mode == Mode.SpoilerHints && data.SpoilerReportMode) //spoiler
             {
                 RealWorldName = data.reportInformation[hintNum].Item1;
                 //Console.WriteLine("Spoiler Revealing " + RealWorldName);
