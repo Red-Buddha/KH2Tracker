@@ -2043,9 +2043,6 @@ namespace KhTracker
             {
                 InitTracker();
             }
-
-            var test = data.bossEventLog;
-            var test2 = data.progBossInformation; 
         }
 
         //hint helpers
