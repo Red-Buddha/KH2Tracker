@@ -150,9 +150,8 @@ namespace KhTracker
 
         private void AutoConnectToggle(bool toggle)
         {
-            Properties.Settings.Default.AutoDetect = toggle;
+            Properties.Settings.Default.AutoConnect = toggle;
             AutoConnectOption.IsChecked = toggle;
-
         }
 
         //private void AutoDetectToggle(object sender, RoutedEventArgs e)
