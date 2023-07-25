@@ -134,7 +134,8 @@ namespace KhTracker
         public List<Tuple<string, string, string, bool, bool, bool>> HintRevealsStored = new List<Tuple<string, string, string, bool, bool, bool>>();
         public bool synthOn = false;
         public bool puzzlesOn = false;
-        public string previousWorldHinted = "";
+        public bool calulating = false;
+        public List<string> previousWorldsHinted = new List<string>();
         #endregion
 
         #region Bonuses and Sora/Drive Levels

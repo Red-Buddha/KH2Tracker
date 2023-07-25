@@ -1481,6 +1481,9 @@ namespace KhTracker
             if (data.WorldsEnabled == 0)
                 data.WorldsEnabled = data.HintRevealOrder.Count;
 
+            //reveal logic
+            List<string> worldsRevealed = new List<string>();
+
             #region Debug stuff
             //Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~");
             //Console.WriteLine("Current Hint Cost = " + data.HintCosts[data.ProgressionCurrentHint]);
@@ -1492,6 +1495,7 @@ namespace KhTracker
 
             data.ProgressionPoints += points;
             data.TotalProgressionPoints += points;
+            data.calulating = true;
 
             if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || 
                 data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled)
@@ -1518,7 +1522,7 @@ namespace KhTracker
                 data.ProgressionCurrentHint++;
 
                 //reveal hints/world
-                ProgressionReveal(data.ProgressionCurrentHint - 1);
+                worldsRevealed.Add(ProgressionReveal(data.ProgressionCurrentHint - 1));
 
                 if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || 
                     data.ProgressionCurrentHint == data.WorldsEnabled) //revealed last hint
@@ -1543,21 +1547,24 @@ namespace KhTracker
                 ProgressionTotalValue.Text = data.HintCosts[data.ProgressionCurrentHint].ToString();
             }
             data.WorldsData["GoA"].value.Text = data.ProgressionCurrentHint.ToString();
+
+            HighlightProgHintedWorlds(worldsRevealed);
+            data.calulating = false;
         }
 
-        public void ProgressionReveal(int hintNum)
+        public string ProgressionReveal(int hintNum)
         {
             string RealWorldName = "";
             //shouldn't ever get here but break in case
             if (!data.UsingProgressionHints || data.mode == Mode.JsmarteeHints || data.mode == Mode.ShanHints)
-                return;
+                return "";
 
             //fix later so if a specific variable/value from hint file was passed 
             if (data.progressionType == "Bosses")
             {
                 data.WorldsData["GoA"].worldGrid.ProgBossHint(hintNum);
 
-                return;
+                return "";
             }
 
             if (data.mode == Mode.OpenKHJsmarteeHints) //jsmartee
@@ -1626,12 +1633,23 @@ namespace KhTracker
                 SetHintText(Codes.GetHintTextName(RealWorldName), "has been revealed!", "", true, false, false);
             }
 
-            //TESTING THIS CODE IDK MAN
-            if(WorldHintHighlightOption.IsChecked)
+            return RealWorldName;
+        }
+
+        public void HighlightProgHintedWorlds(List<string> worlds)
+        {
+            if (!WorldHintHighlightOption.IsChecked)
+                return;
+
+            //unhighlight hinted worlds
+            if (data.previousWorldsHinted.Count >= 0)
             {
-                if (data.previousWorldHinted != "")
+                foreach (var world in data.previousWorldsHinted)
                 {
-                    foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                    if (world == null || world == "")
+                        continue;
+
+                    foreach (var Box in data.WorldsData[world].top.Children.OfType<Rectangle>())
                     {
                         if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                             Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
@@ -1640,18 +1658,26 @@ namespace KhTracker
                             Box.Visibility = Visibility.Collapsed;
                     }
                 }
-                //data.selected = button;
-                foreach (var Box in data.WorldsData[RealWorldName].top.Children.OfType<Rectangle>()) //set currently selected world colors
+            }
+
+            //now higlight worlds
+            foreach (var world in worlds)
+            {
+                if (world == null || world == "")
+                    continue;
+
+                foreach (var Box in data.WorldsData[world].top.Children.OfType<Rectangle>()) //set currently selected world colors
                 {
-                    Console.WriteLine("asdfasdfasdf");
+                    //Console.WriteLine("asdfasdfasdf - " + world.ToString());
                     if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
                         Box.Fill = (SolidColorBrush)FindResource("ProgressionHinted");
 
                     if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
                         Box.Visibility = Visibility.Visible;
                 }
-                data.previousWorldHinted = RealWorldName;
             }
+
+            data.previousWorldsHinted = worlds;
         }
 
         public int GetProgressionPointsReward(string worldName, int prog)

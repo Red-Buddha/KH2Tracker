@@ -2371,18 +2371,24 @@ namespace KhTracker
             data.HintRevealsStored.Clear();
             data.WorldsData["GoA"].value.Visibility = Visibility.Hidden;
             //clear last hinted green world
-            if (data.previousWorldHinted != "")
+            if (data.previousWorldsHinted.Count >= 0)
             {
-                foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                foreach (var world in data.previousWorldsHinted)
                 {
-                    if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
-                        Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                    if (world == null || world == "")
+                        continue;
 
-                    if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
-                        Box.Visibility = Visibility.Collapsed;
+                    foreach (var Box in data.WorldsData[world].top.Children.OfType<Rectangle>())
+                    {
+                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                            Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+
+                        if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                            Box.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
-            data.previousWorldHinted = "";
+            data.previousWorldsHinted.Clear();
             data.StoredWorldCompleteBonus = new Dictionary<string, int>()
             {
                 { "SorasHeart", 0 },

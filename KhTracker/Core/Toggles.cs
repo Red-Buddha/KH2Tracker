@@ -784,15 +784,18 @@ namespace KhTracker
 
             if (!WorldHintHighlightOption.IsChecked)
             {
-                if (data.previousWorldHinted != "")
+                if (data.previousWorldsHinted.Count >= 0)
                 {
-                    foreach (var Box in data.WorldsData[data.previousWorldHinted].top.Children.OfType<Rectangle>())
+                    foreach (var world in data.previousWorldsHinted)
                     {
-                        if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
-                            Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
+                        foreach (var Box in data.WorldsData[world].top.Children.OfType<Rectangle>())
+                        {
+                            if (Box.Opacity != 0.9 && !Box.Name.EndsWith("SelWG"))
+                                Box.Fill = (SolidColorBrush)FindResource("DefaultRec");
 
-                        if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
-                            Box.Visibility = Visibility.Collapsed;
+                            if (Box.Name.EndsWith("SelWG") && !WorldHighlightOption.IsChecked)
+                                Box.Visibility = Visibility.Collapsed;
+                        }
                     }
                 }
             }

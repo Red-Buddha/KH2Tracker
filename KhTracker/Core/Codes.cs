@@ -127,6 +127,45 @@ namespace KhTracker
             }
         }
 
+        public static string GetWorldName(string worldName)
+        {
+            switch (worldName)
+            {
+                case "Simulated Twilight Town":
+                    return "SimulatedTwilightTown";
+                case "Twilight Town":
+                    return "TwilightTown";
+                case "Hollow Bastion":
+                    return "HollowBastion";
+                case "Land of Dragons":
+                    return "LandofDragons";
+                case "Beast's Castle":
+                    return "BeastsCastle";
+                case "Olympus Coliseum":
+                    return "OlympusColiseum";
+                case "Disney Castle":
+                    return "DisneyCastle";
+                case "Port Royal":
+                    return "PortRoyal";
+                case "Halloween Town":
+                    return "HalloweenTown";
+                case "Pride Lands":
+                    return "PrideLands";
+                case "Hundred Acre Wood":
+                    return "HundredAcreWood";
+                case "Space Paranoids":
+                    return "SpaceParanoids";
+                case "Drive Forms":
+                    return "DriveForms";
+                case "Sora's Heart":
+                    return "SorasHeart";
+                case "Creations":
+                    return "PuzzSynth";
+                default:
+                    return worldName;
+            }
+        }
+
         public string GetDefault(int index)
         {
             return Default[index];
