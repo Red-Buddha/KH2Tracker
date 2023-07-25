@@ -1548,7 +1548,8 @@ namespace KhTracker
             }
             data.WorldsData["GoA"].value.Text = data.ProgressionCurrentHint.ToString();
 
-            HighlightProgHintedWorlds(worldsRevealed);
+            if (worldsRevealed.Count > 0)
+                HighlightProgHintedWorlds(worldsRevealed);
             data.calulating = false;
         }
 
