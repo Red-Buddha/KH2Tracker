@@ -381,11 +381,11 @@ namespace KhTracker
                     //    data.seedgenVersion = hintObject["generatorVersion"].ToString();
                     //}
 
-                    if (hintObject.ContainsKey("dummy_forms"))
-                    {
-                        if (hintObject["dummy_forms"].ToString() == "true")
-                            data.altFinalTracking = true;
-                    }
+                    //if (hintObject.ContainsKey("dummy_forms"))
+                    //{
+                    //    if (hintObject["dummy_forms"].ToString() == "true")
+                    //        data.altFinalTracking = true;
+                    //}
 
                     if (hintObject.ContainsKey("settings"))
                     {
@@ -657,6 +657,9 @@ namespace KhTracker
                                     data.WorldsData["GoA"].value.Visibility = Visibility.Visible;
                                     data.WorldsData["GoA"].value.Text = "0";
                                     //Console.WriteLine("ENABLING PROGRESSION HINTS");
+                                    break;
+                                case "dummy_forms":
+                                    data.altFinalTracking = true;
                                     break;
                             }
                         }
@@ -1533,10 +1536,10 @@ namespace KhTracker
 
                         data.ShouldResetHash = false;
 
-                        if (hintObject.ContainsKey("generatorVersion"))
-                        {
-                            data.seedgenVersion = hintObject["generatorVersion"].ToString();
-                        }
+                        //if (hintObject.ContainsKey("generatorVersion"))
+                        //{
+                        //    data.seedgenVersion = hintObject["generatorVersion"].ToString();
+                        //}
 
                         if (hintObject.ContainsKey("settings"))
                         {
@@ -1843,6 +1846,9 @@ namespace KhTracker
                                         data.WorldsData["GoA"].value.Visibility = Visibility.Visible;
                                         data.WorldsData["GoA"].value.Text = "0";
                                         //Console.WriteLine("ENABLING PROGRESSION HINTS");
+                                        break;
+                                    case "dummy_forms":
+                                        data.altFinalTracking = true;
                                         break;
                                 }
                             }
