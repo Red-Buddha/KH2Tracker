@@ -57,5 +57,11 @@ namespace KhTracker
 
             return buffer;
         }
+
+        public long GetBaseAddress()
+        {
+            ProcessModule processModule = process.MainModule;
+            return processModule.BaseAddress.ToInt64();
+        }
     }
 }

@@ -286,8 +286,8 @@ namespace KhTracker
             // PC Address anchors
             int Now = 0x0714DB8;
             int Save = 0x09A70B0;
-            int Sys3 = 0x2A59DF0;
-            int Bt10 = 0x2A74880;
+            int Sys3 = ReadPcPointer(0x2AE3550); //old base address 0x2A59DF0;
+            int Bt10 = ReadPcPointer(0x2AE3558); //old base address 0x2A74880;
             int BtlEnd = 0x2A0D3E0;
             int Slot1 = 0x2A20C98;
             int NextSlot = 0x278;
@@ -352,8 +352,8 @@ namespace KhTracker
                 // PCSX2 anchors 
                 Now = 0x032BAE0;
                 Save = 0x032BB30;
-                Sys3 = 0x1CCB300;
-                Bt10 = 0x1CE5D80;
+                Sys3 = ReadMemInt(0x1C61AF8); //old base address 0x1CCB300;
+                Bt10 = ReadMemInt(0x1C61AFC); //old base address 0x1CE5D80;
                 BtlEnd = 0x1D490C0;
                 Slot1 = 0x1C6C750;
                 NextSlot = 0x268;
@@ -2808,7 +2808,16 @@ namespace KhTracker
 
         private int ReadMemInt(int address)
         {
+            address = address + ADDRESS_OFFSET;
             return BitConverter.ToInt32(memory.ReadMemory(address, 4), 0);
+        }
+
+        private int ReadPcPointer(int address)
+        {
+            long origAddress = BitConverter.ToInt64(memory.ReadMemory(address, 8), 0);
+            long baseAddress = memory.GetBaseAddress();
+            long result = origAddress - baseAddress;
+            return (int)result;
         }
 
         //progression hints - compare last saved progression point
