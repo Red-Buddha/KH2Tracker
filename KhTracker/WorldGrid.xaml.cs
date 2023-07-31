@@ -1455,11 +1455,16 @@ namespace KhTracker
             //if Templist is empty then worl can be marked as complete
             if (tempItems.Count == 0)
             {
-                Console.WriteLine("~~~~~ MARKING WORLD AS COMPLETE");
+                //Console.WriteLine("~~~~~ MARKING WORLD AS COMPLETE");
                 data.WorldsData[worldName].complete = true;
                 //when a world is found as complete, give the stored bonuses
                 if (data.UsingProgressionHints)
-                    window.AddProgressionPoints(data.StoredWorldCompleteBonus[worldName]);
+                {
+                    if (data.calulating)
+                        data.ProgressionPoints += data.StoredWorldCompleteBonus[worldName];
+                    else
+                        window.AddProgressionPoints(data.StoredWorldCompleteBonus[worldName]);
+                }
             }
         }
 

@@ -628,7 +628,11 @@ namespace KhTracker
                     if (data.progressionType == "Bosses")
                         SetHintTextRow2(temp.Item1, temp.Item2, temp.Item3);
                     else
+                    {
                         SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
+                        HighlightProgHintedWorlds(new List<string> { Codes.GetWorldName(temp.Item1) });
+                    }
+
                 }
             }
 
