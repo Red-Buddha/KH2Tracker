@@ -122,7 +122,7 @@ namespace KhTracker
                 //data.reportInformation.Add(new Tuple<string, string, int>(world.Key, null, 0));
             }
 
-            if (data.progressionType != "Reports")
+            if (data.progressionType == "Bosses")
             {
                 foreach (var key in data.WorldsData.Keys.ToList())
                 {

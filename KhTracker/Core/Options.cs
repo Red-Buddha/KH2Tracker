@@ -2323,6 +2323,7 @@ namespace KhTracker
             data.BossRandoFound = false;
             data.dataSplit = false;
             data.BossList.Clear();
+            data.bossEventLog.Clear();
             data.convertedSeedHash = 0;
             data.enabledWorlds.Clear();
             data.seedgenVersion = "";
