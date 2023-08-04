@@ -104,22 +104,23 @@ namespace KhTracker
                 return;
 
             data.usedHotkey = true;
-            int vercheck = CheckVersion();
-            if (vercheck == 1)
-            {             
-                InitAutoTracker(true);
-                return;
-            }
-            else if (vercheck == 2)
-            {
-                InitAutoTracker(false);
-                return;
-            }
-            else
-            {
-                MessageBox.Show("No game detected.\nPlease start KH2 before using Hotkey.");
-                data.usedHotkey = false;
-            }
+            InitTracker(null, null);
+            //int vercheck = CheckVersion();
+            //if (vercheck == 1)
+            //{             
+            //    InitAutoTracker(true);
+            //    return;
+            //}
+            //else if (vercheck == 2)
+            //{
+            //    InitAutoTracker(false);
+            //    return;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No game detected.\nPlease start KH2 before using Hotkey.");
+            //    data.usedHotkey = false;
+            //}
         }
 
         //buttons merged so no need for both of these anymore
@@ -182,7 +183,13 @@ namespace KhTracker
                     checkTimer.Stop();
                     checkTimer = null;
                     memory = null;
-                    MessageBox.Show("Please start KH2 before starting the Auto Tracker.");
+                    if(data.usedHotkey)
+                    {
+                        MessageBox.Show("No game detected.\nPlease start KH2 before using Hotkey.");
+                        data.usedHotkey = false;
+                    }
+                    else
+                        MessageBox.Show("Please start KH2 before starting the Auto Tracker.");
                 }
             }
             else

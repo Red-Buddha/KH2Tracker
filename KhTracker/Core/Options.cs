@@ -2824,11 +2824,15 @@ namespace KhTracker
                 }
                 else
                 {
+                    OnReset(null, null);
                     return true;
                 }
             }
             else
+            {
+                OnReset(null, null);
                 return true;
+            }
         }
 
         private void ResetHints()
