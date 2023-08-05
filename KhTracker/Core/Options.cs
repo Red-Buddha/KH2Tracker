@@ -2299,10 +2299,13 @@ namespace KhTracker
             }
             else
             {
-                Connect.Visibility = Visibility.Collapsed;
-                Connect2.Visibility = Visibility.Collapsed;
+                if (!AutoConnectOption.IsChecked)
+                {
+                    Connect.Visibility = Visibility.Collapsed;
+                    Connect2.Visibility = Visibility.Collapsed;
+                }
 
-                SettingRow.Height = new GridLength(0, GridUnitType.Star);
+                //SettingRow.Height = new GridLength(0, GridUnitType.Star);
                 FormRow.Height = new GridLength(0, GridUnitType.Star);
                 Level.Visibility = Visibility.Collapsed;
                 Strength.Visibility = Visibility.Collapsed;

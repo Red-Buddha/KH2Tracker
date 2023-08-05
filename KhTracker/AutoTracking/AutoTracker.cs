@@ -148,12 +148,16 @@ namespace KhTracker
 
         private void InitTracker()
         {
-            //reset timer if already running
-            aTimer?.Stop();
-
             //connection trying visual
             Connect.Visibility = Visibility.Visible;
             Connect2.Visibility = Visibility.Collapsed;
+
+            //check timer already running!
+            if (checkTimer != null && checkTimer.IsEnabled)
+                return;
+
+            //reset timer if already running
+            aTimer?.Stop();
 
             //start timer for checking game version
             checkTimer = new DispatcherTimer();
@@ -288,29 +292,19 @@ namespace KhTracker
             return 0;
         }
 
-        public async void InitAutoTracker(bool PCSX2)
+        public void InitAutoTracker(bool PCSX2)
         {
             // PC Address anchors
             int Now = 0x0714DB8;
             int Save = 0x09A70B0;
-            int Sys3 = ReadPcPointer(0x2AE3550); //old base address 0x2A59DF0;
-            int Bt10 = ReadPcPointer(0x2AE3558); //old base address 0x2A74880;
+            int Sys3 = 0x0; //old base address 0x2A59DF0;
+            int Bt10 = 0x0; //old base address 0x2A74880;
             int BtlEnd = 0x2A0D3E0;
             int Slot1 = 0x2A20C98;
             int NextSlot = 0x278;
 
             if (!PCSX2)
             {
-                //check for if the system files are loaded every 1/2 second.
-                //this helps ensure that ICs on levels/drives never mistrack
-                //(this was a rare instance that could happen on pc because
-                //the data takes a small bit of time to fully load.)
-                while (!pcFilesLoaded)
-                {
-                    pcFilesLoaded = CheckPCLoaded();
-                    await Task.Delay(500);
-                }
-
                 //the pc files are fully loaded so we can change the connect icon.
                 Connect2.Source = data.AD_PC;
 
@@ -331,6 +325,19 @@ namespace KhTracker
                     Connect2.Source = data.AD_Cross;
                     MessageBox.Show("Error connecting to KH2FM");
                     return;
+                }
+
+
+                Connect2.Source = data.AD_PCred;
+                Connect.Visibility = Visibility.Collapsed;
+                Connect2.Visibility = Visibility.Visible;
+                //check for if the system files are loaded
+                //this helps ensure that ICs on levels/drives don't mistrack
+                while (!pcFilesLoaded)
+                {
+                    Sys3 = ReadPcPointer(0x2AE3550);
+                    Bt10 = ReadPcPointer(0x2AE3558);
+                    pcFilesLoaded = CheckPCLoaded(Sys3, Bt10);
                 }
 
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
@@ -405,14 +412,16 @@ namespace KhTracker
             }
         }
 
-        private bool CheckPCLoaded()
+        private bool CheckPCLoaded(int system3, int battle0)
         {
-            ////checks if these files have been loaded into memeory
-            int Obj0 = 0x2A22BD0;
-            int Prg0 = Obj0 + ReadMemInt(Obj0 - 0x10) + 0x10;
-            int Sys3 = Prg0 + ReadMemInt(Prg0 - 0x10) + 0x10;
-            int Btl0 = ReadMemInt(Sys3 - 0x10);
-            if (Btl0 > 0x20)
+            //Testchecks if these files have been loaded into memeory
+            string testS = ReadMemString(system3, 3);
+            string testB = ReadMemString(battle0, 3);
+
+            //Console.WriteLine("sys: " + testS);
+            //Console.WriteLine("btl: " + testB);
+
+            if (testB == testS && testS == "BAR")
             {
                 //all important files loaded
                 return true;
@@ -2817,6 +2826,13 @@ namespace KhTracker
         {
             address = address + ADDRESS_OFFSET;
             return BitConverter.ToInt32(memory.ReadMemory(address, 4), 0);
+        }
+
+        private string ReadMemString(int address, int length)
+        {
+            address = address + ADDRESS_OFFSET;
+            string result = Encoding.Default.GetString(memory.ReadMemory(address, length), 0, length);
+            return result.TrimEnd('\0');
         }
 
         private int ReadPcPointer(int address)

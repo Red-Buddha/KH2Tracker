@@ -53,7 +53,10 @@ namespace KhTracker
             //start auto-connect if enabled
             AutoConnectOption.IsChecked = Properties.Settings.Default.AutoConnect;
             if (AutoConnectOption.IsChecked)
-                InitTracker();
+            {
+                SettingRow.Height = new GridLength(0.5, GridUnitType.Star);
+                InitTracker(null, null);
+            }
         }
 
         private void InitData()
