@@ -1876,7 +1876,7 @@ namespace KhTracker
                         {
                             var progressionSettings = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(hintObject["ProgressionSettings"].ToString());
 
-                            if (data.progressionType != "Bosses")
+                            if (data.progressionType == "Disabled")
                                 data.progressionType = "Reports";
 
                             foreach (var setting in progressionSettings)
@@ -2353,7 +2353,7 @@ namespace KhTracker
             BossHintTextBegin.Text = "";
             BossHintTextEnd.Text = "";
             data.progBossInformation.Clear();
-            data.progressionType = "DummyText";
+            data.progressionType = "Disabled";
             InfoRow.Height = new GridLength(0.8, GridUnitType.Star);
             InfoTextRow.Height = new GridLength(1, GridUnitType.Star);
             BossTextRow.Height = new GridLength(0, GridUnitType.Star);

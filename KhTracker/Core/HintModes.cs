@@ -122,7 +122,7 @@ namespace KhTracker
                 //data.reportInformation.Add(new Tuple<string, string, int>(world.Key, null, 0));
             }
 
-            if (data.progressionType == "Bosses")
+            if (data.progressionType != "Reports")
             {
                 foreach (var key in data.WorldsData.Keys.ToList())
                 {
@@ -132,13 +132,9 @@ namespace KhTracker
                     data.WorldsData[key].worldGrid.WorldComplete();
                     SetWorldValue(data.WorldsData[key].value, 0);
                 }
-
-                SetProgressionHints(data.UsingProgressionHints);
             }
-            else
-                SetProgressionHints(data.UsingProgressionHints);
 
-            
+            SetProgressionHints(data.UsingProgressionHints);
         }
 
         private bool ShanReportLocationFix(SortedDictionary<int, string> TEMP, int number)
