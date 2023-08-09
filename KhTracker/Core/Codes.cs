@@ -230,8 +230,10 @@ namespace KhTracker
             {24, "Cure"},
             {25, "Ukulele"},
             {26, "Valor"},
+            {89, "Valor"}, //Dummy (Seedgen 3.0.1)
             {27, "Wisdom"},
             {29, "Final"},
+            {115, "Final"}, //Dummy (Seedgen 3.0.1)
             {31, "Master"},
             {32, "TornPage"},
             {87, "Magnet"},

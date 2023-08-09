@@ -292,7 +292,7 @@ namespace KhTracker
             return 0;
         }
 
-        public void InitAutoTracker(bool PCSX2)
+        public async void InitAutoTracker(bool PCSX2)
         {
             // PC Address anchors
             int Now = 0x0714DB8;
@@ -305,8 +305,7 @@ namespace KhTracker
 
             if (!PCSX2)
             {
-                //the pc files are fully loaded so we can change the connect icon.
-                Connect2.Source = data.AD_PC;
+                Connect2.Source = data.AD_PCred;
 
                 try
                 {
@@ -328,9 +327,9 @@ namespace KhTracker
                 }
 
 
-                Connect2.Source = data.AD_PCred;
-                Connect.Visibility = Visibility.Collapsed;
-                Connect2.Visibility = Visibility.Visible;
+                //Connect2.Source = data.AD_PCred;
+                //Connect.Visibility = Visibility.Collapsed;
+                //Connect2.Visibility = Visibility.Visible;
                 //check for if the system files are loaded
                 //this helps ensure that ICs on levels/drives don't mistrack
                 while (!pcFilesLoaded)
@@ -338,6 +337,7 @@ namespace KhTracker
                     Sys3 = ReadPcPointer(0x2AE3550);
                     Bt10 = ReadPcPointer(0x2AE3558);
                     pcFilesLoaded = CheckPCLoaded(Sys3, Bt10);
+                    await Task.Delay(100);
                 }
 
                 FinishSetup(PCSX2, Now, Save, Sys3, Bt10, BtlEnd, Slot1, NextSlot);
@@ -424,6 +424,7 @@ namespace KhTracker
             if (testB == testS && testS == "BAR")
             {
                 //all important files loaded
+                Connect2.Source = data.AD_PC;
                 return true;
             }
 
