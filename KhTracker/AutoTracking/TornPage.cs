@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,30 +29,17 @@ namespace KhTracker
         public override byte[] UpdateMemory()
         {
             byte[] data = base.UpdateMemory();
-            int used = (App.Current.MainWindow as MainWindow).GetUsedPages();
-            int test = WorldGrid.Real_Pages;
+            int used = (App.Current.MainWindow as MainWindow).GetUsedPages(Address);
+            int total = used + data[0];
 
-            //use world grid real pages since that doesn't reset on disconnect
-            if (test < (data[0] + used))
+            if (Quantity < total)
             {
-                //safty i guess
-                if (current == 0)
-                    current = WorldGrid.Real_Pages - used;
-
                 // add the difference incase of getting multiple at the same time
-                Quantity += data[0] - current;
+                Quantity += total - current;
                 if (App.logger != null)
                     App.logger.Record(Quantity.ToString() + " torn pages obtained");
             }
-            else if (test > (data[0] + used))
-            {
-                // reduce quantity so when you regrab a torn page after dying the quantity goes back to where it should be
-                if ((App.Current.MainWindow as MainWindow).GetWorld() != "HundredAcreWood")
-                    Quantity -= current - data[0];
-                else
-                    (App.Current.MainWindow as MainWindow).UpdateUsedPages();
-            }
-            current = data[0];
+            current = total;
             return null;
 
             //if (current < data[0])

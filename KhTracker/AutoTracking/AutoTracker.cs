@@ -2778,13 +2778,37 @@ namespace KhTracker
             return world.worldName;
         }
 
-        public void UpdateUsedPages()
-        {
-            data.usedPages++;
-        }
+        //public void UpdateUsedPages()
+        //{
+        //
+        //
+        //    data.usedPages++;
+        //}
 
-        public int GetUsedPages()
+        public int GetUsedPages(int save)
         {
+            save = save - 0x3598;
+            int used = 0;
+            bool PigFlag = new BitArray(memory.ReadMemory(save + 0x1DB0, 1))[1];
+            bool Page1Flag = new BitArray(memory.ReadMemory(save + 0x1DB1, 1))[1];
+            bool Page2Flag = new BitArray(memory.ReadMemory(save + 0x1DB2, 1))[1];
+            bool Page3Flag = new BitArray(memory.ReadMemory(save + 0x1DB3, 1))[1];
+            bool Page4Flag = new BitArray(memory.ReadMemory(save + 0x1DB4, 1))[1];
+            bool Page5Flag = new BitArray(memory.ReadMemory(save + 0x1DB5, 1))[0];
+
+            if (PigFlag && Page5Flag)
+            {
+                data.usedPages = 5;
+                return data.usedPages;
+            }
+
+            if (Page1Flag) used++;
+            if (Page2Flag) used++;
+            if (Page3Flag) used++;
+            if (Page4Flag) used++;
+
+            data.usedPages = used;
+
             return data.usedPages;
         }
 
