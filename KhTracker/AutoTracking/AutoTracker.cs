@@ -50,6 +50,9 @@ namespace KhTracker
         private DriveForm final;
         private DriveForm anti;
 
+        private DriveForm finalReal;
+        private DriveForm valorReal;
+
         private Magic fire;
         private Magic blizzard;
         private Magic thunder;
@@ -459,10 +462,11 @@ namespace KhTracker
             {
                 importantChecks.Add(valor = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 7, Save + 0x32F6, "Valor"));
                 importantChecks.Add(final = new DriveForm(memory, Save + 0x36C2, ADDRESS_OFFSET, 1, Save + 0x33D6, "Final"));
+
+                importantChecks.Add(finalReal = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 4, Save + 0x33D6, "FinalReal"));
+                importantChecks.Add(valorReal = new DriveForm(memory, Save + 0x36C0, ADDRESS_OFFSET, 1, Save + 0x32F6, Save + 0x06B2, "ValorReal"));
             }
-                
-
-
+               
             int fireCount = fire != null ? fire.Level : 0;
             int blizzardCount = blizzard != null ? blizzard.Level : 0;
             int thunderCount = thunder != null ? thunder.Level : 0;
@@ -526,6 +530,7 @@ namespace KhTracker
             importantChecks.Add(extraItem = new Extra(memory, Save + 0x363C, ADDRESS_OFFSET, "MunnyPouch1"));
             importantChecks.Add(extraItem = new Extra(memory, Save + 0x3695, ADDRESS_OFFSET, "MunnyPouch2"));
 
+            //change this for flag checking to determine amount of pages?
             int count = pages != null ? pages.Quantity : 0;
             importantChecks.Add(pages = new TornPage(memory, Save + 0x3598, ADDRESS_OFFSET, "TornPage"));
             pages.Quantity = count;
@@ -2718,12 +2723,21 @@ namespace KhTracker
             BindAbility(DodgeRoll, "Obtained", dodgeRoll);
             BindAbility(AerialDodge, "Obtained", aerialDodge);
             BindAbility(Glide, "Obtained", glide);
-
-            BindForm(ValorM, "Obtained", valor);
+            
             BindForm(WisdomM, "Obtained", wisdom);
             BindForm(LimitM, "Obtained", limit);
             BindForm(MasterM, "Obtained", master);
-            BindForm(FinalM, "Obtained", final);
+            
+            if (data.altFinalTracking)
+            {
+                BindForm(ValorM, "Obtained", valorReal);
+                BindForm(FinalM, "Obtained", finalReal);
+            }
+            else
+            {
+                BindForm(ValorM, "Obtained", valor);
+                BindForm(FinalM, "Obtained", final);
+            }
         }
 
         private void BindForm(ContentControl img, string property, object source)
