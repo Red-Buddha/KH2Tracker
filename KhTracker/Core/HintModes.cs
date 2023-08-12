@@ -1179,16 +1179,24 @@ namespace KhTracker
                 {
                     string worldstring = reports[report.ToString()]["World"].ToString();
                     int dummyvalue = 0;
+                    string location;
                     if (worldstring.StartsWith("Nothing_"))
                     {
                         worldstring = worldstring.Remove(0, 8);
                         dummyvalue = -1;
                     }
                     if (worldstring.Contains("Creations") && !data.puzzlesOn)
+                    {
+                        //still need to get and add location for report to track to correct world
+                        //we can't just skip everything if creations was set to be hinted
+                        location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+                        data.reportLocations.Add(location);
                         continue;
+                    }
+                        
 
                     var worldhint = Codes.ConvertSeedGenName(worldstring);
-                    var location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
+                    location = Codes.ConvertSeedGenName(reports[report.ToString()]["Location"].ToString());
 
 
                     data.reportInformation.Add(new Tuple<string, string, int>(worldhint, null, dummyvalue));
@@ -1863,9 +1871,15 @@ namespace KhTracker
                     {
                         tmp_origBoss = "Hades";
                     }
-                    if (tmp_origBoss == "Pete OC II")
+                    if (tmp_origBoss == "Pete TR" || tmp_origBoss == "Pete OC II")
                     {
-                        tmp_origBoss = "Pete OC";
+                        tmp_origBoss = "Pete";
+                    }
+
+                    if (tmp_origBoss.EndsWith(" (1)") || tmp_origBoss.EndsWith(" (2)") || 
+                        tmp_origBoss.EndsWith(" (3)") || tmp_origBoss.EndsWith(" (4)"))
+                    {
+                        tmp_origBoss = tmp_origBoss.Substring(0, tmp_origBoss.Length-4);
                     }
 
                     BossA = tmp_origBoss;
@@ -1880,18 +1894,30 @@ namespace KhTracker
                     {
                         tmp_origBoss = "Hades";
                     }
-                    if (tmp_origBoss == "Pete OC II")
+                    if (tmp_origBoss == "Pete TR")
                     {
-                        tmp_origBoss = "Pete OC";
+                        tmp_origBoss = "Pete";
                     }
 
                     if (tmp_replBoss == "Hades II (1)" || tmp_replBoss == "Hades II" || tmp_replBoss == "Hades I")
                     {
                         tmp_replBoss = "Hades";
                     }
-                    if (tmp_replBoss == "Pete OC II")
+                    if (tmp_replBoss == "Pete TR" || tmp_replBoss == "Pete OC II")
                     {
-                        tmp_replBoss = "Pete OC";
+                        tmp_replBoss = "Pete";
+                    }
+
+                    if (tmp_origBoss.EndsWith(" (1)") || tmp_origBoss.EndsWith(" (2)") ||
+                        tmp_origBoss.EndsWith(" (3)") || tmp_origBoss.EndsWith(" (4)"))
+                    {
+                        tmp_origBoss = tmp_origBoss.Substring(0, tmp_origBoss.Length - 4);
+                    }
+
+                    if (tmp_replBoss.EndsWith(" (1)") || tmp_replBoss.EndsWith(" (2)") ||
+                        tmp_replBoss.EndsWith(" (3)") || tmp_replBoss.EndsWith(" (4)"))
+                    {
+                        tmp_replBoss = tmp_replBoss.Substring(0, tmp_replBoss.Length - 4);
                     }
 
                     BossA = tmp_origBoss;

@@ -867,6 +867,7 @@ namespace KhTracker
             {"Cerberus (Cups)"},
             {"Hades Cups"},
             {"Pete Cups"},
+            {"Pete OC II"},
             {"Cloud (1)"},
             {"Cloud (2)"},
             {"Leon (1)"},
