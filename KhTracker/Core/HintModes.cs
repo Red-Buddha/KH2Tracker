@@ -1787,7 +1787,7 @@ namespace KhTracker
                         temp = (data.TWTNW_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);
                     else if (data.TWTNW_ProgressionValues[prog - 1] > 0)
                         data.WorldsData[worldName].worldGrid.WorldCompleteProgressionBonus();
-                    return data.TWTNW_ProgressionValues[prog - 1] + temp;
+                    return data.TWTNW_ProgressionValues[prog - 1] + temp + 90;
                 case "GoA":
                     //if (data.WorldsData["HollowBastion"].complete && data.WorldsData["HollowBastion"].hintedProgression)
                     //    temp = (data.HB_ProgressionValues[prog - 1] > 0 ? data.WorldCompleteBonus : 0);

@@ -1482,7 +1482,7 @@ namespace KhTracker
                 //Console.WriteLine("~~~~~ MARKING WORLD AS COMPLETE");
                 data.WorldsData[worldName].complete = true;
                 //when a world is found as complete, give the stored bonuses
-                if (data.UsingProgressionHints)
+                if (data.UsingProgressionHints && data.hintsLoaded)
                 {
                     if (data.calulating)
                         data.ProgressionPoints += data.StoredWorldCompleteBonus[worldName];

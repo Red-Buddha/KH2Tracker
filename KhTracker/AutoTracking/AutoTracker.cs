@@ -606,6 +606,7 @@ namespace KhTracker
                 DeathCheck();
                 LevelsProgressionBonus();
                 DrivesProgressionBonus();
+                AddProgressionPoints(0);
 
                 if (data.mode == Mode.PointsHints || data.ScoreMode)
                 {

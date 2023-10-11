@@ -633,7 +633,10 @@ namespace KhTracker
                     else
                     {
                         SetHintText(temp.Item1, temp.Item2, temp.Item3, temp.Item4, temp.Item5, temp.Item6);
-                        HighlightProgHintedWorlds(new List<string> { Codes.GetWorldName(temp.Item1) });
+                        if (data.mode == Mode.PathHints || data.mode == Mode.OpenKHJsmarteeHints)
+                            HighlightProgHintedWorlds(new List<string> { data.reportInformation[num - 1].Item2 });
+                        else
+                            HighlightProgHintedWorlds(new List<string> { Codes.GetWorldName(temp.Item1) });
                     }
 
                 }
