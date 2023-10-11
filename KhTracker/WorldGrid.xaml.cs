@@ -539,6 +539,30 @@ namespace KhTracker
                 }
             }
 
+            //prog shan specific
+            if (item.Name.StartsWith("Report") && data.mode == Mode.OpenKHShanHints && data.UsingProgressionHints)
+            {
+                int index = int.Parse(item.Name.Remove(0, 6)) - 1;
+
+                if (!data.reportLocationsUsed[index])
+                {
+                    window.AddProgressionPoints(data.ReportBonus);
+                    data.reportLocationsUsed[index] = true;
+                }
+                else
+                {
+                    //check if the report was already obtained before giving points
+                    if (!data.reportLocationsUsed[index])
+                    {
+                        window.AddProgressionPoints(data.ReportBonus);
+                        data.reportLocationsUsed[index] = true;
+                    }
+                    // show hint text on report hover
+                    item.MouseEnter -= item.Report_Hover;
+                    item.MouseEnter += item.Report_Hover;
+                }
+            }
+
             return true;
         }
 

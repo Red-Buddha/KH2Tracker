@@ -1502,7 +1502,7 @@ namespace KhTracker
             data.calulating = true;
 
             if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || 
-                data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.WorldsEnabled)
+                data.ProgressionCurrentHint == data.HintCosts.Count || data.ProgressionCurrentHint == data.HintRevealOrder.Count)
             {
                 //update points anyway
                 //ProgressionCollectedValue.Visibility = Visibility.Hidden;
@@ -1514,7 +1514,7 @@ namespace KhTracker
             }
 
             //loop in the event that one progression point rewards a lot
-            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count && data.ProgressionCurrentHint < data.WorldsEnabled)
+            while (data.ProgressionPoints >= data.HintCosts[data.ProgressionCurrentHint] && data.ProgressionCurrentHint < data.HintCosts.Count && data.ProgressionCurrentHint < data.HintRevealOrder.Count)
             {
                 #region More Debug
                 //Console.WriteLine("Current Progression Hint = " + data.ProgressionCurrentHint);
@@ -1529,12 +1529,12 @@ namespace KhTracker
                 worldsRevealed.Add(ProgressionReveal(data.ProgressionCurrentHint - 1));
 
                 if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || 
-                    data.ProgressionCurrentHint == data.WorldsEnabled) //revealed last hint
+                    data.ProgressionCurrentHint == data.HintRevealOrder.Count) //revealed last hint
                     break;
             }
 
             if (data.ProgressionCurrentHint >= data.HintCosts.Count - 1 || data.ProgressionCurrentHint == data.HintCosts.Count || 
-                data.ProgressionCurrentHint == data.WorldsEnabled)
+                data.ProgressionCurrentHint == data.HintRevealOrder.Count)
             {
                 //update points
                 //ProgressionCollectedValue.Visibility = Visibility.Hidden;
